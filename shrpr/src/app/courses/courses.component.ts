@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Response } from "@angular/http";
+//import { Response } from "@angular/http";
 
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service"
@@ -15,6 +15,7 @@ export class CoursesComponent implements OnInit {
   constructor(private courseService: CourseService) { }
 
   ngOnInit() {
+      
   }
 
   onGetCourses(){
