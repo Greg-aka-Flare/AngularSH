@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Response } from "@angular/http";
 
 import { Course } from "../course.interface";
@@ -11,6 +11,7 @@ import { CourseService } from "../course.service";
 })
 export class CourseComponent implements OnInit {
   @Input() course: Course;
+  @Output() courseDeleted = new EventEmitter<Course>();
   editing = false;
   editValue = '';
 
@@ -28,7 +29,7 @@ export class CourseComponent implements OnInit {
   	this.courseService.updateCourse(this.course.id, this.editValue)
   		.subscribe(
   			(course: Course) => {
-  				this.course = course;
+  				this.course.name = this.editValue;
   				this.editValue = '';
   			}
   		);
@@ -44,7 +45,10 @@ export class CourseComponent implements OnInit {
   onDelete(){
   	this.courseService.deleteCourse(this.course.id)
   		.subscribe(
-  			() => console.log('Course deleted')
+  			() => {
+          this.courseDeleted.emit(this.course);
+          console.log('Course deleted');
+        }
   		);
   }
 

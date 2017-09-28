@@ -25,4 +25,14 @@ export class CoursesComponent implements OnInit {
   			(error: Response) => console.log(error)
   		);
   }
+
+  onDeleted(course: Course){
+    const position = this.courses.findIndex(
+      (courseEl: Course) => {
+        return courseEl.id == course.id;
+      }
+    );
+    this.courses.splice(position, 1);
+  }
+
 }
