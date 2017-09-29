@@ -16,7 +16,11 @@
 </div>	
 <!--card action start--><div class="card-box-action">
 	<div *ngIf="editing">
-			<input type="text" [(ngModel)]="editValue">
+			<input type="text" [(ngModel)]="editValueName">
+			<input type="text" [(ngModel)]="editValueAddress">
+			<input type="text" [(ngModel)]="editValueCity">
+			<input type="text" [(ngModel)]="editValueState">
+			<input type="text" [(ngModel)]="editValueZip">
 			<a href="#" (click)="onUpdate()">Save</a>
 			<a href="#" (click)="onCancel()">Cancel</a>
 		</div>

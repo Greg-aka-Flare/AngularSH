@@ -13,7 +13,11 @@ export class CourseComponent implements OnInit {
   @Input() course: Course;
   @Output() courseDeleted = new EventEmitter<Course>();
   editing = false;
-  editValue = '';
+  editValueName = '';
+  editValueAddress = '';
+  editValueCity = '';
+  editValueState = '';
+  editValueZip = '';
 
   constructor(private courseService: CourseService) { }
 
@@ -22,15 +26,22 @@ export class CourseComponent implements OnInit {
 
   onEdit(){
   	this.editing = true;
-  	this.editValue = this.course.name;
+  	this.editValueName = this.course.name;
+    this.editValueAddress = this.course.address;
+    this.editValueCity = this.course.city;
+    this.editValueState = this.course.state;
+    this.editValueZip = this.course.zip;
   }
 
   onUpdate(){
-  	this.courseService.updateCourse(this.course.id, this.editValue)
+  	this.courseService.updateCourse(this.course.id, this.editValueName)
   		.subscribe(
   			(course: Course) => {
-  				this.course.name = this.editValue;
-  				this.editValue = '';
+  				this.course.name = this.editValueName;
+  				this.course.address = this.editValueAddress;
+          this.course.city = this.editValueCity;
+          this.course.state = this.editValueState;
+          this.course.zip = this.editValueZip;
   			}
   		);
   	
@@ -38,7 +49,7 @@ export class CourseComponent implements OnInit {
   }
 
   onCancel(){
-  	this.editValue = '';
+  	this.editValueName = '';
   	this.editing = false;
   }
 
