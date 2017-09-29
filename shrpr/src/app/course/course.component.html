@@ -1,9 +1,21 @@
-<div class="panel panel-default">
-	<div class="panel-body">
-		{{course.name}}, {{course.address}}
+<!--card box start-->
+<div class="card-box">
+<div class="card-detail">
+	<div class="card-row">
+	<span class="field-label">Course Name: </span><span class="field-value">{{course.name}}</span>
 	</div>
-	<div class="panel-footer">
-		<div *ngIf="editing">
+	<div class="card-row">
+	<span class="field-label">Instructor: </span><span class="field-value">{{course.instructor_id}}</span>
+	</div>
+	<div class="card-row">
+	<span class="field-label">Address: </span><span class="field-value">{{course.address}}, {{course.city}} <br>{{course.state}}, {{course.zip}}</span>
+	</div>
+	<div class="card-row">
+	<span class="field-label">Course Fee: </span><span class="field-value">${{course.amount}}<small>usd</small></span>
+	</div>
+</div>	
+<!--card action start--><div class="card-box-action">
+	<div *ngIf="editing">
 			<input type="text" [(ngModel)]="editValue">
 			<a href="#" (click)="onUpdate()">Save</a>
 			<a href="#" (click)="onCancel()">Cancel</a>
@@ -12,6 +24,6 @@
 			<a href="#" (click)="onEdit()">Edit</a>
 			<a href="#" (click)="onDelete()">Delete</a>	
 		</div>
-		
-	</div>
+</div><!--card action ends-->
 </div>
+<!--card box ends-->

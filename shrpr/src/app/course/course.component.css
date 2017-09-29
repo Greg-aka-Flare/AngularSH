@@ -1,0 +1,49 @@
+.card-box {
+	border-bottom:2px solid #fc6b02;
+	box-shadow:0 3px 3px 0 #cccccc;
+	margin:0 0 16px 0;
+}
+.card-row {
+	margin:0 0 5px 0;
+}
+.card-row:before, .card-row:after {
+	content: '';
+	display: block;
+	clear:both;
+}
+.card-detail {
+	padding:10px;
+	font-size:12px;
+	line-height: 14px;
+}
+.field-label {
+	font-weight: bold;
+	display: inline-block;
+	min-width: 85px;
+	vertical-align: middle;
+	float:left;
+}
+.field-value {
+	display: inline-block;
+	vertical-align: middle;
+	float:left;
+	width:60%;
+}
+.card-box-action {
+	background-color: #f4f4f4;
+	padding:10px;
+}
+.card-box-action  a {
+	display:inline-block;
+	vertical-align: middle;
+	padding: 6px 10px 5px 10px;
+	background-color: #fc6b02;
+	font-size:12px;
+	line-height: 14px;
+	color:#ffffff;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	border-radius: 5px;
+	margin:0 2px;
+}

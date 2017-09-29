@@ -15,16 +15,20 @@ export class CoursesComponent implements OnInit {
   constructor(private courseService: CourseService) { }
 
   ngOnInit() {
-      
+      this.courseService.getCourses()
+      .subscribe(
+        (courses: Course[]) => this.courses = courses,
+        (error: Response) => console.log(error)
+      );  
   }
 
-  onGetCourses(){
+  /*onGetCourses(){
   	this.courseService.getCourses()
   		.subscribe(
   			(courses: Course[]) => this.courses = courses,
   			(error: Response) => console.log(error)
   		);
-  }
+  }*/
 
   onDeleted(course: Course){
     const position = this.courses.findIndex(
