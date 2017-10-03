@@ -24,8 +24,8 @@ export class CourseService {
 			);
 	}
 
-	updateCourse(id: number, newContent: string){
-		const body = JSON.stringify({content: newContent});
+	updateCourse(id: number, newName: string){
+		const body = JSON.stringify({name: newName});
 		const headers = new Headers({'Content-Type': 'application/json'});
 		return this.http.put('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/course/' + id, body, {headers: headers})
 			.map(
