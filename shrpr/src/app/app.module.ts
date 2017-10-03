@@ -11,6 +11,9 @@ import { CourseComponent } from './course/course.component';
 import { NewCourseComponent } from './new-course/new-course.component';
 import { routing } from "./app.routing";
 import { CourseService } from "./course.service";
+import { TemplateComponent } from './template/template.component';
+import { TemplateHeader } from './template/template.component';
+import { TemplateFooter } from './template/template.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { CourseService } from "./course.service";
     CoursesComponent,
     CourseComponent,
     NewCourseComponent,
-    MenuComponent
+    MenuComponent,
+    TemplateComponent,
+    TemplateHeader,
+    TemplateFooter
   ],
   imports: [
     BrowserModule,
