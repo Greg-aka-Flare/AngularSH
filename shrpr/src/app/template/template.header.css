@@ -1,0 +1,18 @@
+.menu_trigger {
+	position: relative;
+	z-index: 99999;
+	background: #ffffff;
+}
+.menu_trigger.active .fa-list {
+	opacity: 0;
+}
+.menu_trigger .fa-times {
+	position: absolute;
+	opacity: 0;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.menu_trigger.active .fa-times {
+	opacity: 1;
+}

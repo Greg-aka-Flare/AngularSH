@@ -5,7 +5,7 @@
 			<img src="./assets/img/SHRPR-logo.jpg" alt="SHRPR" title="SHRPR">
 		</a>
 		<a href="javascript:void(0);" class="search_trigger"><i class="fa fa-search" aria-hidden="true"></i></a>
-		<a href="javascript:void(0);" class="menu_trigger" (click)="toggleMenu()"><i class="fa fa-list" aria-hidden="true"></i></a>
+		<a href="javascript:void(0);" class="menu_trigger" [class.active]="isBtnActive" (click)="toggleMenu()"><i class="fa fa-list" aria-hidden="true"></i><i class="fa fa-times" aria-hidden="true"></i></a>
 	</div>
 	<app-menu [@slideInOut]="menuState"></app-menu>
 </header>

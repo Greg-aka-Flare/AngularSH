@@ -40,13 +40,13 @@ export class TemplateHeader implements OnInit {
 
   ngOnInit() {
   }
-
+  isBtnActive:boolean = false;
   menuState:string = 'out';
   toggleMenu() {
     // 1-line if statement that toggles the value:
     this.menuState = this.menuState === 'out' ? 'in' : 'out';
+    this.isBtnActive = !this.isBtnActive;
   }
-
 }
 
 
