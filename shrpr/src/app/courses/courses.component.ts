@@ -17,7 +17,9 @@ export class CoursesComponent implements OnInit {
   ngOnInit() {
       this.courseService.getCourses()
       .subscribe(
-        (courses: Course[]) => this.courses = courses,
+        (courses: Course[]) => {
+          this.courses = courses; 
+         },
         (error: Response) => console.log(error)
       );  
   }
