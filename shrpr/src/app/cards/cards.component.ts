@@ -1,35 +1,37 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { StackConfig, Stack, Card, ThrowEvent, DragEvent, Direction, SwingStackComponent, SwingCardComponent} from 'angular2-swing';
-import { Response } from "@angular/http";
 
 import { Course } from "../course.interface";
-import { CourseService } from "../course.service";
- 
+import { CourseService } from "../course.service"
+
 @Component({
-  selector: 'app-course',
-  templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css']
+  selector: 'app-cards',
+  templateUrl: './cards.component.html',
+  styleUrls: ['./cards.component.css']
 })
+/*
+export class CardsComponent implements OnInit {
 
-export class CourseComponent implements OnInit {
+  constructor() { }
+
+  ngOnInit() {
+
+  }
+}*/
+
+
+export class CardsComponent implements OnInit {
   courses: Course[];
-
+    
   @ViewChild('myswing1') swingStack: SwingStackComponent;
   @ViewChildren('mycards1') swingCards: QueryList<SwingCardComponent>;
 
+  //cards: Array<any>;
   stackConfig: StackConfig;
 
-  @Input() course: Course;
-  @Output() courseDeleted = new EventEmitter<Course>();
-  editing = false;
-  editValueName = '';
-  editValueAddress = '';
-  editValueCity = '';
-  editValueState = '';
-  editValueZip = '';
-
   constructor(private courseService: CourseService) {
-      this.stackConfig = {
+
+    this.stackConfig = {
       allowedDirections: [
         Direction.LEFT,
         Direction.RIGHT,
@@ -45,6 +47,13 @@ export class CourseComponent implements OnInit {
       },
       minThrowOutDistance: 900    // default value is 400
     };
+
+    /*this.cards = [
+      { name: 'clubs', symbol: '♣' },
+      { name: 'diamonds', symbol: '♦' },
+      { name: 'spades', symbol: '♠' }
+    ];*/
+
   }
 
   ngOnInit() {
@@ -55,45 +64,6 @@ export class CourseComponent implements OnInit {
       );
   }
 
-  onEdit(){
-  	this.editing = true;
-  	this.editValueName = this.course.name;
-    this.editValueAddress = this.course.address;
-    this.editValueCity = this.course.city;
-    this.editValueState = this.course.state;
-    this.editValueZip = this.course.zip;
-  }
-
-  onUpdate(){
-  	this.courseService.updateCourse(this.course.id, this.editValueName)
-  		.subscribe(
-  			(course: Course) => {
-  				this.course.name = this.editValueName;
-  				this.course.address = this.editValueAddress;
-          this.course.city = this.editValueCity;
-          this.course.state = this.editValueState;
-          this.course.zip = this.editValueZip;
-  			}
-  		);
-  	
-  	this.editing = false;
-  }
-
-  onCancel(){
-  	this.editValueName = '';
-  	this.editing = false;
-  }
-
-  onDelete(){
-  	this.courseService.deleteCourse(this.course.id)
-  		.subscribe(
-  			() => {
-          this.courseDeleted.emit(this.course);
-          console.log('Course deleted');
-        }
-  		);
-  }
-  
   ngAfterViewInit() {
     // ViewChild & ViewChildren are only available
     // in this function
@@ -125,5 +95,5 @@ export class CourseComponent implements OnInit {
   onThrowOut(event: ThrowEvent) {
     console.log('Hook from the template', event.throwDirection);
   }
-  
+
 }

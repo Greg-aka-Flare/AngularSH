@@ -4,7 +4,6 @@ import { Response } from "@angular/http";
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service"
 
-
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -12,14 +11,19 @@ import { CourseService } from "../course.service"
 })
 export class CoursesComponent implements OnInit {
 	courses: Course[];
-  constructor(private courseService: CourseService) { }
+
+  constructor(private courseService: CourseService) {
+     
+  }
 
   ngOnInit() {
       this.courseService.getCourses()
       .subscribe(
         (courses: Course[]) => this.courses = courses,
         (error: Response) => console.log(error)
-      );  
+      );
+
+
   }
 
   /*onGetCourses(){

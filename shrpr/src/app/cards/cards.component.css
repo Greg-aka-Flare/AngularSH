@@ -1,0 +1,94 @@
+#viewport {
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+  #viewport .stack {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin:0;
+    padding:0;
+    list-style: none;
+   }
+  #viewport li {
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0 2px -2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    cursor: default; 
+  }
+  .card-box {
+  box-shadow:0 3px 3px 0 #cccccc;
+  margin:0 0 16px 0;
+}
+.image-box {
+  background:url('../../assets/img/court.jpg') no-repeat center top;
+  background-size: cover;
+  height: 250px;
+  position: relative;
+}
+.course-title {
+   background:rgba(0, 0, 0, 0.75) none repeat scroll 0 0;
+    bottom: 10px;
+    box-sizing: border-box;
+    color: #fc6a02;
+    display: block;
+    font-size: 16px;
+    left: 0;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+}
+.card-row {
+  margin:0 0 10px 0;
+}
+.card-detail {
+  padding:10px;
+  font-size:12px;
+  line-height: 14px;
+}
+.aqua_text {
+  color:#02b2b8;
+}
+.card-box-action {
+  background-color: #f4f4f4;
+  padding:10px;
+}
+.card-box-action  a {
+  display:inline-block;
+  vertical-align: middle;
+  padding: 6px 10px 5px 10px;
+  background-color: #fc6b02;
+  font-size:12px;
+  line-height: 14px;
+  color:#ffffff;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 5px;
+  margin:0 2px;
+}
+.card-row .fa {
+  font-size:15px;
+  color:#696969;
+}
+.price-info {
+  background:url('../../assets/img/star-bg.jpg') no-repeat left top;
+  float:right;
+  padding:20px 0 10px 20px;
+  font-size: 20px;
+  line-height: 25px;
+  color:#000000;
+}
