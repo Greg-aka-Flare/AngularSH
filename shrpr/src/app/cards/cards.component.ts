@@ -45,7 +45,7 @@ export class CardsComponent implements OnInit {
 
         return Math.max(xConfidence, yConfidence);
       },
-      minThrowOutDistance: 900    // default value is 400
+      minThrowOutDistance: 1000    // default value is 400
     };
 
     /*this.cards = [
