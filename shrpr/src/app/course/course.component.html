@@ -2,16 +2,16 @@
 <div class="card-box">
 <div class="card-detail">
 	<div class="card-row">
-	<span class="field-label">Course Name: </span><span class="field-value">{{course.name}}</span>
+	<span class="field-label">Course Name: </span><span class="field-value">{{course.title}}</span>
 	</div>
 	<div class="card-row">
-	<span class="field-label">Instructor: </span><span class="field-value">{{course.instructor_id}}</span>
+	<span class="field-label">Instructor: </span><span class="field-value">{{course.instructor.name}}</span>
 	</div>
 	<div class="card-row">
-	<span class="field-label">Address: </span><span class="field-value">{{course.address}}, {{course.city}} <br>{{course.state}}, {{course.zip}}</span>
+	<span class="field-label">Address: </span><span class="field-value">{{course.semesters[0].address}}, {{course.semesters[0].city}} <br>{{course.semesters[0].state}}, {{course.semesters[0].zip}}</span>
 	</div>
 	<div class="card-row">
-	<span class="field-label">Course Fee: </span><span class="field-value">${{course.amount}}<small>usd</small></span>
+	<span class="field-label">Course Fee: </span><span class="field-value">${{course.semesters[0].amount}}<small>usd</small></span>
 	</div>
 </div>	
 <!--card action start--><div class="card-box-action">
