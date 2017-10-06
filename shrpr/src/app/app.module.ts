@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SwingModule } from 'angular2-swing';
+import { SwipeCardsModule } from 'ng2-swipe-cards';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -16,6 +17,8 @@ import { TemplateComponent } from './template/template.component';
 import { TemplateHeader } from './template/template.component';
 import { TemplateFooter } from './template/template.component';
 import { CardsComponent } from './cards/cards.component';
+import { TcardComponent } from './tcard/tcard.component';
+
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import { CardsComponent } from './cards/cards.component';
     TemplateComponent,
     TemplateHeader,
     TemplateFooter,
-    CardsComponent
+    CardsComponent,
+    TcardComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,8 @@ import { CardsComponent } from './cards/cards.component';
     FormsModule,
     BrowserAnimationsModule,
     routing,
-    SwingModule
+    SwingModule,
+    SwipeCardsModule
   ],
   providers: [CourseService],
   bootstrap: [AppComponent]
