@@ -14,7 +14,7 @@
 .image-box {
 	display:block;
 	width:100%;
-	min-height: 400px;
+	min-height: 250px;
 	background:url('../../assets/img/court.jpg') no-repeat center top;
 	background-size: cover;
   max-width:60em;
