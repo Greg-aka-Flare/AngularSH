@@ -91,3 +91,6 @@
   line-height: 25px;
   color:#000000;
 }
+.card-overlay, .card-content {
+  max-width: 60em;
+}
