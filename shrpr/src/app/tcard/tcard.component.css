@@ -1,0 +1,93 @@
+.card-container {
+	min-height: 500px;
+	background-color: #ffffff;
+	width:100% !important;
+}
+[_nghost-c6] {
+	border:none !important;
+	width:100% !important;
+}
+.card-container .card-heap[_nghost-c6], .card-container .card-heap[_nghost-c6]:nth-child(1), .card-container .card-heap[_nghost-c6]:nth-child(2), .card-container .card-heap[_nghost-c6]:nth-child(3) {
+	box-shadow: none !important;
+	width: 100%;
+}
+.image-box {
+	display:block;
+	width:100%;
+	min-height: 400px;
+	background:url('../../assets/img/court.jpg') no-repeat center top;
+	background-size: cover;
+  max-width:60em;
+}
+.image-box img {
+	display: block;
+	width:100%;
+
+}
+.buttons {
+	position: relative;
+	z-index: 4;
+}
+.image-box {
+  background:url('../../assets/img/court.jpg') no-repeat center top;
+  background-size: cover;
+  height: 250px;
+  position: relative;
+}
+.course-title {
+   background:rgba(0, 0, 0, 0.75) none repeat scroll 0 0;
+    bottom: 10px;
+    box-sizing: border-box;
+    color: #fc6a02;
+    display: block;
+    font-size: 16px;
+    left: 0;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+}
+.card-row {
+  margin:0 0 10px 0;
+}
+.card-detail {
+  padding:10px;
+  font-size:12px;
+  line-height: 14px;
+}
+.aqua_text {
+  color:#02b2b8;
+}
+.card-box-action {
+  background-color: #f4f4f4;
+  padding:10px;
+}
+.card-box-action  a {
+  display:inline-block;
+  vertical-align: middle;
+  padding: 6px 10px 5px 10px;
+  background-color: #fc6b02;
+  font-size:12px;
+  line-height: 14px;
+  color:#ffffff;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 5px;
+  margin:0 2px;
+}
+.card-row .fa {
+  font-size:15px;
+  color:#696969;
+}
+.price-info {
+  background:url('../../assets/img/star-bg.jpg') no-repeat left top;
+  float:right;
+  padding:20px 0 10px 20px;
+  font-size: 20px;
+  line-height: 25px;
+  color:#000000;
+}
