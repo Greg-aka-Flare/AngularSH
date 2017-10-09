@@ -1,32 +1,36 @@
 .card-container {
-	min-height: 500px;
-	background-color: #ffffff;
-	width:100% !important;
+  min-height: 500px;
+  background-color: #ffffff;
+  width:100% !important;
+  max-width: 60em;
 }
 [_nghost-c6] {
-	border:none !important;
-	width:100% !important;
+  border:none !important;
+  width:100% !important;
+  max-width: 960px;
+  height: 350px;
+
 }
 .card-container .card-heap[_nghost-c6], .card-container .card-heap[_nghost-c6]:nth-child(1), .card-container .card-heap[_nghost-c6]:nth-child(2), .card-container .card-heap[_nghost-c6]:nth-child(3) {
-	box-shadow: none !important;
-	width: 100%;
+  box-shadow: none !important;
+  width: 100%;
 }
 .image-box {
-	display:block;
-	width:100%;
-	min-height: 250px;
-	background:url('../../assets/img/court.jpg') no-repeat center top;
-	background-size: cover;
+  display:block;
+  width:100%;
+  min-height: 350px;
+  background:url('../../assets/img/court.jpg') no-repeat center top;
+  background-size: cover;
   max-width:60em;
 }
 .image-box img {
-	display: block;
-	width:100%;
+  display: block;
+  width:100%;
 
 }
 .buttons {
-	position: relative;
-	z-index: 4;
+  position: relative;
+  z-index: 4;
 }
 .image-box {
   background:url('../../assets/img/court.jpg') no-repeat center top;
