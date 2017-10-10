@@ -38,10 +38,10 @@ import { TcardComponent } from './tcard/tcard.component';
     BrowserModule,
     HttpModule,
     FormsModule,
-    BrowserAnimationsModule,
     routing,
     SwingModule,
-    SwipeCardsModule
+    SwipeCardsModule,
+    BrowserAnimationsModule
   ],
   providers: [CourseService],
   bootstrap: [AppComponent]
