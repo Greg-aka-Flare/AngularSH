@@ -7,6 +7,6 @@
 		<a href="javascript:void(0);" class="search_trigger"><i class="fa fa-search" aria-hidden="true"></i></a>
 		<a href="javascript:void(0);" class="menu_trigger" [class.active]="isBtnActive" (click)="toggleMenu()"><i class="fa fa-list" aria-hidden="true"></i><i class="fa fa-times" aria-hidden="true"></i></a>
 	</div>
-	<app-menu [@slideInOut]="menuState"></app-menu>
+	<app-menu [@slideInOut]="menuState" [class.active]="isBtnActive"></app-menu>
 </header>
 <!--header ends-->
