@@ -14,21 +14,21 @@
           <span>{{card.id}}</span>
         </div>-->
         <div class="card-content">
-        	<div class="image-box" draggable="false">
+          <div class="image-box" draggable="false">
           <div class="course-title">{{card.title}}, {{card.id}}</div>
           </div>
         <div class="card-detail">
           <div class="price-info">${{card.semesters[0].amount}}</div>
-            <div class="card-row"><i class="fa fa-map-marker" aria-hidden="true"></i> <span class="aqua_text">{{card.semesters[0].city}}, {{card.semesters[0].state}}</span></div>
-            <div class="card-row"><i class="fa fa-calendar" aria-hidden="true"></i> <span class="aqua_text">{{card.duration}}</span></div>
+            <div class="card-row"><i class="fa fa-map-marker" aria-hidden="true"></i> <span class="aqua_text">{{card.semesters[0].addresses[0].city}}, {{card.semesters[0].addresses[0].state}}</span></div>
+            <div class="card-row"><i class="fa fa-calendar" aria-hidden="true"></i> <span class="aqua_text">{{card.semesters[0].start_date | date: 'MM/dd/yyyy'}}</span></div>
             <div class="card-row"><em>with</em> <span class="aqua_text">{{card.instructor.name}}</span></div>
           </div>
-		</div>
+    </div>
       </sc-card>
   </div>
   <div class="buttons">
     <button (click)="like(false)">Dislike</button>
-    <button (click)="like(true)">Like</button>
+    <button (click)="like(true)">Like</button><p>{{likeCounter}}</p>
   </div>
 </div>
 <!--<div class="right-panel">
