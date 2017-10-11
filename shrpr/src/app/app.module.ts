@@ -18,6 +18,8 @@ import { TemplateHeader } from './template/template.component';
 import { TemplateFooter } from './template/template.component';
 import { CardsComponent } from './cards/cards.component';
 import { TcardComponent } from './tcard/tcard.component';
+import { NguiTabModule } from '@ngui/tab';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 
 
 
@@ -41,7 +43,9 @@ import { TcardComponent } from './tcard/tcard.component';
     routing,
     SwingModule,
     SwipeCardsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NguiTabModule,
+    NguiAutoCompleteModule
   ],
   providers: [CourseService],
   bootstrap: [AppComponent]

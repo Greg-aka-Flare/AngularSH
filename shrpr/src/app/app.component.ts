@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-
+  model1: any;
+    arrayOfStrings: string[] =
+      ["this", "is", "array", "of", "text"];
  
 }
