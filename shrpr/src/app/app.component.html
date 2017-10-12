@@ -2,20 +2,7 @@
 <main>
 <div class="inner_wrap clearfix">
 <!--The content below is only a placeholder and can be replaced.-->
-<ngui-tab
-  selected="browse"
-  selected-index-class="selected"
-  selected-contents-class="fadeIn animated">
-  <div class="tabs">
-    <div index="browse">Browse</div>
-    <div index="curious">Curious</div>
-  </div>
-  <div class="tab-contents">
-    <div contents="browse"><input ngui-auto-complete
-    [(ngModel)]="model1"
-    [source]="arrayOfStrings"
-    placeholder="enter text"/></div>
-    <div contents="curious"><div id="app">
+<div id="app">
   <div class="container">
   <div class="row">
       <div class="col-xs-12">
@@ -30,11 +17,7 @@
       </div>
     </div>
   </div>
-</div></div>
-  </div>
-</ngui-tab>
-
-
+</div>
 </div>
   </main>
   <app-footer></app-footer>

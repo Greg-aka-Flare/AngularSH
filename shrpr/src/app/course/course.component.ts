@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import { StackConfig, Stack, Card, ThrowEvent, DragEvent, Direction, SwingStackComponent, SwingCardComponent} from 'angular2-swing';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 import { Response } from "@angular/http";
 
 import { Course } from "../course.interface";
@@ -14,11 +14,6 @@ import { CourseService } from "../course.service";
 export class CourseComponent implements OnInit {
   courses: Course[];
 
-  @ViewChild('myswing1') swingStack: SwingStackComponent;
-  @ViewChildren('mycards1') swingCards: QueryList<SwingCardComponent>;
-
-  stackConfig: StackConfig;
-
   @Input() course: Course;
   @Output() courseDeleted = new EventEmitter<Course>();
   editing = false;
@@ -29,22 +24,7 @@ export class CourseComponent implements OnInit {
   editValueZip = '';
 
   constructor(private courseService: CourseService) {
-      this.stackConfig = {
-      allowedDirections: [
-        Direction.LEFT,
-        Direction.RIGHT,
-        Direction.DOWN
-      ],
-      throwOutConfidence: (offsetX: number, offsetY: number, targetElement: HTMLElement) => {
-        // you would put ur logic based on offset & targetelement to determine
-        // what is your throwout confidence
-        const xConfidence = Math.min(Math.abs(offsetX) / targetElement.offsetWidth, 1);
-        const yConfidence = Math.min(Math.abs(offsetY) / targetElement.offsetHeight, 1);
-
-        return Math.max(xConfidence, yConfidence);
-      },
-      minThrowOutDistance: 900    // default value is 400
-    };
+      
   }
 
   ngOnInit() {
@@ -56,8 +36,8 @@ export class CourseComponent implements OnInit {
   }
 
   onEdit(){
-  	this.editing = true;
-  	this.editValueName = this.course.title;
+    this.editing = true;
+    this.editValueName = this.course.title;
     this.editValueAddress = this.course.address;
     this.editValueCity = this.course.city;
     this.editValueState = this.course.state;
@@ -65,65 +45,33 @@ export class CourseComponent implements OnInit {
   }
 
   onUpdate(){
-  	this.courseService.updateCourse(this.course.id, this.editValueName)
-  		.subscribe(
-  			(course: Course) => {
-  				this.course.title = this.editValueName;
-  				this.course.address = this.editValueAddress;
+    this.courseService.updateCourse(this.course.id, this.editValueName)
+      .subscribe(
+        (course: Course) => {
+          this.course.title = this.editValueName;
+          this.course.address = this.editValueAddress;
           this.course.city = this.editValueCity;
           this.course.state = this.editValueState;
           this.course.zip = this.editValueZip;
-  			}
-  		);
-  	
-  	this.editing = false;
+        }
+      );
+    
+    this.editing = false;
   }
 
   onCancel(){
-  	this.editValueName = '';
-  	this.editing = false;
+    this.editValueName = '';
+    this.editing = false;
   }
 
   onDelete(){
-  	this.courseService.deleteCourse(this.course.id)
-  		.subscribe(
-  			() => {
+    this.courseService.deleteCourse(this.course.id)
+      .subscribe(
+        () => {
           this.courseDeleted.emit(this.course);
           console.log('Course deleted');
         }
-  		);
-  }
-  
-  ngAfterViewInit() {
-    // ViewChild & ViewChildren are only available
-    // in this function
-
-    console.log(this.swingStack); // this is the stack
-    console.log(this.swingCards); // this is a list of cards
-
-    // we can get the underlying stack
-    // which has methods - createCard, destroyCard, getCard etc
-    console.log(this.swingStack.stack);
-
-    // and the cards
-    // every card has methods - destroy, throwIn, throwOut etc
-    //this.swingCards.forEach((c) => console.log(c.getCard()));
-    this.swingCards.forEach((course) => console.log(course.getCard()));
-
-    // this is how you can manually hook up to the
-    // events instead of providing the event method in the template
-    this.swingStack.throwoutleft.subscribe(
-      (event: ThrowEvent) => console.log('Manual hook: ', event));
-
-    this.swingStack.dragstart.subscribe((event: DragEvent) => console.log(event));
-
-    this.swingStack.dragmove.subscribe((event: DragEvent) => console.log(event));
-  }
-
-  // This method is called by hooking up the event
-  // on the HTML element - see the template above
-  onThrowOut(event: ThrowEvent) {
-    console.log('Hook from the template', event.throwDirection);
+      );
   }
   
 }

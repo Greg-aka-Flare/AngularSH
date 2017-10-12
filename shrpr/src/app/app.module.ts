@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { SwingModule } from 'angular2-swing';
 import { SwipeCardsModule } from 'ng2-swipe-cards';
+import { SwingModule } from 'angular2-swing';
+
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -18,9 +19,6 @@ import { TemplateHeader } from './template/template.component';
 import { TemplateFooter } from './template/template.component';
 import { CardsComponent } from './cards/cards.component';
 import { TcardComponent } from './tcard/tcard.component';
-import { NguiTabModule } from '@ngui/tab';
-import { NguiAutoCompleteModule } from '@ngui/auto-complete';
-
 
 
 @NgModule({
@@ -35,17 +33,15 @@ import { NguiAutoCompleteModule } from '@ngui/auto-complete';
     TemplateFooter,
     CardsComponent,
     TcardComponent
-  ],
+   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
+    BrowserAnimationsModule,
     routing,
     SwingModule,
-    SwipeCardsModule,
-    BrowserAnimationsModule,
-    NguiTabModule,
-    NguiAutoCompleteModule
+    SwipeCardsModule    
   ],
   providers: [CourseService],
   bootstrap: [AppComponent]

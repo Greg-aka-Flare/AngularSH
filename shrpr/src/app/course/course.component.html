@@ -1,33 +1,13 @@
-<!--card box start-->
-<div class="card-box">
-<div class="card-detail">
-	<div class="card-row">
-	<span class="field-label">Course Name: </span><span class="field-value">{{course.title}}</span>
-	</div>
-	<div class="card-row">
-	<span class="field-label">Instructor: </span><span class="field-value">{{course.instructor.name}}</span>
-	</div>
-	<div class="card-row">
-	<span class="field-label">Address: </span><span class="field-value">{{course.semesters[0].address}}, {{course.semesters[0].city}} <br>{{course.semesters[0].state}}, {{course.semesters[0].zip}}</span>
-	</div>
-	<div class="card-row">
-	<span class="field-label">Course Fee: </span><span class="field-value">${{course.semesters[0].amount}}<small>usd</small></span>
-	</div>
-</div>	
-<!--card action start--><div class="card-box-action">
-	<div *ngIf="editing">
-			<input type="text" [(ngModel)]="editValueName">
-			<input type="text" [(ngModel)]="editValueAddress">
-			<input type="text" [(ngModel)]="editValueCity">
-			<input type="text" [(ngModel)]="editValueState">
-			<input type="text" [(ngModel)]="editValueZip">
-			<a href="javascript:void();" (click)="onUpdate()">Save</a>
-			<a href="javascript:void();" (click)="onCancel()">Cancel</a>
-		</div>
-		<div *ngIf="!editing">
-			<a href="javascript:void();" (click)="onEdit()">Edit</a>
-			<a href="javascript:void();" (click)="onDelete()">Delete</a>	
-		</div>
-</div><!--card action ends-->
-</div>
-<!--card box ends-->
+<div class="swipe-box card-box" *ngFor="let course of courses; let idx=index" [class.visible]="idx === 0" (swipeleft)="swipe(idx, $event.type)" (swiperight)="swipe(idx, $event.type)" [class.hidden]="!isHide && idx > 0">
+
+<div class="card-content">
+          <div class="image-box" draggable="false">
+          <div class="course-title">{{course.title}}, {{course.id}}</div>
+          </div>
+        <div class="card-detail">
+          <div class="price-info">${{course.semesters[0].amount}}</div>
+            <div class="card-row"><i class="fa fa-map-marker" aria-hidden="true"></i> <span class="aqua_text">{{course.semesters[0].addresses[0].city}}, {{course.semesters[0].addresses[0].state}}</span></div>
+            <div class="card-row"><i class="fa fa-calendar" aria-hidden="true"></i> <span class="aqua_text">{{course.semesters[0].start_date | date: 'MM/dd/yyyy'}}</span></div>
+            <div class="card-row"><em>with</em> <span class="aqua_text">{{course.instructor.name}}</span></div>
+          </div>
+    </div>
