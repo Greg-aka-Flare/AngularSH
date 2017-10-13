@@ -74,4 +74,40 @@ export class CourseComponent implements OnInit {
       );
   }
   
+
+  // constant for swipe action: left or right
+  isVisible: boolean = false;
+  isHide: boolean = true;
+  selectedIndex: number = 0;
+
+  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
+
+  // action triggered when user swipes
+    swipe(currentIndex: number, action = this.SWIPE_ACTION.RIGHT) {
+
+        // out of range
+        if (currentIndex > this.courses.length || currentIndex < 0) return;
+        this.isVisible = !this.isVisible;
+        this.isHide = !this.isHide;
+
+        let nextIndex = 0;
+
+        // swipe right, next course
+        if (action === this.SWIPE_ACTION.RIGHT) {
+            const isLast = currentIndex === this.courses.length - 1;
+            nextIndex = isLast ? 0 : currentIndex + 1;
+        }
+
+        // swipe left, previous course
+        if (action === this.SWIPE_ACTION.LEFT) {
+            const isFirst = currentIndex === 0;
+            nextIndex = isFirst ? this.courses.length - 1 : currentIndex - 1;
+        }
+
+        this.selectedIndex = nextIndex;
+
+        // toggle course visibility
+
+        //this.courses.forEach((x, i) => x. = (i === nextIndex));
+    }
 }
