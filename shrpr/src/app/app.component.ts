@@ -22,10 +22,14 @@ animations: [
 })
 export class AppComponent {
   title = 'app';
-
-  menuState:string = 'out';
-  toggleMenu() {
-    // 1-line if statement that toggles the value:
-    this.menuState = this.menuState === 'out' ? 'in' : 'out';
+  istabFirstActive:boolean = true;
+  istabSecondActive:boolean = false;
+  toggletabSearch() {
+    this.istabFirstActive = true;
+    this.istabSecondActive = false;
+  }
+  toggletabBroese() {
+    this.istabFirstActive = false;
+    this.istabSecondActive = true;
   }
 }

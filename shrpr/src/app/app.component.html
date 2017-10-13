@@ -2,7 +2,13 @@
 <main>
 <div class="inner_wrap clearfix">
 <!--The content below is only a placeholder and can be replaced.-->
-<div id="app">
+<div class="tab_container">
+<div class="tab_trigger"><a href="javascript:void(0)" [class.active]="istabFirstActive" (click)="toggletabSearch()"><i class="fa fa-search" aria-hidden="true"></i>Search</a>
+  <a href="javascript:void(0)" [class.active]="istabSecondActive" (click)="toggletabBroese()">Browse</a>
+</div>
+<div [class.active]="istabFirstActive" class="tab_content">Search</div>
+<div [class.active]="istabSecondActive" class="tab_content">
+  <div id="app">
   <div class="container">
   <div class="row">
       <div class="col-xs-12">
@@ -18,7 +24,7 @@
     </div>
   </div>
 </div>
-</div>
+</div></div></div>
   </main>
   <app-footer></app-footer>
   
