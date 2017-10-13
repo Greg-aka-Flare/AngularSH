@@ -22,8 +22,8 @@ animations: [
 })
 export class AppComponent {
   title = 'app';
-  istabFirstActive:boolean = true;
-  istabSecondActive:boolean = false;
+  istabFirstActive:boolean = false;
+  istabSecondActive:boolean = true;
   toggletabSearch() {
     this.istabFirstActive = true;
     this.istabSecondActive = false;

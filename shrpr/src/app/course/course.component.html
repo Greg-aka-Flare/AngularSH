@@ -5,7 +5,7 @@
   (swiperight)="swipe(i, $event.type)" 
   [class.visible]="i === selectedIndex"
   [class.hidden]="i !== selectedIndex"
-  [@swipeLeftRight]="swipeDirection"
+  [@cardSwipe]="swipeDirection"
 >
   <div class="card-content">
     <div class="image-box" draggable="false">
