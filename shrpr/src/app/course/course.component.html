@@ -5,6 +5,7 @@
   (swiperight)="swipe(i, $event.type)" 
   [class.visible]="i === selectedIndex"
   [class.hidden]="i !== selectedIndex"
+  [@swipeLeftRight]="swipeDirection"
 >
   <div class="card-content">
     <div class="image-box" draggable="false">
@@ -15,7 +16,7 @@
 
     <div class="card-detail">
       <div class="price-info">
-        ${{ course.semesters[0].amount }}
+       ${{ course.semesters[0].amount }}
       </div>
 
       <div class="card-row">

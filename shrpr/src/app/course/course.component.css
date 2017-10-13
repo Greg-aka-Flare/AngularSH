@@ -164,9 +164,10 @@
 }
 
 .swipe-box {
+    float:left;
+    width:100%;
     display: block;
     width: 100%;
-    float: left;
     margin: 0;
 }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {trigger, state, style, transition, animate} from '@angular/animations';
 
 import { Response } from "@angular/http";
 
@@ -8,7 +9,22 @@ import { CourseService } from "../course.service";
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css']
+  styleUrls: ['./course.component.css'],
+  animations: [
+    trigger('swipeLeftRight', [
+      state('initial', style({
+        transform: 'translate3d(0, 0, 0)'
+      })),
+      state('left', style({
+        transform: 'translate3d(-100%, 0, 0)'
+      })),
+      state('right', style({
+        transform: 'translate3d(100%, 0, 0)'
+      })),
+      transition('left => right', animate('400ms ease-in-out')),
+      transition('right => left', animate('400ms ease-in-out'))
+    ]),
+  ]
 })
 
 export class CourseComponent implements OnInit {
@@ -79,6 +95,7 @@ export class CourseComponent implements OnInit {
   isVisible: boolean = false;
   isHide: boolean = true;
   selectedIndex: number = 0;
+  swipeDirection:string = 'initial';
 
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
@@ -89,22 +106,27 @@ export class CourseComponent implements OnInit {
         if (currentIndex > this.courses.length || currentIndex < 0) return;
         this.isVisible = !this.isVisible;
         this.isHide = !this.isHide;
-
         let nextIndex = 0;
-
+        
         // swipe right, next course
         if (action === this.SWIPE_ACTION.RIGHT) {
             const isLast = currentIndex === this.courses.length - 1;
             nextIndex = isLast ? 0 : currentIndex + 1;
+            this.swipeDirection = 'right';
         }
 
         // swipe left, previous course
         if (action === this.SWIPE_ACTION.LEFT) {
-            const isFirst = currentIndex === 0;
-            nextIndex = isFirst ? this.courses.length - 1 : currentIndex - 1;
+            const isLast = currentIndex === this.courses.length - 1;
+            nextIndex = isLast ? 0 : currentIndex + 1;
+            this.swipeDirection = 'left';
+            //const isFirst = currentIndex === 0;
+            //nextIndex = isFirst ? this.courses.length - 1 : currentIndex - 1;
         }
 
         // selected index
         this.selectedIndex = nextIndex;
+        this.swipeDirection = 'initial';
+        
     }
 }
