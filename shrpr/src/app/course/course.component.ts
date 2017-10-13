@@ -82,7 +82,7 @@ export class CourseComponent implements OnInit {
 
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
-  // action triggered when user swipes
+    // action triggered when user swipes
     swipe(currentIndex: number, action = this.SWIPE_ACTION.RIGHT) {
 
         // out of range
@@ -104,10 +104,7 @@ export class CourseComponent implements OnInit {
             nextIndex = isFirst ? this.courses.length - 1 : currentIndex - 1;
         }
 
+        // selected index
         this.selectedIndex = nextIndex;
-
-        // toggle course visibility
-
-        //this.courses.forEach((x, i) => x. = (i === nextIndex));
     }
 }
