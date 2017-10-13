@@ -1,13 +1,42 @@
-<div class="swipe-box card-box" *ngFor="let course of courses; let idx=index" [class.visible]="idx === 0" (swipeleft)="swipe(idx, $event.type)" (swiperight)="swipe(idx, $event.type)" [class.hidden]="!isHide && idx > 0">
-
-<div class="card-content">
-          <div class="image-box" draggable="false">
-          <div class="course-title">{{course.title}}, {{course.id}}</div>
-          </div>
-        <div class="card-detail">
-          <div class="price-info">${{course.semesters[0].amount}}</div>
-            <div class="card-row"><i class="fa fa-map-marker" aria-hidden="true"></i> <span class="aqua_text">{{course.semesters[0].addresses[0].city}}, {{course.semesters[0].addresses[0].state}}</span></div>
-            <div class="card-row"><i class="fa fa-calendar" aria-hidden="true"></i> <span class="aqua_text">{{course.semesters[0].start_date | date: 'MM/dd/yyyy'}}</span></div>
-            <div class="card-row"><em>with</em> <span class="aqua_text">{{course.instructor.name}}</span></div>
-          </div>
+<div 
+  class="swipe-box card-box" 
+  *ngFor="let course of courses; let i = index" 
+  (swipeleft)="swipe(i, $event.type)" 
+  (swiperight)="swipe(i, $event.type)" 
+  [class.visible]="i === selectedIndex"
+  [class.hidden]="i !== selectedIndex"
+>
+  <div class="card-content">
+    <div class="image-box" draggable="false">
+      <div class="course-title">
+        {{ course.title }}, {{ course.id }}
+      </div>
     </div>
+
+    <div class="card-detail">
+      <div class="price-info">
+        ${{ course.semesters[0].amount }}
+      </div>
+
+      <div class="card-row">
+        <i class="fa fa-map-marker" aria-hidden="true"></i> 
+
+        <span class="aqua_text">
+          {{ course.semesters[0].addresses[0].city }}, {{ course.semesters[0].addresses[0].state }}
+        </span>
+      </div>
+
+      <div class="card-row">
+        <i class="fa fa-calendar" aria-hidden="true"></i> 
+
+        <span class="aqua_text">{{ course.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
+      </div>
+
+      <div class="card-row">
+        <em>with</em> 
+
+        <span class="aqua_text">{{ course.instructor.name }}</span>
+      </div>
+    </div>
+  </div>
+</div>
