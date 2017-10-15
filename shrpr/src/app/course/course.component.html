@@ -1,13 +1,13 @@
 <div 
   class="swipe-box card-box" 
   *ngFor="let course of courses; let i = index" 
-  (swipeleft)="swipe(i, $event.type)" 
-  (swiperight)="swipe(i, $event.type)" 
-  [class.visible]="i === selectedIndex"
-  [class.hidden]="i !== selectedIndex"
-  [@cardSwipe]="swipeDirection"
+  (swipeleft)="onLike(i)" 
+  (swiperight)="onDislike(i)" 
+  [@cardSwipe]="courses[i].state"
 >
-  <div class="card-content">
+  <div 
+    class="card-content"
+  >
     <div class="image-box" draggable="false">
       <div class="course-title">
         {{ course.title }}, {{ course.id }}

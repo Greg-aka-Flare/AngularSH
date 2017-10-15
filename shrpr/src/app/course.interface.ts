@@ -6,6 +6,7 @@ export interface Course {
 	city: string;
 	state: string;
 	zip: string;
+	semesters: any[];
 	availability: string;
-
+	swipe: string;
 }
