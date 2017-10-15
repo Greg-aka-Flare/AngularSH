@@ -96,8 +96,6 @@ export class CourseComponent implements OnInit {
 
   onLike(i){
 
-    console.log('test');
-
     if(this.courses[i].state == 'default') this.courses[i].state = 'like';
   }
 
