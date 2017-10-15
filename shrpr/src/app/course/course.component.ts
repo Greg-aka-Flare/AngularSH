@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {trigger, state, style, transition, animate } from '@angular/animations';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { Response } from "@angular/http";
 
@@ -12,24 +12,20 @@ import { CourseService } from "../course.service";
   styleUrls: ['./course.component.css'],
   animations: [
     trigger('cardSwipe', [
-      state('initial', style({
-        transform: 'translate3d(0, 0, 0)'
+      state('like', style({
+        transform: 'translateX(-200%)'
       })),
-      state('left', style({
-        transform: 'translate3d(-100%, 0, 0)'
+      state('dislike', style({
+        transform: 'translateX(200%)'
       })),
-      state('right', style({
-        transform: 'translate3d(100%, 0, 0)'
-      })),
-      transition('left => right', animate('400ms ease-in-out')),
-      transition('right => left', animate('400ms ease-in-out')),
-    ]),
+      transition('default => like', animate('300ms ease-in')),
+      transition('default => dislike', animate('300ms ease-in'))
+    ])
   ]
-  
 })
 
 export class CourseComponent implements OnInit {
-  courses: Course[];
+  courses: any[];
 
   @Input() course: Course;
   @Output() courseDeleted = new EventEmitter<Course>();
@@ -47,7 +43,14 @@ export class CourseComponent implements OnInit {
   ngOnInit() {
     this.courseService.getCourses()
       .subscribe(
-        (courses: Course[]) => this.courses = courses,
+        (courses: any[]) => {
+          this.courses = courses;
+
+          for (var i = 0, l = courses.length; i < l; i++) {
+
+            courses[i].state = 'default';
+          }
+        },
         (error: Response) => console.log(error)
       );
   }
@@ -91,44 +94,13 @@ export class CourseComponent implements OnInit {
       );
   }
 
-  // constant for swipe action: left or right
-  isVisible: boolean = false;
-  isHide: boolean = true;
-  selectedIndex: number = 0;
-  swipeDirection:string = 'initial';
-  
-  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
+  onLike(i){
 
-     
+    if(this.courses[i].state == 'default') this.courses[i].state = 'like';
+  }
 
-    // action triggered when user swipes
-    swipe(currentIndex: number, action = this.SWIPE_ACTION.RIGHT) {
+  onDislike(i){
 
-        // out of range
-        if (currentIndex > this.courses.length || currentIndex < 0) return;
-        this.isVisible = !this.isVisible;
-        this.isHide = !this.isHide;
-        let nextIndex = 0;
-        
-        // swipe right, next course
-        if (action === this.SWIPE_ACTION.RIGHT) {
-            this.swipeDirection = 'right';
-            const isLast = currentIndex === this.courses.length - 1;
-            nextIndex = isLast ? 0 : currentIndex + 1;
-        }
-
-        // swipe left, previous course
-        if (action === this.SWIPE_ACTION.LEFT) {
-            this.swipeDirection = 'left';
-            const isLast = currentIndex === this.courses.length - 1;
-            nextIndex = isLast ? 0 : currentIndex + 1;
-            //const isFirst = currentIndex === 0;
-            //nextIndex = isFirst ? this.courses.length - 1 : currentIndex - 1;
-        }
-
-        // selected index
-        this.selectedIndex = nextIndex;
-        //this.swipeDirection = 'initial';
-        
-    }
+    if(this.courses[i].state == 'default') this.courses[i].state = 'dislike';
+  }
 }
