@@ -2,7 +2,7 @@
   class="swipe-box card-box" 
   *ngFor="let course of courses; let i = index" 
   (swipeleft)="onLike(i)" 
-  (swiperight)="onDislike(i)" 
+  (swiperight)="onDislike(i)"
   [@cardSwipe]="courses[i].state"
 >
   <div 

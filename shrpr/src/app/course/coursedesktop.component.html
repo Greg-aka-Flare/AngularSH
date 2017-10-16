@@ -1,0 +1,22 @@
+<div class="thee_col_content clearfix ">
+<div class="card-box" *ngFor="let course of courses; let i = index" [@divState]>
+  <div class="card-content">
+    <div class="image-box"><div class="course-title">{{ course.title }}, {{ course.id }}</div></div>
+    <div class="card-detail">
+      <div class="price-info">${{ course.semesters[0].amount }}</div>
+      <div class="card-row">
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+        <span class="aqua_text">{{ course.semesters[0].addresses[0].city }}, {{ course.semesters[0].addresses[0].state }}</span>
+      </div>
+      <div class="card-row">
+        <i class="fa fa-calendar" aria-hidden="true"></i> 
+        <span class="aqua_text">{{ course.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
+      </div>
+      <div class="card-row">
+        <em>with</em> 
+        <span class="aqua_text">{{ course.instructor.name }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

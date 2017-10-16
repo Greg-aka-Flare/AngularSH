@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseComponent } from './course/course.component';
+import { CoursedesktopComponent } from './course/coursedesktop.component';
 import { NewCourseComponent } from './new-course/new-course.component';
 import { routing } from "./app.routing";
 import { CourseService } from "./course.service";
@@ -26,6 +27,7 @@ import { TcardComponent } from './tcard/tcard.component';
     AppComponent,
     CoursesComponent,
     CourseComponent,
+    CoursedesktopComponent,
     NewCourseComponent,
     MenuComponent,
     TemplateComponent,

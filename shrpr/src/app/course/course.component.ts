@@ -9,17 +9,31 @@ import { CourseService } from "../course.service";
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
+  //templateUrl: window.screen.width < 900 ? "./course.component.html" : "./tcard.component.html",
   styleUrls: ['./course.component.css'],
   animations: [
     trigger('cardSwipe', [
       state('like', style({
-        transform: 'translateX(-200%)'
+        transform: 'translate3d(-200%, 20%, 0)'
       })),
       state('dislike', style({
-        transform: 'translateX(200%)'
+        transform: 'translate3d(200%, 20%, 0)'
       })),
-      transition('default => like', animate('300ms ease-in')),
-      transition('default => dislike', animate('300ms ease-in'))
+      transition('default => like', animate('800ms ease-in')),
+      transition('default => dislike', animate('800ms ease-in')),
+    ]),
+    trigger('divState', [
+      state('in', style({
+        opacity: 0,
+        transform: 'translateX(0)'
+      })),
+      transition('void => *', [
+        style({
+          opacity:0,
+          transform:'translateX(-100px)'
+        }),
+        animate(300)
+      ])
     ])
   ]
 })
