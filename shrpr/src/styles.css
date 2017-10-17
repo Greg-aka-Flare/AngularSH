@@ -60,7 +60,9 @@ main .inner_wrap {
 
 
 /* =============Main Area Start============================ */
-
+main {
+	background: #ffffff;
+}
 
 /* =============Footer Area Start============================ */
 
@@ -70,8 +72,8 @@ main .inner_wrap {
 /* =============================================================================
    LARGE SCREEN STYLES [DESKTOP VIEW] START
   ============================================================================= */
-/* 800px/16px = 50em */
-@media only screen and (min-width: 50em) {
+/* 960px/16px = 60em */
+@media only screen and (min-width: 60em) {
 main {
 	margin: 70px 0 0;
 }

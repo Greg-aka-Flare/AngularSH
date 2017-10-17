@@ -1,7 +1,6 @@
 header {
 	background-color:#ffffff;
 }
-
 .header_logo {
 	display: inline-block;
    font-family: "coco gothic";
@@ -30,6 +29,31 @@ header {
 }
 .cname_color > span:nth-of-type(5) {
    color:#d03233;
+}
+a.header_cta {
+  background: #488c5c;
+  border: 2px solid #688671;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #ffffff;
+  float: right;
+  font-size: 15px;
+  line-height: 18px;
+  margin: 10px 0 0;
+  max-width: 129px;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  -moz-transition: all 0.5s ease-in-out 0s;
+  -ms-transition: all 0.5s ease-in-out 0s;
+  -o-transition: all 0.5s ease-in-out 0s;
+  -webkit-transition: all 0.5s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
+}
+a.header_cta:hover {
+  background:#fc6a02;
+  border: 2px solid #fc6a02;
 }
 a.menu_trigger {
 	color: #000000;
@@ -73,7 +97,10 @@ a.menu_trigger {
 		left:0;
 		top:0;
 		z-index: 9;
-	}
+  }
+  a.header_cta {
+    margin: 10px 0 0 38px;
+  }
 	a.menu_trigger {
 	  display:none;
 	}
