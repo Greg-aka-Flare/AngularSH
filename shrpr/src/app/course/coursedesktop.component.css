@@ -141,11 +141,39 @@
 .card-overlay, .card-content {
   max-width: 60em;
 }
-
-.visible {
-    visibility: visible;
+.like_action {
+  display:block;
+  position: absolute;
+  left:0;
+  top:46%;
+  width:100%;
+}
+.hollow-icon {
+  display:block;
+  width:40px;
+  height:40px;
+  background-color:#ffffff;
+  border-radius: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  padding:6px;
+  margin:0 10px;
+  color:#000000;
+  font-size:24px;
+  text-decoration:none;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+.hollow-icon:hover {
+  opacity:0.8;
+}
+.thumbUp {
+  float: right;
+}
+.thumbUp.active {
+  background-color:#28e93b;
+}
+.thumbDown.active {
+  background-color:#e92828;
 }
 
-.hidden {
-    visibility: hidden;
-}
