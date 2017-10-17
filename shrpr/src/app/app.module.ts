@@ -15,6 +15,7 @@ import { CourseService } from "./course.service";
 import { TemplateComponent } from './template/template.component';
 import { TemplateHeader } from './template/template.component';
 import { TemplateFooter } from './template/template.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -28,7 +29,8 @@ import { TemplateFooter } from './template/template.component';
     MenuComponent,
     TemplateComponent,
     TemplateHeader,
-    TemplateFooter
+    TemplateFooter,
+    HomeComponent
    ],
   imports: [
     BrowserModule,
