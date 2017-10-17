@@ -29,9 +29,10 @@ import { CourseService } from "../course.service";
 
 export class CoursedesktopComponent implements OnInit {
   courses: any[];
-
+  content:any[]=new Array();
+  counter:number;
   constructor(private courseService: CourseService) {
-      
+      this.counter=0;
   }
 
   ngOnInit() {
@@ -39,14 +40,28 @@ export class CoursedesktopComponent implements OnInit {
       .subscribe(
         (courses: any[]) => {
           this.courses = courses;
+
           for (var i = 0, l = courses.length; i < l; i++) {
             courses[i].state = 'default';
           }
+          for(let i=this.counter+1; i<this.courses.length; i++){
+            this.content.push(this.courses[i]);
+            if(i%3==0) break;
+          } 
+          this.counter+=3; 
         },
         (error: Response) => console.log(error)
       );
   }
   
+  getData(){
+    for(let i=this.counter+1; i<this.courses.length; i++){
+      this.content.push(this.courses[i]);
+      if(i%3==0) break;
+    }
+    this.counter+=3;
+  }
+
   onLike(i){
     if(this.courses[i].state == 'default') this.courses[i].state = 'like';
   }

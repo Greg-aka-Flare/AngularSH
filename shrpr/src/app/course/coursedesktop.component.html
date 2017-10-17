@@ -1,5 +1,5 @@
 <div class="thee_col_content clearfix ">
-<div class="card-box" *ngFor="let course of courses; let i = index" [@divState]>
+<div class="card-box" *ngFor="let course of content; let i = index" [@divState]>
   <div class="card-content">
     <div class="image-box"><div class="course-title">{{ course.title }}, {{ course.id }}</div></div>
     <div class="card-detail">
@@ -19,4 +19,5 @@
     </div>
   </div>
 </div>
+<button class="show-more" (click)="getData()" [disabled]="counter>=courses.length">Show more</button>
 </div>
