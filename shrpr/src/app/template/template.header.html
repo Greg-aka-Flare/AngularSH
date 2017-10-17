@@ -1,12 +1,9 @@
 <!--header start-->
 <header>
 	<div class="inner_wrap clearfix">
-		<a href="#" class="header_logo">
-			<img src="./assets/img/SHRPR-logo.jpg" alt="SHRPR" title="SHRPR">
-		</a>
-		<a href="javascript:void(0);" class="search_trigger"><i class="fa fa-search" aria-hidden="true"></i></a>
-		<a href="javascript:void(0);" class="menu_trigger" [class.active]="isBtnActive" (click)="toggleMenu()"><i class="fa fa-list" aria-hidden="true"></i><i class="fa fa-times" aria-hidden="true"></i></a>
-	</div>
-	<app-menu [class.active]="isBtnActive"></app-menu>
+		<a href="#" class="header_logo cname_color"><span>s</span><span>h</span><span>r</span><span>p</span><span>r</span></a>
+		<a href="javascript:void(0);" class="menu_trigger" [class.active]="isBtnActive" (click)="toggleMenu()"><i class="fa fa-bars" aria-hidden="true"></i><i class="fa fa-times-circle-o" aria-hidden="true"></i></a>
+	
+	<app-menu [class.active]="isBtnActive"></app-menu></div>
 </header>
 <!--header ends-->

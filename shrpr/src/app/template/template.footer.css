@@ -1,0 +1,119 @@
+footer {
+	text-align:center;
+    padding:46px 0 46px 0;
+    background-color:#1b1a19;
+}
+.footer_logo {
+	color:#747473;
+	font-size:36px;
+	line-height:36px;
+    padding:0 0 30px 0;
+}
+footer nav {
+	display: inline-block;
+    max-width: 270px;
+    padding: 0 0 30px;
+    text-align: left;
+    vertical-align: top;
+    width: 100%;
+}
+footer nav ul {
+	padding:0;
+    list-style: none;
+}
+footer nav ul li {
+	padding:0 0 10px 0;
+    line-height:16px;
+    display: inline-block;
+    vertical-align: top;
+    width: 49%;
+}
+footer nav ul li a {
+	font-size:16px;
+	line-height:16px;
+	color:#747473;
+	display:inline-block;
+	vertical-align:top;
+	text-decoration:none;
+}
+footer nav ul li a:hover {
+	color:#747473;
+	text-decoration:underline;
+}
+.newsletter_form {
+    max-width: 307px;
+    margin: 0 auto;
+    text-align: left;
+    width: 100%;
+}
+.newsletter_form > span {
+    color: #ffffff;
+    display: block;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 0 0 10px 7px;
+    text-transform: uppercase;
+}
+.newsletter_form input {
+    background: #494847;
+    border: medium none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #ffffff;
+    font-family: "circularstd book";
+    font-size: 14px;
+    height: 32px;
+    margin: 0 8px 5px 0;
+    max-width: 197px;
+    padding: 10px;
+    width: 64%;
+}
+.newsletter_form button {
+    background: #8a2d7d;
+    border: medium none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: "circularstd book";
+    font-size: 14px;
+    line-height: 14px;
+    padding: 10px 8px;
+    text-transform: uppercase;
+}
+.newsletter_form button:hover {
+	background: #494847;
+}
+.copyright_text {
+	font-size:12px;
+	line-height:1em;
+	color:#ffffff;
+	padding:15px 0 15px;
+	text-align: left;
+}
+@media only screen and (min-width: 40em) {
+.footer_logo {
+    float: left;
+}
+footer nav {
+    float: right;
+}
+.newsletter_form {
+    clear: both;
+    margin: 0;
+}    
+}
+@media only screen and (min-width: 60em) {
+    .footer_logo {
+        float: left;
+        padding: 10px 0 0;
+    }
+    footer nav {
+        margin: 0 0 0 10%;
+        padding: 0;
+        float: none;
+    }
+    .newsletter_form {
+        float: right;
+        clear: none;
+    }
+}
