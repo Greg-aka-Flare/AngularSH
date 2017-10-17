@@ -19,12 +19,28 @@ import { CourseService } from "../course.service";
       state('dislike', style({
         transform: 'translate3d(200%, 20%, 0)'
       })),
-      transition('default => like', animate('800ms ease-in')),
-      transition('default => dislike', animate('800ms ease-in')),
+      transition('default => like', animate('500ms ease-in')),
+      transition('default => dislike', animate('500ms ease-in')),
+    ]),
+    trigger('overlay', [
+      state('in', style({
+        backgroundColor: '#28e93b',
+        zindex:1
+      })),
+      state('out', style({
+        backgroundColor: '#e92828',
+        zindex:1
+      })),
+      transition('void => *', [
+        style({
+          opacity:0
+        }),
+        animate(100)
+      ])
     ]),
     trigger('divState', [
       state('in', style({
-        opacity: 0,
+        opacity: 1,
         transform: 'translateX(0)'
       })),
       transition('void => *', [
@@ -107,14 +123,16 @@ export class CourseComponent implements OnInit {
         }
       );
   }
-
+  colorState: string;
   onLike(i){
 
     if(this.courses[i].state == 'default') this.courses[i].state = 'like';
+    this.colorState = 'in';  
   }
 
   onDislike(i){
 
     if(this.courses[i].state == 'default') this.courses[i].state = 'dislike';
+    this.colorState = 'out';
   }
 }

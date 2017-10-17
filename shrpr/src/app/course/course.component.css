@@ -16,6 +16,9 @@
 	display: block;
 	clear:both;
 }
+.card-content {
+  position: relative;
+}
 .card-detail {
 	padding:10px;
 	font-size:12px;
@@ -162,11 +165,13 @@
 .card-overlay, .card-content {
   max-width: 60em;
 }
-
-.visible {
-    visibility: visible;
-}
-
-.hidden {
-    visibility: hidden;
+.overlay {
+  position: absolute;
+  display: block;
+  width:100%;
+  height:100%;
+  left:0;
+  top:0;
+  opacity: 0;
+  z-index: -1;
 }
