@@ -4,3 +4,29 @@
 .tab_content.active {
     display: block;
 }
+.home_trusted_section {
+    background: #1b1a18;
+}
+.home_trusted_section > div p {
+    display: none;
+    color: #ffffff;
+}
+.home_trusted_section > div {
+    border-bottom: 1px solid #ffffff;
+}
+.home_trusted_section > div h2 {
+    color: #ffffff;
+}
+.home_trusted_section > div p.active {
+    display: block;
+}
+.whatisshrpr_section {
+    padding: 30px 20px 30px 20px;
+    background: #d1cfcf;
+    border-bottom: 3px solid #ffffff;
+}
+@media only screen and (min-width: 60em) {
+    .home_trusted_section > div p {
+        display: block;
+    }
+}

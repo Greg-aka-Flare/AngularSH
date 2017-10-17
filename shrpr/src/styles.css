@@ -34,6 +34,9 @@ ul, dl, h1, h2, h3, p, ol {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
+  p {
+	  padding: 0 0 20px 0;
+  }
 
 /* =============================================================================
    Default Style
@@ -57,18 +60,54 @@ main .inner_wrap {
    SMALL SCREEN STYLES [MOBILE] START
 *  ============================================================================= */
 /* =============Header Area Start============================ */
+.cname_color > span {
+	font-family: "coco gothic";
+	text-transform:lowercase;
+	font-weight:normal;
+}
+.cname_color > span:nth-of-type(1) {
+   color:#852176;
+}
+.cname_color > span:nth-of-type(2) {
+   color:#3fa8d1;
+}
+.cname_color > span:nth-of-type(3) {
+   color:#448a58;
+}
+.cname_color > span:nth-of-type(4) {
+   color:#ec9332;
+}
+.cname_color > span:nth-of-type(5) {
+   color:#d03233;
+}
 
 
 /* =============Main Area Start============================ */
 main {
 	background: #ffffff;
+	color: #000000;
+    font-size: 18px;
+    line-height: 24px;
 }
 
 /* =============Footer Area Start============================ */
 
 
 /* =============curious section Start============================ */
-
+h1 {
+	color: #c50e3d;
+	font-size:38px;
+	line-height:38px;
+	font-weight:normal;
+	padding:0 0 25px 0;
+}
+h2 {
+	color:#000000;
+	font-size: 36px;
+	line-height: 36px;
+	font-weight:normal;
+	padding:0 0 20px 0;
+}
 /* =============================================================================
    LARGE SCREEN STYLES [DESKTOP VIEW] START
   ============================================================================= */

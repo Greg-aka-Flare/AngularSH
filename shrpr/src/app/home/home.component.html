@@ -27,7 +27,15 @@
     </div>
 </div>
 <!--tab ends-->
-
+<div class="home_trusted_section">
+<div><h2 (click)="clicked1()" [class.active]="clickedtab1">Trusted Source</h2><p [class.active]="clickedtab1">Seeking, Reaserching and Enrolling in courses of all types</p></div>
+<div><h2 (click)="clicked2()" [class.active]="clickedtab2">You, Improved</h2><p [class.active]="clickedtab2">Create the best virsion of yourself through learning</p></div>
+<div><h2 (click)="clicked3()" [class.active]="clickedtab3">Face to Face</h2><p [class.active]="clickedtab3">All courses meet F2F in group setting no online learning here.</p></div>
+</div>
+<div class="whatisshrpr_section">
+  <h2>WHAT IS <span class="cname_color"><span>s</span><span>h</span><span>r</span><span>p</span><span>r</span></span>?</h2>
+  <p>shrpr is  a Face to Face Learning Marketplace, fueled by our community of people connected by their love of learning and teaching. Follow along while we build our exciting tech product (that will launch in February 2018!) by creating and curating content to help you think, grow and learn.</p>
+</div>
 <div class="courses-desktop" *ngIf="width > 960">
-  <app-courses></app-courses>
+   <app-courses></app-courses>
 </div>
