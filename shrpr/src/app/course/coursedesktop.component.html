@@ -2,12 +2,12 @@
 <div class="card-box" *ngFor="let course of content; let i = index" [@divState]>
   <div class="card-content">
     <div class="image-box">
-      <div class="course-title">{{ course.title }}, {{ course.id }}</div>
       <div class="like_action">
         <a class="hollow-icon thumbUp" href="#" (click)="like(i)"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
         <a href="#" class="hollow-icon thumbDown" (click)="dislike(i)"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
       </div>
   </div>
+  <div class="course-title">{{ course.title }}, {{ course.id }}</div>
     <div class="card-detail">
       <div class="price-info">${{ course.semesters[0].amount }}</div>
       <div class="card-row">

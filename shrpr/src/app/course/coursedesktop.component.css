@@ -61,10 +61,11 @@
 .image-box {
   display:block;
   width:100%;
-  min-height: 350px;
   background:url('../../assets/img/court.jpg') no-repeat center top;
   background-size: cover;
   max-width:60em;
+  position: relative;
+  min-height: 200px;
 }
 .image-box img {
   display: block;
@@ -75,27 +76,16 @@
   position: relative;
   z-index: 4;
 }
-.image-box {
-  background:url('../../assets/img/court.jpg') no-repeat center top;
-  background-size: cover;
-  height: 250px;
-  position: relative;
-}
 .course-title {
-   background:rgba(0, 0, 0, 0.75) none repeat scroll 0 0;
-    bottom: 10px;
+    background:rgba(0, 0, 0, 0.75) none repeat scroll 0 0;
     box-sizing: border-box;
-    color: #fc6a02;
-    display: block;
+    color: #ffffff;
     font-size: 16px;
-    left: 0;
     font-weight: bold;
     line-height: 20px;
     padding: 10px;
-    position: absolute;
     text-align: center;
-    width: 100%;
-    text-transform: uppercase;
+    border-bottom:4px solid #ec9434;
 }
 .card-row {
   margin:0 0 10px 0;
