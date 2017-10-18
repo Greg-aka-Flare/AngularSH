@@ -1,9 +1,3 @@
-.tab_content {
-    display: none;
-}
-.tab_content.active {
-    display: block;
-}
 .home_trusted_section {
     background: #1b1a18;
 }

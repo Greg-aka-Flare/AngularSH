@@ -16,6 +16,8 @@ import { TemplateComponent } from './template/template.component';
 import { TemplateHeader } from './template/template.component';
 import { TemplateFooter } from './template/template.component';
 import { HomeComponent } from './home/home.component';
+import { TabsComponent } from './home/tabs/tabs.component';
+import { TabComponent } from './home/tabs/tab.component';
 
 
 
@@ -30,7 +32,9 @@ import { HomeComponent } from './home/home.component';
     TemplateComponent,
     TemplateHeader,
     TemplateFooter,
-    HomeComponent
+    HomeComponent,
+    TabsComponent,
+    TabComponent
    ],
   imports: [
     BrowserModule,

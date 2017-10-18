@@ -1,41 +1,66 @@
-<!-- tab start-->
-
-<div class="tab_container" *ngIf="width < 960">
-  <!--tab trigger start-->  
-  <div class="tab_trigger"><a href="javascript:void(0)" [class.active]="istabFirstActive" (click)="toggletabSearch()"><i class="fa fa-search" aria-hidden="true"></i>Search</a>
-      <a href="javascript:void(0)" [class.active]="istabSecondActive" (click)="toggletabBroese()">Browse</a>
-  </div>
-  <!--tab trigger ends-->
-  <div [class.active]="istabFirstActive" class="tab_content">Search</div>
-  
-  <div [class.active]="istabSecondActive" class="tab_content">
-      <div id="app">
+<tabs *ngIf="width < 960">
+  <tab tabTitle="Search">
+    <div id="app">
       <div class="container">
-      <!--<div class="row">
+        <!--<div class="row">
           <div class="col-xs-12">
               <a href="#" [routerLink]="['/']">Course</a>
               <a href="#" [routerLink]="['/new-course']">Add a New Course</a>
           </div>
-        </div>-->
+        </div> -->
+
         <div class="row">
           <div class="col-xs-12">
             <app-courses></app-courses>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-</div>
-<!--tab ends-->
+          </div><!-- .col-xs-12 -->
+        </div><!-- .row -->
+      </div><!-- .container -->
+    </div><!-- .app -->
+  </tab>
+
+  <tab tabTitle="Browse">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque laboriosam quisquam perspiciatis error repellat ex doloremque ab consequatur recusandae, nulla tempore iusto praesentium quidem, vitae sequi et impedit nihil ducimus.</p>
+  </tab>
+</tabs>
+
 <div class="home_trusted_section clearfix">
-<div><h2 (click)="clicked1()" [class.active]="clickedtab1">Trusted Source<i class="fa fa-caret-down" aria-hidden="true"></i></h2><p [class.active]="clickedtab1">Seeking, Reaserching and Enrolling in courses of all types</p></div>
-<div><h2 (click)="clicked2()" [class.active]="clickedtab2">You, Improved<i class="fa fa-caret-down" aria-hidden="true"></i></h2><p [class.active]="clickedtab2">Create the best virsion of yourself through learning</p></div>
-<div><h2 (click)="clicked3()" [class.active]="clickedtab3">Face to Face<i class="fa fa-caret-down" aria-hidden="true"></i></h2><p [class.active]="clickedtab3">All courses meet F2F in group setting no online learning here.</p></div>
+  <div>
+    <h2>
+      Trusted Source
+
+      <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </h2>
+
+    <p class="active">Seeking, Reaserching and Enrolling in courses of all types</p>
+  </div>
+
+  <div>
+    <h2>
+      You, Improved
+
+      <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </h2>
+
+    <p>Create the best virsion of yourself through learning</p>
+  </div>
+
+  <div>
+    <h2>
+      Face to Face<i class="fa fa-caret-down" aria-hidden="true"></i>
+    </h2>
+
+    <p>All courses meet F2F in group setting no online learning here.</p>
+  </div>
 </div>
+
 <div class="whatisshrpr_section">
-  <h2>WHAT IS <span class="cname_color"><span>s</span><span>h</span><span>r</span><span>p</span><span>r</span></span>?</h2>
+  <h2>
+    WHAT IS <span class="cname_color"><span>s</span><span>h</span><span>r</span><span>p</span><span>r</span></span>?
+  </h2>
+
   <p>shrpr is  a Face to Face Learning Marketplace, fueled by our community of people connected by their love of learning and teaching. Follow along while we build our exciting tech product (that will launch in February 2018!) by creating and curating content to help you think, grow and learn.</p>
 </div>
+
 <div class="courses-desktop" *ngIf="width > 960">
    <app-courses></app-courses>
 </div>
