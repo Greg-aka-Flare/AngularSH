@@ -35,4 +35,22 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
+  clickedtab1:boolean = false;
+  clickedtab2:boolean = false;
+  clickedtab3:boolean = false;
+  clicked1() {
+    this.clickedtab2 = false;
+    this.clickedtab3 = false;
+    this.clickedtab1 = !this.clickedtab1;
+  }
+  clicked2() {
+    this.clickedtab2 = !this.clickedtab2;
+    this.clickedtab3 = false;
+    this.clickedtab1 = false;
+  }
+  clicked3() {
+    this.clickedtab2 = false;
+    this.clickedtab3 = !this.clickedtab3;
+    this.clickedtab1 = false;
+  }
 }

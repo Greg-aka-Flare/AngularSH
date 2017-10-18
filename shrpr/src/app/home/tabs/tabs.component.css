@@ -7,22 +7,43 @@
     text-align: center;
     margin: 0;
     padding: 25px 0 25px 0;
+    background: rgba(27, 26, 24, 0.4);
+    position: relative;
 }
 
 .tabs ul li {
     display: inline-block;
     padding: 0;
-    background: #414140;
+    background-color: #414140;
     color: #ffffff;
-    font-size: 36px;
+    font-size: 25px;
     line-height: 1em;
-    padding: 20px;
-    margin: 0 5%;
+    padding: 73px 15px 10px 15px;
+    margin: 0 3%;
     border-radius: 5px;
     text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    background-image: url('../../../assets/img/shrpr-logo.png');
+    background-repeat: no-repeat;
+    background-position: 43px 12px;
+    background-size: 45px;
 }
 
+.tabs ul li:first-child {
+    background-image: none;
+}
+
+.tabs ul li:first-child:before {
+    font-family: FontAwesome;
+    content: "\f002";
+    font-size: 40px;
+    left: 47px;
+    position: absolute;
+    top: 28px;
+    vertical-align: middle;
+}
 .tabs ul li.active {
     color: #414140;
-    background: #ffffff;
+    background-color: #ffffff;
 }
