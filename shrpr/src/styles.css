@@ -50,7 +50,7 @@ ul, dl, h1, h2, h3, p, ol {
 }
 .inner_wrap {
 	margin:0 auto;
-	max-width:60em; 																/* BASE FONT = 16px  >>> 960px / 16px = 60em */
+	max-width:960px;
 	padding:0 10px;
 }
 main .inner_wrap {

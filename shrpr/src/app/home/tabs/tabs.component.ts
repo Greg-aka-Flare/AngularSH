@@ -26,7 +26,7 @@ export class TabsComponent implements AfterContentInit {
 	  
 	  // if there is no active tab set, activate the first
 	  if(activeTabs.length === 0) {
-	    this.selectTab(this.tabs.first);
+	    this.selectTab(this.tabs.last);
 	  }
 	}
 
