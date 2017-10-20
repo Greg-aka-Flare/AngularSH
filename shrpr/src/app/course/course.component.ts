@@ -5,6 +5,8 @@ import { Response } from "@angular/http";
 
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
+
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
  
 @Component({
   selector: 'app-course',
@@ -55,6 +57,10 @@ import { CourseService } from "../course.service";
 })
 
 export class CourseComponent implements OnInit {
+
+  // initialize a private variable _data, it's a BehaviorSubject
+  private _data = new BehaviorSubject<Course[]>([]);
+
   courses: any[];
 
   @Input() course: Course;
@@ -66,23 +72,35 @@ export class CourseComponent implements OnInit {
   editValueState = '';
   editValueZip = '';
 
+  // change data to use getter and setter
+  @Input()
+  set data(value) {
+      // set the latest value for _data BehaviorSubject
+      this._data.next(value);
+  };
+
+  get data() {
+      // get the latest value from _data BehaviorSubject
+      return this._data.getValue();
+  }
+
   constructor(private courseService: CourseService) {
       
   }
 
   ngOnInit() {
-    this.courseService.getCourses()
-      .subscribe(
-        (courses: any[]) => {
-          this.courses = courses;
+    //check when input changes
+    this._data
+        .subscribe(x => {
+            this.courses = this.data;
 
-          for (var i = 0, l = courses.length; i < l; i++) {
+            if(this.courses) {
+              for(var i = 0, l = this.courses.length; i < l; i++) {
 
-            courses[i].state = 'default';
-          }
-        },
-        (error: Response) => console.log(error)
-      );
+                this.courses[i].state = 'default';
+              }
+            }
+          });
   }
 
   onEdit(){
