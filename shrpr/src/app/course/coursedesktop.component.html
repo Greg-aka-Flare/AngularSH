@@ -1,29 +1,94 @@
-<h3>For Fun</h3>
-<div class="thee_col_content clearfix ">
-<div class="card-box" *ngFor="let course of content; let i = index" [@divState]>
-  <div *ngIf="course.group.name == 'For Fun'"  class="card-content">
-    <div class="image-box">
-      <div class="like_action">
-        <a class="hollow-icon thumbUp" href="#" (click)="like(i)"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-        <a href="#" class="hollow-icon thumbDown" (click)="dislike(i)"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+<section id="for_fub_box" class="category_bucket magento">
+  <h2>For Fun</h2>
+  <div class="thee_col_content clearfix ">
+      <article class="card-box" *ngFor="let course of content; let i = index" [@divState]>
+          <div class="img-ctn">
+              <div class="price">
+                  ${{ course.semesters[0].amount }}
+              </div><!-- .price -->
+              <figure>
+                  <img src="../../assets/img/court.jpg" />
+              </figure>
+              <div class="like_action">
+                  <a class="hollow-icon thumbUp" href="#" (click)="like(i)"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                  <a href="#" class="hollow-icon thumbDown" (click)="dislike(i)"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+                </div>
+          </div><!-- .img-ctn -->
+          <div class="card-info">
+            <div class="group_info"><span class="group_rating"><img src="../../assets/img/star-bg.jpg" alt=""></span><span class="group_name">{{course.group.name}}</span></div><!-- .group_info-->
+            <h3>{{ course.title }}</h3>
+            <p class="location">
+              <i class="fa fa-map-marker" aria-hidden="true"></i> 
+              <a href="javascript:void(0);">{{ course.semesters[0].addresses[0].city }}, {{ course.semesters[0].addresses[0].state }}</a>, 
+            </p><!-- .location -->
+            <p class="date">
+              <i class="fa fa-calendar" aria-hidden="true"></i> 
+                <span class="date_stamp">{{ course.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
+            </p><!-- .date -->
+          </div><!-- .card-info -->
+      </article>
       </div>
-  </div>
-  <div class="course-title">{{ course.title }}, {{ course.id }}</div>
-    <div class="card-detail">
-      <div class="price-info">${{ course.semesters[0].amount }}</div>
-      <div class="card-row">
-        <i class="fa fa-map-marker" aria-hidden="true"></i>
-        <span class="aqua_text">{{ course.semesters[0].addresses[0].city }}, {{ course.semesters[0].addresses[0].state }}</span>
-      </div>
-      <div class="card-row">
-        <i class="fa fa-calendar" aria-hidden="true"></i> 
-        <span class="aqua_text">{{ course.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
-      </div>
-      <div class="card-row">
-        <em>with</em> 
-        <span class="aqua_text">{{ course.instructor.name }}</span>
-      </div>
-    </div>
-  </div>
-</div>
-<button class="show-more" (click)="getData()">Show more</button></div>
+</section>
+<section id="for_fub_box" class="category_bucket blue">
+    <h2>For Work</h2>
+    <div class="thee_col_content clearfix ">
+        <article class="card-box" *ngFor="let course of content; let i = index" [@divState]>
+            <div class="img-ctn">
+                <div class="price">
+                    ${{ course.semesters[0].amount }}
+                </div><!-- .price -->
+                <figure>
+                    <img src="../../assets/img/court.jpg" />
+                </figure>
+                <div class="like_action">
+                    <a class="hollow-icon thumbUp" href="#" (click)="like(i)"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                    <a href="#" class="hollow-icon thumbDown" (click)="dislike(i)"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+                  </div>
+            </div><!-- .img-ctn -->
+            <div class="card-info">
+              <div class="group_info"><span class="group_rating"><img src="../../assets/img/star-bg.jpg" alt=""></span><span class="group_name">{{course.group.name}}</span></div><!-- .group_info-->
+              <h3>{{ course.title }}</h3>
+              <p class="location">
+                <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                <a href="javascript:void(0);">{{ course.semesters[0].addresses[0].city }}, {{ course.semesters[0].addresses[0].state }}</a>, 
+              </p><!-- .location -->
+              <p class="date">
+                <i class="fa fa-calendar" aria-hidden="true"></i> 
+                  <span class="date_stamp">{{ course.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
+              </p><!-- .date -->
+            </div><!-- .card-info -->
+        </article>
+        </div>
+  </section>
+  <section id="for_fub_box" class="category_bucket yellow">
+      <h2>For Kids</h2>
+      <div class="thee_col_content clearfix ">
+          <article class="card-box" *ngFor="let course of content; let i = index" [@divState]>
+              <div class="img-ctn">
+                  <div class="price">
+                      ${{ course.semesters[0].amount }}
+                  </div><!-- .price -->
+                  <figure>
+                      <img src="../../assets/img/court.jpg" />
+                  </figure>
+                  <div class="like_action">
+                      <a class="hollow-icon thumbUp" href="#" (click)="like(i)"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                      <a href="#" class="hollow-icon thumbDown" (click)="dislike(i)"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+                    </div>
+              </div><!-- .img-ctn -->
+              <div class="card-info">
+                <div class="group_info"><span class="group_rating"><img src="../../assets/img/star-bg.jpg" alt=""></span><span class="group_name">{{course.group.name}}</span></div><!-- .group_info-->
+                <h3>{{ course.title }}</h3>
+                <p class="location">
+                  <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                  <a href="javascript:void(0);">{{ course.semesters[0].addresses[0].city }}, {{ course.semesters[0].addresses[0].state }}</a>, 
+                </p><!-- .location -->
+                <p class="date">
+                  <i class="fa fa-calendar" aria-hidden="true"></i> 
+                    <span class="date_stamp">{{ course.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
+                </p><!-- .date -->
+              </div><!-- .card-info -->
+          </article>
+          </div>
+    </section>
+<!--<button class="show-more" (click)="getData()">Show more</button>-->

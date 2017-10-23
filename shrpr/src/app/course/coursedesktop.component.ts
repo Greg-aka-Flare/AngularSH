@@ -6,6 +6,7 @@ import { Response } from "@angular/http";
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import {IsInGroup} from './filter.pipe';
  
 @Component({
   selector: 'app-coursedesktop',
@@ -29,8 +30,7 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 })
 
 export class CoursedesktopComponent implements OnInit {
-
-  // initialize a private variable _data, it's a BehaviorSubject
+ // initialize a private variable _data, it's a BehaviorSubject
   private _data = new BehaviorSubject<Course[]>([]);
 
   courses: any[];

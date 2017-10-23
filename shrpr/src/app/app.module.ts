@@ -18,8 +18,7 @@ import { TemplateFooter } from './template/template.component';
 import { HomeComponent } from './home/home.component';
 import { TabsComponent } from './home/tabs/tabs.component';
 import { TabComponent } from './home/tabs/tab.component';
-
-
+import {IsInGroup} from './course/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,8 @@ import { TabComponent } from './home/tabs/tab.component';
     TemplateFooter,
     HomeComponent,
     TabsComponent,
-    TabComponent
+    TabComponent,
+    IsInGroup
    ],
   imports: [
     BrowserModule,
