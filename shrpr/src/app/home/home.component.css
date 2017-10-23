@@ -13,92 +13,6 @@ section#banner img {
     display: block;
 }
 
-/*** Search ***/
-section#search {
-    padding: 30px 20px 20px 20px;
-    text-align: center;
-}
-.login-link{
-    font-size: 13px;
-    line-height: 1em;
-    color: #2499cf;
-}
-.login-link a{
-    color: #2499cf;
-}
-.login-link a:hover{
-    text-decoration: none;
-}
-section#search form span {
-    display: block;
-    padding: 0 0 16px;
-    position: relative;
-}
-section#search form span:before {
-    content: "|";
-    left: 35px;
-    position: absolute;
-    top: 9px;
-}
-section#search form span .fa, section#search form span img {
-    font-size: 24px;
-    left: 12px;
-    position: absolute;
-    top: 8px; 
-}
-section#search form span img {
-    left: 8px;
-    max-width: 23px;
-    top: 11px;
-}
-section#search form input {
-    border: 1px solid #fff;
-    -webkit-box-shadow: 0 2px 3px 3px rgba(0,0,0,0.2);
-    box-shadow: 0 2px 3px 3px rgba(0,0,0,0.2);
-    color: #1b1a18;
-    height: 44px;
-    padding: 10px 5px 10px 44px;
-    width: 100%;
-    font-family: "circularstd book";
-    font-size: 16px;
-    border-radius: 2px;
-}
-section#search form input::-webkit-input-placeholder { /* Chrome */
-    color: #6f6f6f;
-}
-section#search form input:-ms-input-placeholder { /* IE 10+ */
-    color: #6f6f6f;
-}
-section#search form input::-moz-placeholder { /* Firefox 19+ */
-    color: #6f6f6f;
-    opacity: 1;
-}
-section#search form input:-moz-placeholder{ /* Firefox 4 - 18 */
-    color: #6f6f6f;
-    opacity: 1;
-}
-section#search form button {
-    background-color: #196e32;
-    border: none;
-    border-radius: 5px;
-    -webkit-box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
-    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
-    color: #ffffff;
-    cursor: pointer;
-    display: block;
-    font-family: 'circularstd book';
-    font-size: 18px;
-    line-height: 18px;
-    margin: 20px auto;
-    max-width: 138px;
-    padding: 13px 10px;
-    text-align: center;
-    text-transform: uppercase;
-    width: 100%;
-}
-section#search form button:hover {
-    background-color: #678e72;
-}
 
 /*** Sign Up ***/
 section#sign-up{
@@ -134,32 +48,7 @@ section#sign-up p {
     max-width: 257px;
 }
 @media only screen and (min-width: 60em) {
-    /*** Search ***/
-    section#search {
-        margin: 0;
-        padding: 28px 15px 28px 15px;    
-    }
-    section#search form span {
-        display: inline-block;
-        vertical-align: top;
-        width: 33.33%;
-        padding: 0 10px 0 0;
-    }
-    section#search form input {
-        box-shadow: none;
-        border: 1px solid #cfcfcf;
-        border-radius: 3px;
-    }
-    section#search form button {
-        margin: 0;
-        display: inline-block;
-        vertical-align: top;
-        background-color: #d53b3c;
-        border-radius: 0;
-    }
-    section#search form button:hover {
-        background-color: #c95f5f;
-    }
+    /*** Sign Up ***/
     section#sign-up{
         padding: 111px 20px 70px;
     }
