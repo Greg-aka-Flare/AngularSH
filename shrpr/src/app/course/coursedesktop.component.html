@@ -1,6 +1,7 @@
+<h3>For Fun</h3>
 <div class="thee_col_content clearfix ">
 <div class="card-box" *ngFor="let course of content; let i = index" [@divState]>
-  <div class="card-content">
+  <div *ngIf="course.group.name == 'For Fun'"  class="card-content">
     <div class="image-box">
       <div class="like_action">
         <a class="hollow-icon thumbUp" href="#" (click)="like(i)"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
