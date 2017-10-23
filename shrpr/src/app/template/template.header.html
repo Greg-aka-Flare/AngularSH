@@ -1,4 +1,4 @@
-<header>
+<header [ngClass]="{'header':true, 'header_big':!isheaderShrunk, 'header_small':isheaderShrunk}">
 	<div class="inner-wrap">
 		<a id="logo" href="#" class="shrpr">
 			<span>s</span><span>h</span><span>r</span><span>p</span><span>r</span>
@@ -13,5 +13,21 @@
 		<a href="#" class="counter-logo"><img src="../assets/img/shrpr-logo.png" alt="shrpr" title="shrpr"><span>0</span></a><!-- #counter -->
 		<app-menu [class.active]="isBtnActive"></app-menu><!-- #menu -->
 	</div><!-- .inner-wrap -->
-	
+	<section id="search">
+			<form action="#">
+			  <span>
+				<img src="../assets/img/search-input.png" alt="Shrpr" title="Shrpr">
+		
+				<input type="text" placeholder="Soccer">
+			  </span>
+		
+			  <span>
+				<i class="fa fa-map-marker" aria-hidden="true"></i>
+		
+				<input type="text" placeholder="Watertown, CT">
+			  </span>
+		
+			  <button>Search</button>
+			</form>
+		  </section><!-- #search -->
 </header>

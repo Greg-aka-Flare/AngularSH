@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
-
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-template',
@@ -9,7 +9,9 @@ import { MenuComponent } from '../menu/menu.component';
 })
 export class TemplateComponent implements OnInit {
 
-  constructor() { }
+  
+    constructor() {
+    }
 
   ngOnInit() {
   }
@@ -24,7 +26,19 @@ export class TemplateComponent implements OnInit {
 
 export class TemplateHeader implements OnInit {
 
-  constructor() { }
+  isheaderShrunk: boolean = false;
+  
+    constructor(zone: NgZone) {
+      window.onscroll = () => {
+        zone.run(() => {
+          if(window.pageYOffset > 0) {
+               this.isheaderShrunk = true;
+          } else {
+               this.isheaderShrunk = false;
+          }
+        });
+      }
+    }
 
   ngOnInit() {
   }
