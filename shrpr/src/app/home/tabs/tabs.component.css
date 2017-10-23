@@ -2,31 +2,30 @@
     list-style: none;
     text-align: center;
     margin: 0;
-    padding: 20px 0;
+    padding: 14px 0;
     position: relative;
 }
 
 .tabs ul li {
-    border: 1px solid #999;
-    -webkit-box-shadow: 0 0 1px 3px rgba(0,0,0,0.2);
-    box-shadow: 0 0 1px 3px rgba(0,0,0,0.2);
+    border: 1px solid #000000;
     display: inline-block;
     padding: 0;
     background-color: #fff;
-    color: #000;
-    font-size: 14px;
+    color: #414140;
+    font-size: 11px;
     line-height: 1em;
-    padding: 73px 15px 10px 15px;
-    margin: 0 3%;
+    padding: 41px 15px 21px;
+    margin: 0 4%;
     border-radius: 5px;
     text-transform: uppercase;
     cursor: pointer;
     position: relative;
     background-image: url('../../../assets/img/shrpr-logo.png');
     background-repeat: no-repeat;
-    background-position: 43px 12px;
-    background-size: 45px;
-    width: 44%;
+    background-position: center 16px;
+    width: 42%;
+    background-size: 19px auto;
+    max-width: 173px;
 }
 
 .tabs ul li:first-child {
@@ -35,15 +34,16 @@
 .tabs ul li:first-child:before {
     font-family: FontAwesome;
     content: "\f002";
-    font-size: 40px;
-    left: 47px;
+    font-size: 23px;
+    left: 0;
+    right: 0;
     position: absolute;
-    top: 28px;
+    top: 19px;
     vertical-align: middle;
 }
 .tabs ul li.active {
-    -webkit-box-shadow: inset 1px 1px 7px 3px rgba(0,0,0,0.2);
-    box-shadow: inset 1px 1px 7px 3px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 1px 1px 7px 3px rgba(0,0,0,0.2);
+    box-shadow: 1px 1px 7px 3px rgba(0,0,0,0.2);
     color: #414140;
     background-color: #e1e1df;
 }

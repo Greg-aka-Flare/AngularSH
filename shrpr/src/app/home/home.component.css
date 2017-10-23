@@ -15,20 +15,23 @@ section#banner img {
 
 /*** Search ***/
 section#search {
-    padding: 20px;
+    padding: 30px 20px 20px 20px;
     text-align: center;
 }
-section#search a{
-    color: #00f;
-    font-weight: normal;
-    text-decoration: underline;
+.login-link{
+    font-size: 13px;
+    line-height: 1em;
+    color: #2499cf;
 }
-section#search a:hover{
+.login-link a{
+    color: #2499cf;
+}
+.login-link a:hover{
     text-decoration: none;
 }
 section#search form span {
     display: block;
-    padding: 0 0 20px;
+    padding: 0 0 16px;
     position: relative;
 }
 section#search form span:before {
@@ -50,28 +53,28 @@ section#search form span img {
 }
 section#search form input {
     border: 1px solid #fff;
-    -webkit-box-shadow: 0 0 1px 3px rgba(0,0,0,0.2);
-    box-shadow: 0 0 1px 3px rgba(0,0,0,0.2);
-    color: #414140;
+    -webkit-box-shadow: 0 2px 3px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 3px 3px rgba(0,0,0,0.2);
+    color: #1b1a18;
     height: 44px;
     padding: 10px 5px 10px 44px;
     width: 100%;
     font-family: "circularstd book";
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 2px;
 }
 section#search form input::-webkit-input-placeholder { /* Chrome */
-    color: black;
+    color: #6f6f6f;
 }
 section#search form input:-ms-input-placeholder { /* IE 10+ */
-    color: black;
+    color: #6f6f6f;
 }
 section#search form input::-moz-placeholder { /* Firefox 19+ */
-    color: black;
+    color: #6f6f6f;
     opacity: 1;
 }
 section#search form input:-moz-placeholder{ /* Firefox 4 - 18 */
-    color: black;
+    color: #6f6f6f;
     opacity: 1;
 }
 section#search form button {
@@ -87,7 +90,7 @@ section#search form button {
     font-size: 18px;
     line-height: 18px;
     margin: 20px auto;
-    max-width: 150px;
+    max-width: 138px;
     padding: 13px 10px;
     text-align: center;
     text-transform: uppercase;
@@ -105,7 +108,6 @@ section#sign-up{
 section#sign-up button{
     background-color: #484848;
     border: none;
-    border-radius: 5px;
     -webkit-box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
     box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
     color: #ffffff;
@@ -114,40 +116,62 @@ section#sign-up button{
     font-family: 'circularstd book';
     font-size: 18px;
     line-height: 18px;
-    margin: 20px auto;
+    margin: 0 auto;
     max-width: 150px;
-    padding: 13px 10px;
+    padding:7px 10px;
     text-align: center;
-    text-transform: uppercase;
     width: 100%;
 }
-section#sign-up button button:hover {
+section#sign-up button:hover {
     background-color: #757575;
 }
-
+section#sign-up p {
+    font-size: 16px;
+    color: #000000;
+    line-height: 24px;
+    font-family:'coco gothic bold';
+    margin: 0 auto;
+    max-width: 257px;
+}
 @media only screen and (min-width: 60em) {
-
-    /*** Banner ***/
-    section#banner {
-        display: block;
-    }
-
     /*** Search ***/
     section#search {
-        background: #1b1a19;
         margin: 0;
-        padding: 14px 15px 14px 15px;    
+        padding: 28px 15px 28px 15px;    
     }
     section#search form span {
-        float: left;
+        display: inline-block;
+        vertical-align: top;
         width: 33.33%;
         padding: 0 10px 0 0;
     }
     section#search form input {
-        border: 2px solid #ffffff;
+        box-shadow: none;
+        border: 1px solid #cfcfcf;
+        border-radius: 3px;
     }
     section#search form button {
-        float: left;
         margin: 0;
+        display: inline-block;
+        vertical-align: top;
+        background-color: #d53b3c;
+        border-radius: 0;
+    }
+    section#search form button:hover {
+        background-color: #c95f5f;
+    }
+    section#sign-up{
+        padding: 111px 20px 70px;
+    }
+    section#sign-up button {
+        font-size: 28px;
+        line-height: 28px;
+        max-width: 354px;
+        padding: 12px 20px;
+    }
+    section#sign-up p {
+        font-size: 48px;
+        line-height: 62px;
+        max-width: 732px;
     }
 }

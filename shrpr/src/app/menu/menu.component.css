@@ -38,7 +38,7 @@
 
 :host>ul li a {
     display: block;
-    color: #000000;
+    color: #484848;
     font-size: 16px;
     line-height: 16px;
     text-decoration: none;
@@ -82,7 +82,7 @@
         text-align: right;
         top: 0;
         transform: translate3d(0px, 0px, 0px);
-        width: 70%;
+        width: 60%;
     }
      :host>ul {
         padding: 0;
@@ -92,7 +92,7 @@
      :host>ul li.has_child {
         border: none;
         display: inline-block;
-        padding: 27px 2% 26px;
+        padding: 39px 1.5% 37px;
         position: relative;
         vertical-align: top;
         box-sizing: border-box;
@@ -101,11 +101,6 @@
      :host>ul li.has_child>a {
         padding: 0 5px;
         margin: 0;
-        color: #a0adbd;
-        text-transform: uppercase;
-    }
-     :host>ul>li:hover {
-        border-bottom: 1px solid #549265;
     }
      :host>ul>li:hover>a,
      :host>ul li ul li:hover>a {

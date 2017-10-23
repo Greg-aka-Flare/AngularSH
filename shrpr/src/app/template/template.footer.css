@@ -1,21 +1,20 @@
 footer {
-	text-align:center;
+	text-align:right;
     padding:46px 0 46px 0;
-    background-color:#1b1a19;
 }
 footer #logo {
 	color:#747473;
-	font-size:36px;
-	line-height:36px;
+	font-size:30px;
+	line-height:30px;
     padding:0 0 30px 0;
+    float: left;
 }
 footer nav {
 	display: inline-block;
-    max-width: 270px;
-    padding: 0 0 30px;
+    max-width: 360px;
     text-align: left;
     vertical-align: top;
-    width: 100%;
+    width: 54%;
 }
 footer nav ul {
 	padding:0;
@@ -26,12 +25,13 @@ footer nav ul li {
     line-height:16px;
     display: inline-block;
     vertical-align: top;
-    width: 49%;
+    width: 48%;
 }
 footer nav ul li a {
-	font-size:16px;
-	line-height:16px;
-	color:#747473;
+    font-family:'circularstd bold';
+	font-size:9px;
+	line-height:9px;
+	color:#d1cfcf;
 	display:inline-block;
 	vertical-align:top;
 	text-decoration:none;
@@ -40,87 +40,23 @@ footer nav ul li a:hover {
 	color:#747473;
 	text-decoration:underline;
 }
-footer section#newsletter {
-    max-width: 307px;
-    margin: 0 auto;
-    text-align: left;
-    width: 100%;
-}
-footer section#newsletter > span {
-    color: #ffffff;
-    display: block;
-    font-size: 16px;
-    line-height: 16px;
-    padding: 0 0 10px 7px;
-    text-transform: uppercase;
-}
-footer section#newsletter input {
-    background: #494847;
-    border: medium none;
-    border-radius: 5px;
-    box-sizing: border-box;
-    color: #ffffff;
-    font-family: "circularstd book";
-    font-size: 14px;
-    height: 32px;
-    margin: 0 8px 5px 0;
-    max-width: 197px;
-    padding: 10px;
-    width: 64%;
-}
-footer section#newsletter button {
-    background: #8a2d7d;
-    border: medium none;
-    border-radius: 5px;
-    color: #ffffff;
-    cursor: pointer;
-    font-family: "circularstd book";
-    font-size: 14px;
-    line-height: 14px;
-    padding: 10px 8px;
-    text-transform: uppercase;
-}
-footer section#newsletter button:hover {
-	background: #494847;
-}
-footer section#copyright {
-	font-size: 12px;
-	line-height: 1em;
-}
-footer section#copyright p{
-    color: #fff;
-    margin: 0;
-    padding:15px 0 15px;
-    text-align: left;
-}
+
+
 
 @media only screen and (min-width: 40em) {
-
     footer #logo {
-        float: left;
+        font-size: 50px;
+        line-height: 50px;
+        padding: 17px 0 0;
+    }
+    footer {
+        text-align: center;
+    }
+    footer nav ul li a {
+        font-size: 18px;
+        line-height: 18px;
     }
     footer nav {
-        float: right;
-    }
-    footer section#newsletter {
-        clear: both;
-        margin: 0;
-    }    
-}
-
-@media only screen and (min-width: 60em) {
-    
-    footer #logo {
-        float: left;
-        padding: 10px 0 0;
-    }
-    footer nav {
-        margin: 0 0 0 10%;
-        padding: 0;
-        float: none;
-    }
-    footer section#newsletter {
-        float: right;
-        clear: none;
+        width: 100%;
     }
 }

@@ -1,4 +1,4 @@
-<tabs *ngIf="width < 960">
+<tabs *ngIf="width < 959">
     <tab tabTitle="Search">
         <section id="search">
             <form action="#">
@@ -17,7 +17,7 @@
                 <button>Search</button>
             </form>
 
-            <a>Login</a> / <a>Sign Up</a>
+            <div class="login-link"><a href="#">Login</a> / <a href="#">Sign Up</a></div>
         </section><!-- #search -->
     </tab>
 
@@ -26,8 +26,7 @@
     </tab>
 </tabs>
 
-<section id="intro">
-    <section id="search" *ngIf="width > 960">
+    <section id="search" *ngIf="width > 959">
         <form action="#">
             <span>
                 <img src="../assets/img/search-input.png" alt="Shrpr" title="Shrpr">
@@ -45,23 +44,10 @@
         </form>
     </section><!-- #search -->
 
-    <section id="banner" *ngIf="width > 960" >
-        <img src="../assets/img/home-banner.jpg" alt="Shrpr" title="Shrpr">
-    </section><!-- #banner -->
-</section><!-- #intro -->
-
 <section id="sign-up">
     <p>For those guided by their desire to know a little bit more</p>
 
     <button>Sign Up</button>
 </section><!-- #sign-up -->
 
-<section id="what-is-shrpr">
-    <h2>
-        WHAT IS <span class="shrpr"><span>s</span><span>h</span><span>r</span><span>p</span><span>r</span></span>?
-    </h2>
-
-    <p>shrpr is a Face to Face Learning Marketplace, fueled by our community of people connected by their love of learning and teaching. Follow along while we build our exciting tech product (that will launch in February 2018!) by creating and curating content to help you think, grow and learn.</p>
-</section><!-- #what-is-shrpr -->
-
-<app-courses *ngIf="width > 960"></app-courses>
+<app-courses *ngIf="width > 959"></app-courses>
