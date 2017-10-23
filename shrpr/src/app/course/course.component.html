@@ -1,35 +1,44 @@
-<div 
-  class="swipe-box card-box" 
-  *ngFor="let course of courses; let i = index" 
-  (swipeleft)="onLike(i)" 
-  (swiperight)="onDislike(i)"
-  [@cardSwipe]="courses[i].state"
->
-  <div class="card-content">
-    <div class="image-box" draggable="false">
-      <div class="course-title">
-        {{ course.title }}, {{ course.id }}
-      </div>
-    </div>
-    <div class="card-detail">
-      <div class="price-info">
-       ${{ course.semesters[0].amount }}
-      </div>
-      <div class="card-row">
-        <i class="fa fa-map-marker" aria-hidden="true"></i> 
-        <span class="aqua_text">
-          {{ course.semesters[0].addresses[0].city }}, {{ course.semesters[0].addresses[0].state }}
-        </span>
-      </div>
-      <div class="card-row">
-        <i class="fa fa-calendar" aria-hidden="true"></i> 
-        <span class="aqua_text">{{ course.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
-      </div>
-      <div class="card-row">
-        <em>with</em> 
-        <span class="aqua_text">{{ course.instructor.name }}</span>
-      </div>
-    </div>
-    <div class="overlay" [@overlay]="colorState">&nbsp;</div>
-  </div>
-</div>
+<section id="curious-swiper">
+    <article
+    *ngFor="let course of courses; let i = index" 
+    (swipeleft)="onLike(i)" 
+    (swiperight)="onDislike(i)"
+    [@cardSwipe]="courses[i].state"
+    >
+        <div class="category">
+            {{ course.categories[0].name }}
+
+            <figure class="rating">
+                <img src="../../assets/img/star-bg.jpg" />
+            </figure><!-- .rating -->
+        </div><!-- .category -->
+
+        <div class="img-ctn">
+            <div class="price">
+                ${{ course.semesters[0].amount }}
+            </div><!-- .price -->
+
+            <figure>
+                <img src="../../assets/img/court.jpg" />
+            </figure>
+        
+            <div class="overlay">
+                <h1>{{ course.title }}</h1>
+
+                <p class="location">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i> 
+
+                    <a>{{ course.semesters[0].addresses[0].city }}</a>, 
+
+                    <a>{{ course.semesters[0].addresses[0].state }}</a>
+                </p><!-- .location -->
+
+                <p class="date">
+                    <i class="fa fa-calendar" aria-hidden="true"></i> 
+
+                    {{ course.semesters[0].start_date | date: 'MM/dd/yyyy' }}
+                </p><!-- .date -->
+            </div><!-- .overlay -->
+        </div><!-- .img-ctn -->
+    </article>
+</section><!-- #curious-swiper -->

@@ -3,7 +3,7 @@ footer {
     padding:46px 0 46px 0;
     background-color:#1b1a19;
 }
-.footer_logo {
+footer #logo {
 	color:#747473;
 	font-size:36px;
 	line-height:36px;
@@ -40,13 +40,13 @@ footer nav ul li a:hover {
 	color:#747473;
 	text-decoration:underline;
 }
-.newsletter_form {
+footer section#newsletter {
     max-width: 307px;
     margin: 0 auto;
     text-align: left;
     width: 100%;
 }
-.newsletter_form > span {
+footer section#newsletter > span {
     color: #ffffff;
     display: block;
     font-size: 16px;
@@ -54,7 +54,7 @@ footer nav ul li a:hover {
     padding: 0 0 10px 7px;
     text-transform: uppercase;
 }
-.newsletter_form input {
+footer section#newsletter input {
     background: #494847;
     border: medium none;
     border-radius: 5px;
@@ -68,7 +68,7 @@ footer nav ul li a:hover {
     padding: 10px;
     width: 64%;
 }
-.newsletter_form button {
+footer section#newsletter button {
     background: #8a2d7d;
     border: medium none;
     border-radius: 5px;
@@ -80,30 +80,37 @@ footer nav ul li a:hover {
     padding: 10px 8px;
     text-transform: uppercase;
 }
-.newsletter_form button:hover {
+footer section#newsletter button:hover {
 	background: #494847;
 }
-.copyright_text {
-	font-size:12px;
-	line-height:1em;
-	color:#ffffff;
-	padding:15px 0 15px;
-	text-align: left;
+footer section#copyright {
+	font-size: 12px;
+	line-height: 1em;
 }
-@media only screen and (min-width: 40em) {
-.footer_logo {
-    float: left;
-}
-footer nav {
-    float: right;
-}
-.newsletter_form {
-    clear: both;
+footer section#copyright p{
+    color: #fff;
     margin: 0;
-}    
+    padding:15px 0 15px;
+    text-align: left;
 }
+
+@media only screen and (min-width: 40em) {
+
+    footer #logo {
+        float: left;
+    }
+    footer nav {
+        float: right;
+    }
+    footer section#newsletter {
+        clear: both;
+        margin: 0;
+    }    
+}
+
 @media only screen and (min-width: 60em) {
-    .footer_logo {
+    
+    footer #logo {
         float: left;
         padding: 10px 0 0;
     }
@@ -112,7 +119,7 @@ footer nav {
         padding: 0;
         float: none;
     }
-    .newsletter_form {
+    footer section#newsletter {
         float: right;
         clear: none;
     }

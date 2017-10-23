@@ -1,59 +1,67 @@
-
-<!--tab module start here-->    
 <tabs *ngIf="width < 960">
-        <tab tabTitle="Search">
-            <div class="search_container">
-                <form action="#">
-               <span><img src="../assets/img/search-input.png" alt="Shrpr" title="Shrpr"><input type="text" placeholder="Soccer"></span>
-               <span><i class="fa fa-map-marker" aria-hidden="true"></i><input type="text" placeholder="Watertown, CT"></span>
-              <button class="cta_search">Search</button>
-                </form>
-<div class="search_bucket">
-    <a href="#"><img src="../assets/img/fun-icon.png" alt="For Fun" title="For Fun">For Fun</a>
-    <a href="#"><img src="../assets/img/work-icon.png" alt="For Work" title="For Work">For Work</a>
-    <a href="#"><img src="../assets/img/kid-icon.png" alt="For Kids" title="For Kids">For Kids</a>
-</div>
-            </div>
-        </tab>
-        <tab tabTitle="Browse">
-            <app-courses></app-courses>
-        </tab>
-    </tabs>
-<!--tab module ends here-->
-<div class="intro-section">
-        <div class="search_container clearfix" *ngIf="width > 960">
-                <form action="#">
-               <span><img src="../assets/img/search-input.png" alt="Shrpr" title="Shrpr"><input type="text" placeholder="Soccer"></span>
-               <span><i class="fa fa-map-marker" aria-hidden="true"></i><input type="text" placeholder="Watertown, CT"></span>
-              <button class="cta_search">Search</button>
-                </form>
-                </div>
-<div class="home_banner" *ngIf="width > 960" ><img src="../assets/img/home-banner.jpg" alt="Shrpr" title="Shrpr"></div>
-<div class="home_trusted_section clearfix">
-    <div>
-        <h2 (click)="clicked1()" [class.active]="clickedtab1">Trusted Source<i class="fa fa-caret-down" aria-hidden="true"></i></h2>
-        <p [class.active]="clickedtab1">Seeking, Reaserching and Enrolling in courses of all types</p>
-    </div>
-    <div>
-        <h2 (click)="clicked2()" [class.active]="clickedtab2">You, Improved<i class="fa fa-caret-down" aria-hidden="true"></i></h2>
-        <p [class.active]="clickedtab2">Create the best virsion of yourself through learning</p>
-    </div>
-    <div>
-        <h2 (click)="clicked3()" [class.active]="clickedtab3">Face to Face<i class="fa fa-caret-down" aria-hidden="true"></i></h2>
-        <p [class.active]="clickedtab3">All courses meet F2F in group setting no online learning here.</p>
-    </div>
-</div>
-</div>
-<!--intro ends here-->
-<div class="whatisshrpr_section">
+    <tab tabTitle="Search">
+        <section id="search">
+            <form action="#">
+               <span>
+                    <img src="../assets/img/search-input.png" alt="Shrpr" title="Shrpr">
+
+                    <input type="text" placeholder="Soccer">
+                </span>
+
+                <span>
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+
+                    <input type="text" placeholder="Watertown, CT">
+                </span>
+
+                <button>Search</button>
+            </form>
+
+            <a>Login</a> / <a>Sign Up</a>
+        </section><!-- #search -->
+    </tab>
+
+    <tab tabTitle="Browse">
+        <app-courses></app-courses>
+    </tab>
+</tabs>
+
+<section id="intro">
+    <section id="search" *ngIf="width > 960">
+        <form action="#">
+            <span>
+                <img src="../assets/img/search-input.png" alt="Shrpr" title="Shrpr">
+
+                <input type="text" placeholder="Soccer">
+            </span>
+
+            <span>
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+
+                <input type="text" placeholder="Watertown, CT">
+            </span>
+
+            <button>Search</button>
+        </form>
+    </section><!-- #search -->
+
+    <section id="banner" *ngIf="width > 960" >
+        <img src="../assets/img/home-banner.jpg" alt="Shrpr" title="Shrpr">
+    </section><!-- #banner -->
+</section><!-- #intro -->
+
+<section id="sign-up">
+    <p>For those guided by their desire to know a little bit more</p>
+
+    <button>Sign Up</button>
+</section><!-- #sign-up -->
+
+<section id="what-is-shrpr">
     <h2>
-        WHAT IS <span class="cname_color"><span>s</span><span>h</span><span>r</span><span>p</span><span>r</span></span>?
+        WHAT IS <span class="shrpr"><span>s</span><span>h</span><span>r</span><span>p</span><span>r</span></span>?
     </h2>
 
-    <p>shrpr is a Face to Face Learning Marketplace, fueled by our community of people connected by their love of learning and teaching. Follow along while we build our exciting tech product (that will launch in February 2018!) by creating and curating content
-        to help you think, grow and learn.</p>
-</div>
+    <p>shrpr is a Face to Face Learning Marketplace, fueled by our community of people connected by their love of learning and teaching. Follow along while we build our exciting tech product (that will launch in February 2018!) by creating and curating content to help you think, grow and learn.</p>
+</section><!-- #what-is-shrpr -->
 
-<div class="courses-desktop" *ngIf="width > 960">
-    <app-courses></app-courses>
-</div>
+<app-courses *ngIf="width > 960"></app-courses>

@@ -16,13 +16,13 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
   animations: [
     trigger('cardSwipe', [
       state('like', style({
-        transform: 'translate3d(-200%, 20%, 0)'
+        transform: 'translateX(-200%)'
       })),
       state('dislike', style({
-        transform: 'translate3d(200%, 20%, 0)'
+        transform: 'translateX(200%)'
       })),
-      transition('default => like', animate('500ms ease-in')),
-      transition('default => dislike', animate('500ms ease-in')),
+      transition('default => like', animate('300ms ease-in')),
+      transition('default => dislike', animate('300ms ease-in')),
     ]),
     trigger('overlay', [
       state('in', style({

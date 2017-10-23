@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,600,600i,700,700i,900');
 /*================================================================================*/
+*{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
 body, html {
 	font-family:'circularstd book';
 	font-size: 100%;                                          				/* default font  size - 100% = 16px*/
@@ -48,36 +53,36 @@ ul, dl, h1, h2, h3, p, ol {
 .clearfix:after {
 	clear:both;
 }
-.inner_wrap {
+.inner-wrap {
 	margin:0 auto;
 	max-width:960px;
 	padding:0 10px;
 }
-main .inner_wrap {
+main .inner-wrap {
 	padding: 0;
 }
 /* =============================================================================
    SMALL SCREEN STYLES [MOBILE] START
 *  ============================================================================= */
 /* =============Header Area Start============================ */
-.cname_color > span {
+.shrpr > span {
 	font-family: "coco gothic";
 	text-transform:lowercase;
 	font-weight:normal;
 }
-.cname_color > span:nth-of-type(1) {
+.shrpr > span:nth-of-type(1) {
    color:#852176;
 }
-.cname_color > span:nth-of-type(2) {
+.shrpr > span:nth-of-type(2) {
    color:#3fa8d1;
 }
-.cname_color > span:nth-of-type(3) {
+.shrpr > span:nth-of-type(3) {
    color:#448a58;
 }
-.cname_color > span:nth-of-type(4) {
+.shrpr > span:nth-of-type(4) {
    color:#ec9332;
 }
-.cname_color > span:nth-of-type(5) {
+.shrpr > span:nth-of-type(5) {
    color:#d03233;
 }
 
@@ -113,9 +118,9 @@ h2 {
   ============================================================================= */
 /* 960px/16px = 60em */
 @media only screen and (min-width: 60em) {
-main {
-	margin: 70px 0 0;
-}
+	main {
+		margin: 70px 0 0;
+	}
 }
 
 

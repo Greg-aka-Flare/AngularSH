@@ -7,5 +7,6 @@ export interface Course {
 	state: string;
 	zip: string;
 	semesters: any[];
+	categories: any[];
 	availability: string;
 }

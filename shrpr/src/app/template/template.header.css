@@ -1,51 +1,30 @@
 header {
-	background-color:#ffffff;
+	background-color: #fff;
+  display: block;
+  -webkit-box-shadow: 0 0 1px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 0 1px 3px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 99999;
 }
-.header_logo {
-	display: inline-block;
-   font-family: "coco gothic";
-   font-size: 32px;
-   line-height: 32px;
-   margin: 21px 0 17px 11px;
-   text-decoration: none;
-   vertical-align: top;
-}
-
-a.header_cta {
-  background: #488c5c;
-  border: 2px solid #688671;
-  border-radius: 5px;
-  box-sizing: border-box;
-  color: #ffffff;
-  float: right;
-  font-size: 15px;
-  line-height: 18px;
-  margin: 10px 0 0;
-  max-width: 129px;
-  padding: 5px;
-  text-align: center;
+header #logo {
+  display: inline-block;
+  font-family: "coco gothic";
+  font-size: 32px;
+  line-height: 32px;
+  margin: 21px 0 17px 11px;
   text-decoration: none;
-  width: 100%;
-  -moz-transition: all 0.5s ease-in-out 0s;
-  -ms-transition: all 0.5s ease-in-out 0s;
-  -o-transition: all 0.5s ease-in-out 0s;
-  -webkit-transition: all 0.5s ease-in-out 0s;
-  transition: all 0.5s ease-in-out 0s;
+  vertical-align: top;
 }
-a.header_cta:hover {
-  background:#fc6a02;
-  border: 2px solid #fc6a02;
-}
-a.menu_trigger {
-	color: #000000;
-   display: inline-block;
-   float: right;
-   font-size: 33px;
-   line-height: 33px;
-   margin: 12px 0 0 20px;
-   position: relative;
-   vertical-align: top;
-   z-index: 99;
+header a#menu {
+  color: #000000;
+  display: inline-block;
+  float: right;
+  font-size: 33px;
+  line-height: 33px;
+  margin: 12px 0 0 20px;
+  position: relative;
+  vertical-align: top;
+  z-index: 99;
   padding:5px 10px 5px 10px;
   border:1px solid #cccccc;
   border-radius:5px;
@@ -54,35 +33,34 @@ a.menu_trigger {
   -o-transition: all 0.5s ease-in-out 0s;
   -webkit-transition: all 0.5s ease-in-out 0s;
   transition: all 0.5s ease-in-out 0s;
-  }
-  a.menu_trigger:hover {
+}
+header a#menu:hover {
   background:#fc6a02;
   color:#ffffff;
-  }
-  a.menu_trigger .fa-times-circle-o {
+}
+header a#menu .fa-times-circle-o {
   position:absolute;
   left:10px;
   top:5px;
   opacity:0;
-  }
-  a.menu_trigger.active .fa-bars {
+}
+header a#menu.active .fa-bars {
   opacity:0;
-  }
-  a.menu_trigger.active .fa-times-circle-o {
+}
+header a#menu.active .fa-times-circle-o {
   opacity:1;
+}
+
+@media only screen and (min-width: 60em) {
+
+  header {
+  	position:fixed;
+  	width:100%;
+  	left:0;
+  	top:0;
+  	z-index: 9;
   }
-  @media only screen and (min-width: 60em) {
-	header {
-		position:fixed;
-		width:100%;
-		left:0;
-		top:0;
-		z-index: 9;
+  header a#menu {
+    display:none;
   }
-  a.header_cta {
-    margin: 10px 0 0 38px;
-  }
-	a.menu_trigger {
-	  display:none;
-	}
 }
