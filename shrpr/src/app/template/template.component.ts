@@ -31,8 +31,6 @@ export class TemplateHeader implements OnInit {
   isheaderShrunk: boolean = false;
   isBtnActive: boolean = false;
   location: string = '';
-  lat;
-  lng;
   
     constructor(zone: NgZone) {
       window.onscroll = () => {
@@ -52,11 +50,11 @@ export class TemplateHeader implements OnInit {
       //create location
       navigator.geolocation.getCurrentPosition(position => {
 
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
+        let lat = position.coords.latitude;
+        let lng = position.coords.longitude;
 
         let geocoder = new google.maps.Geocoder();
-        let latlng = new google.maps.LatLng(this.lat, this.lng);
+        let latlng = new google.maps.LatLng(lat, lng);
 
         let request = {
           latLng: latlng
