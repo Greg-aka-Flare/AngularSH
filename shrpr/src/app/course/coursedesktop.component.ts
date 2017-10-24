@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef, Pipe, PipeTransform } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import {GroupsPipe} from './filter.pipe';
 import { Response } from "@angular/http";
@@ -7,7 +7,6 @@ import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { StarRatingModule } from 'angular-star-rating';
-
 
 
 @Component({
@@ -49,6 +48,10 @@ export class CoursedesktopComponent implements OnInit {
   likeCounter:number;
   likeArray:any[] = [];
   @Input() count: number = 0;
+  isActive:boolean = false;
+  isnotActive:boolean = false;
+  dislikeArray: any[] = [];
+  
   // change data to use getter and setter
   @Input()
   set data(value) {
@@ -66,8 +69,11 @@ export class CoursedesktopComponent implements OnInit {
       this.counterWork = 0;
       this.counterKids = 0;
       this.likeCounter = 0;
+      this.isActive = false;
+      this.isnotActive = false;
+      
   }
-
+  
   ngOnInit() {
     //check when input changes
     this._data
@@ -128,8 +134,13 @@ export class CoursedesktopComponent implements OnInit {
  /* like and dislike function is only for the like and dislike on card thumb in desktop */
  like(i){
    this.count++;
+   this.isActive = !this.isActive;
    this.likeCounter++;
    this.likeArray.push(this.courses[i].id);
-}
+  }
+  dislike(i){
+    this.isnotActive = !this.isnotActive;
+    this.dislikeArray.push(this.courses[i].id);
+  } 
 
 }

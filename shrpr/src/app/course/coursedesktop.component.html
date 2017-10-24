@@ -10,8 +10,8 @@
                   <img src="../../assets/img/court.jpg" />
               </figure>
               <div class="like_action">
-                  <a class="hollow-icon thumbUp" href="javascript:void(0);" (click)="like(i)"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                  <a href="javascript:void(0);" class="hollow-icon thumbDown" (click)="dislike(i)"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+                  <a class="hollow-icon thumbUp" href="javascript:void(0);" (click)="like(i)" [class.active]="isActive"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                  <a href="javascript:void(0);" class="hollow-icon thumbDown" (click)="dislike(i)" [class.active]="isnotActive"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
                 </div>
           </div><!-- .img-ctn -->
           <div class="card-info">
@@ -41,8 +41,8 @@
                     <img src="../../assets/img/court.jpg" />
                 </figure>
                 <div class="like_action">
-                    <a class="hollow-icon thumbUp" href="javascript:void(0);" (click)="like(i)"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                    <a href="javascript:void(0);" class="hollow-icon thumbDown" (click)="dislike(i)"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+                    <a class="hollow-icon thumbUp" href="javascript:void(0);" (click)="like(i)" [class.active]="isActive"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                    <a href="javascript:void(0);" class="hollow-icon thumbDown" (click)="dislike(i)" [class.active]="isnotActive"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
                   </div>
             </div><!-- .img-ctn -->
             <div class="card-info">
@@ -72,8 +72,8 @@
                       <img src="../../assets/img/court.jpg" />
                   </figure>
                   <div class="like_action">
-                      <a class="hollow-icon thumbUp" href="javascript:void(0);" (click)="like(i)"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                      <a href="javascript:void(0);" class="hollow-icon thumbDown" (click)="dislike(i)"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+                      <a class="hollow-icon thumbUp" href="javascript:void(0);" (click)="like(i)" [class.active]="isActive"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                      <a href="javascript:void(0);" class="hollow-icon thumbDown" (click)="dislike(i)" [class.active]="isnotActive"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
                     </div>
               </div><!-- .img-ctn -->
               <div class="card-info">
