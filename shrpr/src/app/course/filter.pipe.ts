@@ -1,13 +1,15 @@
 import {Pipe, PipeTransform} from '@angular/core';
-@Pipe({
-    name: 'isInGroup',
-    pure: false
-})
-export class IsInGroup implements PipeTransform {
-    transform(groups: string[], groupName: string): boolean {
-        let filteredGroup = groups.filter(p => p.indexOf(groupName) !== -1);
-        if (filteredGroup.length > 0)
-            return true;
-        return false;
-    }
+@Pipe({name: 'groups'})
+export class GroupsPipe implements PipeTransform {
+  transform(value, args:string[]) : any {
+    var groups = {};
+    value.forEach(function(o) {
+      var group = o.group;
+      groups[group] = groups[group] ?
+         groups[group] : { name: group, resources: [] };
+      groups[group].resources.push(o);  
+    });
+
+    return Object.keys(groups).map(function (key) {return groups[key]});
+  }
 }

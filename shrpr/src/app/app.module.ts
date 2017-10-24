@@ -18,7 +18,7 @@ import { TemplateFooter } from './template/template.component';
 import { HomeComponent } from './home/home.component';
 import { TabsComponent } from './home/tabs/tabs.component';
 import { TabComponent } from './home/tabs/tab.component';
-import {IsInGroup} from './course/filter.pipe';
+import {GroupsPipe} from './course/filter.pipe';
 import { Ng2CompleterModule } from "ng2-completer";
 
 @NgModule({
@@ -35,7 +35,7 @@ import { Ng2CompleterModule } from "ng2-completer";
     HomeComponent,
     TabsComponent,
     TabComponent,
-    IsInGroup
+    GroupsPipe
    ],
   imports: [
     BrowserModule,

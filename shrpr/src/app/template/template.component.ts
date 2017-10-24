@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
 import { NgZone } from '@angular/core';
 
+
+
 declare var google;
 
 @Component({
@@ -13,6 +15,7 @@ export class TemplateComponent implements OnInit {
 
   
   constructor() {
+     
   }
 
   ngOnInit() {
@@ -32,7 +35,7 @@ export class TemplateHeader implements OnInit {
   isBtnActive: boolean = false;
   location: string = '';
   groups = ['For Fun', 'For Work', 'For Kids'];
-  
+  likeCounter:number;
   constructor(zone: NgZone) {
     window.onscroll = () => {
       zone.run(() => {
