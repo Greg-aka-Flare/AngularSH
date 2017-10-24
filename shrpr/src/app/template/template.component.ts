@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
 import { NgZone } from '@angular/core';
-
+import { CoursedesktopComponent } from '../course/coursedesktop.component';
 
 
 declare var google;
@@ -36,6 +36,7 @@ export class TemplateHeader implements OnInit {
   location: string = '';
   groups = ['For Fun', 'For Work', 'For Kids'];
   likeCounter:number;
+  //constructor(zone: NgZone, public _coursedesktopComponent: CoursedesktopComponent) {
   constructor(zone: NgZone) {
     window.onscroll = () => {
       zone.run(() => {
@@ -46,6 +47,7 @@ export class TemplateHeader implements OnInit {
         }
       });
     }
+    //this.likeCounter = this._coursedesktopComponent.count;
   }
 
   ngOnInit() {
