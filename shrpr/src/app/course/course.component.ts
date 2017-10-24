@@ -7,6 +7,7 @@ import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
 
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { StarRatingModule } from 'angular-star-rating';
  
 @Component({
   selector: 'app-course',

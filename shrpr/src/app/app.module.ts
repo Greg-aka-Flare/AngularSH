@@ -20,6 +20,8 @@ import { TabsComponent } from './home/tabs/tabs.component';
 import { TabComponent } from './home/tabs/tab.component';
 import {GroupsPipe} from './course/filter.pipe';
 import { Ng2CompleterModule } from "ng2-completer";
+import { StarRatingModule } from 'angular-star-rating';
+import { InstructorProfileComponent } from './instructor-profile/instructor-profile.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { Ng2CompleterModule } from "ng2-completer";
     HomeComponent,
     TabsComponent,
     TabComponent,
-    GroupsPipe
+    GroupsPipe,
+    InstructorProfileComponent
    ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { Ng2CompleterModule } from "ng2-completer";
     HttpModule,
     FormsModule,
     Ng2CompleterModule,
-    routing    
+    routing,
+    StarRatingModule.forRoot()        
   ],
   providers: [CourseService],
   bootstrap: [AppComponent]

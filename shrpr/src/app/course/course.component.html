@@ -9,7 +9,7 @@
             {{ course.categories[0].name }}
 
             <figure class="rating">
-                <img src="../../assets/img/star-bg.jpg" />
+                <star-rating-comp [starType]="'svg'" [rating]="course.rating"></star-rating-comp>
             </figure><!-- .rating -->
         </div><!-- .category -->
 
