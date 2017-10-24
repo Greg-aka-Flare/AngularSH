@@ -5,13 +5,18 @@
                <span>
                     <img src="../assets/img/search-input.png" alt="Shrpr" title="Shrpr">
 
-                    <input type="text" placeholder="Soccer">
+                    <ng2-completer 
+                        placeholder="Search for Category" 
+                        [datasource]="groups" 
+                        [minSearchLength]="0"
+                    >
+                    </ng2-completer>
                 </span>
 
                 <span>
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
-
-                    <input type="text" placeholder="Watertown, CT">
+                    
+                    <input type="text" placeholder="Enter Location" [value]="location">
                 </span>
 
                 <button>Search</button>

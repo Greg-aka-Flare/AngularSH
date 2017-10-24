@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { TabsComponent } from './home/tabs/tabs.component';
 import { TabComponent } from './home/tabs/tab.component';
 import {IsInGroup} from './course/filter.pipe';
+import { Ng2CompleterModule } from "ng2-completer";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {IsInGroup} from './course/filter.pipe';
     BrowserAnimationsModule,
     HttpModule,
     FormsModule,
+    Ng2CompleterModule,
     routing    
   ],
   providers: [CourseService],

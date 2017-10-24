@@ -114,27 +114,35 @@ header section#search {
 .login-link a:hover{
     text-decoration: none;
 }
-section#search form span {
+section#search form > span {
     display: block;
     padding: 0 0 16px;
     position: relative;
 }
-section#search form span:before {
+section#search form > span:before {
     content: "|";
     left: 35px;
     position: absolute;
     top: 9px;
 }
-section#search form span .fa, section#search form span img {
+section#search form > span .fa, section#search form > span img {
     font-size: 24px;
     left: 12px;
     position: absolute;
     top: 8px; 
 }
-section#search form span img {
+section#search form > span img {
     left: 8px;
     max-width: 23px;
     top: 11px;
+}
+section#search form .completer-selected-row{
+    background-color: #484848;
+    height: 100%;
+    width: 100%;
+}
+section#search form .completer-dropdown{
+    text-align: left;
 }
 section#search form input {
     border: 1px solid #fff;
@@ -233,7 +241,7 @@ h2 {
 		padding: 28px 15px 28px 15px; 
 		border-top: 1px solid #cacac9; 
     }
-    section#search form span {
+    section#search form > span {
         display: inline-block;
         vertical-align: top;
         width: 33.33%;

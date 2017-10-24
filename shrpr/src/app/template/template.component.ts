@@ -12,8 +12,8 @@ declare var google;
 export class TemplateComponent implements OnInit {
 
   
-    constructor() {
-    }
+  constructor() {
+  }
 
   ngOnInit() {
   }
@@ -23,7 +23,7 @@ export class TemplateComponent implements OnInit {
 @Component({
   selector: 'app-header',
   templateUrl: './template.header.html',
-  styleUrls: ['./template.header.css'],
+  styleUrls: ['./template.header.css']
 })
 
 export class TemplateHeader implements OnInit {
@@ -31,18 +31,19 @@ export class TemplateHeader implements OnInit {
   isheaderShrunk: boolean = false;
   isBtnActive: boolean = false;
   location: string = '';
+  groups = ['For Fun', 'For Work', 'For Kids'];
   
-    constructor(zone: NgZone) {
-      window.onscroll = () => {
-        zone.run(() => {
-          if(window.pageYOffset > 0) {
-               this.isheaderShrunk = true;
-          } else {
-               this.isheaderShrunk = false;
-          }
-        });
-      }
+  constructor(zone: NgZone) {
+    window.onscroll = () => {
+      zone.run(() => {
+        if(window.pageYOffset > 0) {
+             this.isheaderShrunk = true;
+        } else {
+             this.isheaderShrunk = false;
+        }
+      });
     }
+  }
 
   ngOnInit() {
     if (navigator.geolocation) { //check if we can get lat/lng
@@ -128,7 +129,6 @@ export class TemplateHeader implements OnInit {
   }
 }
 
-
 @Component({
   selector: 'app-footer',
   templateUrl: './template.footer.html',
@@ -140,6 +140,4 @@ export class TemplateFooter implements OnInit {
 
   ngOnInit() {
   }
-
-
 }
