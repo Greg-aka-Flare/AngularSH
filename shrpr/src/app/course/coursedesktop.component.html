@@ -27,7 +27,15 @@
               </div>
           </div><!-- .img-ctn -->
           <div class="card-info">
-            <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp></span><span class="group_name">{{course.group.label}}</span></div><!-- .group_info-->
+            <div class="group_info">
+              <span class="group_rating">
+                <star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp>
+              </span>
+
+              <span class="group_name">
+                {{ course.categories[0].name }}
+              </span>
+            </div><!-- .group_info-->
             <h3>{{ course.title }}</h3>
             <p class="location">
               <i class="fa fa-map-marker" aria-hidden="true"></i> 
@@ -70,7 +78,8 @@
                 </div>
             </div><!-- .img-ctn -->
             <div class="card-info">
-              <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp></span><span class="group_name">{{course.group.label}}</span></div><!-- .group_info-->
+              <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp></span><span class="group_name">
+                {{ course.categories[0].name }}</span></div><!-- .group_info-->
               <h3>{{ course.title }}</h3>
               <p class="location">
                 <i class="fa fa-map-marker" aria-hidden="true"></i> 
@@ -113,7 +122,8 @@
                   </div>
               </div><!-- .img-ctn -->
               <div class="card-info">
-                <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp></span><span class="group_name">{{course.group.label}}</span></div><!-- .group_info-->
+                <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp></span><span class="group_name">
+                {{ course.categories[0].name }}</span></div><!-- .group_info-->
                 <h3>{{ course.title }}</h3>
                 <p class="location">
                   <i class="fa fa-map-marker" aria-hidden="true"></i> 
