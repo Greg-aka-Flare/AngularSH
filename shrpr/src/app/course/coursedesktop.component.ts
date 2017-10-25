@@ -32,7 +32,21 @@ import { StarRatingModule } from 'angular-star-rating';
         backgroundColor: '#28e93b'
       })),
       state('no', style({
+        backgroundColor: '#ffffff'
+      })),
+      transition('* => *', [
+        style({
+          opacity:0.9
+        }),
+        animate(100)
+      ])
+    ]),
+    trigger('dislikeState', [
+      state('yes', style({
         backgroundColor: '#e92828'
+      })),
+      state('no', style({
+        backgroundColor: '#ffffff'
       })),
       transition('* => *', [
         style({
@@ -49,9 +63,6 @@ export class CoursedesktopComponent implements OnInit {
  // initialize a private variable _data, it's a BehaviorSubject
   private _data = new BehaviorSubject<Course[]>([]);
   courses: any[];
-  contentFun: any[] = [];
-  contentWork: any[] = [];
-  contentKids: any[] = [];
   counterFun: number;
   counterWork: number;
   counterKids: number;
@@ -108,31 +119,16 @@ export class CoursedesktopComponent implements OnInit {
                   this.kidsArray.push(this.courses[i]);
                 }
               }
-              
-              for(let j = this.counterFun + 1; j < this.funArray.length; j++){
-                this.contentFun.push(this.funArray[j]);
-                if(j % 3 == 0) break;
-              } 
               this.counterFun += 3;
-
-              for(let k = this.counterWork +1; k < this.workArray.length; k++){
-                this.contentWork.push(this.workArray[k]);
-                if(k % 3 == 0) break;
-              }
               this.counterWork += 3;
-
-              for(let l = this.counterKids +1; l < this.kidsArray.length; l++){
-                this.contentKids.push(this.kidsArray[l]);
-                if(l % 3 == 0) break;
-              }
               this.counterKids +=3;
 
             }
         });
   }
   
-  /*getData(){
-    for(let i = this.counter + 1; i < this.courses.length; i++){
+ /* getFunData(){
+    for(let i = this.counterFun + 1; i < this.courses.length; i++){
       this.content.push(this.courses[i]);
       if(i % 3 == 0) break;
     }
