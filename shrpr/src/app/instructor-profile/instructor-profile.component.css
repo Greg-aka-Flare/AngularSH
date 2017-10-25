@@ -1,0 +1,228 @@
+#profile-header {
+    padding: 10px 10px 10px 10px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #cccccc;
+}
+#profile-header > div {
+    color: #02b2b8;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 17px;
+    vertical-align: top;
+    width: 66%;
+}
+#profile-header > div.profile-picture {
+    max-width: 83px;
+    width: 29%;
+    margin: 0 4% 0 0;
+    text-align: center;
+}
+#profile-header > div .fa {
+    color: #222222;
+}
+#profile-header h2 {
+    font-size: 22px;
+    line-height: 24px;
+    padding: 0 0 10px 0;
+    color: #fc6a02;
+}
+.profile-picture img {
+    display: block;
+    width: 100%;
+    margin: 0 0 10px 0;
+}
+.social-icon a {
+    color: #222222;
+    font-size: 25px;
+    line-height: 1em;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 3% 5px 3%;
+}
+#profile-header .rating {
+    text-align: left;
+    padding: 19px 0 0 0;
+    max-width: 191px;
+}
+#profile-header > div a {
+    color: #02b2b8;;
+    text-decoration: underline;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 0 5px;
+}
+#profile-header > div a:hover {
+    text-decoration: none;
+}
+:host /deep/ tabs .tabs ul {
+    background: #e5e5e6;
+    padding: 0 10px 0 10px;
+
+}
+:host /deep/ tabs .tabs ul li {
+    display: inline-block;
+    vertical-align: top;
+    width: 33.33%;
+    max-width: 83px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 1em;
+    color: #414141;
+    padding: 50px 5px 14px;
+    background-image: url('../../assets/img/search-input.png');
+    background-repeat: no-repeat;
+    background-position: center 15px;
+    background-size: 25px auto;
+    cursor: pointer;
+}
+:host /deep/ tabs .tabs ul li.active {
+    background-color: #cccccc;
+
+}
+:host /deep/ tabs .tabs ul li:nth-of-type(2) {
+    background-image: url('../../assets/img/about-tab-bg.png');
+    background-position: center 13px;
+    background-size: auto;
+
+}
+:host /deep/ tabs .tabs ul li:nth-of-type(3) {
+    background-image: url('../../assets/img/contact-tab-bg.png');
+    background-position: center 19px;
+    background-size: auto;
+}
+:host /deep/ tabs .tabs tab > div {
+    padding: 10px 0 10px;
+    background: #cccccc;
+}
+:host /deep/ tabs .tabs tab div > h3 {
+    font-size: 18px;
+    color: #818181;
+    line-height: 22px;
+    padding: 10px;
+}
+
+.card-box {
+    padding: 0 0 10px 0;
+    background-color: #ffffff;
+}
+.img-ctn {
+    position: relative;
+}
+.img-ctn figure {
+    margin:0;
+}
+.img-ctn figure img {
+    display:block;
+    margin:0;
+    width:100%;
+}
+.price{
+    background-color: #e7aa62;
+    color: #272625;
+    font-size: 16px;
+    padding: 3px 20px 3px 5px;
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+.group_rating {
+    float: right;
+}
+.date_stamp, .with-box {
+    font-size:12px;
+    line-height: 14px;
+    color:#229bcb;
+}
+.with-box span {
+    color: #414141;
+}
+.card-info {
+    padding: 10px;
+}
+.card-info p {
+    padding: 0 0 5px 0;
+}
+.img-ctn h3 {
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 8px;
+    box-sizing: border-box;
+    color: #fc6a02;
+    font-size: 18px;
+    left: 0;
+    line-height: 22px;
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+}
+.page-cta {
+    background-color: #484848;
+    border: none;
+    -webkit-box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-family: 'circularstd book';
+    font-size: 18px;
+    line-height: 18px;
+    margin: 10px auto;
+    max-width: 150px;
+    padding:7px 10px;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+}
+.page-cta :hover {
+    background-color: #757575;
+}
+#reviews {
+    padding: 20px 10px 20px 10px;
+}
+.reviews-rating {
+    text-align: center;
+    font-size: 15px;
+    color: #272625;
+    line-height: 14px;
+    padding: 0 0 30px 0;
+}
+:host #reviews  /deep/ star-rating-comp {
+    display: inline-block;
+    vertical-align: middle;
+}
+#reviews dl {
+    display: table;
+    margin: 0 0 20px 0;
+    width: 100%;
+}
+#reviews dl dt , #reviews dl dd {
+    display: table-cell;
+    vertical-align: top;
+    margin: 0;
+    font-size: 14px;
+    color: #272625;
+    line-height: 16px;
+    padding: 8px;
+}
+#reviews dl dt {
+    padding: 0 20px 0 0;
+    max-width:93px;
+    min-width: 92px;
+    text-align: center;
+}
+#reviews dl dt img {
+    display: block;
+    margin: 0 auto 10px auto;
+}
+#reviews dl dd {
+    border: 2px solid #eeeeee;
+    border-radius: 4px;
+}
+#reviews dl dd h2 {
+    font-size: 14px;
+    color:#229bcb;
+    line-height: 16px;
+    padding: 0 0 10px 0;
+
+}

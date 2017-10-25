@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser'
 import { Response } from "@angular/http";
 import {trigger, state, style, transition, animate} from '@angular/animations';
 import { TabsComponent } from "../home/tabs/tabs.component";
+import { StarRatingModule } from 'angular-star-rating';
 
 @Component({
   selector: 'app-instructor-profile',

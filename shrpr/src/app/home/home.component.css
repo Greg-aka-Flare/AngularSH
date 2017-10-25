@@ -48,6 +48,10 @@ section#sign-up p {
     max-width: 257px;
 }
 /*tab*/
+:host /deep/ tabs .tabs ul  {
+    padding: 14px 0 14px 0;
+    text-align: center;
+}
 :host /deep/ tabs .tabs ul li {
     border: 1px solid #000000;
     display: inline-block;
