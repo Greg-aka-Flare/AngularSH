@@ -26,6 +26,20 @@ import { StarRatingModule } from 'angular-star-rating';
         }),
         animate(300)
       ])
+    ]),
+    trigger('likeState', [
+      state('yes', style({
+        backgroundColor: '#28e93b'
+      })),
+      state('no', style({
+        backgroundColor: '#e92828'
+      })),
+      transition('* => *', [
+        style({
+          opacity:0.9
+        }),
+        animate(100)
+      ])
     ])
   ]
   //,pipes: [GroupsPipe]
@@ -34,7 +48,6 @@ import { StarRatingModule } from 'angular-star-rating';
 export class CoursedesktopComponent implements OnInit {
  // initialize a private variable _data, it's a BehaviorSubject
   private _data = new BehaviorSubject<Course[]>([]);
- 
   courses: any[];
   contentFun: any[] = [];
   contentWork: any[] = [];
@@ -83,6 +96,7 @@ export class CoursedesktopComponent implements OnInit {
             if(this.courses) {
               for(var i = 0, l = this.courses.length; i < l; i++) {
                 this.courses[i].state = 'default';
+               
                 //console.log(this.courses[i].group.name);
                 if(this.courses[i].group.label == 'For Fun'){
                   this.funArray.push(this.courses[i]);
@@ -132,14 +146,31 @@ export class CoursedesktopComponent implements OnInit {
     if(this.courses[i].state == 'default') this.courses[i].state = 'dislike';
   }
  /* like and dislike function is only for the like and dislike on card thumb in desktop */
+ 
  like(i){
-   this.count++;
-   this.isActive = !this.isActive;
-   this.likeCounter++;
+   if(this.courses[i].state == 'default')
+   {
+    this.courses[i].state = 'yes';
+    this.likeCounter++;
+   }
+   else if(this.courses[i].state == 'yes'){
+    this.courses[i].state = 'default';
+    this.likeCounter--;
+   }
    this.likeArray.push(this.courses[i].id);
   }
   dislike(i){
-    this.isnotActive = !this.isnotActive;
+    if(this.courses[i].state == 'default')
+    {
+     this.courses[i].state = 'no';
+    }
+    else if(this.courses[i].state == 'yes'){
+     this.courses[i].state = 'no';
+     this.likeCounter--;
+    }
+    else if(this.courses[i].state == 'no'){
+      this.courses[i].state = 'default'; 
+    }
     this.dislikeArray.push(this.courses[i].id);
   } 
 
