@@ -157,6 +157,7 @@ export class CoursedesktopComponent implements OnInit {
     this.courses[i].state = 'default';
     this.likeCounter--;
    }
+
    this.likeArray.push(this.courses[i].id);
   }
   dislike(i){

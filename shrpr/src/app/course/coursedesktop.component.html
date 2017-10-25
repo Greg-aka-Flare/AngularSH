@@ -1,7 +1,7 @@
 <section id="for_fun_box" class="category_bucket magento">
   <h2>For Fun</h2>{{likeCounter}}
   <div class="thee_col_content clearfix ">
-      <article class="card-box" *ngFor="let course of contentFun; let i = index" [@divState]>
+      <article class="card-box" *ngFor="let course of (courses | groups: 'For Fun'); let i = index" [@divState]>
           <div class="img-ctn">
               <div class="price">
                   ${{ course.semesters[0].amount }}
@@ -32,7 +32,7 @@
 <section id="for_work_box" class="category_bucket blue">
     <h2>For Work</h2>
     <div class="thee_col_content clearfix ">
-        <article class="card-box" *ngFor="let course of contentWork; let i = index" [@divState]>
+      <article class="card-box" *ngFor="let course of (courses | groups: 'For Work'); let i = index" [@divState]>
             <div class="img-ctn">
                 <div class="price">
                     ${{ course.semesters[0].amount }}
@@ -63,7 +63,7 @@
   <section id="for_kids_box" class="category_bucket yellow">
       <h2>For Kids</h2>
       <div class="thee_col_content clearfix ">
-          <article class="card-box" *ngFor="let course of contentKids; let i = index" [@divState]>
+      <article class="card-box" *ngFor="let course of (courses | groups: 'For Kids'); let i = index" [@divState]>
               <div class="img-ctn">
                   <div class="price">
                       ${{ course.semesters[0].amount }}

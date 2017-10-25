@@ -1,15 +1,27 @@
 import {Pipe, PipeTransform} from '@angular/core';
-@Pipe({name: 'groups'})
+
+@Pipe({ name: 'groups' })
 export class GroupsPipe implements PipeTransform {
-  transform(value, args:string[]) : any {
-    var groups = {};
-    value.forEach(function(o) {
-      var group = o.group;
-      groups[group] = groups[group] ?
-         groups[group] : { name: group, resources: [] };
-      groups[group].resources.push(o);  
+
+  transform(value, select: string) : any {
+
+    //if empty, return intial value
+    if(!value) return value;
+
+    //create empty array
+    let courses = [];
+
+    //for every course
+    value.every(function(course, i) {
+
+      //add course
+      if(course.group.label === select) courses.push(course);
+
+      //while less than 3, keep going
+      return courses.length < 3 ? true : false; 
     });
 
-    return Object.keys(groups).map(function (key) {return groups[key]});
+    //return new array
+    return courses;
   }
 }
