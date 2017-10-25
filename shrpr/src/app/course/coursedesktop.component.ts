@@ -84,13 +84,13 @@ export class CoursedesktopComponent implements OnInit {
               for(var i = 0, l = this.courses.length; i < l; i++) {
                 this.courses[i].state = 'default';
                 //console.log(this.courses[i].group.name);
-                if(this.courses[i].group.name == 'For Fun'){
+                if(this.courses[i].group.label == 'For Fun'){
                   this.funArray.push(this.courses[i]);
                 }
-                if(this.courses[i].group.name == 'For Work'){
+                if(this.courses[i].group.label == 'For Work'){
                   this.workArray.push(this.courses[i]);
                 }
-                if(this.courses[i].group.name == 'For Kids'){
+                if(this.courses[i].group.label == 'For Kids'){
                   this.kidsArray.push(this.courses[i]);
                 }
               }
