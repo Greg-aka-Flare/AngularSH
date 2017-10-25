@@ -237,6 +237,12 @@
     opacity: 0.4;
     transition: all 0.3s ease;
 }
+.hollow-icon.like{
+    background-color: #28e93b;
+}
+.hollow-icon.dislike{
+    background-color: #e92828;
+}
 
 .hollow-icon:hover {
     opacity: 0.8;

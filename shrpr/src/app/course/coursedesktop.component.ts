@@ -12,58 +12,14 @@ import { StarRatingModule } from 'angular-star-rating';
 @Component({
   selector: 'app-coursedesktop',
   templateUrl: './coursedesktop.component.html',
-  styleUrls: ['./coursedesktop.component.css'],
-  animations: [
-    trigger('divState', [
-      state('in', style({
-        opacity: 0,
-        transform: 'translateY(0)'
-      })),
-      transition('void => *', [
-        style({
-          opacity:0,
-          transform:'translateY(100px)'
-        }),
-        animate(300)
-      ])
-    ]),
-    trigger('likeState', [
-      state('yes', style({
-        backgroundColor: '#28e93b'
-      })),
-      state('no', style({
-        backgroundColor: '#e92828'
-      })),
-      transition('* => *', [
-        style({
-          opacity:0.9
-        }),
-        animate(100)
-      ])
-    ])
-  ]
-  //,pipes: [GroupsPipe]
+  styleUrls: ['./coursedesktop.component.css']
 })
 
 export class CoursedesktopComponent implements OnInit {
  // initialize a private variable _data, it's a BehaviorSubject
   private _data = new BehaviorSubject<Course[]>([]);
   courses: any[];
-  contentFun: any[] = [];
-  contentWork: any[] = [];
-  contentKids: any[] = [];
-  counterFun: number;
-  counterWork: number;
-  counterKids: number;
-  funArray: any[] = [];
-  workArray: any[] = [];
-  kidsArray:any[] = [];
-  likeCounter:number;
-  likeArray:any[] = [];
   @Input() count: number = 0;
-  isActive:boolean = false;
-  isnotActive:boolean = false;
-  dislikeArray: any[] = [];
   
   // change data to use getter and setter
   @Input()
@@ -78,13 +34,6 @@ export class CoursedesktopComponent implements OnInit {
   }
 
   constructor() {
-      this.counterFun = 0;
-      this.counterWork = 0;
-      this.counterKids = 0;
-      this.likeCounter = 0;
-      this.isActive = false;
-      this.isnotActive = false;
-      
   }
   
   ngOnInit() {
@@ -96,83 +45,24 @@ export class CoursedesktopComponent implements OnInit {
             if(this.courses) {
               for(var i = 0, l = this.courses.length; i < l; i++) {
                 this.courses[i].state = 'default';
-               
-                //console.log(this.courses[i].group.name);
-                if(this.courses[i].group.label == 'For Fun'){
-                  this.funArray.push(this.courses[i]);
-                }
-                if(this.courses[i].group.label == 'For Work'){
-                  this.workArray.push(this.courses[i]);
-                }
-                if(this.courses[i].group.label == 'For Kids'){
-                  this.kidsArray.push(this.courses[i]);
-                }
               }
-              
-              for(let j = this.counterFun + 1; j < this.funArray.length; j++){
-                this.contentFun.push(this.funArray[j]);
-                if(j % 3 == 0) break;
-              } 
-              this.counterFun += 3;
-
-              for(let k = this.counterWork +1; k < this.workArray.length; k++){
-                this.contentWork.push(this.workArray[k]);
-                if(k % 3 == 0) break;
-              }
-              this.counterWork += 3;
-
-              for(let l = this.counterKids +1; l < this.kidsArray.length; l++){
-                this.contentKids.push(this.kidsArray[l]);
-                if(l % 3 == 0) break;
-              }
-              this.counterKids +=3;
-
             }
         });
   }
+
+  onLike(id){
+
+    var course = this.courses.filter(function( obj ){
+
+      if(obj.id == id) obj.state = 'like';
+    });
+  }
   
-  /*getData(){
-    for(let i = this.counter + 1; i < this.courses.length; i++){
-      this.content.push(this.courses[i]);
-      if(i % 3 == 0) break;
-    }
-    this.counter += 3;
-  }*/
-  /* onLike and onDislike function is only for the mobile view swipe animation*/
-  onLike(i){
-    if(this.courses[i].state == 'default') this.courses[i].state = 'like';
-  }
-  onDislike(i){
-    if(this.courses[i].state == 'default') this.courses[i].state = 'dislike';
-  }
- /* like and dislike function is only for the like and dislike on card thumb in desktop */
- 
- like(i){
-   if(this.courses[i].state == 'default')
-   {
-    this.courses[i].state = 'yes';
-    this.likeCounter++;
-   }
-   else if(this.courses[i].state == 'yes'){
-    this.courses[i].state = 'default';
-    this.likeCounter--;
-   }
+  onDislike(id){
 
-   this.likeArray.push(this.courses[i].id);
-  }
-  dislike(i){
-    if(this.courses[i].state == 'default')
-    {
-     this.courses[i].state = 'no';
-    }
-    else if(this.courses[i].state == 'yes'){
-     this.courses[i].state = 'no';
-     this.likeCounter--;
-    }
-    else if(this.courses[i].state == 'no'){
-      this.courses[i].state = 'default'; 
-    }
-    this.dislikeArray.push(this.courses[i].id);
-  } 
+    var course = this.courses.filter(function( obj ){
 
+      if(obj.id == id) obj.state = 'dislike';
+    });
+  }
 }

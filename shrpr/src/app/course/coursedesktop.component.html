@@ -1,7 +1,7 @@
 <section id="for_fun_box" class="category_bucket magento">
-  <h2>For Fun</h2>{{likeCounter}}
+  <h2>For Fun</h2>
   <div class="thee_col_content clearfix ">
-      <article class="card-box" *ngFor="let course of (courses | groups: 'For Fun'); let i = index" [@divState]>
+      <article class="card-box" *ngFor="let course of (courses | groups: 'For Fun'); let i = index">
           <div class="img-ctn">
               <div class="price">
                   ${{ course.semesters[0].amount }}
@@ -10,9 +10,21 @@
                   <img src="../../assets/img/court.jpg" />
               </figure>
               <div class="like_action">
-                  <a class="hollow-icon thumbUp" href="javascript:void(0);" (click)="like(i)" [@likeState]="courses[i].state"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                  <a href="javascript:void(0);" class="hollow-icon thumbDown" (click)="dislike(i)" [@likeState]="courses[i].state"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                </div>
+                  <a 
+                    class="hollow-icon thumbUp" 
+                    (click)="onLike(course.id)" 
+                    [class.like]="course.state == 'like'"
+                  >
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                  </a>
+                  <a 
+                    class="hollow-icon thumbDown" 
+                    (click)="onDislike(course.id)" 
+                    [class.dislike]="course.state == 'dislike'"
+                  >
+                    <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                  </a>
+              </div>
           </div><!-- .img-ctn -->
           <div class="card-info">
             <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating"></star-rating-comp></span><span class="group_name">{{course.group.label}}</span></div><!-- .group_info-->
@@ -32,7 +44,7 @@
 <section id="for_work_box" class="category_bucket blue">
     <h2>For Work</h2>
     <div class="thee_col_content clearfix ">
-      <article class="card-box" *ngFor="let course of (courses | groups: 'For Work'); let i = index" [@divState]>
+      <article class="card-box" *ngFor="let course of (courses | groups: 'For Work'); let i = index">
             <div class="img-ctn">
                 <div class="price">
                     ${{ course.semesters[0].amount }}
@@ -41,9 +53,21 @@
                     <img src="../../assets/img/court.jpg" />
                 </figure>
                 <div class="like_action">
-                    <a class="hollow-icon thumbUp" href="javascript:void(0);" (click)="like(i)" [@likeState]="courses[i].state"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                    <a href="javascript:void(0);" class="hollow-icon thumbDown" (click)="dislike(i)" [@likeState]="courses[i].state"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                  </div>
+                    <a 
+                      class="hollow-icon thumbUp" 
+                      (click)="onLike(course.id)" 
+                      [class.like]="course.state == 'like'"
+                    >
+                      <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    </a>
+                    <a 
+                      class="hollow-icon thumbDown" 
+                      (click)="onDislike(course.id)" 
+                      [class.dislike]="course.state == 'dislike'"
+                    >
+                      <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                    </a>
+                </div>
             </div><!-- .img-ctn -->
             <div class="card-info">
               <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating"></star-rating-comp></span><span class="group_name">{{course.group.label}}</span></div><!-- .group_info-->
@@ -63,7 +87,7 @@
   <section id="for_kids_box" class="category_bucket yellow">
       <h2>For Kids</h2>
       <div class="thee_col_content clearfix ">
-      <article class="card-box" *ngFor="let course of (courses | groups: 'For Kids'); let i = index" [@divState]>
+      <article class="card-box" *ngFor="let course of (courses | groups: 'For Kids'); let i = index">
               <div class="img-ctn">
                   <div class="price">
                       ${{ course.semesters[0].amount }}
@@ -72,9 +96,21 @@
                       <img src="../../assets/img/court.jpg" />
                   </figure>
                   <div class="like_action">
-                      <a class="hollow-icon thumbUp" href="javascript:void(0);" (click)="like(i)" [@likeState]="courses[i].state"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                      <a href="javascript:void(0);" class="hollow-icon thumbDown" (click)="dislike(i)" [@likeState]="courses[i].state"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                    </div>
+                      <a 
+                        class="hollow-icon thumbUp" 
+                        (click)="onLike(course.id)" 
+                        [class.like]="course.state == 'like'"
+                      >
+                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                      </a>
+                      <a 
+                        class="hollow-icon thumbDown" 
+                        (click)="onDislike(course.id)" 
+                        [class.dislike]="course.state == 'dislike'"
+                      >
+                        <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                      </a>
+                  </div>
               </div><!-- .img-ctn -->
               <div class="card-info">
                 <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating"></star-rating-comp></span><span class="group_name">{{course.group.label}}</span></div><!-- .group_info-->
