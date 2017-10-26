@@ -9,11 +9,14 @@ import { LikeService } from "../like.service";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Subscription } from 'rxjs/Subscription';
 import { StarRatingModule } from 'angular-star-rating';
+import { LikeService } from '../like.service';
+
 
 @Component({
   selector: 'app-coursedesktop',
   templateUrl: './coursedesktop.component.html',
   styleUrls: ['./coursedesktop.component.css'],
+  providers: [LikeService]
 })
 
 export class CoursedesktopComponent implements OnInit {
@@ -22,7 +25,6 @@ export class CoursedesktopComponent implements OnInit {
   courses: any[];
   counter: number = 0;
   subscription: Subscription;
-  
    
   // change data to use getter and setter
   
@@ -36,7 +38,7 @@ export class CoursedesktopComponent implements OnInit {
       // get the latest value from _data BehaviorSubject
       return this._data.getValue();
   };
-  
+
   constructor(private likeService: LikeService) {
   }
   
@@ -64,7 +66,7 @@ export class CoursedesktopComponent implements OnInit {
 
   onLike(id){
     this.likeService.incrementCounter();
-
+    
     var course = this.courses.filter(function( obj ){
       if(obj.id == id) obj.state = 'like';
      });
