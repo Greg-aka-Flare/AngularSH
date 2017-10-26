@@ -1,4 +1,7 @@
 <tabs *ngIf="width < 959">
+        <tab tabTitle="Browse">
+                <app-courses></app-courses>
+            </tab>
     <tab tabTitle="Search">
         <section id="search">
             <form action="#">
@@ -26,9 +29,7 @@
         </section><!-- #search -->
     </tab>
 
-    <tab tabTitle="Browse">
-        <app-courses></app-courses>
-    </tab>
+    
 </tabs>
 
     

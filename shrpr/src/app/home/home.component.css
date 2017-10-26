@@ -51,6 +51,8 @@ section#sign-up p {
 :host /deep/ tabs .tabs ul  {
     padding: 14px 0 14px 0;
     text-align: center;
+    margin: 0 auto !important;
+    max-width: 320px;
 }
 :host /deep/ tabs .tabs ul li {
     border: 1px solid #000000;
@@ -76,6 +78,7 @@ section#sign-up p {
 
 :host /deep/ tabs .tabs ul li:first-child {
     background-image: none;
+    float: right;
 }
 :host /deep/ tabs .tabs ul li:first-child:before {
     font-family: FontAwesome;
