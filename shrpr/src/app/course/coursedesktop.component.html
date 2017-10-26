@@ -1,6 +1,5 @@
 <section id="for_fun_box" class="category_bucket magento">
   <h2>For Fun</h2>
-  {{count}}
   <div class="thee_col_content clearfix ">
       <article class="card-box" *ngFor="let course of (courses | groups: 'For Fun'); let i = index">
           <div class="img-ctn">
@@ -108,7 +107,7 @@
                   <div class="like_action">
                       <a 
                         class="hollow-icon thumbUp" 
-                        (click)="onLike(course.id)" 
+                        (click)="onLike(course.id)"
                         [class.like]="course.state == 'like'"
                       >
                         <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
@@ -138,4 +137,5 @@
           </article>
           </div>
     </section><!-- #for_kids_box -->
+
 <!--<button class="show-more" (click)="getData()">Show more</button>-->

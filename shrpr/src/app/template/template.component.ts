@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
 import { NgZone } from '@angular/core';
-import { CoursedesktopComponent } from '../course/coursedesktop.component';
-
+import { LikeService } from '../like.service';
 
 declare var google;
 
@@ -12,10 +11,7 @@ declare var google;
   styleUrls: ['./template.component.css']
 })
 export class TemplateComponent implements OnInit {
-
-  
   constructor() {
-     
   }
 
   ngOnInit() {
@@ -27,7 +23,7 @@ export class TemplateComponent implements OnInit {
   selector: 'app-header',
   templateUrl: './template.header.html',
   styleUrls: ['./template.header.css'],
-  providers:[CoursedesktopComponent]
+  providers:[LikeService]
 })
 
 export class TemplateHeader implements OnInit {
@@ -38,7 +34,7 @@ export class TemplateHeader implements OnInit {
   groups = ['For Fun', 'For Work', 'For Kids'];
   
   public counterValue: number;
-  constructor(zone: NgZone, public _coursedesktopComponent: CoursedesktopComponent) {
+  constructor(zone: NgZone, public likeservice: LikeService) {
  // constructor(zone: NgZone) {
     window.onscroll = () => {
       zone.run(() => {
@@ -49,12 +45,9 @@ export class TemplateHeader implements OnInit {
         }
       });
     }
-    this.counterValue = this._coursedesktopComponent.count;
+    this.counterValue = this.likeservice.totalLikes;
   }
-  counterUpdate(event: object) {
-    //console.log(event);
-    this.counterValue = this._coursedesktopComponent.count;
-  }
+  
 
   ngOnInit() {
     if (navigator.geolocation) { //check if we can get lat/lng
