@@ -9,14 +9,13 @@ import { LikeService } from "../like.service";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Subscription } from 'rxjs/Subscription';
 import { StarRatingModule } from 'angular-star-rating';
-import { LikeService } from '../like.service';
 
 
 @Component({
   selector: 'app-coursedesktop',
   templateUrl: './coursedesktop.component.html',
   styleUrls: ['./coursedesktop.component.css'],
-  providers: [LikeService]
+  providers: []
 })
 
 export class CoursedesktopComponent implements OnInit {

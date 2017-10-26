@@ -1,12 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
 import { NgZone } from '@angular/core';
-<<<<<<< HEAD
 import { Subscription } from 'rxjs/Subscription';
 import { LikeService } from "../like.service";
-=======
-import { LikeService } from '../like.service';
->>>>>>> 62a317d24d176f7950eafa8c510adbb8eb0d2019
 
 declare var google;
 
@@ -39,15 +35,8 @@ export class TemplateHeader implements OnInit, OnDestroy {
   counter: number = 0;
   subscription: Subscription;
   groups = ['For Fun', 'For Work', 'For Kids'];
-<<<<<<< HEAD
 
   constructor(zone: NgZone, private likeService: LikeService) {
-=======
-  
-  public counterValue: number;
-  constructor(zone: NgZone, public likeservice: LikeService) {
- // constructor(zone: NgZone) {
->>>>>>> 62a317d24d176f7950eafa8c510adbb8eb0d2019
     window.onscroll = () => {
       zone.run(() => {
         if(window.pageYOffset > 0) {
@@ -57,10 +46,6 @@ export class TemplateHeader implements OnInit, OnDestroy {
         }
       });
     }
-<<<<<<< HEAD
-=======
-    this.counterValue = this.likeservice.totalLikes;
->>>>>>> 62a317d24d176f7950eafa8c510adbb8eb0d2019
   }
   
 
