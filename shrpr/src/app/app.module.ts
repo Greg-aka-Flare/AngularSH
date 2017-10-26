@@ -12,6 +12,7 @@ import { CoursedesktopComponent } from './course/coursedesktop.component';
 import { NewCourseComponent } from './new-course/new-course.component';
 import { routing } from "./app.routing";
 import { CourseService } from "./course.service";
+import { LikeService } from "./like.service";
 import { TemplateComponent } from './template/template.component';
 import { TemplateHeader } from './template/template.component';
 import { TemplateFooter } from './template/template.component';
@@ -49,7 +50,7 @@ import { InstructorProfileComponent } from './instructor-profile/instructor-prof
     routing,
     StarRatingModule.forRoot()        
   ],
-  providers: [CourseService],
+  providers: [CourseService, LikeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

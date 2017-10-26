@@ -1,11 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Pipe, PipeTransform } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import {GroupsPipe} from './filter.pipe';
+import { GroupsPipe } from './filter.pipe';
 import { Response } from "@angular/http";
 
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
+import { LikeService } from "../like.service";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Subscription } from 'rxjs/Subscription';
 import { StarRatingModule } from 'angular-star-rating';
 
 @Component({
@@ -18,7 +20,8 @@ export class CoursedesktopComponent implements OnInit {
  // initialize a private variable _data, it's a BehaviorSubject
   private _data = new BehaviorSubject<Course[]>([]);
   courses: any[];
-  likeArray:any[] = [];
+  counter: number = 0;
+  subscription: Subscription;
   
    
   // change data to use getter and setter
@@ -28,17 +31,13 @@ export class CoursedesktopComponent implements OnInit {
       // set the latest value for _data BehaviorSubject
       this._data.next(value);
   };
-  
-  @Input() count: number = 0;
-  @Output() update = new EventEmitter<any>();
 
   get data() {
       // get the latest value from _data BehaviorSubject
       return this._data.getValue();
-  }
+  };
   
-  constructor() {
-    
+  constructor(private likeService: LikeService) {
   }
   
   
@@ -53,26 +52,27 @@ export class CoursedesktopComponent implements OnInit {
               }
             }
         });
+
+      this.subscription = this.likeService.getCounter().subscribe((count) => {
+        this.counter = count;
+      });
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   onLike(id){
-    this.count++;
-    this.update.emit({
-      count: this.count
-    });
+    this.likeService.incrementCounter();
+
     var course = this.courses.filter(function( obj ){
       if(obj.id == id) obj.state = 'like';
      });
   }
   
   onDislike(id){
-
     var course = this.courses.filter(function( obj ){
-
       if(obj.id == id) obj.state = 'dislike';
     });
-  }
-  countChange(event) {
-    this.count = event;
   }
 }

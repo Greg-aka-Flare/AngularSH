@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
 import { NgZone } from '@angular/core';
-import { CoursedesktopComponent } from '../course/coursedesktop.component';
-
+import { Subscription } from 'rxjs/Subscription';
+import { LikeService } from "../like.service";
 
 declare var google;
 
@@ -27,19 +27,19 @@ export class TemplateComponent implements OnInit {
   selector: 'app-header',
   templateUrl: './template.header.html',
   styleUrls: ['./template.header.css'],
-  providers:[CoursedesktopComponent]
+  providers:[]
 })
 
-export class TemplateHeader implements OnInit {
+export class TemplateHeader implements OnInit, OnDestroy {
 
   isheaderShrunk: boolean = false;
   isBtnActive: boolean = false;
   location: string = '';
+  counter: number = 0;
+  subscription: Subscription;
   groups = ['For Fun', 'For Work', 'For Kids'];
-  
-  public counterValue: number;
-  constructor(zone: NgZone, public _coursedesktopComponent: CoursedesktopComponent) {
- // constructor(zone: NgZone) {
+
+  constructor(zone: NgZone, private likeService: LikeService) {
     window.onscroll = () => {
       zone.run(() => {
         if(window.pageYOffset > 0) {
@@ -49,14 +49,14 @@ export class TemplateHeader implements OnInit {
         }
       });
     }
-    this.counterValue = this._coursedesktopComponent.count;
-  }
-  counterUpdate(event: object) {
-    //console.log(event);
-    this.counterValue = this._coursedesktopComponent.count;
   }
 
   ngOnInit() {
+
+    this.subscription = this.likeService.getCounter().subscribe((count) => {
+      this.counter = count;
+    });
+
     if (navigator.geolocation) { //check if we can get lat/lng
 
       //create location
@@ -86,6 +86,10 @@ export class TemplateHeader implements OnInit {
         });
       });
     }
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   toggleMenu() {

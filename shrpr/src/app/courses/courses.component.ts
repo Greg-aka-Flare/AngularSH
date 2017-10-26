@@ -7,7 +7,7 @@ import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
 
 import { Course } from "../course.interface";
-import { CourseService } from "../course.service"
+import { CourseService } from "../course.service";
 
 @Component({
   selector: 'app-courses',
