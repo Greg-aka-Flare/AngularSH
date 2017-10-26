@@ -8,11 +8,10 @@ import { CourseService } from "../course.service";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { StarRatingModule } from 'angular-star-rating';
 
-
 @Component({
   selector: 'app-coursedesktop',
   templateUrl: './coursedesktop.component.html',
-  styleUrls: ['./coursedesktop.component.css']
+  styleUrls: ['./coursedesktop.component.css'],
 })
 
 export class CoursedesktopComponent implements OnInit {
@@ -20,30 +19,34 @@ export class CoursedesktopComponent implements OnInit {
   private _data = new BehaviorSubject<Course[]>([]);
   courses: any[];
   likeArray:any[] = [];
-  @Input() count: number = 0;
-  likecounter:number;
+  
+   
   // change data to use getter and setter
+  
   @Input()
   set data(value) {
       // set the latest value for _data BehaviorSubject
       this._data.next(value);
   };
+  
+  @Input() count: number = 0;
+  @Output() update = new EventEmitter<any>();
 
   get data() {
       // get the latest value from _data BehaviorSubject
       return this._data.getValue();
   }
-
+  
   constructor() {
-    this.likecounter = 0;
+    
   }
+  
   
   ngOnInit() {
     //check when input changes
     this._data
         .subscribe(x => {
             this.courses = this.data;
-
             if(this.courses) {
               for(var i = 0, l = this.courses.length; i < l; i++) {
                 this.courses[i].state = 'default';
@@ -53,8 +56,10 @@ export class CoursedesktopComponent implements OnInit {
   }
 
   onLike(id){
-    this.likecounter++;
-    
+    this.count++;
+    this.update.emit({
+      count: this.count
+    });
     var course = this.courses.filter(function( obj ){
       if(obj.id == id) obj.state = 'like';
      });
@@ -66,5 +71,8 @@ export class CoursedesktopComponent implements OnInit {
 
       if(obj.id == id) obj.state = 'dislike';
     });
+  }
+  countChange(event) {
+    this.count = event;
   }
 }

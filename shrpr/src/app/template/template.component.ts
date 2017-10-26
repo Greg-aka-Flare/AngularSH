@@ -36,9 +36,10 @@ export class TemplateHeader implements OnInit {
   isBtnActive: boolean = false;
   location: string = '';
   groups = ['For Fun', 'For Work', 'For Kids'];
-  count:number;
+  
+  public counterValue: number;
   constructor(zone: NgZone, public _coursedesktopComponent: CoursedesktopComponent) {
-  //constructor(zone: NgZone) {
+ // constructor(zone: NgZone) {
     window.onscroll = () => {
       zone.run(() => {
         if(window.pageYOffset > 0) {
@@ -48,7 +49,11 @@ export class TemplateHeader implements OnInit {
         }
       });
     }
-    this.count = this._coursedesktopComponent.likecounter;
+    this.counterValue = this._coursedesktopComponent.count;
+  }
+  counterUpdate(event: object) {
+    //console.log(event);
+    this.counterValue = this._coursedesktopComponent.count;
   }
 
   ngOnInit() {
@@ -133,6 +138,7 @@ export class TemplateHeader implements OnInit {
         return '';
       }
   }
+  
 }
 
 @Component({

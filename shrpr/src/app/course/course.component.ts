@@ -97,7 +97,6 @@ export class CourseComponent implements OnInit {
 
             if(this.courses) {
               for(var i = 0, l = this.courses.length; i < l; i++) {
-
                 this.courses[i].state = 'default';
               }
             }

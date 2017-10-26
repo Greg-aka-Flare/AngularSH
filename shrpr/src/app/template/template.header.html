@@ -16,7 +16,7 @@
 
 		<a href="javascript:void();" class="counter-logo">
 			<img src="../assets/img/shrpr-logo.png" alt="shrpr" title="shrpr">
-			<span>{{count}}</span>
+			<span  (update)="counterUpdate($event)"> {{counterValue}} </span>
 		</a><!-- .counter-logo -->
 		<app-menu [class.active]="isBtnActive"></app-menu><!-- #menu -->
 	</div><!-- .inner-wrap -->
