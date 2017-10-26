@@ -39,6 +39,11 @@
                     {{ course.semesters[0].start_date | date: 'MM/dd/yyyy' }}
                 </p><!-- .date -->
             </div><!-- .overlay -->
+            <span 
+            class="overlay-color" [@overlay]='course.state'
+            (swipeleft)="onLike()" 
+            (swiperight)="onDislike(course.id)"
+            [class.like]="course.state == 'in'" ></span>
         </div><!-- .img-ctn -->
     </article>
 </section><!-- #curious-swiper -->

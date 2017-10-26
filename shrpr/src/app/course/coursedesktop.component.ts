@@ -19,8 +19,9 @@ export class CoursedesktopComponent implements OnInit {
  // initialize a private variable _data, it's a BehaviorSubject
   private _data = new BehaviorSubject<Course[]>([]);
   courses: any[];
+  likeArray:any[] = [];
   @Input() count: number = 0;
-  
+  likecounter:number;
   // change data to use getter and setter
   @Input()
   set data(value) {
@@ -34,6 +35,7 @@ export class CoursedesktopComponent implements OnInit {
   }
 
   constructor() {
+    this.likecounter = 0;
   }
   
   ngOnInit() {
@@ -51,11 +53,11 @@ export class CoursedesktopComponent implements OnInit {
   }
 
   onLike(id){
-
+    this.likecounter++;
+    
     var course = this.courses.filter(function( obj ){
-
       if(obj.id == id) obj.state = 'like';
-    });
+     });
   }
   
   onDislike(id){

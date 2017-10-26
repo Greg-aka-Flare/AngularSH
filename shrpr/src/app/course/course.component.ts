@@ -146,12 +146,16 @@ export class CourseComponent implements OnInit {
   onLike(i){
 
     if(this.courses[i].state == 'default') this.courses[i].state = 'like';
-    this.colorState = 'in';  
+    var course = this.courses.filter(function( obj ){
+      if(obj.id == i) obj.state = 'in';
+     });
   }
 
   onDislike(i){
 
     if(this.courses[i].state == 'default') this.courses[i].state = 'dislike';
-    this.colorState = 'out';
+    var course = this.courses.filter(function( obj ){
+     if(obj.id == i) obj.state = 'out';
+    });
   }
 }

@@ -26,7 +26,8 @@ export class TemplateComponent implements OnInit {
 @Component({
   selector: 'app-header',
   templateUrl: './template.header.html',
-  styleUrls: ['./template.header.css']
+  styleUrls: ['./template.header.css'],
+  providers:[CoursedesktopComponent]
 })
 
 export class TemplateHeader implements OnInit {
@@ -35,9 +36,9 @@ export class TemplateHeader implements OnInit {
   isBtnActive: boolean = false;
   location: string = '';
   groups = ['For Fun', 'For Work', 'For Kids'];
-  likeCounter:number;
-  //constructor(zone: NgZone, public _coursedesktopComponent: CoursedesktopComponent) {
-  constructor(zone: NgZone) {
+  count:number;
+  constructor(zone: NgZone, public _coursedesktopComponent: CoursedesktopComponent) {
+  //constructor(zone: NgZone) {
     window.onscroll = () => {
       zone.run(() => {
         if(window.pageYOffset > 0) {
@@ -47,7 +48,7 @@ export class TemplateHeader implements OnInit {
         }
       });
     }
-    //this.likeCounter = this._coursedesktopComponent.count;
+    this.count = this._coursedesktopComponent.likecounter;
   }
 
   ngOnInit() {
