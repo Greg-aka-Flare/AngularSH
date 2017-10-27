@@ -107,6 +107,7 @@ header section#search {
     font-size: 13px;
     line-height: 1em;
     color: #2499cf;
+    text-align: center
 }
 .login-link a{
     color: #2499cf;
@@ -144,7 +145,7 @@ section#search form .completer-selected-row{
 section#search form .completer-dropdown{
     text-align: left;
 }
-section#search form input {
+section#search form input, section#search form .completer-input {
     border: 1px solid #fff;
     -webkit-box-shadow: 0 2px 3px 3px rgba(0,0,0,0.2);
     box-shadow: 0 2px 3px 3px rgba(0,0,0,0.2);
@@ -192,7 +193,6 @@ section#search form button {
 section#search form button:hover {
     background-color: #678e72;
 }
-
 
 
 
@@ -247,7 +247,10 @@ h2 {
         width: 33.33%;
         padding: 0 10px 0 0;
     }
-    section#search form input {
+    section#search form > span:before {
+        top: 12px;
+    }
+    section#search form input, section#search form .completer-input {
         box-shadow: none;
         border: 1px solid #cfcfcf;
         border-radius: 3px;

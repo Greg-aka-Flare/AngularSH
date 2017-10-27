@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service"
 import { TabsComponent } from "./tabs/tabs.component";
+import { SearchComponent } from '../search/search.component';
 
 declare var google;
 

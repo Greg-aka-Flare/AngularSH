@@ -3,6 +3,7 @@ import { MenuComponent } from '../menu/menu.component';
 import { NgZone } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LikeService } from "../like.service";
+import { SearchComponent } from '../search/search.component';
 
 declare var google;
 

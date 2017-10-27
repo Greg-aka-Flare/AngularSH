@@ -23,6 +23,7 @@ import {GroupsPipe} from './course/filter.pipe';
 import { Ng2CompleterModule } from "ng2-completer";
 import { StarRatingModule } from 'angular-star-rating';
 import { InstructorProfileComponent } from './instructor-profile/instructor-profile.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { InstructorProfileComponent } from './instructor-profile/instructor-prof
     TabsComponent,
     TabComponent,
     GroupsPipe,
-    InstructorProfileComponent
+    InstructorProfileComponent,
+    SearchComponent
    ],
   imports: [
     BrowserModule,
