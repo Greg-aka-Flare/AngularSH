@@ -2,7 +2,7 @@
   <h2>For Fun</h2>
   {{ counter }}
   <div class="thee_col_content clearfix ">
-      <article class="card-box" *ngFor="let course of (courses | groups: 'For Fun'); let i = index">
+      <article class="card-box" *ngFor="let course of (courses | groups: 'For Fun'); let i = index" [class.moveRight]="course.state == 'like'" [class.moveLeft]="course.state == 'dislike'">
           <div class="img-ctn">
               <div class="price">
                   ${{ course.semesters[0].amount }}
@@ -53,7 +53,7 @@
 <section id="for_work_box" class="category_bucket blue">
     <h2>For Work</h2>
     <div class="thee_col_content clearfix ">
-      <article class="card-box" *ngFor="let course of (courses | groups: 'For Work'); let i = index">
+      <article class="card-box" *ngFor="let course of (courses | groups: 'For Work'); let i = index" [class.moveRight]="course.state == 'like'" [class.moveLeft]="course.state == 'dislike'">
             <div class="img-ctn">
                 <div class="price">
                     ${{ course.semesters[0].amount }}
@@ -97,7 +97,7 @@
   <section id="for_kids_box" class="category_bucket yellow">
       <h2>For Kids</h2>
       <div class="thee_col_content clearfix ">
-      <article class="card-box" *ngFor="let course of (courses | groups: 'For Kids'); let i = index">
+      <article class="card-box" *ngFor="let course of (courses | groups: 'For Kids'); let i = index" [class.moveRight]="course.state == 'like'" [class.moveLeft]="course.state == 'dislike'">
               <div class="img-ctn">
                   <div class="price">
                       ${{ course.semesters[0].amount }}

@@ -15,7 +15,15 @@ import { StarRatingModule } from 'angular-star-rating';
   selector: 'app-coursedesktop',
   templateUrl: './coursedesktop.component.html',
   styleUrls: ['./coursedesktop.component.css'],
-  providers: []
+  providers: [],
+  animations: [
+    trigger('flyout', [
+      state('out', style({
+        transform: 'translateX(-200%)'
+      })),
+      transition('* => out', animate('300ms ease-in')),
+    ])
+  ]
 })
 
 export class CoursedesktopComponent implements OnInit {
@@ -24,7 +32,7 @@ export class CoursedesktopComponent implements OnInit {
   courses: any[];
   counter: number = 0;
   subscription: Subscription;
-   
+  likeCourses: any[] = []; 
   // change data to use getter and setter
   
   @Input()
@@ -65,10 +73,11 @@ export class CoursedesktopComponent implements OnInit {
 
   onLike(id){
     this.likeService.incrementCounter();
-    
+    this.likeCourses.push(id);
+    console.log("Selected course id: " + id);
     var course = this.courses.filter(function( obj ){
       if(obj.id == id) obj.state = 'like';
-     });
+    });
   }
   
   onDislike(id){
