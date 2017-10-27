@@ -13,34 +13,11 @@
 			<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 			<span>0</span>
 		</a><!-- .cart-icon -->
-
 		<a class="counter-logo">
 			<img src="../assets/img/shrpr-logo.png" alt="shrpr" title="shrpr">
 			<span>{{ counter }}</span>
 		</a><!-- .counter-logo -->
 		<app-menu [class.active]="isBtnActive"></app-menu><!-- #menu -->
 	</div><!-- .inner-wrap -->
-
-	<section id="search">
-		<form action="#">
-			<span>
-				<img src="../assets/img/search-input.png" alt="Shrpr" title="Shrpr">
-
-				<ng2-completer 
-					placeholder="Search for Category" 
-					[datasource]="groups" 
-					[minSearchLength]="0"
-				>
-				</ng2-completer>
-			</span>
-
-			<span>
-				<i class="fa fa-map-marker" aria-hidden="true"></i>
-
-				<input type="text" placeholder="Enter Location" id="location" [value]="location"><!-- #location -->
-			</span>
-
-			<button>Search</button>
-		</form>
-	</section><!-- #search -->
+	<app-search></app-search>
 </header>
