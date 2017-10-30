@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CompleterService, CompleterData } from 'ng2-completer';
 declare var google;
 @Component({
   selector: 'app-search',
@@ -7,8 +8,14 @@ declare var google;
 })
 export class SearchComponent implements OnInit {
   location: string = '';
-  groups = ['For Fun', 'For Work', 'For Kids'];
-  constructor() { }
+  protected searchStr: string;
+  protected dataService: CompleterData;
+  protected searchData  = [{ "image":"assets/img/search-input.png", "title":"For Fun" },{ "image":"assets/img/search-input.png", "title":"For Work" },{ "image":"assets/img/search-input.png", "title":"For Kids" }];
+  
+  constructor(private completerService: CompleterService) { 
+    this.dataService = completerService.local(this.searchData, 'title', 'title');
+    
+  }
 
   ngOnInit() {
     if (navigator.geolocation) { //check if we can get lat/lng

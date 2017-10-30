@@ -5,8 +5,9 @@
 
           <ng2-completer 
               placeholder="Search for Category" 
-              [datasource]="groups" 
+              [datasource]="dataService" 
               [minSearchLength]="0"
+              [(ngModel)]="searchStr"
           >
           </ng2-completer>
       </span>
