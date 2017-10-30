@@ -1,8 +1,8 @@
 <section id="curious-swiper">
     <article
     *ngFor="let course of courses; let i = index" 
-    (swipeleft)="onLike(i)" 
-    (swiperight)="onDislike(i)"
+    (swipeleft)="onDislike(i)" 
+    (swiperight)="onLike(i)"
     [@cardSwipe]="courses[i].state"
     >
         <div class="category">
@@ -39,11 +39,7 @@
                     {{ course.semesters[0].start_date | date: 'MM/dd/yyyy' }}
                 </p><!-- .date -->
             </div><!-- .overlay -->
-            <span 
-            class="overlay-color" [@overlay]='course.state'
-            (swipeleft)="onLike()" 
-            (swiperight)="onDislike(course.id)"
-            [class.like]="course.state == 'in'" ></span>
+            <span class="overlay-color" [@overlay]='course.state'></span>
         </div><!-- .img-ctn -->
     </article>
 </section><!-- #curious-swiper -->

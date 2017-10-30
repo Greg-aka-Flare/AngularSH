@@ -19,41 +19,28 @@ import { StarRatingModule } from 'angular-star-rating';
   animations: [
     trigger('cardSwipe', [
       state('like', style({
-        transform: 'translateX(-200%)'
+        transform: 'translateX(200%)'
       })),
       state('dislike', style({
-        transform: 'translateX(200%)'
+        transform: 'translateX(-200%)'
       })),
       transition('default => like', animate('300ms ease-in')),
       transition('default => dislike', animate('300ms ease-in')),
     ]),
     trigger('overlay', [
-      state('in', style({
-        backgroundColor: '#28e93b',
+      state('like', style({
+        backgroundColor: 'rgba(40, 233, 59, 0.2)', 
         zindex:1
       })),
-      state('out', style({
-        backgroundColor: '#e92828',
+      state('dislike', style({
+        backgroundColor: 'rgba(233, 40, 40, 0.2)',
         zindex:1
       })),
       transition('void => *', [
         style({
-          opacity:0
+          opacity:0.5
         }),
         animate(100)
-      ])
-    ]),
-    trigger('divState', [
-      state('in', style({
-        opacity: 1,
-        transform: 'translateX(0)'
-      })),
-      transition('void => *', [
-        style({
-          opacity:0,
-          transform:'translateX(-100px)'
-        }),
-        animate(300)
       ])
     ])
   ]
@@ -155,16 +142,15 @@ export class CourseComponent implements OnInit {
   onLike(i){
     this.likeService.incrementCounter(i);
     if(this.courses[i].state == 'default') this.courses[i].state = 'like';
-    var course = this.courses.filter(function( obj ){
+    /*var course = this.courses.filter(function( obj ){
       if(obj.id == i) obj.state = 'in';
-     });
+     });*/
   }
 
   onDislike(i){
-
     if(this.courses[i].state == 'default') this.courses[i].state = 'dislike';
-    var course = this.courses.filter(function( obj ){
+    /*var course = this.courses.filter(function( obj ){
      if(obj.id == i) obj.state = 'out';
-    });
+    });*/
   }
 }
