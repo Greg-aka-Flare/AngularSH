@@ -31,7 +31,7 @@ export class CoursedesktopComponent implements OnInit {
  // initialize a private variable _data, it's a BehaviorSubject
   private _data = new BehaviorSubject<Course[]>([]);
   courses: any[];
-  counter: number = 0;
+  counter: number;
   subscription: Subscription;
   likeCourses: any[] = []; 
   // change data to use getter and setter
