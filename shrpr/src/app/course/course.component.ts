@@ -1,13 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { Response } from "@angular/http";
 
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
-
+import { LikeService } from "../like.service";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Subscription } from 'rxjs/Subscription';
 import { StarRatingModule } from 'angular-star-rating';
+
  
 @Component({
   selector: 'app-course',
@@ -63,8 +65,10 @@ export class CourseComponent implements OnInit {
   private _data = new BehaviorSubject<Course[]>([]);
 
   courses: any[];
-
+  counter: number = 0;
+  subscription: Subscription;
   @Input() course: Course;
+
   @Output() courseDeleted = new EventEmitter<Course>();
   editing = false;
   editValueName = '';
@@ -85,7 +89,7 @@ export class CourseComponent implements OnInit {
       return this._data.getValue();
   }
 
-  constructor(private courseService: CourseService) {
+  constructor(private courseService: CourseService, private likeService: LikeService) {
       
   }
 
@@ -101,8 +105,14 @@ export class CourseComponent implements OnInit {
               }
             }
           });
+    this.subscription = this.likeService.getCounter().subscribe((count) => {
+      this.counter = count;
+    });      
   }
 
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
   onEdit(){
     this.editing = true;
     this.editValueName = this.course.title;
@@ -143,7 +153,7 @@ export class CourseComponent implements OnInit {
   }
   colorState: string;
   onLike(i){
-
+    this.likeService.incrementCounter(i);
     if(this.courses[i].state == 'default') this.courses[i].state = 'like';
     var course = this.courses.filter(function( obj ){
       if(obj.id == i) obj.state = 'in';

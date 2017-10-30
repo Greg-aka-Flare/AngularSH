@@ -6,6 +6,7 @@ import { Response } from "@angular/http";
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
 import { LikeService } from "../like.service";
+//import { DislikeService} from "../dislike.service";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Subscription } from 'rxjs/Subscription';
 import { StarRatingModule } from 'angular-star-rating';
@@ -46,6 +47,8 @@ export class CoursedesktopComponent implements OnInit {
       return this._data.getValue();
   };
 
+  //constructor(private likeService: LikeService, private dislikeService: DislikeService) {
+ // }
   constructor(private likeService: LikeService) {
   }
   
@@ -72,15 +75,14 @@ export class CoursedesktopComponent implements OnInit {
   }
 
   onLike(id){
-    this.likeService.incrementCounter();
-    this.likeCourses.push(id);
-    console.log("Selected course id: " + id);
+    this.likeService.incrementCounter(id);
     var course = this.courses.filter(function( obj ){
       if(obj.id == id) obj.state = 'like';
     });
   }
   
   onDislike(id){
+    //this.dislikeService.dislikeArrayUpdate(id);
     var course = this.courses.filter(function( obj ){
       if(obj.id == id) obj.state = 'dislike';
     });
