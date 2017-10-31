@@ -97,7 +97,6 @@ main {
 
 /* =============Search============================ */
 section#search {
-    max-height: 100px;
     padding: 30px 20px 20px 20px;
     text-align: center;
 }
@@ -244,6 +243,7 @@ h2 {
 		padding: 5px 15px;
 	}
     section#search {
+        max-height: 100px;
         margin: 0;
 		padding: 28px 15px 28px 15px; 
 		border-top: 1px solid #cacac9; 
