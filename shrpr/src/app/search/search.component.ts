@@ -8,12 +8,23 @@ declare var google;
 })
 export class SearchComponent implements OnInit {
   location: string = '';
-  protected searchStr: string;
   protected dataService: CompleterData;
-  protected searchData  = [{ "image":"assets/img/search-input.png", "title":"For Fun" },{ "image":"assets/img/search-input.png", "title":"For Work" },{ "image":"assets/img/search-input.png", "title":"For Kids" }];
+  protected searchData  = [
+  { 
+    "image": "assets/img/fun-icon.png", 
+    "title": "For Fun" 
+  },
+  { 
+    "image":"assets/img/work-icon.png", 
+    "title":"For Work" 
+  },
+  { 
+    "image":"assets/img/kid-icon.png", 
+    "title":"For Kids" 
+  } ];
   
   constructor(private completerService: CompleterService) { 
-    this.dataService = completerService.local(this.searchData, 'title', 'title');
+    this.dataService = completerService.local(this.searchData, 'title', 'title').imageField('image');
     
   }
 

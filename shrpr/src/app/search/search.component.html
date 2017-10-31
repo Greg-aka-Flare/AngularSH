@@ -6,8 +6,8 @@
           <ng2-completer 
               placeholder="Search for Category" 
               [datasource]="dataService" 
-              [minSearchLength]="0"
-              [(ngModel)]="searchStr"
+              minSearchLength="0"
+              openOnFocus="true"
           >
           </ng2-completer>
       </span>

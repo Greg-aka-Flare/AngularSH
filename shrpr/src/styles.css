@@ -97,6 +97,7 @@ main {
 
 /* =============Search============================ */
 section#search {
+    max-height: 100px;
     padding: 30px 20px 20px 20px;
     text-align: center;
 }
@@ -126,13 +127,13 @@ section#search form > span:before {
     position: absolute;
     top: 9px;
 }
-section#search form > span .fa, section#search form > span img {
+section#search form > span .fa, section#search form > span > img {
     font-size: 24px;
     left: 12px;
     position: absolute;
     top: 8px; 
 }
-section#search form > span img {
+section#search form > span > img {
     left: 8px;
     max-width: 23px;
     top: 11px;
@@ -143,7 +144,14 @@ section#search form .completer-selected-row{
     width: 100%;
 }
 section#search form .completer-dropdown{
+    position: relative;
     text-align: left;
+}
+section#search form .completer-dropdown img{
+    position: relative;
+    top: 1px;
+    margin: 0 5px 0 0;
+    padding: 0 7px 0 0;
 }
 section#search form input, section#search form .completer-input {
     border: 1px solid #fff;
