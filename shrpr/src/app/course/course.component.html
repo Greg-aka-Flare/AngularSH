@@ -1,8 +1,8 @@
 <section id="curious-swiper">
     <article
     *ngFor="let course of courses; let i = index" 
-    (swipeleft)="onDislike(i)" 
-    (swiperight)="onLike(i)"
+    (swipeleft)="onDislike(course.id, course.group.id)" 
+    (swiperight)="onLike(course.id, course.group.id)"
     [@cardSwipe]="courses[i].state"
     >
         <div class="category">

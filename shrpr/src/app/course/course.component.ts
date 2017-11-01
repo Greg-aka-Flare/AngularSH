@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-
 import { Response } from "@angular/http";
 
 import { Course } from "../course.interface";
@@ -77,7 +76,8 @@ export class CourseComponent implements OnInit {
   }
 
   constructor(private courseService: CourseService, private likeService: LikeService) {
-      
+    console.log('Last like Courses id in Local Storage: '+ localStorage.getItem("likekey"));
+    console.log('Last dislike Courses id in Local Storage: '+ localStorage.getItem("dislikekey"));
   }
 
   ngOnInit() {
@@ -139,18 +139,20 @@ export class CourseComponent implements OnInit {
       );
   }
   colorState: string;
-  onLike(i){
-    this.likeService.incrementCounter(i);
-    if(this.courses[i].state == 'default') this.courses[i].state = 'like';
-    /*var course = this.courses.filter(function( obj ){
-      if(obj.id == i) obj.state = 'in';
-     });*/
+
+  onLike(i, k){
+    this.likeService.incrementCounter(i, k);
+    //if(this.courses[i].state == 'default') this.courses[i].state = 'like';
+    var course = this.courses.filter(function( obj ){
+      if(obj.id == i) obj.state = 'like';
+    });
   }
 
-  onDislike(i){
-    if(this.courses[i].state == 'default') this.courses[i].state = 'dislike';
-    /*var course = this.courses.filter(function( obj ){
-     if(obj.id == i) obj.state = 'out';
-    });*/
+  onDislike(i, k){
+    this.likeService.dislikeCounter(i, k);
+    //if(this.courses[i].state == 'default') this.courses[i].state = 'dislike';
+    var course = this.courses.filter(function( obj ){
+      if(obj.id == i) obj.state = 'dislike';
+    });
   }
 }

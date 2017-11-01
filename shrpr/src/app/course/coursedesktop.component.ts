@@ -6,7 +6,6 @@ import { Response } from "@angular/http";
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
 import { LikeService } from "../like.service";
-//import { DislikeService} from "../dislike.service";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Subscription } from 'rxjs/Subscription';
 import { StarRatingModule } from 'angular-star-rating';
@@ -16,15 +15,7 @@ import { StarRatingModule } from 'angular-star-rating';
   selector: 'app-coursedesktop',
   templateUrl: './coursedesktop.component.html',
   styleUrls: ['./coursedesktop.component.css'],
-  providers: [],
-  animations: [
-    trigger('flyout', [
-      state('out', style({
-        transform: 'translateX(-200%)'
-      })),
-      transition('* => out', animate('300ms ease-in')),
-    ])
-  ]
+  providers: []
 })
 
 export class CoursedesktopComponent implements OnInit {
@@ -50,6 +41,8 @@ export class CoursedesktopComponent implements OnInit {
   //constructor(private likeService: LikeService, private dislikeService: DislikeService) {
  // }
   constructor(private likeService: LikeService) {
+    console.log('Last like Courses id in Local Storage: '+ localStorage.getItem("likekey"));
+    console.log('Last dislike Courses id in Local Storage: '+ localStorage.getItem("dislikekey"));
   }
   
   
@@ -67,6 +60,7 @@ export class CoursedesktopComponent implements OnInit {
 
       this.subscription = this.likeService.getCounter().subscribe((count) => {
         this.counter = count;
+        
       });
   }
 
@@ -74,15 +68,16 @@ export class CoursedesktopComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  onLike(id){
-    this.likeService.incrementCounter(id);
+  onLike(id, gid){
+    this.likeService.incrementCounter(id, gid);
     var course = this.courses.filter(function( obj ){
       if(obj.id == id) obj.state = 'like';
     });
+    
   }
   
-  onDislike(id){
-    //this.dislikeService.dislikeArrayUpdate(id);
+  onDislike(id, gid){
+    this.likeService.dislikeCounter(id, gid);
     var course = this.courses.filter(function( obj ){
       if(obj.id == id) obj.state = 'dislike';
     });

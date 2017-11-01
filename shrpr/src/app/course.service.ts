@@ -36,4 +36,5 @@ export class CourseService {
 	deleteCourse(id: number){
 		return this.http.delete('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/course/' + id);
 	}
+
 }

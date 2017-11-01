@@ -12,14 +12,14 @@
               <div class="like_action">
                   <a 
                     class="hollow-icon thumbUp" 
-                    (click)="onLike(course.id)" 
+                    (click)="onLike(course.id, course.group.id)" 
                     [class.like]="course.state == 'like'"
                   >
                     <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                   </a>
                   <a 
                     class="hollow-icon thumbDown" 
-                    (click)="onDislike(course.id)" 
+                    (click)="onDislike(course.id, course.group.id)" 
                     [class.dislike]="course.state == 'dislike'"
                   >
                     <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
@@ -63,14 +63,14 @@
                 <div class="like_action">
                     <a 
                       class="hollow-icon thumbUp" 
-                      (click)="onLike(course.id)" 
+                      (click)="onLike(course.id, course.group.id)" 
                       [class.like]="course.state == 'like'"
                     >
                       <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                     </a>
                     <a 
                       class="hollow-icon thumbDown" 
-                      (click)="onDislike(course.id)" 
+                      (click)="onDislike(course.id, course.group.id)" 
                       [class.dislike]="course.state == 'dislike'"
                     >
                       <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
@@ -107,14 +107,14 @@
                   <div class="like_action">
                       <a 
                         class="hollow-icon thumbUp" 
-                        (click)="onLike(course.id)"
+                        (click)="onLike(course.id, course.group.id)"
                         [class.like]="course.state == 'like'"
                       >
                         <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                       </a>
                       <a 
                         class="hollow-icon thumbDown" 
-                        (click)="onDislike(course.id)" 
+                        (click)="onDislike(course.id, course.group.id)" 
                         [class.dislike]="course.state == 'dislike'"
                       >
                         <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
