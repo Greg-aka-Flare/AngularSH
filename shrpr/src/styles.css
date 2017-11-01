@@ -100,9 +100,6 @@ section#search {
     padding: 30px 20px 20px 20px;
     text-align: center;
 }
-header section#search {
-	display: none;
-}
 .login-link{
     font-size: 13px;
     line-height: 1em;
@@ -114,6 +111,9 @@ header section#search {
 }
 .login-link a:hover{
     text-decoration: none;
+}
+header section#search {
+    display: none;
 }
 section#search form > span {
     display: block;
@@ -219,59 +219,65 @@ h2 {
 	padding:0 0 20px 0;
 }
 /* =============================================================================
+   Medium SCREEN STYLES [Tab VIEW] START
+  ============================================================================= */
+/* 768px */
+@media only screen and (min-width: 768px) {
+/*** Search ***/
+header section#search {
+    display: block;
+    -moz-transition: all 0.5s ease-in-out 0s;
+    -ms-transition: all 0.5s ease-in-out 0s;
+    -o-transition: all 0.5s ease-in-out 0s;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
+}
+section#search {
+    max-height: 100px;
+    margin: 0;
+    padding: 28px 15px 28px 15px; 
+    border-top: 1px solid #cacac9; 
+}
+section#search form > span {
+    display: inline-block;
+    vertical-align: top;
+    width: 33.33%;
+    padding: 0 10px 0 0;
+}
+section#search form > span:before {
+    top: 12px;
+}
+section#search form input, section#search form .completer-input {
+    box-shadow: none;
+    border: 1px solid #cfcfcf;
+    border-radius: 3px;
+}
+section#search form button {
+    margin: 0;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #d53b3c;
+    border-radius: 0;
+}
+section#search form button:hover {
+    background-color: #c95f5f;
+}	
+}
+/* =============================================================================
    LARGE SCREEN STYLES [DESKTOP VIEW] START
   ============================================================================= */
-/* 960px/16px = 60em */
-@media only screen and (min-width: 60em) {
+/* 960px */
+@media only screen and (min-width: 960px) {
 	main {
 		position: relative;
     }
     main .inner-wrap {
         padding:0 10px;
     }
-	/*** Search ***/
-	header section#search {
-		display: none;
-		display: block;
-		-moz-transition: all 0.5s ease-in-out 0s;
-		-ms-transition: all 0.5s ease-in-out 0s;
-		-o-transition: all 0.5s ease-in-out 0s;
-		-webkit-transition: all 0.5s ease-in-out 0s;
-		transition: all 0.5s ease-in-out 0s;
-	}
-	header.header_small section#search {
-		padding: 5px 15px;
-	}
-    section#search {
-        max-height: 100px;
-        margin: 0;
-		padding: 28px 15px 28px 15px; 
-		border-top: 1px solid #cacac9; 
+    /*search*/
+    header.header_small section#search {
+        padding: 5px 15px;
     }
-    section#search form > span {
-        display: inline-block;
-        vertical-align: top;
-        width: 33.33%;
-        padding: 0 10px 0 0;
-    }
-    section#search form > span:before {
-        top: 12px;
-    }
-    section#search form input, section#search form .completer-input {
-        box-shadow: none;
-        border: 1px solid #cfcfcf;
-        border-radius: 3px;
-    }
-    section#search form button {
-        margin: 0;
-        display: inline-block;
-        vertical-align: top;
-        background-color: #d53b3c;
-        border-radius: 0;
-    }
-    section#search form button:hover {
-        background-color: #c95f5f;
-    }	
 
 }
 
