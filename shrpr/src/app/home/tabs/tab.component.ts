@@ -6,7 +6,7 @@ import { TabsComponent } from './tabs.component';
   template: `
 		<div [hidden]="!active">
 			<ng-content></ng-content>
-		</div>
+    </div>
   `,
   styleUrls: ['./tab.component.css']
 })
