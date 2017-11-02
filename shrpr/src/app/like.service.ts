@@ -11,11 +11,10 @@ export class LikeService {
   private subject = new Subject<any>();
   private likeCoursesArray = new Array<{courseid:number, groupid:string}>();
   private dislikeCoursesArray = new Array<{courseid:number, groupid:string}>();
+  private oldLikeValue;
 
-  private oldLikeValue = localStorage.getItem("likekey");
-
-  if(oldLikeValue.length > 0 ){
-    this.likeCoursesArray.push(oldLikeValue);
+  constructor(){
+    this.oldLikeValue = JSON.parse(localStorage.getItem("likekey"));
   }
  
 

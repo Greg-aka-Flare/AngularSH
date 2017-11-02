@@ -37,11 +37,11 @@ export class InstructorProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.instructorService.getInstructor(this.instructor.id)
-    .subscribe(
-      (instructor: Instructor) =>  instructor,
-      (error: Response) => console.log(error)
-    );
+    // this.instructorService.getInstructor(this.instructor.id)
+    // .subscribe(
+    //   (instructor: Instructor) =>  instructor,
+    //   (error: Response) => console.log(error)
+    // );
     
   }
 
