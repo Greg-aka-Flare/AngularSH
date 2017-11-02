@@ -8,14 +8,22 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
 
+import { Instructor } from "../instructor.interface";
+import { InstructorService } from "../instructor.service";
+
 @Component({
   selector: 'app-instructor-profile',
   templateUrl: './instructor-profile.component.html',
   styleUrls: ['./instructor-profile.component.css']
 })
 export class InstructorProfileComponent implements OnInit {
+  instructor: Instructor[];
   width = document.documentElement.clientWidth;
-  constructor() { 
+  
+  constructor(private instructorService: InstructorService) { 
+    
+    
+    
     const $resizeEvent = Observable.fromEvent(window, 'resize')
     .map(() => {
       return document.documentElement.clientWidth;
@@ -28,6 +36,12 @@ export class InstructorProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.instructorService.getInstructor(this.instructor.id)
+    .subscribe(
+      (instructor: Instructor) =>  instructor,
+      (error: Response) => console.log(error)
+    );
+    
   }
 
 }

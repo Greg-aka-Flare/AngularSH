@@ -12,6 +12,7 @@ import { CoursedesktopComponent } from './course/coursedesktop.component';
 import { NewCourseComponent } from './new-course/new-course.component';
 import { routing } from "./app.routing";
 import { CourseService } from "./course.service";
+import { InstructorService } from "./instructor.service";
 import { LikeService } from "./like.service";
 import { TemplateComponent } from './template/template.component';
 import { TemplateHeader } from './template/template.component';
@@ -53,7 +54,7 @@ import { SearchComponent } from './search/search.component';
     routing,
     StarRatingModule.forRoot()        
   ],
-  providers: [CourseService, LikeService],
+  providers: [CourseService, LikeService, InstructorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
