@@ -21,9 +21,6 @@ export class InstructorProfileComponent implements OnInit {
   width = document.documentElement.clientWidth;
   
   constructor(private instructorService: InstructorService) { 
-  //constructor() { 
-    
-    
     
     const $resizeEvent = Observable.fromEvent(window, 'resize')
     .map(() => {
@@ -33,16 +30,13 @@ export class InstructorProfileComponent implements OnInit {
     $resizeEvent.subscribe(data => {
       this.width = data;
     });
-
   }
 
   ngOnInit() {
-    // this.instructorService.getInstructor(this.instructor.id)
-    // .subscribe(
-    //   (instructor: Instructor) =>  instructor,
-    //   (error: Response) => console.log(error)
-    // );
-    
+    this.instructorService.getInstructor(1)
+    .subscribe(
+      (instructor: Instructor) =>  instructor,
+      (error: Response) => console.log(error)
+    );
   }
-
 }
