@@ -11,7 +11,13 @@ export class LikeService {
   private subject = new Subject<any>();
   private likeCoursesArray = new Array<{courseid:number, groupid:string}>();
   private dislikeCoursesArray = new Array<{courseid:number, groupid:string}>();
-  
+
+  private oldLikeValue = localStorage.getItem("likekey");
+
+  if(oldLikeValue.length > 0 ){
+    this.likeCoursesArray.push(oldLikeValue);
+  }
+ 
 
   incrementCounter(id, gid){
   	this.counter++;
