@@ -253,6 +253,25 @@
     text-decoration: none;
 }
 @media only screen and (min-width: 769px) {
+    #desktopcourses {
+        padding: 50px 0 30px 0;
+    }
+#desktopcourses h2 {
+    font-size:25px;
+    line-height: 27px;
+    color: #484848;
+    padding: 0 0 5px 0;
+    margin: 0 0 20px 0;
+    border-bottom: 1px solid #cccccc;
+    text-transform: uppercase;
+    }
+
+    #desktopcourses > h3 {
+        font-size: 18px;
+    color: #818181;
+    line-height: 22px;
+    padding: 0 0 20px 0;
+    }
     :host /deep/ tabs .tabs tab > div {
         padding: 10PX;
         overflow:hidden;  
@@ -264,5 +283,8 @@
 }
 .card-box:nth-of-type(2n){
     margin: 0 0 10px 2%;
+}
+#reviews {
+    border-top: 2px solid #cccccc;   
 }
 }

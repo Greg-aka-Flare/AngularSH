@@ -25,6 +25,7 @@ import { StarRatingModule } from 'angular-star-rating';
 import { InstructorProfileComponent } from './instructor-profile/instructor-profile.component';
 import { SearchComponent } from './search/search.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
