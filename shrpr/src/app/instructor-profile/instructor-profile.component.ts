@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
 
-import { Instructor } from "../instructor.interface";
+//import { Instructor } from "../instructor.interface";
 import { InstructorService } from "../instructor.service";
 
 @Component({
@@ -17,10 +17,11 @@ import { InstructorService } from "../instructor.service";
   styleUrls: ['./instructor-profile.component.css']
 })
 export class InstructorProfileComponent implements OnInit {
-  instructor: Instructor[];
+  //instructor: Instructor[];
   width = document.documentElement.clientWidth;
   
-  constructor(private instructorService: InstructorService) { 
+  //constructor(private instructorService: InstructorService) { 
+  constructor() { 
     
     
     
@@ -36,11 +37,11 @@ export class InstructorProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.instructorService.getInstructor(this.instructor.id)
+    /*this.instructorService.getInstructor(this.instructor.id)
     .subscribe(
       (instructor: Instructor) =>  instructor,
       (error: Response) => console.log(error)
-    );
+    );*/
     
   }
 

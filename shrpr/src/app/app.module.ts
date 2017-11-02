@@ -54,7 +54,7 @@ import { SearchComponent } from './search/search.component';
     routing,
     StarRatingModule.forRoot()        
   ],
-  providers: [CourseService, LikeService, InstructorService],
+  providers: [CourseService, LikeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
