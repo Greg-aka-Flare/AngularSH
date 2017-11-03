@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser'
 import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
@@ -6,6 +6,7 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
 import { TabsComponent } from "../home/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
 
@@ -20,6 +21,7 @@ import { InstructorService } from "../instructor.service";
 export class InstructorProfileComponent implements OnInit {
   instructors:any[];
   private id:number;
+  subscription: Subscription;
   width = document.documentElement.clientWidth;
   
   constructor(private instructorService: InstructorService, private route: ActivatedRoute) { 
@@ -40,7 +42,9 @@ export class InstructorProfileComponent implements OnInit {
     });
 
   }
-
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
   ngOnInit() {
      this.instructorService.getInstructor(this.id)
      .subscribe(
