@@ -8,12 +8,12 @@ export class StudentService {
 	constructor(private http: Http){
 
 	}
-
+	
 	getStudent(id: number){
 		return this.http.get('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/student/' + id)
 			.map(
-				(response: Response) => response.json()
+				(response: Response) => response.json()	
 			);
+			
 	}
-
 }

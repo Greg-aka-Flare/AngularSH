@@ -19,21 +19,23 @@ import { StudentService } from '../student.service';
 export class StudentComponent implements OnInit {
 
   students:any[];
-  private studentid:number;
+  id:number;
 
   constructor(private studentService: StudentService, private route: ActivatedRoute ) {
     let sub = this.route.params.subscribe((params: Params) => {
-      this.studentid = params['id'];
-      console.log('param id: ' + this.studentid);
+      this.id = params['id'];
+      console.log('param id: ' + this.id);
+      console.log('student is: ' + this.students);
     })
    }
 
   ngOnInit() {
-    this.studentService.getStudent(this.studentid)
+
+    this.studentService.getStudent(this.id)
       .map(
+        //(response: Response) => response.json()
         (response) => {
           this.students = response;
-          console.log(this.students)
         },
         (error: Response ) => console.log(error)
       );
