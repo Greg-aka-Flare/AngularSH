@@ -252,6 +252,19 @@
 .seeall-link a:hover {
     text-decoration: none;
 }
+.contact_box {
+    padding: 10px;
+}
+.contact_box address {
+    padding: 0 0 20px 0;
+}
+.contact_box address:first-child {
+    border-bottom: 1px solid #e5e5e6;
+    margin: 0 0 20px 0;
+}
+
+
+
 @media only screen and (min-width: 769px) {
     #desktopcourses {
         padding: 50px 0 30px 0;
@@ -285,5 +298,14 @@
 }
 #reviews {
     border-top: 2px solid #cccccc;   
+}
+.contact_box address {
+    display: inline-block;
+    padding: 0 5% 0 0;
+    vertical-align: top;
+}
+.contact_box address:first-child {
+    border-bottom: none;
+    margin: 0;
 }
 }
