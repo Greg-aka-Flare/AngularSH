@@ -22,7 +22,7 @@ export class StudentComponent implements OnInit {
   students:any[];
   id:number;
   subscription: Subscription;
-
+  width = document.documentElement.clientWidth;
   constructor(private studentService: StudentService, private route: ActivatedRoute ) {
 
     this.route.params.subscribe((params: Params) => {
@@ -30,8 +30,16 @@ export class StudentComponent implements OnInit {
       //console.log('param id: ' + this.id);
       //console.log('student is: ' + this.students);
     })
-   }
+    const $resizeEvent = Observable.fromEvent(window, 'resize')
+    .map(() => {
+      return document.documentElement.clientWidth;
+      })
+    
+    $resizeEvent.subscribe(data => {
+      this.width = data;
+    });
 
+  }
   
    
   ngOnInit() {
