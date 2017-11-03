@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser'
 import { Response } from "@angular/http";
+import { ActivatedRoute, Params } from '@angular/router';
 import {trigger, state, style, transition, animate} from '@angular/animations';
 import { TabsComponent } from "../home/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
@@ -17,12 +18,18 @@ import { InstructorService } from "../instructor.service";
   styleUrls: ['./instructor-profile.component.css']
 })
 export class InstructorProfileComponent implements OnInit {
-  instructor: Instructor[];
+  instructors:any[];
+  private id:number;
   width = document.documentElement.clientWidth;
   
-  constructor(private instructorService: InstructorService) { 
+  constructor(private instructorService: InstructorService, private route: ActivatedRoute) { 
   //constructor() { 
-    
+    let sub = this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      //console.log(this.id)
+      console.log('param id: ' + this.id);
+      
+    })
     
     
     const $resizeEvent = Observable.fromEvent(window, 'resize')
@@ -37,11 +44,16 @@ export class InstructorProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.instructorService.getInstructor(this.instructor.id)
-    // .subscribe(
-    //   (instructor: Instructor) =>  instructor,
-    //   (error: Response) => console.log(error)
-    // );
+     this.instructorService.getInstructor(this.id)
+     .subscribe(
+       (response) => {
+        this.instructors = response;   
+        //console.log(this.instructors)
+        },
+       //(instructors: Instructor[]) =>  this.instructors = instructors,
+       (error: Response) => console.log(error)
+       
+     );
     
   }
 

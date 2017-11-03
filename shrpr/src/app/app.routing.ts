@@ -12,7 +12,7 @@ const APP_ROUTES: Routes = [
 	//{ path: '', component: CoursesComponent },
 	{ path: '', component: HomeComponent },
 	{ path: 'new-course', component: NewCourseComponent },
-	{ path: 'instructor', component: InstructorProfileComponent }
+	{ path: 'instructor/:id', component: InstructorProfileComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
