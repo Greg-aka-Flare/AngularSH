@@ -4,7 +4,7 @@
   <div class="social-icon"><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></div>
 </div>
 <div><h2>Triple Threat Training CT {{instructors.id}}</h2>
-  <i aria-hidden="true" class="fa fa-map-marker"></i> Watertown, CT
+  <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ instructors.addresses[0].city }}, {{ instructors.addresses[0].state }}
 <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3"></star-rating-comp> |  <a href="#">33 reviews</a></div></div>
 </section><!-- #profile header -->
 <tabs *ngIf="width < 768" >
@@ -55,7 +55,10 @@
   ABOUT
 </tab>
 <tab tabTitle="CONTACT">
-  CONTACT
+        <div class="contact_box">
+                <address>{{ instructors.addresses[0].streetAddress }}<br>{{ instructors.addresses[0].city }}, {{ instructors.addresses[0].state }}, {{ instructors.addresses[0].zip }}<br>{{ instructors.addresses[0].country }}<br><br>Phone: {{ instructors.phone }}<br>Email: {{ instructors.email }}</address>
+                <address>{{ instructors.addresses[1].streetAddress }}<br>{{ instructors.addresses[1].city }}, {{ instructors.addresses[1].state }}, {{ instructors.addresses[1].zip }}<br>{{ instructors.addresses[1].country }}<br><br>Phone: {{ instructors.phone }}<br>Email: {{ instructors.email }}</address>
+              </div>
 </tab>
 </tabs><!-- #Tab -->
 <!-- desktop view -->
@@ -105,7 +108,10 @@
   <h2>ABOUT</h2>
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci repudiandae, omnis labore aspernatur quae commodi doloremque quo deleniti, sed nobis nihil corrupti facilis minima voluptatibus ullam possimus pariatur numquam.</p>
   <h2>CONTACT</h2>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci repudiandae, omnis labore aspernatur quae commodi doloremque quo deleniti, sed nobis nihil corrupti facilis minima voluptatibus ullam possimus pariatur numquam.</p>
+  <div class="contact_box">
+      <address>{{ instructors.addresses[0].streetAddress }}<br>{{ instructors.addresses[0].city }}, {{ instructors.addresses[0].state }}, {{ instructors.addresses[0].zip }}<br>{{ instructors.addresses[0].country }}<br><br>Phone: {{ instructors.phone }}<br>Email: {{ instructors.email }}</address>
+      <address>{{ instructors.addresses[1].streetAddress }}<br>{{ instructors.addresses[1].city }}, {{ instructors.addresses[1].state }}, {{ instructors.addresses[1].zip }}<br>{{ instructors.addresses[1].country }}<br><br>Phone: {{ instructors.phone }}<br>Email: {{ instructors.email }}</address>
+    </div>
 </section>
 <!-- desktop view End -->
 <!-- #reviews-->
