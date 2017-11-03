@@ -25,8 +25,8 @@ export class CoursecardComponent implements OnInit {
   constructor(private courseService: CourseService, private route: ActivatedRoute) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      console.log('param id: ' + this.id);
-      console.log(this.course);
+       //console.log('param id: ' + this.id);
+       //console.log(this.course);
     })
 
    }

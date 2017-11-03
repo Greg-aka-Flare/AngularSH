@@ -27,8 +27,8 @@ export class StudentComponent implements OnInit {
 
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      console.log('param id: ' + this.id);
-      console.log('student is: ' + this.students);
+      //console.log('param id: ' + this.id);
+      //console.log('student is: ' + this.students);
     })
    }
 
