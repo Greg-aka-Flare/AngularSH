@@ -26,9 +26,7 @@ export class InstructorProfileComponent implements OnInit {
   //constructor() { 
     let sub = this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      //console.log(this.id)
-      console.log('param id: ' + this.id);
-      
+      //console.log('param id: ' + this.id);
     })
     
     
