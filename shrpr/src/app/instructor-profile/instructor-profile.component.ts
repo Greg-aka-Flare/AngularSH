@@ -1,11 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser'
 import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
 import {trigger, state, style, transition, animate} from '@angular/animations';
 import { TabsComponent } from "../home/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/fromEvent';
@@ -24,26 +23,11 @@ import { InstructorService } from "../instructor.service";
 export class InstructorProfileComponent implements OnInit {
   instructors:any[];
   courses: any[];
+  courseCard: any[];
   private id:number;
   subscription: Subscription;
-  private _data = new BehaviorSubject<Course[]>([]);
-
 // change data to use getter and setter
-@Input()
-set data(value) {
-    // set the latest value for _data BehaviorSubject
-    this._data.next(value);
-};
-
-get data() {
-    // get the latest value from _data BehaviorSubject
-    return this._data.getValue();
-}
-
-
-
   width = document.documentElement.clientWidth;
-  
   constructor(private instructorService: InstructorService, private route: ActivatedRoute, private courseService: CourseService) { 
   //constructor() { 
     let sub = this.route.params.subscribe((params: Params) => {
@@ -64,16 +48,24 @@ get data() {
   }
   
   ngOnInit() {
-    this._data
-    .subscribe(x => {
-        this.courses = this.data;
-        if(this.courses) {
-          for(var i = 0, l = this.courses.length; i < l; i++) {
-            this.courses[i].state = 'default';
-            console.log('course data: '+ this.courses[i].id);
+    this.courseService.getCourses()
+    .subscribe(
+      (response) => {
+       this.courses = response;   
+       if(this.courses){
+        for(var i = 0, l = this.courses.length; i < l; i++) {
+          if(this.courses[i].instructor.id == this.id){
+            this.courseCard.push(this.courses[i]);
+            console.log(this.courseCard);
           }
         }
-    });
+        
+       }
+       },
+      //(instructors: Instructor[]) =>  this.instructors = instructors,
+      (error: Response) => console.log(error)
+      
+    );
 
      this.instructorService.getInstructor(this.id)
      .subscribe(
