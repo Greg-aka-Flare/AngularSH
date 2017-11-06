@@ -23,7 +23,7 @@ import { InstructorService } from "../instructor.service";
 export class InstructorProfileComponent implements OnInit {
   instructors:any[];
   courses: any[];
-  courseCard: any[];
+  courseCard: any[] = [];
   private id:number;
   subscription: Subscription;
 // change data to use getter and setter
@@ -55,14 +55,14 @@ export class InstructorProfileComponent implements OnInit {
        if(this.courses){
         for(var i = 0, l = this.courses.length; i < l; i++) {
           if(this.courses[i].instructor.id == this.id){
+            //console.log(this.courses[i]);
             this.courseCard.push(this.courses[i]);
-            console.log(this.courseCard);
+            
           }
         }
-        
+        console.log(this.courseCard);
        }
-       },
-      //(instructors: Instructor[]) =>  this.instructors = instructors,
+      },
       (error: Response) => console.log(error)
       
     );
