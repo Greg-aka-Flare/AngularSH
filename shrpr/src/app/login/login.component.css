@@ -103,24 +103,33 @@
 }
 .social-login {
     padding:8px 0 0 0;
+    text-align: center;
 }
-.social-login > a {
+.social-login > button {
     font-size: 30px;
     line-height: 1em;
     display: inline-block;
     vertical-align: top;
     margin: 0 5px 5px 0;
+    padding:0;
+    border:none;
+    border-radius: 5px;
+    background:none;
 }
-.social-login > a:hover {
+.social-login > button > .fa {
+    display:block;
+    line-height: 1em;
+}
+.social-login > button:hover {
     opacity: 0.6;
 }
-.social-login > a.cta-facebook {
+.social-login > button.cta-facebook {
     color: #3a559f;
 }
-.social-login > a.cta-google {
+.social-login > button.cta-google {
     color: #dd4b39;  
 }
-.social-login > a.cta-linkedin {
+.social-login > button.cta-linkedin {
     color: #0084b1;
 }
 /* =============================================================================

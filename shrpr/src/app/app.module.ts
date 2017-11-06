@@ -32,7 +32,20 @@ import { InstructorProfileComponent } from './instructor-profile/instructor-prof
 import { StudentService } from './student.service';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './login/login.component';
+import { Angular2SocialLoginModule } from "angular2-social-login";
 
+let providers = {
+  "google": {
+    "clientId": "GOOGLE_CLIENT_ID"
+  },
+  "linkedin": {
+    "clientId": "LINKEDIN_CLIENT_ID"
+  },
+  "facebook": {
+    "clientId": "FACEBOOK_CLIENT_ID",
+    "apiVersion": "v2.4"
+  }
+};
 
 @NgModule({
   declarations: [
@@ -62,10 +75,14 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     Ng2CompleterModule,
     routing,
-    StarRatingModule.forRoot()
-          
+    StarRatingModule.forRoot(),
+    Angular2SocialLoginModule      
   ],
   providers: [CourseService, LikeService, InstructorService, StudentService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(){}
+}
+
+Angular2SocialLoginModule.loadProvidersScripts(providers);

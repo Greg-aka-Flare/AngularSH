@@ -9,9 +9,35 @@
  <button>Log In</button>
   </form>
   <div class="horizontal-box"><span>or</span></div>
-  <div class="social-login"><a href="#" class="cta-facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-  <a href="#" class="cta-google"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a>
-  <a href="#" class="cta-linkedin"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></div>
+  <div class="social-login"><button (click)="signIn('facebook')" class="cta-facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></button>
+  <button (click)="signIn('google')" class="cta-google"><i class="fa fa-google-plus-square" aria-hidden="true"></i></button>
+  <button (click)="signIn('linkedin')" class="cta-linkedin"><i class="fa fa-linkedin-square" aria-hidden="true"></i></button>
+  <!--<button (click)="logout()">logout</button>-->
+</div>
+</div>
+<div *ngIf="user">
+  <table>
+    <tr>
+      <td>Name:</td>
+      <td>{{user.name}}</td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>{{user.email}}</td>
+    </tr>
+    <tr>
+      <td>UID</td>
+      <td>{{user.uid}}</td>
+    </tr>
+    <tr>
+      <td>Provider</td>
+      <td>{{user.provider}}</td>
+    </tr>
+    <tr>
+      <td>Image</td>
+      <td>{{user.image}}</td>
+    </tr>
+  </table>
 </div>
     <div class="login-box signup-box">
       <h2>Sign Up</h2>
@@ -20,9 +46,4 @@
        <input type="text" name="email" id="email" placeholder="Email">
        <input type="password" name="password" id="password" placeholder="Password">
        <button>Sign Up</button></form>
-       <div class="horizontal-box"><span>or</span></div>
-       <div class="social-login"><a href="#" class="cta-facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-       <a href="#" class="cta-google"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a>
-       <a href="#" class="cta-linkedin"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-       </div>
       </div>
