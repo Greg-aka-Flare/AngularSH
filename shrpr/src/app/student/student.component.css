@@ -173,9 +173,11 @@
     text-align: center;
     width: 100%;
     text-transform: uppercase;
+    text-decoration: none;
 }
 .page-cta:hover {
     background-color: #757575;
+    text-decoration: none;
 }
 #reviews {
     padding: 20px 10px 20px 10px;

@@ -7,7 +7,8 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
-
+import { Course } from "../course.interface";
+import { CourseService } from "../course.service";
 import { Student } from "../student.interface";
 import { StudentService } from '../student.service';
 
@@ -20,12 +21,14 @@ import { StudentService } from '../student.service';
 export class StudentComponent implements OnInit {
 
   students:any[];
-  id:number;
+  courses: any[];
+  courseCard: any[] = [];
+  private id:number;
   subscription: Subscription;
   width = document.documentElement.clientWidth;
-  constructor(private studentService: StudentService, private route: ActivatedRoute ) {
+  constructor(private studentService: StudentService, private route: ActivatedRoute, private courseService: CourseService ) {
 
-    this.route.params.subscribe((params: Params) => {
+    let sub = this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
       //console.log('param id: ' + this.id);
       //console.log('student is: ' + this.students);
@@ -43,6 +46,24 @@ export class StudentComponent implements OnInit {
   
    
   ngOnInit() {
+    this.courseService.getCourses()
+    .subscribe(
+      (response) => {
+       this.courses = response;   
+       if(this.courses){
+        for(var i = 0, l = this.courses.length; i < l; i++) {
+          if(this.courses[i].instructor.id == this.id){
+            //console.log(this.courses[i]);
+            this.courseCard.push(this.courses[i]);
+            
+          }
+        }
+        console.log(this.courseCard);
+       }
+      },
+      (error: Response) => console.log(error)
+      
+    );
     this.studentService.getStudent(this.id)
     .subscribe(
           (response) => {
