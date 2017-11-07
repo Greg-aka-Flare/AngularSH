@@ -22,6 +22,7 @@ export class StudentComponent implements OnInit {
 
   students:any[];
   courses: any[];
+  studentCourse:any[];
   courseCard: any[] = [];
   private id:number;
   subscription: Subscription;
@@ -30,6 +31,7 @@ export class StudentComponent implements OnInit {
 
     let sub = this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
+
       //console.log('param id: ' + this.id);
       //console.log('student is: ' + this.students);
     })
@@ -37,11 +39,9 @@ export class StudentComponent implements OnInit {
     .map(() => {
       return document.documentElement.clientWidth;
       })
-    
     $resizeEvent.subscribe(data => {
       this.width = data;
     });
-
   }
   
    
@@ -50,30 +50,29 @@ export class StudentComponent implements OnInit {
     .subscribe(
       (response) => {
        this.courses = response;   
+
        if(this.courses){
         for(var i = 0, l = this.courses.length; i < l; i++) {
           if(this.courses[i].instructor.id == this.id){
-            //console.log(this.courses[i]);
             this.courseCard.push(this.courses[i]);
-            
           }
         }
-        console.log(this.courseCard);
        }
+
       },
       (error: Response) => console.log(error)
-      
     );
+
     this.studentService.getStudent(this.id)
     .subscribe(
           (response) => {
-            this.students = response;   
-            //console.log(this.instructors)
+            this.students = response;
+            this.studentCourse = response.courses;
             },
-          //(instructors: Instructor[]) =>  this.instructors = instructors,
+
           (error: Response) => console.log(error)
-          
         );
+        
     }
 
     ngOnDestroy(){

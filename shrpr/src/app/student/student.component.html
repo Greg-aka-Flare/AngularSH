@@ -11,10 +11,10 @@
     <tabs *ngIf="width < 768" >
       <tab tabTitle="Courses">
       <h3>Upcoming Events with Triple Threat Training CT</h3>
-      <article class="card-box" *ngFor="let card of courseCard; let i = index">
+      <article class="card-box" *ngFor="let card of students.courses; let i = index">
             <div class="img-ctn">
                 <div class="price">
-                  ${{ card.semesters[0].amount }}
+                  ${{ card.id }}
                 </div>
                 <figure>
                     <img src="../../assets/img/court.jpg">
@@ -45,10 +45,10 @@
     <section *ngIf="width > 767" id="desktopcourses">
       <h2>Courses</h2>
       <h3>Upcoming Events with Triple Threat Training CT</h3>
-      <article class="card-box" *ngFor="let card of courseCard; let i = index">
+      <article class="card-box" *ngFor="let card of students.courses; let i = index">
             <div class="img-ctn">
                 <div class="price">
-                  ${{ card.semesters[0].amount }}
+                  ${{ card.id }}
                 </div>
                 <figure>
                     <img src="../../assets/img/court.jpg">

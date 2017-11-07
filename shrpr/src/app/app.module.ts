@@ -25,6 +25,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { CoursedesktopComponent } from './course/coursedesktop.component';
 import { CourseComponent } from './course/course.component';
 import { CourseService } from "./course.service";
+import { UserService } from "./user.service";
 import { NewCourseComponent } from './new-course/new-course.component';
 import { CoursecardComponent } from './coursecard/coursecard.component';
 import { InstructorService } from "./instructor.service";
@@ -78,7 +79,7 @@ let providers = {
     StarRatingModule.forRoot(),
     Angular2SocialLoginModule      
   ],
-  providers: [CourseService, LikeService, InstructorService, StudentService],
+  providers: [CourseService, LikeService, InstructorService, StudentService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

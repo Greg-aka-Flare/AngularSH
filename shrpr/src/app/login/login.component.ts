@@ -1,5 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+
 import { AuthService } from "angular2-social-login";
+import { UserInterface } from "../user.interface";
+import { UserService } from "../user.service";
+
 
 @Component({
   selector: 'app-login',
@@ -15,10 +19,16 @@ import { AuthService } from "angular2-social-login";
 
 }*/
 export class LoginComponent implements OnDestroy {
+
   public user;
   sub: any;
-  constructor(public _auth: AuthService){ }
-  
+  constructor(public userService: UserService, public _auth: AuthService){ 
+
+  }
+  login(){
+    console.log('button clicked');
+  }
+
   signIn(provider){
     this.sub = this._auth.login(provider).subscribe(
       (data) => {
