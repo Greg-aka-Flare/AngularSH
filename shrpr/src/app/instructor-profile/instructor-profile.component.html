@@ -26,7 +26,7 @@
           <i class="fa fa-calendar" aria-hidden="true"></i> 
             <span class="date_stamp">{{ card.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
         </p>
-        <p class="with-box"><span>With</span> Thomas Allen</p>
+        <p class="with-box"><span>With</span> {{card.instructor?.name}}</p>
         <a href="/course/{{card.id}}"  class="page-cta">View Course</a>
       </div>
   </article>
@@ -61,7 +61,7 @@
         <i class="fa fa-calendar" aria-hidden="true"></i> 
           <span class="date_stamp">{{ card.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
       </p>
-      <p class="with-box"><span>With</span> Thomas Allen</p>
+      <p class="with-box"><span>With</span> {{card.instructor?.name}}</p>
       <a href="/course/{{card.id}}"  class="page-cta">View Course</a>
     </div>
 </article>
