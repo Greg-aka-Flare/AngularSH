@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { UserInterface } from "../user.interface";
 import { UserService } from "../user.service";
+import { TabsComponent } from "../home/tabs/tabs.component";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 

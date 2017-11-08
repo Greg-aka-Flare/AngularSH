@@ -1,69 +1,67 @@
-<div class="login-box signin-box">
-    <h2>Log in</h2>
-
-    <form id="login" [formGroup]="loginForm" (ngSubmit)="onLogin()">
-        <input 
-            type="text" 
-            id="email" 
-            placeholder="Email" 
-            formControlName="email"
-        />
-
-        <span 
-            class="help-block"
-            *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched"
-        >
-            Please Enter a Valid Email!
-        </span><!-- .help-block -->
-
-        <input 
-            type="password" 
-            id="password" 
-            placeholder="Password" 
-            formControlName="password"
-        />
-
-        <span 
-            class="help-block"
-            *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched"
-        >
-            Password is required!
-        </span><!-- .help-block -->
-
-        <a href="#">Forgot password?</a>
-
-        <button [disabled]="!loginForm.valid">Log In</button>
-    </form>
-
-    <div class="horizontal-box">
-        <span>or</span>
-    </div>
-
-    <div class="social-login">
-        <button class="cta-facebook">
-            <i class="fa fa-facebook-official" aria-hidden="true"></i>
-        </button>
-
-        <button class="cta-google">
-            <i class="fa fa-google-plus-square" aria-hidden="true"></i>
-        </button>
-
-        <button class="cta-linkedin">
-            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
-        </button>
-    </div>
-</div>
-
-<div class="login-box signup-box">
-    <h2>Sign Up</h2>
-
-    <form id="signup">
-        <input type="text" name="name" id="name" placeholder="Full name">
-
-        <input type="text" name="email" id="email" placeholder="Email">
-
-        <input type="password" name="password" id="password" placeholder="Password">
-
-        <button>Sign Up</button>
-    </form>
-</div>
+<section id="login_box">
+    <!--tabs starts-->
+    <tabs>
+        <!--login tab start-->    
+        <tab tabTitle="LOG IN">
+            <div class="login-box signin-box">
+                <form id="login" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                    <input 
+                        type="text" 
+                        id="email" 
+                        placeholder="Email" 
+                        formControlName="email"
+                    />
+                    <span 
+                        class="help-block"
+                        *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched"
+                    >
+                    Please Enter a Valid Email!
+                    </span><!-- .help-block -->
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Password" 
+                        formControlName="password"
+                    />
+                    <span 
+                        class="help-block"
+                        *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched"
+                    >
+                    Password is required!
+                    </span><!-- .help-block -->
+                    <a href="#">Forgot password?</a>
+                    <button [disabled]="!loginForm.valid">Log In <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                </form>
+                <div class="horizontal-box"> </div>
+                <div class="social-login">
+                    <button class="cta-facebook">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>                    
+                    </button>
+                    <button class="cta-google">
+                        <i class="fa fa-google-plus" aria-hidden="true"></i>                    
+                    </button>
+                    <button class="cta-linkedin">
+                        <i class="fa fa-linkedin" aria-hidden="true"></i>                    
+                    </button>
+                </div>
+            </div>
+        </tab>
+        <!--login tab ends-->
+        <!--Sign up tab start-->
+        <tab tabTitle="SIGN UP">
+            <div class="login-box signup-box">
+                <form id="signup">
+                    <input type="text" name="name" id="name" placeholder="Full name">
+            
+                    <input type="text" name="email" id="email" placeholder="Email">
+            
+                    <input type="password" name="password" id="password" placeholder="Password">
+            
+                    <button>Sign Up</button>
+                </form>
+            </div>
+        </tab>
+        <!--Sign up tab ends-->
+        </tabs>
+        <!--tabs ends-->
+    </section>
