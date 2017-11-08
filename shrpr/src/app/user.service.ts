@@ -24,12 +24,22 @@ export class UserService {
 			);
 	}
 
-	login(content: string){
-		const body = JSON.stringify({content: content});
-		const headers = new Headers({'Content-Type': 'application/json'});
-		return this.http.post('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/login', body, {headers: headers})
-			.map(
-				(response: Response) => response.json()
-			);	
+	login(email: string, password: string){
+		return this.http.post('http://shrpr.dev/api/login', 
+			{ email: email, password: password },
+			{ headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+			.map((response: Response) => {
+				const token = response.json().token;
+				const base64Url = token.split('.')[1];
+				const base64 = base64Url.replace('-', '+').replace('_', '/');
+				return { token: token, decoded: JSON.parse(window.atob(base64)) }
+			})
+			.do(tokenData => {
+				localStorage.setItem('token', tokenData.token);
+			});
+	}
+
+	getToken() {
+		return localStorage.getItem('token');
 	}
 }

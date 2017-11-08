@@ -15,20 +15,26 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(public userService: UserService){ 
+  constructor(public userService: UserService) { 
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.loginForm = new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, Validators.required)
     });
   }
 
-  onLogin(){
+  onLogin() {
 
-    console.log(this.loginForm);
+    const email = this.loginForm.value.email;
+    const password = this.loginForm.value.password;
+
+    this.userService.login(email, password)
+      .subscribe(
+        response => console.log(response),
+        error => console.log(error)
+       );
   }
-
 }
