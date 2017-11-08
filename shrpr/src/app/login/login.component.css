@@ -1,5 +1,6 @@
 :host {
     display: block;
+    overflow: hidden;
     padding: 50px 0 50px 0;
 }
 .login-box {
@@ -63,6 +64,13 @@
 }
 .login-box form button:hover {
     background-color: #c95f5f;
+}
+.login-box form .help-block{
+    color: #c00;
+    display: block;
+    font-size: 14px;
+    padding: 0 0 10px 0;
+    text-align: center;
 }
 .login-box form a {
     font-size: 14px;

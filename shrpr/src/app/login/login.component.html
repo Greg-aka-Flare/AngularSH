@@ -9,12 +9,26 @@
             formControlName="email"
         />
 
+        <span 
+            class="help-block"
+            *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched"
+        >
+            Please Enter a Valid Email!
+        </span><!-- .help-block -->
+
         <input 
             type="password" 
             id="password" 
             placeholder="Password" 
             formControlName="password"
         />
+
+        <span 
+            class="help-block"
+            *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched"
+        >
+            Password is required!
+        </span><!-- .help-block -->
 
         <a href="#">Forgot password?</a>
 
