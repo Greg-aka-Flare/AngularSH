@@ -34,6 +34,7 @@ import { StudentService } from './student.service';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './login/login.component';
 import { Angular2SocialLoginModule } from "angular2-social-login";
+import { MarketingComponent } from './marketing/marketing.component';
 
 let providers = {
   "google": {
@@ -67,7 +68,8 @@ let providers = {
     SearchComponent,
     StudentComponent,
     CoursecardComponent,
-    LoginComponent
+    LoginComponent,
+    MarketingComponent
    ],
   imports: [
     BrowserModule,
