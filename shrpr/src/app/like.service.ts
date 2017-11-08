@@ -12,9 +12,17 @@ export class LikeService {
   private likeCoursesArray = new Array<{courseid:number, groupid:string}>();
   private dislikeCoursesArray = new Array<{courseid:number, groupid:string}>();
   private oldLikeValue;
+  private oldDislikeValue;
 
   constructor(){
     this.oldLikeValue = JSON.parse(localStorage.getItem("likekey"));
+    this.oldDislikeValue = JSON.parse(localStorage.getItem('dislikekey'));
+    if(this.oldLikeValue !== null) {
+      this.likeCoursesArray.push(this.oldLikeValue);
+    }
+    if(this.oldDislikeValue !== null){
+      this.dislikeCoursesArray.push(this.oldDislikeValue);
+    }
   }
  
 
@@ -47,4 +55,5 @@ export class LikeService {
     localStorage.setItem('dislikekey',JSON.stringify(this.dislikeCoursesArray));
     console.log('New dislike Courses id in Local Storage: '+ localStorage.getItem("dislikekey"));
   }
+  
 }

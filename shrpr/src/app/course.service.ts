@@ -24,6 +24,13 @@ export class CourseService {
 			);
 	}
 
+	getCourse(id: number){
+		return this.http.get('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/course/' + id)
+		.map(
+			(response: Response) => response.json()
+		);	
+	}
+	
 	updateCourse(id: number, newName: string){
 		const body = JSON.stringify({name: newName});
 		const headers = new Headers({'Content-Type': 'application/json'});

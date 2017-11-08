@@ -167,13 +167,13 @@
     font-family: 'circularstd book';
     font-size: 18px;
     line-height: 18px;
-    text-decoration: none;
     margin: 10px auto;
     max-width: 150px;
     padding:7px 10px;
     text-align: center;
     width: 100%;
     text-transform: uppercase;
+    text-decoration: none;
 }
 .page-cta:hover {
     background-color: #757575;

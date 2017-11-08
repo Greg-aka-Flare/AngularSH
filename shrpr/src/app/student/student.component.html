@@ -1,0 +1,88 @@
+
+<section id="profile-header">
+    <div class="profile-picture">
+      <img src="../../assets/img/profile-picture.jpg" alt="" title="">
+      <div class="social-icon"><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></div>
+    </div>
+    <div><h2>Students {{students.id}}</h2>
+      <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ students.addresses[0].city }}, {{ students.addresses[0].state }}
+    <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3"></star-rating-comp> |  <a href="#">33 reviews</a></div></div>
+    </section><!-- #profile header -->
+    <tabs *ngIf="width < 768" >
+      <tab tabTitle="Courses">
+      <h3>Upcoming Events with Triple Threat Training CT</h3>
+      <article class="card-box" *ngFor="let card of students.courses; let i = index">
+            <div class="img-ctn">
+                <div class="price">
+                  ${{ card.id }}
+                </div>
+                <figure>
+                    <img src="../../assets/img/court.jpg">
+                </figure>
+                <h3>{{card.title}}</h3>
+            </div>
+            <div class="card-info">
+              <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="card.rating" [showHalfStars]="true"></star-rating-comp></span></div>
+              <p class="date">
+                <i class="fa fa-calendar" aria-hidden="true"></i> 
+                  <span class="date_stamp">{{ card.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
+              </p>
+              <p class="with-box"><span>With</span> Thomas Allen</p>
+              <a href="/course/{{card.id}}"  class="page-cta">View Course</a>
+            </div>
+        </article>
+    </tab>
+    <tab tabTitle="ABOUT">
+      ABOUT
+    </tab>
+    <tab tabTitle="CONTACT">
+            <div class="contact_box">
+                    <address>{{ students.addresses[0].streetAddress }}<br>{{ students.addresses[0].city }}, {{ students.addresses[0].state }}, {{ students.addresses[0].zip }}<br>{{ students.addresses[0].country }}<br><br>Phone: {{ students.phone }}<br>Email: {{ students.email }}</address>
+                  </div>
+    </tab>
+    </tabs><!-- #Tab -->
+    <!-- desktop view -->
+    <section *ngIf="width > 767" id="desktopcourses">
+      <h2>Courses</h2>
+      <h3>Upcoming Events with Triple Threat Training CT</h3>
+      <article class="card-box" *ngFor="let card of students.courses; let i = index">
+            <div class="img-ctn">
+                <div class="price">
+                  ${{ card.id }}
+                </div>
+                <figure>
+                    <img src="../../assets/img/court.jpg">
+                </figure>
+                <h3>{{card.title}}</h3>
+            </div>
+            <div class="card-info">
+              <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="card.rating" [showHalfStars]="true"></star-rating-comp></span></div>
+              <p class="date">
+                <i class="fa fa-calendar" aria-hidden="true"></i> 
+                  <span class="date_stamp">{{ card.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
+              </p>
+              <p class="with-box"><span>With</span> Thomas Allen</p>
+              <a href="/course/{{card.id}}"  class="page-cta">View Course</a>
+            </div>
+        </article>
+      <h2>ABOUT</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci repudiandae, omnis labore aspernatur quae commodi doloremque quo deleniti, sed nobis nihil corrupti facilis minima voluptatibus ullam possimus pariatur numquam.</p>
+      <h2>CONTACT</h2>
+      <div class="contact_box">
+          <address>{{ students.addresses[0].streetAddress }}<br>{{ students.addresses[0].city }}, {{ students.addresses[0].state }}, {{ students.addresses[0].zip }}<br>{{ students.addresses[0].country }}<br><br>Phone: {{ students.phone }}<br>Email: {{ students.email }}</address>
+        </div>
+    </section>
+    <!-- desktop view End -->
+    <!-- #reviews-->
+    <section id="reviews">
+      <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="5"></star-rating-comp> 5 | 33 reviews</div>
+    <dl>
+      <dt><img src="../../assets/img/reviews-profile.jpg" alt="" title="">Megana H.</dt>
+      <dd><h2>Balance Indoboard Yoga</h2>
+      <p>Good Class. Fun for a yoga beginner to try something new. you'll definitely feel the burn.</p></dd>
+    </dl>
+    <p class="seeall-link"><a href="">see all related reviews</a></p>
+    
+    </section><!-- #reviews -->
+    
+    

@@ -36,7 +36,7 @@
                 {{ course.categories[0].name }}
               </span>
             </div><!-- .group_info-->
-            <h3>{{ course.title }}</h3>
+            <h3><a href="/course/{{course.id}}">{{ course.title }}</a></h3>
             <p class="location">
               <i class="fa fa-map-marker" aria-hidden="true"></i> 
               <a href="javascript:void(0);">{{ course.semesters[0].addresses[0].city }}, {{ course.semesters[0].addresses[0].state }}</a>, 
@@ -80,7 +80,7 @@
             <div class="card-info">
               <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp></span><span class="group_name">
                 {{ course.categories[0].name }}</span></div><!-- .group_info-->
-              <h3>{{ course.title }}</h3>
+              <h3><a href="/course/{{course.id}}">{{ course.title }}</a></h3>
               <p class="location">
                 <i class="fa fa-map-marker" aria-hidden="true"></i> 
                 <a href="javascript:void(0);">{{ course.semesters[0].addresses[0].city }}, {{ course.semesters[0].addresses[0].state }}</a>, 
@@ -124,7 +124,7 @@
               <div class="card-info">
                 <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp></span><span class="group_name">
                 {{ course.categories[0].name }}</span></div><!-- .group_info-->
-                <h3>{{ course.title }}</h3>
+                <h3><a href="/course/{{course.id}}">{{ course.title }}</a></h3>
                 <p class="location">
                   <i class="fa fa-map-marker" aria-hidden="true"></i> 
                   <a href="javascript:void(0);">{{ course.semesters[0].addresses[0].city }}, {{ course.semesters[0].addresses[0].state }}</a>, 

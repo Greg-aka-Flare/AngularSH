@@ -1,0 +1,164 @@
+:host {
+    display: block;
+    padding: 50px 0 50px 0;
+}
+.login-box {
+    max-width: 350px;
+    margin: 0 auto 20px;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+.login-box form input::-webkit-input-placeholder { /* Chrome */
+    color: #6f6f6f;
+}
+.login-box form input:-ms-input-placeholder { /* IE 10+ */
+    color: #6f6f6f;
+}
+.login-box form input::-moz-placeholder { /* Firefox 19+ */
+    color: #6f6f6f;
+    opacity: 1;
+}
+.login-box form input:-moz-placeholder{ /* Firefox 4 - 18 */
+    color: #6f6f6f;
+    opacity: 1;
+}
+.login-box form input {
+    font-family: 'circularstd book';
+    display: block;
+    box-sizing:border-box;
+    padding: 5px 10px;
+    height: 40px;
+    width: 100%;
+    font-size: 14px;
+    color: #000000;
+    border: 1px solid #cccccc;
+    margin: 0 0 5px 0;
+    border-radius: 5px;
+}
+.login-box form input.ng-valid.ng-touched{
+    border: 1px solid #0c0;
+}
+.login-box form input.ng-invalid.ng-touched{
+    border: 1px solid #c00;
+}
+.login-box form button {
+    background-color: #d53b3c;
+    border: none;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-family: 'circularstd book';
+    font-size: 15px;
+    line-height: 15px;
+    margin: 10px auto 10px auto;
+    padding: 10px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+.login-box form button:hover {
+    background-color: #c95f5f;
+}
+.login-box form a {
+    font-size: 14px;
+    line-height: 14px;
+    display: inline-block;
+    vertical-align: top;
+    text-decoration: none;
+    color: #3fa8d1;
+    margin: 5px 0 10px 0;
+    float: right;
+}
+.login-box form a:hover {
+    text-decoration: underline;
+}
+.login-box h2 {
+    color: #000000;
+    font-size: 20px;
+    padding: 0 0 10px;
+    text-align: center;
+}
+.horizontal-box {
+    text-align: center;
+    position: relative;
+}
+.horizontal-box:before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    top: 39%;
+    left: 0;
+    width: 100%;
+    background: #cccccc;
+}
+.horizontal-box > span {
+    background: #ffffff;
+    color: #6f6f6f;
+    display: inline-block;
+    padding: 0 5px;
+    font-size: 14px;
+    line-height: 1em;
+    vertical-align: top;
+    position: relative;
+    z-index: 99;
+}
+.social-login {
+    padding:8px 0 0 0;
+    text-align: center;
+}
+.social-login > button {
+    font-size: 30px;
+    line-height: 1em;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 5px 5px 0;
+    padding:0;
+    border:none;
+    border-radius: 5px;
+    background:none;
+}
+.social-login > button > .fa {
+    display:block;
+    line-height: 1em;
+}
+.social-login > button:hover {
+    opacity: 0.6;
+}
+.social-login > button.cta-facebook {
+    color: #3a559f;
+}
+.social-login > button.cta-google {
+    color: #dd4b39;  
+}
+.social-login > button.cta-linkedin {
+    color: #0084b1;
+}
+/* =============================================================================
+   LARGE SCREEN STYLES [DESKTOP VIEW] START
+  ============================================================================= */
+/* 960px */
+@media only screen and (min-width: 769px) {
+    .signin-box {
+        float: right;
+        margin: 0 10px 0 0;
+    }
+    .signup-box {
+        margin: 0;
+        max-width: none;
+        border: none;
+        border-right: 1px solid #cccccc;
+        border-radius: 0;
+        width: calc(100% - 406px);
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    .signup-box form, .horizontal-box, .signup-box h2 , .social-login {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+}
