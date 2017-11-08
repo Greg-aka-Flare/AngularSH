@@ -35,6 +35,7 @@ import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './login/login.component';
 import { Angular2SocialLoginModule } from "angular2-social-login";
 import { MarketingComponent } from './marketing/marketing.component';
+import { SafeHtmlPipe, contentSlider, printSlide, slideAjaxDiv } from './slider/slider.component';
 
 let providers = {
   "google": {
@@ -69,7 +70,11 @@ let providers = {
     StudentComponent,
     CoursecardComponent,
     LoginComponent,
-    MarketingComponent
+    MarketingComponent,
+    SafeHtmlPipe,
+    contentSlider,
+    printSlide,
+    slideAjaxDiv
    ],
   imports: [
     BrowserModule,
