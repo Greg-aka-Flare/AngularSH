@@ -29,6 +29,9 @@ address {
 ul, dl, h1, h2, h3, p, ol {
 	margin: 0;
 }
+ul {
+    list-style: none;
+}
 .swipedemoBasicUsage .demo-swipe {
   padding: 20px 10px; }
 
