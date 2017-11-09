@@ -24,8 +24,14 @@ export class UserService {
 			);
 	}
 
+	signup(name: string, email: string, password: string){
+		return this.http.post('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/signup', 
+			{ name: name, email: email, password: password },
+			{ headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) });
+	}
+
 	login(email: string, password: string){
-		return this.http.post('http://shrpr.dev/api/login', 
+		return this.http.post('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/login', 
 			{ email: email, password: password },
 			{ headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
 			.map((response: Response) => {

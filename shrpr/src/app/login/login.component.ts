@@ -15,6 +15,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class LoginComponent implements OnInit {
 
+  signupForm: FormGroup;
   loginForm: FormGroup;
 
   constructor(public userService: UserService) { 
@@ -22,10 +23,29 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.signupForm = new FormGroup({
+      'name': new FormControl(null, [Validators.required, Validators.email]),
+      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'password': new FormControl(null, Validators.required)
+    });
+
     this.loginForm = new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, Validators.required)
     });
+  }
+
+  onSignup() {
+
+    const name = this.loginForm.value.name;
+    const email = this.loginForm.value.email;
+    const password = this.loginForm.value.password;
+
+    this.userService.signup(name, email, password)
+      .subscribe(
+        response => console.log(response),
+        error => console.log(error)
+       );
   }
 
   onLogin() {
