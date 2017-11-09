@@ -97,7 +97,11 @@ main {
     font-size: 18px;
     line-height: 24px;
 }
-
+/* =============Page content Area Start============================ */
+.page-conent-area {
+    padding:40px 0 40px 0;
+    min-height: 350px;
+}
 /* =============Search============================ */
 section#search {
     padding: 30px 20px 20px 20px;

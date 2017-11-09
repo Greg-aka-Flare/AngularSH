@@ -10,6 +10,9 @@ import { StudentComponent } from './student/student.component';
 import { CoursecardComponent } from './coursecard/coursecard.component';
 import { LoginComponent } from './login/login.component';
 import { MarketingComponent } from './marketing/marketing.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { TeamComponent } from './team/team.component';
+import { ValuesComponent } from './values/values.component';
 
 const APP_ROUTES: Routes = [
 	//{ path: '', component: CoursesComponent },
@@ -19,7 +22,10 @@ const APP_ROUTES: Routes = [
 	{ path: 'student/:id', component: StudentComponent },
 	{ path: 'course/:id', component: CoursecardComponent },
 	{ path: 'login', component: LoginComponent },
-	{ path: 'marketing', component: MarketingComponent }
+	{ path: 'marketing', component: MarketingComponent },
+	{ path: 'about', component: AboutusComponent },
+	{ path: 'team', component: TeamComponent },
+	{ path: 'values', component: ValuesComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

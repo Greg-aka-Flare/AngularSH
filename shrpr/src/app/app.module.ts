@@ -36,6 +36,9 @@ import { LoginComponent } from './login/login.component';
 import { Angular2SocialLoginModule } from "angular2-social-login";
 import { MarketingComponent } from './marketing/marketing.component';
 import { SafeHtmlPipe, contentSlider, printSlide, slideAjaxDiv } from './slider/slider.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { TeamComponent } from './team/team.component';
+import { ValuesComponent } from './values/values.component';
 
 let providers = {
   "google": {
@@ -74,7 +77,10 @@ let providers = {
     SafeHtmlPipe,
     contentSlider,
     printSlide,
-    slideAjaxDiv
+    slideAjaxDiv,
+    AboutusComponent,
+    TeamComponent,
+    ValuesComponent
    ],
   imports: [
     BrowserModule,
