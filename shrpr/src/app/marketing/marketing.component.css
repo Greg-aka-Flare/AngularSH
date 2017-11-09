@@ -93,6 +93,184 @@
     display: block;
     width: 100%;
 }
+/*List Your Business start*/
+.jointhenetwork-block {
+    text-align: center;
+}
+.jointhenetwork-content {
+    padding: 50px 10px 20px 10px;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+.jointhenetwork-content h2 {
+    color: #5c5c5c;
+    font-size: 35px;
+    line-height: 41px;
+    padding: 0 0 10px 0;
+}
+.jointhenetwork-content p {
+    font-size: 17px;
+    line-height: 22px;
+    color: #5c5c5c;
+    padding: 0 0 20px 0;
+}
+.jointhenetwork-image img {
+    display: block;
+    width: 100%;
+}
+a.jointhenetwork-link {
+    color: #f68f1e;
+    text-decoration: none;
+    margin: 20px 0 30px;
+    display: inline-block;
+    vertical-align: top;
+}
+a.jointhenetwork-link:hover {
+    text-decoration: underline;
+}
+/*Form start*/
+.form-wrapper {
+    background: url(../../assets/img/form-bg.jpg) no-repeat left top;
+    background-size: cover;
+}
+.inner-form-wrap {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 40px 40px 48px;
+}
+.inner-form-wrap  h2 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 25px;
+    line-height: 28px;
+    padding: 0 0 30px 0;
+}
+.inner-form-wrap form > div {
+    margin: 0 0 10px 0;
+    position: relative;
+}
+.inner-form-wrap form > div > input, .inner-form-wrap form > div > span {
+    font-family: "circularstd book";
+    color: #000000;
+    height: 40px;
+    background-color: #ffffff;
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    display: block;
+}
+.inner-form-wrap form > div > span {
+    color: #cccccc;
+    line-height: 1.2em;
+    background-image: url(../../assets/img/bg-faux-select.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+.inner-form-wrap form > div > select {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    font-family: "circularstd book";
+    color: #000000;
+    font-size: 14px;
+}
+.inner-form-wrap form > button {
+    background-color: #f68f1e;
+    border: 1px solid #f68f1e;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 14px 0;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1em;
+    border-radius: 3px;
+    font-family: "circularstd book";
+    cursor: pointer;
+    -moz-transition: all 0.5s ease-in-out 0s;
+    -ms-transition: all 0.5s ease-in-out 0s;
+    -o-transition: all 0.5s ease-in-out 0s;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
+    margin: 0 0 10px 0;
+}
+.inner-form-wrap form > button:hover {
+    color: #f68f1e;
+    background: #ffffff;
+}
+.inner-form-wrap form > div > input::-webkit-input-placeholder { /* Chrome */
+    color: #cccccc;
+}
+.inner-form-wrap form > div > input:-ms-input-placeholder { /* IE 10+ */
+    color: #cccccc;
+}
+.inner-form-wrap form > div > input::-moz-placeholder { /* Firefox 19+ */
+    color: #cccccc;
+    opacity: 1;
+}
+.inner-form-wrap form > div > input:-moz-placeholder{ /* Firefox 4 - 18 */
+    color: #cccccc;
+    opacity: 1;
+}
+.privacy-link {
+    font-size: 14px;
+    color: #696c74;
+    line-height: 1em;
+    text-align: right;
+}
+.privacy-link a {
+    color: #696c74;
+    text-decoration: none;
+}
+.privacy-link a:hover {
+    text-decoration: underline;
+}
+.privacy-link span {
+    float: left;
+}
+.phone-livechat-box {
+    padding: 30px 0 18px 0;
+    text-align: center;
+    font-size: 19px;
+    color: #ffffff;
+    line-height: 20px;
+}
+.phone-livechat-box span {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 10px 16px 10px;
+}
+.phone-livechat-box a {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 10px 16px 10px;
+    color: #ffffff;
+    text-decoration: none;
+}
+.phone-livechat-box a:hover, .signup-link a:hover {
+    text-decoration: underline;
+}
+.phone-livechat-box i {
+    font-size: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px 0 0;
+}
+.signup-link {
+    text-align: center;
+    font-size: 19px;
+    color: #ffffff;
+    line-height: 20px;
+}
+.signup-link a {
+    color: #f68f1e;
+    text-decoration: none;
+}
 /*================================================
 769px tablet media start
 ================================================*/
@@ -122,6 +300,42 @@
     .list-your-business-image {
         width: 42%;
     }
+    /*List Your Business start*/
+    .jointhenetwork-block {
+        text-align: left;
+    }
+    .jointhenetwork-content, .jointhenetwork-image {
+        display: inline-block;
+        vertical-align: middle;
+        width: 57%;
+        padding: 20px 6%;
+    }
+    .jointhenetwork-image {
+        width: 42%;
+        padding: 0;
+    }   
+    /*Form start*/
+    .inner-form-wrap {
+        margin: 0 auto;
+        max-width: 600px;
+        padding: 80px 40px 48px;
+    }
+    /*Form start*/
+    .inner-form-wrap  h2 {
+        font-size: 40px;
+        line-height: 45px;
+    }
+.inner-form-wrap form > div {
+    float: left;
+    width: 49%;
+}
+.inner-form-wrap form > div:nth-of-type(2n){
+    margin: 0 0 10px 2%;
+}
+.inner-form-wrap form > div.fullwidth {
+    width: 100%;
+    margin: 0 0 10px 0;
+}
 }
 /*================================================
 960px Desktop media start
