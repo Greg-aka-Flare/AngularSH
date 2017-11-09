@@ -58,8 +58,13 @@
 
         <tab tabTitle="SIGN UP">
             <div class="login-box signup-box">
-                <form id="signup" [formGroup]="signupForm" (ngSubmit)="onSignup()">>
-                    <input type="text" id="name" placeholder="Name" />
+                <form id="signup" [formGroup]="signupForm" (ngSubmit)="onSignup()">
+                    <input 
+                        type="text" 
+                        id="name" 
+                        placeholder="Name"
+                        formControlName="name" 
+                    />
 
                     <span 
                         class="help-block"
@@ -68,7 +73,12 @@
                         Name is required!
                     </span><!-- .help-block -->
             
-                    <input type="text" id="email" placeholder="Email" />
+                    <input 
+                        type="text" 
+                        id="email" 
+                        placeholder="Email" 
+                        formControlName="email" 
+                    />
 
                     <span 
                         class="help-block"
@@ -77,7 +87,12 @@
                         Please Enter a Valid Email!
                     </span><!-- .help-block -->
             
-                    <input type="password" id="password" placeholder="Password" />
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Password"
+                        formControlName="password" 
+                    />
                     
                     <span 
                         class="help-block"
