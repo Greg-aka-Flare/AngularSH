@@ -27,7 +27,7 @@ export class contentSlider {
     currentElement:number = 0;
     autoPlay = true;
     number:number=0;
-    lis:number = 0;
+    //lis:number = 0;
     intervalTime:number = 5000;//in ms(mili seconds)
     private delayHideSetTimeOutControl:any;
   /**
@@ -35,7 +35,7 @@ export class contentSlider {
    */
   @Input('playInterval') interval:any = 5000;
   slides:any;
-  slideShow:any;
+  //slideShow:any;
   
   @Input("slides") set _slides(s){
       this.slides = s;
@@ -75,7 +75,7 @@ export class contentSlider {
 
       clearTimeout(this.delayHideSetTimeOutControl);
 
-      this.delayHideSetTimeOutControl=this.delayHide(this.slides[prev],1100);
+      this.delayHideSetTimeOutControl=this.delayHide(this.slides[prev],1000);
       //this.lis[this.currentElement].classList.add("active");
       this.slides[this.currentElement].classes = ["active","backward"];
       //this.lis[this.currentElement].classList.add("backward");
@@ -109,7 +109,7 @@ export class contentSlider {
       this.show(this.slides[this.currentElement]);
 
       clearTimeout(this.delayHideSetTimeOutControl);
-      this.delayHideSetTimeOutControl=this.delayHide(this.slides[prev],1100);
+      this.delayHideSetTimeOutControl=this.delayHide(this.slides[prev],1000);
       //this.lis[this.currentElement].classList.add("active");
       //this.lis[this.currentElement].classList.add("forward");
       this.slides[this.currentElement].classes = ["active","forward"];

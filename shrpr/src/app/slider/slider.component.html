@@ -1,7 +1,7 @@
 <div class="slider">
   <div class="sliderArrows">
-                <a (click)="backWard()"><</a>
-                <a (click)="forWard()">></a>
+                <a href="javascript:void(0);" class="next" (click)="backWard()"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                <a href="javascript:void(0);" class="prev" (click)="forWard()"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
   </div>
   <ul class="slideShow">
         <li *ngFor="let li of slides" [ngStyle]="{'display':li?.hidden?'none':''}" [ngClass]="li?.classes">
