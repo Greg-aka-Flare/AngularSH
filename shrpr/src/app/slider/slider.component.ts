@@ -24,11 +24,18 @@ export class SliderComponent implements OnInit {
   encapsulation:ViewEncapsulation.None
 })
 export class contentSlider {
+    currentElement:number = 0;
+    autoPlay = true;
+    number:number=0;
+    lis:number = 0;
+    intervalTime:number = 5000;//in ms(mili seconds)
+    private delayHideSetTimeOutControl:any;
   /**
    * Play Interval
    */
-  @Input('playInterval') interval:any = 3000;
+  @Input('playInterval') interval:any = 5000;
   slides:any;
+  slideShow:any;
   
   @Input("slides") set _slides(s){
       this.slides = s;
@@ -44,18 +51,13 @@ export class contentSlider {
           this.auto(this.interval);
       }
   }
-  currentElement:number = 0;
-  autoPlay = true;
-  number:number=0;
-  //lis:number = 0;
-  intervalTime:number = 5000;//in ms(mili seconds)
-  private delayHideSetTimeOutControl:any;
+  
   constructor(){
       //this.slideShow=document.getElementById("slideShow");
 
       //this.lis = this.slides.length;
-
       //this.number=this.lis.length;
+      //this.number=this.lis;
   }
   backWard(){
       if(this.autoPlay)
