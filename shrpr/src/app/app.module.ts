@@ -39,6 +39,9 @@ import { SafeHtmlPipe, contentSlider, printSlide, slideAjaxDiv } from './slider/
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { TeamComponent } from './team/team.component';
 import { ValuesComponent } from './values/values.component';
+import { VideosComponent } from './videos/videos.component';
+import { BlogComponent } from './blog/blog.component';
+import { PodcastComponent } from './podcast/podcast.component';
 
 let providers = {
   "google": {
@@ -80,7 +83,10 @@ let providers = {
     slideAjaxDiv,
     AboutusComponent,
     TeamComponent,
-    ValuesComponent
+    ValuesComponent,
+    VideosComponent,
+    BlogComponent,
+    PodcastComponent
    ],
   imports: [
     BrowserModule,
