@@ -25,7 +25,7 @@ export class UserService {
 	}
 
 	signup(name: string, email: string, password: string){
-		return this.http.post('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/signup', 
+		return this.http.post('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/user', 
 			{ name: name, email: email, password: password },
 			{ headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) });
 	}
