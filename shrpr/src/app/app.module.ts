@@ -33,7 +33,6 @@ import { InstructorProfileComponent } from './instructor-profile/instructor-prof
 import { StudentService } from './student.service';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './login/login.component';
-import { Angular2SocialLoginModule } from "angular2-social-login";
 import { MarketingComponent } from './marketing/marketing.component';
 import { SafeHtmlPipe, contentSlider, printSlide, slideAjaxDiv } from './slider/slider.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
@@ -43,18 +42,6 @@ import { VideosComponent } from './videos/videos.component';
 import { BlogComponent } from './blog/blog.component';
 import { PodcastComponent } from './podcast/podcast.component';
 
-let providers = {
-  "google": {
-    "clientId": "GOOGLE_CLIENT_ID"
-  },
-  "linkedin": {
-    "clientId": "LINKEDIN_CLIENT_ID"
-  },
-  "facebook": {
-    "clientId": "FACEBOOK_CLIENT_ID",
-    "apiVersion": "v2.4"
-  }
-};
 
 @NgModule({
   declarations: [
@@ -96,8 +83,7 @@ let providers = {
     ReactiveFormsModule,
     Ng2CompleterModule,
     routing,
-    StarRatingModule.forRoot(),
-    Angular2SocialLoginModule      
+    StarRatingModule.forRoot()
   ],
   providers: [CourseService, LikeService, InstructorService, StudentService, UserService],
   bootstrap: [AppComponent]
@@ -106,4 +92,3 @@ export class AppModule {
   constructor(){}
 }
 
-Angular2SocialLoginModule.loadProvidersScripts(providers);
