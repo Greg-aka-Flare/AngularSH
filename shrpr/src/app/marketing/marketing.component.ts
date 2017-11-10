@@ -29,12 +29,10 @@ export class MarketingComponent implements OnInit {
 
    private addNewSlide() {
     this.slides.push(
-       {image:'../../assets/img/banner01.jpg',text:'BMW 1'},
-       {image:'../../assets/img/banner02.jpg',text:'BMW 2'},
-       {image:'../../assets/img/banner03.jpg',text:'BMW 3'},
-       {image:'../../assets/img/banner04.jpg',text:'BMW 4'},
-       {image:'../../assets/img/banner05.jpg',text:'BMW 5'},
-       {image:'../../assets/img/banner06.jpg',text:'BMW 6'}
+       {image:'../../assets/img/banner01.jpg',title:'Promote your business',detail:'List your business in the MINDBODY Network to help the right customers find you.'},
+       {image:'../../assets/img/banner02.jpg',title:'Keep your schedule full',detail:'New customers can book and pay for your services through these apps, anywhere, anytime.'},
+       {image:'../../assets/img/banner03.jpg',title:'Boost engagement',detail:'Use promotion codes and gift cards to encourage your current customers to invite their friends.'},
+       {image:'../../assets/img/banner04.jpg',title:'Track your success',detail:'See how your marketing efforts are performing with the Client Acquisition dashboard, then use the insights to improve.'}
    );
 }
 

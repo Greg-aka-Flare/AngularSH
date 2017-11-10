@@ -293,6 +293,39 @@ carousel {
   .carousel-caption .btn {
     text-shadow: none;
   }
+  .slider-image-content .slider-img {
+    width: 60%;
+    display: block;
+}
+.banner-content {
+    text-align: center;
+    padding: 10px 10px 50px 10px;
+}
+.slide_index {
+    display:inline-block;
+    color:#ed9639;
+    border:2px solid #ed9639;
+    border-radius:50%;
+    font-size:18px;
+    line-height: 27px;
+    padding:5px;
+    margin:0 0 30px 0;
+    width:40px;
+    height:40px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align:center;
+}
+.banner-content h4 {
+    color:#ed9639;
+    font-size:32px;
+    font-weight: 400;
+}
+.banner-content .banner_text {
+    color:#999999;
+    line-height:30px; 
+}
+
 /*================================================
 769px tablet media start
 ================================================*/
@@ -357,6 +390,28 @@ carousel {
 .inner-form-wrap form > div.fullwidth {
     width: 100%;
     margin: 0 0 10px 0;
+}
+/*Slider*/
+.slider-image-content {
+    text-align: right;
+    position: 
+}
+.carousel-item {
+    display: block;
+    position: relative;
+}
+.slider-image-content .slider-img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 44%;
+}
+.banner-content {
+    left: 10%;
+    position: absolute;
+    text-align: left;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40%;
 }
 }
 /*================================================
