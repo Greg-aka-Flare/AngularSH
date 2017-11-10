@@ -188,7 +188,7 @@ img{
   margin: 2px;
   text-indent: -999px;
   cursor: pointer;
-  background-color: #ededed;
+  background-color: #999999;
   border-radius: 12px;
 }
 .carousel-indicators .active, .carousel-indicators li:hover {

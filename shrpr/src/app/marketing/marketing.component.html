@@ -59,6 +59,24 @@
         <img src="../../assets/img/jointhenetwork-img.jpg"  alt=" ">
       </div>
 </section>
+<section class="slider-content">
+    <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
+      <slide *ngFor="let content of slidescontent; let index=index"
+             [active]="content.active">
+          <div class="slide-content">
+            <p>{{content.detail}}</p>
+            <p class="author">{{content.author}}</p>
+            <p class="tagline">{{content.tagline}}</p>
+            
+          </div>
+        <!--<div class="carousel-caption">
+          <h3 style="background-color: transparent;color: white;">Slide {{index + 1}}</h3>
+          <p  style="background-color: transparent;color: white;">{{slidez.text}}</p>
+        </div>-->
+      </slide>
+    </carousel>
+    </section>
+    <!-- Slider End -->
 <!-- Join the Network end -->
 <section class="form-wrapper">
     <div class="inner-form-wrap">

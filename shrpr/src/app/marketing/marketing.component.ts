@@ -11,8 +11,6 @@ export class MarketingComponent implements OnInit {
     {"sType":"img","imgSrc":"../../assets/img/banner02.jpg"},
     {"sType":"img","imgSrc":"../../assets/img/banner03.jpg"},
     {"sType":"img","imgSrc":"../../assets/img/banner04.jpg"},
-    {"sType":"img","imgSrc":"../../assets/img/banner05.jpg"},
-    {"sType":"img","imgSrc":"../../assets/img/banner06.jpg"}
   ];
 
 
@@ -22,6 +20,7 @@ export class MarketingComponent implements OnInit {
   private noLoopSlides:boolean = false;
   //Photos
   private slides:Array<any> = [];
+  private slidescontent:Array<any> = [];
 
   constructor() {
     this.addNewSlide();
@@ -34,6 +33,11 @@ export class MarketingComponent implements OnInit {
        {image:'../../assets/img/banner03.jpg',title:'Boost engagement',detail:'Use promotion codes and gift cards to encourage your current customers to invite their friends.'},
        {image:'../../assets/img/banner04.jpg',title:'Track your success',detail:'See how your marketing efforts are performing with the Client Acquisition dashboard, then use the insights to improve.'}
    );
+   this.slidescontent.push(
+    {author:'Tina Trevino-Murphy', tagline:'Villari’s Martial Arts Cooperative', detail:'“We tend to struggle with having a consistent pace on our emails to prospective clients, and the intro offers help us move past that stage faster.” '},
+    {author:'Michael Bradley', tagline:'Modo Yoga Greater Cincinnati', detail:'“[I’m] always willing to attract new clients and this is a no-brainer.”'},
+    {author:'David Gray', tagline:'A Touch of Wellness', detail:'“The service has resulted in several new clients who have turned into repeat clients.”'}
+);
 }
 
 private removeLastSlide() {
