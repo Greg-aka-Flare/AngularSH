@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { StarRatingModule } from 'angular-star-rating';
 import { Ng2CompleterModule } from "ng2-completer";
+import { NgModel } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { routing } from "./app.routing";
@@ -34,13 +35,14 @@ import { StudentService } from './student.service';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './login/login.component';
 import { MarketingComponent } from './marketing/marketing.component';
-import { SafeHtmlPipe, contentSlider, printSlide, slideAjaxDiv } from './slider/slider.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { TeamComponent } from './team/team.component';
 import { ValuesComponent } from './values/values.component';
 import { VideosComponent } from './videos/videos.component';
 import { BlogComponent } from './blog/blog.component';
 import { PodcastComponent } from './podcast/podcast.component';
+import { Carousel } from './carousel/carousel.component';
+import { Slide } from './carousel/slide.component';
 
 
 @NgModule({
@@ -64,16 +66,14 @@ import { PodcastComponent } from './podcast/podcast.component';
     CoursecardComponent,
     LoginComponent,
     MarketingComponent,
-    SafeHtmlPipe,
-    contentSlider,
-    printSlide,
-    slideAjaxDiv,
     AboutusComponent,
     TeamComponent,
     ValuesComponent,
     VideosComponent,
     BlogComponent,
-    PodcastComponent
+    PodcastComponent,
+    Carousel,
+    Slide
    ],
   imports: [
     BrowserModule,
@@ -85,7 +85,7 @@ import { PodcastComponent } from './podcast/podcast.component';
     routing,
     StarRatingModule.forRoot()
   ],
-  providers: [CourseService, LikeService, InstructorService, StudentService, UserService],
+  providers: [CourseService, LikeService, InstructorService, StudentService, UserService, NgModel],
   bootstrap: [AppComponent]
 })
 export class AppModule {

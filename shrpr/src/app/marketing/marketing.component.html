@@ -329,5 +329,15 @@
         <p class="signup-link">Ready to sign up? <a href="#">Buy Now</a></p>
         </div>
         </section>
-        <contentSlider [slides]="images"></contentSlider>
+        <!--<contentSlider [slides]="images"></contentSlider>-->
+        <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
+          <slide *ngFor="let slidez of slides; let index=index"
+                 [active]="slidez.active">
+              <img [src]="slidez.image" style="margin:auto;" class="slider-img">
+            <!--<div class="carousel-caption">
+              <h3 style="background-color: transparent;color: white;">Slide {{index + 1}}</h3>
+              <p  style="background-color: transparent;color: white;">{{slidez.text}}</p>
+            </div>-->
+          </slide>
+        </carousel>
         <!-- Form end -->
