@@ -1,8 +1,7 @@
 <section class="features-banner">
   <div class="features-banner-text">
-    <h1>Expand your reach</h1>
-    <p>Put your business in front of millions of people, starting with those in your area. Attract new customers, increase your marketing and engagement, then track the success of your efforts -
-      all in one place.</p>
+    <h1>Shrpr’s Education Platform and Marketplace</h1>
+    <p>Connecting the world of Face to Face Learning (Call to Action) Take a Tour (or) Schedule a Demo</p>
   </div>
 </section>
 <!-- features banner end-->
@@ -42,24 +41,25 @@
         <img src="../../assets/img/list-your-business-img.jpg"  alt=" ">
       </div>
   <div class="list-your-business-text">
-    <h2>Attract New Customers</h2>
-      <p>Get word out about your offerings to users of Facebook, Instagram, YouTube and other digital networks.</p>  
+    <h2>The Direct Mail Course Catalogue<br> 1970-2017</h2>
+      <p>The Direct Mail Course Catalogue peacefully passed away in his home this winter. He was 47.</p>  
+      <p>For years, marketing local classes was done in the direct mail catalogue. Though costly, he produced tremendous results and was the only marketing tool education providers needed. Though he will be dearly missed by all that knew him, his purpose has been graciously and inexpensively replaced by shrpr. </p>
+      <p>A private memorial service was already help. In lieu of flowers, the family requests that you list your course offerings on shrpr.</p>
   </div>
  
 </section>
 <!-- List your business end-->
 <section class="jointhenetwork-block">
     <div class="jointhenetwork-content">
-      <h2>Large Userbase</h2>
-      <p>Shrpr’s userbase is growing more each day and is full of people that love learning new things. Hosting your class on shrpr will automatically make it available to our existing users. </p>
-<p><a class="jointhenetwork-link" href="#">More on the MINDBODY Network <i class="fa fa-chevron-right" aria-hidden="true"></i></a></p>
-<p><small>*Currently available in the US only.</small></p>
+      <h2>Join shrpr</h2>
+      <p>Host your course on shrpr and immediately show it to our community of passionate learners. People in your community, and from all over the world, will be able to find your course.</p>
+<p><a class="jointhenetwork-link" href="#">Join Now <i class="fa fa-chevron-right" aria-hidden="true"></i></a></p>
     </div>
     <div class="jointhenetwork-image">
         <img src="../../assets/img/jointhenetwork-img.jpg"  alt=" ">
       </div>
 </section>
-<section class="slider-content">
+<!--<section class="slider-content">
     <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
       <slide *ngFor="let content of slidescontent; let index=index"
              [active]="content.active">
@@ -68,23 +68,23 @@
             <p class="author">{{content.author}}</p>
             <p class="tagline">{{content.tagline}}</p>
             
-          </div>
+          </div>-->
         <!--<div class="carousel-caption">
           <h3 style="background-color: transparent;color: white;">Slide {{index + 1}}</h3>
           <p  style="background-color: transparent;color: white;">{{slidez.text}}</p>
         </div>-->
-      </slide>
+      <!--</slide>
     </carousel>
-    </section>
+    </section>-->
     <!-- Slider End -->
 <!-- Join the Network end -->
 <section class="form-wrapper">
     <div class="inner-form-wrap">
-        <h2>We'll set up a personalized demo just for you.</h2>
+        <h2>Schedule a Free Demo</h2>
         <form  method="post" action="#">
         <div><input placeholder="First name*" name="firstName" type="text"></div>
         <div><input placeholder="Last name*" name="lastName" type="text"></div>
-        <div><input placeholder="Business name*" name="businessName" type="text"></div>
+        <div><input placeholder="Organization Name*" name="organizationName" type="text"></div>
         <div><input placeholder="Email*" name="email" type="text"></div>
         <div><span>Select Country</span><select id="countryCode" name="countryCode" data-placeholder="Country code" data-ui-chosen-select="">
           <option value=""></option>
@@ -334,34 +334,22 @@
           <option value="263">Zimbabwe (+263)</option>
         </select></div>
         <div><input placeholder="Phone*" name="phone" type="text"></div>
-        <div class="fullwidth"><span>Select your industry*</span><select id="primaryMarket" name="primaryMarket">
-            <option value="">-- Select Your Industry* --</option>
-            <option value="CrossFit">CrossFit</option>
-            <option value="Health Club">Health Club</option>
-            <option value="Dance">Dance</option>
-            <option value="Fitness">Fitness</option>
-            <option value="Martial Arts">MMA</option>
-            <option value="Massage">Massage</option>
-            <option value="Personal Training">Personal Training</option>
-            <option value="Pilates">Pilates</option>
-            <option value="Physical Therapy">Physical Therapy</option>
-            <option value="Salon">Salon</option>
-            <option value="Spa">Spa</option>
-            <option value="Sports Training">Sports Performance</option>
-            <option value="Wellness/Health Center">Wellness</option>
-            <option value="Yoga">Yoga</option>
-            <option value="Other">Other</option>
-            <option value="Franchise">Franchise</option>
+        <div class="fullwidth"><span>Select Organization Size*</span><select id="primaryMarket" name="primaryMarket">
+            <option value="">-- Select Organization Size* --</option>
+            <option value="JustMe">Just Me</option>
+            <option value="I’mPartofaGroup">I’m Part of a Group</option>
           </select></div>
-          <div class="fullwidth"><span>How many professionals?*</span><select id="accountSize" name="accountSize">
-            <option value="">-- How many professionals? --</option>
-            <option value="1 Professional">It's just me</option>
-            <option value="More than 1 Professional">I'm part of a team</option>
+          <div class="fullwidth"><span>Research Stage*</span><select id="accountSize" name="accountSize">
+            <option value="">-- Research Stage --</option>
+            <option value="Just Curious">Just Curious</option>
+            <option value="I need something in 90 days">I need something in 90 days</option>
+            <option value="I need something this month">I need something this month</option>
+            <option value="I need something yesterday">I need something yesterday</option>
           </select></div>
           <button type="submit">Get a Demo</button>
         </form>
         <div class="privacy-link"><a href="#">Privacy Policy</a><span>*required fields</span></div>
-        <div class="phone-livechat-box"><span><i class="fa fa-phone" aria-hidden="true"></i> (877) 755-4279</span><a href="#"><i class="fa fa-comments" aria-hidden="true"></i>Live Chat</a></div>
+        <div class="phone-livechat-box"><span><i class="fa fa-phone" aria-hidden="true"></i> (xxx) xxx-xxxx</span><a href="#"><i class="fa fa-comments" aria-hidden="true"></i>Live Chat</a></div>
         <p class="signup-link">Ready to sign up? <a href="#">Buy Now</a></p>
         </div>
         </section>
