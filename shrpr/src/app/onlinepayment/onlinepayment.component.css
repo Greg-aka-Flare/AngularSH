@@ -1,21 +1,23 @@
 /*features Banner start*/
 .features-banner {
-    background-color: #b42b71;
-    background-image: url(../../assets/img/features-banner-bg.jpg);
-    background-repeat: no-repeat;
-    background-position: left bottom;
-    background-size: 768px;
-    height: 565px;
-    text-align: right;
+    background-color: #9ebfcc;
+    text-align: center;
 }
 .features-banner-text {
-    padding: 50px 10px 20px 10px;
+    padding: 30px 10px 20px 10px;
     max-width: 500px;
     display: inline-block;
-    vertical-align: top;
+    vertical-align:middle;
     text-align: left;
     width: 100%;
     box-sizing: border-box;
+}
+.features-banner-image {
+    margin: 30px 0 0 0;
+}
+.features-banner-image img {
+    display: block;
+    margin: 0 auto;
 }
 .features-banner-text h1 {
     color: #ffffff;
@@ -41,7 +43,7 @@
 .features-nav ul li {
     padding: 0 10px 10px 10px;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
     box-sizing: border-box;
     min-width: 105px;
 }
@@ -53,7 +55,7 @@
     display: block;
 }
 .features-nav ul li.active a {
-    color: #b42b71;
+    color: #9ebfcc;
 }
 .features-nav ul li a i {
     display: block;
@@ -358,12 +360,18 @@ carousel {
 @media only screen and (min-width: 769px) {
     /*features Banner start*/
     .features-banner {
-        background-size: 960px;
-        height: 500px;
+        text-align: right;
     }
     .features-banner-text {
-        padding: 100px 10px 20px 10px;
+        padding: 30px 10px 20px 10px;
         margin: 0 10% 0 0;
+        width: 43%;
+    }
+    .features-banner-image {
+        display: inline-block;
+        vertical-align: middle;
+        width: 40%;
+        margin: 30px 5% 0 0;
     }
     /*features nav start*/
     .features-nav ul li {
@@ -448,10 +456,6 @@ carousel {
 ================================================*/
 @media only screen and (min-width: 960px) {
         /*features Banner start*/
-    .features-banner {
-        background-size: cover;
-        background-position: left 76%;
-    }
     /*features nav start*/
     .features-nav ul li {
         min-width: 105px;

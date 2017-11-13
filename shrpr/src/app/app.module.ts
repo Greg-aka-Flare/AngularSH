@@ -43,6 +43,7 @@ import { BlogComponent } from './blog/blog.component';
 import { PodcastComponent } from './podcast/podcast.component';
 import { Carousel } from './carousel/carousel.component';
 import { Slide } from './carousel/slide.component';
+import { OnlinepaymentComponent } from './onlinepayment/onlinepayment.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { Slide } from './carousel/slide.component';
     BlogComponent,
     PodcastComponent,
     Carousel,
-    Slide
+    Slide,
+    OnlinepaymentComponent
    ],
   imports: [
     BrowserModule,
