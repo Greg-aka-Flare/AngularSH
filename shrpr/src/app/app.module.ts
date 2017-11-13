@@ -44,6 +44,7 @@ import { PodcastComponent } from './podcast/podcast.component';
 import { Carousel } from './carousel/carousel.component';
 import { Slide } from './carousel/slide.component';
 import { OnlinepaymentComponent } from './onlinepayment/onlinepayment.component';
+import { CustombrandedComponent } from './custombranded/custombranded.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { OnlinepaymentComponent } from './onlinepayment/onlinepayment.component'
     PodcastComponent,
     Carousel,
     Slide,
-    OnlinepaymentComponent
+    OnlinepaymentComponent,
+    CustombrandedComponent
    ],
   imports: [
     BrowserModule,

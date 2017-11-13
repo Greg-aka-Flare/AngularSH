@@ -17,6 +17,7 @@ import { VideosComponent } from './videos/videos.component';
 import { BlogComponent } from './blog/blog.component';
 import { PodcastComponent } from './podcast/podcast.component';
 import { OnlinepaymentComponent } from './onlinepayment/onlinepayment.component';
+import { CustombrandedComponent } from './custombranded/custombranded.component';
 
 const APP_ROUTES: Routes = [
 	//{ path: '', component: CoursesComponent },
@@ -33,7 +34,8 @@ const APP_ROUTES: Routes = [
 	{ path: 'videos', component: VideosComponent },
 	{ path: 'blog', component: BlogComponent },
 	{ path: 'podcast', component: PodcastComponent },
-	{ path: 'onlinepayment', component: OnlinepaymentComponent }
+	{ path: 'onlinepayment', component: OnlinepaymentComponent },
+	{ path: 'custombranded', component: CustombrandedComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
