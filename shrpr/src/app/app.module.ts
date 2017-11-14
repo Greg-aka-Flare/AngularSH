@@ -45,6 +45,12 @@ import { Carousel } from './carousel/carousel.component';
 import { Slide } from './carousel/slide.component';
 import { OnlinepaymentComponent } from './onlinepayment/onlinepayment.component';
 import { CustombrandedComponent } from './custombranded/custombranded.component';
+import { AutomatedcommunicationComponent } from './automatedcommunication/automatedcommunication.component';
+import { ReportsdashboardsComponent } from './reportsdashboards/reportsdashboards.component';
+import { ReviewsfeedbackComponent } from './reviewsfeedback/reviewsfeedback.component';
+import { FretrainingComponent } from './fretraining/fretraining.component';
+import { PricingComponent } from './pricing/pricing.component';
+import { FaqsComponent } from './faqs/faqs.component';
 
 
 @NgModule({
@@ -77,7 +83,13 @@ import { CustombrandedComponent } from './custombranded/custombranded.component'
     Carousel,
     Slide,
     OnlinepaymentComponent,
-    CustombrandedComponent
+    CustombrandedComponent,
+    AutomatedcommunicationComponent,
+    ReportsdashboardsComponent,
+    ReviewsfeedbackComponent,
+    FretrainingComponent,
+    PricingComponent,
+    FaqsComponent
    ],
   imports: [
     BrowserModule,
