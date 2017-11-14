@@ -1,0 +1,41 @@
+/* =============Search============================ */
+:host {
+    display:block;
+}
+:host /deep/ .completer-holder {
+    display:block;
+}
+
+:host /deep/ .completer-holder input.completer-input {
+    border: 1px solid #fff;
+    -webkit-box-shadow: 0 2px 3px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 3px 3px rgba(0,0,0,0.2);
+    color: #1b1a18;
+    height: 44px;
+    padding: 10px 5px 10px 44px;
+    width: 100%;
+    font-family: "circularstd book";
+    font-size: 16px;
+    border-radius: 2px;
+}
+:host /deep/ .completer-dropdown-holder {
+    position: absolute;
+    left:0;
+    top:90%;
+    height: auto;
+}
+/* =============================================================================
+   Medium SCREEN STYLES [Tab VIEW] START
+  ============================================================================= */
+/* 768px */
+@media only screen and (min-width: 768px) {
+    /*** Search ***/
+    :host /deep/ .completer-holder input.completer-input {
+        box-shadow: none !important;
+        border: 1px solid #cfcfcf !important;
+        border-radius: 3px;
+    }
+    :host /deep/ .completer-dropdown-holder {
+        top:98%;
+    }
+}
