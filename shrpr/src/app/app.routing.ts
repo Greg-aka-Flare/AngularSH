@@ -21,7 +21,7 @@ import { CustombrandedComponent } from './custombranded/custombranded.component'
 import { AutomatedcommunicationComponent } from './automatedcommunication/automatedcommunication.component';
 import { ReportsdashboardsComponent } from './reportsdashboards/reportsdashboards.component';
 import { ReviewsfeedbackComponent } from './reviewsfeedback/reviewsfeedback.component';
-import { FretrainingComponent } from './fretraining/fretraining.component';
+import { FreetrainingComponent } from './freetraining/freetraining.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { FaqsComponent } from './faqs/faqs.component';
 
@@ -45,7 +45,7 @@ const APP_ROUTES: Routes = [
 	{ path: 'automatedcommunication', component: AutomatedcommunicationComponent },
 	{ path: 'reportsdashboards', component: ReportsdashboardsComponent },
 	{ path: 'reviewsfeedback', component: ReviewsfeedbackComponent },
-	{ path: 'fretraining', component: FretrainingComponent },
+	{ path: 'freetraining', component: FreetrainingComponent },
 	{ path: 'pricing', component: PricingComponent },
 	{ path: 'faqs', component: FaqsComponent }
 ];

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-fretraining',
-  templateUrl: './fretraining.component.html',
-  styleUrls: ['./fretraining.component.css']
+  templateUrl: './freetraining.component.html',
+  styleUrls: ['./freetraining.component.css']
 })
-export class FretrainingComponent implements OnInit {
+export class FreetrainingComponent implements OnInit {
 
   images:Array<any> = [
     {"sType":"img","imgSrc":"../../assets/img/banner01.jpg"},

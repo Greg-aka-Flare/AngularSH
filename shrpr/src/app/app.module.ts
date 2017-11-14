@@ -48,7 +48,7 @@ import { CustombrandedComponent } from './custombranded/custombranded.component'
 import { AutomatedcommunicationComponent } from './automatedcommunication/automatedcommunication.component';
 import { ReportsdashboardsComponent } from './reportsdashboards/reportsdashboards.component';
 import { ReviewsfeedbackComponent } from './reviewsfeedback/reviewsfeedback.component';
-import { FretrainingComponent } from './fretraining/fretraining.component';
+import { FreetrainingComponent } from './freetraining/freetraining.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { FaqsComponent } from './faqs/faqs.component';
 
@@ -87,7 +87,7 @@ import { FaqsComponent } from './faqs/faqs.component';
     AutomatedcommunicationComponent,
     ReportsdashboardsComponent,
     ReviewsfeedbackComponent,
-    FretrainingComponent,
+    FreetrainingComponent,
     PricingComponent,
     FaqsComponent
    ],
