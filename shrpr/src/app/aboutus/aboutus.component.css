@@ -387,4 +387,10 @@
         vertical-align: top;
         width: 49.5%;
     }
+    #signup {
+        background-image: url(/assets/img/signup-left-bg.jpg), url(/assets/img/signup-right-bg.jpg);
+        background-position: 1% 50px, 99% 50px;
+        background-repeat: no-repeat, no-repeat;
+        padding: 100px 10px 100px 10px;
+    }
 }

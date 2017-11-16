@@ -102,29 +102,6 @@ main {
     padding:40px 0 40px 0;
     min-height: 350px;
 }
-
-
-
-
-/* =============curious section Start============================ */
-h1 {
-	color: #c50e3d;
-	font-size:38px;
-	line-height:38px;
-	font-weight:normal;
-	padding:0 0 25px 0;
-}
-h2 {
-	color:#000000;
-	font-size: 30px;
-	line-height: 30px;
-	font-weight:normal;
-	padding:0 0 10px 0;
-}
-h3, h4, h5, h6 {
-    margin: 0;
-    padding: 0 0 20px 0;
-}
 /* =============Search============================ */
 section#search {
     padding: 30px 20px 20px 20px;
@@ -142,11 +119,9 @@ section#search {
 .login-link a:hover{
     text-decoration: none;
 }
-/*header search box*/
 header section#search {
     display: none;
 }
-
 section#search form > span {
     display: block;
     padding: 0 0 16px;
@@ -195,6 +170,7 @@ section#search form input, section#search form .completer-input {
     font-family: "circularstd book";
     font-size: 16px;
     border-radius: 2px;
+    -webkit-appearance: none;
 }
 section#search form input::-webkit-input-placeholder { /* Chrome */
     color: #6f6f6f;
@@ -232,6 +208,28 @@ section#search form button {
 section#search form button:hover {
     background-color: #678e72;
 }
+
+
+
+/* =============curious section Start============================ */
+h1 {
+	color: #c50e3d;
+	font-size:38px;
+	line-height:38px;
+	font-weight:normal;
+	padding:0 0 25px 0;
+}
+h2 {
+	color:#000000;
+	font-size: 30px;
+	line-height: 30px;
+	font-weight:normal;
+	padding:0 0 10px 0;
+}
+h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0 0 20px 0;
+}
 /* =============================================================================
    Medium SCREEN STYLES [Tab VIEW] START
   ============================================================================= */
@@ -261,7 +259,7 @@ section#search form > span {
 section#search form > span:before {
     top: 12px;
 }
-section#search form input {
+section#search form input, section#search form .completer-input {
     box-shadow: none;
     border: 1px solid #cfcfcf;
     border-radius: 3px;
@@ -276,7 +274,6 @@ section#search form button {
 section#search form button:hover {
     background-color: #c95f5f;
 }	
-	
 }
 /* =============================================================================
    LARGE SCREEN STYLES [DESKTOP VIEW] START
@@ -293,6 +290,7 @@ section#search form button:hover {
     header.header_small section#search {
         padding: 5px 15px;
     }
+
 }
 
 
