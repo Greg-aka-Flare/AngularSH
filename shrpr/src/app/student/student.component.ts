@@ -28,55 +28,61 @@ export class StudentComponent implements OnInit {
   subscription: Subscription;
   width = document.documentElement.clientWidth;
   constructor(private studentService: StudentService, private route: ActivatedRoute, private courseService: CourseService ) {
-
-    let sub = this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
-
-      //console.log('param id: ' + this.id);
-      //console.log('student is: ' + this.students);
-    })
-    const $resizeEvent = Observable.fromEvent(window, 'resize')
-    .map(() => {
-      return document.documentElement.clientWidth;
-      })
-    $resizeEvent.subscribe(data => {
-      this.width = data;
-    });
-  }
-  
+    
+        let sub = this.route.params.subscribe((params: Params) => {
+          this.id = params['id'];
+    
+          //console.log('param id: ' + this.id);
+          //console.log('student is: ' + this.students);
+        })
+        const $resizeEvent = Observable.fromEvent(window, 'resize')
+        .map(() => {
+          return document.documentElement.clientWidth;
+          })
+        $resizeEvent.subscribe(data => {
+          this.width = data;
+        });
+    
+        
+      }
    
   ngOnInit() {
-    this.courseService.getCourses()
-    .subscribe(
-      (response) => {
-       this.courses = response;   
-
-       if(this.courses){
-        for(var i = 0, l = this.courses.length; i < l; i++) {
-          if(this.courses[i].instructor.id == this.id){
-            this.courseCard.push(this.courses[i]);
-          }
-        }
-       }
-
-      },
-      (error: Response) => console.log(error)
-    );
-
     this.studentService.getStudent(this.id)
     .subscribe(
           (response) => {
             this.students = response;
             this.studentCourse = response.courses;
+            //console.log('student courses area: ' + this.studentCourse);
             },
-
           (error: Response) => console.log(error)
         );
+
+      this.courseService.getCourses()
+        .subscribe(
+          (response) => {
+              this.courses = response;   
+              
+                for(var i = 0; i < this.studentCourse.length; i++) {
+                
+                  for(var j = 0; j < this.courses.length; j++) {
+                    
+                    if( (this.courses[j].id) == (this.studentCourse[i].id) ){
+                        
+                        //this.courseCard.push(this.courses[j]);
+                        console.log(this.courses[j].id);
+                    }
+                  }
+                } 
+          },
+          (error: Response) => console.log(error)
+        );
+       // console.log(this.courseCard);  
         
     }
 
     ngOnDestroy(){
       this.subscription.unsubscribe();
     }
+    
 
 }

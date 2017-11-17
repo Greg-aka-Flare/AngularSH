@@ -45,26 +45,26 @@
     <section *ngIf="width > 767" id="desktopcourses">
       <h2>Courses</h2>
       <h3>Upcoming Events with Triple Threat Training CT</h3>
-      <article class="card-box" *ngFor="let card of students.courses; let i = index">
-            <div class="img-ctn">
-                <div class="price">
-                  ${{ card.id }}
-                </div>
-                <figure>
-                    <img src="../../assets/img/court.jpg">
-                </figure>
-                <h3>{{card.title}}</h3>
-            </div>
-            <div class="card-info">
-              <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="card.rating" [showHalfStars]="true"></star-rating-comp></span></div>
-              <p class="date">
-                <i class="fa fa-calendar" aria-hidden="true"></i> 
-                  <span class="date_stamp">{{ card.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
-              </p>
-              <p class="with-box"><span>With</span> Thomas Allen</p>
-              <a href="/course/{{card.id}}"  class="page-cta">View Course</a>
-            </div>
-        </article>
+        <article class="card-box" *ngFor="let coursed of students.courses">
+              <div class="img-ctn">
+                  <div class="price">
+                    ${{coursed.id}}
+                  </div>
+                  <figure>
+                      <img src="../../assets/img/court.jpg">
+                  </figure>
+                  <h3>{{coursed.title}}</h3>
+              </div>
+              <div class="card-info">
+                <!--<div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="{{coursed.rating}}" [showHalfStars]="true"></star-rating-comp></span></div>-->
+                <!--<p class="date">
+                  <i class="fa fa-calendar" aria-hidden="true"></i> 
+                    <span class="date_stamp">{{ card.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
+                </p>-->
+                <p class="with-box"><span>With</span> {{coursed.instructor}}</p>
+                <a href="/course/{{coursed.id}}"  class="page-cta">View Course</a>
+              </div>
+          </article>
       <h2>ABOUT</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci repudiandae, omnis labore aspernatur quae commodi doloremque quo deleniti, sed nobis nihil corrupti facilis minima voluptatibus ullam possimus pariatur numquam.</p>
       <h2>CONTACT</h2>
