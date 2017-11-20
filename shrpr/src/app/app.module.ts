@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { StarRatingModule } from 'angular-star-rating';
 import { Ng2CompleterModule } from "ng2-completer";
 import { NgModel } from '@angular/forms';
@@ -52,6 +52,9 @@ import { FreetrainingComponent } from './freetraining/freetraining.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { FaqsComponent } from './faqs/faqs.component';
 
+import { AuthService } from './auth/auth.service';
+import { JwtModule } from '@auth0/angular-jwt';
+
 
 @NgModule({
   declarations: [
@@ -94,14 +97,22 @@ import { FaqsComponent } from './faqs/faqs.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('token');
+        },
+        whitelistedDomains: ['http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api', 'shrpr.dev', 'localhost:4200']
+      }
+    }),
     FormsModule,
     ReactiveFormsModule,
     Ng2CompleterModule,
     routing,
     StarRatingModule.forRoot()
   ],
-  providers: [CourseService, LikeService, InstructorService, StudentService, UserService, NgModel],
+  providers: [AuthService, CourseService, LikeService, InstructorService, StudentService, UserService, NgModel],
   bootstrap: [AppComponent]
 })
 export class AppModule {

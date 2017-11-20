@@ -2,12 +2,11 @@
   <li><a href="#" title="Become a Teacher">Become a Teacher</a></li>
   <li class="has_child" title="About Us"><a href="/about">About Us</a>
     <ul>
-      <li><a href="/team" title="The Team">The Team</a></li>
-      <li><a href="/values" title="Our Values">Our Values</a></li>
-      <!--<li><a href="#" [routerLink]="['/instructor', '2']">Instructor</a></li>-->
-      <li><a href="/instructor/3">Instructor</a></li>
-      <li><a href="/student/2">Student</a></li>
-      <li><a href="/marketing">Marketing</a></li>
+      <li><a routerLink="team" title="The Team">The Team</a></li>
+      <li><a routerLink="values" title="Our Values">Our Values</a></li>
+      <li><a [routerLink]="['/instructor', '3']">Instructor</a></li>
+      <li><a [routerLink]="['/student', '3']">Student</a></li>
+      <li><a routerLink="marketing">Marketing</a></li>
     </ul>
   </li>
   <li><a href="/login" title="Sign Up / Log In">Sign Up / Log In</a></li>

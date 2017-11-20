@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { UserInterface } from "../user.interface";
 import { UserService } from "../user.service";
 import { TabsComponent } from "../home/tabs/tabs.component";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../auth/auth.service';
 
 
 
@@ -18,9 +20,11 @@ export class LoginComponent implements OnInit {
   signupForm: FormGroup;
   loginForm: FormGroup;
 
-  constructor(public userService: UserService) { 
-
-  }
+  constructor(
+    public userService: UserService,
+    private http: HttpClient,
+    private auth: AuthService
+   ) {}
 
   ngOnInit() {
     this.signupForm = new FormGroup({
