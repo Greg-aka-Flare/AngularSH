@@ -60,7 +60,7 @@ export class InstructorProfileComponent implements OnInit {
             
           }
         }
-        console.log(this.courseCard);
+        //console.log(this.courseCard);
        }
       },
       (error: Response) => console.log(error)

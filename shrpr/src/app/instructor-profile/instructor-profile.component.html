@@ -2,10 +2,18 @@
 <div class="profile-picture">
   <!--<img src="../../assets/img/profile-picture.jpg" alt="" title="">-->
   <img src="../../assets/img/{{instructors?.profile_img}}" alt="" title="">
-  <div class="social-icon"><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></div>
+  <div class="social-icon">
+    <a href="{{details?.yelp}}" target="_blank" title="Yelp"><i class="fa fa-yelp" aria-hidden="true"></i></a>
+    <a href="{{details?.twitter}}" target="_blank" title="Twitter"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+    <a href="{{details?.facebook}}" target="_blank" title="Facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+    <a href="{{details?.linkedin}}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+    <a href="{{details?.pinterest}}" target="_blank" title="Pinterest"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a>
+  </div>
 </div>
 <div><h2>{{instructors?.name}}</h2>
-  <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ instructors?.addresses[0]?.city }}, {{ instructors?.addresses[0]?.state }}
+  <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{instructors?.email}}">{{instructors?.email}}</a><br>
+  <i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a>  
+  <!--<i aria-hidden="true" class="fa fa-map-marker"></i>  {{ instructors?.addresses[0]?.city }}, {{ instructors?.addresses[0]?.state }}-->
 <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3"></star-rating-comp> |  <a href="#">33 reviews</a></div></div>
 </section><!-- #profile header -->
 <tabs *ngIf="width < 768" >
@@ -62,7 +70,7 @@
         <i class="fa fa-calendar" aria-hidden="true"></i> 
           <span class="date_stamp">{{ card.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
       </p>
-      <p class="with-box"><span>With</span> {{card.instructor?.name}}</p>
+      <!--<p class="with-box"><span>With</span> {{card.instructor?.name}}</p>-->
       <a href="/course/{{card.id}}"  class="page-cta">View Course</a>
     </div>
 </article>

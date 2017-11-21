@@ -27,8 +27,6 @@ export class CoursecardComponent implements OnInit {
   constructor(private courseService: CourseService, private route: ActivatedRoute) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-       //console.log('param id: ' + this.id);
-       //console.log(this.course);
     })
     const $resizeEvent = Observable.fromEvent(window, 'resize')
     .map(() => {
@@ -45,11 +43,8 @@ export class CoursecardComponent implements OnInit {
     .subscribe(
           (response) => {
             this.course = response;   
-            //console.log(this.instructors)
             },
-          //(instructors: Instructor[]) =>  this.instructors = instructors,
           (error: Response) => console.log(error)
-          
         );
     }
 

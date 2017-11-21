@@ -30,10 +30,7 @@ export class StudentComponent implements OnInit {
   constructor(private studentService: StudentService, private route: ActivatedRoute, private courseService: CourseService ) {
     
         let sub = this.route.params.subscribe((params: Params) => {
-          this.id = params['id'];
-    
-          //console.log('param id: ' + this.id);
-          //console.log('student is: ' + this.students);
+        this.id = params['id'];
         })
         const $resizeEvent = Observable.fromEvent(window, 'resize')
         .map(() => {
@@ -52,31 +49,9 @@ export class StudentComponent implements OnInit {
           (response) => {
             this.students = response;
             this.studentCourse = response.courses;
-            },
-          (error: Response) => console.log(error)
-        );
-
-      this.courseService.getCourses()
-        .subscribe(
-          (response) => {
-              this.courses = response;   
-              
-                for(var i = 0; i < this.studentCourse.length; i++) {
-                
-                  for(var j = 0; j < this.courses.length; j++) {
-                    
-                    if( (this.courses[j].id) == (this.studentCourse[i].id) ){
-                        
-                        //this.courseCard.push(this.courses[j]);
-                        console.log(this.courses[j].id);
-                    }
-                  }
-                } 
           },
           (error: Response) => console.log(error)
         );
-       // console.log(this.courseCard);  
-        
     }
 
     ngOnDestroy(){

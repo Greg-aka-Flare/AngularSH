@@ -315,4 +315,8 @@
     border-bottom: none;
     margin: 0;
 }
+#profile-header > div.profile-picture {
+    max-width:150px;
+    text-align: center;
+}
 }

@@ -4,7 +4,7 @@
       <img src="../../assets/img/profile-picture.jpg" alt="" title="">
       <div class="social-icon"><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></div>
     </div>
-    <div><h2>Students {{students.id}}</h2>
+    <div><h2>{{students.name}}</h2>
       <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ students.addresses[0].city }}, {{ students.addresses[0].state }}
     <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3"></star-rating-comp> |  <a href="#">33 reviews</a></div></div>
     </section><!-- #profile header -->
