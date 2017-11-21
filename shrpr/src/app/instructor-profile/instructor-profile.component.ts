@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser'
 import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
@@ -20,7 +20,7 @@ import { InstructorService } from "../instructor.service";
   templateUrl: './instructor-profile.component.html',
   styleUrls: ['./instructor-profile.component.css']
 })
-export class InstructorProfileComponent implements OnInit {
+export class InstructorProfileComponent implements OnInit, OnDestroy {
   instructors:any[];
   courses: any[];
   courseCard: any[] = [];
@@ -73,6 +73,6 @@ export class InstructorProfileComponent implements OnInit {
   }
 
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
   }
 }

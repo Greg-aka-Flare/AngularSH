@@ -1,21 +1,21 @@
 <section id="profile-header">
     <div class="profile-picture">
-      <img *ngIf="students.profile_img == null" src="../../assets/img/profile-picture.jpg" alt="" title="">
-      <img *ngIf="students.profile_img !== null" src="../../assets/img/{{students.profile_img}}" alt="" title="">
+      <img *ngIf="students?.profile_img == null" src="../../assets/img/profile-picture.jpg" alt="" title="">
+      <img *ngIf="students?.profile_img !== null" src="../../assets/img/{{students?.profile_img}}" alt="" title="">
       <div class="social-icon">
           <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
           <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
           <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
       </div>
     </div>
-    <div><h2>{{students.name}}</h2>
-      <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ students.addresses[0].city }}, {{ students.addresses[0].state }}
+    <div><h2>{{students?.name}}</h2>
+      <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ students?.addresses[0].city }}, {{ students?.addresses[0].state }}
     <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3"></star-rating-comp> |  <a href="#">33 reviews</a></div></div>
     </section><!-- #profile header -->
     <tabs *ngIf="width < 768" >
       <tab tabTitle="Courses">
       <h3>Upcoming Events with Triple Threat Training CT</h3>
-      <article class="card-box" *ngFor="let card of students.courses; let i = index">
+      <article class="card-box" *ngFor="let card of students?.courses; let i = index">
             <div class="img-ctn">
                 <figure>
                     <img src="../../assets/img/court.jpg">
@@ -38,8 +38,8 @@
     </tab>
     <tab tabTitle="CONTACT">
             <div class="contact_box">
-                    <address *ngFor="let address of students.addresses">
-                      {{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}, {{ address.zip }}<br>{{ address.country }}<br><br>Phone: {{ students.phone }}<br>Email: {{ students.email }}</address>
+                    <address *ngFor="let address of students?.addresses">
+                      {{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}, {{ address.zip }}<br>{{ address.country }}<br><br>Phone: {{ students?.phone }}<br>Email: {{ students?.email }}</address>
                   </div>
     </tab>
     </tabs><!-- #Tab -->
@@ -47,7 +47,7 @@
     <section *ngIf="width > 767" id="desktopcourses">
       <h2>Courses</h2>
       <h3>Upcoming Events with Triple Threat Training CT</h3>
-        <article class="card-box" *ngFor="let coursed of students.courses">
+        <article class="card-box" *ngFor="let coursed of students?.courses">
               <div class="img-ctn">
                   <!--<div class="price">${{coursed.id}}</div>-->
                   <figure>
@@ -69,7 +69,7 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci repudiandae, omnis labore aspernatur quae commodi doloremque quo deleniti, sed nobis nihil corrupti facilis minima voluptatibus ullam possimus pariatur numquam.</p>
       <h2>CONTACT</h2>
       <div class="contact_box">
-          <address>{{ students.addresses[0].streetAddress }}<br>{{ students.addresses[0].city }}, {{ students.addresses[0].state }}, {{ students.addresses[0].zip }}<br>{{ students.addresses[0].country }}<br><br>Phone: {{ students.phone }}<br>Email: {{ students.email }}</address>
+          <address>{{ students?.addresses[0].streetAddress }}<br>{{ students?.addresses[0].city }}, {{ students?.addresses[0].state }}, {{ students?.addresses[0].zip }}<br>{{ students?.addresses[0].country }}<br><br>Phone: {{ students?.phone }}<br>Email: {{ students?.email }}</address>
         </div>
     </section>
     <!-- desktop view End -->
