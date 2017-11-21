@@ -1,3 +1,4 @@
+/*Team Page*/
 #meettheteem {
     padding: 50px 0 40px 0;
     text-align: center;
@@ -121,13 +122,68 @@
     transform: rotate(360deg);
 
 }
+  /*Team Member Page*/
+  .teammember-description > article {
+    padding: 10px 15px 10px 15px;
+}
+.teammember-description > div {
+    max-width:435px;
+    width: 100%;
+    margin: 0 auto 20px auto;
+    text-align: center; 
+}
+.teammember-description > div > a {
+    display: block;
+    text-decoration: none;
+    background-color: #f0efec;
+    -webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+.teammember-description > div > a:hover {
+    background-color: #e5e3de;
+}
+.teammember-description div > a > img {
+    display: block;
+    width: 100%;
+}
+.teammember-description > div > h3{
+    font-size: 20px;
+    line-height: 20px;
+    color: #ea4e4e;
+    padding: 20px 0 7px 0;
+}
+.teammember-description > div > h3 a {
+    color: #ea4e4e;
+    text-decoration: none;
+}
+.teammember-description > div > h3 a:hover {
+    text-decoration: underline;
+}
+.teammember-description > div > span {
+    display: block;
+    font-size: 15px;
+    line-height: 20px;
+    color: #6d6f71;
+    padding: 0 0 5px 0;
+}
 /*================================================
 769px tablet media start
 ================================================*/
 @media only screen and (min-width: 769px) {
+    /*Team Page*/
     #meettheteem article {
         float: left;
         width: 33.33%;
+        max-width: none;
+    }
+    /*Team Member Page*/
+    .teammember-description > div{
+        float: right;
+        width: 33%;
+        margin: 0 0 20px 5%;
         max-width: none;
     }
 }

@@ -12,7 +12,10 @@ import { LoginComponent } from './login/login.component';
 import { MarketingComponent } from './marketing/marketing.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { TeamComponent } from './team/team.component';
-import { TeammemberComponent } from './team/teammember.component';
+import { BrandonComponent } from './team/brandon.component';
+import { ErickComponent } from './team/erick.component';
+import { MikeComponent } from './team/mike.component';
+import { MilesComponent } from './team/miles.component';
 import { ValuesComponent } from './values/values.component';
 import { VideosComponent } from './videos/videos.component';
 import { BlogComponent } from './blog/blog.component';
@@ -37,7 +40,10 @@ const APP_ROUTES: Routes = [
 	{ path: 'marketing', component: MarketingComponent },
 	{ path: 'about', component: AboutusComponent },
 	{ path: 'team', component: TeamComponent },
-	{ path: 'teammember', component: TeammemberComponent },
+	{ path: 'brandon', component: BrandonComponent },
+	{ path: 'erick', component: ErickComponent },
+	{ path: 'mike', component: MikeComponent },
+	{ path: 'miles', component: MilesComponent },
 	{ path: 'values', component: ValuesComponent },
 	{ path: 'videos', component: VideosComponent },
 	{ path: 'blog', component: BlogComponent },

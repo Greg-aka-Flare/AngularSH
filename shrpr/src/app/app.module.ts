@@ -37,7 +37,10 @@ import { LoginComponent } from './login/login.component';
 import { MarketingComponent } from './marketing/marketing.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { TeamComponent } from './team/team.component';
-import { TeammemberComponent } from './team/teammember.component';
+import { BrandonComponent } from './team/brandon.component';
+import { ErickComponent } from './team/erick.component';
+import { MikeComponent } from './team/mike.component';
+import { MilesComponent } from './team/miles.component';
 import { ValuesComponent } from './values/values.component';
 import { VideosComponent } from './videos/videos.component';
 import { BlogComponent } from './blog/blog.component';
@@ -94,7 +97,10 @@ import { JwtModule } from '@auth0/angular-jwt';
     FreetrainingComponent,
     PricingComponent,
     FaqsComponent,
-    TeammemberComponent
+    BrandonComponent,
+    ErickComponent,
+    MikeComponent,
+    MilesComponent
    ],
   imports: [
     BrowserModule,
