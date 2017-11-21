@@ -26,6 +26,7 @@ export class InstructorProfileComponent implements OnInit {
   courseCard: any[] = [];
   private id:number;
   subscription: Subscription;
+  details:string;
 // change data to use getter and setter
   width = document.documentElement.clientWidth;
 
@@ -69,7 +70,9 @@ export class InstructorProfileComponent implements OnInit {
      this.instructorService.getInstructor(this.id)
      .subscribe(
        (response) => {
-        this.instructors = response;   
+        this.instructors = response;
+        this.details = JSON.parse(response.details);
+
         //console.log(this.instructors)
         },
        //(instructors: Instructor[]) =>  this.instructors = instructors,

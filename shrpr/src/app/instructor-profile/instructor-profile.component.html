@@ -1,6 +1,7 @@
 <section id="profile-header">
 <div class="profile-picture">
-  <img src="../../assets/img/profile-picture.jpg" alt="" title="">
+  <!--<img src="../../assets/img/profile-picture.jpg" alt="" title="">-->
+  <img src="../../assets/img/{{instructors?.profile_img}}" alt="" title="">
   <div class="social-icon"><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></div>
 </div>
 <div><h2>{{instructors?.name}}</h2>
@@ -32,7 +33,7 @@
   </article>
 </tab>
 <tab tabTitle="ABOUT">
-  ABOUT
+  <article class="tab_content_para"><p>{{details?.description}}</p></article>
 </tab>
 <tab tabTitle="CONTACT">
         <div class="contact_box">
@@ -67,7 +68,7 @@
 </article>
   
   <h2>ABOUT</h2>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci repudiandae, omnis labore aspernatur quae commodi doloremque quo deleniti, sed nobis nihil corrupti facilis minima voluptatibus ullam possimus pariatur numquam.</p>
+  <p>{{details?.description}}</p>
   <h2>CONTACT</h2>
   <div class="contact_box">
         <address>{{ instructors?.addresses[0]?.streetAddress }}<br>{{ instructors?.addresses[0]?.city }}, {{ instructors?.addresses[0]?.state }}, {{ instructors?.addresses[0]?.zip }}<br>{{ instructors?.addresses[0]?.country }}<br><br>Phone: {{ instructors?.phone }}<br>Email: {{ instructors?.email }}</address>

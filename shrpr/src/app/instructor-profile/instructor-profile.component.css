@@ -102,7 +102,12 @@
     line-height: 22px;
     padding: 10px;
 }
-
+.tab_content_para {
+    font-family: Arial, Helvetica, sans-serif;
+    padding:10px;
+    font-size:14px;
+    line-height: 21px;
+}
 .card-box {
     padding: 0 0 10px 0;
     background-color: #ffffff;
