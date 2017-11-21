@@ -37,6 +37,7 @@ import { LoginComponent } from './login/login.component';
 import { MarketingComponent } from './marketing/marketing.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { TeamComponent } from './team/team.component';
+import { TeammemberComponent } from './team/teammember.component';
 import { ValuesComponent } from './values/values.component';
 import { VideosComponent } from './videos/videos.component';
 import { BlogComponent } from './blog/blog.component';
@@ -92,7 +93,8 @@ import { JwtModule } from '@auth0/angular-jwt';
     ReviewsfeedbackComponent,
     FreetrainingComponent,
     PricingComponent,
-    FaqsComponent
+    FaqsComponent,
+    TeammemberComponent
    ],
   imports: [
     BrowserModule,
