@@ -1,6 +1,7 @@
 <section id="profile-header">
     <div class="profile-picture">
-      <img src="../../assets/img/profile-picture.jpg" alt="" title="">
+      <img *ngIf="students.profile_img == null" src="../../assets/img/profile-picture.jpg" alt="" title="">
+      <img *ngIf="students.profile_img !== null" src="../../assets/img/{{students.profile_img}}" alt="" title="">
       <div class="social-icon">
           <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
           <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
@@ -16,9 +17,6 @@
       <h3>Upcoming Events with Triple Threat Training CT</h3>
       <article class="card-box" *ngFor="let card of students.courses; let i = index">
             <div class="img-ctn">
-                <div class="price">
-                  ${{ card.id }}
-                </div>
                 <figure>
                     <img src="../../assets/img/court.jpg">
                 </figure>
@@ -40,7 +38,8 @@
     </tab>
     <tab tabTitle="CONTACT">
             <div class="contact_box">
-                    <address>{{ students.addresses[0].streetAddress }}<br>{{ students.addresses[0].city }}, {{ students.addresses[0].state }}, {{ students.addresses[0].zip }}<br>{{ students.addresses[0].country }}<br><br>Phone: {{ students.phone }}<br>Email: {{ students.email }}</address>
+                    <address *ngFor="let address of students.addresses">
+                      {{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}, {{ address.zip }}<br>{{ address.country }}<br><br>Phone: {{ students.phone }}<br>Email: {{ students.email }}</address>
                   </div>
     </tab>
     </tabs><!-- #Tab -->

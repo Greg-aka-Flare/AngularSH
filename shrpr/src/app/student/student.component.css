@@ -12,7 +12,7 @@
     width: 66%;
 }
 #profile-header > div.profile-picture {
-    max-width: 83px;
+    max-width: 84px;
     width: 29%;
     margin: 0 4% 0 0;
     text-align: center;
@@ -309,5 +309,9 @@
 .contact_box address:first-child {
     border-bottom: none;
     margin: 0;
+}
+#profile-header > div.profile-picture {
+    max-width:200px;
+    text-align: center;
 }
 }
