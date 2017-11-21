@@ -47,6 +47,7 @@ section#sign-up p {
     margin: 0 auto;
     max-width: 257px;
 }
+
 /*tab*/
 :host /deep/ tabs .tabs ul  {
     padding: 14px 0 14px 0;

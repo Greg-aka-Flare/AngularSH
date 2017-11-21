@@ -71,6 +71,13 @@
 .card-info h3 {
     padding:0 0 10px 0;
 }
+.card-info h3 a {
+    color:#222222;
+    text-decoration: none;
+}
+.card-info h3 a:hover {
+    color:#ed9639;
+}
 .card-box {
     margin: 0 1.5% 10px 1.5%;
     background-color: #ffffff;
