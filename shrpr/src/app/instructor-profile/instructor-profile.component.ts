@@ -27,14 +27,12 @@ export class InstructorProfileComponent implements OnInit {
   private id:number;
   subscription: Subscription;
   details:string;
-// change data to use getter and setter
+
   width = document.documentElement.clientWidth;
 
   constructor(private instructorService: InstructorService, private route: ActivatedRoute, private courseService: CourseService) { 
-  //constructor() { 
     let sub = this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      //console.log('param id: ' + this.id);
     })
     
     const $resizeEvent = Observable.fromEvent(window, 'resize')
@@ -55,12 +53,9 @@ export class InstructorProfileComponent implements OnInit {
        if(this.courses){
         for(var i = 0, l = this.courses.length; i < l; i++) {
           if(this.courses[i].instructor.id == this.id){
-            //console.log(this.courses[i]);
             this.courseCard.push(this.courses[i]);
-            
           }
         }
-        //console.log(this.courseCard);
        }
       },
       (error: Response) => console.log(error)
@@ -72,14 +67,9 @@ export class InstructorProfileComponent implements OnInit {
        (response) => {
         this.instructors = response;
         this.details = JSON.parse(response.details);
-
-        //console.log(this.instructors)
         },
-       //(instructors: Instructor[]) =>  this.instructors = instructors,
        (error: Response) => console.log(error)
-       
      );
-    
   }
 
   ngOnDestroy(){

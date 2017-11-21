@@ -1,8 +1,11 @@
-
 <section id="profile-header">
     <div class="profile-picture">
       <img src="../../assets/img/profile-picture.jpg" alt="" title="">
-      <div class="social-icon"><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></div>
+      <div class="social-icon">
+          <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+          <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+          <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+      </div>
     </div>
     <div><h2>{{students.name}}</h2>
       <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ students.addresses[0].city }}, {{ students.addresses[0].state }}
@@ -47,9 +50,7 @@
       <h3>Upcoming Events with Triple Threat Training CT</h3>
         <article class="card-box" *ngFor="let coursed of students.courses">
               <div class="img-ctn">
-                  <div class="price">
-                    ${{coursed.id}}
-                  </div>
+                  <!--<div class="price">${{coursed.id}}</div>-->
                   <figure>
                       <img src="../../assets/img/court.jpg">
                   </figure>

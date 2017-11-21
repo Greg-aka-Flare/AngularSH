@@ -12,13 +12,16 @@
     width: 66%;
 }
 #profile-header > div.profile-picture {
-    max-width: 83px;
+    max-width: 84px;
     width: 29%;
     margin: 0 4% 0 0;
     text-align: center;
 }
-#profile-header > div .fa {
+#profile-header > div a .fa {
     color: #222222;
+}
+#profile-header > div a:hover .fa {
+    color: #ed9639;
 }
 #profile-header h2 {
     font-size: 22px;
@@ -49,7 +52,7 @@
     text-decoration: underline;
     display: inline-block;
     vertical-align: top;
-    margin: 0 0 0 5px;
+    margin: 0 2px 0 2px;
 }
 #profile-header > div a:hover {
     text-decoration: none;
@@ -269,8 +272,12 @@
     border-bottom: 1px solid #e5e5e6;
     margin: 0 0 20px 0;
 }
-
-
+.contact_instructor a {
+    color:#222222;
+}
+.contact_instructor a:hover {
+    color:#ed9639;
+}
 
 @media only screen and (min-width: 769px) {
     #desktopcourses {
@@ -316,7 +323,7 @@
     margin: 0;
 }
 #profile-header > div.profile-picture {
-    max-width:150px;
+    max-width:200px;
     text-align: center;
 }
 }

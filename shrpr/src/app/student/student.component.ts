@@ -49,6 +49,7 @@ export class StudentComponent implements OnInit {
           (response) => {
             this.students = response;
             this.studentCourse = response.courses;
+            console.log(this.students);
           },
           (error: Response) => console.log(error)
         );
