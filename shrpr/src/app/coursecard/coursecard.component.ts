@@ -39,13 +39,13 @@ export class CoursecardComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.courseService.getCourse(this.id)
-    .subscribe(
-          (response) => {
-            this.course = response;   
-            },
-          (error: Response) => console.log(error)
-        );
+    // this.courseService.getCourse(this.id)
+    // .subscribe(
+    //       (response) => {
+    //         this.course = response;   
+    //         },
+    //       (error: Response) => console.log(error)
+    //     );
     }
 
   ngOnDestroy(){

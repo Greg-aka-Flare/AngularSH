@@ -18,11 +18,11 @@ export class NewCourseComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
-  	this.courseService.addCourse(form.value.name)
-  		.subscribe(
-  			() => alert('Course created')
-  		);
-  	form.reset();
+  	// this.courseService.addCourse(form.value.name)
+  	// 	.subscribe(
+  	// 		() => alert('Course created')
+  	// 	);
+  	// form.reset();
   }
 
 }

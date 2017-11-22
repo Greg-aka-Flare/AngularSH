@@ -16,7 +16,7 @@ export class CourseService {
 		// return this.http.post('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/course', body, {headers: headers});
 	}
 
-	getCourses(group: number, limit: number): Observable<any> {
+	getCourses(group: number = 0, limit: number = 0): Observable<any> {
 
 		//create api endpoint
 		let api = this.url + 'courses';
