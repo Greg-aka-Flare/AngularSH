@@ -18,7 +18,7 @@ import { CourseService } from "../course.service";
   templateUrl: './coursecard.component.html',
   styleUrls: ['./coursecard.component.css']
 })
-export class CoursecardComponent implements OnInit {
+export class CoursecardComponent implements OnInit, OnDestroy {
 
   private id: number;
   course: any;
