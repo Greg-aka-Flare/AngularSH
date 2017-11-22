@@ -1,20 +1,20 @@
 <ul>
-  <li><a href="#" title="Become a Teacher">Become a Teacher</a></li>
-  <li class="has_child" title="About Us"><a routerLink="about">About Us</a>
+  <li><a href="javascript:void(0);" title="Become a Teacher">Become a Teacher</a></li>
+  <li class="has_child" title="About Us"><a [routerLink]="['/about']">About Us</a>
     <ul>
-      <li><a routerLink="team" title="The Team">The Team</a></li>
-      <li><a routerLink="values" title="Our Values">Our Values</a></li>
+      <li><a [routerLink]="['/team']" title="The Team">The Team</a></li>
+      <li><a [routerLink]="['/values']" title="Our Values">Our Values</a></li>
       <li><a [routerLink]="['/instructor', '2']">Instructor</a></li>
       <li><a [routerLink]="['/student', '5']">Student</a></li>
-      <li><a routerLink="marketing">Marketing</a></li>
+      <li><a [routerLink]="['/marketing']">Marketing</a></li>
     </ul>
   </li>
   <li><a routerLink="login" title="Sign Up / Log In">Sign Up / Log In</a></li>
-  <li class="has_child"><a href="#" title="Content">Content</a>
+  <li class="has_child"><a href="javascript:void(0);" title="Content">Content</a>
     <ul>
-      <li><a routerLink="videos" title="Videos">Videos</a></li>
-      <li><a routerLink="blog" title="Blog">Blog</a></li>
-      <li><a routerLink="podcast" title="Podcast">Podcast</a></li>
+      <li><a [routerLink]="['/videos']" title="Videos">Videos</a></li>
+      <li><a [routerLink]="['/blog']" title="Blog">Blog</a></li>
+      <li><a [routerLink]="['/podcast']" title="Podcast">Podcast</a></li>
     </ul>
   </li>  
 </ul>
