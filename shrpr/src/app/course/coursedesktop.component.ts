@@ -45,6 +45,7 @@ export class CoursedesktopComponent implements OnInit {
   forWork: Course[];
   forKids: Course[];
   counter: number;
+  
   counterSubscription: Subscription;
 
   constructor(
