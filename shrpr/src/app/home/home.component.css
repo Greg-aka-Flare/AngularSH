@@ -19,7 +19,7 @@ section#sign-up{
     text-align: center;
     padding: 40px 20px;
 }
-section#sign-up button{
+section#sign-up a.home-cta {
     background-color: #484848;
     border: none;
     -webkit-box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
@@ -35,8 +35,9 @@ section#sign-up button{
     padding:7px 10px;
     text-align: center;
     width: 100%;
+    text-decoration: none;
 }
-section#sign-up button:hover {
+section#sign-up a.home-cta:hover {
     background-color: #757575;
 }
 section#sign-up p {
@@ -102,7 +103,7 @@ section#sign-up p {
     section#sign-up{
         padding: 111px 20px 70px;
     }
-    section#sign-up button {
+    section#sign-up a.home-cta {
         font-size: 28px;
         line-height: 28px;
         max-width: 354px;

@@ -355,6 +355,21 @@ carousel {
     font-weight: bold;
     line-height: 18px;
 }
+.cta-banner {
+    font-size: 16px;
+    color: #ffffff;
+    display: inline-block;
+    text-decoration: none;
+    vertical-align: top;
+    background: #d53b3c;
+    padding: 10px 20px;
+    -webkit-box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    text-transform: uppercase;
+}
+.cta-banner:hover {
+background: #c95f5f;
+}
 /*FAQ Bullet*/
 .faq {
     padding: 30px 10px 30px 10px;
@@ -378,8 +393,6 @@ carousel {
     width: 8px;
     background: #696c74;
     border-radius: 50%;
-
-
 }
 /*================================================
 769px tablet media start
