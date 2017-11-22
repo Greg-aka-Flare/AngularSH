@@ -41,8 +41,8 @@ export class CoursedesktopComponent implements OnInit {
   //constructor(private likeService: LikeService, private dislikeService: DislikeService) {
  // }
   constructor(private likeService: LikeService) {
-    console.log('Last like Courses id in Local Storage: '+ localStorage.getItem("likekey"));
-    console.log('Last dislike Courses id in Local Storage: '+ localStorage.getItem("dislikekey"));
+    //console.log('Last like Courses id in Local Storage: '+ localStorage.getItem("likekey"));
+    //console.log('Last dislike Courses id in Local Storage: '+ localStorage.getItem("dislikekey"));
   }
   
   
