@@ -80,47 +80,10 @@
 }
 .card-box {
     margin: 0 1.5% 10px 1.5%;
-    background-color: #ffffff;
+    background-color: #fff;
     float: left;
     width: 30%;
-    transition: all 0.3s ease-in-out;
 }
-.card-box.moveRight {
-    opacity: 0;
-    animation-name: rollOutRight;
-    animation-duration: 1s;
-    animation-fill-mode: both;
-}
-.card-box.moveLeft {
-    opacity: 0;
-    animation-name: rollOutLeft;
-    animation-duration: 1s;
-    animation-fill-mode: both;
-}
-@keyframes rollOutRight {
-    from {
-      opacity: 1;
-    }
-  
-    to {
-      opacity: 0;
-      transform: translate3d(500%, 0, 0) rotate3d(0, 0, 1, 120deg);
-      width:0;
-      margin:0;
-    }
-  }
-
-@keyframes rollOutLeft {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-        transform: translate3d(-500%, 0, 0) rotate3d(0, 0, 1, -120deg);
-        width:0;
-        margin:0;
-    }
-}  
  
 .card-row {
     margin: 0 0 5px 0;
@@ -261,6 +224,7 @@
 }
 
 .hollow-icon {
+    cursor: pointer;
     display: block;
     width: 40px;
     height: 40px;
@@ -274,7 +238,7 @@
     font-size: 24px;
     text-decoration: none;
     opacity: 0.4;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease-out;
 }
 .hollow-icon.like{
     background-color: #28e93b;
@@ -291,11 +255,11 @@
     float: right;
 }
 
-.thumbUp.active {
+.thumbUp:hover {
     background-color: #28e93b;
 }
 
-.thumbDown.active {
+.thumbDown:hover {
     background-color: #e92828;
 }
 

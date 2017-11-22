@@ -15,45 +15,31 @@ export class LikeService {
   private oldDislikeValue;
 
   constructor(){
-    this.oldLikeValue = JSON.parse(localStorage.getItem("likekey"));
-    this.oldDislikeValue = JSON.parse(localStorage.getItem('dislikekey'));
-    if(this.oldLikeValue !== null) {
-      this.likeCoursesArray.push(this.oldLikeValue);
-    }
-    if(this.oldDislikeValue !== null){
-      this.dislikeCoursesArray.push(this.oldDislikeValue);
-    }
+    this.oldLikeValue = JSON.parse(localStorage.getItem("likes"));
+    this.oldDislikeValue = JSON.parse(localStorage.getItem('dislikes'));
   }
  
 
-  incrementCounter(id, gid){
+  likeCounter(id){
   	this.counter++;
-    this.likeCoursesArray.push(
-        {
-          'courseid' : id,
-          'groupid': gid
-        }
-      );
+    this.likeCoursesArray.push(id);
+
     this.subject.next(this.counter);
-    //console.log('Like Courses id: ' + JSON.stringify(this.likeCoursesArray));
-    localStorage.setItem('likekey',JSON.stringify(this.likeCoursesArray));
-    console.log('New Like Courses id in Local Storage: '+ localStorage.getItem("likekey"));
+
+    localStorage.setItem('likes', JSON.stringify(this.likeCoursesArray));
+
+    console.log('New Like Courses id in Local Storage: '+ localStorage.getItem("likes"));
   }
 
   getCounter(): Observable<number> {
   	return this.subject.asObservable();
   }
   
-  dislikeCounter(id, gid){
-    this.dislikeCoursesArray.push(
-      {
-        'courseid' : id,
-        'groupid': gid
-      }
-    );
-    //console.log('Dislike Courses id: ' + JSON.stringify(this.dislikeCoursesArray));
-    localStorage.setItem('dislikekey',JSON.stringify(this.dislikeCoursesArray));
-    console.log('New dislike Courses id in Local Storage: '+ localStorage.getItem("dislikekey"));
+  dislikeCounter(id){
+    this.dislikeCoursesArray.push(id);
+
+    localStorage.setItem('dislikes', JSON.stringify(this.dislikeCoursesArray));
+    console.log('New dislike Courses id in Local Storage: '+ localStorage.getItem("dislikes"));
   }
   
 }

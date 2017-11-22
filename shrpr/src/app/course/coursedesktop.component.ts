@@ -1,12 +1,10 @@
-import { Component, OnInit, OnDestroy, Input, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { GroupsPipe } from './filter.pipe';
 import { Response } from "@angular/http";
 
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
 import { LikeService } from "../like.service";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Subscription } from 'rxjs/Subscription';
 import { StarRatingModule } from 'angular-star-rating';
 
@@ -15,71 +13,149 @@ import { StarRatingModule } from 'angular-star-rating';
   selector: 'app-coursedesktop',
   templateUrl: './coursedesktop.component.html',
   styleUrls: ['./coursedesktop.component.css'],
-  providers: []
+  providers: [],
+  animations: [
+  trigger('state', [
+    state('void', style({
+      opacity: 0,
+      transform: 'scale(0.5)'
+    })),
+    state('default', style({
+      opacity: 1,
+      transform: 'scale(1.0)'
+    })),
+    state('like', style({
+      opacity: 0,
+      transform: 'scale(0.9)'
+    })),
+    state('dislike', style({
+      opacity: 0,
+      transform: 'scale(0.9)'
+    })),
+    transition('void => default', animate('300ms ease-in')),
+    transition('default => like', animate('100ms ease-out')),
+    transition('default => dislike', animate('100ms ease-out'))
+  ])
+]
 })
 
 export class CoursedesktopComponent implements OnInit {
- // initialize a private variable _data, it's a BehaviorSubject
-  private _data = new BehaviorSubject<Course[]>([]);
-  courses: any[];
+
+  forFun: Course[];
+  forWork: Course[];
+  forKids: Course[];
   counter: number;
-  subscription: Subscription;
-  likeCourses: any[] = []; 
-  // change data to use getter and setter
-  
-  @Input()
-  set data(value) {
-      // set the latest value for _data BehaviorSubject
-      this._data.next(value);
-  };
+  counterSubscription: Subscription;
 
-  get data() {
-      // get the latest value from _data BehaviorSubject
-      return this._data.getValue();
-  };
+  constructor(
+    private courseService: CourseService,
+    private likeService: LikeService
+   ) {}
 
-  //constructor(private likeService: LikeService, private dislikeService: DislikeService) {
- // }
-  constructor(private likeService: LikeService) {
-    console.log('Last like Courses id in Local Storage: '+ localStorage.getItem("likekey"));
-    console.log('Last dislike Courses id in Local Storage: '+ localStorage.getItem("dislikekey"));
-  }
-  
-  
   ngOnInit() {
-    //check when input changes
-    this._data
-        .subscribe(x => {
-            this.courses = this.data;
-            if(this.courses) {
-              for(var i = 0, l = this.courses.length; i < l; i++) {
-                this.courses[i].state = 'default';
-              }
-            }
-        });
 
-      this.subscription = this.likeService.getCounter().subscribe((count) => {
-        this.counter = count;
-        
-      });
+    this.courseService.getCourses(1, 3).subscribe(courses => {
+      this.forFun = courses;
+    });
+
+    this.courseService.getCourses(2, 3).subscribe(courses => {
+      this.forWork = courses;
+    });
+
+    this.courseService.getCourses(3, 3).subscribe(courses => {
+      this.forKids = courses;
+    });
+
+    this.counterSubscription = this.likeService.getCounter().subscribe((count) => {
+      this.counter = count;
+    });
   }
 
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+    this.counterSubscription.unsubscribe();
   }
 
-  onLike(id, gid){
-    this.likeService.incrementCounter(id, gid);
-    var course = this.courses.filter(function( obj ){
-      if(obj.id == id) obj.state = 'like';
-    });
-    
+  onLike(course, i){
+
+    if(course.state === 'default'){
+
+      //set state to like
+      course.state = 'like';
+
+      //increment like counter
+      this.likeService.likeCounter(course.id);
+
+      //set variable
+      let newCourse: Course;
+
+      //wait 100ms for animation to finish
+      setTimeout(() => {
+
+        //get new course
+        this.courseService.getCourses(course.group.id, 1).subscribe(courses => {
+
+          //new course
+          newCourse = courses[0];
+
+          //check group id, update necessary group
+          switch(course.group.id){
+            case 1:
+              this.forFun.splice(i, 1, newCourse);
+            break;
+
+            case 2:
+              this.forWork.splice(i, 1, newCourse);
+            break;
+
+            case 3:
+              this.forKids.splice(i, 1, newCourse);
+            break;
+          }
+        });
+
+      }, 100);
+    }
   }
-  
-  onDislike(id, gid){
-    this.likeService.dislikeCounter(id, gid);
-    var course = this.courses.filter(function( obj ){
-      if(obj.id == id) obj.state = 'dislike';
-    });
-  }
+
+  onDislike(course, i){
+
+    if(course.state === 'default'){
+
+      //set state to like
+      course.state = 'dislike';
+
+      //increment like counter
+      this.likeService.dislikeCounter(course.id);
+
+      //set variable
+      let newCourse: Course;
+
+      //wait 100ms for animation to finish
+      setTimeout(() => {
+
+        //get new course
+        this.courseService.getCourses(course.group.id, 1).subscribe(courses => {
+
+          //new course
+          newCourse = courses[0];
+
+          //check group id, update necessary group
+          switch(course.group.id){
+            case 1:
+              this.forFun.splice(i, 1, newCourse);
+            break;
+
+            case 2:
+              this.forWork.splice(i, 1, newCourse);
+            break;
+
+            case 3:
+              this.forKids.splice(i, 1, newCourse);
+            break;
+          }
+        });
+
+      }, 100);
+    }
+  }  
 }
