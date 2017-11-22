@@ -1,11 +1,10 @@
-
 <section id="profile-header">
     <div class="profile-picture">
-      <img src="../../assets/img/profile-picture.jpg" alt="" title="">
+      <img src="../../assets/img/{{course?.semesters[0].primary_img}}" alt="" title="">
       <div class="social-icon"><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></div>
     </div>
     <div><h2>{{course?.title}}</h2>
-      <a href="/instructor/{{course.instructor.id}}">{{ course?.instructor?.name }}</a>
+      <a [routerLink]="['/instructor', course.instructor.id]">{{ course?.instructor?.name }}</a>
     <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="course?.rating" [showHalfStars]="true"></star-rating-comp> |  <a href="#">33 reviews</a></div></div>
     </section><!-- #profile header -->
     <tabs *ngIf="width < 768" >

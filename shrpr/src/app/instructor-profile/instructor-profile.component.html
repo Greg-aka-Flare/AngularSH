@@ -22,20 +22,20 @@
   <article class="card-box" *ngFor="let card of courseCard; let i = index">
       <div class="img-ctn">
           <div class="price">
-            ${{ card.semesters[0].amount }}
+            ${{ card?.semesters[0]?.amount }}
           </div>
           <figure>
               <img src="../../assets/img/court.jpg">
           </figure>
-          <h3>{{card.title}}</h3>
+          <h3>{{card?.title}}</h3>
       </div>
       <div class="card-info">
         <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="3"></star-rating-comp></span></div>
         <p class="date">
           <i class="fa fa-calendar" aria-hidden="true"></i> 
-            <span class="date_stamp">{{ card.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
+            <span class="date_stamp">{{ card?.semesters[0]?.start_date | date: 'MM/dd/yyyy' }}</span>
         </p>
-        <a href="/course/{{card.id}}"  class="page-cta">View Course</a>
+        <a [routerLink]="['/course', card?.id]"  class="page-cta">View Course</a>
       </div>
   </article>
 </tab>
@@ -58,7 +58,7 @@
   <article class="card-box" *ngFor="let card of courseCard; let i = index">
     <div class="img-ctn">
         <div class="price">
-          ${{ card.semesters[0].amount }}
+          ${{ card?.semesters[0]?.amount }}
         </div>
         <figure>
             <img src="../../assets/img/court.jpg">
@@ -69,10 +69,10 @@
       <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="3"></star-rating-comp></span></div>
       <p class="date">
         <i class="fa fa-calendar" aria-hidden="true"></i> 
-          <span class="date_stamp">{{ card.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
+          <span class="date_stamp">{{ card?.semesters[0]?.start_date | date: 'MM/dd/yyyy' }}</span>
       </p>
       <!--<p class="with-box"><span>With</span> {{card.instructor?.name}}</p>-->
-      <a href="/course/{{card.id}}"  class="page-cta">View Course</a>
+      <a [routerLink]="['/course', card?.id]"  class="page-cta">View Course</a>
     </div>
 </article>
   
@@ -93,7 +93,7 @@
   <dd><h2>Balance Indoboard Yoga</h2>
   <p>Good Class. Fun for a yoga beginner to try something new. you'll definitely feel the burn.</p></dd>
 </dl>
-<p class="seeall-link"><a href="">see all related reviews</a></p>
+<p class="seeall-link"><a href="javascript:void(0);">see all related reviews</a></p>
 
 </section><!-- #reviews -->
 
