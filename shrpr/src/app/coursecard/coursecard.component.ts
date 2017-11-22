@@ -45,7 +45,6 @@ export class CoursecardComponent implements OnInit, OnDestroy {
     });
 
     this.courseService.getCourse(this.id).subscribe(course => {
-
       this.course = course;
     });
   }

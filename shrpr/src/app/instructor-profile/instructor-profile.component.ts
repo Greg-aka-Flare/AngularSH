@@ -27,7 +27,7 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
   private id:number;
   subscription: Subscription;
   details:string;
-
+  
   width = document.documentElement.clientWidth;
 
   constructor(private instructorService: InstructorService, private route: ActivatedRoute, private courseService: CourseService) { 
@@ -50,6 +50,14 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
     .subscribe(
       (courses) => {
        this.courses = courses;
+       if(this.courses){
+        for(var i = 0, l = this.courses.length; i < l; i++) {
+          if(this.courses[i].instructor.id == this.id){
+            this.courseCard.push(this.courses[i]);
+          }
+        }
+       }
+
       },
       (error: Response) => console.log(error)
       
