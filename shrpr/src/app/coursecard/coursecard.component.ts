@@ -21,10 +21,17 @@ import { CourseService } from "../course.service";
 export class CoursecardComponent implements OnInit {
 
   private id: number;
-  course: any[];
+  course: any;
   subscription: Subscription;
   width = document.documentElement.clientWidth;
-  constructor(private courseService: CourseService, private route: ActivatedRoute) {
+
+  constructor(
+    private courseService: CourseService, 
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
     })
@@ -36,20 +43,14 @@ export class CoursecardComponent implements OnInit {
     $resizeEvent.subscribe(data => {
       this.width = data;
     });
-   }
 
-  ngOnInit() {
-    // this.courseService.getCourse(this.id)
-    // .subscribe(
-    //       (response) => {
-    //         this.course = response;   
-    //         },
-    //       (error: Response) => console.log(error)
-    //     );
-    }
+    this.courseService.getCourse(this.id).subscribe(course => {
+
+      this.course = course;
+    });
+  }
 
   ngOnDestroy(){
     this.subscription.unsubscribe();
   }
-
 }

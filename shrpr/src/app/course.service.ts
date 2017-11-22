@@ -24,8 +24,6 @@ export class CourseService {
 		if(group) api = this.updateQueryString('group', group, api);
 		if(limit) api = this.updateQueryString('limit', limit, api);
 
-		console.log(api);
-
 		//get courses, add default state
 		return this.http.get(api)
     .map(function(data: any) {
@@ -41,10 +39,11 @@ export class CourseService {
 	}
 
 	getCourse(id: number){
-		return this.http.get('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/course/' + id)
-		.map(
-			(response: Response) => response.json()
-		);	
+
+		//create api endpoint
+		let api = this.url + 'course/' + id;
+
+		return this.http.get(api);	
 	}
 	
 	updateCourse(id: number, newName: string){
