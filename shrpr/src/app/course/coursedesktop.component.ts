@@ -46,7 +46,8 @@ export class CoursedesktopComponent implements OnInit, OnDestroy {
   forKids: Course[];
   counter: number;
   
-  counterSubscription: Subscription;
+  //counterSubscription: Subscription;
+  private counterSubscription = new Subscription();
 
   constructor(
     private courseService: CourseService,
@@ -55,21 +56,21 @@ export class CoursedesktopComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.courseService.getCourses(1, 3).subscribe(courses => {
+    this.counterSubscription.add(this.courseService.getCourses(1, 3).subscribe(courses => {
       this.forFun = courses;
-    });
+    }));
 
-    this.courseService.getCourses(2, 3).subscribe(courses => {
+    this.counterSubscription.add(this.courseService.getCourses(2, 3).subscribe(courses => {
       this.forWork = courses;
-    });
+    }));
 
-    this.courseService.getCourses(3, 3).subscribe(courses => {
+    this.counterSubscription.add(this.courseService.getCourses(3, 3).subscribe(courses => {
       this.forKids = courses;
-    });
+    }));
 
-    this.counterSubscription = this.likeService.getCounter().subscribe((count) => {
+    this.counterSubscription.add(this.counterSubscription = this.likeService.getCounter().subscribe((count) => {
       this.counter = count;
-    });
+    }));
   }
 
   ngOnDestroy(){

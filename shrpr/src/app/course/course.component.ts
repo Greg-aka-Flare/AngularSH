@@ -46,7 +46,8 @@ export class CourseComponent implements OnInit {
   courses: Course[];
   counter: number = 0;
   colorState: string;
-  subscription: Subscription;
+  //subscription: Subscription;
+  private subscriptions = new Subscription();
 
   editing = false;
   editValueName = '';
@@ -63,17 +64,17 @@ export class CourseComponent implements OnInit {
   ngOnInit() {
 
 
-    this.courseService.getCourses(0, 10).subscribe(courses => {
+    this.subscriptions.add(this.courseService.getCourses(0, 10).subscribe(courses => {
       this.courses = courses;
-    });
+    }));
 
-    this.subscription = this.likeService.getCounter().subscribe((count) => {
+    this.subscriptions.add(this.likeService.getCounter().subscribe((count) => {
       this.counter = count;
-    });
+    }));
   }
 
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 
   onEdit(){

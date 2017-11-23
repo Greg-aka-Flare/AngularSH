@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser'
 import { Response } from "@angular/http";
 import {trigger, state, style, transition, animate} from '@angular/animations';
-
+import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
@@ -22,7 +22,9 @@ declare var google;
 })
 
 export class HomeComponent implements OnInit {
+  private subscriptions = new Subscription();
   width = document.documentElement.clientWidth;
+
 
   isheaderShrunk: boolean = false;
   location: string = '';
@@ -34,9 +36,9 @@ export class HomeComponent implements OnInit {
         return document.documentElement.clientWidth;
         })
       
-      $resizeEvent.subscribe(data => {
+      this.subscriptions.add($resizeEvent.subscribe(data => {
         this.width = data;
-      });
+      }));
   }
 
   ngOnInit() {
@@ -117,23 +119,8 @@ export class HomeComponent implements OnInit {
         return '';
       }
   }
-
-  clickedtab1:boolean = false;
-  clickedtab2:boolean = false;
-  clickedtab3:boolean = false;
-  clicked1() {
-    this.clickedtab2 = false;
-    this.clickedtab3 = false;
-    this.clickedtab1 = !this.clickedtab1;
+  ngOnDestroy(){
+    this.subscriptions.unsubscribe();
   }
-  clicked2() {
-    this.clickedtab2 = !this.clickedtab2;
-    this.clickedtab3 = false;
-    this.clickedtab1 = false;
-  }
-  clicked3() {
-    this.clickedtab2 = false;
-    this.clickedtab3 = !this.clickedtab3;
-    this.clickedtab1 = false;
-  }
+  
 }

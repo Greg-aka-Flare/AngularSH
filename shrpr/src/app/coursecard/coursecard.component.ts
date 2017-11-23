@@ -22,7 +22,8 @@ export class CoursecardComponent implements OnInit, OnDestroy {
 
   private id: number;
   course: any;
-  subscription: Subscription;
+  //subscription: Subscription;
+  private subscriptions = new Subscription();
   width = document.documentElement.clientWidth;
 
   constructor(
@@ -32,24 +33,24 @@ export class CoursecardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.route.params.subscribe((params: Params) => {
+    this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-    })
+    }))
     const $resizeEvent = Observable.fromEvent(window, 'resize')
     .map(() => {
       return document.documentElement.clientWidth;
       })
     
-    $resizeEvent.subscribe(data => {
+      this.subscriptions.add($resizeEvent.subscribe(data => {
       this.width = data;
-    });
+    }));
 
-    this.courseService.getCourse(this.id).subscribe(course => {
+    this.subscriptions.add(this.courseService.getCourse(this.id).subscribe(course => {
       this.course = course;
-    });
+    }));
   }
 
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 }

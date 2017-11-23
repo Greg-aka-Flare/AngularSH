@@ -26,7 +26,8 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
   courses: any;
   courseCard:any[] = [];
   private myid:number;
-  subscription: Subscription;
+  //subscription: Subscription;
+  private subscriptions = new Subscription();
   instrocterdata:string;
   
   details:string;
@@ -34,22 +35,22 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
   width = document.documentElement.clientWidth;
 
   constructor(private instructorService: InstructorService, private route: ActivatedRoute, private courseService: CourseService) { 
-    let sub = this.route.params.subscribe((params: Params) => {
+    let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.myid = params['id'];
-    })
+    }))
     
     const $resizeEvent = Observable.fromEvent(window, 'resize')
     .map(() => {
       return document.documentElement.clientWidth;
       })
     
-    $resizeEvent.subscribe(data => {
+      this.subscriptions.add($resizeEvent.subscribe(data => {
       this.width = data;
-    });
+    }));
   }
   
   ngOnInit() {
-    this.courseService.getCourses()
+    this.subscriptions.add(this.courseService.getCourses()
     .subscribe(
       (courses) => {
        this.courses = courses;
@@ -64,21 +65,21 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
       },
       (error: Response) => console.log(error)
       
-    );
+    ));
 
-     this.instructorService.getInstructor(this.myid)
+    this.subscriptions.add(this.instructorService.getInstructor(this.myid)
      .subscribe(
        (response) => {
         this.instructors = response;
         this.details = JSON.parse(response.details);
         },
        (error: Response) => console.log(error)
-     );
+     ));
      
   }
   
 
   ngOnDestroy(){
-    //this.subscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 }
