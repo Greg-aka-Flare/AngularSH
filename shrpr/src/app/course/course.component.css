@@ -58,6 +58,11 @@
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 2;
+}
+#curious-swiper .img-ctn .overlay h1 a {
+    color: #000;
+    text-decoration: none;
 }
 #curious-swiper .img-ctn .overlay h1{
     color: #000;
@@ -84,5 +89,5 @@
     height: 100%;
     left:0;
     top:0;
-    z-index: 2;
+    
 }

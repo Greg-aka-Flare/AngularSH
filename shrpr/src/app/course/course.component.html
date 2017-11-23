@@ -1,21 +1,21 @@
 <section id="curious-swiper">
     <article
     *ngFor="let course of courses; let i = index" 
-    (swipeleft)="onDislike(course.id, course.group.id)" 
-    (swiperight)="onLike(course.id, course.group.id)"
-    [@cardSwipe]="courses[i].state"
+    (swipeleft)="onDislike(course?.id, course?.group?.id)" 
+    (swiperight)="onLike(course?.id, course?.group?.id)"
+    [@cardSwipe]="courses[i]?.state"
     >
         <div class="category">
-            {{ course.categories[0].name }}
+            {{ course?.categories[0]?.name }}
 
             <figure class="rating">
-                <star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp>
+                <star-rating-comp [starType]="'svg'" [rating]="course?.rating" [showHalfStars]="true"></star-rating-comp>
             </figure><!-- .rating -->
         </div><!-- .category -->
 
         <div class="img-ctn">
             <div class="price">
-                ${{ course.semesters[0].amount }}
+                ${{ course?.semesters[0]?.amount }}
             </div><!-- .price -->
 
             <figure>
@@ -23,23 +23,24 @@
             </figure>
         
             <div class="overlay">
-                <h1><a href="/course/{{course.id}}">{{ course.title }}</a></h1>
-
+                <h1>
+                    <a [routerLink]="['/course', course?.id]">{{ course?.title }}</a></h1>
+                
                 <p class="location">
                     <i class="fa fa-map-marker" aria-hidden="true"></i> 
 
-                    <a>{{ course.semesters[0].addresses[0].city }}</a>, 
+                    <a>{{ course?.semesters[0]?.addresses[0]?.city }}</a>, 
 
-                    <a>{{ course.semesters[0].addresses[0].state }}</a>
+                    <a>{{ course?.semesters[0]?.addresses[0]?.state }}</a>
                 </p><!-- .location -->
 
                 <p class="date">
                     <i class="fa fa-calendar" aria-hidden="true"></i> 
 
-                    {{ course.semesters[0].start_date | date: 'MM/dd/yyyy' }}
+                    {{ course?.semesters[0]?.start_date | date: 'MM/dd/yyyy' }}
                 </p><!-- .date -->
             </div><!-- .overlay -->
-            <span class="overlay-color" [@overlay]='course.state'></span>
+            <span class="overlay-color" [@overlay]='course?.state'></span>
         </div><!-- .img-ctn -->
     </article>
 </section><!-- #curious-swiper -->
