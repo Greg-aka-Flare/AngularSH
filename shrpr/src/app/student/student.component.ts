@@ -18,7 +18,7 @@ import { StudentService } from '../student.service';
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
-export class StudentComponent implements OnInit {
+export class StudentComponent implements OnInit, OnDestroy {
 
   students:any[];
   courses: any[];
