@@ -22,7 +22,20 @@ export class ReportsdashboardsComponent implements OnInit {
   //Photos
   private slides:Array<any> = [];
   private slidescontent:Array<any> = [];
+  wasClicked = false;
+  hasClicked = false;
+  hasedClicked = false;
+  
+      onClick() {
+          this.wasClicked= true;
+      }
+      onhasClick() {
+        this.hasClicked= true;
+    }
 
+    onhasedClick() {
+      this.hasedClicked= true;
+  }
   constructor() {
     this.addNewSlide();
    }

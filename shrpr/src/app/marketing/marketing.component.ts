@@ -12,6 +12,20 @@ export class MarketingComponent implements OnInit {
     {"sType":"img","imgSrc":"../../assets/img/banner03.jpg"},
     {"sType":"img","imgSrc":"../../assets/img/banner04.jpg"},
   ];
+  wasClicked = false;
+  hasClicked = false;
+  hasedClicked = false;
+  
+      onClick() {
+          this.wasClicked= true;
+      }
+      onhasClick() {
+        this.hasClicked= true;
+    }
+
+    onhasedClick() {
+      this.hasedClicked= true;
+  }
 
 
   //The time to show the next photo
