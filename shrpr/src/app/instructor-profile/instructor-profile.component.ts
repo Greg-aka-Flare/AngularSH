@@ -20,19 +20,22 @@ import { InstructorService } from "../instructor.service";
   templateUrl: './instructor-profile.component.html',
   styleUrls: ['./instructor-profile.component.css']
 })
+
 export class InstructorProfileComponent implements OnInit, OnDestroy {
   instructors:any[];
   courses: Course[];
-  courseCard: any[] = [];
-  private id:number;
+  courseCard:any[] = [];
+  private myid:number;
   subscription: Subscription;
+  instrocterdata:string;
+  
   details:string;
   
   width = document.documentElement.clientWidth;
 
   constructor(private instructorService: InstructorService, private route: ActivatedRoute, private courseService: CourseService) { 
     let sub = this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
+      this.myid = params['id'];
     })
     
     const $resizeEvent = Observable.fromEvent(window, 'resize')
@@ -52,9 +55,11 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
        this.courses = courses;
        if(this.courses){
         for(var i = 0, l = this.courses.length; i < l; i++) {
-          if(this.courses[i].instructor.id == this.id){
-            this.courseCard.push(this.courses[i]);
-          }
+          //console.log(this.courses[i].instructor.id);
+          if( this.courses[i].instructor.id == this.myid){
+              this.courseCard.push(this.courses[i]);
+              //console.log(this.courses[i].id);
+          } 
         }
        }
 
@@ -63,7 +68,7 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
       
     );
 
-     this.instructorService.getInstructor(this.id)
+     this.instructorService.getInstructor(this.myid)
      .subscribe(
        (response) => {
         this.instructors = response;
@@ -71,9 +76,11 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
         },
        (error: Response) => console.log(error)
      );
+     
   }
+  
 
   ngOnDestroy(){
-    //this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }
