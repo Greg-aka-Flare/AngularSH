@@ -6,7 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./freetraining.component.css']
 })
 export class FreetrainingComponent implements OnInit {
+  wasClicked = false;
+  hasClicked = false;
+  hasedClicked = false;
+  
+      onClick() {
+          this.wasClicked= true;
+      }
+      onhasClick() {
+        this.hasClicked= true;
+    }
 
+    onhasedClick() {
+      this.hasedClicked= true;
+  }
   images:Array<any> = [
     {"sType":"img","imgSrc":"../../assets/img/banner01.jpg"},
     {"sType":"img","imgSrc":"../../assets/img/banner02.jpg"},
