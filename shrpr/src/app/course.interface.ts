@@ -1,7 +1,7 @@
 export interface Course {
 	id: number;	
 	title: string;
-	instructor: string;
+	instructor:string;
 	address: string;
 	city: string;
 	state: string;

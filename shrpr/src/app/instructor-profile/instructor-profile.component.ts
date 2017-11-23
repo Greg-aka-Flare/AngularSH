@@ -23,7 +23,7 @@ import { InstructorService } from "../instructor.service";
 
 export class InstructorProfileComponent implements OnInit, OnDestroy {
   instructors:any[];
-  courses: Course[];
+  courses: any;
   courseCard:any[] = [];
   private myid:number;
   subscription: Subscription;
@@ -55,10 +55,8 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
        this.courses = courses;
        if(this.courses){
         for(var i = 0, l = this.courses.length; i < l; i++) {
-          //console.log(this.courses[i].instructor.id);
           if( this.courses[i].instructor.id == this.myid){
               this.courseCard.push(this.courses[i]);
-              //console.log(this.courses[i].id);
           } 
         }
        }
@@ -81,6 +79,6 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
   
 
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
   }
 }

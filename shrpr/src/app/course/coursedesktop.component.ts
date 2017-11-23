@@ -39,7 +39,7 @@ import { StarRatingModule } from 'angular-star-rating';
 ]
 })
 
-export class CoursedesktopComponent implements OnInit {
+export class CoursedesktopComponent implements OnInit, OnDestroy {
 
   forFun: Course[];
   forWork: Course[];
