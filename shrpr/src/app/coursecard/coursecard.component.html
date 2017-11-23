@@ -1,35 +1,36 @@
-<section id="profile-header">
+<article *ngIf="course">
+  <section id="profile-header">
     <div class="profile-picture">
-      <img src="../../assets/img/profile-picture.jpg" alt="{{course?.title}}" title="{{course?.title}}">
+      <img src="../../assets/img/profile-picture.jpg" alt="{{course.title}}" title="{{course.title}}">
       <!--<div class="social-icon"><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></div>-->
     </div>
-    <div><h2>{{course?.title}}</h2>
-      <a [routerLink]="['/instructor', course?.instructor?.id]">{{ course?.instructor?.name }}</a>
-    <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="course?.rating" [showHalfStars]="true"></star-rating-comp> |  <a href="#">33 reviews</a></div></div>
+    <div><h2>{{course.title}}</h2>
+      <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
+    <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp> |  <a href="#">33 reviews</a></div></div>
     </section><!-- #profile header -->
     <tabs *ngIf="width < 768">
     <tab tabTitle="ABOUT">
-        <div class="contact_box">{{course?.description}}</div>
+        <div class="contact_box">{{course.description}}</div>
     </tab>
     <tab tabTitle="CONTACT">
         <div class="contact_box">
-          <address *ngFor="let address of course?.semesters[0]?.addresses" >{{ address?.streetAddress }}<br>{{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>{{ address?.country }}</address>
+          <address *ngFor="let address of course.semesters[0].addresses" >{{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}, {{ address.zip }}<br>{{ address.country }}</address>
         </div>
     </tab>
     </tabs><!-- #Tab -->
     <!-- desktop view -->
     <section *ngIf="width > 767" id="desktopcourses">
       <h2>ABOUT</h2>
-      <p>{{course?.description}}</p>
+      <p>{{course.description}}</p>
       <h2>CONTACT</h2>
       <div class="contact_box">
-          <address *ngFor="let address of course?.semesters[0]?.addresses" >{{ address?.streetAddress }}<br>{{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>{{ address?.country }}</address>
+          <address *ngFor="let address of course.semesters[0].addresses" >{{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}, {{ address.zip }}<br>{{ address.country }}</address>
       </div>
     </section>
     <!-- desktop view End -->
     <!-- #reviews-->
     <section id="reviews">
-      <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="course?.rating" [showHalfStars]="true"></star-rating-comp> 5 | 33 reviews</div>
+      <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp> 5 | 33 reviews</div>
     <dl>
       <dt><img src="../../assets/img/reviews-profile.jpg" alt="" title="">Megana H.</dt>
       <dd><h2>Balance Indoboard Yoga</h2>
@@ -38,5 +39,4 @@
     <p class="seeall-link"><a href="#">see all related reviews</a></p>
     
     </section><!-- #reviews -->
-    
-    
+</article>    
