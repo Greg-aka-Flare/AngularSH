@@ -11,7 +11,12 @@
                   ${{ course.semesters[0].amount }}
               </div><!-- .price -->
               <figure>
-                  <img src="../../assets/img/court.jpg" />
+                  <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
+                      <slide *ngFor="let slidez of slides; let index=index"
+                             [active]="slidez.active">
+                             <img [src]="slidez.image" style="margin:auto;" class="slider-img">
+                      </slide>
+                  </carousel>
               </figure>
               <div class="overlay">
                   <p><i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a></p>
@@ -54,10 +59,13 @@
           
       <div class="course_header">
           <div class="course_slider">
-              <figure>
-                    <img src="../../assets/img/court.jpg" />
-              </figure>
-          </div>  
+              <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
+                  <slide *ngFor="let slidez of slides; let index=index"
+                         [active]="slidez.active">
+                         <img [src]="slidez.image" style="margin:auto;" class="slider-img">
+                  </slide>
+              </carousel>
+         </div>  
           <!-- .course_slider -->  
           <div class="course_info_desktop">
               <h1>{{course.title}}</h1>
