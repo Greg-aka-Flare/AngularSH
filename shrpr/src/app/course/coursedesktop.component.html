@@ -1,4 +1,8 @@
-<section id="for_fun_box" class="category_bucket magento">
+<section 
+    id="for_fun_box" 
+    class="category_bucket magento" 
+    *ngIf="forFun?.length > 0"
+>
     <h2>For Fun</h2>
 
     <div class="thee_col_content clearfix">
@@ -69,7 +73,11 @@
     </div>
 </section><!-- #for_fun_box -->
 
-<section id="for_work_box" class="category_bucket blue">
+<section 
+    id="for_work_box" 
+    class="category_bucket blue"
+    *ngIf="forWork?.length > 0"
+>
     <h2>For Work</h2>
 
     <div class="thee_col_content clearfix">
@@ -142,7 +150,11 @@
     </div>
 </section><!-- #for_work_box -->
 
-<section id="for_kids_box" class="category_bucket yellow">
+<section 
+    id="for_kids_box" 
+    class="category_bucket yellow"
+    *ngIf="forKids?.length > 0"
+>
     <h2>For Kids</h2>
 
     <div class="thee_col_content clearfix">

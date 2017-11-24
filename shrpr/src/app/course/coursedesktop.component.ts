@@ -32,9 +32,15 @@ import { StarRatingModule } from 'angular-star-rating';
       opacity: 0,
       transform: 'scale(0.9)'
     })),
+    state('remove', style({
+      opacity: 0,
+      height: 0,
+      width: 0
+    })),
     transition('void => default', animate('300ms ease-in')),
     transition('default => like', animate('100ms ease-out')),
-    transition('default => dislike', animate('100ms ease-out'))
+    transition('default => dislike', animate('100ms ease-out')),
+    transition('* => remove', animate('100ms ease-in'))
   ])
 ]
 })
@@ -56,15 +62,15 @@ export class CoursedesktopComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.counterSubscription.add(this.courseService.getCourses(1, 3).subscribe(courses => {
+    this.counterSubscription.add(this.courseService.getCourses(1, 3, true).subscribe(courses => {
       this.forFun = courses;
     }));
 
-    this.counterSubscription.add(this.courseService.getCourses(2, 3).subscribe(courses => {
+    this.counterSubscription.add(this.courseService.getCourses(2, 3, true).subscribe(courses => {
       this.forWork = courses;
     }));
 
-    this.counterSubscription.add(this.courseService.getCourses(3, 3).subscribe(courses => {
+    this.counterSubscription.add(this.courseService.getCourses(3, 3, true).subscribe(courses => {
       this.forKids = courses;
     }));
 
@@ -73,11 +79,11 @@ export class CoursedesktopComponent implements OnInit, OnDestroy {
     }));
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.counterSubscription.unsubscribe();
   }
 
-  onLike(course, i){
+  onLike(course, i) {
 
     if(course.state === 'default'){
 
@@ -87,39 +93,12 @@ export class CoursedesktopComponent implements OnInit, OnDestroy {
       //increment like counter
       this.likeService.likeCounter(course.id);
 
-      //set variable
-      let newCourse: Course;
-
-      //wait 100ms for animation to finish
-      setTimeout(() => {
-
-        //get new course
-        this.courseService.getCourses(course.group.id, 1).subscribe(courses => {
-
-          //new course
-          newCourse = courses[0];
-
-          //check group id, update necessary group
-          switch(course.group.id){
-            case 1:
-              this.forFun.splice(i, 1, newCourse);
-            break;
-
-            case 2:
-              this.forWork.splice(i, 1, newCourse);
-            break;
-
-            case 3:
-              this.forKids.splice(i, 1, newCourse);
-            break;
-          }
-        });
-
-      }, 100);
+      //add new course
+      this.addNewCourse(course, i);
     }
   }
 
-  onDislike(course, i){
+  onDislike(course, i) {
 
     if(course.state === 'default'){
 
@@ -129,14 +108,25 @@ export class CoursedesktopComponent implements OnInit, OnDestroy {
       //increment like counter
       this.likeService.dislikeCounter(course.id);
 
-      //set variable
-      let newCourse: Course;
+      //add new course
+      this.addNewCourse(course, i);
+    }
+  }
 
-      //wait 100ms for animation to finish
-      setTimeout(() => {
+  private addNewCourse(course, i) {
 
-        //get new course
-        this.courseService.getCourses(course.group.id, 1).subscribe(courses => {
+    let newCourse: Course;
+
+    //wait 100ms for animation to finish
+    setTimeout(() => {
+
+      //get excludes
+      let excludes = this.createExcludes();
+
+      //get new course
+      this.courseService.getCourses(course.group.id, 1, true, excludes).subscribe(courses => {
+
+        if(courses.length > 0){
 
           //new course
           newCourse = courses[0];
@@ -155,9 +145,65 @@ export class CoursedesktopComponent implements OnInit, OnDestroy {
               this.forKids.splice(i, 1, newCourse);
             break;
           }
-        });
+        }
+        else{
 
-      }, 100);
+          //set state to remove
+          course.state = 'remove';
+
+          //wait 100ms for animation to finish
+          setTimeout(() => {
+
+            //check group id, update necessary group
+            switch(course.group.id){
+              case 1:
+                this.forFun.splice(i, 1);
+              break;
+
+              case 2:
+                this.forWork.splice(i, 1);
+              break;
+
+              case 3:
+                this.forKids.splice(i, 1);
+              break;
+            }
+          }, 100);
+        }
+      });
+
+    }, 100);
+  }
+
+  private createExcludes() {
+
+    let excludes: number[] = [];
+
+    //for each group, create array of ids to exclude, return array
+    if(this.forFun.length > 0){
+
+      for(let course of this.forFun){
+
+        excludes.push(course.id);
+      }
     }
-  }  
+
+    if(this.forWork.length > 0){
+
+      for(let course of this.forWork){
+
+        excludes.push(course.id);
+      }
+    }
+
+    if(this.forKids.length > 0){
+
+      for(let course of this.forKids){
+
+        excludes.push(course.id);
+      }
+    }
+
+    return excludes;
+  }
 }

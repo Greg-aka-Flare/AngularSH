@@ -16,13 +16,48 @@ export class CourseService {
 		// return this.http.post('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/course', body, {headers: headers});
 	}
 
-	getCourses(group: number = 0, limit: number = 0): Observable<any> {
+	getCourses(
+		group: number = 0, 
+		limit: number = 0, 
+		filter: boolean = false,
+		excludes: number[] = []
+	): Observable<any> {
 
 		//create api endpoint
 		let api = this.url + 'courses';
 
 		if(group) api = this.updateQueryString('group', group, api);
 		if(limit) api = this.updateQueryString('limit', limit, api);
+
+		//check if we need to filter courses
+		if(filter){
+
+			//get likes/dislikes
+			let likes = JSON.parse(localStorage.getItem('likes'));
+			let dislikes = JSON.parse(localStorage.getItem('dislikes'));
+
+			//if likes found
+			if(likes){
+				for(let like of likes){
+					api = this.updateQueryString('likes[]', like, api);
+				}
+			}
+
+			//if dislikes found
+			if(dislikes){
+				for(let dislike of dislikes){
+					api = this.updateQueryString('dislikes[]', dislike, api);
+				}
+			}
+		}
+
+		//if we have courses to exclude
+		if(excludes.length > 0){
+
+			for(let exclude of excludes){
+					api = this.updateQueryString('excludes[]', exclude, api);
+			}
+		}
 
 		//get courses, add default state
 		return this.http.get(api)
