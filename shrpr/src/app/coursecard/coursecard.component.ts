@@ -71,9 +71,6 @@ export class CoursecardComponent implements OnInit, OnDestroy {
       );
 
     }));
-
-  
-
   }
  
   private removeLastSlide() {

@@ -1,6 +1,6 @@
 h1 {
     padding:15px 10px 10px 10px; 
-    color:#ed9b40;
+    color:#fc6a02;
 }
 
 .course_mobile_card {
@@ -358,7 +358,9 @@ ul.meetings_list li {
 @media only screen and (min-width: 769px) {
 
 .course_header {
-    border-bottom:2px solid #ed9b40;
+    background-color:#f4f4f4;
+    border-bottom:1px solid #cccccc;
+    padding:10px;
 }
 .course_slider {
     float:left;
@@ -422,6 +424,7 @@ figure.rating {
     float: right;
     width:24%;
     max-width:300px;
+    margin:0;
 }
 :host /deep/ .carousel-indicators {
     display:block;

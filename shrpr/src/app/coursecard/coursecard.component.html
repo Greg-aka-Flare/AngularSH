@@ -1,7 +1,7 @@
 <article *ngIf="course">
     <!-- mobile view start-->
     <section *ngIf="width < 768" id="profile-header">
-      <h1>{{course.title}}</h1>
+      <h2>{{course.title}}</h2>
       <article class="course_mobile_card">
           <div class="category">{{ course.categories[0].name }}
               <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp></figure><!-- .rating -->
