@@ -109,9 +109,9 @@ import { JwtModule } from '@auth0/angular-jwt';
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
-          return localStorage.getItem('token');
+          return localStorage.getItem('access_token');
         },
-        whitelistedDomains: ['http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api', 'shrpr.dev', 'localhost:4200']
+        whitelistedDomains: ['http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api', 'http://shrpr.dev', 'http://localhost:4200']
       }
     }),
     FormsModule,

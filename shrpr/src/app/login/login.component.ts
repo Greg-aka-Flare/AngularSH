@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, Validators.required)
     });
+
+    console.log(this.auth.loggedIn());
   }
 
   onSignup() {
@@ -57,10 +59,13 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
 
-    this.userService.login(email, password)
+    this.auth.login(email, password)
       .subscribe(
-        response => console.log(response),
+        response => {
+
+          localStorage.setItem('access_token', response.access_token);
+        },
         error => console.log(error)
-       );
+      );
   }
 }

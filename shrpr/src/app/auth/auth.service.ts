@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import 'rxjs/Rx';
+import { Observable } from "rxjs";
 
 @Injectable()
 export class AuthService {
@@ -20,5 +22,14 @@ export class AuthService {
     const tokenExpired: boolean = this.jwtHelperService.isTokenExpired(token);
 
     return !tokenExpired;
+  }
+
+  login(email: string, password: string): Observable<any> {
+    return this.http.post('http://shrpr.dev/api/auth/login', {
+      email: email,
+      password: password
+    }, {
+      headers: new HttpHeaders().set('X-Requested-With', 'XMLHttpRequest')
+    })
   }
 }
