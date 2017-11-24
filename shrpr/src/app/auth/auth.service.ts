@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post('http://shrpr.dev/api/auth/login', {
+    return this.http.post('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/auth/login', {
       email: email,
       password: password
     }, {
