@@ -22,6 +22,8 @@ export class CoursecardComponent implements OnInit, OnDestroy {
 
   private id: number;
   course: any;
+  semesterDetails:string;
+  
   //subscription: Subscription;
   private subscriptions = new Subscription();
   width = document.documentElement.clientWidth;
@@ -47,9 +49,11 @@ export class CoursecardComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.courseService.getCourse(this.id).subscribe(course => {
       this.course = course;
+      this.semesterDetails = JSON.parse(this.course.semesters[0].details);
+      
     }));
   }
-
+  
   ngOnDestroy(){
     this.subscriptions.unsubscribe();
   }

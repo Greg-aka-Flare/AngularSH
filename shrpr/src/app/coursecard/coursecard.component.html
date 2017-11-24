@@ -1,13 +1,109 @@
 <article *ngIf="course">
-  <section id="profile-header">
-    <div class="profile-picture">
-      <img src="../../assets/img/profile-picture.jpg" alt="{{course.title}}" title="{{course.title}}">
-      <!--<div class="social-icon"><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></div>-->
-    </div>
-    <div><h2>{{course.title}}</h2>
-      <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
-    <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp> |  <a href="#">33 reviews</a></div></div>
-    </section><!-- #profile header -->
+    <!-- mobile view start-->
+    <section *ngIf="width < 768" id="profile-header">
+      <h1>{{course.title}}</h1>
+      <article class="course_mobile_card">
+          <div class="category">{{ course.categories[0].name }}
+              <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp></figure><!-- .rating -->
+          </div><!-- .category -->
+          <div class="img-ctn">
+              <div class="price">
+                  ${{ course.semesters[0].amount }}
+              </div><!-- .price -->
+              <figure>
+                  <img src="../../assets/img/court.jpg" />
+              </figure>
+              <div class="overlay">
+                  <p><i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a></p>
+                  <p><i class="fa fa-map-marker" aria-hidden="true"></i> <span class="course_address_mobile" *ngFor="let address of course.semesters[0].addresses">{{ address.city }}, {{ address.state }}</span></p>
+              </div><!-- .overlay -->
+          </div><!-- .img-ctn -->
+          <div class="course_info">
+            <span class="action_btn">
+              <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a><br>
+              <a href="#"><i class="fa fa-list" aria-hidden="true"></i> Whishlist</a>
+            </span>
+            <p>Spot Available: 4 </p>
+            <p>Duration: {{course.semesters[0].duration}} weeks</p>
+            <p>Starts on: {{course.semesters[0].start_date | date: 'medium'}}</p>
+          </div>
+          <!-- .course_info -->
+          <div class="course_enroll_block">
+            <div class="enroll_row">
+              <select name="select_course_meeting">
+                <option *ngFor="let meeting of course.semesters[0].meetings" value="{{meeting.id}}">{{meeting.start | date: 'medium'}}</option>
+              </select>
+              <a class="page-btn" href="javascript:void(0);">Enroll Today</a>
+            </div>
+            <ul class="meetings_list">
+                <li *ngFor="let meeting of course.semesters[0].meetings">{{meeting.start | date: 'medium'}}</li>
+            </ul>
+            <!-- .enroll_row-->
+          </div>
+          <!-- .course_enroll_block -->
+          <div class="course_info">
+            <h2>Semester Information</h2>
+            <p>{{semesterDetails.info}}</p>
+          </div>
+          <!-- .course_info-->
+      </article>
+    </section>
+    <!-- mobile view ends-->
+    <!--desktop view start-->
+    <section *ngIf="width > 767" id="profile-header">
+          
+      <div class="course_header">
+          <div class="course_slider">
+              <figure>
+                    <img src="../../assets/img/court.jpg" />
+              </figure>
+          </div>  
+          <!-- .course_slider -->  
+          <div class="course_info_desktop">
+              <h1>{{course.title}}</h1>
+              <div class="course_rating_info">
+                {{ course.categories[0].name }} | <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp></figure> | <a href="#">33 Reviews</a><!-- .rating -->
+              </div><!-- .course_rating_info -->
+              <p>
+                <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
+                <span class="course_price_desktop">${{ course.semesters[0].amount }}</span>
+              </p>
+              <p>
+                <i class="fa fa-map-marker" aria-hidden="true"></i> <span class="course_address_mobile" *ngFor="let address of course.semesters[0].addresses">{{ address.city }}, {{ address.state }}</span>
+              </p>
+              <br>
+              <p>Spot Available: 4 </p>
+              <p>Duration: {{course.semesters[0].duration}} weeks</p>
+              <p>Starts on: {{course.semesters[0].start_date | date: 'medium'}}
+                <span class="action_btn">
+                  <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a>
+                  <a href="#"><i class="fa fa-list" aria-hidden="true"></i> Whishlist</a>
+                </span>
+              </p>
+          </div>
+          <!-- .course_info_desktop-->
+        </div>
+      <!-- .course_desktop_card -->
+      <section class="course_semester_desktop">
+          <div class="course_enroll_block">
+              <div class="enroll_row">
+                <select name="select_course_meeting">
+                  <option *ngFor="let meeting of course.semesters[0].meetings" value="{{meeting.id}}">{{meeting.start | date: 'medium'}}</option>
+                </select>
+                <a class="page-btn" href="javascript:void(0);">Enroll Today</a>
+              </div>
+              <ul class="meetings_list">
+                  <li *ngFor="let meeting of course.semesters[0].meetings">{{meeting.start | date: 'medium'}}</li>
+              </ul>
+              <!-- .enroll_row-->
+            </div>
+            <!-- .course_enroll_block -->
+        <h2>Semester Information</h2>
+        <p>{{semesterDetails.info}}</p>
+      </section>
+    </section>
+    <!--desktop view ends-->
+    <!-- #profile header -->
     <tabs *ngIf="width < 768">
     <tab tabTitle="ABOUT">
         <div class="contact_box">{{course.description}}</div>
@@ -23,10 +119,8 @@
       <h2>ABOUT</h2>
       <p>{{course.description}}</p>
       <h2>CONTACT</h2>
-      <div class="contact_box">
-          <address *ngFor="let address of course.semesters[0].addresses" >{{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}, {{ address.zip }}<br>{{ address.country }}</address>
-      </div>
-    </section>
+      <address *ngFor="let address of course.semesters[0].addresses">{{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}, {{ address.zip }}<br>{{ address.country }}</address>
+      </section>
     <!-- desktop view End -->
     <!-- #reviews-->
     <section id="reviews">
