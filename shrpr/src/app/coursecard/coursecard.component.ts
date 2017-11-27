@@ -40,6 +40,7 @@ export class CoursecardComponent implements OnInit, OnDestroy {
 
   lat: number = 51.678418;
   lng: number = 7.809007;
+ 
 
 
   //The time to show the next photo
