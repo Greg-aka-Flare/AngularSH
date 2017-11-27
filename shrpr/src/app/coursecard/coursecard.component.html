@@ -4,7 +4,7 @@
       <h2>{{course.title}}</h2>
       <article class="course_mobile_card">
           <div class="category">{{ course.categories[0].name }}
-              <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp></figure><!-- .rating -->
+              <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true"></star-rating-comp></figure><!-- .rating -->
           </div><!-- .category -->
           <div class="img-ctn">
               <div class="price">
@@ -28,8 +28,7 @@
               <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a><br>
               <a href="#"><i class="fa fa-list" aria-hidden="true"></i> Whishlist</a>
             </span>
-            <p>Spot Available: 4 </p>
-            <p>Duration: {{course.semesters[0].duration}} weeks</p>
+            <p>Semesters: {{course.semesters[0].duration}}</p>
             <p>Starts on: {{course.semesters[0].start_date | date: 'medium'}}</p>
           </div>
           <!-- .course_info -->
@@ -80,8 +79,7 @@
                 <i class="fa fa-map-marker" aria-hidden="true"></i> <span class="course_address_mobile" *ngFor="let address of course.semesters[0].addresses">{{ address.city }}, {{ address.state }}</span>
               </p>
               <br>
-              <p>Spot Available: 4 </p>
-              <p>Duration: {{course.semesters[0].duration}} weeks</p>
+              <p>Semesters: {{course.semesters[0].duration}}</p>
               <p>Starts on: {{course.semesters[0].start_date | date: 'medium'}}
                 <span class="action_btn">
                   <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a>
