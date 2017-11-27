@@ -128,6 +128,13 @@
       <address *ngFor="let address of course.semesters[0].addresses">{{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}, {{ address.zip }}<br>{{ address.country }}</address>
       </section>
     <!-- desktop view End -->
+    <!--google map start-->
+    <section id="gmap">
+      <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>
+    </section>
+    <!--google map ends-->
     <!-- #reviews-->
     <section id="reviews">
       <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews</div>

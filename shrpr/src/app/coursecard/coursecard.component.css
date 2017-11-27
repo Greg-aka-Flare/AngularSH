@@ -364,7 +364,9 @@ ul.meetings_list li {
 .review_star {
    width:95px;
 }
-
+agm-map {
+    height: 350px;
+  }
 
 @media only screen and (min-width: 769px) {
 

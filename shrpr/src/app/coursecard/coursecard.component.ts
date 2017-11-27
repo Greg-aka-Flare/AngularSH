@@ -38,6 +38,9 @@ export class CoursecardComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
   width = document.documentElement.clientWidth;
 
+  lat: number = 51.678418;
+  lng: number = 7.809007;
+
 
   //The time to show the next photo
   private NextPhotoInterval:number = 5000;
@@ -80,6 +83,10 @@ export class CoursecardComponent implements OnInit, OnDestroy {
         {image:'../../assets/img/court-two.jpg'}
       );
 
+      //initializing the google co-ordinates
+      this.lat = this.course.semesters[0].addresses[0].latitude;
+      this.lng = this.course.semesters[0].addresses[0].longitude;
+      
       this.reviewCount = this.ratingData.length;
       this.loopCounter = this.reviewCount+1;
       for(var k=0; k < this.reviewCount; k++){

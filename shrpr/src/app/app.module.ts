@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StarRatingModule } from 'angular-star-rating';
 import { Ng2CompleterModule } from "ng2-completer";
 import { NgModel } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { routing } from "./app.routing";
@@ -104,6 +106,7 @@ import { JwtModule } from '@auth0/angular-jwt';
    ],
   imports: [
     BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
     JwtModule.forRoot({
@@ -118,7 +121,10 @@ import { JwtModule } from '@auth0/angular-jwt';
     ReactiveFormsModule,
     Ng2CompleterModule,
     routing,
-    StarRatingModule.forRoot()
+    StarRatingModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBKUrP69jyLxcicvoZg05Ysqi3rbj1U1Uk'
+    })
   ],
   providers: [AuthService, CourseService, LikeService, InstructorService, StudentService, UserService, NgModel],
   bootstrap: [AppComponent]
