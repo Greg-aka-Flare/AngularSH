@@ -69,7 +69,7 @@
           <div class="course_info_desktop">
               <h1>{{course.title}}</h1>
               <div class="course_rating_info">
-                {{ course.categories[0].name }} | <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="course.rating" [showHalfStars]="true"></star-rating-comp></figure> | <a href="#">33 Reviews</a><!-- .rating -->
+                {{ course.categories[0].name }} | <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true"></star-rating-comp></figure> | <a href="javascript:void(0);">{{reviewCount}} Reviews</a><!-- .rating -->
               </div><!-- .course_rating_info -->
               <p>
                 <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
