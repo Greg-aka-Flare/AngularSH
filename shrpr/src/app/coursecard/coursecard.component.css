@@ -297,6 +297,7 @@ ul.meetings_list li {
     max-width:93px;
     min-width: 92px;
     text-align: center;
+    width:93px;
 }
 #reviews dl dt img {
     display: block;
@@ -352,7 +353,17 @@ ul.meetings_list li {
     margin: 0;
     padding:0;
 }
-
+.review_items_rating {
+    color:#666666;
+    font-size:12px;
+    line-height:14px;
+    display:block;
+    padding:10px 0 0 0; 
+    font-style: italic;
+}
+.review_star {
+   width:95px;
+}
 
 
 @media only screen and (min-width: 769px) {
@@ -470,6 +481,13 @@ figure.rating {
 .contact_box address:first-child {
     border-bottom: none;
     margin: 0;
+}
+.review_items_rating {
+    float: right;
+    padding:0;
+}
+.review_star {
+    width:110px;
 }
 
 }

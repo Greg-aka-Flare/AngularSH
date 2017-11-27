@@ -27,10 +27,17 @@ export class CoursecardComponent implements OnInit, OnDestroy {
   semesterDetails:string;
   primaryImg:string;
   secondaryImg:string;
-  
+  reviewCount:number;
+  ratingData:any;
+  reviewRating:number;
+  userRating:number = 0;
+  loopCounter:number = 0;
+  reviewRatingGross:number;
+  ratingDataParse:any;
   //subscription: Subscription;
   private subscriptions = new Subscription();
   width = document.documentElement.clientWidth;
+
 
   //The time to show the next photo
   private NextPhotoInterval:number = 5000;
@@ -38,6 +45,7 @@ export class CoursecardComponent implements OnInit, OnDestroy {
   private noLoopSlides:boolean = false;
   //Photos
   private slides:Array<any> = [];
+
 
   constructor(
     private courseService: CourseService, 
@@ -60,6 +68,8 @@ export class CoursecardComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.courseService.getCourse(this.id).subscribe(course => {
       this.course = course;
+      this.ratingData = this.course.ratings;
+      
       this.semesterDetails = JSON.parse(this.course.semesters[0].details);
       this.primaryImg = this.course.semesters[0].primary_img;
       this.secondaryImg = JSON.parse(this.course.semesters[0].details).secondary_img;
@@ -70,16 +80,20 @@ export class CoursecardComponent implements OnInit, OnDestroy {
         {image:'../../assets/img/court-two.jpg'}
       );
 
+      this.reviewCount = this.ratingData.length;
+      this.loopCounter = this.reviewCount+1;
+      for(var k=0; k < this.reviewCount; k++){
+          this.userRating += this.ratingData[k].rating;
+          
+      }
+      this.reviewRatingGross = this.userRating/this.reviewCount;
     }));
   }
  
   private removeLastSlide() {
     this.slides.pop();
   } 
-   
-
   
-
   ngOnDestroy(){
     this.subscriptions.unsubscribe();
   }
