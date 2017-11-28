@@ -40,7 +40,7 @@ export class Carousel {
   }
 
     constructor() {
-         console.log("Carousel created");       
+         //console.log("Carousel created");       
     }
 
   public set interval(value: number) {
