@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser'
 import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
@@ -37,10 +37,12 @@ export class CoursecardComponent implements OnInit, OnDestroy {
   //subscription: Subscription;
   private subscriptions = new Subscription();
   width = document.documentElement.clientWidth;
-
   lat: number = 51.678418;
   lng: number = 7.809007;
- 
+  disableAutoPan: boolean;
+  fullscreenControl: boolean;
+  
+  
 
 
   //The time to show the next photo
@@ -96,7 +98,8 @@ export class CoursecardComponent implements OnInit, OnDestroy {
       }
       this.reviewRatingGross = this.userRating/this.reviewCount;
     }));
-  }
+
+  }  
  
   private removeLastSlide() {
     this.slides.pop();
