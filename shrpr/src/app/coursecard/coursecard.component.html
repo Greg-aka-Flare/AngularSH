@@ -130,7 +130,7 @@
     <!-- desktop view End -->
     <!--google map start-->
     <section id="gmap">
-      <agm-map [latitude]="lat" [longitude]="lng" [fullscreenControl]="true">
+      <agm-map [latitude]="lat" [longitude]="lng" [fullscreenControl]="true" [mapTypeControl]="true">
         <agm-marker [latitude]="lat" [longitude]="lng" [label]="'A'">
           <agm-info-window [disableAutoPan]="true">
             <address *ngFor="let address of course.semesters[0].addresses">{{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}<br>{{ address.zip }}<br>{{ address.country }}</address>

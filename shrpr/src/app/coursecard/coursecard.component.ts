@@ -41,6 +41,8 @@ export class CoursecardComponent implements OnInit, OnDestroy {
   lng: number = 7.809007;
   disableAutoPan: boolean;
   fullscreenControl: boolean;
+  mapTypeControl: boolean;
+  
   
   
 
