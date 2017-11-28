@@ -1,3 +1,6 @@
+.category_bucket{
+    min-height: 490px;
+}
 .category_bucket h2 {
     font-size:24px;
     line-height: 30px;
@@ -296,4 +299,53 @@
 
 .show-more:hover {
     background-color: #888886;
+}
+
+section.suggest-course{
+    padding: 35px 100px;
+    width: 100%;
+}
+section.suggest-course h1{
+    color: #666;
+    font-size: 20px;
+    margin: 0;
+    padding: 0 0 10px 0;
+}
+section.suggest-course p{
+    font-size: 16px;
+}
+section.suggest-course form{
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 75%;
+}
+section.suggest-course form textarea{
+    background-color: #fafafa;
+    border: 1px solid #eee;
+    font-size: 16px;
+    padding: 10px;
+    height: 200px;
+    width: 100%;
+}
+section.suggest-course form button{
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 3px rgba(0,0,0,0.2);
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    float: right;
+    font-family: 'circularstd book';
+    font-size: 18px;
+    line-height: 18px;
+    margin: 20px 20px 0 0;
+    max-width: 138px;
+    padding: 13px 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+section.suggest-course form button:hover{
+    background-color: #666;
 }

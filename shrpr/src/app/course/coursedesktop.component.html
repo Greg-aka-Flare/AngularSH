@@ -1,11 +1,14 @@
 <section 
     id="for_fun_box" 
-    class="category_bucket magento" 
-    *ngIf="forFun?.length > 0"
+    class="category_bucket magento"
+    *ngIf="showFun"
 >
     <h2>For Fun</h2>
 
-    <div class="thee_col_content clearfix">
+    <div 
+        class="thee_col_content clearfix"
+        *ngIf="forFun?.length > 0"
+    >
         <article 
             class="card-box" 
             *ngFor="let course of forFun; let i = index" 
@@ -71,16 +74,38 @@
             </div><!-- .card-info -->
         </article>
     </div>
+
+    <section 
+        class="suggest-course"
+        *ngIf="forFun?.length === 0"
+    >
+        <form [formGroup]="suggestForm" (ngSubmit)="onSuggest(0)">
+            <h1>Suggest Course:</h1>
+
+            <p>We're sorry we don't have anymore courses to recommend. Please tell us about some courses you would like to see:</p>
+
+            <textarea
+                id="suggest"
+                placeholder="What would you like to see?" 
+                formControlName="suggest" 
+            ></textarea>
+
+            <button>Submit</button>
+        </form>
+    </section><!-- .suggest-form -->
 </section><!-- #for_fun_box -->
 
 <section 
     id="for_work_box" 
     class="category_bucket blue"
-    *ngIf="forWork?.length > 0"
+    *ngIf="showWork"
 >
     <h2>For Work</h2>
 
-    <div class="thee_col_content clearfix">
+    <div 
+        class="thee_col_content clearfix"
+        *ngIf="forWork?.length > 0"
+    >
         <article 
             class="card-box" 
             *ngFor="let course of forWork; let i = index"  
@@ -148,16 +173,38 @@
             </div><!-- .card-info -->
         </article>
     </div>
+
+    <section 
+        class="suggest-course"
+        *ngIf="forWork?.length === 0"
+    >
+        <form [formGroup]="suggestForm" (ngSubmit)="onSuggest(1)">
+            <h1>Suggest Course:</h1>
+
+            <p>We're sorry we don't have anymore courses to recommend. Please tell us about some courses you would like to see:</p>
+
+            <textarea
+                id="suggest"
+                placeholder="What would you like to see?" 
+                formControlName="suggest" 
+            ></textarea>
+
+            <button>Submit</button>
+        </form>
+    </section><!-- .suggest-form -->
 </section><!-- #for_work_box -->
 
 <section 
     id="for_kids_box" 
     class="category_bucket yellow"
-    *ngIf="forKids?.length > 0"
+    *ngIf="showKids"
 >
     <h2>For Kids</h2>
 
-    <div class="thee_col_content clearfix">
+    <div 
+        class="thee_col_content clearfix"
+        *ngIf="forKids?.length > 0"
+    >
         <article 
             class="card-box" 
             *ngFor="let course of forKids; let i = index" 
@@ -225,4 +272,23 @@
             </div><!-- .card-info -->
         </article>
     </div>
+
+    <section 
+        class="suggest-course"
+        *ngIf="forKids?.length === 0"
+    >
+        <form [formGroup]="suggestForm" (ngSubmit)="onSuggest(2)">
+            <h1>Suggest Course:</h1>
+
+            <p>We're sorry we don't have anymore courses to recommend. Please tell us about some courses you would like to see:</p>
+
+            <textarea
+                id="suggest"
+                placeholder="What would you like to see?" 
+                formControlName="suggest" 
+            ></textarea>
+
+            <button>Submit</button>
+        </form>
+    </section><!-- .suggest-form -->
 </section><!-- #for_kids_box -->

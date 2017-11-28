@@ -7,6 +7,7 @@ import { CourseService } from "../course.service";
 import { LikeService } from "../like.service";
 import { Subscription } from 'rxjs/Subscription';
 import { StarRatingModule } from 'angular-star-rating';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -34,7 +35,6 @@ import { StarRatingModule } from 'angular-star-rating';
     })),
     state('remove', style({
       opacity: 0,
-      height: 0,
       width: 0
     })),
     transition('void => default', animate('300ms ease-in')),
@@ -46,6 +46,11 @@ import { StarRatingModule } from 'angular-star-rating';
 })
 
 export class CoursedesktopComponent implements OnInit, OnDestroy {
+
+  suggestForm: FormGroup;
+  showFun: boolean = true;
+  showWork: boolean = true;
+  showKids: boolean = true;
 
   forFun: Course[];
   forWork: Course[];
@@ -61,6 +66,10 @@ export class CoursedesktopComponent implements OnInit, OnDestroy {
    ) {}
 
   ngOnInit() {
+
+    this.suggestForm = new FormGroup({
+      'suggest': new FormControl(null, Validators.required)
+    });
 
     this.counterSubscription.add(this.courseService.getCourses(1, 3, true).subscribe(courses => {
       this.forFun = courses;
@@ -81,6 +90,22 @@ export class CoursedesktopComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.counterSubscription.unsubscribe();
+  }
+
+  onSuggest(group: number) {
+    switch (group) {
+      case 0:
+        this.showFun = false;
+        break;
+
+      case 1:
+        this.showWork = false;
+        break;
+
+      case 2:
+        this.showKids = false;
+        break;
+    }
   }
 
   onLike(course, i) {
