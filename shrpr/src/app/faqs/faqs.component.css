@@ -1,13 +1,13 @@
 /*features Banner start*/
 .features-banner {
-    background-color: #4bc1ba;
+    background-color: #ec9332;
     text-align: center;
 }
 
 /*features nav start*/
 
 .features-nav ul li.active a {
-    color: #4bc1ba;
+    color: #ec9332;
 }
 /*FAQ Bullet*/
 .faq {

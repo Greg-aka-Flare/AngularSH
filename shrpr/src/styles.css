@@ -240,7 +240,7 @@ h3, h4, h5, h6 {
     box-sizing: border-box;
 }
 .features-banner-image {
-    margin: 30px 0 0 0;
+    padding: 30px 0 30px 0;
 }
 .features-banner-image img {
     display: block;
@@ -283,7 +283,7 @@ h3, h4, h5, h6 {
     display: block;
 }
 .features-nav ul li.active a {
-    color: #b42b71;
+    color: #852176;
 }
 .features-nav ul li a i {
     display: block;
@@ -350,7 +350,7 @@ h3, h4, h5, h6 {
     width: 100%;
 }
 a.jointhenetwork-link {
-    color: #f68f1e;
+    color: #ec9332;
     text-decoration: none;
     margin: 20px 0 30px;
     display: inline-block;
@@ -425,8 +425,8 @@ a.jointhenetwork-link:hover {
     color: #000000;
 }
 .inner-form-wrap form > button {
-    background-color: #f68f1e;
-    border: 1px solid #f68f1e;
+    background-color: #ec9332;
+    border: 1px solid #ec9332;
     color: #ffffff;
     text-transform: uppercase;
     padding: 14px 0;
@@ -444,7 +444,7 @@ a.jointhenetwork-link:hover {
     margin: 0 0 10px 0;
 }
 .inner-form-wrap form > button:hover {
-    color: #f68f1e;
+    color: #ec9332;
     background: #ffffff;
 }
 .inner-form-wrap form > div > input::-webkit-input-placeholder { /* Chrome */
@@ -512,7 +512,7 @@ a.jointhenetwork-link:hover {
     line-height: 20px;
 }
 .signup-link a {
-    color: #f68f1e;
+    color: #ec9332;
     text-decoration: none;
 }
 /*Carousel style start*/
@@ -547,8 +547,8 @@ carousel {
 }
 .slide_index {
     display:inline-block;
-    color:#ed9639;
-    border:2px solid #ed9639;
+    color:#ec9332;
+    border:2px solid #ec9332;
     border-radius:50%;
     font-size:18px;
     line-height: 27px;
@@ -561,7 +561,7 @@ carousel {
     text-align:center;
 }
 .banner-content h4 {
-    color:#ed9639;
+    color:#ec9332;
     font-size:32px;
     line-height: 36px;
     font-weight: 400;

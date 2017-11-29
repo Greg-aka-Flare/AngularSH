@@ -459,9 +459,9 @@ figure.rating {
 
     #desktopcourses > h3 {
         font-size: 18px;
-    color: #818181;
-    line-height: 22px;
-    padding: 0 0 20px 0;
+        color: #818181;
+        line-height: 22px;
+        padding: 0 0 20px 0;
     }
     :host /deep/ tabs .tabs tab > div {
         padding: 10PX;

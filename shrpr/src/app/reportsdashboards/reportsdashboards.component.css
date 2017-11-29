@@ -1,10 +1,10 @@
 /*features Banner start*/
 .features-banner {
-    background-color: #96abce;
+    background-color: #d03233;
     text-align: center;
 }
 /*features nav start*/
 
 .features-nav ul li.active a {
-    color: #96abce;
+    color: #d03233;
 }
