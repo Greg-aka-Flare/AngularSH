@@ -42,7 +42,7 @@ export class CoursecardComponent implements OnInit, OnDestroy {
   disableAutoPan: boolean;
   fullscreenControl: boolean;
   mapTypeControl: boolean;
-  
+  meetingArray:any;
   
   
 
@@ -69,7 +69,7 @@ export class CoursecardComponent implements OnInit, OnDestroy {
     .map(() => {
       return document.documentElement.clientWidth;
       })
-    
+      
       this.subscriptions.add($resizeEvent.subscribe(data => {
       this.width = data;
     }));
@@ -79,6 +79,7 @@ export class CoursecardComponent implements OnInit, OnDestroy {
       this.ratingData = this.course.ratings;
       
       this.semesterDetails = JSON.parse(this.course.semesters[0].details);
+      
       this.primaryImg = this.course.semesters[0].primary_img;
       this.secondaryImg = JSON.parse(this.course.semesters[0].details).secondary_img;
       this.slides.push(
@@ -88,6 +89,7 @@ export class CoursecardComponent implements OnInit, OnDestroy {
         {image:'../../assets/img/court-two.jpg'}
       );
 
+      this.meetingArray = this.course.semesters[0].meetings;
       //initializing the google co-ordinates
       this.lat = this.course.semesters[0].addresses[0].latitude;
       this.lng = this.course.semesters[0].addresses[0].longitude;
@@ -96,7 +98,6 @@ export class CoursecardComponent implements OnInit, OnDestroy {
       this.loopCounter = this.reviewCount+1;
       for(var k=0; k < this.reviewCount; k++){
           this.userRating += this.ratingData[k].rating;
-          
       }
       this.reviewRatingGross = this.userRating/this.reviewCount;
     }));

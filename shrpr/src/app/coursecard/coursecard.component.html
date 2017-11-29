@@ -29,18 +29,18 @@
               <a href="#"><i class="fa fa-list" aria-hidden="true"></i> Whishlist</a>
             </span>
             <p>Semesters: {{course.semesters[0].duration}}</p>
-            <p>Starts on: {{course.semesters[0].start_date | date: 'medium'}}</p>
+            <p>Starts on: {{course.semesters[0].start_date}}</p>
           </div>
           <!-- .course_info -->
           <div class="course_enroll_block">
             <div class="enroll_row">
               <select name="select_course_meeting">
-                <option *ngFor="let meeting of course.semesters[0].meetings" value="{{meeting.id}}">{{meeting.start | date: 'medium'}}</option>
+                <option *ngFor="let meeting of meetingArray" value="{{meeting.id}}">{{meeting.start}}</option>
               </select>
               <a class="page-btn" href="javascript:void(0);">Enroll Today</a>
             </div>
             <ul class="meetings_list">
-                <li *ngFor="let meeting of course.semesters[0].meetings">{{meeting.start | date: 'medium'}}</li>
+                <li *ngFor="let meeting of meetingArray">{{meeting.start}}</li>
             </ul>
             <!-- .enroll_row-->
           </div>
@@ -80,7 +80,7 @@
               </p>
               <br>
               <p>Semesters: {{course.semesters[0].duration}}</p>
-              <p>Starts on: {{course.semesters[0].start_date | date: 'medium'}}
+              <p>Starts on: {{course.semesters[0].start_date}}
                 <span class="action_btn">
                   <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a>
                   <a href="#"><i class="fa fa-list" aria-hidden="true"></i> Whishlist</a>
@@ -94,12 +94,12 @@
           <div class="course_enroll_block">
               <div class="enroll_row">
                 <select name="select_course_meeting">
-                  <option *ngFor="let meeting of course.semesters[0].meetings" value="{{meeting.id}}">{{meeting.start | date: 'medium'}}</option>
+                  <option *ngFor="let meeting of meetingArray" value="{{meeting.id}}">{{meeting.start}}</option>
                 </select>
                 <a class="page-btn" href="javascript:void(0);">Enroll Today</a>
               </div>
               <ul class="meetings_list">
-                  <li *ngFor="let meeting of course.semesters[0].meetings">{{meeting.start | date: 'medium'}}</li>
+                  <li *ngFor="let meeting of meetingArray">{{meeting.start}}</li>
               </ul>
               <!-- .enroll_row-->
             </div>
