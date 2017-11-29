@@ -2,7 +2,9 @@ h1 {
     padding:15px 10px 10px 10px; 
     color:#fc6a02;
 }
-
+#profile-header > h2 {
+    padding: 0 5px 10px 5px;
+}
 .course_mobile_card {
     border-bottom: 2px solid #ed9b40;
     position: relative;
@@ -389,7 +391,7 @@ agm-map {
     margin:0;
 }
 .course_info_desktop {
-    width:65%;
+    width:63.5%;
     display: inline-block;
     vertical-align: top;
     font-size:15px;
