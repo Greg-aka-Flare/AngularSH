@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TemplateHeader } from '../template/template.component';
 
 
 @Component({
@@ -8,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private templateHeader: TemplateHeader ) {
+    
+  }
 
   ngOnInit() {
 
+  }
+  toggleMenu() {
+    this.templateHeader.isBtnActive = !this.templateHeader.isBtnActive;
   }
 }

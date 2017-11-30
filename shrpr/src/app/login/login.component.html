@@ -1,5 +1,57 @@
 <section id="login_box">
-    <tabs> 
+    
+    <tabs>
+    <tab tabTitle="SIGN UP">
+            <div class="login-box signup-box">
+                <form id="signup" [formGroup]="signupForm" (ngSubmit)="onSignup()">
+                    <input 
+                        type="text" 
+                        id="name" 
+                        placeholder="Name"
+                        formControlName="name" 
+                    />
+
+                    <span 
+                        class="help-block"
+                        *ngIf="!signupForm.get('name').valid && signupForm.get('name').touched"
+                    >
+                        Name is required!
+                    </span><!-- .help-block -->
+            
+                    <input 
+                        type="text" 
+                        id="email" 
+                        placeholder="Email" 
+                        formControlName="email" 
+                    />
+
+                    <span 
+                        class="help-block"
+                        *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched"
+                    >
+                        Please Enter a Valid Email!
+                    </span><!-- .help-block -->
+            
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Password"
+                        formControlName="password" 
+                    />
+                    
+                    <span 
+                        class="help-block"
+                        *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched"
+                    >
+                        Password is required!
+                    </span><!-- .help-block -->
+            
+                    <button>
+                        Sign Up <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+        </tab> 
         <tab tabTitle="LOG IN">
             <div class="login-box signin-box">
                 <form id="login" [formGroup]="loginForm" (ngSubmit)="onLogin()">
@@ -56,56 +108,7 @@
             </div>
         </tab>
 
-        <tab tabTitle="SIGN UP">
-            <div class="login-box signup-box">
-                <form id="signup" [formGroup]="signupForm" (ngSubmit)="onSignup()">
-                    <input 
-                        type="text" 
-                        id="name" 
-                        placeholder="Name"
-                        formControlName="name" 
-                    />
-
-                    <span 
-                        class="help-block"
-                        *ngIf="!signupForm.get('name').valid && signupForm.get('name').touched"
-                    >
-                        Name is required!
-                    </span><!-- .help-block -->
-            
-                    <input 
-                        type="text" 
-                        id="email" 
-                        placeholder="Email" 
-                        formControlName="email" 
-                    />
-
-                    <span 
-                        class="help-block"
-                        *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched"
-                    >
-                        Please Enter a Valid Email!
-                    </span><!-- .help-block -->
-            
-                    <input 
-                        type="password" 
-                        id="password" 
-                        placeholder="Password"
-                        formControlName="password" 
-                    />
-                    
-                    <span 
-                        class="help-block"
-                        *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched"
-                    >
-                        Password is required!
-                    </span><!-- .help-block -->
-            
-                    <button>
-                        Sign Up <i class="fa fa-user-plus" aria-hidden="true"></i>
-                    </button>
-                </form>
-            </div>
-        </tab>
+        
+        
     </tabs>
 </section>
