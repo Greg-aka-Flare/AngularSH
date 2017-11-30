@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
 import { Category } from '../category.interface';
 import { CategoryService } from '../category.service';
@@ -11,40 +11,17 @@ import { NgModel } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
 
-  changedData: boolean = false;
   location: string = '';
-  categories: Category[];
+  
   protected dataService: CompleterData;
-
-  protected groups  = [
-  { 
-    "image": "assets/img/fun-icon.png", 
-    "title": "For Fun" 
-  },
-  { 
-    "image":"assets/img/work-icon.png", 
-    "title":"For Work" 
-  },
-  { 
-    "image":"assets/img/kid-icon.png", 
-    "title":"For Kids" 
-  } ];
-
-  @ViewChild("search") private search: CompleterCmp;
   
   constructor(
-    private completerService: CompleterService,
-    private categoryService: CategoryService
+    private completerService: CompleterService
   ) {}
 
   ngOnInit() {
 
-    this.categoryService.getCategories().subscribe(categories => {
-
-      this.categories = categories;
-    });
-
-    this.dataService = this.completerService.local(this.groups, 'title', 'title').imageField('image');
+    this.dataService = this.completerService.remote('http://shrpr.dev/api/search?str=', 'title', 'title').imageField('img');
 
     // if (navigator.geolocation) { //check if we can get lat/lng
       
@@ -123,16 +100,6 @@ export class SearchComponent implements OnInit {
       //       return '';
       //     }
       }
-
-  onKey(val) {
-
-    if(!this.changedData){
-
-      this.dataService = this.completerService.local(this.categories, 'name', 'name');
-
-      this.changedData = true;
-    }
-  }
 
   onSelected(item: CompleterItem) {
 

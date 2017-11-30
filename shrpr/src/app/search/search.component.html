@@ -4,12 +4,10 @@
           <img src="../assets/img/search-input.png" alt="Shrpr" title="Shrpr">
 
           <ng2-completer 
-              #search
               placeholder="Search for Category" 
               [datasource]="dataService" 
               minSearchLength="0"
               openOnFocus="true"
-              (keydown)="onKey($event.target.value)"
               (selected)="onSelected($event)"
           >
           </ng2-completer>
