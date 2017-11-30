@@ -16,6 +16,10 @@ import { BrandonComponent } from './team/brandon.component';
 import { ErickComponent } from './team/erick.component';
 import { MikeComponent } from './team/mike.component';
 import { MilesComponent } from './team/miles.component';
+import { CollinComponent } from './team/collin.component';
+import { DaveComponent } from './team/dave.component';
+import { GregoryComponent } from './team/gregory.component';
+import { AlexaComponent } from './team/alexa.component';
 import { ValuesComponent } from './values/values.component';
 import { VideosComponent } from './videos/videos.component';
 import { BlogComponent } from './blog/blog.component';
@@ -28,6 +32,7 @@ import { ReviewsfeedbackComponent } from './reviewsfeedback/reviewsfeedback.comp
 import { FreetrainingComponent } from './freetraining/freetraining.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { FaqsComponent } from './faqs/faqs.component';
+
 
 const APP_ROUTES: Routes = [
 	//{ path: '', component: CoursesComponent },
@@ -44,6 +49,10 @@ const APP_ROUTES: Routes = [
 	{ path: 'erick', component: ErickComponent },
 	{ path: 'mike', component: MikeComponent },
 	{ path: 'miles', component: MilesComponent },
+	{ path: 'collin', component: CollinComponent },
+	{ path: 'dave', component: DaveComponent },
+	{ path: 'gregory', component: GregoryComponent },
+	{ path: 'alexa', component: AlexaComponent },
 	{ path: 'values', component: ValuesComponent },
 	{ path: 'videos', component: VideosComponent },
 	{ path: 'blog', component: BlogComponent },

@@ -7,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MarketingComponent implements OnInit {
   images:Array<any> = [
-    {"sType":"img","imgSrc":"../../assets/img/banner01.jpg"},
-    {"sType":"img","imgSrc":"../../assets/img/banner02.jpg"},
-    {"sType":"img","imgSrc":"../../assets/img/banner03.jpg"},
-    {"sType":"img","imgSrc":"../../assets/img/banner04.jpg"},
+    {"sType":"img","imgSrc":"../../assets/img/marketing-banner01.jpg"},
+    {"sType":"img","imgSrc":"../../assets/img/marketing-banner02.jpg"},
+    {"sType":"img","imgSrc":"../../assets/img/marketing-banner03.jpg"},
   ];
   wasClicked = false;
   hasClicked = false;
@@ -42,9 +41,9 @@ export class MarketingComponent implements OnInit {
 
    private addNewSlide() {
     this.slides.push(
-       {image:'../../assets/img/banner01.jpg',title:'Attract New Customers',detail:'Drive web traffic to your program page, teacher page or individual course offerings'},
-       {image:'../../assets/img/banner02.jpg',title:'Digital Marketing Made Easy',detail:'Find new leads and customers with easy integrations'},
-       {image:'../../assets/img/banner03.jpg',title:'Search Engine Optimized',detail:'Move up the Google Search Rankings and get found by people looking for your offering'},
+       {image:'../../assets/img/marketing-banner01.jpg',title:'Attract New Customers',detail:'Drive web traffic to your program page, teacher page or individual course offerings'},
+       {image:'../../assets/img/marketing-banner02.jpg',title:'Digital Marketing Made Easy',detail:'Find new leads and customers with easy integrations'},
+       {image:'../../assets/img/marketing-banner03.jpg',title:'Search Engine Optimized',detail:'Move up the Google Search Rankings and get found by people looking for your offering'},
    );
    this.slidescontent.push(
     {author:'Tina Trevino-Murphy', tagline:'Villari’s Martial Arts Cooperative', detail:'“We tend to struggle with having a consistent pace on our emails to prospective clients, and the intro offers help us move past that stage faster.” '},

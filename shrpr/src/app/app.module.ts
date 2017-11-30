@@ -43,6 +43,10 @@ import { BrandonComponent } from './team/brandon.component';
 import { ErickComponent } from './team/erick.component';
 import { MikeComponent } from './team/mike.component';
 import { MilesComponent } from './team/miles.component';
+import { CollinComponent } from './team/collin.component';
+import { DaveComponent } from './team/dave.component';
+import { GregoryComponent } from './team/gregory.component';
+import { AlexaComponent } from './team/alexa.component';
 import { ValuesComponent } from './values/values.component';
 import { VideosComponent } from './videos/videos.component';
 import { BlogComponent } from './blog/blog.component';
@@ -104,7 +108,11 @@ import { CategoryService } from "./category.service";
     BrandonComponent,
     ErickComponent,
     MikeComponent,
-    MilesComponent
+    MilesComponent,
+    CollinComponent,
+    DaveComponent,
+    GregoryComponent,
+    AlexaComponent
    ],
   imports: [
     BrowserModule,

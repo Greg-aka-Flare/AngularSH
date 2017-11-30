@@ -321,11 +321,9 @@ background: #c95f5f;
 .features-nav ul li.active a {
     color: #852176;
 }
-.features-nav ul li a i {
+.features-nav ul li a img {
     display: block;
-    margin: 0 auto;
-    font-size: 50px;
-    line-height: 60px;
+    margin: 0 auto 12px auto;
 }
 /*List Your Business start*/
 .list-your-business-banner {
