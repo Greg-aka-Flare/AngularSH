@@ -1,12 +1,11 @@
 <ul>
-  <li><a href="javascript:void(0);" title="Become a Teacher" (click)="toggleMenu()">Become a Teacher</a></li>
+  <li><a [routerLink]="['/marketing']" (click)="toggleMenu()">Become a Teacher</a></li>
   <li class="has_child" title="About Us"><a [routerLink]="['/about']" (click)="toggleMenu()">About Us</a>
     <ul>
       <li><a [routerLink]="['/team']" title="The Team" (click)="toggleMenu()">The Team</a></li>
       <li><a [routerLink]="['/values']" title="Our Values" (click)="toggleMenu()">Our Values</a></li>
       <li><a [routerLink]="['/instructor', '2']" (click)="toggleMenu()">Instructor</a></li>
       <li><a [routerLink]="['/student', '5']" (click)="toggleMenu()">Student</a></li>
-      <li><a [routerLink]="['/marketing']" (click)="toggleMenu()">Marketing</a></li>
     </ul>
   </li>
   <li><a routerLink="login" title="Sign Up / Log In" (click)="toggleMenu()">Sign Up / Log In</a></li>
