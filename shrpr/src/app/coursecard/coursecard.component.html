@@ -70,22 +70,33 @@
               <h1>{{course.title}}</h1>
               <div class="course_rating_info">
                 {{ course.categories[0].name }} | <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true"></star-rating-comp></figure> | <a href="javascript:void(0);">{{reviewCount}} Reviews</a><!-- .rating -->
+                <span class="course_price_desktop">${{ course.semesters[0].amount }}</span>
               </div><!-- .course_rating_info -->
               <p>
                 <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
-                <span class="course_price_desktop">${{ course.semesters[0].amount }}</span>
+                
               </p>
               <p>
                 <i class="fa fa-map-marker" aria-hidden="true"></i> <span class="course_address_mobile" *ngFor="let address of course.semesters[0].addresses">{{ address.city }}, {{ address.state }}</span>
               </p>
               <br>
-              <p>Semesters: {{course.semesters[0].duration}}</p>
-              <p>Starts on: {{course.semesters[0].start_date}}
-                <span class="action_btn">
-                  <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a>
-                  <a href="#"><i class="fa fa-list" aria-hidden="true"></i> Whishlist</a>
-                </span>
-              </p>
+              <div *ngIf="semesterCount > 1">
+                Start Date: <select name="semester_start_date">
+                  <option>---Select Date--></option>
+                  <option *ngFor="let sem of course.semesters" value="sem.id">{{sem.start_date}}</option>
+                </select>
+              </div>
+              <div *ngIf="semesterCount < 2">
+                  <p>Starts on: {{startDate | date: 'fullDate' }} from {{startDate | date: 'shortTime' }}</p>
+                  <p>Ends on: {{endDate | date: 'fullDate' }} at {{endDate | date: 'shortTime' }}</p>
+                  <p>Meetings: {{course.semesters[0].duration}}
+                      <span class="action_btn">
+                          <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a>
+                          <a href="#"><i class="fa fa-list" aria-hidden="true"></i> Whishlist</a>
+                        </span>
+                  </p>
+              </div> 
+              
           </div>
           <!-- .course_info_desktop-->
         </div>

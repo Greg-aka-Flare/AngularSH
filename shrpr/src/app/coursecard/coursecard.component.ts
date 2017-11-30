@@ -43,8 +43,9 @@ export class CoursecardComponent implements OnInit, OnDestroy {
   fullscreenControl: boolean;
   mapTypeControl: boolean;
   meetingArray:any;
-  
-  
+  public startDate: Date;
+  public endDate: Date;
+  semesterCount:number;
 
 
   //The time to show the next photo
@@ -77,8 +78,11 @@ export class CoursecardComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.courseService.getCourse(this.id).subscribe(course => {
       this.course = course;
       this.ratingData = this.course.ratings;
-      
+      this.semesterCount = this.course.semesters.length;
       this.semesterDetails = JSON.parse(this.course.semesters[0].details);
+      this.startDate = new Date(this.course.semesters[0].start_date.replace(/-/g, "/"));
+      this.endDate = new Date(this.course.semesters[0].end_date.replace(/-/g, "/"));
+
       
       this.primaryImg = this.course.semesters[0].primary_img;
       this.secondaryImg = JSON.parse(this.course.semesters[0].details).secondary_img;
