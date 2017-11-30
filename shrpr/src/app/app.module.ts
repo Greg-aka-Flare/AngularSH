@@ -61,6 +61,8 @@ import { FaqsComponent } from './faqs/faqs.component';
 import { AuthService } from './auth/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
 
+import { CategoryService } from "./category.service";
+
 
 @NgModule({
   declarations: [
@@ -126,7 +128,16 @@ import { JwtModule } from '@auth0/angular-jwt';
       apiKey: 'AIzaSyBKUrP69jyLxcicvoZg05Ysqi3rbj1U1Uk'
     })
   ],
-  providers: [AuthService, CourseService, LikeService, InstructorService, StudentService, UserService, NgModel],
+  providers: [
+      AuthService, 
+      CategoryService, 
+      CourseService, 
+      LikeService, 
+      InstructorService, 
+      StudentService, 
+      UserService, 
+      NgModel
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
