@@ -1,49 +1,50 @@
+<article *ngIf="students">
 <section id="profile-header">
     <div class="profile-picture">
       <img *ngIf="!students?.profile_img" src="../../assets/img/profile-picture.jpg" alt="" title="">
       <img *ngIf="students?.profile_img" src="../../assets/img/{{students?.profile_img}}" alt="" title="">
       <div class="social-icon">
-          <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-          <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-          <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+          <a href="javascript:void(0);"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+          <a href="javascript:void(0);"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+          <a href="javascript:void(0);"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
       </div>
     </div>
     <div><h2>{{students?.name}}</h2>
       <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ students?.addresses[0]?.city }}, {{ students?.addresses[0]?.state }}
-    <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3"></star-rating-comp> |  <a href="#">33 reviews</a></div>
-  </div>
+      <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3"></star-rating-comp> |  <a href="javascript:void(0);">33 reviews</a></div>
+    </div>
     </section><!-- #profile header -->
-    <tabs *ngIf="width < 768" >
-      <tab tabTitle="Courses">
+  <tabs *ngIf="width < 768" >
+    <tab tabTitle="Courses">
       <h3>Upcoming Events with Triple Threat Training CT</h3>
-      <article class="card-box" *ngFor="let card of students?.courses; let i = index">
+      <article class="card-box" *ngFor="let coursed of students?.courses">
             <div class="img-ctn">
                 <figure>
                     <img src="../../assets/img/court.jpg">
                 </figure>
-                <h3>{{card?.title}}</h3>
+                <h3>{{coursed?.title}}</h3>
             </div>
             <div class="card-info">
-              <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="card.rating" [showHalfStars]="true"></star-rating-comp></span></div>
-              <p class="date">
-                <i class="fa fa-calendar" aria-hidden="true"></i> 
-                  <span class="date_stamp">{{ card?.semesters[0]?.start_date | date: 'MM/dd/yyyy' }}</span>
-              </p>
-              <p class="with-box"><span>With</span> Thomas Allen</p>
-              <a [routerLink]="['/course', card.id]"  class="page-cta">View Course</a>
+              <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="coursed?.rating" [showHalfStars]="true"></star-rating-comp></span></div>
+              <p class="with-box"><span>With</span> {{coursed?.instructor}}</p>
+              <a [routerLink]="['/course', coursed?.id]"  class="page-cta">View Course</a>
             </div>
         </article>
     </tab>
     <tab tabTitle="ABOUT">
-      ABOUT
+        <div class="contact_box">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      </div>
     </tab>
     <tab tabTitle="CONTACT">
-            <div class="contact_box">
-                    <address *ngFor="let address of students?.addresses">
-                      {{ address?.streetAddress }}<br>{{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>{{ address?.country }}<br><br>Phone: {{ students?.phone }}<br>Email: {{ students?.email }}</address>
-                  </div>
+      <div class="contact_box">
+          <address *ngFor="let address of students?.addresses">
+              <strong>{{ address?.type }}</strong><br>{{ address?.streetAddress }}<br>{{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>{{ address?.country }}<br><br>Phone: {{ students?.phone }}<br>Email: {{ students?.email }}</address>
+      </div>
     </tab>
-    </tabs><!-- #Tab -->
+  </tabs><!-- #Tab -->
     <!-- desktop view -->
     <section *ngIf="width > 767" id="desktopcourses">
       <h2>Courses</h2>
@@ -62,8 +63,8 @@
                   <i class="fa fa-calendar" aria-hidden="true"></i> 
                     <span class="date_stamp">{{ card.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
                 </p>-->
-                <p class="with-box"><span>With</span> {{coursed.instructor}}</p>
-                <a [routerLink]="['/course', coursed.id]"  class="page-cta">View Course</a>
+                <p class="with-box"><span>With</span> {{coursed?.instructor}}</p>
+                <a [routerLink]="['/course', coursed?.id]"  class="page-cta">View Course</a>
               </div>
           </article>
       <h2>ABOUT</h2>
@@ -84,7 +85,6 @@
       <p>Good Class. Fun for a yoga beginner to try something new. you'll definitely feel the burn.</p></dd>
     </dl>
     <p class="seeall-link"><a href="">see all related reviews</a></p>
-    
     </section><!-- #reviews -->
-    
+  </article> 
     

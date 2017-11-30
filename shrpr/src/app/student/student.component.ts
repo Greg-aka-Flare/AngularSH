@@ -22,7 +22,7 @@ export class StudentComponent implements OnInit, OnDestroy {
 
   students:any[];
   courses: any[];
-  studentCourse:any[];
+  studentCourse:any;
   courseCard: any[] = [];
   private id:number;
   //subscription: Subscription;
@@ -54,7 +54,7 @@ export class StudentComponent implements OnInit, OnDestroy {
     .subscribe(
           (response) => {
             this.students = response;
-            //this.studentCourse = response.courses;
+            //this.studentCourse = JSON.parse(response.courses);
             //console.log(this.students);
           },
           (error: Response) => console.log(error)

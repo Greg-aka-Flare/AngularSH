@@ -31,14 +31,7 @@
     width: 100%;
     margin: 0 0 10px 0;
 }
-.social-icon a {
-    color: #222222;
-    font-size: 25px;
-    line-height: 1em;
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 3% 5px 3%;
-}
+
 #profile-header .rating {
     text-align: left;
     padding: 19px 0 0 0;
@@ -53,6 +46,14 @@
 }
 #profile-header > div a:hover {
     text-decoration: none;
+}
+#profile-header .social-icon a {
+    color: #222222;
+    font-size: 25px;
+    line-height: 1em;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 2px 5px 2px;
 }
 :host /deep/ tabs .tabs ul {
     background: #e5e5e6;
