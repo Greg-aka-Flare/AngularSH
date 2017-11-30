@@ -38,6 +38,7 @@ export class StudentComponent implements OnInit, OnDestroy {
         let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
           this.id = params['id'];
           }))
+          
         const $resizeEvent = Observable.fromEvent(window, 'resize')
         .map(() => {
           return document.documentElement.clientWidth;
@@ -45,8 +46,6 @@ export class StudentComponent implements OnInit, OnDestroy {
           this.subscriptions.add($resizeEvent.subscribe(data => {
           this.width = data;
         }));
-    
-        
       }
    
   ngOnInit() {

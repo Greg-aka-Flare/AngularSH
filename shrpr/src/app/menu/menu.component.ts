@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TemplateHeader } from '../template/template.component';
 
 
@@ -8,6 +8,9 @@ import { TemplateHeader } from '../template/template.component';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
+
+  
+  
 
   constructor(private templateHeader: TemplateHeader ) {
     
@@ -19,4 +22,6 @@ export class MenuComponent implements OnInit {
   toggleMenu() {
     this.templateHeader.isBtnActive = !this.templateHeader.isBtnActive;
   }
+  
+
 }
