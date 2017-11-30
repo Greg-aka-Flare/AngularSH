@@ -301,29 +301,26 @@ background: #c95f5f;
 }
 .features-nav ul {
     padding: 0;
-    text-align: center;
 }
 .features-nav ul li {
     padding: 0 10px 10px 10px;
-    display: inline-block;
-    vertical-align: top;
-    box-sizing: border-box;
-    max-width: 136px;
-    min-width: 133px;
 }
 .features-nav ul li a {
     font-size: 15px;
-    line-height: 15px;
+    line-height: 18px;
     color: #5c5c5c;
     text-decoration: none;
     display: block;
+    
 }
 .features-nav ul li.active a {
     color: #852176;
 }
 .features-nav ul li a img {
-    display: block;
-    margin: 0 auto 12px auto;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 15px 0 0;
+    max-width: 35px;
 }
 /*List Your Business start*/
 .list-your-business-banner {
@@ -707,8 +704,22 @@ section#search form button:hover {
     margin: 30px 5% 0 0;
 }
 /*features nav start*/
+.features-nav ul {
+    text-align: center;
+}
 .features-nav ul li {
-    min-width: 150px;
+    display: inline-block;
+    padding: 0 10px 29px;
+    vertical-align: top;
+    width: 29%;
+    min-width: none;
+    max-width: none;
+}
+.features-nav ul li a img {
+    display: block;
+    margin: 0 auto 15px;
+    max-height: 45px;
+    max-width: 59px;
 }
 /*List Your Business start*/
 .list-your-business-banner {
@@ -801,9 +812,12 @@ padding: 70px 70px 70px 70px;
     }
 /* =============Marketing Pages Start ============================ */
 /*features nav start*/
+.features-nav ul {
+    display: flex;
+}
 .features-nav ul li {
-    min-width: 105px;
-    max-width: 140px;
+    min-width: 86px;
+    width: 13%;
 }
 }
 
