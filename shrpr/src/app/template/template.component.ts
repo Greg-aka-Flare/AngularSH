@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
 import { NgZone } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { LikeService } from "../like.service";
 import { SearchComponent } from '../search/search.component';
-
 
 @Component({
   selector: 'app-template',
@@ -12,7 +12,9 @@ import { SearchComponent } from '../search/search.component';
   styleUrls: ['./template.component.css']
 })
 export class TemplateComponent implements OnInit {
+
   constructor() {
+
   }
 
   ngOnInit() {
@@ -33,9 +35,23 @@ export class TemplateHeader implements OnInit, OnDestroy {
   isBtnActive: boolean = false;
   counter: number = 0;
   subscription: Subscription;
+  width = document.documentElement.clientWidth;
 
+  private subscriptions = new Subscription();
 
   constructor(zone: NgZone, private likeService: LikeService) {
+
+    
+
+    const $resizeEvent = Observable.fromEvent(window, 'resize')
+    .map(() => {
+      return document.documentElement.clientWidth;
+      })
+      this.subscriptions.add($resizeEvent.subscribe(data => {
+      this.width = data;
+    }));
+    
+   
     window.onscroll = () => {
       zone.run(() => {
         if(window.pageYOffset > 0) {
@@ -43,6 +59,13 @@ export class TemplateHeader implements OnInit, OnDestroy {
         } else {
              this.isheaderShrunk = false;
         }
+      });
+    }
+    window.onresize = () => {
+      zone.run(() => {
+        if(this.width < 768) {
+          this.isBtnActive = false;
+        } 
       });
     }
   }
