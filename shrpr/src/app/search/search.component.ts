@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CompleterService, CompleterItem, CompleterCmp } from 'ng2-completer';
+import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
 import { Category } from '../category.interface';
 import { CategoryService } from '../category.service';
 import { NgModel } from '@angular/forms';
@@ -126,7 +126,7 @@ export class SearchComponent implements OnInit {
 
   onKey(val) {
 
-    if(!this.changeData){
+    if(!this.changedData){
 
       this.dataService = this.completerService.local(this.categories, 'name', 'name');
 
