@@ -12,7 +12,7 @@ import { NgModel } from '@angular/forms';
 export class SearchComponent implements OnInit {
 
   location: string = '';
-  
+
   protected dataService: CompleterData;
   
   constructor(
@@ -21,7 +21,11 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dataService = this.completerService.remote('http://shrpr.dev/api/search?str=', 'title', 'title').imageField('img');
+    this.dataService = this.completerService.remote(
+      'http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/search?str=', 
+      'title', 
+      'title'
+    ).imageField('img');
 
     // if (navigator.geolocation) { //check if we can get lat/lng
       
