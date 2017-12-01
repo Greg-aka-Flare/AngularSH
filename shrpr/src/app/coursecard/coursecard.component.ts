@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Pipe, PipeTransform } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser'
 import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
@@ -11,7 +11,6 @@ import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
 
 
-
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
 
@@ -20,6 +19,7 @@ import { CourseService } from "../course.service";
   templateUrl: './coursecard.component.html',
   styleUrls: ['./coursecard.component.css']
 })
+
 export class CoursecardComponent implements OnInit, OnDestroy {
 
   private id: number;
@@ -46,6 +46,7 @@ export class CoursecardComponent implements OnInit, OnDestroy {
   public startDate: Date;
   public endDate: Date;
   semesterCount:number;
+  semesterArray: any[] = [];
 
 
   //The time to show the next photo
@@ -79,6 +80,11 @@ export class CoursecardComponent implements OnInit, OnDestroy {
       this.course = course;
       this.ratingData = this.course.ratings;
       this.semesterCount = this.course.semesters.length;
+
+      for(var i=0; i< this.semesterCount; i++){
+        this.semesterArray.push(this.course.semesters[i]);
+      }
+      console.log(this.semesterArray);
       this.semesterDetails = JSON.parse(this.course.semesters[0].details);
       this.startDate = new Date(this.course.semesters[0].start_date.replace(/-/g, "/"));
       this.endDate = new Date(this.course.semesters[0].end_date.replace(/-/g, "/"));

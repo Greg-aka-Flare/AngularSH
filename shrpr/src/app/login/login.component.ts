@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/observable/fromEvent';
 import { UserInterface } from "../user.interface";
 import { UserService } from "../user.service";
 import { TabsComponent } from "../home/tabs/tabs.component";
@@ -15,11 +16,12 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   signupForm: FormGroup;
   loginForm: FormGroup;
-
+  private subscriptions = new Subscription();
+  
   constructor(
     public userService: UserService,
     private http: HttpClient,
@@ -47,11 +49,11 @@ export class LoginComponent implements OnInit {
     const email = this.signupForm.value.email;
     const password = this.signupForm.value.password;
 
-    this.userService.signup(name, email, password)
+    this.subscriptions.add(this.userService.signup(name, email, password)
       .subscribe(
         response => console.log(response),
         error => console.log(error)
-       );
+       ));
   }
 
   onLogin() {
@@ -59,13 +61,17 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
 
-    this.auth.login(email, password)
+    this.subscriptions.add(this.auth.login(email, password)
       .subscribe(
         response => {
 
           localStorage.setItem('access_token', response.access_token);
         },
         error => console.log(error)
-      );
+      ));
+  }
+
+  ngOnDestroy(){
+    this.subscriptions.unsubscribe();
   }
 }

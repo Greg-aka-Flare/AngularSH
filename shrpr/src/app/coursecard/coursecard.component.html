@@ -83,7 +83,7 @@
               <div *ngIf="semesterCount > 1">
                 Start Date: <select name="semester_start_date">
                   <option>---Select Date--></option>
-                  <option *ngFor="let sem of course.semesters" value="sem.id">{{sem.start_date}}</option>
+                  <option *ngFor="let sem of course.semesters" value="sem.id">{{sem.start_date | datex:'LLLL'}}</option>
                 </select>
               </div>
               <div *ngIf="semesterCount < 2">
@@ -110,7 +110,7 @@
                 <a class="page-btn" href="javascript:void(0);">Enroll Today</a>
               </div>
               <ul class="meetings_list">
-                  <li *ngFor="let meeting of meetingArray">{{meeting.start}}</li>
+                  <li *ngFor="let meeting of meetingArray">{{meeting.start | datex:'LLLL'}}</li>
               </ul>
               <!-- .enroll_row-->
             </div>

@@ -64,7 +64,7 @@ import { FaqsComponent } from './faqs/faqs.component';
 
 import { AuthService } from './auth/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
-
+import { DatexPipe } from './date.pipe';
 import { CategoryService } from "./category.service";
 
 
@@ -112,7 +112,8 @@ import { CategoryService } from "./category.service";
     CollinComponent,
     DaveComponent,
     GregoryComponent,
-    AlexaComponent
+    AlexaComponent,
+    DatexPipe
    ],
   imports: [
     BrowserModule,
