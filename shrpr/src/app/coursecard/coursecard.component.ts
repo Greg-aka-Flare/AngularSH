@@ -3,10 +3,13 @@ import {BrowserModule} from '@angular/platform-browser'
 import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
 import {trigger, state, style, transition, animate} from '@angular/animations';
+import {FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { TabsComponent } from "../home/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { ReactiveFormsModule } from '@angular/forms';
+import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
 
@@ -47,7 +50,7 @@ export class CoursecardComponent implements OnInit, OnDestroy {
   public endDate: Date;
   semesterCount:number;
   semesterArray: any[] = [];
-
+  selectedSemester:any;
 
   //The time to show the next photo
   private NextPhotoInterval:number = 5000;
@@ -55,12 +58,15 @@ export class CoursecardComponent implements OnInit, OnDestroy {
   private noLoopSlides:boolean = false;
   //Photos
   private slides:Array<any> = [];
-
+  firstSemester:number; 
 
   constructor(
     private courseService: CourseService, 
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.selectedSemester = this.semesterArray;
+    
+  }
 
   ngOnInit() {
 
@@ -84,7 +90,9 @@ export class CoursecardComponent implements OnInit, OnDestroy {
       for(var i=0; i< this.semesterCount; i++){
         this.semesterArray.push(this.course.semesters[i]);
       }
+
       console.log(this.semesterArray);
+
       this.semesterDetails = JSON.parse(this.course.semesters[0].details);
       this.startDate = new Date(this.course.semesters[0].start_date.replace(/-/g, "/"));
       this.endDate = new Date(this.course.semesters[0].end_date.replace(/-/g, "/"));
@@ -112,7 +120,12 @@ export class CoursecardComponent implements OnInit, OnDestroy {
       this.reviewRatingGross = this.userRating/this.reviewCount;
     }));
 
-  }  
+  }
+
+  onSelect(val){
+    console.log(val);
+    this.selectedSemester = this.semesterArray.filter(x => x.id == val);
+  }
  
   private removeLastSlide() {
     this.slides.pop();

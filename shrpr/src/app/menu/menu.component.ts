@@ -9,9 +9,6 @@ import { TemplateHeader } from '../template/template.component';
 })
 export class MenuComponent implements OnInit {
 
-  
-  
-
   constructor(private templateHeader: TemplateHeader ) {
     
   }
@@ -21,6 +18,7 @@ export class MenuComponent implements OnInit {
   }
   toggleMenu() {
     this.templateHeader.isBtnActive = !this.templateHeader.isBtnActive;
+    
   }
   
 

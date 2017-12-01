@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser'
+import {BrowserModule} from '@angular/platform-browser';
 import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
 import { StarRatingModule } from 'angular-star-rating';

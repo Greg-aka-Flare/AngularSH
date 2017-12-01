@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import { MenuComponent } from '../menu/menu.component';
 import { NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { LikeService } from "../like.service";
 import { SearchComponent } from '../search/search.component';
+
 
 @Component({
   selector: 'app-template',
@@ -13,12 +15,17 @@ import { SearchComponent } from '../search/search.component';
 })
 export class TemplateComponent implements OnInit {
 
+  public pagetemp:string;
+  
   constructor() {
-
+    
   }
 
   ngOnInit() {
+    
   }
+
+  
 
 }
 
@@ -36,13 +43,15 @@ export class TemplateHeader implements OnInit, OnDestroy {
   counter: number = 0;
   subscription: Subscription;
   width = document.documentElement.clientWidth;
-
+  pageType:string;
+  
   private subscriptions = new Subscription();
 
   constructor(zone: NgZone, private likeService: LikeService) {
 
+    this.pageType = this.likeService.pageTemp;
     
-
+    
     const $resizeEvent = Observable.fromEvent(window, 'resize')
     .map(() => {
       return document.documentElement.clientWidth;
@@ -50,8 +59,8 @@ export class TemplateHeader implements OnInit, OnDestroy {
       this.subscriptions.add($resizeEvent.subscribe(data => {
       this.width = data;
     }));
+
     
-   
     window.onscroll = () => {
       zone.run(() => {
         if(window.pageYOffset > 0) {
@@ -87,8 +96,6 @@ export class TemplateHeader implements OnInit, OnDestroy {
     this.isBtnActive = !this.isBtnActive;
   }
 
-  
-  
 }
 
 @Component({

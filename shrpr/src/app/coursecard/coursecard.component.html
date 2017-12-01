@@ -78,17 +78,26 @@
               </p>
               <p>
                 <i class="fa fa-map-marker" aria-hidden="true"></i> <span class="course_address_mobile" *ngFor="let address of course.semesters[0].addresses">{{ address.city }}, {{ address.state }}</span>
+                <a class="page-btn" href="javascript:void(0);">Enroll Today</a>
               </p>
               <br>
               <div *ngIf="semesterCount > 1">
-                Start Date: <select name="semester_start_date">
-                  <option>---Select Date--></option>
-                  <option *ngFor="let sem of course.semesters" value="sem.id">{{sem.start_date | datex:'LLLL'}}</option>
-                </select>
+                Start Date: <select name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
+                  <option selected>---Select Date--></option>
+                  <option *ngFor="let sem of course.semesters" value="{{sem.id}}">{{sem.start_date | datex:'LL'}}</option>
+                </select><br>
+                <div *ngIf="selectedSemester">
+                <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
+                   <p>Starts at: {{selected?.start_date | datex:'LLLL'}}</p>
+                   <p>End Date: {{selected?.end_date | datex:'LLLL'}}</p>
+                   <p>Sessions: {{selected?.duration}}</p>
+                </div>
+              </div> 
+
               </div>
               <div *ngIf="semesterCount < 2">
-                  <p>Starts on: {{startDate | date: 'fullDate' }} from {{startDate | date: 'shortTime' }}</p>
-                  <p>Ends on: {{endDate | date: 'fullDate' }} at {{endDate | date: 'shortTime' }}</p>
+                  <p>Starts on: {{startDate | datex: 'LLLL' }}</p>
+                  <p>Ends on: {{endDate | datex: 'LLLL' }}</p>
                   <p>Sessions: {{course.semesters[0].duration}}
                       <span class="action_btn">
                           <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a>
@@ -103,16 +112,20 @@
       <!-- .course_desktop_card -->
       <section class="course_semester_desktop">
           <div class="course_enroll_block">
-              <div class="enroll_row">
-                <select name="select_course_meeting">
-                  <option *ngFor="let meeting of meetingArray" value="{{meeting.id}}">{{meeting.start}}</option>
-                </select>
-                <a class="page-btn" href="javascript:void(0);">Enroll Today</a>
+              <h3>Sessions Details:</h3>
+              <div *ngIf="semesterCount > 1">
+                  <ul class="meetings_list">
+                      <li *ngFor="let meeting of selectedSemester.meetings">{{meeting.start | datex:'LLLL'}}</li>
+                  </ul>
               </div>
-              <ul class="meetings_list">
-                  <li *ngFor="let meeting of meetingArray">{{meeting.start | datex:'LLLL'}}</li>
-              </ul>
-              <!-- .enroll_row-->
+              <div *ngIf="semesterCount < 2">
+                  <ul class="meetings_list">
+                      <li *ngFor="let meeting of meetingArray">{{meeting.start | datex:'LLLL'}}</li>
+                  </ul>
+              </div>
+              
+              
+
             </div>
             <!-- .course_enroll_block -->
         <h2>Semester Information</h2>
@@ -137,6 +150,7 @@
       <p>{{course.description}}</p>
       <h2>CONTACT</h2>
       <address *ngFor="let address of course.semesters[0].addresses">{{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}, {{ address.zip }}<br>{{ address.country }}</address>
+      
       </section>
     <!-- desktop view End -->
     <!--google map start-->

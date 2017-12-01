@@ -13,6 +13,7 @@ export class LikeService {
   private dislikeCoursesArray = new Array<{courseid:number, groupid:string}>();
   private oldLikeValue;
   private oldDislikeValue;
+  public pageTemp:string;
 
   constructor(){
     this.oldLikeValue = JSON.parse(localStorage.getItem("likes"));
