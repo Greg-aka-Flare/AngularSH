@@ -51,6 +51,7 @@ import { ValuesComponent } from './values/values.component';
 import { VideosComponent } from './videos/videos.component';
 import { BlogComponent } from './blog/blog.component';
 import { PodcastComponent } from './podcast/podcast.component';
+import { InterviewwithroblabonneComponent } from './podcast/interviewwithroblabonne.component';
 import { Carousel } from './carousel/carousel.component';
 import { Slide } from './carousel/slide.component';
 import { OnlinepaymentComponent } from './onlinepayment/onlinepayment.component';
@@ -95,6 +96,7 @@ import { CategoryService } from "./category.service";
     VideosComponent,
     BlogComponent,
     PodcastComponent,
+    InterviewwithroblabonneComponent,
     Carousel,
     Slide,
     OnlinepaymentComponent,

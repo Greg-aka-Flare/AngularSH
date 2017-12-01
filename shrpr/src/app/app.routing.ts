@@ -24,6 +24,7 @@ import { ValuesComponent } from './values/values.component';
 import { VideosComponent } from './videos/videos.component';
 import { BlogComponent } from './blog/blog.component';
 import { PodcastComponent } from './podcast/podcast.component';
+import { InterviewwithroblabonneComponent } from './podcast/interviewwithroblabonne.component';
 import { OnlinepaymentComponent } from './onlinepayment/onlinepayment.component';
 import { CustombrandedComponent } from './custombranded/custombranded.component';
 import { AutomatedcommunicationComponent } from './automatedcommunication/automatedcommunication.component';
@@ -57,6 +58,7 @@ const APP_ROUTES: Routes = [
 	{ path: 'videos', component: VideosComponent },
 	{ path: 'blog', component: BlogComponent },
 	{ path: 'podcast', component: PodcastComponent },
+	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent },
 	{ path: 'onlinepayment', component: OnlinepaymentComponent },
 	{ path: 'custombranded', component: CustombrandedComponent },
 	{ path: 'automatedcommunication', component: AutomatedcommunicationComponent },

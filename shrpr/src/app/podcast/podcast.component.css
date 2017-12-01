@@ -1,0 +1,29 @@
+.podcast-link {
+    padding: 0 0 20px 0;
+}
+.podcast-link li {
+    padding: 0 0 5px 0;
+}
+.podcast-link li a {
+    color: #02b2b8;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 26px 0 0;
+    position: relative;
+}
+.podcast-link li a:hover {
+    text-decoration: underline;
+}
+.podcast-link li a:after {
+    content: "\f04b";
+    font-family: FontAwesome;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1em;
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    top: 1px; 
+}
