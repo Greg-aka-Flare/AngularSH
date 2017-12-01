@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { MarketingformComponent } from './marketingform.component';
+import { MarketingnavComponent } from './marketingnav.component';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-marketing',
@@ -56,8 +60,6 @@ private removeLastSlide() {
    this.slides.pop();
 } 
   ngOnInit() {
-    let body = document.getElementsByTagName('body')[0];
-    body.classList.add("className"); 
   }
 
 }

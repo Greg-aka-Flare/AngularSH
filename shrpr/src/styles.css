@@ -350,8 +350,17 @@ background: #c95f5f;
     max-width: 600px;
     margin: 0 auto;
 }
+.list-your-business-image {
+    padding: 20px;
+}
 .list-your-business-image img {
     display: block;
+    width: 100%;
+}
+.list-your-business-image video {
+    display: block;
+    margin: 0 auto;
+    max-width: 600px;
     width: 100%;
 }
 /*List Your Business start*/
@@ -541,6 +550,7 @@ a.jointhenetwork-link:hover {
     font-size: 19px;
     color: #ffffff;
     line-height: 20px;
+    padding: 20px 0 0 0;
 }
 .signup-link a {
     color: #ec9332;

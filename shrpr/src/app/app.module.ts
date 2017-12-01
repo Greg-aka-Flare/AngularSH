@@ -54,14 +54,16 @@ import { PodcastComponent } from './podcast/podcast.component';
 import { InterviewwithroblabonneComponent } from './podcast/interviewwithroblabonne.component';
 import { Carousel } from './carousel/carousel.component';
 import { Slide } from './carousel/slide.component';
-import { OnlinepaymentComponent } from './onlinepayment/onlinepayment.component';
-import { CustombrandedComponent } from './custombranded/custombranded.component';
-import { AutomatedcommunicationComponent } from './automatedcommunication/automatedcommunication.component';
-import { ReportsdashboardsComponent } from './reportsdashboards/reportsdashboards.component';
-import { ReviewsfeedbackComponent } from './reviewsfeedback/reviewsfeedback.component';
-import { FreetrainingComponent } from './freetraining/freetraining.component';
-import { PricingComponent } from './pricing/pricing.component';
-import { FaqsComponent } from './faqs/faqs.component';
+import { OnlinepaymentComponent } from './marketing/onlinepayment.component';
+import { CustombrandedComponent } from './marketing/custombranded.component';
+import { AutomatedcommunicationComponent } from './marketing/automatedcommunication.component';
+import { ReportsdashboardsComponent } from './marketing/reportsdashboards.component';
+import { ReviewsfeedbackComponent } from './marketing/reviewsfeedback.component';
+import { FreetrainingComponent } from './marketing/freetraining.component';
+import { PricingComponent } from './marketing/pricing.component';
+import { FaqsComponent } from './marketing/faqs.component';
+import { MarketingformComponent } from './marketing/marketingform.component';
+import { MarketingnavComponent } from './marketing/marketingnav.component';
 
 import { AuthService } from './auth/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -115,7 +117,9 @@ import { CategoryService } from "./category.service";
     DaveComponent,
     GregoryComponent,
     AlexaComponent,
-    DatexPipe
+    DatexPipe,
+    MarketingformComponent,
+    MarketingnavComponent
    ],
   imports: [
     BrowserModule,
