@@ -1,0 +1,25 @@
+#videos {
+    text-align: center;
+}
+
+#videos > div {
+    display: inline-block;
+    max-width: 292px;
+    padding: 0 5px 10px;
+    vertical-align: top;
+}
+#videos div iframe {
+    display: block;
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+/* =============================================================================
+   LARGE SCREEN STYLES [DESKTOP VIEW] START
+  ============================================================================= */
+/* 960px */
+@media only screen and (min-width: 960px) {
+    #videos {
+        text-align: left;
+    }
+}

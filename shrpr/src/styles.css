@@ -96,7 +96,7 @@ main {
 }
 /* =============Page content Area Start============================ */
 .page-conent-area {
-    padding:40px 0 40px 0;
+    padding:40px 10px 40px 10px;
     min-height: 350px;
 }
 /* =============Search============================ */
@@ -809,6 +809,9 @@ padding: 70px 70px 70px 70px;
     /*search*/
     header.header_small section#search {
         padding: 5px 15px;
+    }
+    .page-conent-area {
+        padding:40px 0 40px 0;
     }
 /* =============Marketing Pages Start ============================ */
 /*features nav start*/
