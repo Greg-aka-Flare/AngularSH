@@ -56,6 +56,8 @@ private removeLastSlide() {
    this.slides.pop();
 } 
   ngOnInit() {
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.add("className"); 
   }
 
 }
