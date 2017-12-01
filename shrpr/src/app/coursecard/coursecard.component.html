@@ -20,29 +20,45 @@
               </figure>
               <div class="overlay">
                   <p><i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a></p>
-                  <p><i class="fa fa-map-marker" aria-hidden="true"></i> <span class="course_address_mobile" *ngFor="let address of course.semesters[0].addresses">{{ address.city }}, {{ address.state }}</span></p>
+                  <p><i class="fa fa-map-marker" aria-hidden="true"></i> 
+                    <span class="course_address_mobile" *ngIf="selectedSemester">
+                        <span *ngFor="let gadd of selectedSemester">
+                        <span *ngFor="let add of gadd.addresses">
+                             {{ add.city }}, {{ add.state }}
+                      </span>
+                      </span> 
+                    </span>
+                  
+                  </p>
               </div><!-- .overlay -->
           </div><!-- .img-ctn -->
           <div class="course_info">
-            <span class="action_btn">
-              <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a><br>
-              <a href="#"><i class="fa fa-list" aria-hidden="true"></i> Whishlist</a>
-            </span>
-            <p>Semesters: {{course.semesters[0].duration}}</p>
-            <p>Starts on: {{course.semesters[0].start_date}}</p>
+            <div *ngIf="semesterCount">
+                Start Date: <select name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
+                  <option *ngFor="let sem of course?.semesters; let k = index" [selected]="k == 0" value="{{sem.id}}">{{sem?.start_date | datex:'LL'}}</option>
+                </select>
+                <div *ngIf="selectedSemester">
+                <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
+                   <p>Starts at: {{selected?.start_date | datex:'LLLL'}}</p>
+                   <p>End Date: {{selected?.end_date | datex:'LLLL'}}</p>
+                   <p>Sessions: {{selected?.duration}}</p>
+                </div>
+              </div> 
+              </div>
+              <span class="action_btn">
+                  <a href="javascript:void(0);">Enroll Today</a> &nbsp; <a href="javascript:void(0);"><i class="fa fa-list" aria-hidden="true"></i> Whishlist</a>
+              </span>
           </div>
           <!-- .course_info -->
           <div class="course_enroll_block">
-            <div class="enroll_row">
-              <select name="select_course_meeting">
-                <option *ngFor="let meeting of meetingArray" value="{{meeting.id}}">{{meeting.start}}</option>
-              </select>
-              <a class="page-btn" href="javascript:void(0);">Enroll Today</a>
-            </div>
-            <ul class="meetings_list">
-                <li *ngFor="let meeting of meetingArray">{{meeting.start}}</li>
-            </ul>
-            <!-- .enroll_row-->
+              <h3>Sessions Details:</h3>
+              <div *ngIf="selectedSemester">
+                <div *ngFor="let semester of selectedSemester">
+                    <ul class="meetings_list">
+                        <li *ngFor="let selectmet of semester.meetings">{{selectmet?.start | datex:'LLLL'}}</li>
+                    </ul>
+                </div> 
+              </div>
           </div>
           <!-- .course_enroll_block -->
           <div class="course_info">
@@ -55,7 +71,6 @@
     <!-- mobile view ends-->
     <!--desktop view start-->
     <section *ngIf="width > 767" id="profile-header">
-          
       <div class="course_header">
           <div class="course_slider">
               <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
@@ -74,38 +89,34 @@
               </div><!-- .course_rating_info -->
               <p>
                 <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
-                
               </p>
               <p>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> <span class="course_address_mobile" *ngFor="let address of course.semesters[0].addresses">{{ address.city }}, {{ address.state }}</span>
-                <a class="page-btn" href="javascript:void(0);">Enroll Today</a>
+                <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                <span class="course_address_mobile" *ngIf="selectedSemester">
+                    <span *ngFor="let gadd of selectedSemester">
+                    <span *ngFor="let add of gadd.addresses">
+                         {{ add.city }}, {{ add.state }}
+                  </span>
+                  </span> 
+                </span>
               </p>
               <br>
-              <div *ngIf="semesterCount > 1">
-                Start Date: <select name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
-                  <option selected>---Select Date--></option>
-                  <option *ngFor="let sem of course.semesters" value="{{sem.id}}">{{sem.start_date | datex:'LL'}}</option>
-                </select><br>
+              <div *ngIf="semesterCount">
+                Start Date: <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
+                  <option *ngFor="let sem of course?.semesters; let k = index" [selected]="k == 0" value="{{sem.id}}">{{sem?.start_date | datex:'LL'}}</option>
+                </select>
                 <div *ngIf="selectedSemester">
                 <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
+                    <span class="action_btn">
+                        <a href="javascript:void(0);">Enroll Today</a><br>
+                        <a href="javascript:void(0);"><i class="fa fa-list" aria-hidden="true"></i> Whishlist</a>
+                      </span>
                    <p>Starts at: {{selected?.start_date | datex:'LLLL'}}</p>
                    <p>End Date: {{selected?.end_date | datex:'LLLL'}}</p>
                    <p>Sessions: {{selected?.duration}}</p>
                 </div>
               </div> 
-
               </div>
-              <div *ngIf="semesterCount < 2">
-                  <p>Starts on: {{startDate | datex: 'LLLL' }}</p>
-                  <p>Ends on: {{endDate | datex: 'LLLL' }}</p>
-                  <p>Sessions: {{course.semesters[0].duration}}
-                      <span class="action_btn">
-                          <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a>
-                          <a href="#"><i class="fa fa-list" aria-hidden="true"></i> Whishlist</a>
-                        </span>
-                  </p>
-              </div> 
-              
           </div>
           <!-- .course_info_desktop-->
         </div>
@@ -113,23 +124,17 @@
       <section class="course_semester_desktop">
           <div class="course_enroll_block">
               <h3>Sessions Details:</h3>
-              <div *ngIf="semesterCount > 1">
-                  <ul class="meetings_list">
-                      <li *ngFor="let meeting of selectedSemester.meetings">{{meeting.start | datex:'LLLL'}}</li>
-                  </ul>
-              </div>
-              <div *ngIf="semesterCount < 2">
-                  <ul class="meetings_list">
-                      <li *ngFor="let meeting of meetingArray">{{meeting.start | datex:'LLLL'}}</li>
-                  </ul>
-              </div>
-              
-              
-
-            </div>
+              <div *ngIf="selectedSemester">
+                <div *ngFor="let semester of selectedSemester">
+                    <ul class="meetings_list">
+                        <li *ngFor="let selectmet of semester.meetings">{{selectmet?.start | datex:'LLLL'}}</li>
+                    </ul>
+                </div> 
+              </div> 
+          </div>
             <!-- .course_enroll_block -->
         <h2>Semester Information</h2>
-        <p>{{semesterDetails.info}}</p>
+        <p>{{ semesterDetails.info }}</p>
       </section>
     </section>
     <!--desktop view ends-->
@@ -139,8 +144,10 @@
         <div class="contact_box">{{course.description}}</div>
     </tab>
     <tab tabTitle="CONTACT">
-        <div class="contact_box">
-          <address *ngFor="let address of course.semesters[0].addresses" >{{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}, {{ address.zip }}<br>{{ address.country }}</address>
+        <div *ngIf="selectedSemester" class="contact_box">
+            <div *ngFor="let semester of selectedSemester">
+            <address *ngFor="let address of semester.addresses">{{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}, {{ address.zip }}<br>{{ address.country }}</address>
+            </div> 
         </div>
     </tab>
     </tabs><!-- #Tab -->
@@ -149,19 +156,28 @@
       <h2>ABOUT</h2>
       <p>{{course.description}}</p>
       <h2>CONTACT</h2>
-      <address *ngFor="let address of course.semesters[0].addresses">{{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}, {{ address.zip }}<br>{{ address.country }}</address>
-      
+      <div *ngIf="selectedSemester">
+        <div *ngFor="let semester of selectedSemester">
+            <address *ngFor="let address of semester.addresses">{{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}, {{ address.zip }}<br>{{ address.country }}</address>
+        </div> 
+      </div>
       </section>
     <!-- desktop view End -->
     <!--google map start-->
     <section id="gmap">
+      <div *ngIf="selectedSemester">
+      <div *ngFor="let gadd of selectedSemester">
+      <div *ngFor="let add of gadd.addresses">
       <agm-map [latitude]="lat" [longitude]="lng" [fullscreenControl]="true" [mapTypeControl]="true">
         <agm-marker [latitude]="lat" [longitude]="lng" [label]="'A'">
           <agm-info-window [disableAutoPan]="true">
-            <address *ngFor="let address of course.semesters[0].addresses">{{ address.streetAddress }}<br>{{ address.city }}, {{ address.state }}<br>{{ address.zip }}<br>{{ address.country }}</address>
-            </agm-info-window>
+            <address>{{ add.streetAddress }}<br>{{ add.city }}, {{ add.state }}<br>{{ add.zip }}<br>{{ add.country }}</address>
+          </agm-info-window>
         </agm-marker>
       </agm-map>
+      </div>
+    </div> 
+    </div>
     </section>
     <!--google map ends-->
     <!-- #reviews-->
