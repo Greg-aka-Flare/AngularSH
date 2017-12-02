@@ -1,0 +1,59 @@
+/*features Banner start*/
+.features-banner {
+    background-color: #852176;
+    background-image: url(../../../assets/img/features-banner-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 768px;
+    height: 565px;
+}
+
+.features-banner-text {
+    padding: 50px 10px 20px 10px;
+    max-width: 500px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+}
+.features-banner-text h1 {
+    color: #ffffff;
+    font-size: 35px;
+    line-height: 35px;
+    padding: 0 0 5px 0;
+}
+.features-banner-text p {
+    font-size: 17px;
+    line-height: 22px;
+    color: #ffffff;
+    padding: 0 0 20px 0;
+
+}
+:host /deep/ app-marketing-nav .features-nav ul li:nth-of-type(1) a {
+    color: #852176;
+}
+/*================================================
+769px tablet media start
+================================================*/
+@media only screen and (min-width: 769px) {
+    /*features Banner start*/
+.features-banner {
+    background-size: 960px;
+    height: 500px;
+}
+.features-banner-text {
+    padding: 100px 10px 20px 10px;
+    margin: 0 10% 0 0;
+}
+}
+/*================================================
+960px Desktop media start
+================================================*/
+@media only screen and (min-width: 960px) {
+  /*features Banner start*/
+.features-banner {
+    background-size: cover;
+    background-position: left 76%;
+}      
+}

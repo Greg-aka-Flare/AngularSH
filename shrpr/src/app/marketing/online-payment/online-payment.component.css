@@ -1,0 +1,9 @@
+/*features Banner start*/
+.features-banner {
+    background-color: #3fa8d1;
+    text-align: center;
+}
+/*features nav start*/
+:host /deep/ app-marketing-nav .features-nav ul li:nth-of-type(2) a {
+    color: #3fa8d1;
+}

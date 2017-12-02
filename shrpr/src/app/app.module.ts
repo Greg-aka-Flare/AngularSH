@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StarRatingModule } from 'angular-star-rating';
@@ -10,7 +9,7 @@ import { NgModel } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
-import { routing } from "./app.routing";
+import { AppRoutingModule } from "./app-routing.module";
 import { LikeService } from "./like.service";
 import { MenuComponent } from './menu/menu.component';
 import { SearchComponent } from './search/search.component';
@@ -36,7 +35,6 @@ import { InstructorProfileComponent } from './instructor-profile/instructor-prof
 import { StudentService } from './student.service';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './login/login.component';
-import { MarketingComponent } from './marketing/marketing.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { TeamComponent } from './team/team.component';
 import { BrandonComponent } from './team/brandon.component';
@@ -52,24 +50,13 @@ import { VideosComponent } from './videos/videos.component';
 import { BlogComponent } from './blog/blog.component';
 import { PodcastComponent } from './podcast/podcast.component';
 import { InterviewwithroblabonneComponent } from './podcast/interviewwithroblabonne.component';
-import { Carousel } from './carousel/carousel.component';
-import { Slide } from './carousel/slide.component';
-import { OnlinepaymentComponent } from './marketing/onlinepayment.component';
-import { CustombrandedComponent } from './marketing/custombranded.component';
-import { AutomatedcommunicationComponent } from './marketing/automatedcommunication.component';
-import { ReportsdashboardsComponent } from './marketing/reportsdashboards.component';
-import { ReviewsfeedbackComponent } from './marketing/reviewsfeedback.component';
-import { FreetrainingComponent } from './marketing/freetraining.component';
-import { PricingComponent } from './marketing/pricing.component';
-import { FaqsComponent } from './marketing/faqs.component';
-import { MarketingformComponent } from './marketing/marketingform.component';
-import { MarketingnavComponent } from './marketing/marketingnav.component';
 
 import { AuthService } from './auth/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { DatexPipe } from './date.pipe';
 import { CategoryService } from "./category.service";
 
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -91,7 +78,6 @@ import { CategoryService } from "./category.service";
     StudentComponent,
     CoursecardComponent,
     LoginComponent,
-    MarketingComponent,
     AboutusComponent,
     TeamComponent,
     ValuesComponent,
@@ -99,16 +85,6 @@ import { CategoryService } from "./category.service";
     BlogComponent,
     PodcastComponent,
     InterviewwithroblabonneComponent,
-    Carousel,
-    Slide,
-    OnlinepaymentComponent,
-    CustombrandedComponent,
-    AutomatedcommunicationComponent,
-    ReportsdashboardsComponent,
-    ReviewsfeedbackComponent,
-    FreetrainingComponent,
-    PricingComponent,
-    FaqsComponent,
     BrandonComponent,
     ErickComponent,
     MikeComponent,
@@ -117,13 +93,11 @@ import { CategoryService } from "./category.service";
     DaveComponent,
     GregoryComponent,
     AlexaComponent,
-    DatexPipe,
-    MarketingformComponent,
-    MarketingnavComponent
+    DatexPipe
    ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
     JwtModule.forRoot({
@@ -137,11 +111,11 @@ import { CategoryService } from "./category.service";
     FormsModule,
     ReactiveFormsModule,
     Ng2CompleterModule,
-    routing,
     StarRatingModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBKUrP69jyLxcicvoZg05Ysqi3rbj1U1Uk'
-    })
+    }),
+    SharedModule
   ],
   providers: [
       AuthService, 
@@ -156,6 +130,5 @@ import { CategoryService } from "./category.service";
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(){}
+  constructor() {}
 }
-
