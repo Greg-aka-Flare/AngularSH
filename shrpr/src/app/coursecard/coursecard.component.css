@@ -215,6 +215,7 @@ ul.meetings_list li {
     position: absolute;
     top: 20px;
     right: 0;
+    z-index: 2;
 }
 .group_rating {
     float: right;

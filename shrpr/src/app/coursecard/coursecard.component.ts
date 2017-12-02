@@ -51,6 +51,7 @@ export class CoursecardComponent implements OnInit, OnDestroy {
   semesterCount:number;
   semesterArray: any[] = [];
   selectedSemester:any;
+  semesterInfo;
 
   //The time to show the next photo
   private NextPhotoInterval:number = 5000;
@@ -90,9 +91,7 @@ export class CoursecardComponent implements OnInit, OnDestroy {
       for(var i=0; i< this.semesterCount; i++){
         this.semesterArray.push(this.course.semesters[i]);
       }
-
-      console.log(this.semesterArray);
-
+      
       this.semesterDetails = JSON.parse(this.course.semesters[0].details);
       this.startDate = new Date(this.course.semesters[0].start_date.replace(/-/g, "/"));
       this.endDate = new Date(this.course.semesters[0].end_date.replace(/-/g, "/"));
@@ -108,6 +107,7 @@ export class CoursecardComponent implements OnInit, OnDestroy {
       );
 
       this.meetingArray = this.course.semesters[0].meetings;
+      this.onSelect(this.course.semesters[0].id);
       //initializing the google co-ordinates
       this.lat = this.course.semesters[0].addresses[0].latitude;
       this.lng = this.course.semesters[0].addresses[0].longitude;
@@ -123,7 +123,6 @@ export class CoursecardComponent implements OnInit, OnDestroy {
   }
 
   onSelect(val){
-    console.log(val);
     this.selectedSemester = this.semesterArray.filter(x => x.id == val);
   }
  

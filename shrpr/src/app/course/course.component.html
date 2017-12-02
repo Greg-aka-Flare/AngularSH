@@ -37,7 +37,7 @@
                 <p class="date">
                     <i class="fa fa-calendar" aria-hidden="true"></i> 
 
-                    {{ course?.semesters[0]?.start_date | date: 'MM/dd/yyyy' }}
+                    {{ course?.semesters[0]?.start_date | datex: 'LL' }}
                 </p><!-- .date -->
             </div><!-- .overlay -->
             <span class="overlay-color" [@overlay]='course?.state'></span>
