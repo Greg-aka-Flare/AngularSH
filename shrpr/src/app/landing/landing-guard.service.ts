@@ -22,7 +22,7 @@ export class LandingGuard implements CanActivate {
 
       var pass1 = prompt('Please Enter Your Password', '');
 
-      while(pass1 !== 'letmein'){
+      while(pass1 !== 'theman!'){
         alert('Password Incorrect');
 
         pass1 = prompt('Please Enter Your Password', '')
