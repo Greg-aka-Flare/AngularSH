@@ -7,8 +7,6 @@ import { TabsComponent } from "../home/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/map';
 
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
@@ -22,7 +20,7 @@ import { InstructorService } from "../instructor.service";
 })
 
 export class InstructorProfileComponent implements OnInit, OnDestroy {
-  instructors:any[];
+  instructors:any;
   courses: any;
   courseCard:any[] = [];
   private myid:number;
@@ -30,7 +28,7 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
   instrocterdata:string;
   
-  details:string;
+  details:any;
   
   width = document.documentElement.clientWidth;
 

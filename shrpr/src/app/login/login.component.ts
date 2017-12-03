@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/observable/fromEvent';
 import { UserInterface } from "../user.interface";
 import { UserService } from "../user.service";
 import { TabsComponent } from "../home/tabs/tabs.component";

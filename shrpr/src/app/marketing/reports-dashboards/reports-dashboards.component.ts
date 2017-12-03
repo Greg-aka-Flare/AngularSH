@@ -20,12 +20,12 @@ export class ReportsDashboardsComponent implements OnInit {
 
 
   //The time to show the next photo
-  private NextPhotoInterval:number = 5000;
+  public NextPhotoInterval:number = 5000;
   //Looping or not
-  private noLoopSlides:boolean = false;
+  public noLoopSlides:boolean = false;
   //Photos
-  private slides:Array<any> = [];
-  private slidescontent:Array<any> = [];
+  public slides:Array<any> = [];
+  public slidescontent:Array<any> = [];
   wasClicked = false;
   hasClicked = false;
   hasedClicked = false;
@@ -44,7 +44,7 @@ export class ReportsDashboardsComponent implements OnInit {
     this.addNewSlide();
    }
 
-   private addNewSlide() {
+   public addNewSlide() {
     this.slides.push(
        {image:'../../assets/img/banner01.jpg',title:'Stop Flying Blind. Use Data to Make Decisions'},
        {image:'../../assets/img/banner02.jpg',title:'Finance, Marketing and Ratings, all in one place'},
@@ -53,7 +53,7 @@ export class ReportsDashboardsComponent implements OnInit {
    );
 }
 
-private removeLastSlide() {
+public removeLastSlide() {
    this.slides.pop();
 } 
   ngOnInit() {

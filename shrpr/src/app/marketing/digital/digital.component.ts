@@ -32,18 +32,18 @@ export class DigitalComponent implements OnInit {
 
 
   //The time to show the next photo
-  private NextPhotoInterval:number = 5000;
+  public NextPhotoInterval:number = 5000;
   //Looping or not
-  private noLoopSlides:boolean = false;
+  public noLoopSlides:boolean = false;
   //Photos
-  private slides:Array<any> = [];
-  private slidescontent:Array<any> = [];
+  public slides:Array<any> = [];
+  public slidescontent:Array<any> = [];
 
   constructor() {
     this.addNewSlide();
    }
 
-   private addNewSlide() {
+   public addNewSlide() {
     this.slides.push(
        {image:'../../assets/img/marketing-banner01.jpg',title:'Attract New Customers',detail:'Drive web traffic to your program page, teacher page or individual course offerings'},
        {image:'../../assets/img/marketing-banner02.jpg',title:'Digital Marketing Made Easy',detail:'Find new leads and customers with easy integrations'},
@@ -56,7 +56,7 @@ export class DigitalComponent implements OnInit {
 );
 }
 
-private removeLastSlide() {
+public removeLastSlide() {
    this.slides.pop();
 } 
   ngOnInit() {

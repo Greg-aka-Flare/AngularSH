@@ -24,12 +24,12 @@ export enum Direction {UNKNOWN, NEXT, PREV}
 
 export class Carousel {
   
-  private slides: Array<Slide> = [];
-  private currentInterval: any;
-  private isPlaying: boolean;
-  private destroyed: boolean = false;
-  private currentSlide: Slide;
-  private _interval: number;
+  public slides: Array<Slide> = [];
+  public currentInterval: any;
+  public isPlaying: boolean;
+  public destroyed: boolean = false;
+  public currentSlide: Slide;
+  public _interval: number;
 
   @Input() public noWrap: boolean;
   @Input() public noPause: boolean;
@@ -64,7 +64,7 @@ export class Carousel {
     }
   }
 
-  private goNext(slide: Slide, direction: Direction) {
+  public goNext(slide: Slide, direction: Direction) {
     if (this.destroyed) {
       return;
     }
@@ -83,7 +83,7 @@ export class Carousel {
     this.restartTimer();
   }
 
-  private getSlideByIndex(index: number) {
+  public getSlideByIndex(index: number) {
     let len = this.slides.length;
     for (let i = 0; i < len; ++i) {
       if (this.slides[i].index === index) {
@@ -92,11 +92,11 @@ export class Carousel {
     }
   }
 
-  private getCurrentIndex() {
+  public getCurrentIndex() {
     return !this.currentSlide ? 0 : this.currentSlide.index;
   }
 
-  private next() {
+  public next() {
     let newIndex = (this.getCurrentIndex() + 1) % this.slides.length;
 
     if (newIndex === 0 && this.noWrap) {
@@ -107,7 +107,7 @@ export class Carousel {
     return this.select(this.getSlideByIndex(newIndex), Direction.NEXT);
   }
 
-  private prev() {
+  public prev() {
     let newIndex = this.getCurrentIndex() - 1 < 0 ? this.slides.length - 1 : this.getCurrentIndex() - 1;
 
     if (this.noWrap && newIndex === this.slides.length - 1) {
@@ -118,7 +118,7 @@ export class Carousel {
     return this.select(this.getSlideByIndex(newIndex), Direction.PREV);
   }
 
-  private restartTimer() {
+  public restartTimer() {
     this.resetTimer();
     let interval = +this.interval;
     if (!isNaN(interval) && interval > 0) {
@@ -133,7 +133,7 @@ export class Carousel {
     }
   }
 
-  private resetTimer() {
+  public resetTimer() {
     if (this.currentInterval) {
       clearInterval(this.currentInterval);
       this.currentInterval = null;

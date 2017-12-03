@@ -13,7 +13,7 @@ export class SearchComponent implements OnInit {
 
   location: string = '';
 
-  protected dataService: CompleterData;
+  public dataService: CompleterData;
   
   constructor(
     private completerService: CompleterService

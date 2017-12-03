@@ -4,8 +4,6 @@ import { Response } from "@angular/http";
 import {trigger, state, style, transition, animate} from '@angular/animations';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/map';
 
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service"

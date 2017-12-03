@@ -7,7 +7,7 @@
       <div><input placeholder="Last name*" name="lastName" type="text"></div>
       <div><input placeholder="Organization Name*" name="organizationName" type="text"></div>
       <div><input placeholder="Email*" name="email" type="text"></div>
-      <div><span>Select Country</span><select (click)="onClick()" [class.selected]="wasClicked" id="countryCode" name="countryCode">
+      <div><span>Select Country</span><select id="countryCode" name="countryCode">
         <option value="" disabled selected hidden>Select Country</option>
         <option value="44">United Kingdom (+44)</option>
         <option value="61">Australia (+61)</option>
@@ -255,12 +255,12 @@
         <option value="263">Zimbabwe (+263)</option>
       </select></div>
       <div><input placeholder="Phone*" name="phone" type="text"></div>
-      <div class="fullwidth"><span>Select Organization Size*</span><select (click)="onhasClick()" [class.selected]="hasClicked" id="primaryMarket" name="primaryMarket">
+      <div class="fullwidth"><span>Select Organization Size*</span><select id="primaryMarket" name="primaryMarket">
           <option value=""  disabled selected hidden>Select Organization Size*</option>
           <option value="JustMe">Just Me</option>
           <option value="I’mPartofaGroup">I’m Part of a Group</option>
         </select></div>
-        <div class="fullwidth"><span>Research Stage*</span><select (click)="onhasedClick()" [class.selected]="hasedClicked" id="accountSize" name="accountSize">
+        <div class="fullwidth"><span>Research Stage*</span><select id="accountSize" name="accountSize">
           <option value="" disabled selected hidden>Research Stage</option>
           <option value="Just Curious">Just Curious</option>
           <option value="I need something in 90 days">I need something in 90 days</option>

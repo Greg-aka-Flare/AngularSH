@@ -20,12 +20,12 @@ export class CustomBrandedComponent implements OnInit {
 
 
   //The time to show the next photo
-  private NextPhotoInterval:number = 5000;
+  public NextPhotoInterval:number = 5000;
   //Looping or not
-  private noLoopSlides:boolean = false;
+  public noLoopSlides:boolean = false;
   //Photos
-  private slides:Array<any> = [];
-  private slidescontent:Array<any> = [];
+  public slides:Array<any> = [];
+  public slidescontent:Array<any> = [];
   wasClicked = false;
   hasClicked = false;
   hasedClicked = false;
@@ -44,7 +44,7 @@ export class CustomBrandedComponent implements OnInit {
     this.addNewSlide();
    }
 
-   private addNewSlide() {
+   public addNewSlide() {
     this.slides.push(
        {image:'../../assets/img/banner01.jpg',title:'Your shrpr page is your own personal website'},
        {image:'../../assets/img/banner02.jpg',title:'No cost for your own domain, web developer or graphic design'},
@@ -53,7 +53,7 @@ export class CustomBrandedComponent implements OnInit {
    );
 }
 
-private removeLastSlide() {
+public removeLastSlide() {
    this.slides.pop();
 } 
   ngOnInit() {

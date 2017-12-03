@@ -7,11 +7,9 @@ import {FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { TabsComponent } from "../home/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
 import { Subscription } from 'rxjs/Subscription';
 import { ReactiveFormsModule } from '@angular/forms';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/map';
 
 
 import { Course } from "../course.interface";

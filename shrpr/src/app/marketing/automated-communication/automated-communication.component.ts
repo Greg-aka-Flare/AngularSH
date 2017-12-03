@@ -21,12 +21,12 @@ export class AutomatedCommunicationComponent implements OnInit {
 
 
   //The time to show the next photo
-  private NextPhotoInterval:number = 5000;
+  public NextPhotoInterval:number = 5000;
   //Looping or not
-  private noLoopSlides:boolean = false;
+  public noLoopSlides:boolean = false;
   //Photos
-  private slides:Array<any> = [];
-  private slidescontent:Array<any> = [];
+  public slides:Array<any> = [];
+  public slidescontent:Array<any> = [];
   wasClicked = false;
   hasClicked = false;
   hasedClicked = false;
@@ -45,7 +45,7 @@ export class AutomatedCommunicationComponent implements OnInit {
     this.addNewSlide();
    }
 
-   private addNewSlide() {
+   public addNewSlide() {
     this.slides.push(
        {image:'../../assets/img/banner01.jpg',title:'Communicate with your students via E-Mail and/or Text'},
        {image:'../../assets/img/banner02.jpg',title:'Automated Confirmations and Reminders'},
@@ -55,7 +55,7 @@ export class AutomatedCommunicationComponent implements OnInit {
    );
 }
 
-private removeLastSlide() {
+public removeLastSlide() {
    this.slides.pop();
 } 
   ngOnInit() {
