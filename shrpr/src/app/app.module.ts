@@ -58,6 +58,9 @@ import { CategoryService } from "./category.service";
 
 import { SharedModule } from './shared/shared.module';
 
+import { LandingComponent } from './landing/landing.component';
+import { LandingGuard } from './landing/landing-guard.service';
+
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -97,7 +100,8 @@ export function tokenGetter() {
     DaveComponent,
     GregoryComponent,
     AlexaComponent,
-    DatexPipe
+    DatexPipe,
+    LandingComponent
    ],
   imports: [
     AppRoutingModule,
@@ -127,7 +131,8 @@ export function tokenGetter() {
       InstructorService, 
       StudentService, 
       UserService, 
-      NgModel
+      NgModel,
+      LandingGuard
   ],
   bootstrap: [AppComponent]
 })

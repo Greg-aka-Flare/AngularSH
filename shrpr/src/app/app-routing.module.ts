@@ -25,29 +25,33 @@ import { BlogComponent } from './blog/blog.component';
 import { PodcastComponent } from './podcast/podcast.component';
 import { InterviewwithroblabonneComponent } from './podcast/interviewwithroblabonne.component';
 
+import { LandingComponent } from './landing/landing.component';
+import { LandingGuard } from './landing/landing-guard.service';
+
 const appRoutes: Routes = [
-	{ path: '', component: HomeComponent },
-	{ path: 'marketing', loadChildren: './marketing/marketing.module#MarketingModule' },
-	{ path: 'new-course', component: NewCourseComponent },
-	{ path: 'instructor/:id', component: InstructorProfileComponent },
-	{ path: 'student/:id', component: StudentComponent },
-	{ path: 'course/:id', component: CoursecardComponent },
-	{ path: 'login', component: LoginComponent },
-	{ path: 'about', component: AboutusComponent },
-	{ path: 'team', component: TeamComponent },
-	{ path: 'brandon', component: BrandonComponent },
-	{ path: 'erick', component: ErickComponent },
-	{ path: 'mike', component: MikeComponent },
-	{ path: 'miles', component: MilesComponent },
-	{ path: 'collin', component: CollinComponent },
-	{ path: 'dave', component: DaveComponent },
-	{ path: 'gregory', component: GregoryComponent },
-	{ path: 'alexa', component: AlexaComponent },
-	{ path: 'values', component: ValuesComponent },
-	{ path: 'videos', component: VideosComponent },
-	{ path: 'blog', component: BlogComponent },
-	{ path: 'podcast', component: PodcastComponent },
-	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent }
+	{ path: '', component: LandingComponent },
+	{ path: 'home', component: HomeComponent, canActivate: [LandingGuard] },
+	{ path: 'marketing', loadChildren: './marketing/marketing.module#MarketingModule', canActivate: [LandingGuard] },
+	{ path: 'new-course', component: NewCourseComponent, canActivate: [LandingGuard] },
+	{ path: 'instructor/:id', component: InstructorProfileComponent, canActivate: [LandingGuard] },
+	{ path: 'student/:id', component: StudentComponent, canActivate: [LandingGuard] },
+	{ path: 'course/:id', component: CoursecardComponent, canActivate: [LandingGuard] },
+	{ path: 'login', component: LoginComponent, canActivate: [LandingGuard] },
+	{ path: 'about', component: AboutusComponent, canActivate: [LandingGuard] },
+	{ path: 'team', component: TeamComponent, canActivate: [LandingGuard] },
+	{ path: 'brandon', component: BrandonComponent, canActivate: [LandingGuard] },
+	{ path: 'erick', component: ErickComponent, canActivate: [LandingGuard] },
+	{ path: 'mike', component: MikeComponent, canActivate: [LandingGuard] },
+	{ path: 'miles', component: MilesComponent, canActivate: [LandingGuard] },
+	{ path: 'collin', component: CollinComponent, canActivate: [LandingGuard] },
+	{ path: 'dave', component: DaveComponent, canActivate: [LandingGuard] },
+	{ path: 'gregory', component: GregoryComponent, canActivate: [LandingGuard] },
+	{ path: 'alexa', component: AlexaComponent, canActivate: [LandingGuard] },
+	{ path: 'values', component: ValuesComponent, canActivate: [LandingGuard] },
+	{ path: 'videos', component: VideosComponent, canActivate: [LandingGuard] },
+	{ path: 'blog', component: BlogComponent, canActivate: [LandingGuard] },
+	{ path: 'podcast', component: PodcastComponent, canActivate: [LandingGuard] },
+	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent, canActivate: [LandingGuard] }
 ]
 
 @NgModule({
