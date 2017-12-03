@@ -18,9 +18,17 @@ export class LandingGuard implements CanActivate {
     }
     else{
 
-      this.router.navigate(['/']);
+      var testV = 1;
 
-      return false;
+      var pass1 = prompt('Please Enter Your Password', '');
+
+      while(pass1 !== 'letmein'){
+        alert('Password Incorrect');
+
+        pass1 = prompt('Please Enter Your Password', '')
+      }
+
+      localStorage.setItem('letmein', 'true');
     }
   }
 }

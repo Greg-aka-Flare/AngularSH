@@ -11,20 +11,7 @@ export class LandingComponent implements OnInit {
   interestForm: FormGroup;
   submitted: boolean = false;
 
-  constructor() {
-
-			var testV = 1;
-
-			var pass1 = prompt('Please Enter Your Password', '');
-
-			while(pass1 !== 'letmein'){
-        alert('Password Incorrect');
-
-        pass1 = prompt('Please Enter Your Password', '')
-			}
-
-      localStorage.setItem('letmein', 'true');
-  }
+  constructor() { }
 
   ngOnInit() {
     this.interestForm = new FormGroup({
