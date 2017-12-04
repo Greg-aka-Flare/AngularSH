@@ -11,7 +11,7 @@
     </div>
     <div><h2>{{students?.name}}</h2>
       <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ students?.addresses[0]?.city }}, {{ students?.addresses[0]?.state }}
-      <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3"></star-rating-comp> |  <a href="javascript:void(0);">33 reviews</a></div>
+      <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3"></star-rating-comp> |  <a href="/student/{{students?.id}}#reviews">33 reviews</a></div>
     </div>
     </section><!-- #profile header -->
   <tabs *ngIf="width < 768" >
