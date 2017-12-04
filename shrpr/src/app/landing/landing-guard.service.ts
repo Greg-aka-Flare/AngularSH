@@ -22,13 +22,23 @@ export class LandingGuard implements CanActivate {
 
       var pass1 = prompt('Please Enter Your Password', '');
 
-      while(pass1 !== 'theman!'){
-        alert('Password Incorrect');
+      while(testV < 3){
 
-        pass1 = prompt('Please Enter Your Password', '')
+        if(pass1.toLowerCase() !== 'theman!'){
+
+          ++testV;
+
+          alert('Password Incorrect');
+
+          pass1 = prompt('Please Enter Your Password', '');
+        }
+        else{
+
+          localStorage.setItem('letmein', 'true');
+        }
       }
-
-      localStorage.setItem('letmein', 'true');
+      
+      window.location.href = 'http://www.google.com';
     }
   }
 }
