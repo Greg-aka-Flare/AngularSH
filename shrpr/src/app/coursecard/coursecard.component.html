@@ -205,7 +205,7 @@
       <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews</div>
     <dl class="review_items" *ngFor="let review of ratingData" >
       <dt><img src="../../assets/img/reviews-profile.jpg" alt="" title="">User id: {{review.user_id}}</dt>
-      <dd><h2>Balance Indoboard Yoga <span class="review_items_rating">review id: {{review.id}} | <star-rating-comp class="review_star" [starType]="'svg'" [rating]="review.rating" [showHalfStars]="true"></star-rating-comp></span></h2>
+      <dd><h2>Balance Indoboard Yoga <span class="review_items_rating">Rating: {{review.rating}} | <star-rating-comp class="review_star" [starType]="'svg'" [rating]="review.rating" [showHalfStars]="true"></star-rating-comp></span></h2>
       <p>{{review.comment}}</p></dd>
     </dl>
     <p class="seeall-link"><!--<button class="show-more" (click)="getData()" [disabled]="counter>=ratingData.length">see all related reviews</button><a href="javascript:void(0);">see all related reviews</a>--></p>

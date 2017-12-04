@@ -220,6 +220,7 @@
     max-width:93px;
     min-width: 92px;
     text-align: center;
+    width:93px;
 }
 #reviews dl dt img {
     display: block;
@@ -278,7 +279,17 @@
 .contact_instructor a:hover {
     color:#ed9639;
 }
-
+.review_items_rating {
+    color:#666666;
+    font-size:12px;
+    line-height:14px;
+    display:block;
+    padding:10px 0 0 0; 
+    font-style: italic;
+}
+.review_star {
+   width:95px;
+}
 @media only screen and (min-width: 769px) {
     #desktopcourses {
         padding: 50px 10px 30px 10px;
@@ -325,6 +336,13 @@
 #profile-header > div.profile-picture {
     max-width:200px;
     text-align: center;
+}
+.review_items_rating {
+    float: right;
+    padding:0;
+}
+.review_star {
+    width:110px;
 }
 }
 

@@ -24,6 +24,13 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
   courses: any;
   courseCard:any[] = [];
   private myid:number;
+  reviewCount:number;
+  ratingData:any;
+  reviewRating:number;
+  userRating:number = 0;
+  loopCounter:number = 0;
+  reviewRatingGross:number;
+  ratingDataParse:any;
   //subscription: Subscription;
   private subscriptions = new Subscription();
   instrocterdata:string;
@@ -59,7 +66,6 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
           } 
         }
        }
-
       },
       (error: Response) => console.log(error)
       
@@ -69,7 +75,14 @@ export class InstructorProfileComponent implements OnInit, OnDestroy {
      .subscribe(
        (response) => {
         this.instructors = response;
+        this.ratingData = this.instructors.ratings;
         this.details = JSON.parse(response.details);
+        this.reviewCount = this.ratingData.length;
+        this.loopCounter = this.reviewCount+1;
+        for(var k=0; k < this.reviewCount; k++){
+            this.userRating += this.ratingData[k].rating;
+        }
+        this.reviewRatingGross = this.userRating/this.reviewCount;
         },
        (error: Response) => console.log(error)
      ));
