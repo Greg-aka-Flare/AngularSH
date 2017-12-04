@@ -23,10 +23,7 @@ export class LandingGuard implements CanActivate {
       var pass1 = prompt('Please Enter Your Password', '');
 
       while(testV < 3){
-
         if(pass1.toLowerCase() !== 'theman!'){
-
-          ++testV;
 
           alert('Password Incorrect');
 
@@ -36,6 +33,9 @@ export class LandingGuard implements CanActivate {
 
           localStorage.setItem('letmein', 'true');
         }
+
+        ++testV;
+
       }
       
       window.location.href = 'http://www.google.com';
