@@ -33,25 +33,33 @@
               </div><!-- .overlay -->
           </div><!-- .img-ctn -->
           <div class="course_info">
-            <div *ngIf="semesterCount">
-                Start Date: <select name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
-                  <option *ngFor="let sem of course?.semesters; let k = index" [selected]="k == 0" value="{{sem.id}}">{{sem?.start_date | datex:'LL'}}</option>
-                </select>
-                <div *ngIf="selectedSemester">
+            <div *ngIf="semesterCount > 1">
+                <div *ngIf="selectedSemester" class="select-date">
+                        <select name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
+                                <option *ngFor="let sem of course?.semesters; let k = index" [selected]="k == 0" value="{{sem.id}}">{{sem?.start_date | datex:'LL'}}</option>
+                              </select>
                 <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
-                   <p>Starts at: {{selected?.start_date | datex:'LLLL'}}</p>
-                   <p>End Date: {{selected?.end_date | datex:'LLLL'}}</p>
+                   <div class="select-wrap"><p>Starts at: {{selected?.start_date | datex:'LLLL'}}</p>
+                   <p>End Date: {{selected?.end_date | datex:'LLLL'}}</p></div>
                    <p>Sessions: {{selected?.duration}}</p>
                 </div>
               </div> 
               </div>
-              <span class="action_btn">
-                  <a href="javascript:void(0);">Enroll Today</a> &nbsp; <a href="javascript:void(0);"><i class="fa fa-list" aria-hidden="true"></i> Whishlist</a>
-              </span>
+              <div *ngIf="semesterCount < 2">
+                    <div *ngIf="selectedSemester">
+                    <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
+                       <p>Starts at: {{selected?.start_date | datex:'LLLL'}}</p>
+                       <p>End Date: {{selected?.end_date | datex:'LLLL'}}</p>
+                       <p>Sessions: {{selected?.duration}}</p>
+                    </div>
+                  </div> 
+                  </div>
+              <div class="action_btn">
+                <a href="javascript:void(0);">Book Online</a><a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Whishlist</a>
+                <span>270 people saved this class</span></div>
           </div>
           <!-- .course_info -->
           <div class="course_enroll_block">
-              <h3>Sessions Details:</h3>
               <div *ngIf="selectedSemester">
                 <div *ngFor="let semester of selectedSemester">
                     <ul class="meetings_list">
@@ -90,6 +98,11 @@
               <p>
                 <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
               </p>
+              <div class="action_btn">
+                <a href="javascript:void(0);">Book Online</a><br>
+                <a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Whishlist</a>
+                <span>270 people saved this class</span>
+              </div>
               <p>
                 <i class="fa fa-map-marker" aria-hidden="true"></i> 
                 <span class="course_address_mobile" *ngIf="selectedSemester">
@@ -101,29 +114,36 @@
                 </span>
               </p>
               <br>
-              <div *ngIf="semesterCount">
-                Start Date: <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
-                  <option *ngFor="let sem of course?.semesters; let k = index" [selected]="k == 0" value="{{sem.id}}">{{sem?.start_date | datex:'LL'}}</option>
-                </select>
+              <div *ngIf="semesterCount > 1">
+                <div *ngIf="selectedSemester" class="select-date">
+                        <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
+                                <option *ngFor="let sem of course?.semesters; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LL'}}</option>
+                              </select>
+                <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
+                        <div class="select-wrap"><p>Starts at: {{selected?.start_date | datex:'LLLL'}}</p>
+                   <p>End Date: {{selected?.end_date | datex:'LLLL'}}</p></div>
+                   <p>Sessions: {{selected?.duration}}</p> 
+                </div>
+              </div>
+             
+              </div>
+
+              <div *ngIf="semesterCount < 2">
                 <div *ngIf="selectedSemester">
                 <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
-                    <span class="action_btn">
-                        <a href="javascript:void(0);">Enroll Today</a><br>
-                        <a href="javascript:void(0);"><i class="fa fa-list" aria-hidden="true"></i> Whishlist</a>
-                      </span>
                    <p>Starts at: {{selected?.start_date | datex:'LLLL'}}</p>
                    <p>End Date: {{selected?.end_date | datex:'LLLL'}}</p>
                    <p>Sessions: {{selected?.duration}}</p>
                 </div>
               </div> 
               </div>
+
           </div>
           <!-- .course_info_desktop-->
         </div>
       <!-- .course_desktop_card -->
       <section class="course_semester_desktop">
           <div class="course_enroll_block">
-              <h3>Sessions Details:</h3>
               <div *ngIf="selectedSemester">
                 <div *ngFor="let semester of selectedSemester">
                     <ul class="meetings_list">

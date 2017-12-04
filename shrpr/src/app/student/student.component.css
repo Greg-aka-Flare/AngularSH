@@ -270,7 +270,7 @@
 
 @media only screen and (min-width: 769px) {
     #desktopcourses {
-        padding: 50px 0 30px 0;
+        padding: 50px 10px 30px 10px;
     }
 #desktopcourses h2 {
     font-size:25px;
@@ -315,4 +315,9 @@
     max-width:200px;
     text-align: center;
 }
+}
+@media only screen and (min-width: 960px) {
+    #desktopcourses {
+        padding: 50px 0 30px 0;
+    }
 }
