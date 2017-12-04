@@ -36,15 +36,6 @@ import { StudentService } from './student.service';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './login/login.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
-import { TeamComponent } from './team/team.component';
-import { BrandonComponent } from './team/brandon.component';
-import { ErickComponent } from './team/erick.component';
-import { MikeComponent } from './team/mike.component';
-import { MilesComponent } from './team/miles.component';
-import { CollinComponent } from './team/collin.component';
-import { DaveComponent } from './team/dave.component';
-import { GregoryComponent } from './team/gregory.component';
-import { AlexaComponent } from './team/alexa.component';
 import { ValuesComponent } from './values/values.component';
 import { VideosComponent } from './videos/videos.component';
 import { BlogComponent } from './blog/blog.component';
@@ -86,20 +77,11 @@ export function tokenGetter() {
     CoursecardComponent,
     LoginComponent,
     AboutusComponent,
-    TeamComponent,
     ValuesComponent,
     VideosComponent,
     BlogComponent,
     PodcastComponent,
     InterviewwithroblabonneComponent,
-    BrandonComponent,
-    ErickComponent,
-    MikeComponent,
-    MilesComponent,
-    CollinComponent,
-    DaveComponent,
-    GregoryComponent,
-    AlexaComponent,
     DatexPipe,
     LandingComponent
    ],
