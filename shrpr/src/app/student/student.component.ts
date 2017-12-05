@@ -5,10 +5,10 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Course } from "../course.interface";
-import { CourseService } from "../course.service";
-import { Student } from "../student.interface";
-import { StudentService } from '../student.service';
+import { Course } from "../course/course.interface";
+import { CourseService } from "../course/course.service";
+import { Student } from "../student/student.interface";
+import { StudentService } from '../student/student.service';
 
 
 @Component({

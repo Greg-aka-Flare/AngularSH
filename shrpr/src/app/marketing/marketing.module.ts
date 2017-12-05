@@ -17,11 +17,6 @@ import { MarketingNavComponent } from './marketing-nav.component';
 import { DigitalComponent } from './digital/digital.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MarketingRoutingModule,
-    SharedModule
-  ],
   declarations: [
     MarketingComponent,
     OnlinePaymentComponent,
@@ -35,6 +30,11 @@ import { DigitalComponent } from './digital/digital.component';
     MarketingFormComponent,
     MarketingNavComponent,
     DigitalComponent
+  ],
+  imports: [
+    CommonModule,
+    MarketingRoutingModule,
+    SharedModule
   ]
 })
 export class MarketingModule { }

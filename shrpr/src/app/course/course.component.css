@@ -1,37 +1,29 @@
-#curious-swiper {
-    border-top: 2px solid #ed9b40;
-    border-bottom: 2px solid #ed9b40;
-    display: block;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    height: 310px;
-  }
-#curious-swiper article  {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    background-color: #ffffff;
-    z-index: 1;
+h1 {
+    padding:15px 10px 10px 10px; 
+    color:#fc6a02;
 }
-#curious-swiper .category{
+#profile-header > h2 {
+    padding: 0 5px 10px 5px;
+}
+.course_mobile_card {
+    border-bottom: 2px solid #ed9b40;
+    position: relative;
+  }
+
+.category {
     font-size: 14px;
     padding: 3px 5px;
     position: relative;
 }
-#curious-swiper figure.rating{
+figure.rating {
     margin: 0;
-    padding: 5px 5px 0 0;
-    position: absolute;
-    top: 0;
-    right: 0;
+    float: right;
+    display: inline-block;
 }
-#curious-swiper .img-ctn{
+.img-ctn{
     position: relative;
 }
-#curious-swiper .img-ctn .price{
+.img-ctn .price {
     background-color: #e7aa62;
     color: #272625;
     font-size: 16px;
@@ -40,18 +32,17 @@
     top: 20px;
     right: 0;
 }
-#curious-swiper .img-ctn figure{
-    height: 280px;
-    width: 100%;
+.img-ctn figure{
     padding: 0;
     margin: 0;
 }
-#curious-swiper .img-ctn figure img{
-    min-height: 280px;
-    height: auto;
-    width: auto;
+.img-ctn figure img {
+    display: block;
+    margin: 0;
+    width:100%;
+    max-width: 100%;
 }
-#curious-swiper .img-ctn .overlay{
+.img-ctn .overlay {
     background-color: rgba(255, 255, 255, 0.75);
     padding:  10px;
     position: absolute;
@@ -60,34 +51,523 @@
     right: 0;
     z-index: 2;
 }
-#curious-swiper .img-ctn .overlay h1 a {
-    color: #000;
-    text-decoration: none;
-}
-#curious-swiper .img-ctn .overlay h1{
-    color: #000;
-    font-size: 18px;
-    line-height: 22px;
-    margin: 0;
-    padding: 0 0 5px 0;
-}
-#curious-swiper .img-ctn .overlay p{
-    font-size: 12px;
+.img-ctn .overlay p {
+    font-size: 14px;
+    line-height: 17px;
     margin: 0;
     padding: 2px 0;
 }
-#curious-swiper .img-ctn .overlay p a{
+.img-ctn .overlay p a {
     color: #229bcb;
     text-decoration: underline;
 }
-#curious-swiper .img-ctn .overlay p a:hover{
+.img-ctn .overlay p a:hover{
     text-decoration: none;
 }
-.overlay-color {
+.course_info, .course_enroll_block {
+    padding: 10px;
+    font-size:12px;
+    line-height: 14px;
+}
+.course_info::before, .course_info::after, .course_header::before, .course_header::after, .course_semester_desktop::before, .course_semester_desktop::after {
+    content: '';
+    display: table;
+    clear: both;
+    width:100%;
+}
+.course_info p {
+    padding:3px 0;
+}
+.action_btn {
+    padding: 20px 0 20px;
+    text-align: center;
+}
+.action_btn span {
+    font-size: 13px;
+    display: block;
+    color: #494949;
+    line-height: 14px;
+}
+.action_btn a {
+    display: inline-block;
+    background-color: #d53b3c;
+    border:2px solid #d53b3c;
+    color:#ffffff;
+    text-decoration: none;
+    padding:11px 10px 13px;
+    font-size:15px;
+    line-height: 16px;
+    margin:0 0 8px 5px;
+    text-transform: uppercase;
+    text-align: center;
+    max-width: 275px;
+    width: 100%;
+}
+.action_btn a:hover {
+    color: #d53b3c;
+    background-color: #ffffff;
+    text-decoration: none;
+}
+.action_btn a img {
+    max-width: 25px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px 0 0;
+}
+.action_btn a:nth-of-type(2) {
+    padding: 5px 20px 5px 20px;
+    border: 2px solid #ed9b40;
+    background-color: #ffffff;
+    color: #ed9b40;
+}
+.action_btn a:nth-of-type(2):hover {
+    background: #ed9b40;
+    color: #ffffff;
+}
+.course_enroll_block {
+    padding:5px;
+    border:1px solid #cccccc;
+    margin:0 10px 0px 10px;
+}
+.enroll_row select {
+    width:65%;
+    max-width: 200px;
+    border:1px solid #cccccc;
+    margin:0 5px 0 0;
+    box-sizing: border-box;
+    height: 26px;
+}
+.course_info h2 {
+    font-size:20px;
+    line-height: 24px;
+    color:#ed9b40;
+}
+
+.page-btn {
+    display:inline-block;
+    vertical-align: top;
+    text-align: center;
+    padding:6px;
+    background-color: #ed9b40;
+    color:#ffffff;
+    text-decoration: none;
+    box-sizing: border-box;
+    height: 26px;
+    border-radius: 2px;
+    width:30%;
+    max-width: 100px;
+}
+.page-btn:hover {
+    opacity: 0.8;
+}
+ul.meetings_list {
+    padding:10px 0 0 5px;
+}
+ul.meetings_list li {
+    padding:0 0 8px 0;
+    background:none;
+    color:#ed9b40;
+}
+:host /deep/ .carousel-indicators {
+    display:none;
+}
+:host /deep/ tabs .tabs ul {
+    background: #e5e5e6;
+    padding: 0 10px 0 10px;
+}
+:host /deep/ tabs .tabs ul li {
+    display: inline-block;
+    vertical-align: top;
+    width: 33.33%;
+    max-width: 83px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 1em;
+    color: #414141;
+    padding: 50px 5px 14px;
+    background-image: url('../../assets/img/search-input.png');
+    background-repeat: no-repeat;
+    background-position: center 15px;
+    background-size: 25px auto;
+    cursor: pointer;
+}
+:host /deep/ tabs .tabs ul li.active {
+    background-color: #cccccc;
+
+}
+:host /deep/ tabs .tabs ul li:nth-of-type(2) {
+    background-image: url('../../assets/img/about-tab-bg.png');
+    background-position: center 13px;
+    background-size: auto;
+
+}
+:host /deep/ tabs .tabs ul li:nth-of-type(3) {
+    background-image: url('../../assets/img/contact-tab-bg.png');
+    background-position: center 19px;
+    background-size: auto;
+}
+:host /deep/ tabs .tabs tab > div {
+    padding: 10px 0 10px;
+    background: #cccccc;
+}
+:host /deep/ tabs .tabs tab div > h3 {
+    font-size: 18px;
+    color: #818181;
+    line-height: 22px;
+    padding: 10px;
+}
+
+.card-box {
+    padding: 0 0 10px 0;
+    background-color: #ffffff;
+}
+.img-ctn {
+    position: relative;
+}
+.img-ctn figure {
+    margin:0;
+}
+.img-ctn figure img {
+    display:block;
+    margin:0;
+    width:100%;
+}
+.price{
+    background-color: #e7aa62;
+    color: #272625;
+    font-size: 16px;
+    padding: 3px 20px 3px 5px;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    z-index: 2;
+}
+.group_rating {
+    float: right;
+}
+.date_stamp, .with-box {
+    font-size:12px;
+    line-height: 14px;
+    color:#229bcb;
+}
+.with-box span {
+    color: #414141;
+}
+.card-info {
+    padding: 10px;
+}
+.card-info p {
+    padding: 0 0 5px 0;
+}
+.img-ctn h3 {
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 8px;
+    box-sizing: border-box;
+    color: #fc6a02;
+    font-size: 18px;
+    left: 0;
+    line-height: 22px;
+    padding: 10px;
     position: absolute;
     width: 100%;
-    height: 100%;
-    left:0;
-    top:0;
-    
+}
+.page-cta {
+    background-color: #484848;
+    border: none;
+    -webkit-box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-family: 'circularstd book';
+    font-size: 18px;
+    line-height: 18px;
+    margin: 10px auto;
+    max-width: 150px;
+    padding:7px 10px;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+}
+.page-cta:hover {
+    background-color: #757575;
+}
+#reviews {
+    padding: 20px 10px 20px 10px;
+}
+.reviews-rating {
+    text-align: center;
+    font-size: 15px;
+    color: #272625;
+    line-height: 14px;
+    padding: 0 0 30px 0;
+}
+:host #reviews  /deep/ star-rating-comp {
+    display: inline-block;
+    vertical-align: middle;
+}
+#reviews dl {
+    display: table;
+    margin: 0 0 20px 0;
+    width: 100%;
+}
+#reviews dl dt , #reviews dl dd {
+    display: table-cell;
+    vertical-align: top;
+    margin: 0;
+    font-size: 14px;
+    color: #272625;
+    line-height: 16px;
+    padding: 8px;
+}
+#reviews dl dt {
+    padding: 0 20px 0 0;
+    max-width:93px;
+    min-width: 92px;
+    text-align: center;
+    width:93px;
+}
+#reviews dl dt img {
+    display: block;
+    margin: 0 auto 10px auto;
+}
+#reviews dl dd {
+    border: 2px solid #eeeeee;
+    border-radius: 4px;
+}
+#reviews dl dd h2 {
+    font-size: 14px;
+    color:#229bcb;
+    line-height: 16px;
+    padding: 0 0 10px 0;
+
+}
+.seeall-link {
+    text-align: center;
+}
+.seeall-link a {
+    font-size: 16px;
+    color: #ff3c00;
+    text-decoration: underline;
+    position: relative;
+    display: inline-block;
+}
+.seeall-link a:after {
+    content: "\f0dd";
+    font-family: FontAwesome;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: normal;
+    left: 0;
+    line-height: 1em;
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    top: 10px; 
+}
+.seeall-link a:hover {
+    text-decoration: none;
+}
+.contact_box {
+    padding: 10px;
+    font-size:14px;
+    line-height: 19px;
+    color:#222222;
+}
+.contact_box address {
+    padding: 0 0 20px 0;
+}
+.contact_box address:first-child {
+    margin: 0;
+    padding:0;
+}
+.review_items_rating {
+    color:#666666;
+    font-size:12px;
+    line-height:14px;
+    display:block;
+    padding:10px 0 0 0; 
+    font-style: italic;
+}
+.review_star {
+   width:95px;
+}
+agm-map {
+    height: 350px;
+  }
+.select-date {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+.select-date select {
+    position: absolute;
+    width: 100%;
+    height: 63%;
+    opacity: 0;
+    z-index: 1;
+}
+.select-wrap {
+    border: 1px solid #cccccc;
+    margin: 0 0 7px;
+    padding: 7px 25px 0 6px;
+    position: relative;
+}
+.select-wrap:after {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 8px solid #000000;
+    content: "";
+    position: absolute;
+    right: 8px;
+    top: 40%;
+}
+@media only screen and (min-width: 769px) {
+
+.course_header {
+    background-color:#f4f4f4;
+    border-bottom:1px solid #cccccc;
+    padding:10px;
+}
+.course_slider {
+    float:left;
+    width: 32%;
+    margin:0 2% 0 0;
+}
+.course_slider figure {
+    margin:0;
+}
+.course_slider figure img {
+    display:block;
+    margin:0;
+}
+.course_info_desktop {
+    width:63%;
+    display: inline-block;
+    vertical-align: top;
+    font-size:15px;
+    line-height: 18px;
+}
+.course_info_desktop h1 {
+    padding:10px 0 10px 0;
+}
+.course_info_desktop p {
+    padding:0 0 8px 0;
+}
+.course_info_desktop a {
+    color:#ed9b40;
+    text-decoration: underline;
+}
+.course_info_desktop a:hover {
+    color:#ed9b40;
+    text-decoration: none;
+}
+.course_rating_info {
+    padding:0 0 15px 0;
+}
+figure.rating {
+    float: none;
+    display:inline-block;
+    vertical-align: middle;
+}
+
+.course_price_desktop {
+    float: right;
+    font-size:24px;
+    color:#ed9b40;
+}
+.action_btn {
+    float: right;
+}
+.action_btn a {
+    color:#ffffff;
+    text-decoration: none;
+}
+.action_btn a:hover {
+    color:#d53b3c;
+}
+.course_semester_desktop {
+    padding:20px 10px 10px 10px;
+}
+.course_semester_desktop h2 {
+    color:#ed9b40;
+}
+.course_enroll_block {
+    float: right;
+    width:24%;
+    max-width:300px;
+    margin:0;
+}
+:host /deep/ .carousel-indicators {
+    display:block;
+}
+#desktopcourses {
+     padding: 50px 10px 30px 10px;
+}
+#desktopcourses h2 {
+    font-size:25px;
+    line-height: 27px;
+    color: #484848;
+    padding: 0 0 5px 0;
+    margin: 0 0 20px 0;
+    border-bottom: 1px solid #cccccc;
+    text-transform: uppercase;
+    }
+
+    #desktopcourses > h3 {
+        font-size: 18px;
+        color: #818181;
+        line-height: 22px;
+        padding: 0 0 20px 0;
+    }
+    :host /deep/ tabs .tabs tab > div {
+        padding: 10PX;
+        overflow:hidden;  
+    }
+.card-box {
+    display: inline-block;
+    margin: 0 1.5% 20px;
+    max-width: 444px;
+    vertical-align: top;
+    width: 30%;
+}
+#reviews {
+    border-top: 2px solid #cccccc;   
+}
+.contact_box address {
+    display: inline-block;
+    padding: 0 5% 0 0;
+    vertical-align: top;
+}
+.contact_box address:first-child {
+    border-bottom: none;
+    margin: 0;
+}
+.review_items_rating {
+    float: right;
+    padding:0;
+}
+.review_star {
+    width:110px;
+}
+.select-date {
+    width: 51%;
+}
+}
+/* =============================================================================
+   LARGE SCREEN STYLES [DESKTOP VIEW] START
+  ============================================================================= */
+/* 960px */
+@media only screen and (min-width: 960px) {
+    #desktopcourses {
+        padding: 50px 0 30px 0;
+   }
+   .course_semester_desktop {
+       padding:20px 0 10px 0;
+   }
+   .select-date {
+    width: auto;
+}
 }
