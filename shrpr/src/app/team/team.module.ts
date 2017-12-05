@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { SharedModule } from '../shared/shared.module';
 import { TeamRoutingModule } from './team-routing.module';
 import { OurteamComponent } from './our-team/ourteam.component';
 import { TeamComponent } from './team.component';
@@ -17,6 +18,7 @@ import { AlexaComponent } from './alexa/alexa.component';
   imports: [
     CommonModule,
     TeamRoutingModule,
+    SharedModule
   ],
   declarations: [
     TeamComponent,

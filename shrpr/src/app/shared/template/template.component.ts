@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../menu/menu.component';
 import { NgZone } from '@angular/core';
@@ -13,17 +13,14 @@ import 'rxjs/add/observable/fromEvent';
   templateUrl: './template.component.html',
   styleUrls: ['./template.component.css']
 })
-export class TemplateComponent implements OnInit {
+export class TemplateComponent {
 
-  public pagetemp:string;
+  @Input('menu') menu: boolean = true;
+  @Input('search') search: boolean = true;
+
+  public pagetemp: string;
   
-  constructor() {
-    
-  }
-
-  ngOnInit() {
-    
-  }
+  constructor() {}
 }
 
 @Component({
@@ -34,6 +31,9 @@ export class TemplateComponent implements OnInit {
 })
 
 export class TemplateHeader implements OnInit, OnDestroy {
+
+  @Input('menu') menu: boolean = true;
+  @Input('search') search: boolean = true;
 
   isheaderShrunk: boolean = false;
   isBtnActive: boolean = false;
@@ -100,10 +100,9 @@ export class TemplateHeader implements OnInit, OnDestroy {
   templateUrl: './template.footer.html',
   styleUrls: ['./template.footer.css']
 })
-export class TemplateFooter implements OnInit {
+export class TemplateFooter {
+  
+  @Input('menu') menu: boolean = true;
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  constructor() {}
 }

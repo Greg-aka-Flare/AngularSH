@@ -2,7 +2,7 @@
     <div class="inner-wrap">
         <div id="logo">shrpr</div><!-- #logo -->
         
-        <nav>
+        <nav *ngIf="menu">
             <ul>
                 <li><a [routerLink]="['/login']" title="Login">Login</a></li>
                 <li><a [routerLink]="['/login']" title="Sign Up">Sign Up</a></li>

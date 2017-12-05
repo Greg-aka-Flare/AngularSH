@@ -1,22 +1,23 @@
-<tabs *ngIf="width < 768">
+<app-template>
+    <tabs *ngIf="width < 768">
         <tab tabTitle="Browse">
         	<app-curious></app-curious>
         </tab>
-    <tab tabTitle="Search">
-        <app-search></app-search>
 
-        <div class="login-link">
-        	<a [routerLink]="['/login']">Login / Sign Up</a>
-        </div>
-    </tab>
-</tabs>
+        <tab tabTitle="Search">
+            <app-search></app-search>
 
+            <div class="login-link">
+            	<a [routerLink]="['/login']">Login / Sign Up</a>
+            </div>
+        </tab>
+    </tabs>
     
-    
-<section id="sign-up">
-    <p>For those guided by their desire to know a little bit more</p>
+    <section id="sign-up">
+        <p>For those guided by their desire to know a little bit more</p>
 
-    <a class="home-cta" [routerLink]="['/login']">Sign Up</a>
-</section><!-- #sign-up -->
+        <a class="home-cta" [routerLink]="['/login']">Sign Up</a>
+    </section><!-- #sign-up -->
 
-<app-curious *ngIf="width > 767"></app-curious>
+    <app-curious *ngIf="width > 767"></app-curious>
+</app-template>

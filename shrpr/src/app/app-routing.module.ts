@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 import { HomeComponent } from "./core/home/home.component";
-import { AboutusComponent } from './core/aboutus/aboutus.component';
+import { AboutComponent } from './core/about/about.component';
 import { ValuesComponent } from './core/values/values.component';
 import { VideosComponent } from './core/videos/videos.component';
 import { LandingComponent } from './core/landing/landing.component';
@@ -17,12 +17,12 @@ const appRoutes: Routes = [
 	{ path: '', component: LandingComponent },
 	{ path: 'home', component: HomeComponent, canActivate: [LandingGuard] },
 	{ path: 'marketing', loadChildren: './marketing/marketing.module#MarketingModule', canActivate: [LandingGuard] },
-	{ path: 'team', loadChildren: './team/team.module#TeamModule', canActivate: [LandingGuard] },
+	{ path: 'team', loadChildren: './team/team.module#TeamModule' },
 	{ path: 'instructor/:id', loadChildren: './instructor/instructor.module#InstructorModule', canActivate: [LandingGuard] },
 	{ path: 'student/:id', loadChildren: './student/student.module#StudentModule', canActivate: [LandingGuard] },
 	{ path: 'course/:id', loadChildren: './course/course.module#CourseModule', canActivate: [LandingGuard] },
 	{ path: 'login', component: LoginComponent, canActivate: [LandingGuard] },
-	{ path: 'about', component: AboutusComponent, canActivate: [LandingGuard] },
+	{ path: 'about', component: AboutComponent },
 	{ path: 'values', component: ValuesComponent, canActivate: [LandingGuard] },
 	{ path: 'videos', component: VideosComponent, canActivate: [LandingGuard] },
 	{ path: 'podcast', component: PodcastComponent, canActivate: [LandingGuard] },

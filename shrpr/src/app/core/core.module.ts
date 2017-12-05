@@ -11,7 +11,7 @@ import { CuriousDesktopComponent } from './curious/curious-desktop/curious-deskt
 import { CuriousMobileComponent } from './curious/curious-mobile/curious-mobile.component';
 import { LandingComponent } from './landing/landing.component';
 import { HomeComponent } from './home/home.component';
-import { AboutusComponent } from './aboutus/aboutus.component';
+import { AboutComponent } from './about/about.component';
 import { ValuesComponent } from './values/values.component';
 import { VideosComponent } from './videos/videos.component';
 import { PodcastComponent } from './podcast/podcast.component';
@@ -33,7 +33,7 @@ import { LandingGuard } from './landing/landing-guard.service';
     CuriousComponent,
     CuriousDesktopComponent,
     CuriousMobileComponent,
-    AboutusComponent,
+    AboutComponent,
     ValuesComponent,
     VideosComponent,
     PodcastComponent,

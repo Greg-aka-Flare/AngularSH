@@ -1,45 +1,47 @@
-<section id="landing">
-    <h1>
-        <span>Launching </span>
-        
-        <span class="shrpr">
-            <span>S</span><span>o</span><span>o</span><span>n</span><span>!</span>
-        </span><!-- .shrpr -->
-    </h1>
+<app-template>
+    <section id="landing">
+        <h1>
+            <span>Launching </span>
+            
+            <span class="shrpr">
+                <span>S</span><span>o</span><span>o</span><span>n</span><span>!</span>
+            </span><!-- .shrpr -->
+        </h1>
 
-    <p *ngIf="!submitted">
-     We will be launching this January. Please enter your email below to be notified.
-    </p>
+        <p *ngIf="!submitted">
+         We will be launching this January. Please enter your email below to be notified.
+        </p>
 
-    <form 
-        id="interest" 
-        [formGroup]="interestForm" 
-        (ngSubmit)="onSubmit()"
-        *ngIf="!submitted"
-    >
-        <input 
-            type="text" 
-            id="email" 
-            placeholder="Enter Your Email" 
-            formControlName="email" 
-        />
+        <form 
+            id="interest" 
+            [formGroup]="interestForm" 
+            (ngSubmit)="onSubmit()"
+            *ngIf="!submitted"
+        >
+            <input 
+                type="text" 
+                id="email" 
+                placeholder="Enter Your Email" 
+                formControlName="email" 
+            />
 
-        <button [disabled]="submitted">
-            Sign Up <i class="fa fa-envelope" aria-hidden="true"></i>
-        </button>
+            <button [disabled]="submitted">
+                Sign Up <i class="fa fa-envelope" aria-hidden="true"></i>
+            </button>
+
+            <span 
+                class="help-block"
+                *ngIf="!interestForm.get('email').valid && interestForm.get('email').touched"
+            >
+                Please Enter a Valid Email!
+            </span><!-- .help-block -->
+        </form>
 
         <span 
-            class="help-block"
-            *ngIf="!interestForm.get('email').valid && interestForm.get('email').touched"
+            class="interest-block"
+            *ngIf="submitted"
         >
-            Please Enter a Valid Email!
-        </span><!-- .help-block -->
-    </form>
-
-    <span 
-        class="interest-block"
-        *ngIf="submitted"
-    >
-        Thank you for your interest!
-    </span><!-- .interest-block -->
-</section><!-- #landing -->
+            Thank you for your interest!
+        </span><!-- .interest-block -->
+    </section><!-- #landing -->
+</app-template>
