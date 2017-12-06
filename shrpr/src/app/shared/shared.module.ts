@@ -11,6 +11,7 @@ import { TemplateHeader } from './template/template.component';
 import { TemplateFooter } from './template/template.component';
 import { MenuComponent } from './menu/menu.component';
 import { SearchComponent } from './search/search.component';
+import { DemoComponent } from './schedule-demo/demo.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tabs/tab.component';
 import { DatexPipe } from './date.pipe';
@@ -20,6 +21,7 @@ import { DatexPipe } from './date.pipe';
     Carousel,
     Slide,
     MenuComponent,
+    DemoComponent,
     TemplateComponent,
     TemplateHeader,
     TemplateFooter,

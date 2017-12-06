@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, Input, Pipe, PipeTransform } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser'
 import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';

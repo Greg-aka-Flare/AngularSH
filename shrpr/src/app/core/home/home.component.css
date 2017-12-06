@@ -4,7 +4,6 @@ section#what-is-shrpr {
     background: #d1cfcf;
     border-bottom: 3px solid #ffffff;
 }
-
 /*** Banner ***/
 section#banner {
     display: none;
@@ -12,7 +11,6 @@ section#banner {
 section#banner img {
     display: block;
 }
-
 
 /*** Sign Up ***/
 section#sign-up{
@@ -48,7 +46,49 @@ section#sign-up p {
     margin: 0 auto;
     max-width: 257px;
 }
-
+/*** Slider ***/
+:host /deep/ carousel slide > div {
+    display: block;
+    background: #cf2b2c;
+    border-bottom: 12px solid #f68b1f;
+    position: relative;
+    height: 200px;
+}
+:host /deep/ carousel slide:nth-of-type(2) > div {
+    background: #488c5b;
+    border-bottom: 12px solid #1b1a18;
+}
+:host /deep/ carousel slide:nth-of-type(3) > div {
+    background: #ec9534;
+    border-bottom: 12px solid #488c5b;
+}
+:host /deep/ carousel slide:nth-of-type(4) > div {
+    background: #269ccc;
+    border-bottom: 12px solid #8a2d7d;
+}
+.home-slide-content {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    padding: 0 28px;
+    max-width: 420px;
+}
+.home-slide-content h4 {
+    color: #ffffff;
+    font-size: 25px;
+    padding: 0;
+    line-height: 28px;
+}
+.home-slide-content p {
+    color: #ffffff;
+    font-size: 20px;
+    padding: 0;
+    line-height: 25px;
+}
 /*tab*/
 :host /deep/ tabs .tabs ul  {
     padding: 14px 0 14px 0;
@@ -98,7 +138,27 @@ section#sign-up p {
     color: #414140;
     background-color: #e1e1df;
 }
-@media only screen and (min-width: 60em) {
+@media only screen and (min-width: 769px) {
+/*** Slider ***/
+:host /deep/ carousel slide > div {
+    height: 375px;
+}
+.home-slide-content {
+    max-width: 500px;
+}
+.home-slide-content h4 {
+    color: #ffffff;
+    font-size: 40px;
+    line-height: 40px;
+}
+.home-slide-content p {
+    color: #ffffff;
+    font-size: 35px;
+    padding: 0;
+    line-height: 40px;
+}
+}
+@media only screen and (min-width: 960px) {
     /*** Sign Up ***/
     section#sign-up{
         padding: 111px 20px 70px;

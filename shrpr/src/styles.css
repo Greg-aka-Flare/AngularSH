@@ -227,41 +227,7 @@ h3, h4, h5, h6 {
 
 /* =============Marketing Pages Start ============================ */
 
-#persoanl-demo {
-    background: #448a58;
-    color: #ffffff;
-    font-size: 16px;
-    line-height: 20px;
-    padding: 7px 10px;
-    text-align: right;
-    position: relative;
-}
-#persoanl-demo:before{
-    content: "";
-    position: absolute;
-    right: 39px;
-    top:100%;
-    border-top: 11px solid #448a58;
-    border-left:10px solid transparent;
-    border-right:10px solid transparent;
-}
-#persoanl-demo > a {
-    font-size: 14px;
-    line-height: 14px;
-    color: #ffffff;
-    display: inline-block;
-    text-decoration: none;
-    vertical-align: middle;
-    background: #d53b3c;
-    padding:11px 15px 9px;
-    -webkit-box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
-    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
-    text-transform: uppercase;
-    margin: 0 10px 0 10px;
-}
-#persoanl-demo > a:hover {
-background: #c95f5f;
-}
+
 /*features Banner start*/
 .features-banner {
     text-align: right;

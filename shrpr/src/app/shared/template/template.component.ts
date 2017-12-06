@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { LikeService } from "../../core/like.service";
 import { SearchComponent } from '../search/search.component';
+import { DemoComponent } from '../schedule-demo/demo.component';
+
 import 'rxjs/add/observable/fromEvent';
 
 @Component({
@@ -17,6 +19,7 @@ export class TemplateComponent {
 
   @Input('menu') menu: boolean = true;
   @Input('search') search: boolean = true;
+  @Input('demo') demo: boolean = false;
 
   public pagetemp: string;
   
@@ -34,6 +37,7 @@ export class TemplateHeader implements OnInit, OnDestroy {
 
   @Input('menu') menu: boolean = true;
   @Input('search') search: boolean = true;
+  @Input('demo') demo: boolean = false;
 
   isheaderShrunk: boolean = false;
   isBtnActive: boolean = false;
@@ -103,6 +107,7 @@ export class TemplateHeader implements OnInit, OnDestroy {
 export class TemplateFooter {
   
   @Input('menu') menu: boolean = true;
+ 
 
   constructor() {}
 }

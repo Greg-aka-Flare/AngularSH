@@ -15,15 +15,6 @@
     max-width:350px;
     margin:auto;
 }
-.login-box {
-    margin: 0 5px 20px 5px;
-    padding: 15px;
-    border-radius: 5px;
-    background-color:#ededed;
-    width: 100%;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
 :host /deep/ tabs .tabs ul {
     padding:0;
     text-align: center;
@@ -199,3 +190,8 @@
 .social-login > button.cta-linkedin {
     background-color: #0084b1;
 }
+
+
+
+
+

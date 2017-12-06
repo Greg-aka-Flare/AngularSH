@@ -13,21 +13,40 @@
 <app-marketing-nav></app-marketing-nav>
 <!-- features nav end-->
 <section class="slider-image-content">
-<carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
-  <slide *ngFor="let slidez of slides; let index=index"
-         [active]="slidez.active">
-         <img [src]="slidez.image" style="margin:auto;" class="slider-img">
-      <div class="banner-content">
-        <span class="slide_index">{{index + 1}}</span>
-        <h4>{{slidez.title}}</h4>
-        <p class="banner_text">{{slidez.detail}}</p>
-      </div>
-    <!--<div class="carousel-caption">
-      <h3 style="background-color: transparent;color: white;">Slide {{index + 1}}</h3>
-      <p  style="background-color: transparent;color: white;">{{slidez.text}}</p>
-    </div>-->
-  </slide>
-</carousel>
+    <carousel>
+        <slide> <img src="../../assets/img/banner01.jpg" style="margin:auto;" class="slider-img">
+          <div class="banner-content"> <span class="slide_index">1</span>
+            <h4>Accept All Major Credit Cards</h4>
+          </div>
+        </slide>
+        <slide>
+        <img src="../../assets/img/banner02.jpg" style="margin:auto;" class="slider-img">
+          <div class="banner-content"> <span class="slide_index">2</span>
+            <h4>Accept New Payment Methods</h4>
+          </div>
+        </slide>
+        <slide>
+        <img src="../../assets/img/banner03.jpg" style="margin:auto;" class="slider-img">
+          <div class="banner-content"> <span class="slide_index">3</span>
+            <h4>Make Money After Hours</h4>
+            <p class="banner_text">People can enroll while they watch the late late show, or the early risers can pick a course at sunrise.</p>
+          </div>
+        </slide>
+         <slide>
+        <img src="../../assets/img/banner04.jpg" style="margin:auto;" class="slider-img">
+          <div class="banner-content"> <span class="slide_index">4</span>
+            <h4>Who still has a check book?</h4>
+            <p class="banner_text">No More Paper Enrollment Forms. No More Checks</p>
+          </div>
+        </slide>
+           <slide>
+        <img src="../../assets/img/banner05.jpg" style="margin:auto;" class="slider-img">
+          <div class="banner-content"> <span class="slide_index">5</span>
+            <h4>Get Paid Every Day</h4>
+            <p class="banner_text">Money is automatically sent to your checking account daily</p>
+          </div>
+        </slide>
+      </carousel>
 </section>
 <!-- Slider End -->
 <app-marketing-form></app-marketing-form>

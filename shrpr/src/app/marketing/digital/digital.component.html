@@ -1,4 +1,4 @@
-<section id="persoanl-demo">Schedule a Demo or Join <a href="/marketing#scheduledemo">Now</a></section><!-- request persoanl demo -->
+
 <section class="features-banner">
   <div class="features-banner-text">
     <h1>Shrpr’s Education Platform and Marketplace</h1>
@@ -10,21 +10,28 @@
 <app-marketing-nav></app-marketing-nav>
 <!-- features nav end-->
 <section class="slider-image-content">
-<carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
-  <slide *ngFor="let slidez of slides; let index=index"
-         [active]="slidez.active">
-         <img [src]="slidez.image" style="margin:auto;" class="slider-img">
-      <div class="banner-content">
-        <span class="slide_index">{{index + 1}}</span>
-        <h4>{{slidez.title}}</h4>
-        <p class="banner_text">{{slidez.detail}}</p>
-      </div>
-    <!--<div class="carousel-caption">
-      <h3 style="background-color: transparent;color: white;">Slide {{index + 1}}</h3>
-      <p  style="background-color: transparent;color: white;">{{slidez.text}}</p>
-    </div>-->
-  </slide>
-</carousel>
+    <carousel>
+        <slide> <img src="../../assets/img/marketing-banner01.jpg" style="margin:auto;" class="slider-img">
+          <div class="banner-content"> <span class="slide_index">1</span>
+            <h4>Attract New Customers</h4>
+            <p class="banner_text">Drive web traffic to your program page, teacher page or individual course offerings</p>
+          </div>
+        </slide>
+        <slide>
+        <img src="../../assets/img/marketing-banner02.jpg" style="margin:auto;" class="slider-img">
+          <div class="banner-content"> <span class="slide_index">2</span>
+            <h4>Digital Marketing Made Easy</h4>
+            <p class="banner_text">Find new leads and customers with easy integrations</p>
+          </div>
+        </slide>
+        <slide>
+        <img src="../../assets/img/marketing-banner03.jpg" style="margin:auto;" class="slider-img">
+          <div class="banner-content"> <span class="slide_index">3</span>
+            <h4>Search Engine Optimized</h4>
+            <p class="banner_text">Move up the Google Search Rankings and get found by people looking for your offering</p>
+          </div>
+        </slide>
+      </carousel>
 </section>
 <!-- Slider End -->
 <section class="list-your-business-banner">
@@ -52,24 +59,6 @@
         <img src="../../../assets/img/jointhenetwork-img.jpg"  alt=" ">
       </div>
 </section>
-<!--<section class="slider-content">
-    <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
-      <slide *ngFor="let content of slidescontent; let index=index"
-             [active]="content.active">
-          <div class="slide-content">
-            <p>{{content.detail}}</p>
-            <p class="author">{{content.author}}</p>
-            <p class="tagline">{{content.tagline}}</p>
-            
-          </div>-->
-        <!--<div class="carousel-caption">
-          <h3 style="background-color: transparent;color: white;">Slide {{index + 1}}</h3>
-          <p  style="background-color: transparent;color: white;">{{slidez.text}}</p>
-        </div>-->
-      <!--</slide>
-    </carousel>
-    </section>-->
-    <!-- Slider End -->
 <!-- Join the Network end -->
 <app-marketing-form></app-marketing-form>
       <!-- Form end -->

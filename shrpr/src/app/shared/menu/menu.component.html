@@ -8,7 +8,7 @@
       <li><a [routerLink]="['/student', '62']" (click)="toggleMenu()">Student</a></li>
     </ul>
   </li>
-  <li><a routerLink="login" title="Sign Up / Log In" (click)="toggleMenu()">Sign Up / Log In</a></li>
+  <li><a [routerLink]="['/login']" title="Sign Up / Log In" (click)="toggleMenu()">Sign Up / Log In</a></li>
   <li class="has_child"><a href="javascript:void(0);" title="Content" (click)="toggleMenu()">Content</a>
     <ul>
       <li><a [routerLink]="['/videos']" title="Videos" (click)="toggleMenu()">Videos</a></li>

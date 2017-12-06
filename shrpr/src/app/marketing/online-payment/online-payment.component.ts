@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MarketingFormComponent } from '../marketing-form.component';
 import { MarketingNavComponent } from '../marketing-nav.component';
 import { NgModel } from '@angular/forms';
+import { Carousel } from '../../shared/carousel/carousel.component';
 
 @Component({
   selector: 'app-online-payment',
@@ -10,52 +11,8 @@ import { NgModel } from '@angular/forms';
   styleUrls: ['./online-payment.component.css']
 })
 export class OnlinePaymentComponent implements OnInit {
-  images:Array<any> = [
-    {"sType":"img","imgSrc":"../../assets/img/banner01.jpg"},
-    {"sType":"img","imgSrc":"../../assets/img/banner02.jpg"},
-    {"sType":"img","imgSrc":"../../assets/img/banner03.jpg"},
-    {"sType":"img","imgSrc":"../../assets/img/banner04.jpg"},
-  ];
-
-
-  //The time to show the next photo
-  public NextPhotoInterval:number = 5000;
-  //Looping or not
-  public noLoopSlides:boolean = false;
-  //Photos
-  public slides:Array<any> = [];
-  public slidescontent:Array<any> = [];
-  wasClicked = false;
-  hasClicked = false;
-  hasedClicked = false;
-  
-      onClick() {
-          this.wasClicked= true;
-      }
-      onhasClick() {
-        this.hasClicked= true;
-    }
-
-    onhasedClick() {
-      this.hasedClicked= true;
-  }
   constructor() {
-    this.addNewSlide();
    }
-
-   public addNewSlide() {
-    this.slides.push(
-       {image:'../../assets/img/banner01.jpg',title:'Accept All Major Credit Cards'},
-       {image:'../../assets/img/banner02.jpg',title:'Accept New Payment Methods '},
-       {image:'../../assets/img/banner03.jpg',title:'Make Money After Hours',detail:'People can enroll while they watch the late late show, or the early risers can pick a course at sunrise.'},
-       {image:'../../assets/img/banner04.jpg',title:'Who still has a check book?',detail:'No More Paper Enrollment Forms. No More Checks'},
-       {image:'../../assets/img/banner05.jpg',title:'Get Paid Every Day',detail:'Money is automatically sent to your checking account daily'},
-   );
-}
-
-public removeLastSlide() {
-   this.slides.pop();
-} 
   ngOnInit() {
   }
 
