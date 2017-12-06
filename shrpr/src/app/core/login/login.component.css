@@ -1,9 +1,10 @@
 #login_box {
     margin: 39px auto;
     max-width: 350px;
-    padding: 10px;
+}
+.login-box {
     background: #ededed;
-    border-radius: 10px;
+    padding: 10px;  
 }
 :host /deep/ tabs .tabs ul {
     padding:0;
@@ -32,7 +33,7 @@
     height: 0; 
     border-left: 14px solid transparent;
     border-right: 14px solid transparent;
-    border-bottom: 14px solid #cccccc;
+    border-bottom: 14px solid #ededed;
     bottom:0;
 }
 .login-box form input::-webkit-input-placeholder { /* Chrome */
