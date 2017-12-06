@@ -56,10 +56,14 @@
                   </div> 
                   </div>
               <div class="action_btn">
-                <a href="javascript:void(0);">Book Online</a><a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Whishlist</a>
+                <a href="javascript:void(0);">Book Online</a><a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
                 <span>270 people saved this class</span></div>
           </div>
           <!-- .course_info -->
+          <div class="course_info">
+            <h2>Semester Information</h2>
+            <p>{{semesterDetails.info}}</p>
+          </div>
           <div class="course_enroll_block">
               <div *ngIf="selectedSemester">
                 <div *ngFor="let semester of selectedSemester">
@@ -70,10 +74,6 @@
               </div>
           </div>
           <!-- .course_enroll_block -->
-          <div class="course_info">
-            <h2>Semester Information</h2>
-            <p>{{semesterDetails.info}}</p>
-          </div>
           <!-- .course_info-->
       </article>
     </section>
@@ -101,7 +101,7 @@
               </p>
               <div class="action_btn">
                 <a href="javascript:void(0);">Book Online</a><br>
-                <a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Whishlist</a>
+                <a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
                 <span>270 people saved this class</span>
               </div>
               <p>
@@ -154,8 +154,8 @@
               </div> 
           </div>
             <!-- .course_enroll_block -->
-        <h2>Semester Information</h2>
-        <p>{{ semesterDetails.info }}</p>
+            <h2>Semester Information</h2>
+            <p>{{ semesterDetails.info }}</p>
       </section>
     </section>
     <!--desktop view ends-->

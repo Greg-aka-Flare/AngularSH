@@ -1,19 +1,9 @@
-:host {
-    display: block;
-    overflow: hidden;
-    padding: 50px 0 50px 0;
-    position:relative;
-    min-height: 450px;
-    
-}
 #login_box {
-    position: absolute;
-    left:0;
-    right:0;
-    top:10%;
-    width:100%;
-    max-width:350px;
-    margin:auto;
+    margin: 39px auto;
+    max-width: 350px;
+    padding: 10px;
+    background: #ededed;
+    border-radius: 10px;
 }
 :host /deep/ tabs .tabs ul {
     padding:0;
@@ -42,7 +32,7 @@
     height: 0; 
     border-left: 14px solid transparent;
     border-right: 14px solid transparent;
-    border-bottom: 14px solid #ededed;
+    border-bottom: 14px solid #cccccc;
     bottom:0;
 }
 .login-box form input::-webkit-input-placeholder { /* Chrome */
