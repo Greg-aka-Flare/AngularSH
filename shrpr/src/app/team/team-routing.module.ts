@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OurteamComponent } from './our-team/ourteam.component';
 import { TeamComponent } from './team.component';
 import { BrandonComponent } from './brandon/brandon.component';
-import { ErickComponent } from './erick/erick.component';
+import { ErikComponent } from './erik/erik.component';
 import { MikeComponent } from './mike/mike.component';
 import { MilesComponent } from './miles/miles.component';
 import { CollinComponent } from './collin/collin.component';
@@ -16,7 +16,7 @@ const teamRoutes: Routes = [
 	{ path: '', component: TeamComponent, children: [
 		{ path: 'ourteam', component: OurteamComponent },
 		{ path: 'brandon', component: BrandonComponent },
-		{ path: 'erick', component: ErickComponent },
+		{ path: 'erik', component: ErikComponent },
 		{ path: 'mike', component: MikeComponent },
 		{ path: 'miles', component: MilesComponent },
 		{ path: 'collin', component: CollinComponent },

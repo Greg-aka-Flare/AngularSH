@@ -3,10 +3,10 @@ import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-team',
-  templateUrl: './erick.component.html',
+  templateUrl: './erik.component.html',
   styleUrls: ['../team.component.css']
 })
-export class ErickComponent implements OnInit {
+export class ErikComponent implements OnInit {
 
   constructor() { }
 
