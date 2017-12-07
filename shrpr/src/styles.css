@@ -426,6 +426,8 @@ a.jointhenetwork-link:hover {
     color: #cccccc;
     font-size: 14px;
     padding:  0 10px;
+    display: block;
+    box-sizing: border-box;
 }
 .inner-form-wrap form > div > select.selected {
     color: #000000;

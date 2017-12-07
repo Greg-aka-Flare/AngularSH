@@ -1,5 +1,5 @@
 <app-template>
-    <section class="home-slider">
+    <section id="home-slider">
             <carousel>
                     <slide>
                       <div class="home-slide-content">
@@ -16,14 +16,14 @@
                     <slide>
                      <div class="home-slide-content">
                         <p>For those guided by their desire to know a little bit more</p>
+                        <a class="home-cta" [routerLink]="['/login']">Sign Up</a>
                       </div>
-                      <a class="home-cta" [routerLink]="['/login']">Sign Up</a>
                     </slide>
                      <slide>
                       <div class="home-slide-content">
                         <p>shrpr believes the best version of yourself starts with improving your knowledge.</p>
+                        <a class="home-cta" [routerLink]="['/login']">Sign Up</a>
                       </div>
-                      <a class="home-cta" [routerLink]="['/login']">Sign Up</a>
                     </slide>
                   </carousel>
     </section>

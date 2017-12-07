@@ -2,14 +2,14 @@
 .features-banner {
     background-image: url(../../../assets/img/marketing-site-header.jpg);
     background-repeat: no-repeat;
-    background-position: left bottom;
+    background-position: right bottom;
     background-size: cover;
     height: 500px;
 }
 
 .features-banner-text {
-    padding: 50px 10px 20px 10px;
-    max-width: 500px;
+    padding: 155px 10px 20px 10px;
+    max-width: 470px;
     display: inline-block;
     vertical-align: top;
     text-align: left;
@@ -38,8 +38,7 @@
 @media only screen and (min-width: 769px) {
     /*features Banner start*/
 .features-banner-text {
-    padding: 100px 10px 20px 10px;
-    margin: 0 10% 0 0;
+    margin: 0 2% 0 0;
 }
 }
 /*================================================
