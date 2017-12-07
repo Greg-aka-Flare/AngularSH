@@ -75,6 +75,9 @@ section#sign-up p {
 :host /deep/ #home-slider carousel .carousel-indicators li.active, :host /deep/ #home-slider carousel .carousel-indicators li:hover {
     background-color: #ffffff; 
 }
+:host /deep/ #home-slider .carousel-control {
+    color: #ffffff;
+}
 .home-slide-content {
     position: absolute;
     margin: auto;

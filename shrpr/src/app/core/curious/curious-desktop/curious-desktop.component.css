@@ -74,6 +74,7 @@
 }
 .card-info h3 {
     padding:0 0 10px 0;
+    min-height: 58px;
 }
 .card-info h3 a {
     color:#222222;
@@ -267,39 +268,30 @@
     background-color: #e92828;
 }
 
-.show-more {
-    background-color: #414140;
-    border: medium none;
-    border-radius: 5px;
-    box-sizing: border-box;
-    color: #ffffff;
-    cursor: pointer;
-    display: block;
+a.show-more {
+    color: #454545;
     font-family: 'circularstd book';
-    font-size: 19px;
+    font-size: 16px;
     line-height: 16px;
-    margin: 5px auto 30px;
-    max-width: 176px;
-    padding: 19px 5px;
-    text-align: center;
+    margin: 10px 34px 0 0;
+    padding: 0 20px 0 0;
     text-transform: uppercase;
-    width: 100%;
-    clear: both;
-    background-image: -moz-linear-gradient(to left, #f36161 0%, #f36161 20%, #ffa43f 20%, #ffa43f 40%, #3eb762 40%, #3eb762 60%, #16adea 60%, #16adea 80%, #c267b4 80%, #c267b4 100%);
-    background-image: -webkit-linear-gradient(to left, #f36161 0%, #f36161 20%, #ffa43f 20%, #ffa43f 40%, #3eb762 40%, #3eb762 60%, #16adea 60%, #16adea 80%, #c267b4 80%, #c267b4 100%);
-    background-image: linear-gradient(to right, #f36161 0%, #f36161 20%, #ffa43f 20%, #ffa43f 40%, #3eb762 40%, #3eb762 60%, #16adea 60%, #16adea 80%, #c267b4 80%, #c267b4 100%);
-    background-position: left bottom;
-    background-repeat: no-repeat;
-    background-size: 100% 2px;
-    -moz-transition: all 0.5s ease-in-out 0s;
-    -ms-transition: all 0.5s ease-in-out 0s;
-    -o-transition: all 0.5s ease-in-out 0s;
-    -webkit-transition: all 0.5s ease-in-out 0s;
-    transition: all 0.5s ease-in-out 0s;
+    float: right;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
 }
-
-.show-more:hover {
-    background-color: #888886;
+a.show-more:hover {
+    opacity: 0.7;
+}
+a.show-more:after {
+    content: "\000BB";
+    position: absolute;
+    right: 3px;
+    top: 0;
+    font-size: 24px;
+    line-height: 13px;
 }
 
 section.suggest-course{
@@ -349,4 +341,28 @@ section.suggest-course form button{
 }
 section.suggest-course form button:hover{
     background-color: #666;
+}
+.course-cta {
+    background-color: #484848;
+    border: none;
+    -webkit-box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-family: 'circularstd book';
+    font-size: 14px;
+    line-height: 14px;
+    text-decoration: none;
+    margin: 10px 0 0 0;
+    max-width: 130px;
+    padding:10px 10px;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+    float: right;
+}
+.course-cta:hover {
+    background-color: #757575;
+    text-decoration: none;
 }

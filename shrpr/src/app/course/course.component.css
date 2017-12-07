@@ -142,7 +142,9 @@ figure.rating {
     line-height: 24px;
     color:#ed9b40;
 }
-
+:host /deep/ .carousel-inner {
+    max-height: 300px;
+}
 .page-btn {
     display:inline-block;
     vertical-align: top;

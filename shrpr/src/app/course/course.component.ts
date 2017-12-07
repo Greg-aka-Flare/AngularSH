@@ -99,10 +99,10 @@ export class CourseComponent implements OnInit, OnDestroy {
       this.primaryImg = this.course.semesters[0].primary_img;
       this.secondaryImg = JSON.parse(this.course.semesters[0].details).secondary_img;
       this.slides.push(
-        //{image:'../../assets/img/'+ this.primaryImg},
-        //{image:'../../assets/img/'+ this.secondaryImg}
-        {image:'../../assets/img/court.jpg'},
-        {image:'../../assets/img/court-two.jpg'}
+        {image:'../../assets/img/courses/'+ this.primaryImg},
+        {image:'../../assets/img/courses/'+ this.secondaryImg}
+        //{image:'../../assets/img/court.jpg'},
+        //{image:'../../assets/img/court-two.jpg'}
       );
 
       this.meetingArray = this.course.semesters[0].meetings;
