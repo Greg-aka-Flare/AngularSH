@@ -9,7 +9,7 @@ export class InstructorService {
 	}
 
 	getInstructor(id: number){
-		return this.http.get('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/instructor/' + id)
+		return this.http.get('https://api.shrpr.co/api/instructor/' + id)
 			.map(
 				(response: Response) => response.json()
 			);

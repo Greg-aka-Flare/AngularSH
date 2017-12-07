@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class CourseService {
 
-	url: string = 'http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/';
+	url: string = 'https://api.shrpr.co/api/';
 
 	constructor(private http: HttpClient){}
 
@@ -83,14 +83,14 @@ export class CourseService {
 	updateCourse(id: number, newName: string){
 		// const body = JSON.stringify({name: newName});
 		// const headers = new Headers({'Content-Type': 'application/json'});
-		// return this.http.put('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/course/' + id, body, {headers: headers})
+		// return this.http.put('https://api.shrpr.co/api/' + id, body, {headers: headers})
 		// 	.map(
 		// 		(response: Response) => response.json()
 		// 	);
 	}
 
 	deleteCourse(id: number){
-		return this.http.delete('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/course/' + id);
+		return this.http.delete('https://api.shrpr.co/api/' + id);
 	}
 
 	private updateQueryString(key, value, url) {

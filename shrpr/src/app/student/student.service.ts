@@ -9,7 +9,7 @@ export class StudentService {
 	}
 	
 	getStudent(id: number){
-		return this.http.get('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/student/' + id)
+		return this.http.get('https://api.shrpr.co/api/student/' + id)
 			.map(
 				(response: Response) => response.json()	
 			);

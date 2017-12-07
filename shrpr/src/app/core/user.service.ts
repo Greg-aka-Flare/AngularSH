@@ -11,11 +11,11 @@ export class UserService {
 	register(content: string){
 		const body = JSON.stringify({content: content});
 		const headers = new Headers({'Content-Type': 'application/json'});
-		return this.http.post('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/user', body, {headers: headers});
+		return this.http.post('https://api.shrpr.co/api/user', body, {headers: headers});
 	}
 
 	user(): Observable<any> {
-		return this.http.get('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/users')
+		return this.http.get('https://api.shrpr.co/api/users')
 			.map(
 				(response: Response) => {
 					return response.json().users;
@@ -24,7 +24,7 @@ export class UserService {
 	}
 
 	signup(name: string, email: string, password: string){
-		return this.http.post('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/user', 
+		return this.http.post('https://api.shrpr.co/api/user', 
 			{ name: name, email: email, password: password },
 			{ headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) });
 	}

@@ -44,6 +44,7 @@
 }
 .img-ctn figure img {
     display:block;
+    height: 280px;
     margin:0;
     width:100%;
 }
