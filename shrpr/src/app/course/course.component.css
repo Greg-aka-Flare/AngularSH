@@ -5,6 +5,9 @@ h1 {
 #profile-header > h2 {
     padding: 0 5px 10px 5px;
 }
+#profile-header {
+    padding: 20px 0 0 0;
+}
 .course_mobile_card {
     border-bottom: 2px solid #ed9b40;
     position: relative;
@@ -425,6 +428,19 @@ agm-map {
     position: absolute;
     right: 8px;
     top: 40%;
+}
+
+.bradecrumb {
+    color: #000000;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 7px 0 15px;
+}
+.bradecrumb a {
+    color: #ed9b40;
+}
+.bradecrumb a:hover {
+    text-decoration: none;
 }
 @media only screen and (min-width: 769px) {
 

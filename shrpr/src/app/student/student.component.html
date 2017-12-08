@@ -21,7 +21,8 @@
         <article class="card-box" *ngFor="let coursed of students?.courses">
               <div class="img-ctn">
                   <figure>
-                      <img src="../../assets/img/court.jpg">
+                      <img *ngIf="coursed?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ coursed?.semesters[0]?.primary_img }}" alt="" title="">
+                      <img *ngIf="!coursed?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title="">
                   </figure>
                   <h3>{{coursed?.title}}</h3>
               </div>
@@ -54,7 +55,8 @@
                 <div class="img-ctn">
                     <!--<div class="price">${{coursed.id}}</div>-->
                     <figure>
-                        <img src="../../assets/img/court.jpg">
+                        <img *ngIf="coursed?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ coursed?.semesters[0]?.primary_img }}" alt="" title="">
+                        <img *ngIf="!coursed?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title="">
                     </figure>
                     <h3>{{coursed?.title}}</h3>
                 </div>

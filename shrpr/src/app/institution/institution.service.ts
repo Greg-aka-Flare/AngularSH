@@ -7,12 +7,12 @@ export class InstitutionService {
 	constructor(private http: Http){
 
 	}
-
+	
 	getInstitution(id: number){
 		return this.http.get('https://api.shrpr.co/api/institution/' + id)
 			.map(
-				(response: Response) => response.json()
+				(response: Response) => response.json()	
 			);
+			
 	}
-
 }
