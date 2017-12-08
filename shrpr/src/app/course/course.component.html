@@ -2,7 +2,7 @@
   <article *ngIf="course">
     <!-- mobile view start-->
     <section *ngIf="width < 768" id="profile-header">
-        <div class="bradecrumb"><span><a [routerLink]="['/institution', course.institution.id]">{{ course.institution.name }}</a> > </span><span>{{ course.categories[0].name }}</span></div>
+        <div class="bradecrumb"><span>{{ course.group.label }} > </span><span>{{ course.categories[0].name }} ></span><span><a [routerLink]="['/institution', course.institution.id]"> {{ course.institution.name }}</a></span></div>
       <h2>{{course.title}}</h2>
       <article class="course_mobile_card">
           <div class="category">{{ course.categories[0].name }}
@@ -82,7 +82,7 @@
     <!--desktop view start-->
     <section *ngIf="width > 767" id="profile-header">
       <div class="course_header">
-          <div class="bradecrumb"><span><a [routerLink]="['/institution', course.institution.id]"> {{ course.institution.name }}</a> > </span><span>{{ course.categories[0].name }}</span></div>
+          <div class="bradecrumb"><span>{{ course.group.label }} > </span><span>{{ course.categories[0].name }} ></span><span><a [routerLink]="['/institution', course.institution.id]"> {{ course.institution.name }}</a></span></div>
           <div class="course_slider">
               <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
                   <slide *ngFor="let slidez of slides; let index=index"
@@ -204,14 +204,14 @@
     <!--google map ends-->
     <!-- #reviews-->
     <section id="reviews">
-      <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews</div>
-    <dl class="review_items" *ngFor="let review of ratingData" >
-      <dt><img src="../../assets/img/reviews-profile.jpg" alt="" title="">User id: {{review.user_id}}</dt>
-      <dd><h2>Balance Indoboard Yoga <span class="review_items_rating">review id: {{review.id}} | <star-rating-comp class="review_star" [starType]="'svg'" [rating]="review.rating" [showHalfStars]="true"></star-rating-comp></span></h2>
-      <p>{{review.comment}}</p></dd>
-    </dl>
-    <p class="seeall-link"><!--<button class="show-more" (click)="getData()" [disabled]="counter>=ratingData.length">see all related reviews</button><a href="javascript:void(0);">see all related reviews</a>--></p>
-    
+        <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews</div>
+      <dl class="review_items" *ngFor="let review of ratingData" >
+        <dt><img src="../../assets/img/reviews-profile.jpg" alt="" title="">User id: {{review.user_id}}</dt>
+        <dd><h2>{{review.title}} <span class="review_items_rating">Rating: {{review.rating}} | <star-rating-comp class="review_star" [starType]="'svg'" [rating]="review.rating" [showHalfStars]="true"></star-rating-comp></span></h2>
+        <p>{{review.comment}}</p></dd>
+      </dl>
+      <p class="seeall-link"><!--<button class="show-more" (click)="getData()" [disabled]="counter>=ratingData.length">see all related reviews</button><a href="javascript:void(0);">see all related reviews</a>--></p>
+      
     </section><!-- #reviews -->
   </article>
 </app-template>

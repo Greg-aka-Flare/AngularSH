@@ -577,6 +577,9 @@ figure.rating {
 .select-date {
     width: 51%;
 }
+#profile-header {
+    padding: 0;
+}
 }
 /* =============================================================================
    LARGE SCREEN STYLES [DESKTOP VIEW] START
