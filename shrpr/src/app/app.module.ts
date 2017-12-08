@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { JwtModule } from '@auth0/angular-jwt';
+import { InstitutionComponent } from './institution/institution.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -16,7 +17,7 @@ export function tokenGetter() {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     AppRoutingModule,

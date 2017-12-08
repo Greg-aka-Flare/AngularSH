@@ -10,6 +10,7 @@ import { LandingGuard } from './core/landing/landing-guard.service';
 import { PodcastComponent } from './core/podcast/podcast.component';
 import { InterviewwithroblabonneComponent } from './core/podcast/interviewwithroblabonne.component';
 import { InstructorComponent } from './instructor/instructor.component';
+import { InstitutionComponent } from './institution/institution.component';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './core/login/login.component';
 
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
 	{ path: 'values', component: ValuesComponent, canActivate: [LandingGuard] },
 	{ path: 'videos', component: VideosComponent, canActivate: [LandingGuard] },
 	{ path: 'podcast', component: PodcastComponent, canActivate: [LandingGuard] },
-	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent, canActivate: [LandingGuard] }
+	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent, canActivate: [LandingGuard] },
+	{ path: 'institution:id', loadChildren: './institution/institution.module#InstitutionModule', canActivate: [LandingGuard] }
 ]
 
 @NgModule({
