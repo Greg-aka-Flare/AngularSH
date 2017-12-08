@@ -17,7 +17,7 @@ import { InstitutionService } from "./institution.service";
   styleUrls: ['./institution.component.css']
 })
 export class InstitutionComponent implements OnInit, OnDestroy {
-  institution:any;
+  institutions:any;
   private myid:number;
   //subscription: Subscription;
   private subscriptions = new Subscription();
@@ -46,7 +46,7 @@ export class InstitutionComponent implements OnInit, OnDestroy {
        this.subscriptions.add(this.institutionService.getInstitution(this.myid)
      .subscribe(
        (response) => {
-        this.institution = response;
+        this.institutions = response;
         },
        (error: Response) => console.log(error)
      ));

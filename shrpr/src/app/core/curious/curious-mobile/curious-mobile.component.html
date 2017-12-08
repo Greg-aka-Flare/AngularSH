@@ -19,7 +19,8 @@
             </div><!-- .price -->
 
             <figure>
-                <img src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" />
+                    <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
+                    <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title="">
             </figure>
         
             <div class="overlay">

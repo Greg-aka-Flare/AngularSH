@@ -41,10 +41,12 @@
 }
 .img-ctn figure {
     margin:0;
+    height: 280px;
+    overflow: hidden;
 }
 .img-ctn figure img {
     display:block;
-    height: 280px;
+    
     margin:0;
     width:100%;
 }

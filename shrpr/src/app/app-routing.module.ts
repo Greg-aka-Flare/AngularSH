@@ -28,7 +28,7 @@ const appRoutes: Routes = [
 	{ path: 'videos', component: VideosComponent, canActivate: [LandingGuard] },
 	{ path: 'podcast', component: PodcastComponent, canActivate: [LandingGuard] },
 	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent, canActivate: [LandingGuard] },
-	{ path: 'institution:id', loadChildren: './institution/institution.module#InstitutionModule', canActivate: [LandingGuard] }
+	{ path: 'institution/:id', loadChildren: './institution/institution.module#InstitutionModule', canActivate: [LandingGuard] }
 ]
 
 @NgModule({
