@@ -144,6 +144,7 @@
         </div>
       <!-- .course_desktop_card -->
       <section class="course_semester_desktop">
+          <h2>Semester Information</h2>
           <div class="course_enroll_block">
               <div *ngIf="selectedSemester">
                 <div *ngFor="let semester of selectedSemester">
@@ -154,8 +155,6 @@
               </div> 
           </div>
             <!-- .course_enroll_block -->
-            <h2>Semester Information</h2>
-            <p>{{ semesterDetails.info }}</p>
       </section>
     </section>
     <!--desktop view ends-->

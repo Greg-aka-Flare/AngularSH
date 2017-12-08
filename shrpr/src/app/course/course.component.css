@@ -143,7 +143,7 @@ figure.rating {
     color:#ed9b40;
 }
 :host /deep/ .carousel-inner {
-    max-height: 300px;
+    max-height: 273px;
 }
 .page-btn {
     display:inline-block;
@@ -491,15 +491,19 @@ figure.rating {
     color:#d53b3c;
 }
 .course_semester_desktop {
-    padding:20px 10px 10px 10px;
+    padding:41px 10px 10px 20px;
+    background: #ffffff;
+    float: right;
+    max-width: 300px;
+    width: 30%;
 }
 .course_semester_desktop h2 {
     color:#ed9b40;
+    font-size: 20px;
 }
 .course_enroll_block {
     float: right;
-    width:24%;
-    max-width:300px;
+    width:100%;
     margin:0;
 }
 :host /deep/ .carousel-indicators {
@@ -567,7 +571,7 @@ figure.rating {
         padding: 50px 0 30px 0;
    }
    .course_semester_desktop {
-       padding:20px 0 10px 0;
+    padding:41px 0 10px 20px;
    }
    .select-date {
     width: auto;

@@ -120,6 +120,8 @@
 }
 .img-ctn figure {
     margin:0;
+    height: 280px;
+    overflow:hidden;
 }
 .img-ctn figure img {
     display:block;
