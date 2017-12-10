@@ -12,7 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { JwtModule } from '@auth0/angular-jwt';
 import { InstitutionComponent } from './institution/institution.component';
-import { CoursesComponent } from './courses/courses.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -20,8 +19,7 @@ export function tokenGetter() {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CoursesComponent,
+    AppComponent
   ],
   imports: [
     AppRoutingModule,

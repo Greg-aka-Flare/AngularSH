@@ -6,8 +6,8 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 
-import { Course } from "../../course/course.interface";
-import { CourseService } from "../../course/course.service"
+import { Course } from "../../courses/course.interface";
+import { CourseService } from "../../courses/course.service"
 import { TabsComponent } from "../../shared/tabs/tabs.component";
 import { SearchComponent } from '../../shared/search/search.component';
 import { Carousel } from '../../shared/carousel/carousel.component';

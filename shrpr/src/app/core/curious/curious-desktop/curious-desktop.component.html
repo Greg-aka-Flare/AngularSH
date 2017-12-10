@@ -2,7 +2,7 @@
     id="for_fun_box" 
     class="category_bucket magento"
     *ngIf="showFun"
->    <a class="show-more" href="javascript:void(0)">View All</a>
+>    <a class="show-more" routerLink="/courses/list/for-fun">View All</a>
     <h2>For Fun</h2>
 
     <div 
@@ -57,9 +57,9 @@
                 </div><!-- .group_info-->
 
                 <h3>
-                    <a [routerLink]="['/course', course?.id]">{{ course?.title }}</a>
+                    <a [routerLink]="['/courses', course?.id]">{{ course?.title }}</a>
                 </h3>
-                <a class="course-cta" [routerLink]="['/course', course.id]">View Course</a>
+                <a class="course-cta" [routerLink]="['/courses', course.id]">View Course</a>
                 <p class="location">
                     <i class="fa fa-map-marker" aria-hidden="true"></i> 
                     <a>{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a>
@@ -100,7 +100,7 @@
     id="for_work_box" 
     class="category_bucket blue"
     *ngIf="showWork"
-><a class="show-more" href="javascript:void(0)">View All</a>
+><a class="show-more" routerLink="/courses/list/for-work">View All</a>
     <h2>For Work</h2>
 
     <div 
@@ -157,9 +157,9 @@
                 </div><!-- .group_info-->
 
                 <h3>
-                    <a [routerLink]="['/course', course?.id]">{{ course?.title }}</a>
+                    <a [routerLink]="['/courses', course?.id]">{{ course?.title }}</a>
                 </h3>
-                <a class="course-cta" [routerLink]="['/course', course.id]">View Course</a>
+                <a class="course-cta" [routerLink]="['/courses', course.id]">View Course</a>
                 <p class="location">
                     <i class="fa fa-map-marker" aria-hidden="true"></i> 
                     <a>{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a></p><!-- .location -->
@@ -199,7 +199,7 @@
     id="for_kids_box" 
     class="category_bucket yellow"
     *ngIf="showKids"
-><a class="show-more" href="javascript:void(0)">View All</a>
+><a class="show-more" routerLink="/courses/list/for-kids">View All</a>
     <h2>For Kids</h2>
 
     <div 
@@ -256,9 +256,9 @@
                 </div><!-- .group_info-->
 
                 <h3>
-                    <a [routerLink]="['/course', course.id]">{{ course?.title }}</a>
+                    <a [routerLink]="['/courses', course.id]">{{ course?.title }}</a>
                 </h3>
-                <a class="course-cta" [routerLink]="['/course', course.id]">View Course</a>
+                <a class="course-cta" [routerLink]="['/courses', course.id]">View Course</a>
                 <p class="location">
                     <i class="fa fa-map-marker" aria-hidden="true"></i> 
                     <a>{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a>

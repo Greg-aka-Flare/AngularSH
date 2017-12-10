@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
 
     this.dataService = this.completerService.remote(
-      'http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/search?str=', 
+      'https://api.shrpr.co/api/search?str=', 
       'title', 
       'title'
     ).imageField('img');

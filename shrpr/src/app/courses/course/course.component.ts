@@ -5,16 +5,15 @@ import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { TabsComponent } from "../shared/tabs/tabs.component";
+import { TabsComponent } from "../../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import { Subscription } from 'rxjs/Subscription';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
-import { Course } from "./course.interface";
-import { CourseService } from "./course.service";
+import { Course } from "../course.interface";
+import { CourseService } from "../course.service";
 
 @Component({
   selector: 'app-course',

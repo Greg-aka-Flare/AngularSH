@@ -22,8 +22,7 @@ import { StudentService } from '../student/student.service';
 import { AuthService } from '../auth/auth.service';
 import { InstructorService } from '../instructor/instructor.service';
 import { InstitutionService } from "../institution/institution.service";
-import { CoursesService } from "../courses/courses.service";
-import { CourseService } from '../course/course.service';
+import { CourseService } from '../courses/course.service';
 import { LikeService } from './like.service';
 import { UserService } from './user.service';
 import { LandingGuard } from './landing/landing-guard.service';
@@ -57,7 +56,6 @@ import { LandingGuard } from './landing/landing-guard.service';
     InstructorService,
     InstitutionService,
     CourseService,
-    CoursesService,
     LikeService,
     UserService,
     LandingGuard

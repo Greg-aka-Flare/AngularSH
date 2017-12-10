@@ -8,8 +8,8 @@ import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { Course } from "../course/course.interface";
-import { CourseService } from "../course/course.service";
+import { Course } from "../courses/course.interface";
+import { CourseService } from "../courses/course.service";
 import { Instructor } from "./instructor.interface";
 import { InstructorService } from "./instructor.service";
 

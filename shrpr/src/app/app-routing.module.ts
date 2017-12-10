@@ -22,15 +22,14 @@ const appRoutes: Routes = [
 	{ path: 'team', loadChildren: './team/team.module#TeamModule' },
 	{ path: 'instructor/:id', loadChildren: './instructor/instructor.module#InstructorModule', canActivate: [LandingGuard] },
 	{ path: 'student/:id', loadChildren: './student/student.module#StudentModule', canActivate: [LandingGuard] },
-	{ path: 'course/:id', loadChildren: './course/course.module#CourseModule', canActivate: [LandingGuard] },
+	{ path: 'courses', loadChildren: './courses/courses.module#CoursesModule', canActivate: [LandingGuard] },
 	{ path: 'login', component: LoginComponent, canActivate: [LandingGuard] },
 	{ path: 'about', component: AboutComponent },
 	{ path: 'values', component: ValuesComponent, canActivate: [LandingGuard] },
 	{ path: 'videos', component: VideosComponent, canActivate: [LandingGuard] },
 	{ path: 'podcast', component: PodcastComponent, canActivate: [LandingGuard] },
 	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent, canActivate: [LandingGuard] },
-	{ path: 'institution/:id', loadChildren: './institution/institution.module#InstitutionModule', canActivate: [LandingGuard] },
-	{ path: 'courses/:id', loadChildren: './courses/courses.module#CoursesModule', canActivate: [LandingGuard] }
+	{ path: 'institution/:id', loadChildren: './institution/institution.module#InstitutionModule', canActivate: [LandingGuard] }
 ]
 
 @NgModule({
