@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, NgZone, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
 import { NgModel } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+
+declare var google: any;
 
 @Component({
   selector: 'app-search',
@@ -11,14 +13,16 @@ import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 })
 export class SearchComponent implements OnInit {
 
+@ViewChild("search") searchElementRef: ElementRef;
+  searchControl: FormControl;
   location: string = '';
-
-  public dataService: CompleterData;
+  dataService: CompleterData;
   
   constructor(
     private ref: ChangeDetectorRef,
     private completerService: CompleterService,
-    private mapsAPILoader: MapsAPILoader
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
   ) {}
 
   ngOnInit() {
@@ -29,36 +33,68 @@ export class SearchComponent implements OnInit {
       'title'
     ).imageField('img');
 
-    if(navigator.geolocation) { //check if we can get lat/lng
-      
-      //create location
-      navigator.geolocation.getCurrentPosition(position => {
+    //get location
+    this.location = localStorage.getItem('location');
 
-        let lat = position.coords.latitude;
-        let lng = position.coords.longitude;
+    //if not location, geolocate
+    if(!this.location){
 
-        let geocoder = new google.maps.Geocoder();
-        let latlng = new google.maps.LatLng(lat, lng);
+      if(navigator.geolocation) { //check if we can get lat/lng
+        
+        //create location
+        navigator.geolocation.getCurrentPosition(position => {
 
-        //reverse geocode
-        geocoder.geocode({ 'location': latlng }, (results, status) => {
+          let lat = position.coords.latitude;
+          let lng = position.coords.longitude;
 
-          if (status == google.maps.GeocoderStatus.OK) {
+          let geocoder = new google.maps.Geocoder();
+          let latlng = new google.maps.LatLng(lat, lng);
 
-            if (results[0] != null) {
+          //reverse geocode
+          geocoder.geocode({ 'location': latlng }, (results, status) => {
 
-              //get location
-              this.location = this.findLocation(results[0].address_components);
+            if (status == google.maps.GeocoderStatus.OK) {
 
-              console.log('test');
+              if (results[0] != null) {
 
-              //refresh
-              this.ref.detectChanges();
+                //get location
+                this.location = this.findLocation(results[0].address_components);
+
+                //set location
+                localStorage.setItem('location', this.location);
+
+                //refresh
+                this.ref.detectChanges();
+              }
             }
+          });
+        });
+      }
+    }
+
+    //create search FormControl
+    this.searchControl = new FormControl();
+
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['address']
+      });
+
+      autocomplete.addListener('place_changed', () => {
+
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+  
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
           }
         });
       });
-    }
+    });
   }
 
   findLocation(components){      

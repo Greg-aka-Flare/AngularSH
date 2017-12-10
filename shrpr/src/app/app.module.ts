@@ -32,7 +32,8 @@ export function tokenGetter() {
       }
     }),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBKUrP69jyLxcicvoZg05Ysqi3rbj1U1Uk'
+      apiKey: 'AIzaSyBKUrP69jyLxcicvoZg05Ysqi3rbj1U1Uk',
+      libraries: ['geometry', 'places']
     }),
     CoreModule,
     SharedModule

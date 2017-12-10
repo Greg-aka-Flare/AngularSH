@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 import { Ng2CompleterModule } from 'ng2-completer';
 
 import { Carousel } from './carousel/carousel.component';
@@ -36,6 +37,7 @@ import { DatexPipe } from './date.pipe';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    AgmCoreModule,
     Ng2CompleterModule
   ],
   exports: [
@@ -45,7 +47,8 @@ import { DatexPipe } from './date.pipe';
     SearchComponent,
     TabsComponent,
     TabComponent,
-    DatexPipe
+    DatexPipe,
+    AgmCoreModule
   ]
 })
 export class SharedModule {}
