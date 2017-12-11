@@ -10,6 +10,10 @@
       </div>
     </section><!-- #profile header -->
     <div id="courses-cards">
+      <div class="filter"><select name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
+        <option value="" selected>Select Group</option>
+          <option *ngFor="let sem of institutions?.courses.group; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LL'}}</option>
+        </select></div>
     <h2>Courses</h2>
     <article class="card-box" *ngFor="let card of courseData; let i = index">
         <div class="img-ctn">
