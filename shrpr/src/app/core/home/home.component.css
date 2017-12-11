@@ -53,6 +53,9 @@ section#sign-up p {
 #home-slider {
     margin: 0 0 30px 0;
 }
+#home-slider.mobile{
+    margin: 0;
+}
 :host /deep/ carousel slide > div {
     display: block;
     background: #cf2b2c;
