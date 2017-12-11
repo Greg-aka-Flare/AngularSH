@@ -5,6 +5,7 @@ import { NgModel } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
 
+
 declare var google: any;
 
 @Component({
