@@ -1,15 +1,24 @@
 <app-template>
     <section id="profile-header">
     <div class="profile-picture">
-      <img *ngIf="institutions?.profile_img" src="../../assets/img/instructors/{{institution?.profile_img}}" alt="" title="">
-      <img *ngIf="!institutions?.profile_img" src="../../assets/img/instructors-picture.png" alt="" title="">
+      <img 
+        *ngIf="institutions?.profile_img" 
+        src="../../assets/img/institutions/{{ institutions?.profile_img }}"
+      >
+      <img 
+        *ngIf="!institutions?.profile_img" 
+        src="../../assets/img/instructors-picture.png"
+      >
     </div>
     <div><h2>{{institutions?.name}}</h2>
       <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{institutions?.email}}">{{institutions?.email}}</a><br>
+      <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span><br>
       <i aria-hidden="true" class="fa fa-phone-square"></i> {{institutions?.phone}}
       </div>
     </section><!-- #profile header -->
     <div id="courses-cards">
+    <h2>Description</h2>
+    <p>{{details?.description}}</p>
     <h2>Courses</h2>
     <article class="card-box" *ngFor="let card of courseCard; let i = index">
         <div class="img-ctn">

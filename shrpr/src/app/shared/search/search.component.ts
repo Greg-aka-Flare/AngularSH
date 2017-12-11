@@ -3,6 +3,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
 import { NgModel } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import {} from '@types/googlemaps';
 
 declare var google: any;
 

@@ -12,7 +12,7 @@ import { CourseService } from "../course.service";
 })
 export class CourseListComponent implements OnInit {
 
-	private courses: Course[];
+	courses: Course[];
   private title: string = 'All Courses';
   private group: string = 'all';
 

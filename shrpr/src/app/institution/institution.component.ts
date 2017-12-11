@@ -67,6 +67,7 @@ export class InstitutionComponent implements OnInit, OnDestroy {
      .subscribe(
        (response) => {
         this.institutions = response;
+        this.details = JSON.parse(response.details);
         },
        (error: Response) => console.log(error)
      ));
