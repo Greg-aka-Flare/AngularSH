@@ -49,7 +49,9 @@ export class CourseComponent implements OnInit, OnDestroy {
   semesterCount:number;
   semesterArray: any[] = [];
   selectedSemester:any;
+  categoriesArray:any;
   semesterInfo;
+  
 
   //The time to show the next photo
   private NextPhotoInterval:number = 5000;
@@ -84,6 +86,7 @@ export class CourseComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.courseService.getCourse(this.id).subscribe(course => {
       this.course = course;
       this.ratingData = this.course.ratings;
+      this.categoriesArray = this.course.categories;
       this.semesterCount = this.course.semesters.length;
 
       for(var i=0; i< this.semesterCount; i++){
