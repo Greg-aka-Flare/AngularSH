@@ -182,7 +182,7 @@
     padding: 0;
 }
 #testimonial article.video-box {
-    background: url(/assets/img/video-bg.jpg) no-repeat center center;
+    /*background: url(/assets/img/video-bg.jpg) no-repeat center center;*/
     background-size:112%;
     position: relative;
     -webkit-transition: all 0.3s linear;

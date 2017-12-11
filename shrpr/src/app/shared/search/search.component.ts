@@ -4,6 +4,7 @@ import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng
 import { NgModel } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
+
 declare var google: any;
 
 @Component({

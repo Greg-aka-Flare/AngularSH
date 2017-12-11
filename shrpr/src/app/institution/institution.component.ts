@@ -7,9 +7,6 @@ import { TabsComponent } from "../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-
-import { Course } from "../courses/course.interface";
-import { CourseService } from "../courses/course.service";
 import { Institution } from "./institution.interface";
 import { InstitutionService } from "./institution.service";
 
@@ -21,8 +18,7 @@ import { InstitutionService } from "./institution.service";
 export class InstitutionComponent implements OnInit, OnDestroy {
   institutions:any;
   private id:number;
-  courses: any;
-  courseCard:any[] = [];
+  courseData: any;
   //subscription: Subscription;
   private subscriptions = new Subscription();
   institutiondata:string;
@@ -31,7 +27,7 @@ export class InstitutionComponent implements OnInit, OnDestroy {
   
   width = document.documentElement.clientWidth;
 
-  constructor(private institutionService: InstitutionService, private route: ActivatedRoute, private courseService: CourseService) { 
+  constructor(private institutionService: InstitutionService, private route: ActivatedRoute) { 
     let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
       }))
@@ -47,26 +43,11 @@ export class InstitutionComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
-    this.subscriptions.add(this.courseService.getCourses()
-    .subscribe(
-      (courses) => {
-       this.courses = courses;
-       if(this.courses){
-        for(var i = 0, l = this.courses.length; i < l; i++) {
-          if( this.courses[i].institution.id == this.id){
-              this.courseCard.push(this.courses[i]);
-          } 
-        }
-       }
-      },
-      (error: Response) => console.log(error)
-      
-    ));
-
        this.subscriptions.add(this.institutionService.getInstitution(this.id)
      .subscribe(
        (response) => {
         this.institutions = response;
+        this.courseData = this.institutions.courses;
         },
        (error: Response) => console.log(error)
      ));

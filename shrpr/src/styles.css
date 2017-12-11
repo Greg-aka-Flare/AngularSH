@@ -263,7 +263,7 @@ h3, h4, h5, h6 {
 }
 /*features nav start*/
 .features-nav {
-    padding: 60px 10px 50px 10px;
+    padding: 0 10px 50px 10px;
 }
 .features-nav ul {
     padding: 0;
