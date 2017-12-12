@@ -60,7 +60,9 @@ export class CourseComponent implements OnInit, OnDestroy {
   //Photos
   private slides:Array<any> = [];
   firstSemester:number; 
-
+  goTo(location: string): void {
+    window.location.hash = location;
+  }
   constructor(
     private courseService: CourseService, 
     private route: ActivatedRoute

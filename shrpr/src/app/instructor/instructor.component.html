@@ -15,7 +15,7 @@
     <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{instructors?.email}}">{{instructors?.email}}</a><br>
     <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
     <!--<i aria-hidden="true" class="fa fa-map-marker"></i>  {{ instructors?.addresses[0]?.city }}, {{ instructors?.addresses[0]?.state }}-->
-  <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross"></star-rating-comp> |  <a href="/instructor/{{instructors?.id}}#reviews">{{reviewCount}} reviews</a></div></div>
+  <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross"></star-rating-comp> |  <a (click)="goTo('reviews')" href="javascript:void(0);">{{reviewCount}} reviews</a></div></div>
   </section><!-- #profile header -->
   <tabs *ngIf="width < 768" >
     <tab tabTitle="Courses">
