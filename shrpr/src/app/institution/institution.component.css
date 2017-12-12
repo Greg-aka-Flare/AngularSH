@@ -189,56 +189,6 @@
     background-color: #757575;
     text-decoration: none;
 }
-#reviews {
-    padding: 20px 10px 20px 10px;
-}
-.reviews-rating {
-    text-align: center;
-    font-size: 15px;
-    color: #272625;
-    line-height: 14px;
-    padding: 0 0 30px 0;
-}
-:host #reviews  /deep/ star-rating-comp {
-    display: inline-block;
-    vertical-align: middle;
-}
-#reviews dl {
-    display: table;
-    margin: 0 0 20px 0;
-    width: 100%;
-}
-#reviews dl dt , #reviews dl dd {
-    display: table-cell;
-    vertical-align: top;
-    margin: 0;
-    font-size: 14px;
-    color: #272625;
-    line-height: 16px;
-    padding: 8px;
-}
-#reviews dl dt {
-    padding: 0 20px 0 0;
-    max-width:93px;
-    min-width: 92px;
-    text-align: center;
-    width:93px;
-}
-#reviews dl dt img {
-    display: block;
-    margin: 0 auto 10px auto;
-}
-#reviews dl dd {
-    border: 2px solid #eeeeee;
-    border-radius: 4px;
-}
-#reviews dl dd h2 {
-    font-size: 14px;
-    color:#229bcb;
-    line-height: 16px;
-    padding: 0 0 10px 0;
-
-}
 .seeall-link {
     text-align: center;
 }
@@ -292,6 +242,9 @@
 .review_star {
    width:95px;
 }
+#courses-cards {
+    padding: 0 10px 0 10px;
+}
 #courses-cards h2 {
     font-size:25px;
     line-height: 27px;
@@ -302,38 +255,12 @@
     text-transform: uppercase;
     }
 @media only screen and (min-width: 769px) {
-    #desktopcourses {
-        padding: 50px 10px 30px 10px;
-    }
-#desktopcourses h2 {
-    font-size:25px;
-    line-height: 27px;
-    color: #484848;
-    padding: 0 0 5px 0;
-    margin: 0 0 20px 0;
-    border-bottom: 1px solid #cccccc;
-    text-transform: uppercase;
-    }
-
-    #desktopcourses > h3 {
-        font-size: 18px;
-    color: #818181;
-    line-height: 22px;
-    padding: 0 0 20px 0;
-    }
-    :host /deep/ tabs .tabs tab > div {
-        padding: 10PX;
-        overflow:hidden;  
-    }
 .card-box {
     display: inline-block;
     margin: 0 1.5% 20px;
     max-width: 444px;
     vertical-align: top;
     width: 30%;
-}
-#reviews {
-    border-top: 2px solid #cccccc;   
 }
 .contact_box address {
     display: inline-block;
@@ -359,7 +286,7 @@
 
 
 @media only screen and (min-width: 960px) {
-    #desktopcourses {
-        padding: 50px 0 30px 0;
+    #courses-cards {
+        padding: 0;
     }
 }
