@@ -93,6 +93,7 @@ section#sign-up p {
     text-align: center;
     padding: 0 28px;
     max-width: 420px;
+    width: 100%;
 }
 .home-slide-content h4 {
     color: #ffffff;
