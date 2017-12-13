@@ -1,5 +1,5 @@
 <app-template>
-    <section id="profile-header">
+  <section id="profile-header">
     <div class="profile-picture">
       <img 
         *ngIf="institutions?.profile_img" 
@@ -19,6 +19,12 @@
     <div id="courses-cards">
     <h2>Description</h2>
     <p>{{details?.description}}</p>
+
+    <button id="filter" (click)="toggleFilter()">
+      Filter 
+      <i class="fa fa-sliders" aria-hidden="true"></i>
+    </button><!-- #filter -->
+
     <h2>Courses</h2>
     <article class="card-box" *ngFor="let card of courseData; let i = index">
         <div class="img-ctn">
@@ -37,8 +43,8 @@
           <p class="date">
              <!-- <span class="date_stamp">{{ card.description }}</span>-->
           </p>
-          <a [routerLink]="['/courses', card.id]"  class="page-cta">View Course</a>
+          <a [routerLink]="['/courses', card.id]" class="page-cta">View Course</a>
         </div>
     </article>
   </div>
-  </app-template>
+</app-template>

@@ -16,6 +16,9 @@ import { InstitutionService } from "./institution.service";
   styleUrls: ['./institution.component.css']
 })
 export class InstitutionComponent implements OnInit, OnDestroy {
+
+  filter: boolean = false;
+
   institutions:any;
   private id:number;
   courseData: any;
@@ -54,10 +57,8 @@ export class InstitutionComponent implements OnInit, OnDestroy {
      ));
      
   }
-  
 
   ngOnDestroy(){
     this.subscriptions.unsubscribe();
   }
-
 }

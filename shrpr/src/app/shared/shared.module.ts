@@ -50,7 +50,8 @@ import { FilterComponent } from './filter/filter.component';
     TabsComponent,
     TabComponent,
     DatexPipe,
-    AgmCoreModule
+    AgmCoreModule,
+    FilterComponent
   ]
 })
 export class SharedModule {}
