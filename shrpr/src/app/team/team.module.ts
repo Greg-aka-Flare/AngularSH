@@ -6,7 +6,7 @@ import { TeamRoutingModule } from './team-routing.module';
 import { OurteamComponent } from './our-team/ourteam.component';
 import { TeamComponent } from './team.component';
 import { BrandonComponent } from './brandon/brandon.component';
-import { ErickComponent } from './erick/erick.component';
+import { ErikComponent } from './erik/erik.component';
 import { MikeComponent } from './mike/mike.component';
 import { MilesComponent } from './miles/miles.component';
 import { CollinComponent } from './collin/collin.component';
@@ -24,7 +24,7 @@ import { AlexaComponent } from './alexa/alexa.component';
     TeamComponent,
     OurteamComponent,
     BrandonComponent,
-    ErickComponent,
+    ErikComponent,
     MikeComponent,
     MilesComponent,
     CollinComponent,

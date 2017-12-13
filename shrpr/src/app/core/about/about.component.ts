@@ -9,7 +9,9 @@ export class AboutComponent implements OnInit {
 
 	menu: boolean = true;
 	search: boolean = true;
-
+  goTo(location: string): void {
+    window.location.href = location;
+  }
   constructor() { }
 
   ngOnInit() {

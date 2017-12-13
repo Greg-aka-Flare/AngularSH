@@ -120,6 +120,8 @@
 }
 .img-ctn figure {
     margin:0;
+    height: 280px;
+    overflow:hidden;
 }
 .img-ctn figure img {
     display:block;
@@ -138,7 +140,7 @@
 .group_rating {
     float: right;
 }
-.date_stamp, .with-box {
+.date_stamp, .with-box, .location a {
     font-size:12px;
     line-height: 14px;
     color:#229bcb;

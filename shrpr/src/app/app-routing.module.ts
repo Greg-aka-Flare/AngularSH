@@ -10,8 +10,10 @@ import { LandingGuard } from './core/landing/landing-guard.service';
 import { PodcastComponent } from './core/podcast/podcast.component';
 import { InterviewwithroblabonneComponent } from './core/podcast/interviewwithroblabonne.component';
 import { InstructorComponent } from './instructor/instructor.component';
+import { InstitutionComponent } from './institution/institution.component';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './core/login/login.component';
+import { CoursesComponent } from './courses/courses.component';
 
 const appRoutes: Routes = [
 	{ path: '', component: LandingComponent },
@@ -20,13 +22,14 @@ const appRoutes: Routes = [
 	{ path: 'team', loadChildren: './team/team.module#TeamModule' },
 	{ path: 'instructor/:id', loadChildren: './instructor/instructor.module#InstructorModule', canActivate: [LandingGuard] },
 	{ path: 'student/:id', loadChildren: './student/student.module#StudentModule', canActivate: [LandingGuard] },
-	{ path: 'course/:id', loadChildren: './course/course.module#CourseModule', canActivate: [LandingGuard] },
+	{ path: 'courses', loadChildren: './courses/courses.module#CoursesModule', canActivate: [LandingGuard] },
 	{ path: 'login', component: LoginComponent, canActivate: [LandingGuard] },
 	{ path: 'about', component: AboutComponent },
 	{ path: 'values', component: ValuesComponent, canActivate: [LandingGuard] },
 	{ path: 'videos', component: VideosComponent, canActivate: [LandingGuard] },
 	{ path: 'podcast', component: PodcastComponent, canActivate: [LandingGuard] },
-	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent, canActivate: [LandingGuard] }
+	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent, canActivate: [LandingGuard] },
+	{ path: 'institution/:id', loadChildren: './institution/institution.module#InstitutionModule', canActivate: [LandingGuard] }
 ]
 
 @NgModule({

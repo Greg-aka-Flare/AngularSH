@@ -1,4 +1,4 @@
-<section id="curious-swiper">
+<section id="curious-swiper" [class.active]="isBtnActive" (click)="toggleClass()">
     <article
     *ngFor="let course of courses; let i = index" 
     (swipeleft)="onDislike(course?.id, course?.group?.id)" 
@@ -19,7 +19,8 @@
             </div><!-- .price -->
 
             <figure>
-                <img src="../../assets/img/court.jpg" />
+                    <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
+                    <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title="">
             </figure>
         
             <div class="overlay">

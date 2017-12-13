@@ -3,14 +3,14 @@
   <div class="features-banner-text">
     <h1>Shrpr’s Education Platform and Marketplace</h1>
     <p>Connecting the world of Face to Face Learning</p>
-    <a class="cta-banner" href="javascript:void(0);">Schedule a Demo</a>
+    <a class="cta-banner" href="/marketing/digital#scheduledemo">Schedule a Demo</a>
   </div>
 </section>
 <!-- features banner end-->
 <app-marketing-nav></app-marketing-nav>
 <!-- features nav end-->
 <section class="slider-image-content">
-    <carousel>
+    <carousel [interval]="5000">
         <slide> <img src="../../assets/img/marketing-banner01.jpg" style="margin:auto;" class="slider-img">
           <div class="banner-content"> <span class="slide_index">1</span>
             <h4>Attract New Customers</h4>
@@ -35,7 +35,7 @@
 </section>
 <!-- Slider End -->
 <section class="list-your-business-banner">
-    <div class="list-your-business-image">
+    <div class="list-your-business-image" [class.active]="isBtnActive" (click)="togglevideo()">
         <video width="320" height="240" controls>
           <source src="../../../assets/video/continuing-ed-intro.mp4" type="video/mp4">
         </video> 
@@ -53,7 +53,7 @@
     <div class="jointhenetwork-content">
       <h2>Join shrpr</h2>
       <p>Host your course on shrpr and immediately show it to our community of passionate learners. People in your community, and from all over the world, will be able to find your course.</p>
-<p><a class="jointhenetwork-link" href="#">Join Now <i class="fa fa-chevron-right" aria-hidden="true"></i></a></p>
+<p><a class="jointhenetwork-link" [routerLink]="['/login']">Join Now <i class="fa fa-chevron-right" aria-hidden="true"></i></a></p>
     </div>
     <div class="jointhenetwork-image">
         <img src="../../../assets/img/jointhenetwork-img.jpg"  alt=" ">

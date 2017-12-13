@@ -6,6 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./marketing-form.component.css']
 })
 export class MarketingFormComponent {
+  wasClicked = false;
+  hasClicked = false;
+  hasedClicked = false;
+  
+      onClick() {
+          this.wasClicked= true;
+      }
+      onhasClick() {
+        this.hasClicked= true;
+    }
 
+    onhasedClick() {
+      this.hasedClicked= true;
+  }
   constructor() {}
 }

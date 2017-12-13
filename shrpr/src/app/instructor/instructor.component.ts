@@ -8,8 +8,8 @@ import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { Course } from "../course/course.interface";
-import { CourseService } from "../course/course.service";
+import { Course } from "../courses/course.interface";
+import { CourseService } from "../courses/course.service";
 import { Instructor } from "./instructor.interface";
 import { InstructorService } from "./instructor.service";
 
@@ -38,7 +38,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
   details:any;
   
   width = document.documentElement.clientWidth;
-
+  goTo(location: string): void {
+    window.location.hash = location;
+  }
   constructor(private instructorService: InstructorService, private route: ActivatedRoute, private courseService: CourseService) { 
     let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.myid = params['id'];

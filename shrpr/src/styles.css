@@ -108,7 +108,8 @@ section#search {
     font-size: 13px;
     line-height: 1em;
     color: #2499cf;
-    text-align: center
+    text-align: center;
+    padding: 0 0 20px 0;
 }
 .login-link a{
     color: #2499cf;
@@ -263,7 +264,7 @@ h3, h4, h5, h6 {
 }
 /*features nav start*/
 .features-nav {
-    padding: 60px 10px 50px 10px;
+    padding: 0 10px 50px 10px;
 }
 .features-nav ul {
     padding: 0;
@@ -418,7 +419,7 @@ a.jointhenetwork-link:hover {
 }
 .inner-form-wrap form > div > select {
     width: 100%;
-    height: 100%;
+    height: 40px;
     position: absolute;
     left: 0;
     top: 0;
@@ -426,6 +427,9 @@ a.jointhenetwork-link:hover {
     color: #cccccc;
     font-size: 14px;
     padding:  0 10px;
+    display: block;
+    box-sizing: border-box;
+    -webkit-appearance: menulist-button;
 }
 .inner-form-wrap form > div > select.selected {
     color: #000000;
@@ -662,6 +666,16 @@ section#search form button {
 }
 section#search form button:hover {
     background-color: #c95f5f;
+}
+/*** Google Places Dropdown ***/
+.pac-container{
+  position: relative;
+  z-index: 99999;
+}
+.pac-logo:after{
+    background-image: none !important;
+    height: auto !important;
+    padding: 0 !important;
 }
 /* =============Marketing Pages Start ============================ */
 /*features Banner start*/

@@ -5,8 +5,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Course } from "../course/course.interface";
-import { CourseService } from "../course/course.service";
+import { Course } from "../courses/course.interface";
+import { CourseService } from "../courses/course.service";
 import { Student } from "../student/student.interface";
 import { StudentService } from '../student/student.service';
 

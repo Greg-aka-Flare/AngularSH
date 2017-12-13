@@ -1,0 +1,302 @@
+#profile-header {
+    padding: 10px 10px 10px 10px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #cccccc;
+}
+#profile-header > div {
+    color: #02b2b8;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 17px;
+    vertical-align: top;
+    width: 66%;
+}
+#profile-header > div.profile-picture {
+    max-width: 84px;
+    width: 29%;
+    margin: 0 4% 0 0;
+    text-align: center;
+}
+#profile-header > div a .fa {
+    color: #222222;
+}
+#profile-header > div a:hover .fa {
+    color: #ed9639;
+}
+#profile-header h2 {
+    font-size: 22px;
+    line-height: 24px;
+    padding: 0 0 10px 0;
+    color: #fc6a02;
+}
+.profile-picture img {
+    display: block;
+    width: 100%;
+    margin: 0 0 10px 0;
+}
+.social-icon a {
+    color: #222222;
+    font-size: 25px;
+    line-height: 1em;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 3% 5px 3%;
+}
+#profile-header .rating {
+    text-align: left;
+    padding: 19px 0 0 0;
+    max-width: 191px;
+}
+#profile-header > div a {
+    color: #02b2b8;;
+    text-decoration: underline;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 2px 0 2px;
+}
+#profile-header > div a:hover {
+    text-decoration: none;
+}
+:host /deep/ tabs .tabs ul {
+    background: #e5e5e6;
+    padding: 0 10px 0 10px;
+
+}
+:host /deep/ tabs .tabs ul li {
+    display: inline-block;
+    vertical-align: top;
+    width: 33.33%;
+    max-width: 83px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 1em;
+    color: #414141;
+    padding: 50px 5px 14px;
+    background-image: url('../../assets/img/search-input.png');
+    background-repeat: no-repeat;
+    background-position: center 15px;
+    background-size: 25px auto;
+    cursor: pointer;
+}
+:host /deep/ tabs .tabs ul li.active {
+    background-color: #cccccc;
+
+}
+:host /deep/ tabs .tabs ul li:nth-of-type(2) {
+    background-image: url('../../assets/img/about-tab-bg.png');
+    background-position: center 13px;
+    background-size: auto;
+
+}
+:host /deep/ tabs .tabs ul li:nth-of-type(3) {
+    background-image: url('../../assets/img/contact-tab-bg.png');
+    background-position: center 19px;
+    background-size: auto;
+}
+:host /deep/ tabs .tabs tab > div {
+    padding: 10px 0 10px;
+    background: #cccccc;
+}
+:host /deep/ tabs .tabs tab div > h3 {
+    font-size: 18px;
+    color: #818181;
+    line-height: 22px;
+    padding: 10px;
+}
+.tab_content_para {
+    font-family: Arial, Helvetica, sans-serif;
+    padding:10px;
+    font-size:14px;
+    line-height: 21px;
+}
+.card-box {
+    padding: 0 0 10px 0;
+    background-color: #ffffff;
+}
+.img-ctn {
+    position: relative;
+}
+.img-ctn figure {
+    margin:0;
+    height: 280px;
+    overflow:hidden;
+}
+.img-ctn figure img {
+    display:block;
+    margin:0;
+    width:100%;
+}
+.price{
+    background-color: #e7aa62;
+    color: #272625;
+    font-size: 16px;
+    padding: 3px 20px 3px 5px;
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+.group_rating {
+    float: right;
+}
+.date_stamp, .with-box {
+    font-size:12px;
+    line-height: 14px;
+    color:#229bcb;
+}
+.with-box span {
+    color: #414141;
+}
+.card-info {
+    padding: 10px;
+}
+.card-info p {
+    padding: 0 0 5px 0;
+}
+.img-ctn h3 {
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 8px;
+    box-sizing: border-box;
+    color: #fc6a02;
+    font-size: 18px;
+    left: 0;
+    line-height: 22px;
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+}
+.page-cta {
+    background-color: #484848;
+    border: none;
+    -webkit-box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-family: 'circularstd book';
+    font-size: 18px;
+    line-height: 18px;
+    text-decoration: none;
+    margin: 10px auto;
+    max-width: 150px;
+    padding:7px 10px;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+}
+.page-cta:hover {
+    background-color: #757575;
+    text-decoration: none;
+}
+.seeall-link {
+    text-align: center;
+}
+.seeall-link a {
+    font-size: 16px;
+    color: #ff3c00;
+    text-decoration: underline;
+    position: relative;
+    display: inline-block;
+}
+.seeall-link a:after {
+    content: "\f0dd";
+    font-family: FontAwesome;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: normal;
+    left: 0;
+    line-height: 1em;
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    top: 10px; 
+}
+.seeall-link a:hover {
+    text-decoration: none;
+}
+.contact_box {
+    padding: 10px;
+}
+.contact_box address {
+    padding: 0 0 20px 0;
+}
+.contact_box address:first-child {
+    border-bottom: 1px solid #e5e5e6;
+    margin: 0 0 20px 0;
+}
+.contact_instructor a {
+    color:#222222;
+}
+.contact_instructor a:hover {
+    color:#ed9639;
+}
+.review_items_rating {
+    color:#666666;
+    font-size:12px;
+    line-height:14px;
+    display:block;
+    padding:10px 0 0 0; 
+    font-style: italic;
+}
+.review_star {
+   width:95px;
+}
+#courses-cards {
+    padding: 0 10px 0 10px;
+}
+#courses-cards h2 {
+    font-size:25px;
+    line-height: 27px;
+    color: #484848;
+    padding: 30px 0 5px 0;
+    margin: 0 0 20px 0;
+    border-bottom: 1px solid #cccccc;
+    text-transform: uppercase;
+    }
+    .instructor a {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 14px;
+        color:#ed9639;
+        text-decoration: underline;
+    }
+    .instructor a:hover {
+        text-decoration: none;
+    }
+@media only screen and (min-width: 769px) {
+.card-box {
+    display: inline-block;
+    margin: 0 1.5% 20px;
+    max-width: 444px;
+    vertical-align: top;
+    width: 30%;
+}
+.contact_box address {
+    display: inline-block;
+    padding: 0 5% 0 0;
+    vertical-align: top;
+}
+.contact_box address:first-child {
+    border-bottom: none;
+    margin: 0;
+}
+#profile-header > div.profile-picture {
+    max-width:200px;
+    text-align: center;
+}
+.review_items_rating {
+    float: right;
+    padding:0;
+}
+.review_star {
+    width:110px;
+}
+}
+
+
+@media only screen and (min-width: 960px) {
+    #courses-cards {
+        padding: 0;
+    }
+}
