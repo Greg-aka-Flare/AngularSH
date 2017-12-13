@@ -254,6 +254,16 @@
     border-bottom: 1px solid #cccccc;
     text-transform: uppercase;
     }
+    .instructor a {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 14px;
+        color:#ed9639;
+        text-decoration: underline;
+    }
+    .instructor a:hover {
+        text-decoration: none;
+    }
 @media only screen and (min-width: 769px) {
 .card-box {
     display: inline-block;

@@ -11,8 +11,10 @@ import { Carousel } from '../../shared/carousel/carousel.component';
   styleUrls: ['./digital.component.css']
 })
 export class DigitalComponent implements OnInit {
-  
-
+  isBtnActive: boolean = false;
+  togglevideo() {
+    this.isBtnActive = true;
+  }
   constructor() {
    
    }

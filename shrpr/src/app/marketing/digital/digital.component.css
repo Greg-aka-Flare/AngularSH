@@ -32,6 +32,18 @@
 :host /deep/ app-marketing-nav .features-nav ul li:nth-of-type(1) a {
     color: #852176;
 }
+.list-your-business-image {
+    background: url('../../../assets/img/video-bg-marketing.jpg') no-repeat center center;
+}
+.list-your-business-image.active {
+    background: none;
+}
+.list-your-business-image video {
+    opacity: 0;
+}
+.list-your-business-image.active video {
+    opacity: 1;
+}
 /*================================================
 769px tablet media start
 ================================================*/

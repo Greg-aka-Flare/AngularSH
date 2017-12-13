@@ -55,12 +55,14 @@ export class CuriousMobileComponent implements OnInit {
   editValueCity = '';
   editValueState = '';
   editValueZip = '';
-
+  isBtnActive: boolean = true;
   constructor(
     private courseService: CourseService, 
     private likeService: LikeService
   ) {}
-
+  toggleClass() {
+    this.isBtnActive = false;
+  }
   ngOnInit() {
 
 

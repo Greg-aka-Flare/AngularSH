@@ -164,7 +164,7 @@ section#course-list.for-kids h2{
 .group_rating {
     float: right;
 }
-.date_stamp, .with-box {
+.date_stamp, .with-box, .location a {
     font-size:12px;
     line-height: 14px;
     color:#229bcb;

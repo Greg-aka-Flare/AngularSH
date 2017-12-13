@@ -19,9 +19,9 @@
                     ${{ course?.semesters[0]?.amount }}
                 </div><!-- .price -->
 
-                <figure>
+                <figure><a [routerLink]="['/courses', course.id]">
                  <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
-                 <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title="">
+                 <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
                 </figure>
 
                 <div class="like_action">
@@ -118,8 +118,8 @@
                 </div><!-- .price -->
 
                 <figure>
-                        <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
-                        <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title="">
+                        <a [routerLink]="['/courses', course.id]"><img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
+                        <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
                 </figure>
 
                 <div class="like_action">
@@ -217,8 +217,8 @@
                 </div><!-- .price -->
 
                 <figure>
-                        <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
-                        <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title="">
+                        <a [routerLink]="['/courses', course.id]"><img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
+                        <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
                 </figure>
 
                 <div class="like_action">
