@@ -37,7 +37,7 @@
     <!-- Service end-->
     </section>
     <section id="signup">
-            <article><h2>Let's make something great together</h2><h3>Get in touch with us and send some basic info for a quick demo.</h3><a (click)="goTo('marketing/digital#scheduledemo')" href="javascript:void(0);">Schedule a Demo</a></article>
+            <article><h2>Let's make something great together</h2><h3>Get in touch with us and send some basic info for a quick demo.</h3><a [routerLink]="['/marketing/digital']" fragment="scheduledemo">Schedule a Demo</a></article>
         </section>
     <!-- Sign Up end-->
 </app-template>
