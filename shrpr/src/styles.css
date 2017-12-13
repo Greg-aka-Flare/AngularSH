@@ -667,6 +667,16 @@ section#search form button {
 section#search form button:hover {
     background-color: #c95f5f;
 }
+/*** Google Places Dropdown ***/
+.pac-container{
+  position: relative;
+  z-index: 99999;
+}
+.pac-logo:after{
+    background-image: none !important;
+    height: auto !important;
+    padding: 0 !important;
+}
 /* =============Marketing Pages Start ============================ */
 /*features Banner start*/
 .features-banner {

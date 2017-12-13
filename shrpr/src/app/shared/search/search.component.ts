@@ -81,7 +81,7 @@ export class SearchComponent implements OnInit {
     this.mapsAPILoader.load().then(() => {
 
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ['address']
+        types: ['geocode']
       });
 
       autocomplete.addListener('place_changed', () => {
