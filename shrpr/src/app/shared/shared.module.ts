@@ -16,6 +16,7 @@ import { DemoComponent } from './schedule-demo/demo.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tabs/tab.component';
 import { DatexPipe } from './date.pipe';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DatexPipe } from './date.pipe';
     SearchComponent,
     TabsComponent,
     TabComponent,
-    DatexPipe
+    DatexPipe,
+    FilterComponent
   ],
   imports: [
   	CommonModule,
@@ -48,7 +50,8 @@ import { DatexPipe } from './date.pipe';
     TabsComponent,
     TabComponent,
     DatexPipe,
-    AgmCoreModule
+    AgmCoreModule,
+    FilterComponent
   ]
 })
 export class SharedModule {}

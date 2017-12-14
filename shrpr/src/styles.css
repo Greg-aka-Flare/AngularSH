@@ -623,6 +623,31 @@ carousel {
 .cta-banner:hover {
 background: #c95f5f;
 }
+
+/*** Filter Button ***/
+button#filter{
+    display: inline-block;
+    background-color: #d53b3c;
+    border: none;
+    border-radius: 20px;
+    color: #ffffff;
+    cursor: pointer;
+    float: right;
+    font-family: 'circularstd book';
+    font-size: 14px;
+    line-height: 14px;
+    margin: 27px 0 0 0;
+    max-width: 100px;
+    padding: 7px 4px;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: top;
+    width: 100%;
+}
+button#filter:hover{
+    background-color: #c95f5f;
+}
+
 /* =============================================================================
    Medium SCREEN STYLES [Tab VIEW] START
   ============================================================================= */
@@ -783,7 +808,11 @@ width: 40%;
 }
 .slide-content {
 padding: 70px 70px 70px 70px;
-}	
+}
+/*** Filter Button ***/
+button#filter{
+    margin: 27px 20px 0 0;
+}
 }
 /* =============================================================================
    LARGE SCREEN STYLES [DESKTOP VIEW] START
