@@ -14,7 +14,7 @@
       height: 100%;
       left: 0;
       top: 0;
-      background: url('../../../../assets/img/mobile-demo-swipe.png') no-repeat center center;
+      background: url('../../../../assets/img/mobile-demo-swipe.gif') no-repeat center center;
       z-index: 3;
       -moz-animation: cssAnimation 0s ease-in 10s forwards;
       /* Firefox */

@@ -26,7 +26,7 @@ import { CourseService } from '../courses/course.service';
 import { LikeService } from './like.service';
 import { UserService } from './user.service';
 import { LandingGuard } from './landing/landing-guard.service';
-import {GoogleSignInComponent} from 'angular-google-signin';
+import {GoogleSigninComponent} from './login/google.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import {GoogleSignInComponent} from 'angular-google-signin';
     PodcastComponent,
     InterviewwithroblabonneComponent,
     LoginComponent,
-    GoogleSignInComponent
+    GoogleSigninComponent
   ],
   imports: [
     CommonModule,

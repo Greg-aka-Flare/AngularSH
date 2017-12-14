@@ -163,6 +163,7 @@
     height: 40px;
     color:#ffffff;
     text-align: center;
+    cursor: pointer;
 }
 .social-login > button > .fa {
     display:inline-block;

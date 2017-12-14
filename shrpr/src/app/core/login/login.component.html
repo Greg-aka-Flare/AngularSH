@@ -60,25 +60,13 @@
                     <div class="horizontal-box"></div>
                     
                                         <div class="social-login">
-                                            <button class="cta-facebook">
+                                            <button class="cta-facebook" (click)="onFacebookLoginClick()">
                                                 <i class="fa fa-facebook" aria-hidden="true"></i>                    
                                             </button>
-                    
-                                            <button class="cta-google">
-                                                <i class="fa fa-google-plus" aria-hidden="true"></i>                    
-                                            </button>
-                    
+                                            <google-signin></google-signin>                    
                                             <button class="cta-linkedin">
                                                 <i class="fa fa-linkedin" aria-hidden="true"></i>                    
                                             </button>
-                                            <google-signin
-                                            [clientId]="myClientId"
-                                            [width]="myWidth"
-                                            [theme]="myTheme"
-                                            [scope]="name"
-                                            [longTitle]="myLongTitle"
-                                            (googleSignInSuccess)="onGoogleSignInSuccess($event)">
-                                          </google-signin>
                                         </div>
                 </div>
             </tab> 
