@@ -1,4 +1,11 @@
 <app-template>
+        <div class="signed-in-area" *ngIf="isSignedIn">
+                <div>id : {{id}}</div>
+                <div>name : {{name}}</div>
+                <div>email : {{email}}</div>
+                <img [src]="imageUrl" alt="profile image"><br>
+                <button (click)="signOut()">Sign Out</button>
+              </div>
     <section id="login_box">
         <tabs>
             <tab tabTitle="SIGN UP">
@@ -64,6 +71,14 @@
                                             <button class="cta-linkedin">
                                                 <i class="fa fa-linkedin" aria-hidden="true"></i>                    
                                             </button>
+                                            <google-signin
+                                            [clientId]="myClientId"
+                                            [width]="myWidth"
+                                            [theme]="myTheme"
+                                            [scope]="name"
+                                            [longTitle]="myLongTitle"
+                                            (googleSignInSuccess)="onGoogleSignInSuccess($event)">
+                                          </google-signin>
                                         </div>
                 </div>
             </tab> 

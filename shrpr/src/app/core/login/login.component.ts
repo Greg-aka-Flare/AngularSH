@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { UserInterface } from '../../core/user.interface';
@@ -6,6 +7,7 @@ import { UserService } from '../../core/user.service';
 import { TabsComponent } from '../../shared/tabs/tabs.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
+import {GoogleSignInSuccess} from 'angular-google-signin';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,35 @@ export class LoginComponent implements OnInit, OnDestroy {
   signupForm: FormGroup;
   loginForm: FormGroup;
   private subscriptions = new Subscription();
+  isSignedIn:boolean = false;
+  id: String;
+  name: String;
+  imageUrl:String;
+  email: String;
   
+  private myClientId: string = '256107299050-j9qgiutqv2i1vuj2t9lrrt1bvu98fh35.apps.googleusercontent.com';
+  
+    onGoogleSignInSuccess(event: GoogleSignInSuccess) {
+      let googleUser: gapi.auth2.GoogleUser = event.googleUser;
+      let id: string = googleUser.getId();
+      let profile: gapi.auth2.BasicProfile = googleUser.getBasicProfile();
+      console.log('ID: ' +
+        profile
+          .getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+      this.id = profile.getId();
+      this.name = profile.getName();
+      this.imageUrl = profile.getImageUrl();
+      this.email = profile.getEmail();
+      this.isSignedIn = googleUser.isSignedIn();
+    }
+    signOut() {
+      let auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut();
+      this.isSignedIn = false;
+    }
   constructor(
     public userService: UserService,
     private http: HttpClient,
@@ -38,6 +68,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
 
     console.log(this.auth.loggedIn());
+    
   }
 
   onSignup() {
