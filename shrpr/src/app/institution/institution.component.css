@@ -264,6 +264,9 @@
     .instructor a:hover {
         text-decoration: none;
     }
+.hide{
+    display: none;
+}
 @media only screen and (min-width: 769px) {
 .card-box {
     display: inline-block;

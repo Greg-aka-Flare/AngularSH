@@ -22,9 +22,14 @@ export class FilterComponent implements OnInit {
   	//for each course, sort data
   	for(let course of this.courses){
 
-  		//add to instructor array
-  		this.instructors.push(course.instructor);
+  		//add to instructor array if doesn't exist already
+  		if(!this.containsObject(course.instructor, this.instructors)){
+
+	  		this.instructors.push(course.instructor);
+  		}
   	}
+
+  	console.log(this.instructors);
 
   	//get count
   	this.courseCount = this.courses.length;
@@ -43,6 +48,9 @@ export class FilterComponent implements OnInit {
   }
 
   filter(form: any) {
+
+  	//empty array
+  	this.filtered = [];
 
   	//for each course, add to filtered array
 		for(let course of this.courses){
@@ -68,5 +76,21 @@ export class FilterComponent implements OnInit {
 
   	//get count
   	this.courseCount = this.filtered.length;
+
+  	//emit new data
+  	this.onFilter.emit(this.filtered);
   }
+
+	private containsObject(obj, list) {
+	    let i;
+
+	    for(i = 0; i < list.length; i++) {
+
+	        if (list[i].id === obj.id) {
+	            return true;
+	        }
+	    }
+
+	    return false;
+	}
 }

@@ -25,13 +25,17 @@
       <i class="fa fa-sliders" aria-hidden="true"></i>
     </button><!-- #filter -->
 
+    <div id="course-count">{{ courseTotal }}</div><!-- #course-count -->
+
     <h2>Courses</h2>
 
     <app-filter 
-      *ngIf="showFilter"
-      [courses]="courseData"
+      *ngIf="courses"
+      [ngClass]="{ 'hide': !showFilter }"
+      [courses]="courses"
+      (onFilter)="filter($event)"
     ></app-filter>
-    
+
     <article class="card-box" *ngFor="let card of courseData; let i = index">
         <div class="img-ctn">
             <div class="price">

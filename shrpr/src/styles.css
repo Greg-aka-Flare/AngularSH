@@ -647,6 +647,19 @@ button#filter{
 button#filter:hover{
     background-color: #c95f5f;
 }
+button#filter:focus{
+    outline:0;
+}
+
+/*** Course Count ***/
+#course-count{
+    color: #333;
+    float: right;
+    font-family: 'circularstd book';
+    font-size: 14px;
+    line-height: 14px;
+    margin: 34px 20px 0 0;
+}
 
 /* =============================================================================
    Medium SCREEN STYLES [Tab VIEW] START
