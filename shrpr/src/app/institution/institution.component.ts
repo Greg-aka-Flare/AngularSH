@@ -17,7 +17,7 @@ import { InstitutionService } from "./institution.service";
 })
 export class InstitutionComponent implements OnInit, OnDestroy {
 
-  filter: boolean = false;
+  showFilter: boolean = false;
 
   institutions:any;
   private id:number;
@@ -43,6 +43,10 @@ export class InstitutionComponent implements OnInit, OnDestroy {
       this.subscriptions.add($resizeEvent.subscribe(data => {
       this.width = data;
     }));
+  }
+
+  toggleFilter() {
+    this.showFilter = (this.showFilter) ? false : true;
   }
   
   ngOnInit() {

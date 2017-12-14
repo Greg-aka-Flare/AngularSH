@@ -1,3 +1,44 @@
-<p>
-  filter works!
-</p>
+<section id="filter">
+	<form [formGroup]="filterForm">
+		<h1>Filter:</h1>
+
+		<p>Select from the options below to modify the courses you would like to see.</p>
+
+		<fieldset>
+			<h2>Categories:</h2>
+
+			<div>
+				<label for="fun">For Fun</label> 
+
+				<input 
+					type="checkbox" 
+					name="fun" 
+					id="fun" 
+					formControlName="fun"
+				/>
+			</div>
+
+			<div>
+				<label for="work">For Work</label> 
+
+				<input 
+					type="checkbox" 
+					name="work" 
+					id="work" 
+					formControlName="work"
+				/>
+			</div>
+
+			<div>
+				<label for="kids">For Kids</label> 
+
+				<input 
+					type="checkbox" 
+					name="kids" 
+					id="kids" 
+					formControlName="kids"
+				/>
+			</div>
+		</fieldset>
+	</form>
+</section><!-- #filter -->
