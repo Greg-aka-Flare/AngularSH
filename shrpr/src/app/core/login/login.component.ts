@@ -7,7 +7,9 @@ import { UserService } from '../../core/user.service';
 import { TabsComponent } from '../../shared/tabs/tabs.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
-import {GoogleSigninComponent} from './google.component';
+import {GoogleSigninComponent} from './google/google.component';
+import {FacebookLoginComponent} from './facebook/facebook.component';
+import {LinkedinComponent} from './linkedin/linkedin.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

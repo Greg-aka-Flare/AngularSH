@@ -1,0 +1,30 @@
+:host button {
+    font-family: 'circularstd book';
+    font-size: 16px;
+    line-height: 1em;
+    font-weight: normal;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 2px;
+    padding:5px;
+    border:none;
+    border-radius: 50%;
+    width:40px;
+    height: 40px;
+    color:#ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+:host button > .fa {
+    display:inline-block;
+    vertical-align: top;
+    font-size:20px;
+}
+:host button.cta-facebook {
+    background-color: #3a559f;
+}
+
+
+
+
+
