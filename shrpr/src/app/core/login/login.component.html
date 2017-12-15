@@ -1,11 +1,4 @@
 <app-template>
-        <div class="signed-in-area" *ngIf="isSignedIn">
-                <div>id : {{id}}</div>
-                <div>name : {{name}}</div>
-                <div>email : {{email}}</div>
-                <img [src]="imageUrl" alt="profile image"><br>
-                <button (click)="signOut()">Sign Out</button>
-              </div>
     <section id="login_box">
         <tabs>
             <tab tabTitle="SIGN UP">
@@ -60,13 +53,9 @@
                     <div class="horizontal-box"></div>
                     
                                         <div class="social-login">
-                                            <button class="cta-facebook" (click)="onFacebookLoginClick()">
-                                                <i class="fa fa-facebook" aria-hidden="true"></i>                    
-                                            </button>
+                                            <facebook-login></facebook-login>       
                                             <google-signin></google-signin>                    
-                                            <button class="cta-linkedin">
-                                                <i class="fa fa-linkedin" aria-hidden="true"></i>                    
-                                            </button>
+                                            <linkedin-signin></linkedin-signin>      
                                         </div>
                 </div>
             </tab> 
@@ -75,7 +64,7 @@
                     <form id="login" [formGroup]="loginForm" (ngSubmit)="onLogin()">
                         <input 
                             type="text" 
-                            id="email" 
+                            id="email-signin" 
                             placeholder="Email" 
                             formControlName="email"
                         />
@@ -89,7 +78,7 @@
 
                         <input 
                             type="password" 
-                            id="password" 
+                            id="password-signin" 
                             placeholder="Password" 
                             formControlName="password"
                         />

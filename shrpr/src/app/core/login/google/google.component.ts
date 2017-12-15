@@ -19,11 +19,6 @@ export class GoogleSigninComponent implements AfterViewInit {
   ].join(' ');
 
   public auth2: any;
-  isSignedIn:boolean = false;
-  id: String;
-  name: String;
-  imageUrl:String;
-  email: String;
   public googleInit() {
     let that = this;
     gapi.load('auth2', function () {
@@ -47,13 +42,7 @@ export class GoogleSigninComponent implements AfterViewInit {
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail());
 		//YOUR CODE HERE
-		this.id = profile.getId();
-		this.name = profile.getName();
-		this.imageUrl = profile.getImageUrl();
-		this.email = profile.getEmail();
-		this.isSignedIn = googleUser.isSignedIn();
-
-
+	
       }, function (error) {
         console.log(JSON.stringify(error, undefined, 2));
       });
@@ -61,11 +50,6 @@ export class GoogleSigninComponent implements AfterViewInit {
 
   constructor(private element: ElementRef) {
     console.log('ElementRef: ', this.element);
-  }
-  signOut() {
-	let auth2 = gapi.auth2.getAuthInstance();
-	auth2.signOut();
-	this.isSignedIn = false;
   }
   ngAfterViewInit() {
     this.googleInit();
