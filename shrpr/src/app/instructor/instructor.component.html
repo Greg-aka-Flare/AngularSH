@@ -35,7 +35,7 @@
           <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="3"></star-rating-comp></span></div>
           <p class="date">
             <i class="fa fa-calendar" aria-hidden="true"></i> 
-              <span class="date_stamp">{{ card?.semesters[0]?.start_date | date: 'MM/dd/yyyy' }}</span>
+              <span class="date_stamp">{{ card?.semesters[0]?.start_date | datex: 'LL' }}</span>
           </p>
           <a [routerLink]="['/courses', card?.id]"  class="page-cta">View Course</a>
         </div>
@@ -76,7 +76,7 @@
         </p><!-- .location -->
         <p class="date">
           <i class="fa fa-calendar" aria-hidden="true"></i> 
-            <span class="date_stamp">{{ card?.semesters[0]?.start_date | date: 'MM/dd/yyyy' }}</span>
+            <span class="date_stamp">{{ card?.semesters[0]?.start_date | datex: 'LL' }}</span>
         </p>
         <!--<p class="with-box"><span>With</span> {{card.instructor?.name}}</p>-->
         <a [routerLink]="['/courses', card?.id]" class="page-cta">View Course</a>
