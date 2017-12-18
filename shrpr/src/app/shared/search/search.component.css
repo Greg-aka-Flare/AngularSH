@@ -1,16 +1,122 @@
 /* =============Search============================ */
+section#search {
+    padding: 30px 20px 20px 20px;
+    text-align: center;
+}
+.login-link{
+    font-size: 13px;
+    line-height: 1em;
+    color: #2499cf;
+    text-align: center;
+    padding: 0 0 20px 0;
+}
+.login-link a{
+    color: #2499cf;
+}
+.login-link a:hover{
+    text-decoration: none;
+}
+header section#search {
+    display: none;
+}
+section#search form > span {
+    display: block;
+    padding: 0 0 16px;
+    position: relative;
+}
+section#search form > span:before {
+    content: "|";
+    left: 35px;
+    position: absolute;
+    top: 9px;
+}
+section#search form > span .fa, section#search form > span > img {
+    font-size: 24px;
+    left: 12px;
+    position: absolute;
+    top: 8px; 
+}
+section#search form > span > img {
+    left: 8px;
+    max-width: 23px;
+    top: 11px;
+}
+section#search form .completer-selected-row{
+    background-color: #484848;
+    height: 100%;
+    width: 100%;
+}
+section#search form .completer-dropdown{
+    position: relative;
+    text-align: left;
+}
+section#search form .completer-dropdown img{
+    position: relative;
+    top: 1px;
+    margin: 0 5px 0 0;
+    padding: 0 7px 0 0;
+}
+section#search form input, section#search form .completer-input {
+    border: 1px solid #fff;
+    -webkit-box-shadow: 0 2px 3px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 3px 3px rgba(0,0,0,0.2);
+    color: #1b1a18;
+    height: 44px;
+    padding: 10px 5px 10px 44px;
+    width: 100%;
+    font-family: "circularstd book";
+    font-size: 16px;
+    border-radius: 2px;
+    -webkit-appearance: none;
+}
+section#search form input::-webkit-input-placeholder { /* Chrome */
+    color: #6f6f6f;
+}
+section#search form input:-ms-input-placeholder { /* IE 10+ */
+    color: #6f6f6f;
+}
+section#search form input::-moz-placeholder { /* Firefox 19+ */
+    color: #6f6f6f;
+    opacity: 1;
+}
+section#search form input:-moz-placeholder{ /* Firefox 4 - 18 */
+    color: #6f6f6f;
+    opacity: 1;
+}
+section#search form button {
+    background-color: #196e32;
+    border: none;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-family: 'circularstd book';
+    font-size: 18px;
+    line-height: 18px;
+    margin: 20px auto;
+    max-width: 138px;
+    padding: 13px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+section#search form button:hover {
+    background-color: #678e72;
+}
 :host {
     display:block;
 }
 :host /deep/ .completer-holder {
     display:block;
+    text-align: left;
 }
 
-:host /deep/ .completer-dropdown {
+:host /deep/ .completer-dropdown{
     max-height: 210px !important;
     overflow: hidden;
     overflow-y:auto;
-    
 }
 
 :host /deep/ .completer-holder input.completer-input {
@@ -30,7 +136,6 @@
     left:0;
     top:90%;
     height: auto;
-    width:100%;
 }
 /* =============================================================================
    Medium SCREEN STYLES [Tab VIEW] START
@@ -38,6 +143,44 @@
 /* 768px */
 @media only screen and (min-width: 768px) {
     /*** Search ***/
+header section#search {
+    display: block;
+    -moz-transition: all 0.5s ease-in-out 0s;
+    -ms-transition: all 0.5s ease-in-out 0s;
+    -o-transition: all 0.5s ease-in-out 0s;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
+}
+section#search {
+    max-height: 100px;
+    margin: 0;
+    padding: 28px 15px 28px 15px; 
+    border-top: 1px solid #cacac9; 
+}
+section#search form > span {
+    display: inline-block;
+    vertical-align: top;
+    width: 33.33%;
+    padding: 0 10px 0 0;
+}
+section#search form > span:before {
+    top: 12px;
+}
+section#search form input, section#search form .completer-input {
+    box-shadow: none;
+    border: 1px solid #cfcfcf;
+    border-radius: 3px;
+}
+section#search form button {
+    margin: 0;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #d53b3c;
+    border-radius: 0;
+}
+section#search form button:hover {
+    background-color: #c95f5f;
+}
     :host /deep/ .completer-holder input.completer-input {
         box-shadow: none !important;
         border: 1px solid #cfcfcf !important;
@@ -46,4 +189,15 @@
     :host /deep/ .completer-dropdown-holder {
         top:98%;
     }
+}
+/* =============================================================================
+   LARGE SCREEN STYLES [DESKTOP VIEW] START
+  ============================================================================= */
+/* 960px */
+@media only screen and (min-width: 960px) {
+    /*search*/
+    header.header_small section#search {
+        padding: 5px 15px;
+    }
+
 }
