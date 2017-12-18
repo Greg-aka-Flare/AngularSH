@@ -6,9 +6,11 @@
     display:block;
 }
 
-:host /deep/ .completer-dropdown{
+:host /deep/ .completer-dropdown {
     max-height: 210px !important;
     overflow: hidden;
+    overflow-y:auto;
+    
 }
 
 :host /deep/ .completer-holder input.completer-input {
@@ -28,6 +30,7 @@
     left:0;
     top:90%;
     height: auto;
+    width:100%;
 }
 /* =============================================================================
    Medium SCREEN STYLES [Tab VIEW] START
