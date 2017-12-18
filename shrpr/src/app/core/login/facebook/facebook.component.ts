@@ -23,7 +23,7 @@ export class FacebookLoginComponent implements OnInit {
     onFacebookLoginClick() {
         FB.login(function(response) {
             if (response.authResponse) {
-             FB.api('/me?fields=id,name,first_name,gender', function(response) {
+             FB.api('/me?fields=id,name,first_name,gender,address,birthday,email,location,picture.width(150).height(150)', function(response) {
                console.log(response);
              });
             } else {
