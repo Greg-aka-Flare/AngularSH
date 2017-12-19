@@ -632,17 +632,19 @@ button#filter{
     border-radius: 20px;
     color: #ffffff;
     cursor: pointer;
-    float: right;
     font-family: 'circularstd book';
     font-size: 14px;
     line-height: 14px;
-    margin: 27px 0 0 0;
-    max-width: 100px;
-    padding: 7px 4px;
+    margin: 0 0 0 -50px;
+    padding: 10px 4px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
     text-align: center;
     text-transform: uppercase;
     vertical-align: top;
-    width: 100%;
+    width: 100px;
+    z-index: 9999;
 }
 button#filter:hover{
     background-color: #c95f5f;
@@ -824,7 +826,7 @@ padding: 70px 70px 70px 70px;
 }
 /*** Filter Button ***/
 button#filter{
-    margin: 27px 20px 0 0;
+    display: none;
 }
 }
 /* =============================================================================
