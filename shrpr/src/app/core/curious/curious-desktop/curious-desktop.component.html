@@ -168,7 +168,7 @@
                     <i class="fa fa-calendar" aria-hidden="true"></i> 
 
                     <span class="date_stamp">
-                        {{ course?.semesters[0]?.start_date | date: 'MM/dd/yyyy' }}
+                        {{ course?.semesters[0]?.start_date | datex: 'LL' }}
                     </span>
                 </p><!-- .date -->
             </div><!-- .card-info -->
@@ -268,7 +268,7 @@
                     <i class="fa fa-calendar" aria-hidden="true"></i> 
 
                     <span class="date_stamp">
-                        {{ course?.semesters[0]?.start_date | date: 'MM/dd/yyyy' }}
+                        {{ course?.semesters[0]?.start_date | datex: 'LL' }}
                     </span>
                 </p><!-- .date -->
             </div><!-- .card-info -->
