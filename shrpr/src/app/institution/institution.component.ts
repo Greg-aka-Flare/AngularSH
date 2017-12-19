@@ -26,7 +26,6 @@ export class InstitutionComponent implements OnInit, OnDestroy {
   courseTotal: string = '';
   //subscription: Subscription;
   private subscriptions = new Subscription();
-  institutiondata:string;
   
   details:any;
   
