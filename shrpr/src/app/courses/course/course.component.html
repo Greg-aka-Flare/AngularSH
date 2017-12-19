@@ -1,6 +1,6 @@
 <article *ngIf="course">
   <!-- mobile view start-->
-  <section *ngIf="width < 768" id="profile-header">
+  <section *ngIf="width < 768">
       <div class="bradecrumb"><span><a [routerLink]="['/institution', course.institution.id]"> {{ course.institution.name }}</a> > </span><span>{{ course.group.label }}</span><span *ngFor="let card of categoriesArray; let i = index"> > {{ card.name }}</span></div>
     <h2>{{course.title}}</h2>
     <article class="course_mobile_card">
@@ -79,7 +79,7 @@
   </section>
   <!-- mobile view ends-->
   <!--desktop view start-->
-  <section *ngIf="width > 767" id="profile-header">
+  <section *ngIf="width > 767">
     <div class="course_header">
         <div class="bradecrumb"><span><a [routerLink]="['/institution', course.institution.id]"> {{ course.institution.name }}</a> > </span><span>{{ course.group.label }}</span><span *ngFor="let card of categoriesArray; let i = index"> > {{ card.name }}</span></div>
         <div class="course_slider">
