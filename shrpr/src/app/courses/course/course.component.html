@@ -1,11 +1,11 @@
 <article *ngIf="course">
   <!-- mobile view start-->
-  <section *ngIf="width < 768" id="profile-header">
+  <section *ngIf="width < 768">
       <div class="bradecrumb"><span><a [routerLink]="['/institution', course.institution.id]"> {{ course.institution.name }}</a> > </span><span>{{ course.group.label }}</span><span *ngFor="let card of categoriesArray; let i = index"> > {{ card.name }}</span></div>
     <h2>{{course.title}}</h2>
     <article class="course_mobile_card">
         <div class="category">{{ course.categories[0].name }}
-            <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true"></star-rating-comp></figure><!-- .rating -->
+            <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></figure><!-- .rating -->
         </div><!-- .category -->
         <div class="img-ctn">
             <div class="price">
@@ -79,7 +79,7 @@
   </section>
   <!-- mobile view ends-->
   <!--desktop view start-->
-  <section *ngIf="width > 767" id="profile-header">
+  <section *ngIf="width > 767">
     <div class="course_header">
         <div class="bradecrumb"><span><a [routerLink]="['/institution', course.institution.id]"> {{ course.institution.name }}</a> > </span><span>{{ course.group.label }}</span><span *ngFor="let card of categoriesArray; let i = index"> > {{ card.name }}</span></div>
         <div class="course_slider">
@@ -94,7 +94,7 @@
         <div class="course_info_desktop">
             <h1>{{course.title}}</h1>
             <div class="course_rating_info">
-              {{ course.categories[0].name }} | <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true"></star-rating-comp></figure> | <a (click)="goTo('reviews')" href="javascript:void(0);">{{reviewCount}} Reviews</a><!-- .rating -->
+              {{ course.categories[0].name }} | <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></figure> | <a (click)="goTo('reviews')" href="javascript:void(0);">{{reviewCount}} Reviews</a><!-- .rating -->
               <span class="course_price_desktop">${{ course.semesters[0].amount }}</span>
             </div><!-- .course_rating_info -->
             <p>
@@ -203,10 +203,10 @@
   <!--google map ends-->
   <!-- #reviews-->
   <section id="reviews">
-      <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews</div>
+      <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews</div>
     <dl class="review_items" *ngFor="let review of ratingData" >
       <dt><img src="../../assets/img/reviews-profile.jpg" alt="" title="">User id: {{review.user_id}}</dt>
-      <dd><h2>{{review.title}} <span class="review_items_rating">Rating: {{review.rating}} | <star-rating-comp class="review_star" [starType]="'svg'" [rating]="review.rating" [showHalfStars]="true"></star-rating-comp></span></h2>
+      <dd><h2>{{review.title}} <span class="review_items_rating">Rating: {{review.rating}} | <star-rating-comp class="review_star" [starType]="'svg'" [rating]="review.rating" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></span></h2>
       <p>{{review.comment}}</p></dd>
     </dl>
     <p class="seeall-link"><!--<button class="show-more" (click)="getData()" [disabled]="counter>=ratingData.length">see all related reviews</button><a href="javascript:void(0);">see all related reviews</a>--></p>

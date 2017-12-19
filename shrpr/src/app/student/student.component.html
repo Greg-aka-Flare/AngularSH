@@ -12,7 +12,7 @@
       </div>
       <div><h2>{{students?.name}}</h2>
         <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ students?.addresses[0]?.city }}, {{ students?.addresses[0]?.state }}
-        <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3"></star-rating-comp> |  <a href="/student/{{students?.id}}#reviews">33 reviews</a></div>
+        <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp> |  <a href="/student/{{students?.id}}#reviews">33 reviews</a></div>
       </div>
       </section><!-- #profile header -->
     <tabs *ngIf="width < 768" >
@@ -27,7 +27,7 @@
                   <h3>{{coursed?.title}}</h3>
               </div>
               <div class="card-info">
-                <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="coursed?.rating" [showHalfStars]="true"></star-rating-comp></span></div>
+                <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="coursed?.rating" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></span></div>
                 <p class="with-box"><span>With</span> {{coursed?.instructor}}</p>
                 <a [routerLink]="['/course', coursed?.id]"  class="page-cta">View Course</a>
               </div>
@@ -61,7 +61,7 @@
                     <h3>{{coursed?.title}}</h3>
                 </div>
                 <div class="card-info">
-                  <!--<div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="{{coursed.rating}}" [showHalfStars]="true"></star-rating-comp></span></div>-->
+                  <!--<div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="{{coursed.rating}}" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></span></div>-->
                   <!--<p class="date">
                     <i class="fa fa-calendar" aria-hidden="true"></i> 
                       <span class="date_stamp">{{ card.semesters[0].start_date | date: 'MM/dd/yyyy' }}</span>
@@ -81,7 +81,7 @@
       <!-- desktop view End -->
       <!-- #reviews-->
       <section id="reviews">
-        <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="5"></star-rating-comp> 5 | 33 reviews</div>
+        <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="5" [readOnly]="true"></star-rating-comp> 5 | 33 reviews</div>
       <dl>
         <dt><img src="../../assets/img/reviews-profile.jpg" alt="" title="">Megana H.</dt>
         <dd><h2>Balance Indoboard Yoga</h2>

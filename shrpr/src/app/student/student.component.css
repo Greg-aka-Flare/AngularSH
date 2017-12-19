@@ -1,64 +1,6 @@
-#profile-header {
-    padding: 10px 10px 10px 10px;
-    background-color: #f4f4f4;
-    border-bottom: 1px solid #cccccc;
-}
-#profile-header > div {
-    color: #02b2b8;
-    display: inline-block;
-    font-size: 15px;
-    line-height: 17px;
-    vertical-align: top;
-    width: 66%;
-}
-#profile-header > div.profile-picture {
-    max-width: 84px;
-    width: 29%;
-    margin: 0 4% 0 0;
-    text-align: center;
-}
-#profile-header > div .fa {
-    color: #222222;
-}
-#profile-header h2 {
-    font-size: 22px;
-    line-height: 24px;
-    padding: 0 0 10px 0;
-    color: #fc6a02;
-}
-.profile-picture img {
-    display: block;
-    width: 100%;
-    margin: 0 0 10px 0;
-}
-
-#profile-header .rating {
-    text-align: left;
-    padding: 19px 0 0 0;
-    max-width: 191px;
-}
-#profile-header > div a {
-    color: #02b2b8;;
-    text-decoration: underline;
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 0 0 5px;
-}
-#profile-header > div a:hover {
-    text-decoration: none;
-}
-#profile-header .social-icon a {
-    color: #222222;
-    font-size: 25px;
-    line-height: 1em;
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 2px 5px 2px;
-}
 :host /deep/ tabs .tabs ul {
     background: #e5e5e6;
     padding: 0 10px 0 10px;
-
 }
 :host /deep/ tabs .tabs ul li {
     display: inline-block;
@@ -80,13 +22,11 @@
 }
 :host /deep/ tabs .tabs ul li.active {
     background-color: #cccccc;
-
 }
 :host /deep/ tabs .tabs ul li:nth-of-type(2) {
     background-image: url('../../assets/img/about-tab-bg.png');
     background-position: center 13px;
     background-size: auto;
-
 }
 :host /deep/ tabs .tabs ul li:nth-of-type(3) {
     background-image: url('../../assets/img/contact-tab-bg.png');
@@ -95,7 +35,7 @@
 }
 :host /deep/ tabs .tabs tab > div {
     padding: 10px 0 10px;
-    background: #cccccc;
+   background: #cccccc;
 }
 :host /deep/ tabs .tabs tab div > h3 {
     font-size: 18px;
@@ -103,221 +43,16 @@
     line-height: 22px;
     padding: 10px;
 }
-
-.card-box {
-    padding: 0 0 10px 0;
-    background-color: #ffffff;
-}
-.img-ctn {
-    position: relative;
-}
-.img-ctn figure {
-    margin:0;
-}
-.img-ctn figure img {
-    display:block;
-    margin:0;
-    width:100%;
-}
-.price{
-    background-color: #e7aa62;
-    color: #272625;
-    font-size: 16px;
-    padding: 3px 20px 3px 5px;
-    position: absolute;
-    top: 20px;
-    right: 0;
-}
-.group_rating {
-    float: right;
-}
-.date_stamp, .with-box {
-    font-size:12px;
-    line-height: 14px;
-    color:#229bcb;
-}
-.with-box span {
-    color: #414141;
-}
-.card-info {
-    padding: 10px;
-}
-.card-info p {
-    padding: 0 0 5px 0;
-}
-.img-ctn h3 {
-    background: rgba(0, 0, 0, 0.5);
-    bottom: 8px;
-    box-sizing: border-box;
-    color: #fc6a02;
-    font-size: 18px;
-    left: 0;
-    line-height: 22px;
-    padding: 10px;
-    position: absolute;
-    width: 100%;
-}
-.page-cta {
-    background-color: #484848;
-    border: none;
-    -webkit-box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
-    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
-    color: #ffffff;
-    cursor: pointer;
-    display: block;
-    font-family: 'circularstd book';
-    font-size: 18px;
-    line-height: 18px;
-    margin: 10px auto;
-    max-width: 150px;
-    padding:7px 10px;
-    text-align: center;
-    width: 100%;
-    text-transform: uppercase;
-    text-decoration: none;
-}
-.page-cta:hover {
-    background-color: #757575;
-    text-decoration: none;
-}
-#reviews {
-    padding: 20px 10px 20px 10px;
-}
-.reviews-rating {
-    text-align: center;
-    font-size: 15px;
-    color: #272625;
-    line-height: 14px;
-    padding: 0 0 30px 0;
-}
-:host #reviews  /deep/ star-rating-comp {
+:host #reviews /deep/ star-rating-comp {
     display: inline-block;
     vertical-align: middle;
-}
-#reviews dl {
-    display: table;
-    margin: 0 0 20px 0;
-    width: 100%;
-}
-#reviews dl dt , #reviews dl dd {
-    display: table-cell;
-    vertical-align: top;
-    margin: 0;
-    font-size: 14px;
-    color: #272625;
-    line-height: 16px;
-    padding: 8px;
-}
-#reviews dl dt {
-    padding: 0 20px 0 0;
-    max-width:93px;
-    min-width: 92px;
-    text-align: center;
-}
-#reviews dl dt img {
-    display: block;
-    margin: 0 auto 10px auto;
-}
-#reviews dl dd {
-    border: 2px solid #eeeeee;
-    border-radius: 4px;
-}
-#reviews dl dd h2 {
-    font-size: 14px;
-    color:#229bcb;
-    line-height: 16px;
-    padding: 0 0 10px 0;
-
-}
-.seeall-link {
-    text-align: center;
-}
-.seeall-link a {
-    font-size: 16px;
-    color: #ff3c00;
-    text-decoration: underline;
-    position: relative;
-    display: inline-block;
-}
-.seeall-link a:after {
-    content: "\f0dd";
-    font-family: FontAwesome;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: normal;
-    left: 0;
-    line-height: 1em;
-    position: absolute;
-    right: 0;
-    text-decoration: none;
-    top: 10px; 
-}
-.seeall-link a:hover {
-    text-decoration: none;
-}
-.contact_box {
-    padding: 10px;
-}
-.contact_box address {
-    padding: 0 0 20px 0;
-}
-.contact_box address:first-child {
-    border-bottom: 1px solid #e5e5e6;
-    margin: 0 0 20px 0;
-}
-
-
-
+   }
+#profile-header /deep/ star-rating-comp .rating {
+       padding: 0;
+   }
 @media only screen and (min-width: 769px) {
-    #desktopcourses {
-        padding: 50px 10px 30px 10px;
-    }
-#desktopcourses h2 {
-    font-size:25px;
-    line-height: 27px;
-    color: #484848;
-    padding: 0 0 5px 0;
-    margin: 0 0 20px 0;
-    border-bottom: 1px solid #cccccc;
-    text-transform: uppercase;
-    }
-
-    #desktopcourses > h3 {
-        font-size: 18px;
-    color: #818181;
-    line-height: 22px;
-    padding: 0 0 20px 0;
-    }
-    :host /deep/ tabs .tabs tab > div {
-        padding: 10PX;
-        overflow:hidden;  
-    }
-.card-box {
-    display: inline-block;
-    margin: 0 1.5% 20px;
-    max-width: 444px;
-    vertical-align: top;
-    width: 30%;
-}
-#reviews {
-    border-top: 2px solid #cccccc;   
-}
-.contact_box address {
-    display: inline-block;
-    padding: 0 5% 0 0;
-    vertical-align: top;
-}
-.contact_box address:first-child {
-    border-bottom: none;
-    margin: 0;
-}
-#profile-header > div.profile-picture {
-    max-width:200px;
-    text-align: center;
-}
-}
-@media only screen and (min-width: 960px) {
-    #desktopcourses {
-        padding: 50px 0 30px 0;
-    }
+:host /deep/ tabs .tabs tab > div {
+    padding: 10PX;
+    overflow:hidden;
+ }
 }
