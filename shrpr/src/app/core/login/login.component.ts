@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         response => console.log(response),
         error => console.log(error)
        ));
+    //console.log('signup hit');   
   }
 
   onLogin() {

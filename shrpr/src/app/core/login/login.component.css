@@ -182,7 +182,74 @@
 .social-login > button.cta-linkedin {
     background-color: #0084b1;
 }
+/*Signup type Radio button style*/
+.signup_type {
+    text-align: center;
+    background-color:#ededed; 
+    padding:5px 0 0 0;
+}
+.signup-radio {
+    position: relative;
+    display: inline-block;
+    width:30%;
+    vertical-align: top;
+    margin:5px 0.5% 0 0;
+}
+.signup-radio label { 
+    font-size:12px;
+    position:relative;
+    display: block;
+    border:1px solid #cccccc;
+    padding:5px 5px 0 5px;
+    border-radius: 5px;
+    text-align: center;
+}
 
+.signup-radio input[type=radio] {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+    
+.signup-radio input[type=radio] ~ label:before {
+    font-family: FontAwesome;
+    display: block;
+    content: "\f1db";
+    letter-spacing: 10px;
+    font-size: 1.2em;
+    color: #535353;
+    width: 1.4em;
+    position: absolute;
+    top: 2px;
+    right:0;
+}
+.signup-radio input[type=radio]:checked ~ label {
+    background-color:#cccccc;
+}
+.signup-radio input[type=radio]:checked ~ label:before {
+    content: "\f00c";
+    font-size: 1.2em;
+    color: darkgreen;
+    letter-spacing: 5px;
+    opacity: 1;
+}
+.signup-radio img {
+    display: block;
+    margin:0 auto 0 auto;
+    width:50%;
+}
+
+
+.signup-radio input[type=radio]:focus ~ label:before,
+.signup-radio input[type=radio]:focus ~ label
+{                
+    color: green;
+}
 
 
 

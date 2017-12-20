@@ -35,25 +35,6 @@ ngOnInit() {
     }
     
     
-    /*onLinkedInLoad() {
-        IN.Event.on(IN, "auth", this.onLinkedInAuth);
-      }
-      public onLinkedInAuth() {
-        IN.API.Profile("me")
-          .fields("firstName", "lastName")
-          .result(this.displayProfiles)
-          .error(this.displayProfilesErrors);
-      }
-      public displayProfiles(profiles) {
-        let linkedinmember = profiles.values[0];
-        console.log(JSON.stringify(linkedinmember));
-        console.log(linkedinmember.firstName + " " + linkedinmember.lastName);
-      }
-      public displayProfilesErrors(error) {
-        console.log(error.message);
-        console.log(error);
-      }*/
-    
       public onLinkedInLoad() {
         //console.log('click');
         IN.Event.on(IN, "auth", this.onLinkedInProfile);
