@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-
+import {Component, OnInit } from '@angular/core';
 
 declare const FB: any;
 
@@ -16,15 +15,15 @@ export class FacebookLoginComponent implements OnInit {
             cookie     : false,  // enable cookies to allow the server to access
                                 // the session
             xfbml      : true,  // parse social plugins on this page
-            version    : 'v2.5' // use graph api version 2.5
+            version    : 'v2.11' // use graph api version 2.5
         });
     }
 
     onFacebookLoginClick() {
         FB.login(function(response) {
             if (response.authResponse) {
-             FB.api('/me?fields=id,name,first_name,email,gender,picture.width(150).height(150),age_range,friends', function(response) {
-               console.log(response);
+             FB.api('https://graph.facebook.com/me?fields=id,name,first_name,email,gender,picture{height,width,url,is_silhouette},age_range,friends.limit(10),birthday', function(response) {
+                console.log(response);
              });
             } else {
              console.log('User cancelled login or did not fully authorize.');
