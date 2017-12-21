@@ -50,6 +50,12 @@
 #profile-header /deep/ star-rating-comp .rating {
        padding: 0;
    }
+.contact_box a {
+    color:#000000;
+} 
+.contact_box a:hover {
+    color:#ed9639;
+}     
 @media only screen and (min-width: 769px) {
 :host /deep/ tabs .tabs tab > div {
     padding: 10PX;

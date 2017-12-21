@@ -49,14 +49,14 @@
             <div *ngIf="semesterCount < 2">
                   <div *ngIf="selectedSemester">
                   <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
-                     <p>Starts at: {{selected?.start_date | datex:'LLLL'}}</p>
-                     <p>End Date: {{selected?.end_date | datex:'LLLL'}}</p>
+                     <p>Starts at: <time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time></p>
+                     <p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>
                      <p>Sessions: {{selected?.duration}}</p>
                   </div>
                 </div> 
                 </div>
             <div class="action_btn">
-              <a href="javascript:void(0);">Book Online</a><a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
+              <a href="javascript:void(0);" aria-roledescription="button">Book Online</a><a href="javascript:void(0);" aria-roledescription="button"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
               <span>270 people saved this class</span></div>
         </div>
         <!-- .course_info -->
@@ -67,8 +67,8 @@
         <div class="course_enroll_block">
             <div *ngIf="selectedSemester">
               <div *ngFor="let semester of selectedSemester">
-                  <ul class="meetings_list">
-                      <li *ngFor="let selectmet of semester.meetings">{{selectmet?.start | datex:'LLLL'}}</li>
+                  <ul class="meetings_list" aria-roledescription="list">
+                      <li *ngFor="let selectmet of semester.meetings"><time title="{{selectmet?.start | datex:'LLLL'}}">{{selectmet?.start | datex:'LLLL'}}</time></li>
                   </ul>
               </div> 
             </div>
@@ -101,8 +101,8 @@
               <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
             </p>
             <div class="action_btn">
-              <a href="javascript:void(0);">Book Online</a><br>
-              <a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
+              <a href="javascript:void(0);" aria-roledescription="button">Book Online</a><br>
+              <a href="javascript:void(0);" aria-roledescription="button"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
               <span>270 people saved this class</span>
             </div>
             <p>
@@ -122,8 +122,8 @@
                               <option *ngFor="let sem of course?.semesters; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LL'}}</option>
                             </select>
               <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
-                      <div class="select-wrap"><p>Starts at: {{selected?.start_date | datex:'LLLL'}}</p>
-                 <p>End Date: {{selected?.end_date | datex:'LLLL'}}</p></div>
+                      <div class="select-wrap"><p>Starts at: <time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time></p>
+                 <p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p></div>
                  <p>Sessions: {{selected?.duration}}</p> 
               </div>
             </div>
@@ -133,13 +133,12 @@
             <div *ngIf="semesterCount < 2">
               <div *ngIf="selectedSemester">
               <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
-                 <p>Starts at: {{selected?.start_date | datex:'LLLL'}}</p>
-                 <p>End Date: {{selected?.end_date | datex:'LLLL'}}</p>
+                 <p>Starts at: <time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time></p>
+                 <p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>
                  <p>Sessions: {{selected?.duration}}</p>
               </div>
             </div> 
             </div>
-
         </div>
         <!-- .course_info_desktop-->
       </div>
@@ -149,8 +148,8 @@
         <div class="course_enroll_block">
             <div *ngIf="selectedSemester">
               <div *ngFor="let semester of selectedSemester">
-                  <ul class="meetings_list">
-                      <li *ngFor="let selectmet of semester.meetings">{{selectmet?.start | datex:'LLLL'}}</li>
+                  <ul class="meetings_list" aria-roledescription="list">
+                      <li *ngFor="let selectmet of semester.meetings"><time title="{{selectmet?.start | datex:'LLLL'}}">{{selectmet?.start | datex:'LLLL'}}</time></li>
                   </ul>
               </div> 
             </div> 

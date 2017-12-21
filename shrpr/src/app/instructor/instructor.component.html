@@ -34,8 +34,8 @@
         <div class="card-info">
           <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp></span></div>
           <p class="date">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 
-              <span class="date_stamp">{{ card?.semesters[0]?.start_date | datex: 'LL' }}</span>
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time class="date_stamp" title="{{ card?.semesters[0]?.start_date | datex: 'LL' }}">{{ card?.semesters[0]?.start_date | datex: 'LL' }}</time>
           </p>
           <a [routerLink]="['/courses', card?.id]"  class="page-cta">View Course</a>
         </div>
@@ -47,7 +47,7 @@
   <tab tabTitle="CONTACT">
           <div class="contact_box">
               <div class="contact_instructor">
-            <span *ngIf="instructors?.phone.length > 0"><i class="fa fa-phone-square" aria-hidden="true"></i> {{instructors?.phone}}</span><br>
+            <span *ngIf="instructors?.phone.length > 0"><i class="fa fa-phone-square" aria-hidden="true"></i> <a href="tel:{{instructors?.phone}}">{{instructors?.phone}}</a></span><br>
             <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
             </div>      
           </div>
@@ -72,14 +72,14 @@
         <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp></span></div>
         <p class="location">
             <i class="fa fa-map-marker" aria-hidden="true"></i> 
-            <a>{{ card?.semesters[0]?.addresses[0]?.city }}, {{ card?.semesters[0]?.addresses[0]?.state }}</a>
+            <a href="javascript:void(0);">{{ card?.semesters[0]?.addresses[0]?.city }}, {{ card?.semesters[0]?.addresses[0]?.state }}</a>
         </p><!-- .location -->
         <p class="date">
           <i class="fa fa-calendar" aria-hidden="true"></i> 
-            <span class="date_stamp">{{ card?.semesters[0]?.start_date | datex: 'LL' }}</span>
+            <time class="date_stamp" title="{{ card?.semesters[0]?.start_date | datex: 'LL' }}">{{ card?.semesters[0]?.start_date | datex: 'LL' }}</time>
         </p>
         <!--<p class="with-box"><span>With</span> {{card.instructor?.name}}</p>-->
-        <a [routerLink]="['/courses', card?.id]" class="page-cta">View Course</a>
+        <a [routerLink]="['/courses', card?.id]" class="page-cta" aria-roledescription="button">View Course</a>
       </div>
   </article>
     

@@ -791,6 +791,12 @@ button#filter:focus{
 .review_star {
 	width:95px;
 }
+.location a {
+    text-decoration:none;
+}
+.location a:hover {
+    color:#e7aa62;
+}
 /* =============================================================================
    Medium SCREEN STYLES [Tab VIEW] START
   ============================================================================= */
@@ -965,6 +971,7 @@ button#filter{
 .review_star {
 	width:110px;
 }
+}
 /* =============================================================================
    LARGE SCREEN STYLES [DESKTOP VIEW] START
   ============================================================================= */
@@ -979,6 +986,12 @@ main .inner-wrap {
 .page-conent-area {
 	padding:40px 0 40px 0;
 }
+a[href*="tel:"] {
+	pointer-events: none;
+	cursor:default;
+	text-decoration: none;
+}
+
 /* =============Marketing Pages Start ============================ */
 /*features nav start*/
 .features-nav ul {
@@ -1037,5 +1050,4 @@ main .inner-wrap {
 	src:url('assets/fonts/circularstd-black.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('assets/fonts/circularstd-black.woff2') format('woff2'), url('assets/fonts/circularstd-black.woff') format('woff'), url('assets/fonts/circularstd-black.ttf') format('truetype'), url('assets/fonts/circularstd-black.svg') format('svg');
 	font-weight:normal;
 	font-style:normal
-}
 }

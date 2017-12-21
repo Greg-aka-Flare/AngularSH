@@ -25,7 +25,8 @@ ngOnInit() {
             document.head.appendChild(linkedIn);
             var script = document.createElement("script");
             script.type = "in/Login";
-            document.body.appendChild(script);
+            var socialBox = document.getElementsByClassName('social-login');
+            socialBox[0].appendChild(script);
   }
 
     ngAfterViewInit(){

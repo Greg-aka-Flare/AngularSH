@@ -13,7 +13,7 @@
     <div><h2>{{institutions?.name}}</h2>
       <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{institutions?.email}}">{{institutions?.email}}</a><br>
       <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span><br>
-      <i aria-hidden="true" class="fa fa-phone-square"></i> {{institutions?.phone}}
+      <i aria-hidden="true" class="fa fa-phone-square"></i> <a href="tel:{{institutions?.phone}}">{{institutions?.phone}}</a>  
       </div>
     </section><!-- #profile header -->
     <div id="courses-cards">
@@ -24,11 +24,8 @@
       Filter 
       <i class="fa fa-sliders" aria-hidden="true"></i>
     </button><!-- #filter -->
-
     <div id="course-count">{{ courseTotal }}</div><!-- #course-count -->
-
     <h2>Courses</h2>
-
     <app-filter 
       *ngIf="courses"
       [ngClass]="{ 'hide': !showFilter }"
@@ -53,7 +50,7 @@
           <p class="date">
              <!-- <span class="date_stamp">{{ card.description }}</span>-->
           </p>
-          <a [routerLink]="['/courses', card.id]" class="page-cta">View Course</a>
+          <a [routerLink]="['/courses', card.id]" class="page-cta" aria-roledescription="button">View Course</a>
         </div>
     </article>
   </div>

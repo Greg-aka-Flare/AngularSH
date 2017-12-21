@@ -21,13 +21,13 @@
           <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp></span></div>
           <p class="location">
                 <i class="fa fa-map-marker" aria-hidden="true"></i> 
-                <a>{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a>
+                <a href="javascript:void(0);">{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a>
             </p><!-- .location -->
           <p class="date">
             <i class="fa fa-calendar" aria-hidden="true"></i> 
-              <span class="date_stamp">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</span>
+            <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
           </p>
-          <a [routerLink]="['/courses', course?.id]"  class="page-cta">View Course</a>
+          <a [routerLink]="['/courses', course?.id]"  class="page-cta" aria-roledescription="button">View Course</a>
         </div>
     </article>
 </section><!-- #course-list -->

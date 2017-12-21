@@ -29,7 +29,7 @@
               <div class="card-info">
                 <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="coursed?.rating" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></span></div>
                 <p class="with-box"><span>With</span> {{coursed?.instructor}}</p>
-                <a [routerLink]="['/course', coursed?.id]"  class="page-cta">View Course</a>
+                <a [routerLink]="['/course', coursed?.id]"  class="page-cta" aria-roledescription="button">View Course</a>
               </div>
           </article>
       </tab>
@@ -43,7 +43,7 @@
       <tab tabTitle="CONTACT">
         <div class="contact_box">
             <address *ngFor="let address of students?.addresses">
-                <strong>{{ address?.type }}</strong><br>{{ address?.streetAddress }}<br>{{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>{{ address?.country }}<br><br>Phone: {{ students?.phone }}<br>Email: {{ students?.email }}</address>
+                <strong>{{ address?.type }}</strong><br>{{ address?.streetAddress }}<br>{{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>{{ address?.country }}<br><br>Phone: <a href="tel:{{ students?.phone }}">{{ students?.phone }}</a><br>Email: <a href="mailto:{{students?.email}}"> {{students?.email}}</a></address>
         </div>
       </tab>
     </tabs><!-- #Tab -->
@@ -75,7 +75,7 @@
         <h2>CONTACT</h2>
         <div class="contact_box">
             <address *ngFor="let address of students?.addresses">
-                <strong>{{ address?.type }}</strong><br>{{ address?.streetAddress }}<br>{{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>{{ address?.country }}<br><br>Phone: {{ students?.phone }}<br>Email: {{ students?.email }}</address>
+                <strong>{{ address?.type }}</strong><br>{{ address?.streetAddress }}<br>{{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>{{ address?.country }}<br><br>Phone: <a href="tel:{{ students?.phone }}">{{ students?.phone }}</a><br>Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a></address>
           </div>
       </section>
       <!-- desktop view End -->
