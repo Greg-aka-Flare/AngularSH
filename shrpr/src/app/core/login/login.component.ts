@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   signupForm: FormGroup;
   loginForm: FormGroup;
   private subscriptions = new Subscription();
+  signup:boolean = false;
   
   constructor(
     public userService: UserService,
@@ -52,10 +53,19 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.userService.signup(name, email, password)
       .subscribe(
-        response => console.log(response),
-        error => console.log(error)
+        response => {
+            console.log(response)
+            if(response.status == 201){
+              this.signup = true; 
+            }
+            else{
+              this.signup = false;
+            }
+          },
+        error => console.log(error),
        ));
-    //console.log('signup hit');   
+       
+    
   }
 
   onLogin() {
@@ -66,11 +76,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.auth.login(email, password)
       .subscribe(
         response => {
-
           localStorage.setItem('access_token', response.access_token);
         },
         error => console.log(error)
       ));
+      
   }
 
   ngOnDestroy(){
