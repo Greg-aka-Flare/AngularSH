@@ -56,10 +56,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         response => {
             console.log(response)
             if(response.status == 201){
-              this.signup = true; 
-            }
-            else{
-              this.signup = false;
+              this.signup = !this.signup; 
             }
           },
         error => console.log(error),

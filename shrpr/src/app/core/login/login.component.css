@@ -4,7 +4,11 @@
 }
 .login-box {
     background: #ededed;
-    padding: 10px;  
+    padding: 10px;
+}
+:host /deep/ tabs {
+    display: block;
+    min-height: 300px;
 }
 :host /deep/ tabs .tabs ul {
     padding:0;
@@ -36,6 +40,46 @@
     border-bottom: 14px solid #ededed;
     bottom:0;
 }
+:host /deep/ tabs tab {
+    position: absolute;
+    width:100%;
+    max-width: 350px;
+}
+tab.signup-tab {
+    width:100%;
+    min-width: 300px;
+    max-width: 350px;
+    overflow: hidden;
+    z-index: 1;
+}
+.signup-box, .signup_type {
+    top:0;
+    width:100%;
+    height: 100%;
+    transition:all 0.5s ease;
+}
+.signup-box, .signup_type {
+    top:0;
+    width:100%;
+    height: 100%;
+    transition:all 0.5s ease;
+}
+.signup-box {
+    position: relative;
+    left:-100%;
+}
+.signup-box.active {
+    left:0;
+}
+.signup_type {
+    position: absolute;
+    left:100%;
+}
+.signup_type.active {
+    left:0;
+    z-index: 1;
+}
+
 .login-box form input::-webkit-input-placeholder { /* Chrome */
     color: #6f6f6f;
 }
@@ -69,7 +113,7 @@
 .login-box form input.ng-invalid.ng-touched{
     border: 1px solid #c00;
 }
-.login-box form button {
+.login-box form button, .signup-type-btn button  {
     background-color: #d53b3c;
     border: none;
     border-radius: 5px;
@@ -87,11 +131,11 @@
     text-transform: uppercase;
     width: 100%;
 }
-.login-box form button .fa { 
+.login-box form button .fa, .signup-type-btn button .fa { 
     font-size:17px;
     margin:0 0 0 3px;
 }
-.login-box form button:hover {
+.login-box form button:hover, .signup-type-btn button:hover {
     background-color: #c95f5f;
 }
 .login-box form .help-block{
@@ -186,14 +230,18 @@
 .signup_type {
     text-align: center;
     background-color:#ededed; 
-    padding:5px 0 0 0;
+    padding:10px;
+}
+.signup_type h3 {
+    font-size:18px;
+    padding:10px 0 10px 0;
 }
 .signup-radio {
     position: relative;
     display: inline-block;
     width:30%;
     vertical-align: top;
-    margin:5px 0.5% 0 0;
+    margin:10px 0.5% 20px 0;
 }
 .signup-radio label { 
     font-size:12px;
@@ -203,6 +251,7 @@
     padding:5px 5px 0 5px;
     border-radius: 5px;
     text-align: center;
+    background-color: #ffffff;
 }
 
 .signup-radio input[type=radio] {
@@ -229,7 +278,8 @@
     right:0;
 }
 .signup-radio input[type=radio]:checked ~ label {
-    background-color:#cccccc;
+    background-color:#ed9639;
+    color: darkgreen;
 }
 .signup-radio input[type=radio]:checked ~ label:before {
     content: "\f00c";
