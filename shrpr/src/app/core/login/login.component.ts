@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   private subscriptions = new Subscription();
   signup:boolean = false;
+  signupError:boolean = false;
+  signupErrorText:string;
   
   constructor(
     public userService: UserService,
@@ -54,12 +56,18 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.userService.signup(name, email, password)
       .subscribe(
         response => {
-            console.log(response)
-            if(response.status == 201){
+            //console.log(response)
+            if(response.status === 201){
               this.signup = !this.signup; 
             }
           },
-        error => console.log(error),
+        error => {
+          //console.log(error)
+          if(error.status === 422){
+            this.signupError = true;
+            //this.signupErrorText = JSON.parse(error._body).message;
+          }
+        },
        ));
        
     

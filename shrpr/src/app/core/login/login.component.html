@@ -4,6 +4,7 @@
             <tab tabTitle="SIGN UP" class="signup-tab">
                 <div class="login-box signup-box" [class.active]="!signup">
                     <form id="signup" [formGroup]="signupForm" (ngSubmit)="onSignup()">
+                        <span class="help-block" *ngIf="signupError">{{signupErrorText}}</span><!-- .help-block -->
                         <input 
                             type="text" 
                             id="name" 
