@@ -10,6 +10,8 @@ import { AuthService } from '../../auth/auth.service';
 import {GoogleSigninComponent} from './google/google.component';
 import {FacebookLoginComponent} from './facebook/facebook.component';
 import {LinkedinComponent} from './linkedin/linkedin.component';
+import { Router } from "@angular/router";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,11 +26,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   signup:boolean = false;
   signupError:boolean = false;
   signupErrorText:string;
+  signinError:boolean = false;
   
   constructor(
     public userService: UserService,
     private http: HttpClient,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
    ) {
    }
 
@@ -69,8 +73,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           }
         },
        ));
-       
-    
   }
 
   onLogin() {
@@ -82,8 +84,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           localStorage.setItem('access_token', response.access_token);
+          console.log(response.access_token);
+          this.router.navigate['student/62'];
         },
-        error => console.log(error)
+        error => {
+          console.log(error)
+          this.signinError = true;
+        }
       ));
       
   }

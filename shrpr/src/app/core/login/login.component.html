@@ -4,7 +4,7 @@
             <tab tabTitle="SIGN UP" class="signup-tab">
                 <div class="login-box signup-box" [class.active]="!signup">
                     <form id="signup" [formGroup]="signupForm" (ngSubmit)="onSignup()">
-                        <span class="help-block" *ngIf="signupError">{{signupErrorText}}</span><!-- .help-block -->
+                        <span class="help-block" *ngIf="signupError">This email has already been taken.</span><!-- .help-block -->
                         <input 
                             type="text" 
                             id="name" 
@@ -84,6 +84,7 @@
             <tab tabTitle="LOG IN">
                 <div class="login-box signin-box">
                     <form id="login" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                        <span class="help-block" *ngIf="signinError">Email id or password is wrong.</span><!-- .help-block -->
                         <input 
                             type="text" 
                             id="email-signin" 
