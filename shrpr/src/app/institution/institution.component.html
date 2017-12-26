@@ -20,38 +20,36 @@
     <h2>Description</h2>
     <p>{{details?.description}}</p>
 
-    <button id="filter" (click)="toggleFilter()">
-      Filter 
-      <i class="fa fa-sliders" aria-hidden="true"></i>
-    </button><!-- #filter -->
-    <div id="course-count">{{ courseTotal }}</div><!-- #course-count -->
-    <h2>Courses</h2>
-    <app-filter 
-      *ngIf="courses"
-      [ngClass]="{ 'hide': !showFilter }"
-      [courses]="courses"
-      (onFilter)="filter($event)"
-    ></app-filter>
+    <section id="courses">
+      <app-filter 
+        *ngIf="courses"
+        [courses]="courses"
+        (onFilter)="filter($event)"
+      >
+        <h2>Courses</h2>
 
-    <article class="card-box" *ngFor="let card of courseData; let i = index">
-        <div class="img-ctn">
-            <div class="price">
-              ${{ card?.semesters[0]?.amount }}
+        <article class="card-box" *ngFor="let card of courseData; let i = index">
+            <div class="img-ctn">
+                <div class="price">
+                  ${{ card?.semesters[0]?.amount }}
+                </div>
+                <figure>
+                    <a [routerLink]="['/courses', card.id]"><img *ngIf="card?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ card?.semesters[0]?.primary_img }}" alt="" title="">
+                    <img *ngIf="!card?.semesters[0]?.primary_img" src="../../assets/img/card-picture.jpg" alt="" title=""></a>
+                </figure>
+                <h3>{{card.title}}</h3>
             </div>
-            <figure>
-                <a [routerLink]="['/courses', card.id]"><img *ngIf="card?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ card?.semesters[0]?.primary_img }}" alt="" title="">
-                <img *ngIf="!card?.semesters[0]?.primary_img" src="../../assets/img/card-picture.jpg" alt="" title=""></a>
-            </figure>
-            <h3>{{card.title}}</h3>
-        </div>
-        <div class="card-info">
-          <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="card.rating" [readOnly]="true"></star-rating-comp></span></div>
-          <p class="instructor"><i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor',  card.instructor.id]">{{  card.instructor.name }}</a></p>
-          <p class="date">
-             <!-- <span class="date_stamp">{{ card.description }}</span>-->
-          </p>
-          <a [routerLink]="['/courses', card.id]" class="page-cta" aria-roledescription="button">View Course</a>
-        </div>
-    </article>
+
+            <div class="card-info">
+              <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="card.rating" [readOnly]="true"></star-rating-comp></span></div>
+              <p class="instructor"><i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor',  card.instructor.id]">{{  card.instructor.name }}</a></p>
+              <p class="date">
+                 <!-- <span class="date_stamp">{{ card.description }}</span>-->
+              </p>
+              <a [routerLink]="['/courses', card.id]" class="page-cta" aria-roledescription="button">View Course</a>
+            </div>
+        </article>
+      </app-filter>
+    </section><!-- #courses -->
   </div>
 </app-template>

@@ -1,48 +1,75 @@
-<section id="filter">
-	<form [formGroup]="filterForm">
-		<h1>Filter:</h1>
+<button 
+	id="filter" 
+	[ngClass]="{ 'mobile-hide': showFilter }"
+	(click)="toggleFilter()" 
+	[@scrollAnimation]="state"
+>
+  Filter 
+  <i class="fa fa-sliders" aria-hidden="true"></i>
+</button><!-- #filter -->
 
-		<p>Select from the options below to modify the courses you would like to see.</p>
+<div id="ctn">
+	<section id="course-list" [ngClass]="{ 'mobile-hide': showFilter }">
+		<ng-content></ng-content>
+	</section><!-- #course-list -->
 
-		<fieldset>
-			<h2>Categories:</h2>
+	<section id="filter" [ngClass]="{ 'mobile-hide': !showFilter }">
+		<form [formGroup]="filterForm">
+			<h1>Filter:</h1>
 
-			<div>
-				<label for="fun">For Fun</label> 
+			<p>Modify the courses you would like to see.</p>
 
-				<input 
-					type="checkbox" 
-					name="fun" 
-					id="fun" 
-					formControlName="fun"
-				/>
-			</div>
+			<fieldset>
+				<h2>Categories:</h2>
 
-			<div>
-				<label for="work">For Work</label> 
+				<div>
+					<input 
+						type="checkbox" 
+						name="fun" 
+						id="fun" 
+						formControlName="fun"
+					/>
 
-				<input 
-					type="checkbox" 
-					name="work" 
-					id="work" 
-					formControlName="work"
-				/>
-			</div>
+					<label for="fun">For Fun</label> 
+				</div>
 
-			<div>
-				<label for="kids">For Kids</label> 
+				<div>
+					<input 
+						type="checkbox" 
+						name="work" 
+						id="work" 
+						formControlName="work"
+					/>
 
-				<input 
-					type="checkbox" 
-					name="kids" 
-					id="kids" 
-					formControlName="kids"
-				/>
-			</div>
-		</fieldset>
+					<label for="work">For Work</label> 
+				</div>
 
-		<fieldset>
-			<h2>Instructors:</h2>
-		</fieldset>
-	</form>
-</section><!-- #filter -->
+				<div>
+					<input 
+						type="checkbox" 
+						name="kids" 
+						id="kids" 
+						formControlName="kids"
+					/>
+
+					<label for="kids">For Kids</label> 
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<h2>Instructors:</h2>
+
+				<div *ngFor="let instructor of instructors; let i = index">
+					<input 
+						type="checkbox" 
+						name="instructor_{{ i }}" 
+						id="instructor_{{ i }}" 
+						formControlName="instructor_{{ i }}"
+					/>
+					
+					<label for="instructor_{{ i }}">{{ instructor.name }}</label> 
+				</div>
+			</fieldset>
+		</form>
+	</section><!-- #filter -->
+</div><!-- #ctn -->

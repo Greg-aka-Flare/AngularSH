@@ -1,3 +1,32 @@
+/*** Filter Button ***/
+button#filter{
+    background-color: #d53b3c;
+    border: none;
+    border-radius: 20px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: 'circularstd book';
+    font-size: 14px;
+    line-height: 14px;
+    margin: 0 0 0 -50px;
+    padding: 10px 4px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: top;
+    width: 100px;
+    z-index: 9999;
+}
+button#filter:hover{
+    background-color: #c95f5f;
+}
+button#filter:focus{
+    outline:0;
+}
+
+/*** Filter ***/
 section#filter{
 	background-color: #fafafa;
 	border: 1px solid #eee;
@@ -31,9 +60,54 @@ section#filter form fieldset h2{
 	padding: 0 0 5px 0;
 }
 section#filter form fieldset div{
-	display: inline-block;
-	font-size: 16px;
-	padding: 0 120px 0 0;
-	text-align: right;
-	width: 33%;
+	display: block;
+	font-size: 14px;
+	line-height: 24px;
+	position: relative;
+	vertical-align: middle;
+}
+section#filter form fieldset div input{
+	vertical-align: middle;
+}
+
+/*** Hide ***/
+.mobile-hide{
+	display: none;
+}
+
+@media only screen and (min-width: 960px) {
+
+	/*** Wrapper ***/
+	.wrapper{
+		display: table;
+		width: 100%;
+	}
+
+	/*** Filter Button ***/
+	button#filter{
+    	display: none;
+    }
+
+	/*** Filter ***/
+	section#filter{
+		display: table-cell;
+		vertical-align: top;
+		width: 25%;
+	}
+	section#filter form{
+		padding: 10px 20px;
+	}
+
+	/*** Course List ***/
+	section#course-list{
+		display: table-cell;
+		padding: 0 20px 0 0;
+		vertical-align: top;
+		width: 75%;
+	}
+
+	/*** Hide ***/
+	.mobile-hide{
+		display: block;
+	}
 }

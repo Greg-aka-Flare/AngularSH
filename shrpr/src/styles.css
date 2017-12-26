@@ -512,43 +512,6 @@ carousel {
 .cta-banner:hover {
 	background: #c95f5f;
 }
-/*** Filter Button ***/
-button#filter{
-    display: inline-block;
-    background-color: #d53b3c;
-    border: none;
-    border-radius: 20px;
-    color: #ffffff;
-    cursor: pointer;
-    font-family: 'circularstd book';
-    font-size: 14px;
-    line-height: 14px;
-    margin: 0 0 0 -50px;
-    padding: 10px 4px;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    text-align: center;
-    text-transform: uppercase;
-    vertical-align: top;
-    width: 100px;
-    z-index: 9999;
-}
-button#filter:hover{
-    background-color: #c95f5f;
-}
-button#filter:focus{
-    outline:0;
-}
-/*** Course Count ***/
-#course-count {
-	color: #333;
-	float: right;
-	font-family: 'circularstd book';
-	font-size: 14px;
-	line-height: 14px;
-	margin: 34px 20px 0 0;
-}
 /* =============common style for student, instructor, institution ============================ */
 #profile-header {
 	padding: 10px 10px 10px 10px;
@@ -917,10 +880,6 @@ button#filter:focus{
 }
 .slide-content {
 	padding: 70px 70px 70px 70px;
-}
-/*** Filter Button ***/
-button#filter{
-    display: none;
 }
 /* =============common style for student, instructor, institution ============================ */
 #desktopcourses {
