@@ -1,5 +1,5 @@
 <app-template>
-    <form action="#" class="course-bucket">
+       <form id="selectCourse" [formGroup]="selectCourseForm" (ngSubmit)="onselectCourse()" class="course-bucket">
         <h2>Please select three courses in which you are interested.</h2>
         <section 
     class="category_bucket magento"
@@ -11,7 +11,7 @@
             [@state]="course?.state"
         >
                 <div class="course-checkbox">
-                <input type="checkbox" name="{{ course?.title }}" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}">
+                <input type="checkbox" formControlName="selectedCourse" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}">
                         <label class="radio" for="{{ course?.id }}">
                  <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
                  <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></label>
@@ -31,7 +31,7 @@
             *ngFor="let course of forWork; let i = index"  
             [@state]="course?.state"
         ><div class="course-checkbox">
-                <input type="checkbox" name="{{ course?.title }}" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}">
+                <input type="checkbox" formControlName="selectedCourse" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}">
                         <label class="radio" for="{{ course?.id }}">
                         <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
                         <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></label>
@@ -52,7 +52,7 @@
             [@state]="course?.state"
         >
         <div class="course-checkbox">
-                <input type="checkbox" name="{{ course?.title }}" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}">
+                <input type="checkbox" formControlName="selectedCourse" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}">
                         <label class="radio" for="{{ course?.id }}">
                        <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
                         <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></label>
