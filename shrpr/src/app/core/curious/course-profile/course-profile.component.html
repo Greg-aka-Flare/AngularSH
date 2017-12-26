@@ -1,0 +1,71 @@
+<app-template>
+    <form action="#" class="course-bucket">
+        <h2>Please select at least three courses</h2>
+        <section 
+    class="category_bucket magento"
+    *ngIf="showFun"
+>   
+        <article 
+            class="profile-box" 
+            *ngFor="let course of forFun; let i = index" 
+            [@state]="course?.state"
+        >
+                <div class="course-checkbox">
+                <input type="checkbox" name="{{ course?.title }}" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}">
+                        <label class="radio" for="{{ course?.id }}">
+                 <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
+                 <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></label>
+                        </div>
+            <h3>
+                    {{ course?.title }}
+                </h3>
+        </article>
+</section><!-- #for_fun_box -->
+
+<section 
+    class="category_bucket blue"
+    *ngIf="showWork"
+>
+        <article 
+            class="profile-box" 
+            *ngFor="let course of forWork; let i = index"  
+            [@state]="course?.state"
+        ><div class="course-checkbox">
+                <input type="checkbox" name="{{ course?.title }}" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}">
+                        <label class="radio" for="{{ course?.id }}">
+                        <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
+                        <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></label>
+                        </div>
+
+                <h3>
+                        {{ course?.title }}
+                    </h3>
+        </article>
+</section>
+<section 
+    class="category_bucket yellow"
+    *ngIf="showKids"
+>
+        <article 
+            class="profile-box" 
+            *ngFor="let course of forKids; let i = index" 
+            [@state]="course?.state"
+        >
+        <div class="course-checkbox">
+                <input type="checkbox" name="{{ course?.title }}" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}">
+                        <label class="radio" for="{{ course?.id }}">
+                       <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
+                        <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></label>
+                        </div>
+                <h3>
+                        {{ course?.title }}
+                    </h3>
+               </article>
+</section><!-- #for_kids_box -->
+<div class="continue-btn">
+        <button>
+                Continue <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </button>
+        </div>
+</form>
+</app-template>

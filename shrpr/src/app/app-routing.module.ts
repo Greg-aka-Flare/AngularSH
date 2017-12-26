@@ -13,7 +13,7 @@ import { InstructorComponent } from './instructor/instructor.component';
 import { InstitutionComponent } from './institution/institution.component';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './core/login/login.component';
-import { CoursesComponent } from './courses/courses.component';
+import { CourseProfileComponent } from './core/curious/course-profile/course-profile.component';
 
 const appRoutes: Routes = [
 	{ path: '', component: LandingComponent },
@@ -27,6 +27,7 @@ const appRoutes: Routes = [
 	{ path: 'about', component: AboutComponent },
 	{ path: 'values', component: ValuesComponent, canActivate: [LandingGuard] },
 	{ path: 'videos', component: VideosComponent, canActivate: [LandingGuard] },
+	{ path: 'course-profile', component: CourseProfileComponent, canActivate: [LandingGuard] },
 	{ path: 'podcast', component: PodcastComponent, canActivate: [LandingGuard] },
 	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent, canActivate: [LandingGuard] },
 	{ path: 'institution/:id', loadChildren: './institution/institution.module#InstitutionModule', canActivate: [LandingGuard] }

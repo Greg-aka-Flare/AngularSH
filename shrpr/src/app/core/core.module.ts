@@ -29,6 +29,7 @@ import { CourseService } from '../courses/course.service';
 import { LikeService } from './like.service';
 import { UserService } from './user.service';
 import { LandingGuard } from './landing/landing-guard.service';
+import { CourseProfileComponent } from '../core/curious/course-profile/course-profile.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { LandingGuard } from './landing/landing-guard.service';
     LoginComponent,
     GoogleSigninComponent,
     FacebookLoginComponent,
-    LinkedinComponent
+    LinkedinComponent,
+    CourseProfileComponent
   ],
   imports: [
     CommonModule,
