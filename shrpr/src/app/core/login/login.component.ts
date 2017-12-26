@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   signupForm: FormGroup;
   loginForm: FormGroup;
+  ProfileForm: FormGroup;
   private subscriptions = new Subscription();
   signup:boolean = false;
   signupError:boolean = false;
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private auth: AuthService,
     private router: Router
    ) {
-   }
+  }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -46,6 +47,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginForm = new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, Validators.required)
+    });
+    this.ProfileForm = new FormGroup({
+      'signuptype': new FormControl(null, [Validators.required])
     });
 
     console.log(this.auth.loggedIn());
@@ -85,7 +89,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         response => {
           localStorage.setItem('access_token', response.access_token);
           console.log(response.access_token);
-          this.router.navigate['student/62'];
+          this.router.navigateByUrl('student/62');
         },
         error => {
           console.log(error)
@@ -93,6 +97,19 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       ));
       
+  }
+  onProfile(){
+    const profile = this.ProfileForm.value.signuptype;
+    //console.log(profile);
+    if(profile == 'student'){
+      this.router.navigateByUrl('student/62');
+    }
+    if(profile == 'instructor'){
+      this.router.navigateByUrl('instructor/2');
+    }
+    if(profile == 'institution'){
+      this.router.navigateByUrl('institution/112');
+    }
   }
 
   ngOnDestroy(){
