@@ -5,7 +5,7 @@ import { Response } from "@angular/http";
 import { Course } from '../../../courses/course.interface';
 import { CourseService } from '../../../courses/course.service';
 import { Subscription } from 'rxjs/Subscription';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -63,7 +63,7 @@ export class CourseProfileComponent implements OnInit, OnDestroy {
    ) {}
 
   ngOnInit() {
-
+    let allSelectedCourse: FormArray = new FormArray([]);
     this.selectCourseForm = new FormGroup({
       'selectedCourse': new FormControl(null, Validators.required)
     });
@@ -103,6 +103,6 @@ export class CourseProfileComponent implements OnInit, OnDestroy {
 
   onselectCourse(){
     const myCourse = this.selectCourseForm.value.selectedCourse;
-    console.log(myCourse);
+    console.log(this.selectCourseForm);
   }
 }
