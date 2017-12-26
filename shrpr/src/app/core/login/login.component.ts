@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         response => {
           localStorage.setItem('access_token', response.access_token);
           console.log(response.access_token);
-          this.router.navigateByUrl('student/62');
+          this.router.navigateByUrl('course-profile');
         },
         error => {
           console.log(error)

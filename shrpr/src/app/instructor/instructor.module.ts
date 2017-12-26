@@ -6,10 +6,12 @@ import { InstructorRoutingModule } from './instructor-routing.module';
 import { StarRatingModule } from 'angular-star-rating';
 
 import { InstructorComponent } from './instructor.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
-    InstructorComponent
+    InstructorComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
