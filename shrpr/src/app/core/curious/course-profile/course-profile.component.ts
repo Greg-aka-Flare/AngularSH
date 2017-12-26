@@ -45,7 +45,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class CourseProfileComponent implements OnInit, OnDestroy {
 
-  suggestForm: FormGroup;
+  selectCourseForm: FormGroup;
   showFun: boolean = true;
   showWork: boolean = true;
   showKids: boolean = true;
@@ -64,8 +64,8 @@ export class CourseProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.suggestForm = new FormGroup({
-      'suggest': new FormControl(null, Validators.required)
+    this.selectCourseForm = new FormGroup({
+      'selectedCourse': new FormControl(null, Validators.required)
     });
 
     this.counterSubscription.add(this.courseService.getCourses(1, 6, true).subscribe(courses => {
@@ -101,97 +101,8 @@ export class CourseProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  private addNewCourse(course, i) {
-
-    let newCourse: Course;
-
-    //wait 100ms for animation to finish
-    setTimeout(() => {
-
-      //get excludes
-      let excludes = this.createExcludes();
-
-      //get new course
-      this.courseService.getCourses(course.group.id, 1, true, excludes).subscribe(courses => {
-
-        if(courses.length > 0){
-
-          //new course
-          newCourse = courses[0];
-
-          //check group id, update necessary group
-          switch(course.group.id){
-            case 1:
-              this.forFun.splice(i, 1, newCourse);
-            break;
-
-            case 2:
-              this.forWork.splice(i, 1, newCourse);
-            break;
-
-            case 3:
-              this.forKids.splice(i, 1, newCourse);
-            break;
-          }
-        }
-        else{
-
-          //set state to remove
-          course.state = 'remove';
-
-          //wait 100ms for animation to finish
-          setTimeout(() => {
-
-            //check group id, update necessary group
-            switch(course.group.id){
-              case 1:
-                this.forFun.splice(i, 1);
-              break;
-
-              case 2:
-                this.forWork.splice(i, 1);
-              break;
-
-              case 3:
-                this.forKids.splice(i, 1);
-              break;
-            }
-          }, 100);
-        }
-      });
-
-    }, 100);
-  }
-
-  private createExcludes() {
-
-    let excludes: number[] = [];
-
-    //for each group, create array of ids to exclude, return array
-    if(this.forFun.length > 0){
-
-      for(let course of this.forFun){
-
-        excludes.push(course.id);
-      }
-    }
-
-    if(this.forWork.length > 0){
-
-      for(let course of this.forWork){
-
-        excludes.push(course.id);
-      }
-    }
-
-    if(this.forKids.length > 0){
-
-      for(let course of this.forKids){
-
-        excludes.push(course.id);
-      }
-    }
-
-    return excludes;
+  onselectCourse(){
+    const myCourse = this.selectCourseForm.value.selectedCourse;
+    console.log(myCourse);
   }
 }

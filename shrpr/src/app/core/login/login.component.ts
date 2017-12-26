@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         response => {
           localStorage.setItem('access_token', response.access_token);
           console.log(response.access_token);
-          this.router.navigateByUrl('course-profile');
+          this.router.navigateByUrl('student/62');
         },
         error => {
           console.log(error)
@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     const profile = this.ProfileForm.value.signuptype;
     //console.log(profile);
     if(profile == 'student'){
-      this.router.navigateByUrl('student/62');
+      this.router.navigateByUrl('course-profile');
     }
     if(profile == 'instructor'){
       this.router.navigateByUrl('instructor/2');
