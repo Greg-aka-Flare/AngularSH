@@ -5,8 +5,8 @@ import { Response } from "@angular/http";
 import { Course } from '../../../courses/course.interface';
 import { CourseService } from '../../../courses/course.service';
 import { Subscription } from 'rxjs/Subscription';
-import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { FormArray, FormGroup, FormControl, Validators} from '@angular/forms';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-course-profile',
@@ -60,10 +60,12 @@ export class CourseProfileComponent implements OnInit, OnDestroy {
 
   constructor(
     private courseService: CourseService,
+    private router: Router
    ) {}
 
   ngOnInit() {
-    let allSelectedCourse: FormArray = new FormArray([]);
+    
+    
     this.selectCourseForm = new FormGroup({
       'selectedCourse': new FormControl(null, Validators.required)
     });
@@ -80,6 +82,7 @@ export class CourseProfileComponent implements OnInit, OnDestroy {
       this.forKids = courses;
     }));
   }
+
 
   ngOnDestroy() {
     this.counterSubscription.unsubscribe();
@@ -103,6 +106,7 @@ export class CourseProfileComponent implements OnInit, OnDestroy {
 
   onselectCourse(){
     const myCourse = this.selectCourseForm.value.selectedCourse;
-    console.log(this.selectCourseForm);
+    //console.log(this.selectCourseForm);
+    this.router.navigateByUrl('student/62');
   }
 }
