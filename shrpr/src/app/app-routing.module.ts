@@ -13,12 +13,12 @@ import { InstructorComponent } from './instructor/instructor.component';
 import { InstitutionComponent } from './institution/institution.component';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './core/login/login.component';
-import { CourseProfileComponent } from './core/curious/course-profile/course-profile.component';
 
 const appRoutes: Routes = [
 	{ path: '', component: LandingComponent },
 	{ path: 'home', component: HomeComponent, canActivate: [LandingGuard] },
 	{ path: 'marketing', loadChildren: './marketing/marketing.module#MarketingModule', canActivate: [LandingGuard] },
+	{ path: 'profile', loadChildren: './profile/profile.module#ProfileModule', canActivate: [LandingGuard] },
 	{ path: 'team', loadChildren: './team/team.module#TeamModule' },
 	{ path: 'instructor/:id', loadChildren: './instructor/instructor.module#InstructorModule', canActivate: [LandingGuard] },
 	{ path: 'student/:id', loadChildren: './student/student.module#StudentModule', canActivate: [LandingGuard] },
@@ -27,7 +27,6 @@ const appRoutes: Routes = [
 	{ path: 'about', component: AboutComponent },
 	{ path: 'values', component: ValuesComponent, canActivate: [LandingGuard] },
 	{ path: 'videos', component: VideosComponent, canActivate: [LandingGuard] },
-	{ path: 'course-profile', component: CourseProfileComponent, canActivate: [LandingGuard] },
 	{ path: 'podcast', component: PodcastComponent, canActivate: [LandingGuard] },
 	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent, canActivate: [LandingGuard] },
 	{ path: 'institution/:id', loadChildren: './institution/institution.module#InstitutionModule', canActivate: [LandingGuard] }

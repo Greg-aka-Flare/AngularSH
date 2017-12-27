@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgModel,FormArray, FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-profile',

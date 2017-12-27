@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     const profile = this.ProfileForm.value.signuptype;
     //console.log(profile);
     if(profile == 'student'){
-      this.router.navigateByUrl('course-profile');
+      this.router.navigateByUrl('course-select');
     }
     if(profile == 'instructor'){
       this.router.navigateByUrl('instructor/2');

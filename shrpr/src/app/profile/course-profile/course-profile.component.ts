@@ -1,11 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Response } from "@angular/http";
-
-import { Course } from '../../../courses/course.interface';
-import { CourseService } from '../../../courses/course.service';
+import { CommonModule } from '@angular/common';
+import { Course } from '../../courses/course.interface';
+import { CourseService } from '../../courses/course.service';
 import { Subscription } from 'rxjs/Subscription';
-import { FormArray, FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router } from "@angular/router";
 
 @Component({
