@@ -105,7 +105,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.router.navigateByUrl('profile/course-select');
     }
     if(profile == 'instructor'){
-      this.router.navigateByUrl('instructor/2');
+      this.router.navigateByUrl('profile/instructor-course');
     }
     if(profile == 'institution'){
       this.router.navigateByUrl('institution/112');
