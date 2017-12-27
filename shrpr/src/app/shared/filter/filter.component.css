@@ -33,40 +33,81 @@ section#filter{
 	margin: 0 0 20px 0;
 }
 section#filter form{
-	padding: 20px;
+	padding: 5px 0;
 }
 section#filter form h1{
 	font-size: 24px;
 	margin: 0;
-	padding: 0;
+	padding: 0 10px;
 }
 section#filter form p{
 	color: #666;
 	font-size: 14px;
 	font-style: italic;
-	padding: 0;
+	padding: 0 10px 10px 10px;
 }
 section#filter form fieldset{
-	border: 1px solid #eee;
+	background-color: #fff;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	border-left: none;
+	border-right: none;
+	margin: 0;
 	padding: 10px 20px;
-	margin: 20px 0; 
 }
-section#filter form fieldset h2{
+section#filter form fieldset .toggle{
+	background: none;
+	border: none;
 	color: #666;
-	font-size: 16px;
-	font-style: italic;
-	line-height: 24px;
-	margin: 0 0 10px 0;
-	padding: 0 0 5px 0;
-}
-section#filter form fieldset div{
+	cursor: pointer;
 	display: block;
-	font-size: 14px;
+	font-size: 18px;
 	line-height: 24px;
+	margin: 0;
+	padding: 0 0 5px 0;
+	text-align: left;
+	text-transform: uppercase;
+	width: 100%;
+}
+section#filter form fieldset .toggle:focus, section#filter form fieldset .toggle:focus{
+    outline: none;
+}
+section#filter form fieldset .toggle i{
+	margin: 0 10px 0 0;
+	width: 12px;
+}
+section#filter form fieldset .options.closed{
+	display: none;
+}
+section#filter .btn-ctn{
+	padding: 20px 0 25px 0;
+	text-align: center;
+}
+section#filter .btn-ctn button{
+	background: none;
+    border: 2px solid #d53b3c;
+    border-radius: 10px;
+    color: #d53b3c;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 14px;
+    margin: 0 5px;
+    padding: 5px 3px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 40%;
+}
+section#filter form fieldset .option{
+	display: block;
+	font-size: 16px;
+	line-height: 24px;
+	padding: 2.5px 0;
 	position: relative;
 	vertical-align: middle;
 }
-section#filter form fieldset div input{
+section#filter form fieldset .option input{
 	vertical-align: middle;
 }
 
@@ -93,9 +134,6 @@ section#filter form fieldset div input{
 		display: table-cell;
 		vertical-align: top;
 		width: 25%;
-	}
-	section#filter form{
-		padding: 10px 20px;
 	}
 
 	/*** Course List ***/

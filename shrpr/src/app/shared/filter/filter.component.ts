@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { Renderer2, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
@@ -19,7 +20,7 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
     ])
   ]
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent implements OnInit, AfterViewInit {
 
 	@Input('courses') courses: any[];
 	@Output() onFilter: EventEmitter<any> = new EventEmitter();
@@ -29,8 +30,13 @@ export class FilterComponent implements OnInit {
 	courseCount: number = 0;
 	instructors: any[] = [];
   state: string = 'hide';
+  @ViewChildren('fieldset') fieldsets: QueryList<any>;
 
-  constructor(public formBuilder: FormBuilder, public el: ElementRef) {}
+  constructor(
+    private formBuilder: FormBuilder, 
+    private el: ElementRef, 
+    private renderer: Renderer2
+  ) {}
 
   ngOnInit() {
 
@@ -64,6 +70,59 @@ export class FilterComponent implements OnInit {
     this.filterForm.valueChanges.subscribe(  
       (form: any) => this.filter(form)
     );
+  }
+
+  ngAfterViewInit() {
+
+    //for each fieldset
+    this.fieldsets.forEach(fieldset => {
+
+      //get elements
+      let opened = false;
+      let toggle = fieldset.nativeElement.querySelector('.toggle');
+      let options = fieldset.nativeElement.querySelector('.options');
+      let inputs = options.querySelectorAll('input');
+      let icon = toggle.querySelector('i');
+      let all = fieldset.nativeElement.querySelector('.all');
+      let none = fieldset.nativeElement.querySelector('.none');
+
+      //close initially
+      this.renderer.addClass(options, 'closed');
+
+      //on toggle click
+      this.renderer.listen(toggle, 'click', () => {
+
+        //check if opened, toggle classes
+        if(opened){
+
+          opened = false;
+          
+          this.renderer.removeClass(icon, 'fa-angle-down');
+          this.renderer.addClass(icon, 'fa-angle-right');
+          this.renderer.addClass(options, 'closed');
+        }
+        else{
+
+          opened = true;
+
+          this.renderer.removeClass(icon, 'fa-angle-right');
+          this.renderer.addClass(icon, 'fa-angle-down');
+          this.renderer.removeClass(options, 'closed');
+        }
+      });
+
+      //on all click
+      this.renderer.listen(all, 'click', () => {
+
+        for(let input of inputs) input.checked = true;
+      });
+
+      //on none click
+      this.renderer.listen(none, 'click', () => {
+
+        for(let input of inputs) input.checked = false;
+      });
+    });
   }
 
   @HostListener('window:scroll', ['$event']) checkScroll() {

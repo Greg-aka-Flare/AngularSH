@@ -19,56 +19,76 @@
 
 			<p>Modify the courses you would like to see.</p>
 
-			<fieldset>
-				<h2>Categories:</h2>
+			<fieldset #fieldset>
+				<button class="toggle">
+					<i class="fa fa-angle-right"></i> Categories
+				</button><!-- .toggle -->
 
-				<div>
-					<input 
-						type="checkbox" 
-						name="fun" 
-						id="fun" 
-						formControlName="fun"
-					/>
+				<section class="options">
+					<div class="btn-ctn">
+						<button class="all">Select All</button><!-- .all -->
 
-					<label for="fun">For Fun</label> 
-				</div>
+						<button class="none">Select None</button><!-- .none -->
+					</div><!-- .btn-ctn -->
 
-				<div>
-					<input 
-						type="checkbox" 
-						name="work" 
-						id="work" 
-						formControlName="work"
-					/>
+					<div class="option">
+						<input 
+							type="checkbox" 
+							name="fun" 
+							id="fun" 
+							formControlName="fun"
+						/>
 
-					<label for="work">For Work</label> 
-				</div>
+						<label for="fun">For Fun</label> 
+					</div><!-- .option -->
 
-				<div>
-					<input 
-						type="checkbox" 
-						name="kids" 
-						id="kids" 
-						formControlName="kids"
-					/>
+					<div class="option">
+						<input 
+							type="checkbox" 
+							name="work" 
+							id="work" 
+							formControlName="work"
+						/>
 
-					<label for="kids">For Kids</label> 
-				</div>
+						<label for="work">For Work</label> 
+					</div><!-- .option -->
+
+					<div class="option">
+						<input 
+							type="checkbox" 
+							name="kids" 
+							id="kids" 
+							formControlName="kids"
+						/>
+
+						<label for="kids">For Kids</label> 
+					</div><!-- .option -->
+				</section><!-- .options -->
 			</fieldset>
 
-			<fieldset>
-				<h2>Instructors:</h2>
+			<fieldset #fieldset>
+				<button class="toggle">
+					<i class="fa fa-angle-right"></i> Instructors
+				</button><!-- .toggle -->
 
-				<div *ngFor="let instructor of instructors; let i = index">
-					<input 
-						type="checkbox" 
-						name="instructor_{{ i }}" 
-						id="instructor_{{ i }}" 
-						formControlName="instructor_{{ i }}"
-					/>
-					
-					<label for="instructor_{{ i }}">{{ instructor.name }}</label> 
-				</div>
+				<section class="options">
+					<div class="btn-ctn">
+						<button class="all">Select All</button><!-- .all -->
+
+						<button class="none">Select None</button><!-- .none -->
+					</div><!-- .btn-ctn -->
+
+					<div class="option" *ngFor="let instructor of instructors; let i = index">
+						<input 
+							type="checkbox" 
+							name="instructor_{{ i }}" 
+							id="instructor_{{ i }}" 
+							formControlName="instructor_{{ i }}"
+						/>
+						
+						<label for="instructor_{{ i }}">{{ instructor.name }}</label> 
+					</div><!-- .option -->
+				</section><!-- .options -->
 			</fieldset>
 		</form>
 	</section><!-- #filter -->
