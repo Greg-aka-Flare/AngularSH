@@ -9,12 +9,14 @@ import { CoursesRoutingModule } from './courses-routing.module';
 import { CoursesComponent } from './courses.component';
 import { CourseComponent } from './course/course.component';
 import { CourseListComponent } from './course-list/course-list.component';
+import { CourseSelectComponent } from './course-select/course-select.component';
 
 @NgModule({
   declarations: [
   	CourseComponent,
   	CoursesComponent,
     CourseListComponent,
+    CourseSelectComponent,
   ],
   imports: [
     CommonModule,
