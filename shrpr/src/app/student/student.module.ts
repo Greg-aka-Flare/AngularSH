@@ -4,19 +4,20 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { StudentRoutingModule } from './student-routing.module';
 import { StarRatingModule } from 'angular-star-rating';
-
+import { FormsModule } from '@angular/forms';
 import { StudentComponent } from './student.component';
 
 @NgModule({
   declarations: [
-  	StudentComponent
+    StudentComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
     StudentRoutingModule,
-    StarRatingModule
+    StarRatingModule,
+    FormsModule
   ]
 })
 export class StudentModule { }

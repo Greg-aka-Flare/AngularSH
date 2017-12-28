@@ -1,0 +1,12 @@
+
+  <span *ngIf="editing">
+    <input #inlineEditControl [required]="required" (blur)="onBlur($event)" [name]="value" [(ngModel)]="value" [type]="type" [placeholder]="label" />
+    <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
+    <button class="btn btn-default" (click)="cancel(value)"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+  </span>
+  <span *ngIf="!editing">
+      <a href="javascript:void(0)" (click)="edit(value)" class="exit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+    <span title="Click to edit"  (focus)="edit(value);" tabindex="0" class="inline-edit">{{value}}&nbsp;</span>
+  </span>
+
+

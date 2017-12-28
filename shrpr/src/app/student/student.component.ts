@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
@@ -9,6 +10,7 @@ import { Course } from "../courses/course.interface";
 import { CourseService } from "../courses/course.service";
 import { Student } from "../student/student.interface";
 import { StudentService } from '../student/student.service';
+import { InlineEditComponent } from '../shared/inline-edit/inline-edit.component';
 
 
 @Component({
@@ -45,7 +47,10 @@ export class StudentComponent implements OnInit, OnDestroy {
           this.width = data;
         }));
       }
-   
+      onChange(event) {
+        var files = event.srcElement.files;
+        console.log(files);
+    }
   ngOnInit() {
     this.subscriptions.add(this.studentService.getStudent(this.id)
     .subscribe(

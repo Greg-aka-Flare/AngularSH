@@ -2,15 +2,18 @@
   <article *ngIf="students">
   <section id="profile-header">
       <div class="profile-picture">
+          <a class="profile-upload" href="javascript:void(0)"><input type="file" (change)="onChange($event)"/><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
         <img *ngIf="!students?.profile_img" src="../../assets/img/students-picture.png" alt="" title="">
         <img *ngIf="students?.profile_img" src="../../assets/img/{{students?.profile_img}}" alt="" title="">
+
         <div class="social-icon">
             <a href="javascript:void(0);"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
             <a href="javascript:void(0);"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
             <a href="javascript:void(0);"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
         </div>
       </div>
-      <div><h2>{{students?.name}}</h2>
+      <div><h2><app-inline-edit [(ngModel)]="students.name" label="students.name" [required]="true" type="text">
+      </app-inline-edit></h2>
         <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ students?.addresses[0]?.city }}, {{ students?.addresses[0]?.state }}
         <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp> |  <a href="/student/{{students?.id}}#reviews">33 reviews</a></div>
       </div>
@@ -43,8 +46,41 @@
       <tab tabTitle="CONTACT">
         <div class="contact_box">
             <address *ngFor="let address of students?.addresses">
-                <strong>{{ address?.type }}</strong><br>{{ address?.streetAddress }}<br>{{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>{{ address?.country }}<br><br>Phone: <a href="tel:{{ students?.phone }}">{{ students?.phone }}</a><br>Email: <a href="mailto:{{students?.email}}"> {{students?.email}}</a></address>
-        </div>
+                <div *ngIf="!isEdit"><strong>{{ address?.type }}</strong><br>
+                {{ address?.streetAddress }}<br>
+                {{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>
+                {{ address?.country }}<br>
+                <br>
+                Phone: <a href="tel:{{ students?.phone }}">{{ students?.phone }}</a><br>
+                Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
+                <a href="javascript:void(0)" (click)="isEdit=true" class="exit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                </div>
+                <div *ngIf="isEdit" (keydown.enter)="isEdit=false" class="edit-form">
+                    <label>Type:</label>
+                    <input type="text"   [(ngModel)]="address.type"/><br>
+                  <label>Street Address:</label>
+                <input type="text"   [(ngModel)]="address.streetAddress"/><br>
+              <label>City:</label>
+                <input type="text"   [(ngModel)]="address.city"/>
+                <br>
+              <label>State:</label>
+                <input type="text"   [(ngModel)]="address.state"/>
+                <br>
+              <label>Zip:</label>
+                <input type="text"   [(ngModel)]="address.zip"/>
+                <br>
+              <label>Country:</label>
+                <input type="text"   [(ngModel)]="address.country"/>
+                <br>
+              <label>Phone:</label>
+                <input type="text"   [(ngModel)]="students.phone"/><br>
+              <label>Email:</label>
+                <input type="text"   [(ngModel)]="students.email"/>
+                <br>
+                <button type="submit" (click)="isEdit=false" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
+                <button class="btn btn-default" (click)="isEdit=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                </div>
+                </address> </div>
       </tab>
     </tabs><!-- #Tab -->
       <!-- desktop view -->
@@ -75,7 +111,41 @@
         <h2>CONTACT</h2>
         <div class="contact_box">
             <address *ngFor="let address of students?.addresses">
-                <strong>{{ address?.type }}</strong><br>{{ address?.streetAddress }}<br>{{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>{{ address?.country }}<br><br>Phone: <a href="tel:{{ students?.phone }}">{{ students?.phone }}</a><br>Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a></address>
+                <div *ngIf="!isEdit"><strong>{{ address?.type }}</strong><br>
+                {{ address?.streetAddress }}<br>
+                {{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>
+                {{ address?.country }}<br>
+                <br>
+                Phone: <a href="tel:{{ students?.phone }}">{{ students?.phone }}</a><br>
+                Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
+                <a href="javascript:void(0)" (click)="isEdit=true" class="exit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                </div>
+                <div *ngIf="isEdit" (keydown.enter)="isEdit=false" class="edit-form">
+                    <label>Type:</label>
+                    <input type="text"   [(ngModel)]="address.type"/><br>
+                  <label>Street Address:</label>
+                <input type="text"   [(ngModel)]="address.streetAddress"/><br>
+              <label>City:</label>
+                <input type="text"   [(ngModel)]="address.city"/>
+                <br>
+              <label>State:</label>
+                <input type="text"   [(ngModel)]="address.state"/>
+                <br>
+              <label>Zip:</label>
+                <input type="text"   [(ngModel)]="address.zip"/>
+                <br>
+              <label>Country:</label>
+                <input type="text"   [(ngModel)]="address.country"/>
+                <br>
+              <label>Phone:</label>
+                <input type="text"   [(ngModel)]="students.phone"/><br>
+              <label>Email:</label>
+                <input type="text"   [(ngModel)]="students.email"/>
+                <br>
+                <button type="submit" (click)="isEdit=false" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
+                <button class="btn btn-default" (click)="isEdit=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                </div>
+                </address>
           </div>
       </section>
       <!-- desktop view End -->
