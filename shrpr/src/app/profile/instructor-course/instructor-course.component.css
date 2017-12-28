@@ -69,3 +69,10 @@
 .formRow textarea {
     min-height: 150px;
 }
+.sessionDetailTable {
+    width:100%;
+    border-spacing: 0;
+}
+.formRow .sessionDetailTable input[type="date"], .formRow .sessionDetailTable input[type="time"] {
+    width:99%;
+}
