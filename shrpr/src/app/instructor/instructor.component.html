@@ -19,7 +19,7 @@
   </section><!-- #profile header -->
   <tabs *ngIf="width < 768" >
     <tab tabTitle="Courses">
-    <h3>Upcoming Events with Triple Threat Training CT</h3>
+    <h3>{{instructors?.name}}</h3>
     <article class="card-box" *ngFor="let card of courseCard; let i = index">
         <div class="img-ctn">
             <div class="price">
@@ -33,7 +33,10 @@
         </div>
         <div class="card-info">
           <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp></span></div>
-          <p class="date">
+          <p class="location">
+            <i class="fa fa-map-marker" aria-hidden="true"></i> 
+            <a href="javascript:void(0);">{{ card?.semesters[0]?.addresses[0]?.city }}, {{ card?.semesters[0]?.addresses[0]?.state }}</a>
+        </p><!-- .location --><p class="date">
             <i class="fa fa-calendar" aria-hidden="true"></i>
             <time class="date_stamp" title="{{ card?.semesters[0]?.start_date | datex: 'LL' }}">{{ card?.semesters[0]?.start_date | datex: 'LL' }}</time>
           </p>
@@ -56,7 +59,7 @@
   <!-- desktop view -->
   <section *ngIf="width > 767" id="desktopcourses">
     <h2>Courses</h2>
-    <h3>Upcoming Events with Triple Threat Training CT</h3>
+    <h3>{{instructors?.name}}</h3>
     <article class="card-box" *ngFor="let card of courseCard; let i = index">
       <div class="img-ctn">
           <div class="price">

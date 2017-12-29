@@ -1,6 +1,9 @@
  :host span {
      position: relative;
  }
+ .inline-edit {
+     padding: 0 20px 0 0;
+ }
   input {
     border: 1px solid #ccc;
     border-radius: 2px;
@@ -9,7 +12,7 @@
   }
   .exit-btn {
       position: absolute;
-      right: -20px;
+      right: 0;
       top: 0;
       visibility: hidden;
       font-size: 16px;

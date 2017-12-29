@@ -52,8 +52,11 @@
    }
    .location a {
        text-decoration: none;
-   }   
-@media only screen and (min-width: 769px) {
+   }  
+   :host /deep/ tabs .tabs tab div .card-box h3 {
+       color: #ffffff;
+   }  
+@media only screen and (min-width: 767px) {
 :host /deep/ tabs .tabs tab > div {
     padding: 10PX;
     overflow:hidden;

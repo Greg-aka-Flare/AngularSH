@@ -587,13 +587,23 @@ carousel {
 }
 .img-ctn figure {
 	margin:0;
-	height: 280px;
-	overflow:hidden;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #f7f7f7;
+    box-sizing: border-box;
 }
 .img-ctn figure img {
 	display:block;
-	margin:0;
-	width:100%;
+    margin:0;
+    width:100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%); /* IE 9 */
+    -webkit-transform: translate(-50%, -50%); /* Safari */
+	transform: translate(-50%, -50%);
+	min-width: 400px;
 }
 .price {
 	background-color: #e7aa62;
@@ -603,6 +613,7 @@ carousel {
 	position: absolute;
 	top: 20px;
 	right: 0;
+	z-index: 9;
 }
 .group_rating {
 	float: right;
@@ -625,7 +636,7 @@ carousel {
 	background: rgba(0, 0, 0, 0.5);
 	bottom: 8px;
 	box-sizing: border-box;
-	color: #fc6a02;
+	color: #ffffff;
 	font-size: 18px;
 	left: 0;
 	line-height: 22px;

@@ -61,7 +61,7 @@
 }
 .exit-btn {
     position: absolute;
-    right: 0;
+    right:5%;
     top: 0;
     visibility: hidden;
     font-size: 16px;
@@ -75,8 +75,8 @@
     display: inline-block;
     vertical-align: middle;
     max-width: 150px;
-    margin: 0 20px 10px 0;
-    width: 50%;
+    margin: 0 2% 10px 0;
+    width: 49%;
 } 
 .edit-form input {
     border: 1px solid #ccc;
@@ -114,5 +114,8 @@
 :host /deep/ tabs .tabs tab > div {
     padding: 10PX;
     overflow:hidden;
+ }
+ .contact_box address {
+     width: 49%;
  }
 }
