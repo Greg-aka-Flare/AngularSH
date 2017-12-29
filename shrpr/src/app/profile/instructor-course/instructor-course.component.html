@@ -79,30 +79,12 @@
                   <th width="30%">Start Time</th>
                   <th width="30%">End Time</th>
                 </tr>
-                <tr>
-                  <td>1</td>
-                  <td><input type="date" name="courseStartDateText"></td>
-                  <td><input type="time" name="courseStartTimeText" id="courseTime1"></td>
-                  <td><input type="time" name="courseStartTimeText" id="courseTime2"></td>
+                <tr *ngFor="let session of sessionArray; let i = index" >
+                  <td>{{i+1}}</td>
+                  <td><input type="date" name="courseStartDateText" value="{{session?.sessionDate}}"></td>
+                  <td><input type="time" name="courseStartTimeText" id="courseTime1" value="{{session?.startTime}}"></td>
+                  <td><input type="time" name="courseEndTimeText" id="courseTime2" value="{{session?.endTime}}"></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td><input type="date" name="courseStartDateText"></td>
-                    <td><input type="time" name="courseStartTimeText" id="courseTime1"></td>
-                    <td><input type="time" name="courseStartTimeText" id="courseTime2"></td>
-                  </tr>
-                  <tr>
-                      <td>3</td>
-                      <td><input type="date" name="courseStartDateText"></td>
-                      <td><input type="time" name="courseStartTimeText" id="courseTime1"></td>
-                      <td><input type="time" formControlName="courseStartTimeText" id="courseTime2"></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><input type="date" name="courseStartDateText"></td>
-                        <td><input type="time" name="courseStartTimeText" id="courseTime1"></td>
-                        <td><input type="time" name="courseStartTimeText" id="courseTime2"></td>
-                      </tr>
               </tbody>
             </table>
               

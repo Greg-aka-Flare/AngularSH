@@ -14,7 +14,7 @@ export class InstructorCourseComponent implements OnInit {
   
   
   instructorCourseForm: FormGroup;
-  private sessionArray = new Array<{sessionDate:string, startTime: string, endTime: string}>();
+  private sessionArray: any[] = [];
   //sessionArray: Array<{sessionDate:string, startTime: string, endTime: string}>;
   //private sessionArray = new Array<{sessionDate:string}>();
 
@@ -94,12 +94,24 @@ export class InstructorCourseComponent implements OnInit {
     
     courseStartDateText = moment(courseStartDateText).format('DD-MM-YYYY');
 
-    this.sessionArray.push(courseStartDateText, courseStartTimeText, courseEndTimeText);
-    for(var i = 0; i < this.courseSessionNumber; i++){
+    this.sessionArray.push(
+      {
+        "sessionDate" : courseStartDateText, 
+        "startTime" : courseStartTimeText, 
+        "endTime" : courseEndTimeText
+      }
+    );
+    for(var i = 0; i < this.courseSessionNumber-1; i++){
     
       courseStartDateText = moment(courseStartDateText, 'DD-MM-YYYY').add(7, 'days').calendar();
       courseStartDateText = moment(courseStartDateText).format('DD-MM-YYYY');
-      this.sessionArray.push(courseStartDateText, courseStartTimeText, courseEndTimeText);
+      this.sessionArray.push(
+        {
+        "sessionDate" : courseStartDateText, 
+        "startTime" : courseStartTimeText, 
+        "endTime" : courseEndTimeText
+        }
+      );
       
     }
     console.log(this.sessionArray);
