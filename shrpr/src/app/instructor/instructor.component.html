@@ -19,7 +19,7 @@
   </section><!-- #profile header -->
   <tabs *ngIf="width < 768" >
     <tab tabTitle="Courses">
-    <h3>{{instructors?.name}}</h3>
+    <h3>Upcoming Events with {{instructors?.name}} </h3>
     <article class="card-box" *ngFor="let card of courseCard; let i = index">
         <div class="img-ctn">
             <div class="price">
@@ -59,7 +59,7 @@
   <!-- desktop view -->
   <section *ngIf="width > 767" id="desktopcourses">
     <h2>Courses</h2>
-    <h3>{{instructors?.name}}</h3>
+    <h3>Upcoming Events with {{instructors?.name}}</h3>
     <article class="card-box" *ngFor="let card of courseCard; let i = index">
       <div class="img-ctn">
           <div class="price">
