@@ -26,14 +26,38 @@ button#filter:focus{
     outline:0;
 }
 
+/*** Total Button ***/
+button#total{
+    background-color: #d53b3c;
+    border: none;
+    border-radius: 20px;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: 'circularstd book';
+    font-size: 18px;
+    line-height: 18px;
+    margin: 5px 0 0 0;
+    padding: 13px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: top;
+    width: 100%;
+}
+button#total:hover{
+    background-color: #c95f5f;
+}
+button#total:focus{
+    outline:0;
+}
+
 /*** Filter ***/
 section#filter{
-	background-color: #fafafa;
-	border: 1px solid #eee;
-	margin: 0 0 20px 0;
+	padding: 0 0 20px 0;
 }
 section#filter form{
-	padding: 5px 0;
+	background-color: #fafafa;
+	border: 1px solid #eee;
+	padding: 5px 0 0 0;
 }
 section#filter form h1{
 	font-size: 24px;
@@ -115,11 +139,14 @@ section#filter form fieldset .option input{
 .mobile-hide{
 	display: none;
 }
+.desktop-hide{
+	display: block;
+}
 
 @media only screen and (min-width: 960px) {
 
-	/*** Wrapper ***/
-	.wrapper{
+	/*** Container ***/
+	#ctn{
 		display: table;
 		width: 100%;
 	}
@@ -147,5 +174,8 @@ section#filter form fieldset .option input{
 	/*** Hide ***/
 	.mobile-hide{
 		display: block;
+	}
+	.desktop-hide{
+		display: none;
 	}
 }

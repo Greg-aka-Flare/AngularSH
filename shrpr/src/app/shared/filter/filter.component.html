@@ -19,7 +19,7 @@
 
 			<p>Modify the courses you would like to see.</p>
 
-			<fieldset #fieldset>
+			<fieldset group="categories" #fieldset>
 				<button class="toggle">
 					<i class="fa fa-angle-right"></i> Categories
 				</button><!-- .toggle -->
@@ -66,7 +66,7 @@
 				</section><!-- .options -->
 			</fieldset>
 
-			<fieldset #fieldset>
+			<fieldset group="instructors" #fieldset>
 				<button class="toggle">
 					<i class="fa fa-angle-right"></i> Instructors
 				</button><!-- .toggle -->
@@ -81,15 +81,23 @@
 					<div class="option" *ngFor="let instructor of instructors; let i = index">
 						<input 
 							type="checkbox" 
-							name="instructor_{{ i }}" 
-							id="instructor_{{ i }}" 
-							formControlName="instructor_{{ i }}"
+							name="instructor_{{ instructor.id }}" 
+							id="instructor_{{ instructor.id }}" 
+							formControlName="instructor_{{ instructor.id }}"
 						/>
 						
-						<label for="instructor_{{ i }}">{{ instructor.name }}</label> 
+						<label for="instructor_{{ instructor.id }}">{{ instructor.name }}</label> 
 					</div><!-- .option -->
 				</section><!-- .options -->
 			</fieldset>
 		</form>
+
+		<button 
+			id="total"
+			[ngClass]="{ 'desktop-hide': !showFilter }"
+			(click)="toggleFilter()" 
+		>
+			{{ courseCount }}
+		</button><!-- #total -->
 	</section><!-- #filter -->
 </div><!-- #ctn -->

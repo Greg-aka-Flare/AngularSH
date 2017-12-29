@@ -27,24 +27,24 @@ export class FilterComponent implements OnInit, AfterViewInit {
 	filterForm: FormGroup;
   showFilter: boolean = false;
 	filtered: any[] = [];
-	courseCount: number = 0;
+	courseCount: string = 'No Courses';
 	instructors: any[] = [];
   state: string = 'hide';
   @ViewChildren('fieldset') fieldsets: QueryList<any>;
 
   constructor(
-    private formBuilder: FormBuilder, 
+    private fb: FormBuilder, 
     private el: ElementRef, 
     private renderer: Renderer2
   ) {}
 
   ngOnInit() {
 
-    //get count
-    this.courseCount = this.courses.length;
+    //get course count
+    this.courseCount = this.getCourseCount(this.courses.length);
 
     //create form
-    this.filterForm = this.formBuilder.group({
+    this.filterForm = this.fb.group({
       'fun': [true],
       'work': [true],
       'kids': [true]
@@ -60,7 +60,7 @@ export class FilterComponent implements OnInit, AfterViewInit {
 
 	  		this.instructors.push(course.instructor);
 
-        this.filterForm.addControl('instructor_' + i, new FormControl(true));
+        this.filterForm.addControl('instructor_' + course.instructor.id, new FormControl(true));
 
         ++i;
   		}
@@ -85,6 +85,7 @@ export class FilterComponent implements OnInit, AfterViewInit {
       let icon = toggle.querySelector('i');
       let all = fieldset.nativeElement.querySelector('.all');
       let none = fieldset.nativeElement.querySelector('.none');
+      let group = fieldset.nativeElement.getAttribute('group');
 
       //close initially
       this.renderer.addClass(options, 'closed');
@@ -115,12 +116,54 @@ export class FilterComponent implements OnInit, AfterViewInit {
       this.renderer.listen(all, 'click', () => {
 
         for(let input of inputs) input.checked = true;
+
+        switch(group) {
+          case 'categories':
+            this.filterForm.patchValue({
+              'fun': true,
+              'work': true,
+              'kids': true
+            })
+          break;
+          case 'instructors':
+            let obj = {};
+
+            for(let instructor of this.instructors){
+              let key = 'instructor_' + instructor.id;
+
+              obj[key] = true;
+            }
+
+            this.filterForm.patchValue(obj);
+          break;
+        }
       });
 
       //on none click
       this.renderer.listen(none, 'click', () => {
 
         for(let input of inputs) input.checked = false;
+
+        switch(group) {
+          case 'categories':
+            this.filterForm.patchValue({
+              'fun': false,
+              'work': false,
+              'kids': false
+            })
+          break;
+          case 'instructors':
+            let obj = {};
+
+            for(let instructor of this.instructors){
+              let key = 'instructor_' + instructor.id;
+
+              obj[key] = false;
+            }
+
+            this.filterForm.patchValue(obj);
+          break;
+        }
       });
     });
   }
@@ -130,11 +173,8 @@ export class FilterComponent implements OnInit, AfterViewInit {
     const componentPosition = this.el.nativeElement.parentElement.offsetTop;
     const scrollPosition = window.pageYOffset;
 
-    if(scrollPosition >= componentPosition) {
-      this.state = 'show'
-    } else {
-      this.state = 'hide'
-    }
+    //show or hide based on scroll position
+    this.state = (scrollPosition >= ( componentPosition ) - 500) ? 'show' : 'hide';
   }
 
   toggleFilter() {
@@ -164,15 +204,33 @@ export class FilterComponent implements OnInit, AfterViewInit {
 					break;
   		}
 
+      //if instructor is not selected, continue to next
+      if(!form['instructor_' + course.instructor.id]) continue;
+
   		//add to filtered array
   		this.filtered.push(course);
   	}
 
   	//get count
-  	this.courseCount = this.filtered.length;
+  	this.courseCount = this.getCourseCount(this.filtered.length);
 
   	//emit new data
   	this.onFilter.emit(this.filtered);
+  }
+
+  private getCourseCount(count: number): string {
+
+    if(count) {
+      if(count === 1) {
+        return '1 Course';
+      }
+      else {
+        return count + ' Courses';
+      }
+    }
+    else {
+      return 'No Courses';
+    }
   }
 
 	private containsObject(obj, list) {
