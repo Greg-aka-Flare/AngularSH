@@ -1,12 +1,12 @@
 <h1>Your Course Information</h1>
 <section id="course-add-container">
-  <form name="courseSubmitForm">
+  <form name="courseSubmitForm" [formGroup]="instructorCourseForm">
     <div class="formHeader"><span>{{slideNo}} / {{lastSlideNo}}</span></div>
     <div #panel class="course-form-box">
       <div class="courseFormPage">
         <div class="formRow">
           <label for="courseGroup">Group</label>
-          <select name="courseGroupSelect" id="courseGroup">
+          <select id="courseGroup" formControlName="courseGroupSelect">
             <option value="">----Select-----</option>
             <option value="1">For Fun</option>
             <option value="2">For Work</option>
@@ -15,7 +15,7 @@
         </div>
         <div class="formRow">
           <label for="courseCategory">Category</label>
-          <select name="courseCategorySelect" id="courseCategory">
+          <select formControlName="courseCategorySelect" id="courseCategory">
             <option value="">----Select-----</option>
             <option value="1">Category One</option>
             <option value="2">Category Two</option>
@@ -24,7 +24,7 @@
         </div>
         <div class="formRow">
           <label for="courseSubCategory">Category</label>
-          <select name="courseSubCategorySelect" id="courseSubCategory">
+          <select formControlName="courseSubCategorySelect" id="courseSubCategory">
             <option value="">----Select-----</option>
             <option value="1">Sub Category One</option>
             <option value="2">Sub Category Two</option>
@@ -36,34 +36,35 @@
       <div class="courseFormPage">
           <div class="formRow">
             <label for="courseTitle">Title</label>
-            <input type="text" name="courseTitleText" id="courseTitle" placeholder="Course Title">
+            <input type="text" formControlName="courseTitleText" id="courseTitle" placeholder="Course Title">
           </div>
           <div class="formRow">
             <label for="courseDescription">Description</label>
-            <textarea name="courseDescriptionText" id="courseDescription"></textarea>
+            <textarea formControlName="courseDescriptionText" id="courseDescription"></textarea>
           </div>
       </div><!-- course Form Page Two-->
 
       <div class="courseFormPage">
           <div class="formRow">
             <label for="courseStartDates">Start Dates</label>
-            <input type="date" name="courseStartDateText" id="courseStartDates">
+            <input type="date" id="courseStartDates" formControlName="courseStartDateText">
           </div>
           <div class="formRow">
               <label for="courseStartTime">Start Time</label>
-              <input type="time" name="courseStartTimeText" id="courseTime">
+              <input type="time" id="courseTime" formControlName="courseStartTimeText">
+              <input type="hidden" id="courseEndTime" formControlName="courseEndTimeText">
             </div>
           <div class="formRow">
             <label for="courseSession">No. of Sessions</label>
-            <input type="number" name="courseSessionNumber" id="courseSession" min="1">
+            <input type="number" id="courseSession" min="1" formControlName="courseSessionNumber">
           </div>
           <div class="formRow">
               <label for="courseDuration">Duration (hrs)</label>
-              <input type="number" name="courseDurationNumber" id="courseDuration" min="1">
+              <input type="number" id="courseDuration" min="1" formControlName="courseDurationNumber">
           </div>
           <div class="formRow">
               <label for="courseLocation">Location</label>
-              <input type="text" name="courseLocationText" id="courseLocation">
+              <input type="text" id="courseLocation" formControlName="courseLocationText">
           </div>
         </div><!-- course Form Page Three-->
 
@@ -80,25 +81,25 @@
                 </tr>
                 <tr>
                   <td>1</td>
-                  <td><input type="date" name="courseStartDateText1"></td>
+                  <td><input type="date" name="courseStartDateText"></td>
                   <td><input type="time" name="courseStartTimeText" id="courseTime1"></td>
                   <td><input type="time" name="courseStartTimeText" id="courseTime2"></td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td><input type="date" name="courseStartDateText1"></td>
+                    <td><input type="date" name="courseStartDateText"></td>
                     <td><input type="time" name="courseStartTimeText" id="courseTime1"></td>
                     <td><input type="time" name="courseStartTimeText" id="courseTime2"></td>
                   </tr>
                   <tr>
                       <td>3</td>
-                      <td><input type="date" name="courseStartDateText1"></td>
+                      <td><input type="date" name="courseStartDateText"></td>
                       <td><input type="time" name="courseStartTimeText" id="courseTime1"></td>
-                      <td><input type="time" name="courseStartTimeText" id="courseTime2"></td>
+                      <td><input type="time" formControlName="courseStartTimeText" id="courseTime2"></td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td><input type="date" name="courseStartDateText1"></td>
+                        <td><input type="date" name="courseStartDateText"></td>
                         <td><input type="time" name="courseStartTimeText" id="courseTime1"></td>
                         <td><input type="time" name="courseStartTimeText" id="courseTime2"></td>
                       </tr>
