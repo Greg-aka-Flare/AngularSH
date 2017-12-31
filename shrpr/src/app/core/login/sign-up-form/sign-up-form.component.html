@@ -1,0 +1,84 @@
+<div class="login-box signup-box" [class.active]="!signup">
+    <form id="signup" [formGroup]="signupForm" (ngSubmit)="onSignup()">
+        <input 
+            type="text" 
+            id="name" 
+            placeholder="Name"
+            formControlName="name" 
+        />
+
+        <span 
+            class="help-block"
+            *ngIf="!signupForm.get('name').valid && signupForm.get('name').touched"
+        >
+            Name is required!
+        </span><!-- .help-block -->
+
+        <input 
+            type="text" 
+            id="email" 
+            placeholder="Email" 
+            formControlName="email" 
+        />
+
+        <span 
+            class="help-block"
+            *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched"
+        >
+            Please Enter a Valid Email!
+        </span><!-- .help-block -->
+
+        <input 
+            type="password" 
+            id="password" 
+            placeholder="Password"
+            formControlName="password" 
+        />
+        
+        <span 
+            class="help-block"
+            *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched"
+        >
+            Password is required!
+        </span><!-- .help-block -->
+        <button>
+            Sign Up <i class="fa fa-user-plus" aria-hidden="true"></i>
+        </button>
+    </form>
+
+    <div class="horizontal-box"></div>
+
+    <div class="social-login">
+        <facebook-login></facebook-login>       
+        <google-signin></google-signin>                    
+        <linkedin-signin></linkedin-signin>  
+    </div>
+</div>
+<!--signup type box start-->
+
+<div class="signup_type" [class.active]="signup">
+    <form id="profile" [formGroup]="ProfileForm" (ngSubmit)="onProfile()">
+    <h3>Select Your Profile: </h3>
+        <div class="signup-radio">
+            <input type="radio" formControlName="signuptype" id="signupStudent" value="student" title="student">
+            <label class="radio" for="signupStudent"><img src="../assets/img/students-picture.png" alt="Student" title="Student"> Student</label>
+        </div>
+
+        <div class="signup-radio">    
+            <input type="radio" formControlName="signuptype" id="signupInstructor" value="instructor">
+            <label class="radio" for="signupInstructor"><img src="../assets/img/instructors-picture.png" alt="Instructor" title="Instructor">Instructor</label>
+        </div>
+
+        <div class="signup-radio">
+            <input type="radio" formControlName="signuptype" id="signupInstitution" value="institution">
+            <label class="radio" for="signupInstitution"><img src="../assets/img/institution.png" alt="Institution" title="Institution">Institution</label>
+        </div>
+
+        <div class="signup-type-btn">
+            <button>
+                    Continue <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </button>
+        </div>  
+    </form>  
+</div>
+<!--signup type box ends-->

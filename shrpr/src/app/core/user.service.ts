@@ -28,4 +28,11 @@ export class UserService {
 			{ name: name, email: email, password: password },
 			{ headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) });
 	}
+
+  checkEmail(email: string) {
+
+		return this.http.post('https://api.shrpr.co/api/user/check_email', 
+			{ email: email },
+			{ headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) });
+  }
 }

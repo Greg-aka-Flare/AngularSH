@@ -1,19 +1,18 @@
 import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Response } from "@angular/http";
 import { CommonModule } from '@angular/common';
-import { Course } from '../../courses/course.interface';
-import { CourseService } from '../../courses/course.service';
+import { Course } from '../../../courses/course.interface';
+import { CourseService } from '../../../courses/course.service';
 import { Subscription } from 'rxjs/Subscription';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-course-profile',
-  templateUrl: './course-profile.component.html',
-  styleUrls: ['./course-profile.component.css'],
+  selector: 'app-course-select',
+  templateUrl: './course-select.component.html',
+  styleUrls: ['./course-select.component.css'],
   providers: [],
   animations: [
   trigger('state', [
@@ -45,7 +44,7 @@ import { Router } from "@angular/router";
 ]
 })
 
-export class CourseProfileComponent implements OnInit, OnDestroy {
+export class CourseSelectComponent implements OnInit, OnDestroy {
 
   selectCourseForm: FormGroup;
   showFun: boolean = true;

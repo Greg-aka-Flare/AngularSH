@@ -17,9 +17,11 @@ import { VideosComponent } from './videos/videos.component';
 import { PodcastComponent } from './podcast/podcast.component';
 import { InterviewwithroblabonneComponent } from './podcast/interviewwithroblabonne.component';
 import { LoginComponent } from './login/login.component';
-import {GoogleSigninComponent} from './login/google/google.component';
-import {FacebookLoginComponent} from './login/facebook/facebook.component';
-import {LinkedinComponent} from './login/linkedin/linkedin.component';
+import { LoginFormComponent } from './login/login-form/login-form.component';
+import { SignUpFormComponent } from './login/sign-up-form/sign-up-form.component';
+import { GoogleSigninComponent } from './login/google/google.component';
+import { FacebookLoginComponent } from './login/facebook/facebook.component';
+import { LinkedinComponent } from './login/linkedin/linkedin.component';
 
 import { StudentService } from '../student/student.service';
 import { AuthService } from '../auth/auth.service';
@@ -44,9 +46,11 @@ import { LandingGuard } from './landing/landing-guard.service';
     PodcastComponent,
     InterviewwithroblabonneComponent,
     LoginComponent,
+    LoginFormComponent,
+    SignUpFormComponent,
     GoogleSigninComponent,
     FacebookLoginComponent,
-    LinkedinComponent,
+    LinkedinComponent
   ],
   imports: [
     CommonModule,
