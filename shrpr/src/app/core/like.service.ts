@@ -13,14 +13,14 @@ export class LikeService {
 
   constructor(private http: HttpClient){ 
 
-    if(JSON.parse(localStorage.getItem('likes')){
+    if(JSON.parse(localStorage.getItem('likes'))){
       this.likes = JSON.parse(localStorage.getItem('likes'));
     }
     else{
       this.likes = [];
     }
 
-    if(JSON.parse(localStorage.getItem('dislikes')){
+    if(JSON.parse(localStorage.getItem('dislikes'))){
       this.dislikes = JSON.parse(localStorage.getItem('dislikes'));
     }
     else{
