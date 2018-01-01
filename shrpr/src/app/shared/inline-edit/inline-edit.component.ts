@@ -81,6 +81,7 @@ export class InlineEditComponent implements ControlValueAccessor, OnInit {
   }
   onSubmit(value){
     this._value = value;
+    console.log(this._value);
 }
 
 cancel(value:any){

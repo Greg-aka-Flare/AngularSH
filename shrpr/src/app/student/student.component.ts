@@ -12,6 +12,9 @@ import { AddreviewComponent } from "../shared/add-a-review/addreview.component";
 import { Student } from "../student/student.interface";
 import { StudentService } from '../student/student.service';
 import { InlineEditComponent } from '../shared/inline-edit/inline-edit.component';
+import {} from '@types/googlemaps';
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+
 
 
 @Component({
@@ -32,11 +35,12 @@ export class StudentComponent implements OnInit, OnDestroy {
   
 
   width = document.documentElement.clientWidth;
-  constructor(private studentService: StudentService, private route: ActivatedRoute, private courseService: CourseService ) {
+  constructor(private studentService: StudentService, private route: ActivatedRoute, private courseService: CourseService,  private mapsAPILoader: MapsAPILoader ) {
     
         /*let sub = this.route.params.subscribe((params: Params) => {
         this.id = params['id'];
         })*/
+  
         let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
           this.id = params['id'];
           }))

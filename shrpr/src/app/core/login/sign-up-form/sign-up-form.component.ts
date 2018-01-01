@@ -23,9 +23,6 @@ export class SignUpFormComponent implements OnInit {
   signup: boolean = false;
   signupError: boolean = false;
   signupErrorText: string;
-  unamePattern = "^[A-Z\\a-z\\d-_\\s]+$";
-  pwdPattern = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$";
-  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   constructor(
   	private fb: FormBuilder,
     private user: UserService,

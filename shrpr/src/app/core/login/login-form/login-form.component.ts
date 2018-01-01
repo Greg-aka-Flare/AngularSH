@@ -13,8 +13,6 @@ import { AuthService } from '../../../auth/auth.service';
   styleUrls: ['../login.component.css']
 })
 export class LoginFormComponent implements OnInit {
-  pwdPattern = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$";
-  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   loginForm: FormGroup;
   signinError: boolean = false;
 
@@ -30,8 +28,8 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {
 
     this.loginForm = new FormGroup({
-      'email': new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern)]),
-      'password': new FormControl(null, [Validators.required, Validators.pattern(this.pwdPattern)])
+      'email': new FormControl(null, [Validators.required]),
+      'password': new FormControl(null, [Validators.required])
     });
   }
 
