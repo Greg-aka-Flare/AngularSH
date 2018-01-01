@@ -20,8 +20,6 @@ export class TemplateComponent {
   @Input('menu') menu: boolean = true;
   @Input('search') search: boolean = true;
   @Input('demo') demo: boolean = false;
-
-  public pagetemp: string;
   
   constructor() {}
 }
@@ -49,9 +47,6 @@ export class TemplateHeader implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
 
   constructor(zone: NgZone, private likeService: LikeService) {
-
-    this.pageType = this.likeService.pageTemp;
-    
     
     const $resizeEvent = Observable.fromEvent(window, 'resize')
     .map(() => {

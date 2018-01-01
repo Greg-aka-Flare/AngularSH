@@ -1,0 +1,45 @@
+<div class="login-box signin-box">
+    <form id="login" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <span class="help-block" *ngIf="signinError">Email id or password is wrong.</span><!-- .help-block -->
+        <input 
+            type="text" 
+            id="email-signin" 
+            placeholder="Email" 
+            formControlName="email"
+        />
+
+        <span 
+            class="help-block"
+            *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched"
+        >
+            Please Enter a Valid Email!
+        </span><!-- .help-block -->
+        <input 
+            type="password" 
+            id="password-signin" 
+            placeholder="Password" 
+            formControlName="password"
+        />
+
+        <span 
+            class="help-block"
+            *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched"
+        >
+            Password is required!
+        </span><!-- .help-block -->
+
+        <a href="#">Forgot password?</a>
+
+        <button [disabled]="!loginForm.valid">
+            Log In <i class="fa fa-sign-in" aria-hidden="true"></i>
+        </button>
+    </form>
+
+    <div class="horizontal-box"></div>
+
+    <div class="social-login">
+        <facebook-login></facebook-login>       
+        <google-signin></google-signin>                    
+        <linkedin-signin></linkedin-signin>  
+    </div>
+</div>

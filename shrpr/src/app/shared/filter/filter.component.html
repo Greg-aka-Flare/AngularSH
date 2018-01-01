@@ -1,48 +1,103 @@
-<section id="filter">
-	<form [formGroup]="filterForm">
-		<h1>Filter:</h1>
+<button 
+	id="filter" 
+	[ngClass]="{ 'mobile-hide': showFilter }"
+	(click)="toggleFilter()" 
+	[@scrollAnimation]="state"
+>
+  Filter 
+  <i class="fa fa-sliders" aria-hidden="true"></i>
+</button><!-- #filter -->
 
-		<p>Select from the options below to modify the courses you would like to see.</p>
+<div id="ctn">
+	<section id="course-list" [ngClass]="{ 'mobile-hide': showFilter }">
+		<ng-content></ng-content>
+	</section><!-- #course-list -->
 
-		<fieldset>
-			<h2>Categories:</h2>
+	<section id="filter" [ngClass]="{ 'mobile-hide': !showFilter }">
+		<form [formGroup]="filterForm">
+			<h1>Filter:</h1>
 
-			<div>
-				<label for="fun">For Fun</label> 
+			<p>Modify the courses you would like to see.</p>
 
-				<input 
-					type="checkbox" 
-					name="fun" 
-					id="fun" 
-					formControlName="fun"
-				/>
-			</div>
+			<fieldset group="categories" #fieldset>
+				<button class="toggle">
+					<i class="fa fa-angle-right"></i> Categories
+				</button><!-- .toggle -->
 
-			<div>
-				<label for="work">For Work</label> 
+				<section class="options">
+					<div class="btn-ctn">
+						<button class="all">Select All</button><!-- .all -->
 
-				<input 
-					type="checkbox" 
-					name="work" 
-					id="work" 
-					formControlName="work"
-				/>
-			</div>
+						<button class="none">Select None</button><!-- .none -->
+					</div><!-- .btn-ctn -->
 
-			<div>
-				<label for="kids">For Kids</label> 
+					<div class="option">
+						<input 
+							type="checkbox" 
+							name="fun" 
+							id="fun" 
+							formControlName="fun"
+						/>
 
-				<input 
-					type="checkbox" 
-					name="kids" 
-					id="kids" 
-					formControlName="kids"
-				/>
-			</div>
-		</fieldset>
+						<label for="fun">For Fun</label> 
+					</div><!-- .option -->
 
-		<fieldset>
-			<h2>Instructors:</h2>
-		</fieldset>
-	</form>
-</section><!-- #filter -->
+					<div class="option">
+						<input 
+							type="checkbox" 
+							name="work" 
+							id="work" 
+							formControlName="work"
+						/>
+
+						<label for="work">For Work</label> 
+					</div><!-- .option -->
+
+					<div class="option">
+						<input 
+							type="checkbox" 
+							name="kids" 
+							id="kids" 
+							formControlName="kids"
+						/>
+
+						<label for="kids">For Kids</label> 
+					</div><!-- .option -->
+				</section><!-- .options -->
+			</fieldset>
+
+			<fieldset group="instructors" #fieldset>
+				<button class="toggle">
+					<i class="fa fa-angle-right"></i> Instructors
+				</button><!-- .toggle -->
+
+				<section class="options">
+					<div class="btn-ctn">
+						<button class="all">Select All</button><!-- .all -->
+
+						<button class="none">Select None</button><!-- .none -->
+					</div><!-- .btn-ctn -->
+
+					<div class="option" *ngFor="let instructor of instructors; let i = index">
+						<input 
+							type="checkbox" 
+							name="instructor_{{ instructor.id }}" 
+							id="instructor_{{ instructor.id }}" 
+							formControlName="instructor_{{ instructor.id }}"
+						/>
+						
+						<label for="instructor_{{ instructor.id }}">{{ instructor.name }}</label> 
+					</div><!-- .option -->
+				</section><!-- .options -->
+			</fieldset>
+		</form>
+
+		<button 
+			id="total"
+			[ngClass]="{ 'desktop-hide': !showFilter }"
+			(click)="toggleFilter()" 
+		>
+			{{ courseCount }}
+		</button><!-- #total -->
+	</section><!-- #filter -->
+</div><!-- #ctn -->

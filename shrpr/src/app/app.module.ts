@@ -10,12 +10,11 @@ import { AgmCoreModule } from '@agm/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { JwtModule } from '@auth0/angular-jwt';
 import { InstitutionComponent } from './institution/institution.component';
 
-export function tokenGetter() {
-  return localStorage.getItem('access_token');
-}
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './auth/jwt.interceptor';
+import { TokenInterceptor } from './auth/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,12 +24,6 @@ export function tokenGetter() {
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        whitelistedDomains: ['http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api', 'http://shrpr.dev', 'http://localhost:4200']
-      }
-    }),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBKUrP69jyLxcicvoZg05Ysqi3rbj1U1Uk',
       libraries: ['geometry', 'places']
@@ -38,7 +31,19 @@ export function tokenGetter() {
     CoreModule,
     SharedModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ]
 })
 export class AppModule {
   constructor() {}

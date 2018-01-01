@@ -1,34 +1,49 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import decode from 'jwt-decode';
 
 @Injectable()
 export class AuthService {
 
   constructor(
-  	private http: HttpClient, 
-  	private jwtHelperService: JwtHelperService
-  ) {}
+    private http: HttpClient,
+    private router: Router
+  ){}
 
-  loggedIn() {
-    const token: string = this.jwtHelperService.tokenGetter();
+  getToken(): string {
+    return localStorage.getItem('access_token');
+  }
 
-    if(!token) {
-      return false;
-    }
+  isAuthenticated(): boolean {
+    // get the token
+    const token = this.getToken();
+    // return a boolean reflecting 
+    // whether or not the token is expired
+    return true;
+  }
 
-    const tokenExpired: boolean = this.jwtHelperService.isTokenExpired(token);
+  me(): Observable<any> {
+    return this.http.post('https://api.shrpr.co/api/auth/me', {});
+  }
 
-    return !tokenExpired;
+  refresh(): Observable<any> {
+    return this.http.post('https://api.shrpr.co/api/auth/refresh', {});
   }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post('https://api.shrpr.co/api/auth/login', {
       email: email,
       password: password
-    }, {
-      headers: new HttpHeaders().set('X-Requested-With', 'XMLHttpRequest')
     })
+  }
+
+  logout() {
+    //remove access token from local storage
+    localStorage.removeItem('access_token');
+
+    //redirect to login page
+    this.router.navigateByUrl('login');
   }
 }

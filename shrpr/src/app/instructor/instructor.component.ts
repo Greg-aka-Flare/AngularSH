@@ -34,6 +34,10 @@ export class InstructorComponent implements OnInit, OnDestroy {
   //subscription: Subscription;
   private subscriptions = new Subscription();
   instrocterdata:string;
+  courseCardLength:number;
+  reviewshowHide:boolean = false;
+  instructorCourse:any[]=new Array();
+  counter:number = 0;
   
   details:any;
   
@@ -42,6 +46,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
     window.location.hash = location;
   }
   constructor(private instructorService: InstructorService, private route: ActivatedRoute, private courseService: CourseService) { 
+
     let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.myid = params['id'];
     }))
@@ -53,7 +58,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
     
       this.subscriptions.add($resizeEvent.subscribe(data => {
       this.width = data;
+
     }));
+    
   }
   
   ngOnInit() {
@@ -62,16 +69,27 @@ export class InstructorComponent implements OnInit, OnDestroy {
       (courses) => {
        this.courses = courses;
        if(this.courses){
-        for(var i = 0, l = this.courses.length; i < l; i++) {
+        for(let i = 0; i < this.courses.length; i++) {
           if( this.courses[i].instructor.id == this.myid){
               this.courseCard.push(this.courses[i]);
           } 
         }
-       }
+        for(var j = this.counter, l = this.courses.length; j < l; j=j)
+        {
+          if(this.courseCard[j]){
+            this.instructorCourse.push(this.courseCard[j]);
+          }
+          j++;
+          if(j%3 == 0) break;
+        }
+        this.counter += 3;
+      }
       },
       (error: Response) => console.log(error)
       
     ));
+
+    
 
     this.subscriptions.add(this.instructorService.getInstructor(this.myid)
      .subscribe(
@@ -89,6 +107,18 @@ export class InstructorComponent implements OnInit, OnDestroy {
        (error: Response) => console.log(error)
      ));
      
+  }
+  
+  getData(){
+    for(var k = this.counter, p = this.courses.length; k < p; k=k)
+    {
+      if(this.courseCard[k]){
+      this.instructorCourse.push(this.courseCard[k]);
+      }
+      k++;
+    if(k%3 == 0) break;
+    }
+    this.counter+=3;
   }
   
 

@@ -72,9 +72,6 @@
 .instructor a:hover {
 	text-decoration: none;
 }
-.hide {
-	display: none;
-}
 @media only screen and (min-width: 769px) {
 :host /deep/ tabs .tabs tab > div {
     padding: 10PX;

@@ -13,10 +13,12 @@ import { TemplateFooter } from './template/template.component';
 import { MenuComponent } from './menu/menu.component';
 import { SearchComponent } from './search/search.component';
 import { DemoComponent } from './schedule-demo/demo.component';
+import { AddreviewComponent } from './add-a-review/addreview.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tabs/tab.component';
 import { DatexPipe } from './date.pipe';
 import { FilterComponent } from './filter/filter.component';
+import { InlineEditComponent } from './inline-edit/inline-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +31,12 @@ import { FilterComponent } from './filter/filter.component';
     TemplateFooter,
     MenuComponent,
     SearchComponent,
+    AddreviewComponent,
     TabsComponent,
     TabComponent,
     DatexPipe,
-    FilterComponent
+    FilterComponent,
+    InlineEditComponent
   ],
   imports: [
   	CommonModule,
@@ -51,7 +55,9 @@ import { FilterComponent } from './filter/filter.component';
     TabComponent,
     DatexPipe,
     AgmCoreModule,
-    FilterComponent
+    FilterComponent,
+    InlineEditComponent,
+    AddreviewComponent
   ]
 })
 export class SharedModule {}

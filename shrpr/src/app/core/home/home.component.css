@@ -169,6 +169,9 @@ section#sign-up p {
 .login-link a:hover{
     text-decoration: none;
 }
+:host /deep/ tabs tab section#search {
+    display: block;
+}
 @media only screen and (min-width: 769px) {
 /*** Slider ***/
 :host /deep/ carousel slide > div {

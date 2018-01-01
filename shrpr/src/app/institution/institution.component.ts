@@ -17,8 +17,6 @@ import { InstitutionService } from "./institution.service";
 })
 export class InstitutionComponent implements OnInit, OnDestroy {
 
-  showFilter: boolean = false;
-
   institutions:any;
   private id:number;
   courses: any[];
@@ -54,7 +52,6 @@ export class InstitutionComponent implements OnInit, OnDestroy {
         this.details = JSON.parse(response.details);
         this.courses = this.institutions.courses;
         this.courseData = this.courses;
-        this.courseCount(this.courseData.length);
         },
        (error: Response) => console.log(error)
      ));
@@ -65,26 +62,7 @@ export class InstitutionComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  toggleFilter() {
-    this.showFilter = (this.showFilter) ? false : true;
-  }
-
   filter(courses){
     this.courseData = courses;
-    this.courseCount(this.courseData.length);
-
-    console.log('test');
-  }
-
-  private courseCount(count: number){
-
-    //create string based on count
-    if(count){
-      if(count == 1) this.courseTotal = '1 Course';
-      else this.courseTotal = count + ' Courses';
-    }
-    else{
-      this.courseTotal = 'No Courses';
-    }
   }
 }

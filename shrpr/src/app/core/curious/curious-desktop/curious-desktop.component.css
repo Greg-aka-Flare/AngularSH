@@ -43,12 +43,21 @@
     margin:0;
     height: 280px;
     overflow: hidden;
+    position: relative;
+    border: 1px solid #f7f7f7;
+    box-sizing: border-box;
 }
 .img-ctn figure img {
     display:block;
-    
     margin:0;
     width:100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%); /* IE 9 */
+    -webkit-transform: translate(-50%, -50%); /* Safari */
+    transform: translate(-50%, -50%);
+    min-width: 400px;
 }
 .price{
     background-color: #e7aa62;
@@ -58,6 +67,7 @@
     position: absolute;
     top: 20px;
     right: 0;
+    z-index: 9;
 }
 .group_name {
     font-size:12px;
@@ -356,15 +366,24 @@ section.suggest-course form button:hover{
     font-size: 14px;
     line-height: 14px;
     text-decoration: none;
-    margin: 10px 0 0 0;
+    margin: 10px auto 0 auto;
     max-width: 130px;
     padding:10px 10px;
     text-align: center;
     width: 100%;
     text-transform: uppercase;
-    float: right;
 }
 .course-cta:hover {
     background-color: #757575;
     text-decoration: none;
 }
+@media only screen and (min-width: 1040px) {
+.location-wrap {
+    position: relative;
+}
+.course-cta {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+ }

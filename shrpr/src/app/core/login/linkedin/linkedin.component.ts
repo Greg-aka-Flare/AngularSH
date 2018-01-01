@@ -14,7 +14,7 @@ export class LinkedinComponent {
   ngOnInit() {
     var linkedIn = document.createElement("script");
         linkedIn.type = "text/javascript";
-        linkedIn.src = "http://platform.linkedin.com/in.js";
+        linkedIn.src = "https://platform.linkedin.com/in.js";
         linkedIn.innerHTML = "\n" +
            "api_key: 781zxklbjgz5a3\n" +
            "authorize: true\n" +

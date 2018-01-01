@@ -1,0 +1,78 @@
+#course-add-container {
+    max-width:500px;
+    margin:20px auto;
+    border:1px solid #cccccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.course-form-box {
+    min-height: 400px;
+    display: flex;
+}
+.formHeader {
+    padding:3px 10px;
+    background-color:#cccccc;
+    text-align: right;
+}
+.formFooter {
+    padding:10px;
+    text-align: center;
+    background-color:#cccccc;
+}
+.formFooter a {
+    display:inline-block;
+    background-color: #d53b3c;
+    color: #ffffff;
+    font-family: 'circularstd book';
+    text-decoration:none;
+    max-width: 138px;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+.formFooter a:hover {
+    opacity: 0.8;
+}
+.courseFormPage {
+    flex: 0;
+    min-width:100%;
+    padding:20px;
+    background-color:#f5f5f5;
+}
+.formRow {
+    position: relative;
+    margin:0 0 10px 0;
+}
+.formRow::before, .formRow::after {
+    content:'';
+    display: block;
+    width:100%;
+    clear: both;
+}
+.formRow label {
+    display:inline-block;
+    width:38%;
+    vertical-align: middle;
+}
+.formRow select, .formRow input[type="text"], .formRow textarea, .formRow input[type="date"], .formRow input[type="time"], .formRow input[type="number"]  {
+    border:1px solid #cccccc;
+    width:60%;
+    font-family: 'circularstd book';
+    font-size: 14px;
+    box-sizing: border-box;
+    height: 35px;
+    padding: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.formRow textarea {
+    min-height: 150px;
+}
+.sessionDetailTable {
+    width:100%;
+    border-spacing: 0;
+}
+.formRow .sessionDetailTable input[type="date"], .formRow .sessionDetailTable input[type="time"] {
+    width:99%;
+}

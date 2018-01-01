@@ -1,31 +1,25 @@
 import { Injectable } from "@angular/core";
-import { Http, Response, Headers } from "@angular/http";
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
-	constructor(private http: Http){
 
-	}
-
-	register(content: string){
-		const body = JSON.stringify({content: content});
-		const headers = new Headers({'Content-Type': 'application/json'});
-		return this.http.post('https://api.shrpr.co/api/user', body, {headers: headers});
-	}
+	constructor(private http: HttpClient){ }
 
 	user(): Observable<any> {
-		return this.http.get('https://api.shrpr.co/api/users')
-			.map(
-				(response: Response) => {
-					return response.json().users;
-				}
-			);
+		return this.http.get('https://api.shrpr.co/api/users');
 	}
 
-	signup(name: string, email: string, password: string){
-		return this.http.post('https://api.shrpr.co/api/user', 
-			{ name: name, email: email, password: password },
-			{ headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) });
+	signup(data: any){
+		return this.http.post('http://api.shrpr.co/api/user', data,
+			{ headers: new HttpHeaders().set('X-Requested-With', 'XMLHttpRequest') });
 	}
+
+  checkEmail(email: string) {
+
+		return this.http.post('https://api.shrpr.co/api/user/check_email', 
+			{ email: email },
+			{ headers: new HttpHeaders().set('X-Requested-With', 'XMLHttpRequest') });
+  }
 }

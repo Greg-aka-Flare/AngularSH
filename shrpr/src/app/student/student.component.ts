@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
@@ -7,8 +8,10 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Course } from "../courses/course.interface";
 import { CourseService } from "../courses/course.service";
+import { AddreviewComponent } from "../shared/add-a-review/addreview.component";
 import { Student } from "../student/student.interface";
 import { StudentService } from '../student/student.service';
+import { InlineEditComponent } from '../shared/inline-edit/inline-edit.component';
 
 
 @Component({
@@ -23,6 +26,7 @@ export class StudentComponent implements OnInit, OnDestroy {
   studentCourse:any;
   courseCard: any[] = [];
   private id:number;
+  reviewshowHide:boolean = false;
   //subscription: Subscription;
   private subscriptions = new Subscription();
   
@@ -45,7 +49,10 @@ export class StudentComponent implements OnInit, OnDestroy {
           this.width = data;
         }));
       }
-   
+      onChange(event) {
+        var files = event.srcElement.files;
+        console.log(files);
+    }
   ngOnInit() {
     this.subscriptions.add(this.studentService.getStudent(this.id)
     .subscribe(
