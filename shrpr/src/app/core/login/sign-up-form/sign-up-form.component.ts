@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { forkJoin } from "rxjs/observable/forkJoin";
@@ -39,12 +39,19 @@ export class SignUpFormComponent implements OnInit {
     this.signupForm = this.fb.group({
       'name': [null, Validators.required],
       'email': [null, [Validators.required, Validators.email], this.validateEmailNotTaken.bind(this)],
-      'password': [null, [Validators.required, Validators.minLength(6)]]
+      'password': [null, [Validators.required, Validators.minLength(6)]],
     });
 
     this.ProfileForm = this.fb.group({
       'role': [null, [Validators.required]]
     });
+  }
+
+  public static pattern(reg: RegExp) : ValidatorFn {
+      return (control: AbstractControl): { [key: string]: any } => {
+          var value = <string>control.value;
+          return value.match(reg) ? null : { 'pattern': { value } };
+      }
   }
 
   onSignup() {
@@ -53,6 +60,7 @@ export class SignUpFormComponent implements OnInit {
     this.data.name = this.signupForm.value.name;
     this.data.email = this.signupForm.value.email;
     this.data.password = this.signupForm.value.password;
+
 
     if(this.data.name && this.data.email && this.data.password){
       this.signup = true;

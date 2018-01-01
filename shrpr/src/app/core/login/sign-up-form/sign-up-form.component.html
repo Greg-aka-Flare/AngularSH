@@ -4,16 +4,17 @@
             type="text" 
             id="name" 
             placeholder="Name"
-            formControlName="name" 
+            formControlName="name"
+            pattern="[a-zA-Z][a-zA-Z ]+" 
         />
 
         <span 
             class="help-block"
-            *ngIf="!signupForm.get('name').valid && signupForm.get('name').touched"
+            *ngIf="!signupForm.get('name').valid && signupForm.get('name').touched || signupForm.get('name').hasError('pattern')"
         >
-            Name is required!
+            Name is required and only Alphabets are allowed!
         </span><!-- .help-block -->
-
+        
         <input 
             type="text" 
             id="email" 
