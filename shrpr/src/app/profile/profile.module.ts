@@ -6,12 +6,14 @@ import { SharedModule } from '../shared/shared.module';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { CourseSelectComponent } from '../core/login/course-select/course-select.component';
+import { InstructorCourseComponent } from '../core/login/instructor-course/instructor-course.component';
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    CourseSelectComponent
+    CourseSelectComponent,
+    InstructorCourseComponent
   ],
   imports: [
     CommonModule,
