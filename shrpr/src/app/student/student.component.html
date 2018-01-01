@@ -46,7 +46,7 @@
       <tab tabTitle="CONTACT">
         <div class="contact_box">
             <address *ngFor="let address of students?.addresses">
-                <div *ngIf="!isEdit"><strong>{{ address?.type }}</strong><br>
+                <div *ngIf="!isEdit"><strong *ngIf="students?.addresses > 2">{{ address?.type }}</strong><br>
                 {{ address?.streetAddress }}<br>
                 {{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>
                 {{ address?.country }}<br>

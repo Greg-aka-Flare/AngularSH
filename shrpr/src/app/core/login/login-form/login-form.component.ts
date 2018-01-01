@@ -42,12 +42,33 @@ export class LoginFormComponent implements OnInit {
     this.subscriptions.add(this.auth.login(email, password)
       .subscribe(
         response => {
-
           localStorage.setItem('access_token', response.access_token);
-          this.router.navigateByUrl('student/62');
+          
+          //send to appropiate profile
+          this.auth.me().subscribe(
+            res => {
+
+              //store data
+              let id = res.id;
+              let role = res.roles[0];
+
+              //navigate to profile based on role
+              if(role == 'student'){
+                this.router.navigateByUrl('student/' + id);
+              }
+              else if(role == 'instructor'){
+                this.router.navigateByUrl('instructor/' + id);
+              }
+              else if(role == 'institution'){
+                this.router.navigateByUrl('institution/' + id);
+              }
+              else{
+                this.router.navigateByUrl('/');
+              }
+            }
+          );
         },
         error => {
-          console.log(error)
           this.signinError = true;
         }
       ));
