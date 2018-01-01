@@ -1,34 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
-
 
 @Injectable()
 export class LikeService {
 
 	private counter: number = 0;
   private subject = new Subject<any>();
-  private likeCoursesArray = new Array<{courseid:number, groupid:string}>();
-  private dislikeCoursesArray = new Array<{courseid:number, groupid:string}>();
-  private oldLikeValue;
-  private oldDislikeValue;
-  public pageTemp:string;
+  public likes: any = [];
+  public dislikes: any = [];
 
-  constructor(){
-    this.oldLikeValue = JSON.parse(localStorage.getItem("likes"));
-    this.oldDislikeValue = JSON.parse(localStorage.getItem('dislikes'));
+  constructor(private http: HttpClient){ 
+
+    if(JSON.parse(localStorage.getItem('likes')){
+      this.likes = JSON.parse(localStorage.getItem('likes'));
+    }
+    else{
+      this.likes = [];
+    }
+
+    if(JSON.parse(localStorage.getItem('dislikes')){
+      this.dislikes = JSON.parse(localStorage.getItem('dislikes'));
+    }
+    else{
+      this.dislikes = [];
+    }
   }
  
 
   likeCounter(id){
   	this.counter++;
-    this.likeCoursesArray.push(id);
+
+    this.likes.push(id);
 
     this.subject.next(this.counter);
 
-    localStorage.setItem('likes', JSON.stringify(this.likeCoursesArray));
-
-    console.log('New Like Courses id in Local Storage: '+ localStorage.getItem("likes"));
+    localStorage.setItem('likes', JSON.stringify(this.likes));
   }
 
   getCounter(): Observable<number> {
@@ -36,10 +44,8 @@ export class LikeService {
   }
   
   dislikeCounter(id){
-    this.dislikeCoursesArray.push(id);
+    this.dislikes.push(id);
 
-    localStorage.setItem('dislikes', JSON.stringify(this.dislikeCoursesArray));
-    console.log('New dislike Courses id in Local Storage: '+ localStorage.getItem("dislikes"));
+    localStorage.setItem('dislikes', JSON.stringify(this.dislikes));
   }
-  
 }

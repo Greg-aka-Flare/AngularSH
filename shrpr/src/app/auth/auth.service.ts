@@ -1,34 +1,33 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import decode from 'jwt-decode';
 
 @Injectable()
 export class AuthService {
 
-  constructor(
-  	private http: HttpClient, 
-  	private jwtHelperService: JwtHelperService
-  ) {}
+  constructor(private http: HttpClient){ }
 
-  loggedIn() {
-    const token: string = this.jwtHelperService.tokenGetter();
+  getToken(): string {
+    return localStorage.getItem('access_token');
+  }
 
-    if(!token) {
-      return false;
-    }
+  isAuthenticated(): boolean {
+    // get the token
+    const token = this.getToken();
+    // return a boolean reflecting 
+    // whether or not the token is expired
+    return true;
+  }
 
-    const tokenExpired: boolean = this.jwtHelperService.isTokenExpired(token);
-
-    return !tokenExpired;
+  me() {
+    return this.http.post('https://api.shrpr.co/api/auth/me', {});
   }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post('https://api.shrpr.co/api/auth/login', {
       email: email,
       password: password
-    }, {
-      headers: new HttpHeaders().set('X-Requested-With', 'XMLHttpRequest')
     })
   }
 }

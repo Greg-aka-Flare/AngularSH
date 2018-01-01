@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { forkJoin } from "rxjs/observable/forkJoin";
 import { Router } from "@angular/router";
 import { UserInterface } from '../../../core/user.interface';
 import { UserService } from '../../../core/user.service';
+import { LikeService } from '../../../core/like.service';
 import { AuthService } from '../../../auth/auth.service';
 
 @Component({
@@ -16,19 +17,19 @@ import { AuthService } from '../../../auth/auth.service';
 export class SignUpFormComponent implements OnInit {
 
 	private emailTimeout;
+  data: any = {};
   signupForm: FormGroup;
   ProfileForm: FormGroup;
   signup: boolean = false;
   signupError: boolean = false;
   signupErrorText: string;
 
-  private subscriptions = new Subscription();
-
   constructor(
   	private fb: FormBuilder,
     private user: UserService,
     private http: HttpClient,
     private auth: AuthService,
+    private likeService: LikeService,
     private router: Router
   ) {}
 
@@ -40,34 +41,76 @@ export class SignUpFormComponent implements OnInit {
     });
 
     this.ProfileForm = this.fb.group({
-      'signuptype': [null, [Validators.required]]
+      'role': [null, [Validators.required]]
     });
   }
 
   onSignup() {
 
-    const name = this.signupForm.value.name;
-    const email = this.signupForm.value.email;
-    const password = this.signupForm.value.password;
+    //assign user data
+    this.data.name = this.signupForm.value.name;
+    this.data.email = this.signupForm.value.email;
+    this.data.password = this.signupForm.value.password;
 
-    this.subscriptions.add(this.user.signup(name, email, password)
-      .subscribe(
-        response => { console.log(response) },
-        error => { console.log(error) }
-    ));
+    //sign up form completed
+    this.signup = true;
   }
 
   onProfile(){
-    const profile = this.ProfileForm.value.signuptype;
-    if(profile == 'student'){
-      this.router.navigateByUrl('profile/course-select');
+
+    //assign user role
+    this.data.role = this.ProfileForm.value.role;
+
+    //if user has role
+    if(this.data.role){
+
+      //create user
+      this.user.signup(this.data).subscribe(
+        success => this.onUserCreated(),
+        error =>  console.log('Error Creating User')
+      );
     }
-    if(profile == 'instructor'){
-      this.router.navigateByUrl('profile/instructor-course');
-    }
-    if(profile == 'institution'){
-      this.router.navigateByUrl('institution/112');
-    }
+  }
+
+  onUserCreated(){
+
+    //log user in
+    this.auth.login(this.data.email, this.data.password).subscribe(
+      response => {
+
+        //set access token
+        localStorage.setItem('access_token', response.access_token);
+
+        //get all liked/disliked
+        let likes = this.likeService.likes;
+        let dislikes = this.likeService.dislikes;
+
+        //create requests array
+        let requests = [];
+
+        //for every like, create new request
+        for(let like of likes){
+
+          let url = 'https://api.shrpr.co/api/course/' + like + '/like';
+
+          requests.push(this.http.post(url, {}));
+        }
+
+        //for every dislike, create new request
+        for(let dislike of dislikes){
+
+          let url = 'https://api.shrpr.co/api/course/' + dislike + '/dislike';
+
+          requests.push(this.http.post(url, {}));
+        }
+
+        //send all requests
+        forkJoin(requests).subscribe(results => {
+          
+        });
+      },
+      error => console.log('Unable to login.')
+    );
   }
 
   validateEmailNotTaken(control: FormControl): Promise<any> | Observable<any> {
@@ -78,12 +121,8 @@ export class SignUpFormComponent implements OnInit {
 
       this.emailTimeout = setTimeout(() => {
 	  		this.user.checkEmail(control.value).subscribe(
-	  			success => { 
-            console.log(success);
-            resolve(null); },
-	  			error => { 
-            console.log(error);
-            resolve({ 'emailTaken': true }) })
+	  			success => resolve(null),
+	  			error => resolve({ 'emailTaken': true }))
 	  	}, 600);
   	});
 

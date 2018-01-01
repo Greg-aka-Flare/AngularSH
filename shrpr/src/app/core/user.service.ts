@@ -11,9 +11,8 @@ export class UserService {
 		return this.http.get('https://api.shrpr.co/api/users');
 	}
 
-	signup(name: string, email: string, password: string){
-		return this.http.post('https://api.shrpr.co/api/user', 
-			{ name: name, email: email, password: password },
+	signup(data: any){
+		return this.http.post('http://api.shrpr.co/api/user', data,
 			{ headers: new HttpHeaders().set('X-Requested-With', 'XMLHttpRequest') });
 	}
 

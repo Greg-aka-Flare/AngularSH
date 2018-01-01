@@ -32,8 +32,6 @@ export class LoginFormComponent implements OnInit {
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, Validators.required)
     });
-
-    console.log(this.auth.loggedIn());
   }
 
   onLogin() {
@@ -44,8 +42,8 @@ export class LoginFormComponent implements OnInit {
     this.subscriptions.add(this.auth.login(email, password)
       .subscribe(
         response => {
+
           localStorage.setItem('access_token', response.access_token);
-          console.log(response.access_token);
           this.router.navigateByUrl('student/62');
         },
         error => {
