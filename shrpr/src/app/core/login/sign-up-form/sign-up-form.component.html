@@ -32,15 +32,16 @@
             type="password" 
             id="password" 
             placeholder="Password"
-            formControlName="password" 
+            formControlName="password"
         />
         
         <span 
             class="help-block"
             *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched"
-        >
-            Password is required!
-        </span><!-- .help-block -->
+        >Password is required!
+            
+        </span>
+        <!-- .help-block -->
         <button>
             Sign Up <i class="fa fa-user-plus" aria-hidden="true"></i>
         </button>

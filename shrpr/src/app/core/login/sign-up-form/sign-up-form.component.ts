@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { forkJoin } from "rxjs/observable/forkJoin";
@@ -23,7 +23,9 @@ export class SignUpFormComponent implements OnInit {
   signup: boolean = false;
   signupError: boolean = false;
   signupErrorText: string;
-
+  unamePattern = "^[A-Z\\a-z\\d-_\\s]+$";
+  pwdPattern = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$";
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   constructor(
   	private fb: FormBuilder,
     private user: UserService,
@@ -37,7 +39,7 @@ export class SignUpFormComponent implements OnInit {
     this.signupForm = this.fb.group({
       'name': [null, Validators.required],
       'email': [null, [Validators.required, Validators.email], this.validateEmailNotTaken.bind(this)],
-      'password': [null, Validators.required]
+      'password': [null, [Validators.required, Validators.minLength(6)]]
     });
 
     this.ProfileForm = this.fb.group({
