@@ -161,7 +161,7 @@
   <!-- #profile header -->
   <tabs *ngIf="width < 768">
   <tab tabTitle="ABOUT">
-      <div class="contact_box">{{course.description}}</div>
+      <div class="description" [innerHTML]="course.description"></div>
   </tab>
   <tab tabTitle="CONTACT">
       <div *ngIf="selectedSemester" class="contact_box">
@@ -174,7 +174,7 @@
   <!-- desktop view -->
   <section *ngIf="width > 767" id="desktopcourses">
     <h2>ABOUT</h2>
-    <p>{{course.description}}</p>
+    <div class="description" [innerHTML]="course.description"></div><!-- .description -->
     <h2>CONTACT</h2>
     <div *ngIf="selectedSemester">
       <div *ngFor="let semester of selectedSemester">
