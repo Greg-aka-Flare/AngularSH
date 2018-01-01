@@ -34,6 +34,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
   //subscription: Subscription;
   private subscriptions = new Subscription();
   instrocterdata:string;
+  courseCardLength:number;
+  instructorCourse:any[]=new Array();
+  counter:number = 0;
   
   details:any;
   
@@ -42,6 +45,8 @@ export class InstructorComponent implements OnInit, OnDestroy {
     window.location.hash = location;
   }
   constructor(private instructorService: InstructorService, private route: ActivatedRoute, private courseService: CourseService) { 
+    this.counter = 0;
+    
     let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.myid = params['id'];
     }))
@@ -53,6 +58,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
     
       this.subscriptions.add($resizeEvent.subscribe(data => {
       this.width = data;
+
     }));
   }
   
@@ -67,11 +73,24 @@ export class InstructorComponent implements OnInit, OnDestroy {
               this.courseCard.push(this.courses[i]);
           } 
         }
-       }
+        //console.log(this.courseCard);
+        for(let j=0;j<this.courseCard.length;j++)
+        {
+        this.instructorCourse.push(this.courseCard[j]);
+        if(j%3==0) break;
+        }
+        this.counter+=3;
+
+        console.log(this.instructorCourse);
+        this.getData();
+        
+      }
       },
       (error: Response) => console.log(error)
       
     ));
+
+    
 
     this.subscriptions.add(this.instructorService.getInstructor(this.myid)
      .subscribe(
@@ -91,6 +110,15 @@ export class InstructorComponent implements OnInit, OnDestroy {
      
   }
   
+  getData(){
+    for(let j=this.counter+1;j<this.courseCard.length;j++)
+    {
+    this.instructorCourse.push(this.courseCard[j]);
+    if(j%3==0) break;
+    }
+    this.counter+=3;
+    
+  }
 
   ngOnDestroy(){
     this.subscriptions.unsubscribe();
