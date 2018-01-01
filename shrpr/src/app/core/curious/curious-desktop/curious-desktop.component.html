@@ -46,9 +46,9 @@
                     <span class="group_rating">
                         <star-rating-comp 
                             [starType]="'svg'" 
-                            [rating]="course?.rating" 
                             [showHalfStars]="true"
                             [readOnly]="true"
+                            rating="{{ course?.rating || 0 }}"
                         ></star-rating-comp>
                     </span>
 
@@ -145,9 +145,9 @@
                     <span class="group_rating">
                         <star-rating-comp 
                             [starType]="'svg'" 
-                            [rating]="course?.rating" 
                             [showHalfStars]="true"
                             [readOnly]="true"
+                            rating="{{ course?.rating || 0 }}"
                         ></star-rating-comp>
                     </span>
 
@@ -244,9 +244,9 @@
                     <span class="group_rating">
                         <star-rating-comp 
                             [starType]="'svg'" 
-                            [rating]="course?.rating" 
                             [showHalfStars]="true"
                             [readOnly]="true"
+                            rating="{{ course?.rating || 0 }}"
                         ></star-rating-comp>
                     </span>
 

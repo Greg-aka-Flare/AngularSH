@@ -9,7 +9,13 @@
             {{ course?.categories[0]?.name }}
 
             <figure class="rating">
-                <star-rating-comp [starType]="'svg'" [rating]="course?.rating" [showHalfStars]="true" [readOnly]="true"></star-rating-comp>
+                <star-rating-comp 
+                    [starType]="'svg'" 
+                    [showHalfStars]="true" 
+                    [readOnly]="true"
+                    rating="{{ course?.rating || 0 }}"
+                >
+                </star-rating-comp>
             </figure><!-- .rating -->
         </div><!-- .category -->
 
