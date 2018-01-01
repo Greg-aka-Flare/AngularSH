@@ -2,8 +2,6 @@
 section#search {
     padding: 30px 20px 20px 20px;
     text-align: center;
-}
-header section#search {
     display: none;
 }
 section#search form > span {
@@ -142,7 +140,8 @@ section#search {
     max-height: 100px;
     margin: 0;
     padding: 28px 15px 28px 15px; 
-    border-top: 1px solid #cacac9; 
+    border-top: 1px solid #cacac9;
+    display: block; 
 }
 section#search form > span {
     display: inline-block;

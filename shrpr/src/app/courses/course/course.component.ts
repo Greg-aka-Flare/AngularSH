@@ -6,6 +6,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { TabsComponent } from "../../shared/tabs/tabs.component";
+import { AddreviewComponent } from "../../shared/add-a-review/addreview.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
@@ -51,7 +52,7 @@ export class CourseComponent implements OnInit, OnDestroy {
   selectedSemester:any;
   categoriesArray:any;
   semesterInfo;
-  
+  reviewshowHide:boolean = false;
 
   //The time to show the next photo
   private NextPhotoInterval:number = 5000;

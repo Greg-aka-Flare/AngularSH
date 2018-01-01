@@ -13,6 +13,7 @@ import { TemplateFooter } from './template/template.component';
 import { MenuComponent } from './menu/menu.component';
 import { SearchComponent } from './search/search.component';
 import { DemoComponent } from './schedule-demo/demo.component';
+import { AddreviewComponent } from './add-a-review/addreview.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tabs/tab.component';
 import { DatexPipe } from './date.pipe';
@@ -30,6 +31,7 @@ import { InlineEditComponent } from './inline-edit/inline-edit.component';
     TemplateFooter,
     MenuComponent,
     SearchComponent,
+    AddreviewComponent,
     TabsComponent,
     TabComponent,
     DatexPipe,
@@ -54,7 +56,8 @@ import { InlineEditComponent } from './inline-edit/inline-edit.component';
     DatexPipe,
     AgmCoreModule,
     FilterComponent,
-    InlineEditComponent
+    InlineEditComponent,
+    AddreviewComponent
   ]
 })
 export class SharedModule {}

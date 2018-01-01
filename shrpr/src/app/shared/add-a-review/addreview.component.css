@@ -1,0 +1,61 @@
+
+.review-form {
+    border: 1px solid #cccccc;
+    margin: 0 auto 29px;
+    max-width: 600px;
+    padding: 20px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.review-form span {
+    color: #454545;
+    display: block;
+    font-size: 14px;
+    line-height: 14px;
+    margin: 0 0 15px;
+    overflow: hidden;
+}
+
+.review-form span label {
+    display: block;
+    padding: 0 0 5px;
+}
+
+.review-form span input, .review-form span select, .review-form span textarea {
+    border: 1px solid #cccccc;
+    color: #454545;
+    font-family: arial;
+    font-size: 14px;
+    height: 35px;
+    padding: 5px;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+}
+.review-form span textarea {
+    height: 100px;
+}
+.review-form form > button {
+	background-color: #ec9332;
+	border: 1px solid #ec9332;
+	color: #ffffff;
+	text-transform: uppercase;
+	padding: 14px 0;
+	width: 100%;
+	font-size: 14px;
+	line-height: 1em;
+	border-radius: 3px;
+	font-family: "circularstd book";
+	cursor: pointer;
+	-moz-transition: all 0.5s ease-in-out 0s;
+	-ms-transition: all 0.5s ease-in-out 0s;
+	-o-transition: all 0.5s ease-in-out 0s;
+	-webkit-transition: all 0.5s ease-in-out 0s;
+	transition: all 0.5s ease-in-out 0s;
+	margin: 0 0 10px 0;
+}
+.review-form form > button:hover {
+	color: #ec9332;
+	background: #ffffff;
+}

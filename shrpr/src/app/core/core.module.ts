@@ -9,7 +9,6 @@ import { StarRatingModule } from 'angular-star-rating';
 import { CuriousComponent } from './curious/curious.component';
 import { CuriousDesktopComponent } from './curious/curious-desktop/curious-desktop.component';
 import { CuriousMobileComponent } from './curious/curious-mobile/curious-mobile.component';
-import { LandingComponent } from './landing/landing.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ValuesComponent } from './values/values.component';
@@ -17,9 +16,11 @@ import { VideosComponent } from './videos/videos.component';
 import { PodcastComponent } from './podcast/podcast.component';
 import { InterviewwithroblabonneComponent } from './podcast/interviewwithroblabonne.component';
 import { LoginComponent } from './login/login.component';
-import {GoogleSigninComponent} from './login/google/google.component';
-import {FacebookLoginComponent} from './login/facebook/facebook.component';
-import {LinkedinComponent} from './login/linkedin/linkedin.component';
+import { LoginFormComponent } from './login/login-form/login-form.component';
+import { SignUpFormComponent } from './login/sign-up-form/sign-up-form.component';
+import { GoogleSigninComponent } from './login/google/google.component';
+import { FacebookLoginComponent } from './login/facebook/facebook.component';
+import { LinkedinComponent } from './login/linkedin/linkedin.component';
 
 import { StudentService } from '../student/student.service';
 import { AuthService } from '../auth/auth.service';
@@ -28,12 +29,10 @@ import { InstitutionService } from "../institution/institution.service";
 import { CourseService } from '../courses/course.service';
 import { LikeService } from './like.service';
 import { UserService } from './user.service';
-import { LandingGuard } from './landing/landing-guard.service';
 
 
 @NgModule({
   declarations: [
-    LandingComponent,
     HomeComponent,
     CuriousComponent,
     CuriousDesktopComponent,
@@ -44,9 +43,11 @@ import { LandingGuard } from './landing/landing-guard.service';
     PodcastComponent,
     InterviewwithroblabonneComponent,
     LoginComponent,
+    LoginFormComponent,
+    SignUpFormComponent,
     GoogleSigninComponent,
     FacebookLoginComponent,
-    LinkedinComponent,
+    LinkedinComponent
   ],
   imports: [
     CommonModule,
@@ -64,8 +65,7 @@ import { LandingGuard } from './landing/landing-guard.service';
     InstitutionService,
     CourseService,
     LikeService,
-    UserService,
-    LandingGuard
+    UserService
   ]
 })
 export class CoreModule { }

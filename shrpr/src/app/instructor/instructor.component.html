@@ -20,7 +20,7 @@
   <tabs *ngIf="width < 768" >
     <tab tabTitle="Courses">
     <h3>Upcoming Events with {{instructors?.name}} </h3>
-    <article class="card-box" *ngFor="let card of courseCard; let i = index">
+    <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
         <div class="img-ctn">
             <div class="price">
               ${{ card?.semesters[0]?.amount }}
@@ -60,7 +60,7 @@
   <section *ngIf="width > 767" id="desktopcourses">
     <h2>Courses</h2>
     <h3>Upcoming Events with {{instructors?.name}}</h3>
-    <article class="card-box" *ngFor="let card of courseCard; let i = index">
+    <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
       <div class="img-ctn">
           <div class="price">
             ${{ card?.semesters[0]?.amount }}
@@ -85,6 +85,7 @@
         <a [routerLink]="['/courses', card?.id]" class="page-cta" aria-roledescription="button">View Course</a>
       </div>
   </article>
+  <p class="seeall-link" *ngIf="instructorCourse >= 3" ><button class="show-more" (click)="getData()" [disabled]="counter>=instructorCourse.length">see all related reviews</button><a href="javascript:void(0);">see all related reviews</a>--></p>
     
     <h2>ABOUT</h2>
     <p>{{details?.description}}</p>
@@ -96,13 +97,17 @@
   </section>
   <!-- desktop view End -->
    <!-- #reviews-->
-   <section id="reviews">
-      <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews</div>
-    <dl class="review_items" *ngFor="let review of ratingData" >
+  <section id="reviews">
+      <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews | <a href="javascript:void(0);" (click)="reviewshowHide = !reviewshowHide">Add Your Review</a></div>
+      <app-addreview *ngIf="reviewshowHide"></app-addreview>
+      <div *ngIf="reviewCount >= 1">
+          <dl class="review_items" *ngFor="let review of ratingData" >
       <dt><img src="../../assets/img/reviews-profile.jpg" alt="" title="">User id: {{review.user_id}}</dt>
       <dd><h2>{{review.title}} <span class="review_items_rating">Rating: {{review.rating}} | <star-rating-comp class="review_star" [starType]="'svg'" [rating]="review.rating" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></span></h2>
       <p>{{review.comment}}</p></dd>
     </dl>
+  </div>
+  <div *ngIf="reviewCount < 1">No reviews yet. Be the first to write a review.</div>
     <p class="seeall-link"><!--<button class="show-more" (click)="getData()" [disabled]="counter>=ratingData.length">see all related reviews</button><a href="javascript:void(0);">see all related reviews</a>--></p>
     
   </section><!-- #reviews -->
