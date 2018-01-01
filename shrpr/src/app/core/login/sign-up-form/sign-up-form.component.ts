@@ -54,8 +54,14 @@ export class SignUpFormComponent implements OnInit {
     this.data.email = this.signupForm.value.email;
     this.data.password = this.signupForm.value.password;
 
+    if(this.data.name && this.data.email && this.data.password){
+      this.signup = true;
+    } 
+    else {
+      this.signup = false;
+    }
     //sign up form completed
-    this.signup = true;
+    
   }
 
   onProfile(){
