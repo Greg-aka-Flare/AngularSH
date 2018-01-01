@@ -37,7 +37,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
   courseCardLength:number;
   instructorCourse:any[]=new Array();
   counter:number = 0;
-  
+  reviewshowHide:boolean = false;
   details:any;
   
   width = document.documentElement.clientWidth;

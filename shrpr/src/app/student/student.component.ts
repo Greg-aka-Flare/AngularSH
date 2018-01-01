@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Course } from "../courses/course.interface";
 import { CourseService } from "../courses/course.service";
+import { AddreviewComponent } from "../shared/add-a-review/addreview.component";
 import { Student } from "../student/student.interface";
 import { StudentService } from '../student/student.service';
 import { InlineEditComponent } from '../shared/inline-edit/inline-edit.component';
@@ -25,6 +26,7 @@ export class StudentComponent implements OnInit, OnDestroy {
   studentCourse:any;
   courseCard: any[] = [];
   private id:number;
+  reviewshowHide:boolean = false;
   //subscription: Subscription;
   private subscriptions = new Subscription();
   
