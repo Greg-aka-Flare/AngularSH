@@ -35,9 +35,10 @@ export class InstructorComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
   instrocterdata:string;
   courseCardLength:number;
+  reviewshowHide:boolean = false;
   instructorCourse:any[]=new Array();
   counter:number = 0;
-  reviewshowHide:boolean = false;
+  
   details:any;
   
   width = document.documentElement.clientWidth;
@@ -76,7 +77,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
         for(var j = this.counter, l = this.courses.length; j < l; j=j)
         {
           if(this.courseCard[j]){
-          this.instructorCourse.push(this.courseCard[j]);
+            this.instructorCourse.push(this.courseCard[j]);
           }
           j++;
           if(j%3 == 0) break;
