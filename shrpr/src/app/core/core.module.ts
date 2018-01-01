@@ -9,7 +9,6 @@ import { StarRatingModule } from 'angular-star-rating';
 import { CuriousComponent } from './curious/curious.component';
 import { CuriousDesktopComponent } from './curious/curious-desktop/curious-desktop.component';
 import { CuriousMobileComponent } from './curious/curious-mobile/curious-mobile.component';
-import { LandingComponent } from './landing/landing.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ValuesComponent } from './values/values.component';
