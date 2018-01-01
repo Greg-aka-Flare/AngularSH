@@ -67,7 +67,7 @@ export class SignUpFormComponent implements OnInit {
       //create user
       this.user.signup(this.data).subscribe(
         success => this.onUserCreated(),
-        error =>  console.log('Error Creating User')
+        error =>  console.log(error)
       );
     }
   }
@@ -105,9 +105,31 @@ export class SignUpFormComponent implements OnInit {
         }
 
         //send all requests
-        forkJoin(requests).subscribe(results => {
-          
-        });
+        forkJoin(requests).subscribe(results => { console.log('Courses Liked/Disliked.') });
+
+        //send to appropiate profile
+        this.auth.me().subscribe(
+          res => {
+
+            //store data
+            let id = res.id;
+            let role = res.roles[0];
+
+            //navigate to profile based on role
+            if(role == 'student'){
+              this.router.navigateByUrl('student/' + id);
+            }
+            else if(role == 'instructor'){
+              this.router.navigateByUrl('instructor/' + id);
+            }
+            else if(role == 'institution'){
+              this.router.navigateByUrl('institution/' + id);
+            }
+            else{
+              this.router.navigateByUrl('/');
+            }
+          }
+        );
       },
       error => console.log('Unable to login.')
     );
