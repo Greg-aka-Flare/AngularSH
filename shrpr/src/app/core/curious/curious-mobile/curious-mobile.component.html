@@ -8,7 +8,7 @@
         <div class="category">
             {{ course?.categories[0]?.name }}
 
-            <figure class="rating">
+            <figure class="rating" *ngIf="course?.rating">
                 <star-rating-comp [starType]="'svg'" [rating]="course?.rating" [showHalfStars]="true" [readOnly]="true"></star-rating-comp>
             </figure><!-- .rating -->
         </div><!-- .category -->

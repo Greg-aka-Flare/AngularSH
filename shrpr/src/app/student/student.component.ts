@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
@@ -14,6 +14,9 @@ import { StudentService } from '../student/student.service';
 import { InlineEditComponent } from '../shared/inline-edit/inline-edit.component';
 import {} from '@types/googlemaps';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import { ValidationComponent } from '../shared/validation/validation.component';
+import { ValidationService } from '../shared/validation/validation.service';
+
 
 
 
@@ -30,17 +33,21 @@ export class StudentComponent implements OnInit, OnDestroy {
   courseCard: any[] = [];
   private id:number;
   reviewshowHide:boolean = false;
+  private mylocation:string;
   //subscription: Subscription;
   private subscriptions = new Subscription();
   
 
   width = document.documentElement.clientWidth;
-  constructor(private studentService: StudentService, private route: ActivatedRoute, private courseService: CourseService,  private mapsAPILoader: MapsAPILoader ) {
-    
-        /*let sub = this.route.params.subscribe((params: Params) => {
-        this.id = params['id'];
-        })*/
-  
+  constructor(
+    private studentService: StudentService, 
+    private route: ActivatedRoute, 
+    private courseService: CourseService,  
+    private mapsAPILoader: MapsAPILoader,
+    private fb: FormBuilder
+  ) {
+        
+
         let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
           this.id = params['id'];
           }))

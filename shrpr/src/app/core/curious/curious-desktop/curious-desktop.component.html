@@ -43,7 +43,7 @@
 
             <div class="card-info">
                 <div class="group_info">
-                    <span class="group_rating">
+                    <span class="group_rating" *ngIf="course?.rating">
                         <star-rating-comp 
                             [starType]="'svg'" 
                             [rating]="course?.rating" 
@@ -142,7 +142,7 @@
 
             <div class="card-info">
                 <div class="group_info">
-                    <span class="group_rating">
+                    <span class="group_rating" *ngIf="course?.rating">
                         <star-rating-comp 
                             [starType]="'svg'" 
                             [rating]="course?.rating" 
@@ -241,7 +241,7 @@
 
             <div class="card-info">
                 <div class="group_info">
-                    <span class="group_rating">
+                    <span class="group_rating" *ngIf="course?.rating">
                         <star-rating-comp 
                             [starType]="'svg'" 
                             [rating]="course?.rating" 
