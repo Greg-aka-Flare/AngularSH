@@ -30,12 +30,10 @@ import { InstitutionService } from "../institution/institution.service";
 import { CourseService } from '../courses/course.service';
 import { LikeService } from './like.service';
 import { UserService } from './user.service';
-import { LandingGuard } from './landing/landing-guard.service';
 
 
 @NgModule({
   declarations: [
-    LandingComponent,
     HomeComponent,
     CuriousComponent,
     CuriousDesktopComponent,
@@ -68,8 +66,7 @@ import { LandingGuard } from './landing/landing-guard.service';
     InstitutionService,
     CourseService,
     LikeService,
-    UserService,
-    LandingGuard
+    UserService
   ]
 })
 export class CoreModule { }

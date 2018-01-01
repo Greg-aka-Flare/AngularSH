@@ -52,16 +52,8 @@ export class SignUpFormComponent implements OnInit {
 
     this.subscriptions.add(this.user.signup(name, email, password)
       .subscribe(
-        response => {
-            if(response.status === 201){
-              this.signup = !this.signup; 
-            }
-          },
-        error => {
-          if(error.status === 422){
-            this.signupError = true;
-          }
-        },
+        response => { console.log(response) },
+        error => { console.log(error) }
     ));
   }
 
@@ -86,8 +78,12 @@ export class SignUpFormComponent implements OnInit {
 
       this.emailTimeout = setTimeout(() => {
 	  		this.user.checkEmail(control.value).subscribe(
-	  			success => { resolve(null) },
-	  			error => { resolve({ 'emailTaken': true }) })
+	  			success => { 
+            console.log(success);
+            resolve(null); },
+	  			error => { 
+            console.log(error);
+            resolve({ 'emailTaken': true }) })
 	  	}, 600);
   	});
 
