@@ -42,7 +42,8 @@
           </p>
           <a [routerLink]="['/courses', card?.id]"  class="page-cta">View Course</a>
         </div>
-    </article>
+    </article> 
+    <p *ngIf="courseCard.length > 3" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= courseCard.length">view more</button></p> 
   </tab>
   <tab tabTitle="ABOUT">
     <article class="tab_content_para"><p>{{details?.description}}</p></article>
@@ -85,7 +86,7 @@
         <a [routerLink]="['/courses', card?.id]" class="page-cta" aria-roledescription="button">View Course</a>
       </div>
   </article>
-  <p class="seeall-link" *ngIf="instructorCourse >= 3" ><button class="show-more" (click)="getData()" [disabled]="counter>=instructorCourse.length">see all related reviews</button><a href="javascript:void(0);">see all related reviews</a>--></p>
+  <p *ngIf="courseCard.length > 3" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= courseCard.length">view more</button></p>
     
     <h2>ABOUT</h2>
     <p>{{details?.description}}</p>

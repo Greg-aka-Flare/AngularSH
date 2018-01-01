@@ -56,6 +56,33 @@
    :host /deep/ tabs .tabs tab div .card-box h3 {
        color: #ffffff;
    }  
+.ctr {
+    text-align:center;
+}  
+.view-more-btn {
+    background-color: #e7aa62;
+    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    display: block;
+    font-family: 'circularstd book';
+    font-size: 18px;
+    line-height: 18px;
+    text-decoration: none;
+    margin: 10px auto;
+    max-width: 150px;
+    padding: 9px 10px 7px 10px;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+} 
+.view-more-btn:hover {
+    opacity: 0.8;
+}
+button.view-more-btn:disabled {
+    display: none;
+}
 @media only screen and (min-width: 767px) {
 :host /deep/ tabs .tabs tab > div {
     padding: 10PX;
