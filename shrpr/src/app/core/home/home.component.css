@@ -51,7 +51,7 @@ section#sign-up p {
 }
 /*** Slider ***/
 #home-slider {
-    margin: 0 0 30px 0;
+    margin: 0 0 20px 0;
 }
 #home-slider.mobile{
     margin: 0;
@@ -109,7 +109,7 @@ section#sign-up p {
 }
 /*tab*/
 :host /deep/ tabs .tabs ul  {
-    padding: 14px 0 14px 0;
+    padding: 0 0 14px 0;
     text-align: center;
     margin: 0 auto !important;
     max-width: 320px;

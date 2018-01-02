@@ -11,6 +11,7 @@ import { InstructorComponent } from './instructor/instructor.component';
 import { InstitutionComponent } from './institution/institution.component';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './core/login/login.component';
+import { BookOnlineFormComponent } from './core/book-online-form/book-online-form.component';
 
 
 const appRoutes: Routes = [
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
 	{ path: 'values', component: ValuesComponent },
 	{ path: 'videos', component: VideosComponent },
 	{ path: 'podcast', component: PodcastComponent },
+	{ path: 'book-online', component: BookOnlineFormComponent },
 	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent },
 	{ path: 'institution/:id', loadChildren: './institution/institution.module#InstitutionModule' }
 ]
