@@ -55,35 +55,52 @@
                 Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
                 <a href="javascript:void(0)" (click)="isEdit=true" class="exit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </div>
-                <div *ngIf="isEdit" (keydown.enter)="isEdit=false" class="edit-form">
-                
-                <label>Type:</label>
-                    <input type="text" formControlName="addressType" [(ngModel)]="address.type"/><br>
-                 <label>Street Address:</label>
-                    <input type="text" formControlName="addressStreet"  [(ngModel)]="address.streetAddress"/><br>
-                  <label>City:</label>
-                    <input type="text" formControlName="addressCity" [(ngModel)]="address.city"/>
-                    <br>
-                  <label>State:</label>
-                    <input type="text" formControlName="addressState" [(ngModel)]="address.state"/>
-                    <br>
-                  <label>Zip:</label>
-                    <input type="text" formControlName="addressZip" [(ngModel)]="address.zip"/>
-                    <br>
-                  <label>Country:</label>
-                    <input type="text" formControlName="addressCountry" [(ngModel)]="address.country"/>
-                    <br>
-                  <label>Phone:</label>
-                    <input type="text" formControlName="addressPhone" [(ngModel)]="students.phone"/><br>
-                  <label>Email:</label>
-                    <input type="text" formControlName="addressEmail" [(ngModel)]="students.email"/>
-
-                  <br>
-                  <button type="submit" (click)="isEdit=false" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
-                  <button class="btn btn-default" (click)="isEdit=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                
-                </div>
-                </address> </div>
+                </address>
+                <a href="javascript:void(0)" (click)="isEdit=true" class=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <div *ngIf="isEdit" class="edit-form">
+                    <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
+                    <div class="form-row">
+                    <label>Street Address:</label>
+                        <input type="text" formControlName="addressStreet" />
+                        <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>City:</label>
+                        <input type="text" formControlName="addressCity" />
+                        <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
+                      </div>
+                      <div class="form-row">
+                      <label>State:</label>
+                        <input type="text" formControlName="addressState"/>
+                        <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>Zip:</label>
+                        <input type="text" formControlName="addressZip" pattern="[0-9]+"/>
+                        <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>Country:</label>
+                        <input type="text" formControlName="addressCountry"/>
+                        <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>Phone:</label>
+                        <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" /><br>
+                        <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>Email:</label>
+                        <input type="text" formControlName="addressEmail"/>
+                        <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
+                      <button class="btn btn-default" (click)="isEdit=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                    </div>  
+                    </form>
+                    </div>
+              </div>
       </tab>
     </tabs><!-- #Tab -->
       <!-- desktop view -->
@@ -127,37 +144,37 @@
                     <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
                     <div class="form-row">
                     <label>Street Address:</label>
-                        <input type="text" formControlName="addressStreet" id="addressStreet"/>
+                        <input type="text" formControlName="addressStreet" />
                         <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
                     </div>
                     <div class="form-row">
                       <label>City:</label>
-                        <input type="text" formControlName="addressCity" id="addressCity"/>
+                        <input type="text" formControlName="addressCity" />
                         <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
                       </div>
                       <div class="form-row">
                       <label>State:</label>
-                        <input type="text" formControlName="addressState" id="addressState"/>
+                        <input type="text" formControlName="addressState"/>
                         <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
                     </div>
                     <div class="form-row">
                       <label>Zip:</label>
-                        <input type="text" formControlName="addressZip" id="addressZip" pattern="[0-9]+"/>
+                        <input type="text" formControlName="addressZip" pattern="[0-9]+"/>
                         <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
                     </div>
                     <div class="form-row">
                       <label>Country:</label>
-                        <input type="text" formControlName="addressCountry" id="addressCountry"/>
+                        <input type="text" formControlName="addressCountry"/>
                         <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
                     </div>
                     <div class="form-row">
                       <label>Phone:</label>
-                        <input type="text" formControlName="addressPhone" id="addressPhone" maxlength="10" pattern="[0-9]+" /><br>
+                        <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" /><br>
                         <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
                     </div>
                     <div class="form-row">
                       <label>Email:</label>
-                        <input type="text" formControlName="addressEmail" id="addressEmail"/>
+                        <input type="text" formControlName="addressEmail"/>
                         <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
                     </div>
                     <div class="form-row">
