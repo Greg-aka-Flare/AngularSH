@@ -17,12 +17,15 @@ import { AuthService } from '../../../auth/auth.service';
 export class SignUpFormComponent implements OnInit {
 
 	private emailTimeout;
+  name: string = '';
+  email: string = '';
   data: any = {};
   signupForm: FormGroup;
   ProfileForm: FormGroup;
   signup: boolean = false;
   signupError: boolean = false;
   signupErrorText: string;
+
   constructor(
   	private fb: FormBuilder,
     private user: UserService,
@@ -33,22 +36,22 @@ export class SignUpFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    //get local storage data
+    if(localStorage.getItem('name')) this.name = localStorage.getItem('name');
+    if(localStorage.getItem('email')) this.email = localStorage.getItem('email');
+
+    //create signup form
     this.signupForm = this.fb.group({
-      'name': [null, Validators.required],
-      'email': [null, [Validators.required, Validators.email], this.validateEmailNotTaken.bind(this)],
-      'password': [null, [Validators.required, Validators.minLength(6)]],
+      'name': ['', Validators.required],
+      'email': ['', [Validators.required, Validators.email], this.validateEmailNotTaken.bind(this)],
+      'password': ['', [Validators.required, Validators.minLength(6)]],
     });
 
+    //create profile form
     this.ProfileForm = this.fb.group({
-      'role': [null, [Validators.required]]
+      'role': ['', [Validators.required]]
     });
-  }
-
-  public static pattern(reg: RegExp) : ValidatorFn {
-      return (control: AbstractControl): { [key: string]: any } => {
-          var value = <string>control.value;
-          return value.match(reg) ? null : { 'pattern': { value } };
-      }
   }
 
   onSignup() {
@@ -58,15 +61,12 @@ export class SignUpFormComponent implements OnInit {
     this.data.email = this.signupForm.value.email;
     this.data.password = this.signupForm.value.password;
 
-
     if(this.data.name && this.data.email && this.data.password){
       this.signup = true;
     } 
     else {
       this.signup = false;
     }
-    //sign up form completed
-    
   }
 
   onProfile(){

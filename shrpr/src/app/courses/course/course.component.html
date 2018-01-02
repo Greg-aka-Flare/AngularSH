@@ -59,7 +59,7 @@
                 </div> 
                 </div>
             <div class="action_btn">
-              <a [routerLink]="['/book-online']">Book Online</a><a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
+              <a [routerLink]="['/book-online', course.id]">Book Online</a><a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
               <span>270 people saved this class</span></div>
         </div>
         <!-- .course_info -->
@@ -106,7 +106,7 @@
               <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
             </p>
             <div class="action_btn">
-              <a [routerLink]="['/book-online']">Book Online</a><br>
+              <a [routerLink]="['/book-online', course.id]">Book Online</a><br>
               <a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
               <span>270 people saved this class</span>
             </div>

@@ -1,24 +1,71 @@
 <app-template [menu]="menu" [search]="search">
   <div class="bookonline-form">
-<form id="onlineform" [formGroup]="bookonlineForm" (ngSubmit)="updateBookonline()">
-    <div><label>First Name*</label><input type="text" formControlName="firstName">
-      <control-messages [control]="bookonlineForm.controls.firstName"></control-messages>
-    </div>
-    <div><label>Last Name*</label><input formControlName="lastName" type="text">
-      <control-messages [control]="bookonlineForm.controls.lastName"></control-messages>
-    </div>
-     <div><label>Email*</label><input formControlName="email" type="text">
-      <control-messages [control]="bookonlineForm.controls.email"></control-messages></div>
-    <div><label>Phone*</label><input formControlName="phone" type="text" maxlength="10" pattern="[0-9]+">
-      <control-messages [control]="bookonlineForm.controls.phone"></control-messages></div>
-    <div class="checkbox"><label>Best way to contact you?</label>
-      <span><input type="radio" id="contactPhone" formControlName="contactselect" value="Phone">Phone</span>
-      <span><input type="radio" id="contactemail" formControlName="contactselect" value="email">Email</span>
-    </div>
-    <div><label>How long have you been driving for Uber?</label><select formControlName="drivinguber"><option>---Select--</option><option value="less than 1">Less than 1 Year</option><option value="1">1 Year</option><option value="2">2 Years</option><option value="3">3 Years</option><option value="4">4 Years</option><option value="5">5 Years</option><option value="6">6 Years</option><option value="7">7 Years</option><option value="8">8 Years</option><option value="9">9 Years</option></select></div>
-    <div><label>What is your current driver rating?</label><select formControlName="drivingrating"><option>---Select--</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div>
-    <!--<div class="g-recaptcha" data-sitekey="6LdH9T4UAAAAAOVBoLY1xJp0HiHej_XC0weEihck"></div>-->
-<button type="submit" [disabled]="!bookonlineForm.valid">Submit</button>
-</form>
+    <form id="onlineform" [formGroup]="bookonlineForm" (ngSubmit)="updateBookonline()">
+      <div *ngIf="!this.loggedIn">
+          <label>Name*</label>
+          <input type="text" formControlName="name">
+          <control-messages [control]="bookonlineForm.controls.name"></control-messages>
+      </div>
+
+      <div *ngIf="!this.loggedIn">
+        <label>Email*</label>
+        <input formControlName="email" type="text">
+        <control-messages [control]="bookonlineForm.controls.email"></control-messages>
+      </div>
+
+      <div>
+        <label>Phone*</label>
+        <input formControlName="phone" type="text" maxlength="10" pattern="[0-9]+">
+        <control-messages [control]="bookonlineForm.controls.phone"></control-messages>
+      </div>
+
+      <div class="checkbox">
+        <label>Best way to contact you?</label>
+        <span>
+          <input type="radio" id="contactPhone" formControlName="contactselect" value="phone">Phone
+        </span>
+
+        <span>
+          <input type="radio" id="contactemail" formControlName="contactselect" value="email">Email
+        </span>
+      </div>
+
+      <div>
+        <label>How long have you been driving for Uber?</label>
+        <select formControlName="drivinguber">
+          <option>---Select--</option>
+          <option value="less than 1">Less than 1 Year</option>
+          <option value="1">1 Year</option>
+          <option value="2">2 Years</option>
+          <option value="3">3 Years</option>
+          <option value="4">4 Years</option>
+          <option value="5">5 Years</option>
+          <option value="6">6 Years</option>
+          <option value="7">7 Years</option>
+          <option value="8">8 Years</option>
+          <option value="9">9 Years</option>
+        </select>
+      </div>
+
+      <div>
+        <label>What is your current driver rating?</label>
+        <select formControlName="drivingrating">
+          <option>---Select--</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+  
+      <div *ngIf="!loggedIn" class="create">
+        <label>Would you like to create a user?</label> 
+        <input type="checkbox" formControlName="create" name="create" id="create" />
+      </div>
+
+      <!--<div class="g-recaptcha" data-sitekey="6LdH9T4UAAAAAOVBoLY1xJp0HiHej_XC0weEihck"></div>-->
+      <button type="submit" [disabled]="!bookonlineForm.valid">Submit</button>
+    </form>
   </div>
 </app-template>

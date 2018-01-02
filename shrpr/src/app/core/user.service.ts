@@ -11,15 +11,15 @@ export class UserService {
 		return this.http.get('https://api.shrpr.co/api/users');
 	}
 
-	signup(data: any){
-		return this.http.post('http://api.shrpr.co/api/user', data,
-			{ headers: new HttpHeaders().set('X-Requested-With', 'XMLHttpRequest') });
+	signup(data: any): Observable<any> {
+		return this.http.post('http://api.shrpr.co/api/user', data);
 	}
 
-  checkEmail(email: string) {
+	book(data: any): Observable<any> {
+		return this.http.post('https://api.shrpr.co/api/user/book', data);
+	}
 
-		return this.http.post('https://api.shrpr.co/api/user/check_email', 
-			{ email: email },
-			{ headers: new HttpHeaders().set('X-Requested-With', 'XMLHttpRequest') });
+  checkEmail(email: string): Observable<any> {
+		return this.http.post('https://api.shrpr.co/api/user/check_email', { email: email });
   }
 }
