@@ -22,7 +22,7 @@ export class BookOnlineFormComponent implements OnInit {
           'firstName': ['', [Validators.required, ValidationService.alphabetsValidator]],
           'lastName': ['', [Validators.required, ValidationService.alphabetsValidator]],
           'email': ['', [Validators.required, ValidationService.emailValidator]],
-          'phone': ['', [Validators.required, ValidationService.phonenoValidator]],
+          'phone': ['', [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
           'contactselect': ['', Validators.required],
           'drivinguber': ['', Validators.required],
           'drivingrating': ['', Validators.required],

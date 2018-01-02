@@ -9,7 +9,7 @@
     </div>
      <div><label>Email*</label><input formControlName="email" type="text">
       <control-messages [control]="bookonlineForm.controls.email"></control-messages></div>
-    <div><label>Phone*</label><input formControlName="phone" type="text">
+    <div><label>Phone*</label><input formControlName="phone" type="text" maxlength="10" pattern="[0-9]+">
       <control-messages [control]="bookonlineForm.controls.phone"></control-messages></div>
     <div class="checkbox"><label>Best way to contact you?</label>
       <span><input type="radio" id="contactPhone" formControlName="contactselect" value="Phone">Phone</span>
