@@ -10,6 +10,7 @@ export class ValidationService {
       'invalidEmailAddress': 'Invalid email address',
       'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.',
       'invalidPhone' : 'Should be only 10 digits.',
+      'invalidAlphabets' : 'Only Alphabets are allowed!',
       'minlength': `Minimum length ${validatorValue.requiredLength}`
     };
 
@@ -50,6 +51,15 @@ export class ValidationService {
       return null;
     } else {
       return { 'invalidPhone': true };
+    }
+  }
+  static alphabetsValidator(control) {
+    // {6,16}           - Assert password is between 6 and 16 characters
+    // (?=.*[0-9])       - Assert a string has at least one number
+    if (control.value.match(/^[A-z]+$/)) {
+      return null;
+    } else {
+      return { 'invalidAlphabets': true };
     }
   }
 }
