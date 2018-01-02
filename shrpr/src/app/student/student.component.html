@@ -126,11 +126,6 @@
                 <div *ngIf="isEdit" class="edit-form">
                     <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
                     <div class="form-row">
-                    <label>Type:</label>
-                        <input type="text" formControlName="addressType" id="addressType"/><br>
-                        <control-messages [control]="studentAddressForm.controls.addressType"></control-messages>
-                    </div>  
-                    <div class="form-row">
                     <label>Street Address:</label>
                         <input type="text" formControlName="addressStreet" id="addressStreet"/>
                         <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
@@ -147,7 +142,7 @@
                     </div>
                     <div class="form-row">
                       <label>Zip:</label>
-                        <input type="text" formControlName="addressZip" id="addressZip"/>
+                        <input type="text" formControlName="addressZip" id="addressZip" pattern="[0-9]+"/>
                         <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
                     </div>
                     <div class="form-row">
@@ -157,7 +152,7 @@
                     </div>
                     <div class="form-row">
                       <label>Phone:</label>
-                        <input type="text" formControlName="addressPhone" id="addressPhone"/><br>
+                        <input type="text" formControlName="addressPhone" id="addressPhone" maxlength="10" pattern="[0-9]+" /><br>
                         <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
                     </div>
                     <div class="form-row">

@@ -67,13 +67,12 @@ export class StudentComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.studentAddressForm = this.fb.group({
-      'addressType': ['', Validators.required],
       'addressStreet': ['', [Validators.required]],
       'addressCity': ['', Validators.required],
       'addressState': ['', Validators.required],
       'addressZip': ['', Validators.required],
       'addressCountry': ['', Validators.required],
-      'addressPhone': ['', [Validators.required, ValidationService.phonenoValidator]],
+      'addressPhone': ['', [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
       'addressEmail': ['', [Validators.required, ValidationService.emailValidator]]
     });
 
@@ -91,7 +90,6 @@ export class StudentComponent implements OnInit, OnDestroy {
     updateAddress(){
       this.isEdit= !this.isEdit;
       //assign user data
-      this.data.addressType = this.studentAddressForm.value.addressType;
       this.data.addressStreet = this.studentAddressForm.value.addressStreet;
       this.data.addressCity = this.studentAddressForm.value.addressCity;
       this.data.addressState = this.studentAddressForm.value.addressState;
@@ -101,7 +99,6 @@ export class StudentComponent implements OnInit, OnDestroy {
       this.data.addressEmail = this.studentAddressForm.value.addressEmail;
 
       console.log(
-        'Address Type :' + this.data.addressType,
         'Street :' + this.data.addressStreet,
         'City :' + this.data.addressCity,
         'State :' + this.data.addressState,
