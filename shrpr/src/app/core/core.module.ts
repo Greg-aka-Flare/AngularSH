@@ -11,6 +11,7 @@ import { CuriousDesktopComponent } from './curious/curious-desktop/curious-deskt
 import { CuriousMobileComponent } from './curious/curious-mobile/curious-mobile.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { BookOnlineFormComponent } from './book-online-form/book-online-form.component';
 import { ValuesComponent } from './values/values.component';
 import { VideosComponent } from './videos/videos.component';
 import { PodcastComponent } from './podcast/podcast.component';
@@ -47,7 +48,8 @@ import { UserService } from './user.service';
     SignUpFormComponent,
     GoogleSigninComponent,
     FacebookLoginComponent,
-    LinkedinComponent
+    LinkedinComponent,
+    BookOnlineFormComponent
   ],
   imports: [
     CommonModule,

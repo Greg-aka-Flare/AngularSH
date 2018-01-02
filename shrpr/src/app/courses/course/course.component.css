@@ -32,6 +32,10 @@ figure.rating {
     top: 20px;
     right: 0;
 }
+.img-ctn .price.free {
+    background: #448a58;
+    color: #ffffff;
+}
 .img-ctn figure{
     padding: 0;
     margin: 0;
@@ -500,6 +504,9 @@ figure.rating {
     float: right;
     font-size:24px;
     color:#ed9b40;
+}
+.course_price_desktop.free {
+    color:#448a58;
 }
 .action_btn {
     float: right;
