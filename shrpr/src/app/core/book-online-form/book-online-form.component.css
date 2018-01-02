@@ -71,3 +71,9 @@
     width: 300px;
     transform: scale(0.9);
 }
+.bookonline-form form input.ng-valid.ng-touched{
+    border: 1px solid #0c0;
+}
+.bookonline-form form input.ng-invalid.ng-touched{
+    border: 1px solid #c00;
+}
