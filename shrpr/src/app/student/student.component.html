@@ -111,9 +111,8 @@
             </article>
         <h2>ABOUT</h2>
         <p>{{details?.description}}</p>
-        <h2>CONTACT</h2>
+        <h2>CONTACT <a href="javascript:void(0)" (click)="isEdit=true" class=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
         <div class="contact_box">
-            <a href="javascript:void(0)" (click)="isEdit=true" class=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
             <address *ngFor="let address of students?.addresses">
                 <div *ngIf="!isEdit"><strong *ngIf="students?.addresses > 1">{{ address?.type }}</strong><br>
                 {{ address?.streetAddress }}<br>
@@ -124,7 +123,7 @@
                 Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
                 </div>
                 </address>
-                <div  class="edit-form">
+                <div *ngIf="isEdit" class="edit-form">
                     <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
                     <label>Type:</label>
                         <input type="text" formControlName="addressType" id="addressType"/><br>

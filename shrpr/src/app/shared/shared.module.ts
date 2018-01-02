@@ -19,7 +19,7 @@ import { TabComponent } from './tabs/tab.component';
 import { DatexPipe } from './date.pipe';
 import { FilterComponent } from './filter/filter.component';
 import { InlineEditComponent } from './inline-edit/inline-edit.component';
-import { ControlMessagesComponent } from './control-messages.component';
+import { ControlMessagesComponent } from '../shared/control-messages/control-messages.component';
 
 
 @NgModule({

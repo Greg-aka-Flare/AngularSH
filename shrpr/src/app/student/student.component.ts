@@ -15,7 +15,7 @@ import { InlineEditComponent } from '../shared/inline-edit/inline-edit.component
 import {} from '@types/googlemaps';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { ValidationService } from '../core/validation.service';
-import { ControlMessagesComponent } from '../shared/control-messages.component';
+import { ControlMessagesComponent } from '../shared/control-messages/control-messages.component';
 
 @Component({
   selector: 'app-student',
@@ -67,14 +67,14 @@ export class StudentComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.studentAddressForm = this.fb.group({
-      'addressType': [null, Validators.required, ValidationService],
-      'addressStreet': [null, [Validators.required, Validators.email, ValidationService.emailValidator]],
-      'addressCity': [null, Validators.required],
-      'addressState': [null, Validators.required],
-      'addressZip': [null, Validators.required],
-      'addressCountry': [null, Validators.required],
-      'addressPhone': [null, Validators.required],
-      'addressEmail': [null, Validators.required]
+      'addressType': ['', Validators.required, ValidationService],
+      'addressStreet': ['', [Validators.required, Validators.email, ValidationService.emailValidator]],
+      'addressCity': ['', Validators.required],
+      'addressState': ['', Validators.required],
+      'addressZip': ['', Validators.required],
+      'addressCountry': ['', Validators.required],
+      'addressPhone': ['', Validators.required],
+      'addressEmail': ['', Validators.required]
     });
 
     this.subscriptions.add(this.studentService.getStudent(this.id)
