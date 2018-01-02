@@ -27,7 +27,7 @@ const appRoutes: Routes = [
 	{ path: 'values', component: ValuesComponent },
 	{ path: 'videos', component: VideosComponent },
 	{ path: 'podcast', component: PodcastComponent },
-	{ path: 'book-online', component: BookOnlineFormComponent },
+	{ path: 'book-online/:id', component: BookOnlineFormComponent },
 	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent },
 	{ path: 'institution/:id', loadChildren: './institution/institution.module#InstitutionModule' }
 ]
