@@ -67,14 +67,14 @@ export class StudentComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.studentAddressForm = this.fb.group({
-      'addressType': ['', Validators.required, ValidationService],
-      'addressStreet': ['', [Validators.required, Validators.email, ValidationService.emailValidator]],
+      'addressType': ['', Validators.required],
+      'addressStreet': ['', [Validators.required]],
       'addressCity': ['', Validators.required],
       'addressState': ['', Validators.required],
       'addressZip': ['', Validators.required],
       'addressCountry': ['', Validators.required],
-      'addressPhone': ['', Validators.required],
-      'addressEmail': ['', Validators.required]
+      'addressPhone': ['', [Validators.required, ValidationService.phonenoValidator]],
+      'addressEmail': ['', [Validators.required, ValidationService.emailValidator]]
     });
 
     this.subscriptions.add(this.studentService.getStudent(this.id)
