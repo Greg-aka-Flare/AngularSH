@@ -12,6 +12,7 @@ import { InstitutionComponent } from './institution/institution.component';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './core/login/login.component';
 
+
 const appRoutes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'marketing', loadChildren: './marketing/marketing.module#MarketingModule' },

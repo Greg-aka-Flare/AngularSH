@@ -19,7 +19,8 @@ import { TabComponent } from './tabs/tab.component';
 import { DatexPipe } from './date.pipe';
 import { FilterComponent } from './filter/filter.component';
 import { InlineEditComponent } from './inline-edit/inline-edit.component';
-import { ValidationComponent } from './validation/validation.component';
+import { ControlMessagesComponent } from './control-messages.component';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { ValidationComponent } from './validation/validation.component';
     DatexPipe,
     FilterComponent,
     InlineEditComponent,
-    ValidationComponent
+    ControlMessagesComponent
   ],
   imports: [
   	CommonModule,
@@ -60,7 +61,7 @@ import { ValidationComponent } from './validation/validation.component';
     FilterComponent,
     InlineEditComponent,
     AddreviewComponent,
-    ValidationComponent
+    ControlMessagesComponent
   ]
 })
 export class SharedModule {}

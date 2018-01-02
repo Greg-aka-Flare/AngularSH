@@ -1,17 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ValidationService } from './validation.service';
+import { ValidationService } from '../core/validation.service';
 
 @Component({
   selector: 'control-messages',
-  template: `<div *ngIf="errorMessage !== null">{{errorMessage}}</div>`,
-  styleUrls: ['./validation.component.css']
+  template: `<div *ngIf="errorMessage !== null">{{errorMessage}}</div>`
 })
-
-export class ValidationComponent {
-
+export class ControlMessagesComponent {
   @Input() control: FormControl;
-
   constructor() { }
 
   get errorMessage() {
@@ -23,5 +19,4 @@ export class ValidationComponent {
 
     return null;
   }
-
 }

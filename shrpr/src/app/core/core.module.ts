@@ -29,7 +29,7 @@ import { InstitutionService } from "../institution/institution.service";
 import { CourseService } from '../courses/course.service';
 import { LikeService } from './like.service';
 import { UserService } from './user.service';
-
+import { ValidationService } from '../core/validation.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,8 @@ import { UserService } from './user.service';
     InstitutionService,
     CourseService,
     LikeService,
-    UserService
+    UserService,
+    ValidationService
   ]
 })
 export class CoreModule { }
