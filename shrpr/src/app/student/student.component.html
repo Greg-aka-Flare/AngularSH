@@ -95,7 +95,7 @@
                         <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
                     </div>
                     <div class="form-row">
-                      <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
+                      <button type="submit" class="btn btn-primary" [disabled]="!studentAddressForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
                       <button class="btn btn-default" (click)="isEdit=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
                     </div>  
                     </form>
@@ -178,7 +178,7 @@
                         <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
                     </div>
                     <div class="form-row">
-                      <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
+                      <button type="submit" class="btn btn-primary" [disabled]="!studentAddressForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
                       <button class="btn btn-default" (click)="isEdit=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
                     </div>  
                     </form>

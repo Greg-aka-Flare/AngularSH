@@ -20,6 +20,7 @@ import { DatexPipe } from './date.pipe';
 import { FilterComponent } from './filter/filter.component';
 import { InlineEditComponent } from './inline-edit/inline-edit.component';
 import { ControlMessagesComponent } from '../shared/control-messages/control-messages.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ControlMessagesComponent } from '../shared/control-messages/control-mes
     DatexPipe,
     FilterComponent,
     InlineEditComponent,
-    ControlMessagesComponent
+    ControlMessagesComponent,
+    ModalComponent
   ],
   imports: [
   	CommonModule,
