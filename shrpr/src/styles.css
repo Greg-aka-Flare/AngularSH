@@ -615,6 +615,10 @@ carousel {
 	right: 0;
 	z-index: 9;
 }
+.price.free {
+    background: #448a58;
+    color: #ffffff;
+}
 .group_rating {
 	float: right;
 }
