@@ -26,8 +26,12 @@ export class JwtInterceptor implements HttpInterceptor {
       }
     }, (err: any) => {
       if (err instanceof HttpErrorResponse) {
-        if (err.status === 401) {
-          auth.logout();
+
+        if(err.url !== 'https://api.shrpr.co/api/auth/me'){
+
+          if (err.status === 401) {
+            auth.logout();
+          }
         }
       }
     });

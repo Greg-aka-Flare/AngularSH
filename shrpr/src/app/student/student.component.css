@@ -76,15 +76,14 @@
     vertical-align: middle;
     max-width: 150px;
     margin: 0 2% 10px 0;
-    width: 49%;
+    width: 100%;
 } 
 .edit-form input {
     border: 1px solid #ccc;
     border-radius: 2px;
     padding: 4px 10px;
     height: 32px;
-    max-width: 262px;
-    width: 48%;
+    width: 100%;
     display: inline-block;
     vertical-align: middle;
     margin: 0 0 10px 0;
@@ -110,7 +109,34 @@
      z-index: 2;
      cursor: pointer;
  }  
+ input.ng-valid.ng-touched{
+    border: 1px solid #0c0;
+}
+input.ng-invalid.ng-touched{
+    border: 1px solid #c00;
+}
+.edit-form {
+    max-width:500px;
+}
 @media only screen and (min-width: 769px) {
+    .edit-form label {
+        display: inline-block;
+        vertical-align: middle;
+        max-width: 150px;
+        margin: 0 2% 10px 0;
+        width: 49%;
+    } 
+    .edit-form input {
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        padding: 4px 10px;
+        height: 32px;
+        max-width: 262px;
+        width: 48%;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 0 10px 0;
+      }    
 :host /deep/ tabs .tabs tab > div {
     padding: 10PX;
     overflow:hidden;

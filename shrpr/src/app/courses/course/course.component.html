@@ -8,9 +8,12 @@
             <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></figure><!-- .rating -->
         </div><!-- .category -->
         <div class="img-ctn">
-            <div class="price">
+            <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
                 ${{ course.semesters[0].amount }}
             </div><!-- .price -->
+            <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
+              Free
+          </div><!-- .price -->
             <div class="course_slider">
                 <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
                     <slide *ngFor="let slidez of slides; let index=index"
@@ -56,7 +59,7 @@
                 </div> 
                 </div>
             <div class="action_btn">
-              <a href="javascript:void(0);" aria-roledescription="button">Book Online</a><a href="javascript:void(0);" aria-roledescription="button"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
+              <a [routerLink]="['/book-online', course.id]">Book Online</a><a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
               <span>270 people saved this class</span></div>
         </div>
         <!-- .course_info -->
@@ -95,14 +98,16 @@
             <h1>{{course.title}}</h1>
             <div class="course_rating_info">
               {{ course.categories[0].name }} | <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></figure> | <a (click)="goTo('reviews')" href="javascript:void(0);">{{reviewCount}} Reviews</a><!-- .rating -->
-              <span class="course_price_desktop">${{ course.semesters[0].amount }}</span>
+              
+              <span class="course_price_desktop" *ngIf="course.semesters[0].amount != '0.00'">${{ course.semesters[0].amount }}</span>
+              <span class="course_price_desktop free" *ngIf="course.semesters[0].amount == '0.00'">Free</span>
             </div><!-- .course_rating_info -->
             <p>
               <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
             </p>
             <div class="action_btn">
-              <a href="javascript:void(0);" aria-roledescription="button">Book Online</a><br>
-              <a href="javascript:void(0);" aria-roledescription="button"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
+              <a [routerLink]="['/book-online', course.id]">Book Online</a><br>
+              <a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
               <span>270 people saved this class</span>
             </div>
             <p>

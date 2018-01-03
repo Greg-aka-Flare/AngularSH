@@ -14,13 +14,15 @@
       </div>
       <div><h2><app-inline-edit [(ngModel)]="students.name" label="students.name" [required]="true" type="text">
       </app-inline-edit></h2>
+      <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{students?.email}}">{{students?.email}}</a><br>
+      <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
         <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ students?.addresses[0]?.city }}, {{ students?.addresses[0]?.state }}
-        <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp> |  <a href="/student/{{students?.id}}#reviews">33 reviews</a></div>
+        <!--<div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp> |  <a href="/student/{{students?.id}}#reviews">33 reviews</a></div>-->
       </div>
       </section><!-- #profile header -->
     <tabs *ngIf="width < 768" >
       <tab tabTitle="Courses">
-        <h3>Upcoming Events with Triple Threat Training CT</h3>
+        <h3>Start your journey</h3>
         <article class="card-box" *ngFor="let coursed of students?.courses">
               <div class="img-ctn">
                   <figure>
@@ -38,9 +40,7 @@
       </tab>
       <tab tabTitle="ABOUT">
           <div class="contact_box">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <p>{{details?.description}}</p>
         </div>
       </tab>
       <tab tabTitle="CONTACT">
@@ -55,38 +55,58 @@
                 Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
                 <a href="javascript:void(0)" (click)="isEdit=true" class="exit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </div>
-                <div *ngIf="isEdit" (keydown.enter)="isEdit=false" class="edit-form">
-                    <label>Type:</label>
-                    <input type="text"   [(ngModel)]="address.type"/><br>
-                  <label>Street Address:</label>
-                <input type="text"   [(ngModel)]="address.streetAddress"/><br>
-              <label>City:</label>
-                <input type="text"   [(ngModel)]="address.city"/>
-                <br>
-              <label>State:</label>
-                <input type="text"   [(ngModel)]="address.state"/>
-                <br>
-              <label>Zip:</label>
-                <input type="text"   [(ngModel)]="address.zip"/>
-                <br>
-              <label>Country:</label>
-                <input type="text"   [(ngModel)]="address.country"/>
-                <br>
-              <label>Phone:</label>
-                <input type="text"   [(ngModel)]="students.phone"/><br>
-              <label>Email:</label>
-                <input type="text"   [(ngModel)]="students.email"/>
-                <br>
-                <button type="submit" (click)="isEdit=false" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
-                <button class="btn btn-default" (click)="isEdit=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                </div>
-                </address> </div>
+                </address>
+                <a href="javascript:void(0)" (click)="isEdit=true" class=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <div *ngIf="isEdit" class="edit-form">
+                    <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
+                    <div class="form-row">
+                    <label>Street Address:</label>
+                        <input type="text" formControlName="addressStreet" />
+                        <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>City:</label>
+                        <input type="text" formControlName="addressCity" />
+                        <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
+                      </div>
+                      <div class="form-row">
+                      <label>State:</label>
+                        <input type="text" formControlName="addressState"/>
+                        <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>Zip:</label>
+                        <input type="text" formControlName="addressZip" pattern="[0-9]+"/>
+                        <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>Country:</label>
+                        <input type="text" formControlName="addressCountry"/>
+                        <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>Phone:</label>
+                        <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" /><br>
+                        <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>Email:</label>
+                        <input type="text" formControlName="addressEmail"/>
+                        <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <button type="submit" class="btn btn-primary" [disabled]="!studentAddressForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
+                      <button class="btn btn-default" (click)="isEdit=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                    </div>  
+                    </form>
+                    </div>
+              </div>
       </tab>
     </tabs><!-- #Tab -->
       <!-- desktop view -->
       <section *ngIf="width > 767" id="desktopcourses">
         <h2>Courses</h2>
-        <h3>Upcoming Events with Triple Threat Training CT</h3>
+        <h3>Start your journey</h3>
           <article class="card-box" *ngFor="let coursed of students?.courses">
                 <div class="img-ctn">
                     <!--<div class="price">${{coursed.id}}</div>-->
@@ -107,8 +127,8 @@
                 </div>
             </article>
         <h2>ABOUT</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas adipisci repudiandae, omnis labore aspernatur quae commodi doloremque quo deleniti, sed nobis nihil corrupti facilis minima voluptatibus ullam possimus pariatur numquam.</p>
-        <h2>CONTACT</h2>
+        <p>{{details?.description}}</p>
+        <h2>CONTACT <a href="javascript:void(0)" (click)="isEdit=true" class=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
         <div class="contact_box">
             <address *ngFor="let address of students?.addresses">
                 <div *ngIf="!isEdit"><strong *ngIf="students?.addresses > 1">{{ address?.type }}</strong><br>
@@ -118,38 +138,55 @@
                 <br>
                 Phone: <a href="tel:{{ students?.phone }}">{{ students?.phone }}</a><br>
                 Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
-                <a href="javascript:void(0)" (click)="isEdit=true" class="exit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                </div>
-                <div *ngIf="isEdit" (keydown.enter)="isEdit=false" class="edit-form">
-                    <label>Type:</label>
-                    <input type="text"   [(ngModel)]="address.type"/><br>
-                  <label>Street Address:</label>
-                <input type="text"   [(ngModel)]="address.streetAddress"/><br>
-              <label>City:</label>
-                <input type="text"   [(ngModel)]="address.city"/>
-                <br>
-              <label>State:</label>
-                <input type="text"   [(ngModel)]="address.state"/>
-                <br>
-              <label>Zip:</label>
-                <input type="text"   [(ngModel)]="address.zip"/>
-                <br>
-              <label>Country:</label>
-                <input type="text"   [(ngModel)]="address.country"/>
-                <br>
-              <label>Phone:</label>
-                <input type="text"   [(ngModel)]="students.phone"/><br>
-              <label>Email:</label>
-                <input type="text"   [(ngModel)]="students.email"/>
-                <br>
-                <button type="submit" (click)="isEdit=false" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
-                <button class="btn btn-default" (click)="isEdit=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
                 </div>
                 </address>
+                <div *ngIf="isEdit" class="edit-form">
+                    <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
+                    <div class="form-row">
+                    <label>Street Address:</label>
+                        <input type="text" formControlName="addressStreet" />
+                        <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>City:</label>
+                        <input type="text" formControlName="addressCity" />
+                        <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
+                      </div>
+                      <div class="form-row">
+                      <label>State:</label>
+                        <input type="text" formControlName="addressState"/>
+                        <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>Zip:</label>
+                        <input type="text" formControlName="addressZip" pattern="[0-9]+"/>
+                        <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>Country:</label>
+                        <input type="text" formControlName="addressCountry"/>
+                        <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>Phone:</label>
+                        <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" /><br>
+                        <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>Email:</label>
+                        <input type="text" formControlName="addressEmail"/>
+                        <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <button type="submit" class="btn btn-primary" [disabled]="!studentAddressForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
+                      <button class="btn btn-default" (click)="isEdit=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                    </div>  
+                    </form>
+                    </div>
           </div>
       </section>
       <!-- desktop view End -->
-     <!-- #reviews-->
+     <!-- #reviews
   <section id="reviews">
       <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews | <a href="javascript:void(0);" (click)="reviewshowHide = !reviewshowHide">Add Your Review</a></div>
       <app-addreview *ngIf="reviewshowHide"></app-addreview>
@@ -161,8 +198,8 @@
     </dl>
   </div>
   <div *ngIf="reviewCount < 1">No reviews yet. Be the first to write a review.</div>
-    <p class="seeall-link"><!--<button class="show-more" (click)="getData()" [disabled]="counter>=ratingData.length">see all related reviews</button><a href="javascript:void(0);">see all related reviews</a>--></p>
+    <p class="seeall-link"><!--<button class="show-more" (click)="getData()" [disabled]="counter>=ratingData.length">see all related reviews</button><a href="javascript:void(0);">see all related reviews</a>--><!--</p>
     
-  </section><!-- #reviews -->
+  </section>#reviews -->
     </article>
 </app-template>

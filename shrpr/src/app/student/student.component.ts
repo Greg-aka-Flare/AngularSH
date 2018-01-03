@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
@@ -12,7 +12,10 @@ import { AddreviewComponent } from "../shared/add-a-review/addreview.component";
 import { Student } from "../student/student.interface";
 import { StudentService } from '../student/student.service';
 import { InlineEditComponent } from '../shared/inline-edit/inline-edit.component';
-
+import {} from '@types/googlemaps';
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import { ValidationService } from '../core/validation.service';
+import { ControlMessagesComponent } from '../shared/control-messages/control-messages.component';
 
 @Component({
   selector: 'app-student',
@@ -25,18 +28,26 @@ export class StudentComponent implements OnInit, OnDestroy {
   courses: any[];
   studentCourse:any;
   courseCard: any[] = [];
+  studentAddressForm: any;
   private id:number;
+  data: any = {};
   reviewshowHide:boolean = false;
+  isEdit:boolean = false;
+  private mylocation:string;
   //subscription: Subscription;
   private subscriptions = new Subscription();
-  
+  //control: FormControl;
 
   width = document.documentElement.clientWidth;
-  constructor(private studentService: StudentService, private route: ActivatedRoute, private courseService: CourseService ) {
+  constructor(
+    private studentService: StudentService, 
+    private route: ActivatedRoute, 
+    private courseService: CourseService,  
+    private mapsAPILoader: MapsAPILoader,
+    private fb: FormBuilder
+  ) {
+
     
-        /*let sub = this.route.params.subscribe((params: Params) => {
-        this.id = params['id'];
-        })*/
         let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
           this.id = params['id'];
           }))
@@ -54,6 +65,17 @@ export class StudentComponent implements OnInit, OnDestroy {
         console.log(files);
     }
   ngOnInit() {
+
+    this.studentAddressForm = this.fb.group({
+      'addressStreet': ['', [Validators.required]],
+      'addressCity': ['', Validators.required],
+      'addressState': ['', Validators.required],
+      'addressZip': ['', Validators.required],
+      'addressCountry': ['', Validators.required],
+      'addressPhone': ['', [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
+      'addressEmail': ['', [Validators.required, ValidationService.emailValidator]]
+    });
+
     this.subscriptions.add(this.studentService.getStudent(this.id)
     .subscribe(
           (response) => {
@@ -63,6 +85,29 @@ export class StudentComponent implements OnInit, OnDestroy {
           },
           (error: Response) => console.log(error)
         ));
+    }
+
+    updateAddress(){
+      this.isEdit= !this.isEdit;
+      //assign user data
+      this.data.addressStreet = this.studentAddressForm.value.addressStreet;
+      this.data.addressCity = this.studentAddressForm.value.addressCity;
+      this.data.addressState = this.studentAddressForm.value.addressState;
+      this.data.addressZip = this.studentAddressForm.value.addressZip;
+      this.data.addressCountry = this.studentAddressForm.value.addressCountry;
+      this.data.addressPhone = this.studentAddressForm.value.addressPhone;
+      this.data.addressEmail = this.studentAddressForm.value.addressEmail;
+
+      console.log(
+        'Street :' + this.data.addressStreet,
+        'City :' + this.data.addressCity,
+        'State :' + this.data.addressState,
+        'Zip :' + this.data.addressZip,
+        'Country :' + this.data.addressCountry,
+        'Phone :' + this.data.addressPhone,
+        'Email :' + this.data.addressEmail
+      )
+
     }
 
     ngOnDestroy(){
