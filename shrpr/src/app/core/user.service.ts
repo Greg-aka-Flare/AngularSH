@@ -12,7 +12,7 @@ export class UserService {
 	}
 
 	signup(data: any): Observable<any> {
-		return this.http.post('http://api.shrpr.co/api/user', data);
+		return this.http.post('https://api.shrpr.co/api/user', data);
 	}
 
 	book(data: any): Observable<any> {

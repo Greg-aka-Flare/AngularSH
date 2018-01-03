@@ -83,15 +83,10 @@ export class BookOnlineFormComponent implements OnInit {
       this.data.email = this.bookonlineForm.value.email;
       this.data.phone = this.bookonlineForm.value.phone;
       this.data.create = this.bookonlineForm.value.create;
-      this.data.token = false;
 
       //set local storage info
       localStorage.setItem('name', this.data.name);
       localStorage.setItem('email', this.data.email);
-    }
-    else{
-
-      this.data.token = true;
     }
 
     //get misc data
