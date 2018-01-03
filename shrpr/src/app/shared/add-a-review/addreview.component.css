@@ -58,3 +58,9 @@
 	color: #ec9332;
 	background: #ffffff;
 }
+.review-form form input.ng-valid.ng-touched, .review-form form textarea.ng-valid.ng-touched{
+    border: 1px solid #0c0;
+}
+.review-form form input.ng-invalid.ng-touched, .review-form form textarea.ng-invalid.ng-touched{
+    border: 1px solid #c00;
+}
