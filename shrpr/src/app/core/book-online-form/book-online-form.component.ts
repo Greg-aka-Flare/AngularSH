@@ -101,7 +101,7 @@ export class BookOnlineFormComponent implements OnInit {
       success => { 
 
         //logged in, navigate home
-        if(this.loggedIn || !this.data.create) {
+        if(this.loggedIn || this.data.create) {
 
           //back to course
           this.router.navigateByUrl('/courses/' + this.courseId); 
