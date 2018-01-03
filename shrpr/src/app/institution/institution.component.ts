@@ -32,7 +32,7 @@ export class InstitutionComponent implements OnInit, OnDestroy {
   constructor(private institutionService: InstitutionService, private route: ActivatedRoute) { 
     let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
         if(params['id'] == 'the-next-street'){
-          this.id = 64;
+          this.id = 3;
         }
         else{
           this.id = params['id'];
