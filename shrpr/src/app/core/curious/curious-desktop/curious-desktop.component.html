@@ -15,9 +15,12 @@
             [@state]="course?.state"
         >
             <div class="img-ctn">
-                <div class="price">
+                <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
                     ${{ course?.semesters[0]?.amount }}
-                </div><!-- .price -->
+                  </div>
+                  <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
+                      Free
+                  </div>
 
                 <figure><a [routerLink]="['/courses', course.id]">
                  <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
@@ -112,9 +115,12 @@
             [@state]="course?.state"
         >
             <div class="img-ctn">
-                <div class="price">
+                <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
                     ${{ course?.semesters[0]?.amount }}
-                </div><!-- .price -->
+                  </div>
+                  <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
+                      Free
+                  </div>
 
                 <figure>
                         <a [routerLink]="['/courses', course.id]"><img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
@@ -211,9 +217,12 @@
             [@state]="course?.state"
         >
             <div class="img-ctn">
-                <div class="price">
+                <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
                     ${{ course?.semesters[0]?.amount }}
-                </div><!-- .price -->
+                  </div>
+                  <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
+                      Free
+                  </div>
 
                 <figure>
                         <a [routerLink]="['/courses', course.id]"><img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
