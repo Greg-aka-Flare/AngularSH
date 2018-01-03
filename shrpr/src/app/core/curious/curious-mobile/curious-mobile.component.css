@@ -92,6 +92,10 @@
     top: 20px;
     right: 0;
 }
+#curious-swiper .img-ctn .price.free {
+    background: #448a58;
+    color: #ffffff;
+}
 #curious-swiper .img-ctn figure{
     height: 280px;
     width: 100%;

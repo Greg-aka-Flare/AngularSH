@@ -8,6 +8,7 @@ import { UserInterface } from '../../../core/user.interface';
 import { UserService } from '../../../core/user.service';
 import { LikeService } from '../../../core/like.service';
 import { AuthService } from '../../../auth/auth.service';
+import { ValidationService } from '../../../core/validation.service';
 
 @Component({
   selector: 'sign-up',
@@ -43,9 +44,9 @@ export class SignUpFormComponent implements OnInit {
 
     //create signup form
     this.signupForm = this.fb.group({
-      'name': ['', Validators.required],
-      'email': ['', [Validators.required, Validators.email], this.validateEmailNotTaken.bind(this)],
-      'password': ['', [Validators.required, Validators.minLength(6)]],
+      'name': ['', [Validators.required, ValidationService.alphabetsValidator]],
+      'email': ['', [Validators.required, ValidationService.emailValidator ], this.validateEmailNotTaken.bind(this)],
+      'password': ['', [Validators.required, ValidationService.passwordValidator]],
     });
 
     //create profile form
