@@ -422,6 +422,9 @@ carousel {
 .slider-img {
 	width:100%;
 }
+.slider-video {
+	width:100%;
+}
 .carousel-caption {
 	position: absolute;
 	right: 15%;
@@ -438,6 +441,10 @@ carousel {
 	text-shadow: none;
 }
 .slider-image-content .slider-img {
+	width: 100%;
+	display: block;
+}
+.slider-image-content .slider-video {
 	width: 100%;
 	display: block;
 }
@@ -886,6 +893,12 @@ carousel {
 .slider-image-content .slider-img {
 	display: inline-block;
 	vertical-align: middle;
+	width: 44%;
+}
+.slider-image-content .slider-video {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 50px 0 50px 0;
 	width: 44%;
 }
 .banner-content {
