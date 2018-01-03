@@ -38,7 +38,7 @@ export class DigitalComponent implements OnInit {
 tour.init();
 
 // Start the tour
-tour.start();
-  }
+//tour.start();
 
+}
 }

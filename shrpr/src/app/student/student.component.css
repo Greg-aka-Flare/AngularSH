@@ -59,6 +59,11 @@
 .contact_box address, .profile-picture {
     position: relative;
 }
+.profile-form {
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #cccccc;
+    padding: 10px;
+}
 .exit-btn {
     position: absolute;
     right:5%;
@@ -70,6 +75,9 @@
 .contact_box address:hover .exit-btn {
     visibility: visible;
 
+}
+.edit-form {
+    padding: 0 0 20px 0;
 }
 .edit-form label {
     display: inline-block;
@@ -87,7 +95,35 @@
     display: inline-block;
     vertical-align: middle;
     margin: 0 0 10px 0;
+    color: #000000;
+    font-family: arial;
   }
+  .edit-form textarea {
+    color: #000000;
+    font-family: arial;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 4px 10px;
+    width: 100%;
+    display: block;
+    margin: 0 0 10px 0;
+    width: 100%;
+  }
+  .edit-form input[type="file"] {
+    border: 0;
+    padding:0;
+    height: auto;
+    width: auto;
+    margin: 0 0 10px 0;
+  }
+.edit-form h2 {
+    font-size: 24px;
+}
+.edit-btn {
+    color: #000000;
+    font-size: 20px;
+    line-height: 20px;
+} 
   .profile-upload {
       position: absolute;
       right: 0;
@@ -109,10 +145,10 @@
      z-index: 2;
      cursor: pointer;
  }  
- input.ng-valid.ng-touched{
+ .edit-form input.ng-valid.ng-touched, .edit-form textarea.ng-valid.ng-touched{
     border: 1px solid #0c0;
 }
-input.ng-invalid.ng-touched{
+.edit-form input.ng-invalid.ng-touched, .edit-form textarea.ng-invalid.ng-touched{
     border: 1px solid #c00;
 }
 .edit-form {
