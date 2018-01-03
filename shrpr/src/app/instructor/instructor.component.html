@@ -32,7 +32,13 @@
             <h3>{{card?.title}}</h3>
         </div>
         <div class="card-info">
-          <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp></span></div>
+          <div class="group_info"><span class="group_rating">
+            <star-rating-comp 
+              [starType]="'svg'" 
+              [readOnly]="true"
+              rating="{{ card?.rating || 0 }}"
+            >
+            </star-rating-comp></span></div>
           <p class="location">
             <i class="fa fa-map-marker" aria-hidden="true"></i> 
             <a href="javascript:void(0);">{{ card?.semesters[0]?.addresses[0]?.city }}, {{ card?.semesters[0]?.addresses[0]?.state }}</a>
@@ -73,7 +79,13 @@
           <h3>{{card.title}}</h3>
       </div>
       <div class="card-info">
-        <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp></span></div>
+        <div class="group_info"><span class="group_rating">
+          <star-rating-comp 
+            [starType]="'svg'"
+            [readOnly]="true"
+            rating="{{ card?.rating || 0 }}"
+          >
+          </star-rating-comp></span></div>
         <p class="location">
             <i class="fa fa-map-marker" aria-hidden="true"></i> 
             <a href="javascript:void(0);">{{ card?.semesters[0]?.addresses[0]?.city }}, {{ card?.semesters[0]?.addresses[0]?.state }}</a>
