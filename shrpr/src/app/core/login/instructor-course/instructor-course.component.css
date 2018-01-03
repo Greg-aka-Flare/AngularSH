@@ -76,3 +76,11 @@
 .formRow .sessionDetailTable input[type="date"], .formRow .sessionDetailTable input[type="time"] {
     width:99%;
 }
+.formRow select.ng-invalid.ng-touched, .formRow input[type="text"].ng-invalid.ng-touched, .formRow textarea.ng-invalid.ng-touched, .formRow input[type="date"].ng-invalid.ng-touched, .formRow input[type="time"].ng-invalid.ng-touched, .formRow input[type="number"].ng-invalid.ng-touched
+{
+    border: 1px solid #0c0;
+}
+.formRow select.ng-invalid.ng-touched, .formRow input[type="text"].ng-invalid.ng-touched, .formRow textarea.ng-invalid.ng-touched, .formRow input[type="date"].ng-invalid.ng-touched, .formRow input[type="time"].ng-invalid.ng-touched, .formRow input[type="number"].ng-invalid.ng-touched
+{
+    border: 1px solid #c00;
+}

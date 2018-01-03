@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, NgModule, Renderer } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
 import * as moment from 'moment';
-
+import { ValidationService } from '../../../core/validation.service';
 
 @Component({
   selector: 'app-instructor-course',
@@ -14,44 +14,64 @@ export class InstructorCourseComponent implements OnInit {
   
   
   instructorCourseForm: FormGroup;
+  semesterInfoForm: FormGroup;
+  semesterDetailForm: FormGroup;
   private sessionArray: any[] = [];
+  data: any = {};
   //sessionArray: Array<{sessionDate:string, startTime: string, endTime: string}>;
   //private sessionArray = new Array<{sessionDate:string}>();
 
-  @ViewChild('panel') panel : ElementRef
+  @ViewChild('panel') panel : ElementRef;
+  @ViewChild('myForm') myForm: ElementRef;
   
   slideNo: number = 1;
-  lastSlideNo:number = 4;
+  lastSlideNo:number = 3;
   prevPos: string = '';
   nextPos:number = 0;
+  goNext:boolean = false;
   
   courseStartTimeText:string;
   courseSessionNumber:number;
   courseDurationNumber:number;
 
 
-  constructor(public renderer: Renderer) {
-    
+  constructor(
+    public renderer: Renderer,
+    private fb: FormBuilder
+  ) {
+      
    }
 
   ngOnInit() {
-    this.instructorCourseForm = new FormGroup({
-      'courseGroupSelect': new FormControl(null, Validators.required),
-      'courseCategorySelect': new FormControl(null, [Validators.required]),
-      'courseSubCategorySelect': new FormControl(null, Validators.required),
-      'courseTitleText': new FormControl(null, Validators.required),
-      'courseDescriptionText': new FormControl(null, Validators.required),
-      'courseStartDateText': new FormControl(null, Validators.required),
-      'courseStartTimeText': new FormControl(null, Validators.required),
-      'courseSessionNumber': new FormControl(null, Validators.required),
-      'courseDurationNumber': new FormControl(null, Validators.required),
-      'courseLocationText': new FormControl(null, Validators.required),
-      'courseEndTimeText': new FormControl(null)
+
+    this.instructorCourseForm = this.fb.group({
+      'courseTitleText': ['', Validators.required],
+      'courseGroupSelect': ['', Validators.required],
+      'courseCategorySelect': ['', Validators.required],
+      'courseSubCategorySelect': ['', Validators.required],
+      'courseDescriptionText': ['', [Validators.required, Validators.minLength(40)]],
+    });  
+    this.semesterInfoForm = this.fb.group({  
+      'courseStartDateText': ['', Validators.required],
+      'courseStartTimeText': ['', Validators.required],
+      'courseEndTimeText': [''],
+      'courseSessionNumber': ['', Validators.required],
+      'courseDurationNumber': ['', Validators.required],
+      'courseLocationText': ['', Validators.required],
     });
+
+    this.goNext = this.instructorCourseForm.valid;
+    this.semesterDetailForm = new FormGroup({  
+      
+    });
+
   }
 
   nextSlide(){
-    if(this.slideNo == 3){
+    if(this.slideNo == 1){
+      this.instructorCourseSubmit();
+    }
+    if(this.slideNo == 2){
       this.sessionDetailsinit();
     }
     if( this.slideNo > 0 && this.slideNo < this.lastSlideNo ){
@@ -77,13 +97,35 @@ export class InstructorCourseComponent implements OnInit {
           'translateX(0px)');
       }
     }
+
+    instructorCourseSubmit() {
+
+      this.data.courseTitleText = this.instructorCourseForm.value.courseTitleText;
+      this.data.courseGroupSelect = this.instructorCourseForm.value.courseGroupSelect;
+      this.data.courseCategorySelect = this.instructorCourseForm.value.courseCategorySelect;
+      this.data.courseSubCategorySelect = this.instructorCourseForm.value.courseSubCategorySelect;
+      this.data.courseDescriptionText = this.instructorCourseForm.value.courseDescriptionText;
+      console.log(
+        'Course Name :' + this.data.courseTitleText,
+        'Group :' + this.data.courseGroupSelect,
+        'Category :' + this.data.courseCategorySelect,
+        'Sub Category :' + this.data.courseSubCategorySelect,
+        'Description :' + this.data.courseDescriptionText
+      )
+    }  
   
   sessionDetailsinit(){
-    let courseStartDateText = this.instructorCourseForm.value.courseStartDateText;
-    let courseStartTimeText = this.instructorCourseForm.value.courseStartTimeText;
-    let courseEndTimeText = this.instructorCourseForm.value.courseEndTimeText;
-    this.courseSessionNumber = this.instructorCourseForm.value.courseSessionNumber;
-    let courseDurationNumber = this.instructorCourseForm.value.courseDurationNumber;
+
+    if(this.sessionArray.length !== 0) {
+        this.sessionArray = [];
+    }
+
+    let courseStartDateText = this.semesterInfoForm.value.courseStartDateText;
+    let courseStartTimeText = this.semesterInfoForm.value.courseStartTimeText;
+    let courseEndTimeText = this.semesterInfoForm.value.courseEndTimeText;
+    this.courseSessionNumber = this.semesterInfoForm.value.courseSessionNumber;
+    let courseDurationNumber = this.semesterInfoForm.value.courseDurationNumber;
+    let courseLocationText = this.semesterInfoForm.value.courseLocationText;
     
     courseStartTimeText = moment(courseStartTimeText+':00', 'hh:mm:ss a');
     courseStartTimeText = moment(courseStartTimeText).format('LT');
