@@ -6,27 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-
-	menu: boolean = true;
-	search: boolean = true;
+  
   goTo(location: string): void {
     window.location.href = location;
   }
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-
-    let access = localStorage.getItem('letmein');
-
-    if(access == 'true'){
-
-    	this.menu = true;
-    	this.search = true;
-    }
-    else{
-
-    	this.menu = false;
-    	this.search = false;
-    }
-  }
+  ngOnInit() {}
 }

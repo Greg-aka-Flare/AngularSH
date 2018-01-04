@@ -9,25 +9,7 @@ import { NgModule } from '@angular/core';
 })
 export class TeamComponent implements OnInit {
 
-	menu: boolean = true;
-	search: boolean = true;
-
   constructor() { }
 
-  ngOnInit() {
-
-    let access = localStorage.getItem('letmein');
-
-    if(access == 'true'){
-
-    	this.menu = true;
-    	this.search = true;
-    }
-    else{
-
-    	this.menu = false;
-    	this.search = false;
-    }
-  }
-
+  ngOnInit() { }
 }
