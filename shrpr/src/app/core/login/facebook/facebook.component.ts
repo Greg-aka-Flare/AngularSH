@@ -12,7 +12,7 @@ declare const FB: any;
 export class FacebookLoginComponent implements OnInit {
     constructor(private router: Router) {
         FB.init({
-            appId      : '1976762222574053',
+            appId      : '277825696077581',
             cookie     : false,  // enable cookies to allow the server to access
                                 // the session
             xfbml      : true,  // parse social plugins on this page
