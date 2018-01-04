@@ -16,15 +16,6 @@
       top: 0;
       background: url('../../../../assets/img/mobile-demo-swipe.gif') no-repeat center center;
       z-index: 3;
-      -moz-animation: cssAnimation 0s ease-in 10s forwards;
-      /* Firefox */
-      -webkit-animation: cssAnimation 0s ease-in 10s forwards;
-      /* Safari and Chrome */
-      -o-animation: cssAnimation 0s ease-in 10s forwards;
-      /* Opera */
-      animation: cssAnimation 0s ease-in 10s forwards;
-      -webkit-animation-fill-mode: forwards;
-      animation-fill-mode: forwards;
   }
   
 #curious-swiper.active::before {
@@ -37,28 +28,7 @@
     top: 0;
     width: 100%;
     z-index: 2;
-    -moz-animation: cssAnimation 0s ease-in 10s forwards;
-    /* Firefox */
-    -webkit-animation: cssAnimation 0s ease-in 10s forwards;
-    /* Safari and Chrome */
-    -o-animation: cssAnimation 0s ease-in 10s forwards;
-    /* Opera */
-    animation: cssAnimation 0s ease-in 10s forwards;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
 }
-  
-@keyframes cssAnimation {
-    to {
-        visibility:hidden;
-    }
-}
-@-webkit-keyframes cssAnimation {
-    to {
-        visibility:hidden;
-    }
-}
-
 #curious-swiper article  {
     display: block;
     position: absolute;
@@ -144,8 +114,7 @@
     
 }
 section.suggest-course{
-    padding: 35px 100px;
-    width: 100%;
+    padding: 10px;
 }
 section.suggest-course h1{
     color: #666;
@@ -159,12 +128,11 @@ section.suggest-course p{
 section.suggest-course form{
     display: block;
     margin: 0 auto;
-    overflow: hidden;
-    width: 75%;
 }
 section.suggest-course form textarea{
     background-color: #fafafa;
     border: 1px solid #eee;
+    display: block;
     font-size: 16px;
     padding: 10px;
     height: 200px;
@@ -178,11 +146,10 @@ section.suggest-course form button{
     color: #ffffff;
     cursor: pointer;
     display: block;
-    float: right;
     font-family: 'circularstd book';
     font-size: 18px;
     line-height: 18px;
-    margin: 20px 20px 0 0;
+    margin: 20px auto;
     max-width: 138px;
     padding: 13px 20px;
     text-align: center;
@@ -190,4 +157,18 @@ section.suggest-course form button{
 }
 section.suggest-course form button:hover{
     background-color: #666;
+}
+section.suggest-complete{
+    padding: 10px 0 40px 0;
+}
+section.suggest-complete h1{
+    color: #666;
+    font-size: 20px;
+    margin: 0;
+    padding: 0 0 10px 0;
+    text-align: center;
+}
+section.suggest-complete p{
+    font-size: 16px;
+    text-align: center;
 }

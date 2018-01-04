@@ -7,8 +7,8 @@ import { CourseService } from '../../../courses/course.service';
 import { LikeService } from '../../like.service';
 import { Subscription } from 'rxjs/Subscription';
 import { StarRatingModule } from 'angular-star-rating';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
- 
 @Component({
   selector: 'app-curious-mobile',
   templateUrl: './curious-mobile.component.html',
@@ -37,12 +37,22 @@ import { StarRatingModule } from 'angular-star-rating';
         }),
         animate(100)
       ])
+    ]),
+    trigger('form', [
+      state('in', style({
+        transform: 'translateX(0)'
+      })),
+      transition('void => *', [
+        style({ transform: 'translateX(200%)' }),
+        animate('300ms ease-in')])
     ])
   ]
 })
 
 export class CuriousMobileComponent implements OnInit {
 
+  suggestForm: FormGroup;
+  suggestComplete: boolean = false;
   courses: Course[];
   counter: number = 0;
   colorState: string;
@@ -60,13 +70,14 @@ export class CuriousMobileComponent implements OnInit {
     private courseService: CourseService, 
     private likeService: LikeService
   ) {}
-  toggleClass() {
-    this.isBtnActive = false;
-  }
+
   ngOnInit() {
 
+    this.suggestForm = new FormGroup({
+      'suggest': new FormControl(null, Validators.required)
+    });
 
-    this.subscriptions.add(this.courseService.getCourses(0, 10).subscribe(courses => {
+    this.subscriptions.add(this.courseService.getCourses(0, 10, true).subscribe(courses => {
       this.courses = courses;
     }));
 
@@ -79,58 +90,90 @@ export class CuriousMobileComponent implements OnInit {
     this.subscriptions.unsubscribe();
   }
 
-  onEdit(){
-    // this.editing = true;
-    // this.editValueName = this.course.title;
-    // this.editValueAddress = this.course.address;
-    // this.editValueCity = this.course.city;
-    // this.editValueState = this.course.state;
-    // this.editValueZip = this.course.zip;
+  toggleClass() {
+    this.isBtnActive = false;
   }
 
-  onUpdate(){
-    // this.courseService.updateCourse(this.course.id, this.editValueName)
-    //   .subscribe(
-    //     (course: Course) => {
-    //       this.course.title = this.editValueName;
-    //       this.course.address = this.editValueAddress;
-    //       this.course.city = this.editValueCity;
-    //       this.course.state = this.editValueState;
-    //       this.course.zip = this.editValueZip;
-    //     }
-    //   );
-    
-    // this.editing = false;
+  onSuggest() {
+
+    //course suggested
+    this.suggestComplete = true;
   }
 
-  onCancel(){
-    // this.editValueName = '';
-    // this.editing = false;
+  onLike(course, i) {
+
+    if(course.state === 'default'){
+
+      //set state to like
+      course.state = 'like';
+
+      //increment like counter
+      this.likeService.likeCounter(course.id);
+
+      //add new course
+      this.addNewCourse(course, i);
+    }
   }
 
-  onDelete(){
-    // this.courseService.deleteCourse(this.course.id)
-    //   .subscribe(
-    //     () => {
-    //       this.courseDeleted.emit(this.course);
-    //       console.log('Course deleted');
-    //     }
-    //   );
+  onDislike(course, i) {
+
+    if(course.state === 'default'){
+
+      //set state to like
+      course.state = 'dislike';
+
+      //increment like counter
+      this.likeService.dislikeCounter(course.id);
+
+      //add new course
+      this.addNewCourse(course, i);
+    }
   }
 
-  onLike(i, k){
-    this.likeService.likeCounter(i);
-    //if(this.courses[i].state == 'default') this.courses[i].state = 'like';
-    var course = this.courses.filter(function( obj ){
-      if(obj.id == i) obj.state = 'like';
-    });
+  private addNewCourse(course, i) {
+
+    let newCourse: Course;
+
+    //wait 100ms for animation to finish
+    setTimeout(() => {
+
+      //get excludes
+      let excludes = this.createExcludes();
+
+      //get new course
+      this.courseService.getCourses(0, 1, true, excludes).subscribe(course => {
+
+        if(course.length > 0){
+
+          //new course
+          newCourse = course[0];
+
+          //add new course
+          this.courses.splice(i, 1, newCourse);
+        }
+        else{
+
+          //remove final course
+          this.courses.splice(i, 1);
+        }
+      });
+
+    }, 300);
   }
 
-  onDislike(i, k){
-    this.likeService.dislikeCounter(i);
-    //if(this.courses[i].state == 'default') this.courses[i].state = 'dislike';
-    var course = this.courses.filter(function( obj ){
-      if(obj.id == i) obj.state = 'dislike';
-    });
+  private createExcludes() {
+
+    let excludes: number[] = [];
+
+    //for each group, create array of ids to exclude, return array
+    if(this.courses.length > 0){
+
+      for(let course of this.courses){
+
+        excludes.push(course.id);
+      }
+    }
+
+    return excludes;
   }
 }

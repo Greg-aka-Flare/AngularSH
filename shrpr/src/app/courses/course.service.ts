@@ -9,12 +9,6 @@ export class CourseService {
 
 	constructor(private http: HttpClient){}
 
-	addCourse(content: string){
-		// const body = JSON.stringify({content: content});
-		// const headers = new Headers({'Content-Type': 'application/json'});
-		// return this.http.post('http://shrpr.jdapwnzhx7.us-east-2.elasticbeanstalk.com/api/course', body, {headers: headers});
-	}
-
 	getCourses(
 		group: number = 0, 
 		limit: number = 0, 
@@ -78,15 +72,6 @@ export class CourseService {
 		let api = this.url + 'course/' + id;
 
 		return this.http.get(api);	
-	}
-	
-	updateCourse(id: number, newName: string){
-		// const body = JSON.stringify({name: newName});
-		// const headers = new Headers({'Content-Type': 'application/json'});
-		// return this.http.put('https://api.shrpr.co/api/' + id, body, {headers: headers})
-		// 	.map(
-		// 		(response: Response) => response.json()
-		// 	);
 	}
 
 	deleteCourse(id: number){
