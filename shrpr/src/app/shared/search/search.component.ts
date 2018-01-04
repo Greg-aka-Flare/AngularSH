@@ -5,7 +5,6 @@ import { NgModel } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
 
-
 declare var google: any;
 
 @Component({
@@ -38,40 +37,36 @@ export class SearchComponent implements OnInit {
     //get location
     this.location = localStorage.getItem('location');
 
-    //if not location, geolocate
-    if(!this.location){
+    if(navigator.geolocation) { //check if we can get lat/lng
+      
+      //create location
+      navigator.geolocation.getCurrentPosition(position => {
 
-      if(navigator.geolocation) { //check if we can get lat/lng
-        
-        //create location
-        navigator.geolocation.getCurrentPosition(position => {
+        let lat = position.coords.latitude;
+        let lng = position.coords.longitude;
 
-          let lat = position.coords.latitude;
-          let lng = position.coords.longitude;
+        let geocoder = new google.maps.Geocoder();
+        let latlng = new google.maps.LatLng(lat, lng);
 
-          let geocoder = new google.maps.Geocoder();
-          let latlng = new google.maps.LatLng(lat, lng);
+        //reverse geocode
+        geocoder.geocode({ 'location': latlng }, (results, status) => {
 
-          //reverse geocode
-          geocoder.geocode({ 'location': latlng }, (results, status) => {
+          if (status == google.maps.GeocoderStatus.OK) {
 
-            if (status == google.maps.GeocoderStatus.OK) {
+            if (results[0] != null) {
 
-              if (results[0] != null) {
+              //get location
+              this.location = this.findLocation(results[0].address_components);
 
-                //get location
-                this.location = this.findLocation(results[0].address_components);
+              //set location
+              localStorage.setItem('location', this.location);
 
-                //set location
-                localStorage.setItem('location', this.location);
-
-                //refresh
-                this.ref.detectChanges();
-              }
+              //refresh
+              this.ref.detectChanges();
             }
-          });
+          }
         });
-      }
+      });
     }
 
     //create search FormControl
@@ -101,9 +96,10 @@ export class SearchComponent implements OnInit {
 
   findLocation(components){      
     
-        var city = false,
-            state = false,
-            zip = false,
+        var city: string = '',
+            state: string = '',
+            zip: string = '',
+            country: string = '',
             component,
             i, l, x, y;
     
@@ -129,16 +125,36 @@ export class SearchComponent implements OnInit {
                 case 'postal_code':
                 zip = component.short_name;
                 break;
+    
+                case 'country':
+                country = component.short_name;
+                break;
               }
             }
           }
+
+          //set country
+          if(country){
+
+            //set local storage
+            localStorage.setItem('country', country);
+          }
     
           if(city && state && zip){
+
+            //set local storage
+            localStorage.setItem('city', city);
+            localStorage.setItem('state', state);
+            localStorage.setItem('zip', zip);
     
             return city + ', ' + state + ' ' + zip;
           }
           else if (city && state) { 
-    
+
+            //set local storage
+            localStorage.setItem('city', city);
+            localStorage.setItem('state', state);
+
             return city + ', ' + state;
           } else {
     
