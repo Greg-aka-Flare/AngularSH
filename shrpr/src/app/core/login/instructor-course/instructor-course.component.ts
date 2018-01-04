@@ -37,6 +37,7 @@ export class InstructorCourseComponent implements OnInit {
   courseSessionNumber:number;
   courseDurationNumber:number;
   dt:Date;
+  
 
   constructor(
     public renderer: Renderer,
@@ -119,7 +120,8 @@ export class InstructorCourseComponent implements OnInit {
     }  
   
   sessionDetailsinit(){
-    let iteration: number = 0;
+    let iteration:number = 0;
+    
     if(this.sessionArray.length !== 0) {
         this.sessionArray = [];
     }
@@ -132,18 +134,16 @@ export class InstructorCourseComponent implements OnInit {
     let courseDurationNumber = this.semesterInfoForm.value.courseDurationNumber;
     let courseLocationText = this.semesterInfoForm.value.courseLocationText;
     
-          //find iteration no. generate date in for loop
+        //find iteration no. generate date in for loop
           switch(courseIteration) {
             case 'weekly':
-              iteration = 7;
+            iteration = 7;
               break;
     
             case 'monthly':
-              iteration = 30;
+            iteration = 30;
               break;
           }
-     
-    
     
     courseStartTimeText = moment(courseStartTimeText+':00', 'hh:mm:ss a');
     courseStartTimeText = moment(courseStartTimeText).format('LT');
@@ -162,13 +162,9 @@ export class InstructorCourseComponent implements OnInit {
       }
     );
     
-    
-
     for(var i = 0; i < this.courseSessionNumber-1; i++){
-    
-      courseStartDateText = moment(courseStartDateText, 'DD-MM-YYYY').add(7, 'days').calendar();
+      courseStartDateText = moment(courseStartDateText, 'DD-MM-YYYY').add(iteration, 'days').calendar();
       courseStartDateText = moment(courseStartDateText).format('DD-MM-YYYY');
-      
       this.sessionArray.push(
         {
         "sessionDate" : courseStartDateText, 
