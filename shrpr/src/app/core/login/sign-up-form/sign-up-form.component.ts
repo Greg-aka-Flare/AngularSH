@@ -47,6 +47,8 @@ export class SignUpFormComponent implements OnInit {
       'name': ['', [Validators.required, ValidationService.alphabetsValidator]],
       'email': ['', [Validators.required, ValidationService.emailValidator ], this.validateEmailNotTaken.bind(this)],
       'password': ['', [Validators.required, ValidationService.passwordValidator]],
+      'termsConditionCheck': ['',Validators.required],
+      'CurrentAddressAsPrimaryCheck': ['']
     });
 
     //create profile form
@@ -61,8 +63,10 @@ export class SignUpFormComponent implements OnInit {
     this.data.name = this.signupForm.value.name;
     this.data.email = this.signupForm.value.email;
     this.data.password = this.signupForm.value.password;
-
-    if(this.data.name && this.data.email && this.data.password){
+    this.data.termsConditionCheck = this.signupForm.value.termsConditionCheck;
+    this.data.CurrentAddressAsPrimaryCheck = this.signupForm.value.CurrentAddressAsPrimaryCheck;
+    
+    if(this.data.name && this.data.email && this.data.password && this.data.termsConditionCheck){
       this.signup = true;
     } 
     else {

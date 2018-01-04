@@ -1,3 +1,6 @@
+
+
+<div class="signup-container">
 <div class="login-box signup-box" [class.active]="!signup">
     <form id="signup" [formGroup]="signupForm" (ngSubmit)="onSignup()">
         <input 
@@ -21,7 +24,21 @@
         formControlName="password"
     />  
         <control-messages [control]="signupForm.controls.password"></control-messages>
-    
+        <input 
+            type="checkbox" 
+            id="CurrentAddressAsPrimary" 
+            formControlName="CurrentAddressAsPrimaryCheck"
+            value="Current Address as Primary"
+        />  <label class="checkbox-label" for="CurrentAddressAsPrimaryCheck">Current Address As Primary</label><br>
+        <control-messages [control]="signupForm.controls.CurrentAddressAsPrimaryCheck"></control-messages>
+        <input 
+        type="checkbox" 
+        id="termsConditionCheck" 
+        formControlName="termsConditionCheck"
+        value="Accept Terms Conditions"
+        required
+    />  <label class="checkbox-label" for="termsConditionCheck">Terms & Conditions</label>
+    <control-messages [control]="signupForm.controls.termsConditionCheck"></control-messages>
         <button>
             Sign Up <i class="fa fa-user-plus" aria-hidden="true"></i>
         </button>
@@ -76,3 +93,4 @@
     </form>  
 </div>
 <!--signup type box ends-->
+</div>
