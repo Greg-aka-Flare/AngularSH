@@ -180,7 +180,7 @@ tab.active-tab {
 .horizontal-box > span {
     background: #ffffff;
     color: #6f6f6f;
-    display: inline-block;
+    display: none;
     padding: 0 5px;
     font-size: 14px;
     line-height: 1em;
@@ -189,6 +189,7 @@ tab.active-tab {
     z-index: 99;
 }
 .social-login {
+    display: none;
     padding:8px 0 0 0;
     text-align: center;
 }
