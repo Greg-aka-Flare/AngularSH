@@ -23,7 +23,10 @@ export class InstructorCourseComponent implements OnInit {
 
   @ViewChild('panel') panel : ElementRef;
   @ViewChild('myForm') myForm: ElementRef;
+  @ViewChild('myDate') myDate: ElementRef;
+  @ViewChild("search") public searchElementRef: ElementRef;
   
+
   slideNo: number = 1;
   lastSlideNo:number = 3;
   prevPos: string = '';
@@ -33,7 +36,7 @@ export class InstructorCourseComponent implements OnInit {
   courseStartTimeText:string;
   courseSessionNumber:number;
   courseDurationNumber:number;
-
+  dt:Date;
 
   constructor(
     public renderer: Renderer,
@@ -49,15 +52,16 @@ export class InstructorCourseComponent implements OnInit {
       'courseGroupSelect': ['', Validators.required],
       'courseCategorySelect': ['', Validators.required],
       'courseSubCategorySelect': ['', Validators.required],
-      'courseDescriptionText': ['', [Validators.required, Validators.minLength(40)]],
+      'courseDescriptionText': ['', [Validators.required, Validators.minLength(40)]]
     });  
     this.semesterInfoForm = this.fb.group({  
       'courseStartDateText': ['', Validators.required],
+      'courseIteration' : ['', Validators.required],
       'courseStartTimeText': ['', Validators.required],
       'courseEndTimeText': [''],
       'courseSessionNumber': ['', Validators.required],
       'courseDurationNumber': ['', Validators.required],
-      'courseLocationText': ['', Validators.required],
+      'courseLocationText': ['', Validators.required]
     });
 
     this.goNext = this.instructorCourseForm.valid;
@@ -115,17 +119,31 @@ export class InstructorCourseComponent implements OnInit {
     }  
   
   sessionDetailsinit(){
-
+    let iteration: number = 0;
     if(this.sessionArray.length !== 0) {
         this.sessionArray = [];
     }
 
     let courseStartDateText = this.semesterInfoForm.value.courseStartDateText;
+    let courseIteration = this.semesterInfoForm.value.courseIteration;
     let courseStartTimeText = this.semesterInfoForm.value.courseStartTimeText;
     let courseEndTimeText = this.semesterInfoForm.value.courseEndTimeText;
     this.courseSessionNumber = this.semesterInfoForm.value.courseSessionNumber;
     let courseDurationNumber = this.semesterInfoForm.value.courseDurationNumber;
     let courseLocationText = this.semesterInfoForm.value.courseLocationText;
+    
+          //find iteration no. generate date in for loop
+          switch(courseIteration) {
+            case 'weekly':
+              iteration = 7;
+              break;
+    
+            case 'monthly':
+              iteration = 30;
+              break;
+          }
+     
+    
     
     courseStartTimeText = moment(courseStartTimeText+':00', 'hh:mm:ss a');
     courseStartTimeText = moment(courseStartTimeText).format('LT');
@@ -143,10 +161,14 @@ export class InstructorCourseComponent implements OnInit {
         "endTime" : courseEndTimeText
       }
     );
+    
+    
+
     for(var i = 0; i < this.courseSessionNumber-1; i++){
     
       courseStartDateText = moment(courseStartDateText, 'DD-MM-YYYY').add(7, 'days').calendar();
       courseStartDateText = moment(courseStartDateText).format('DD-MM-YYYY');
+      
       this.sessionArray.push(
         {
         "sessionDate" : courseStartDateText, 
@@ -158,7 +180,7 @@ export class InstructorCourseComponent implements OnInit {
     }
     console.log(this.sessionArray);
   }  
-   
+
     
   }
 
