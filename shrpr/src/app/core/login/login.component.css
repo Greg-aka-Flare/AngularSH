@@ -165,6 +165,7 @@ tab.active-tab {
     text-align: center;
 }
 .horizontal-box {
+    display: none;
     text-align: center;
     position: relative;
 }
@@ -180,7 +181,7 @@ tab.active-tab {
 .horizontal-box > span {
     background: #ffffff;
     color: #6f6f6f;
-    display: none;
+    display: inline-block;
     padding: 0 5px;
     font-size: 14px;
     line-height: 1em;
