@@ -23,7 +23,6 @@ export class InstructorCourseComponent implements OnInit {
 
   @ViewChild('panel') panel : ElementRef;
   @ViewChild('myForm') myForm: ElementRef;
-  @ViewChild('myDate') myDate: ElementRef;
   @ViewChild("search") public searchElementRef: ElementRef;
   
 
@@ -120,7 +119,6 @@ export class InstructorCourseComponent implements OnInit {
     }  
   
   sessionDetailsinit(){
-    let iteration:number = 0;
     
     if(this.sessionArray.length !== 0) {
         this.sessionArray = [];
@@ -129,30 +127,20 @@ export class InstructorCourseComponent implements OnInit {
     let courseStartDateText = this.semesterInfoForm.value.courseStartDateText;
     let courseIteration = this.semesterInfoForm.value.courseIteration;
     let courseStartTimeText = this.semesterInfoForm.value.courseStartTimeText;
+    
     let courseEndTimeText = this.semesterInfoForm.value.courseEndTimeText;
     this.courseSessionNumber = this.semesterInfoForm.value.courseSessionNumber;
     let courseDurationNumber = this.semesterInfoForm.value.courseDurationNumber;
     let courseLocationText = this.semesterInfoForm.value.courseLocationText;
     
-        //find iteration no. generate date in for loop
-          switch(courseIteration) {
-            case 'weekly':
-            iteration = 7;
-              break;
-    
-            case 'monthly':
-            iteration = 30;
-              break;
-          }
-    
     courseStartTimeText = moment(courseStartTimeText+':00', 'hh:mm:ss a');
-    courseStartTimeText = moment(courseStartTimeText).format('LT');
+    courseStartTimeText = moment(courseStartTimeText).format('HH:MM');
 
     courseEndTimeText = moment(courseStartTimeText, 'LT').add(courseDurationNumber, 'hours');
     
-    courseEndTimeText = moment(courseEndTimeText).format('LT');
+    courseEndTimeText = moment(courseEndTimeText).format('HH:MM');
     
-    courseStartDateText = moment(courseStartDateText).format('DD-MM-YYYY');
+    courseStartDateText = moment(courseStartDateText).format('YYYY-MM-DD');
 
     this.sessionArray.push(
       {
@@ -163,8 +151,8 @@ export class InstructorCourseComponent implements OnInit {
     );
     
     for(var i = 0; i < this.courseSessionNumber-1; i++){
-      courseStartDateText = moment(courseStartDateText, 'DD-MM-YYYY').add(iteration, 'days').calendar();
-      courseStartDateText = moment(courseStartDateText).format('DD-MM-YYYY');
+      courseStartDateText = moment(courseStartDateText, 'YYYY-MM-DD').add(1, courseIteration).calendar();
+      courseStartDateText = moment(courseStartDateText).format('YYYY-MM-DD');
       this.sessionArray.push(
         {
         "sessionDate" : courseStartDateText, 

@@ -60,7 +60,7 @@
           <div class="formRow">
             <label for="courseStartDates">Classes will be</label>
             <div class="thefield">
-              <input type="radio" name="courseIteration" formControlName="courseIteration" value="weekly"> Weekly &nbsp; <input type="radio" name="courseIteration" formControlName="courseIteration" value="monthly"> Monthly
+              <input type="radio" name="courseIteration" formControlName="courseIteration" value="week"> Weekly &nbsp; <input type="radio" name="courseIteration" formControlName="courseIteration" value="months"> Monthly
             </div>
             
             <control-messages [control]="semesterInfoForm.controls.courseStartDateText"></control-messages>
@@ -110,9 +110,9 @@
                 </tr>
                 <tr *ngFor="let session of sessionArray; let i = index" >
                   <td>{{i+1}}</td>
-                  <td><input #myDate type="date" name="courseStartDateText{{i+1}}" value="{{session?.sessionDate}}" (input)="onInput(session?.sessionDate.value)"></td>
-                  <td><input #myDate type="time" name="courseStartTimeText{{i+1}}" value="{{session?.startTime}}"></td>
-                  <td><input #myDate type="time" name="courseEndTimeText{{i+1}}" value="{{session?.endTime}}"></td>
+                  <td><input type="date" name="courseStartDateText{{i+1}}" value="{{session?.sessionDate}}" (input)="onInput(session?.sessionDate.value)"></td>
+                  <td><input type="time" name="courseStartTimeText{{i+1}}" value="{{session?.startTime}}" readonly></td>
+                  <td><input type="time" name="courseEndTimeText{{i+1}}" value="{{session?.endTime}}" readonly></td>
                 </tr>
               </tbody>
             </table>
