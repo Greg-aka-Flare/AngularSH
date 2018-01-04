@@ -88,9 +88,9 @@ header #logo span.beta-logo {
   color: red;
   display: inline-block;
   font-family: arial;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1em;
-  padding: 0 0 8px;
+  padding: 0 0 6px;
   text-transform: uppercase;
   vertical-align: bottom;
 }
@@ -166,5 +166,9 @@ header #logo span.beta-logo {
     right: -15px;
     top: -6px;
     width: 22px;
+  }
+  header #logo span.beta-logo {
+    padding: 0 0 8px 0;
+    font-size: 12px;
   }
 }

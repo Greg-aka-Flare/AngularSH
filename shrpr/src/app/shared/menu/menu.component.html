@@ -6,7 +6,8 @@
       <li><a [routerLink]="['/values']" title="Our Values" (click)="toggleMenu()">Our Values</a></li>
     </ul>
   </li>
-  <li><a [routerLink]="['/login']" title="Sign Up / Log In" (click)="toggleMenu()">Sign Up / Log In</a></li>
+  <li *ngIf="isShow" ><a [routerLink]="['/login']" title="Sign Up / Log In" (click)="toggleMenu()">Sign Up / Log In</a></li>
+  <li *ngIf="!isShow" ><a [routerLink]="['/login']" title="Sign Up / Log In" (click)="toggleMenu()">Log Out</a></li>
   <li class="has_child"><a href="javascript:void(0);" title="Content" (click)="toggleMenu()">Content</a>
     <ul>
       <li><a [routerLink]="['/videos']" title="Videos" (click)="toggleMenu()">Videos</a></li>
