@@ -16,7 +16,7 @@
             [@state]="course?.state"
         >
             <div class="course-checkbox">
-                <input type="checkbox" formControlName="selectedCourse" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}">
+                <input type="checkbox" formControlName="selectedCourse" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}" (click)="courseCount()">
 
                 <label class="radio" for="{{ course?.id }}">
                     <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
@@ -41,7 +41,7 @@
             [@state]="course?.state"
         >
             <div class="course-checkbox">
-                <input type="checkbox" formControlName="selectedCourse" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}">
+                <input type="checkbox" formControlName="selectedCourse" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}" (click)="courseCount()">
                 
                 <label class="radio" for="{{ course?.id }}">
                     <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
@@ -66,7 +66,7 @@
             [@state]="course?.state"
         >
             <div class="course-checkbox">
-                <input type="checkbox" formControlName="selectedCourse" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}">
+                <input type="checkbox" formControlName="selectedCourse" id="{{ course?.id }}" value="{{ course?.id }}" title="{{ course?.id }}" (click)="courseCount()">
                 
                 <label class="radio" for="{{ course?.id }}">
                     <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
@@ -82,7 +82,7 @@
     </section><!-- #for_kids_box -->
 
     <div class="continue-btn">
-        <button>
+        <button [disabled]="courseSelected < 3">
             Continue <i class="fa fa-angle-right" aria-hidden="true"></i>
         </button>
     </div>
