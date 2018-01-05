@@ -28,6 +28,8 @@ export class StudentComponent implements OnInit, OnDestroy {
   state: string = '';
   zip: string = '';
   country: string = '';
+  address: string = '';
+  email: string = '';
   students:any[];
   courses: any[];
   studentCourse:any;
@@ -75,19 +77,24 @@ export class StudentComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     //if localstorage exists, pull values in
-    if(localStorage.getItem('city')) this.city = localStorage.getItem('city');
-    if(localStorage.getItem('state')) this.state = localStorage.getItem('state');
-    if(localStorage.getItem('zip')) this.zip = localStorage.getItem('zip');
-    if(localStorage.getItem('country')) this.country = localStorage.getItem('country');
+    if(localStorage.getItem('email')) this.email = localStorage.getItem('email');
+    if(localStorage.getItem('useCurrentLocation') && localStorage.getItem('useCurrentLocation') === 'true'){
+      if(localStorage.getItem('city')) this.city = localStorage.getItem('city');
+      if(localStorage.getItem('state')) this.state = localStorage.getItem('state');
+      if(localStorage.getItem('zip')) this.zip = localStorage.getItem('zip');
+      if(localStorage.getItem('country')) this.country = localStorage.getItem('country');
+      if(localStorage.getItem('address')) this.address = localStorage.getItem('address');
+    }
+    
 
     this.studentAddressForm = this.fb.group({
-      'addressStreet': ['', [Validators.required]],
+      'addressStreet': [this.address, [Validators.required]],
       'addressCity': [this.city, Validators.required],
       'addressState': [this.state, Validators.required],
       'addressZip': [this.zip, Validators.required],
       'addressCountry': [this.country, Validators.required],
       'addressPhone': ['', [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
-      'addressEmail': ['', [Validators.required, ValidationService.emailValidator]]
+      'addressEmail': [this.email, [Validators.required, ValidationService.emailValidator]]
     });
     
     this.studentProfileForm = this.fb.group({
