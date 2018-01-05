@@ -67,6 +67,7 @@ export class CuriousMobileComponent implements OnInit {
   editValueState = '';
   editValueZip = '';
   isBtnActive: boolean = true;
+  loggedIn: boolean = false;
   constructor(
     private courseService: CourseService, 
     private likeService: LikeService,
@@ -86,6 +87,20 @@ export class CuriousMobileComponent implements OnInit {
     this.subscriptions.add(this.likeService.getCounter().subscribe((count) => {
       this.counter = count;
     }));
+    
+    if(!name){ //if no name, attempt to fetch name
+      
+            //check if logged in
+            this.loggedIn = this.auth.loggedIn();
+            
+            if(this.loggedIn) this.auth.me().subscribe(result => {
+      
+         
+            });
+          }
+          if(this.auth.loggedIn()){
+            this.isBtnActive = false;
+          }  
   }
 
   ngOnDestroy(){
