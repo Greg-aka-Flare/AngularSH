@@ -8,7 +8,6 @@ import { UserInterface } from '../../core/user.interface';
 import { UserService } from '../../core/user.service';
 import { AuthService } from '../../auth/auth.service';
 import { Observable } from 'rxjs/Observable';
-import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-book-online-form',
