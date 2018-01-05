@@ -88,19 +88,11 @@ export class CuriousMobileComponent implements OnInit {
       this.counter = count;
     }));
     
-    if(!name){ //if no name, attempt to fetch name
+   this.loggedIn = this.auth.loggedIn();
       
-            //check if logged in
-            this.loggedIn = this.auth.loggedIn();
-            
-            if(this.loggedIn) this.auth.me().subscribe(result => {
-      
-         
-            });
-          }
-          if(this.auth.loggedIn()){
-            this.isBtnActive = false;
-          }  
+   if(this.auth.loggedIn()){
+       this.isBtnActive = false;
+      }  
   }
 
   ngOnDestroy(){
