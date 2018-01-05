@@ -206,7 +206,7 @@
   <!--google map ends-->
   <!-- #reviews-->
   <section id="reviews">
-      <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews | <a href="javascript:void(0);" (click)="reviewshowHide = !reviewshowHide">Add Your Review</a></div>
+      <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews<span *ngIf="loggedIn"> | <a href="javascript:void(0);" (click)="reviewshowHide = !reviewshowHide">Add Your Review</a></span></div>
       <app-addreview *ngIf="reviewshowHide"></app-addreview>
       <div *ngIf="reviewCount >= 1">
           <dl class="review_items" *ngFor="let review of ratingData" >
