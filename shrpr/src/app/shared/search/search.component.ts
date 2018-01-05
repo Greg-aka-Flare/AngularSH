@@ -97,79 +97,65 @@ export class SearchComponent implements OnInit {
   }
 
   findLocation(components){
-    
-        var city: string = '',
-            state: string = '',
-            zip: string = '',
-            country: string = '',
-            component,
-            i, l, x, y;
-    
-          for(i = 0, l = components.length; i < l; ++i){
-    
-            //store component
-            component = components[i];
-    
-            //check each type
-            for(x = 0, y = component.types.length; x < y; ++ x){
-    
-              //depending on type, assign to var
-              switch(component.types[x]){
-    
-                case 'neighborhood':
-                city = component.long_name;
-                break;
-    
-                case 'administrative_area_level_1':
-                state = component.short_name;
-                break;
-    
-                case 'postal_code':
-                zip = component.short_name;
-                break;
-    
-                case 'country':
-                country = component.short_name;
-                break;
-              }
-            }
-          }
 
-          //set country
-          if(country){
+    var city: string = '',
+        state: string = '',
+        zip: string = '',
+        country: string = '',
+        component,
+        i, l, x, y;
 
-            //set local storage
-            localStorage.setItem('country', country);
-          }
-    
-          if(city && state && zip){
+    for(i = 0, l = components.length; i < l; ++i){
 
-            //set local storage
-            localStorage.setItem('city', city);
-            localStorage.setItem('state', state);
-            localStorage.setItem('zip', zip);
-    
-            return city + ', ' + state + ' ' + zip;
-          }
-          else if (city && state) { 
+      //store component
+      component = components[i];
 
-            //set local storage
-            localStorage.setItem('city', city);
-            localStorage.setItem('state', state);
+      //check each type
+      for(x = 0, y = component.types.length; x < y; ++ x){
 
-            return city + ', ' + state;
-          } else {
-    
-            return '';
-          }
+        //depending on type, assign to var
+        switch(component.types[x]){
+
+          case 'neighborhood':
+          city = component.long_name;
+          break;
+
+          case 'administrative_area_level_1':
+          state = component.short_name;
+          break;
+
+          case 'postal_code':
+          zip = component.short_name;
+          break;
+
+          case 'country':
+          country = component.short_name;
+          break;
+        }
       }
+    }
+
+    //set country
+    if(country){
+
+      //set local storage
+      localStorage.setItem('country', country);
     }
 
     if(city && state && zip){
 
+      //set local storage
+      localStorage.setItem('city', city);
+      localStorage.setItem('state', state);
+      localStorage.setItem('zip', zip);
+
       return city + ', ' + state + ' ' + zip;
     }
     else if (city && state) { 
+
+      //set local storage
+      localStorage.setItem('city', city);
+      localStorage.setItem('state', state);
 
       return city + ', ' + state;
     } else {
