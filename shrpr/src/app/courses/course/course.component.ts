@@ -80,9 +80,8 @@ export class CourseComponent implements OnInit, OnDestroy {
   
     this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      console.log(this.id);
-      
-      this.courseService.getCourse(this.id).subscribe(course => {
+      //console.log(this.id);
+        this.courseService.getCourse(this.id).subscribe(course => {
         this.course = course;
         this.ratingData = this.course.ratings;
         this.categoriesArray = this.course.categories;
