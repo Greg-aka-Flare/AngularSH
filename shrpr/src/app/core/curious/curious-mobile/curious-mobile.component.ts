@@ -86,15 +86,6 @@ export class CuriousMobileComponent implements OnInit {
     this.subscriptions.add(this.likeService.getCounter().subscribe((count) => {
       this.counter = count;
     }));
-
-    this.auth.me().subscribe(
-      success => {
-        this.isBtnActive = false;
-      },
-      error => {
-        this.isBtnActive = true;
-      }
-    );
   }
 
   ngOnDestroy(){

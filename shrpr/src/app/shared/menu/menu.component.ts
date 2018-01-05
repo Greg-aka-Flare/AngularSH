@@ -10,7 +10,7 @@ import { AuthService } from '../../auth/auth.service';
 export class MenuComponent implements OnInit {
 
   loggedIn: boolean = false;
-  user: any;
+  name: string = localStorage.getItem('name');
 
   constructor(
     private auth: AuthService,
@@ -18,9 +18,21 @@ export class MenuComponent implements OnInit {
   ) {}
   
   ngOnInit() {
-    this.loggedIn = this.auth.loggedIn();
-    
-    if(this.loggedIn) this.auth.me().subscribe(result => this.user = result);
+
+    if(!name){ //if no name, attempt to fetch name
+
+      //check if logged in
+      this.loggedIn = this.auth.loggedIn();
+      
+      if(this.loggedIn) this.auth.me().subscribe(result => {
+
+        //set name
+        this.name = (result.first) ? result.first : result.name;
+
+        //set in local storage
+        localStorage.setItem('name', this.name);
+      });
+    }
   }
 
   toggleMenu() {
