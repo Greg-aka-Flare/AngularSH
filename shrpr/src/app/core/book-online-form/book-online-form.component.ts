@@ -48,13 +48,14 @@ export class BookOnlineFormComponent implements OnInit {
       'create': ['']
     });
 
-    this.auth.me().subscribe(
-      success => {
-        this.loggedIn = true;
+    //check if logged in
+    this.loggedIn = this.auth.loggedIn();
+    
+    if(this.loggedIn) this.auth.me().subscribe(result => {
 
-        let name = success.name ? success.name : '';
-        let email = success.email ? 'user@fakeemail.com' : ''; //to pass async check
-        let phone = success.phone ? success.phone : '';
+        let name = result.name ? result.name : '';
+        let email = result.email ? 'user@fakeemail.com' : ''; //to pass async check
+        let phone = result.phone ? result.phone : '';
 
         //patch values for form
         this.bookonlineForm.patchValue({
@@ -62,9 +63,6 @@ export class BookOnlineFormComponent implements OnInit {
           'email': email,
           'phone': phone
         });
-      },
-      error => {
-        this.loggedIn = false;
       }
     );
   }
