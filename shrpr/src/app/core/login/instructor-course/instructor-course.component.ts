@@ -16,7 +16,7 @@ export class InstructorCourseComponent implements OnInit {
   instructorCourseForm: FormGroup;
   semesterInfoForm: FormGroup;
   semesterDetailForm: FormGroup;
-  private sessionArray: any[] = [];
+  sessionArray: any[] = [];
   data: any = {};
   //sessionArray: Array<{sessionDate:string, startTime: string, endTime: string}>;
   //private sessionArray = new Array<{sessionDate:string}>();
