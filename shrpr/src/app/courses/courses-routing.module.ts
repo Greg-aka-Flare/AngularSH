@@ -8,11 +8,9 @@ import { CourseListComponent } from './course-list/course-list.component';
 const coursesRoutes: Routes = [
 	{ path: '', component: CoursesComponent, children: [
 		{ path: 'list/:group', component: CourseListComponent },
-		{ path: ':id', component: CourseComponent },
-
+		{ path: ':id', component: CourseComponent }
 	] }
 ];
-
 
 @NgModule({
 	imports: [RouterModule.forChild(coursesRoutes)],

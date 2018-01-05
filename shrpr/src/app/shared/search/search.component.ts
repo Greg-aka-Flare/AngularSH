@@ -1,5 +1,6 @@
 import { Component, OnInit, NgZone, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
 import { NgModel } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
@@ -24,6 +25,7 @@ export class SearchComponent implements OnInit {
     private ref: ChangeDetectorRef,
     private completerService: CompleterService,
     private mapsAPILoader: MapsAPILoader,
+    private router: Router,
     private ngZone: NgZone
   ) {}
 
@@ -101,53 +103,86 @@ export class SearchComponent implements OnInit {
 
   findLocation(components){      
     
-        var city = false,
-            state = false,
-            zip = false,
-            component,
-            i, l, x, y;
-    
-          for(i = 0, l = components.length; i < l; ++i){
-    
-            //store component
-            component = components[i];
-    
-            //check each type
-            for(x = 0, y = component.types.length; x < y; ++ x){
-    
-              //depending on type, assign to var
-              switch(component.types[x]){
-    
-                case 'neighborhood':
-                city = component.long_name;
-                break;
-    
-                case 'administrative_area_level_1':
-                state = component.short_name;
-                break;
-    
-                case 'postal_code':
-                zip = component.short_name;
-                break;
-              }
-            }
-          }
-    
-          if(city && state && zip){
-    
-            return city + ', ' + state + ' ' + zip;
-          }
-          else if (city && state) { 
-    
-            return city + ', ' + state;
-          } else {
-    
-            return '';
-          }
+    var city = false,
+        state = false,
+        zip = false,
+        component,
+        i, l, x, y;
+
+    for(i = 0, l = components.length; i < l; ++i){
+
+      //store component
+      component = components[i];
+
+      //check each type
+      for(x = 0, y = component.types.length; x < y; ++ x){
+
+        //depending on type, assign to var
+        switch(component.types[x]){
+
+          case 'neighborhood':
+          city = component.long_name;
+          break;
+
+          case 'administrative_area_level_1':
+          state = component.short_name;
+          break;
+
+          case 'postal_code':
+          zip = component.short_name;
+          break;
+        }
       }
+    }
+
+    if(city && state && zip){
+
+      return city + ', ' + state + ' ' + zip;
+    }
+    else if (city && state) { 
+
+      return city + ', ' + state;
+    } else {
+
+      return '';
+    }
+  }
 
   onSelected(item: CompleterItem) {
 
-    console.log(item);
+    let type;
+    let id;
+    let url;
+
+    if(item){
+
+      type = item.originalObject.type;
+      id = item.originalObject.id;
+
+      //if course selected
+      if(type == 'course'){
+
+        //navigate to course
+        this.router.navigate(['courses', id]);
+      }
+    }
+  }
+
+  submit() {
+
+    let location = this.searchElementRef.nativeElement.value;
+
+    if( location.indexOf('Hartford') >= 0 ){
+
+      this.router.navigate(['courses', 1]);
+    }
+    else if( location.indexOf('Orange') >= 0 ){
+
+      this.router.navigate(['courses', 2]);
+    }
+    else{
+
+      this.router.navigate(['courses', 'list', 'all']);
+    }
   }
 }
