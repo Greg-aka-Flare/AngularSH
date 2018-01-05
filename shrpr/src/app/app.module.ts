@@ -13,7 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { InstitutionComponent } from './institution/institution.component';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from './auth/jwt.interceptor';
 import { TokenInterceptor } from './auth/token.interceptor';
 
 @NgModule({
@@ -36,11 +35,6 @@ import { TokenInterceptor } from './auth/token.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
       multi: true
     }
   ]

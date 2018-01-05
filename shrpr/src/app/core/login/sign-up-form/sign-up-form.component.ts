@@ -91,9 +91,6 @@ export class SignUpFormComponent implements OnInit {
     this.auth.login(this.data.email, this.data.password).subscribe(
       response => {
 
-        //set access token
-        localStorage.setItem('access_token', response.access_token);
-
         //get all liked/disliked
         let likes = this.likeService.likes;
         let dislikes = this.likeService.dislikes;

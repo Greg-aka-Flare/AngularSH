@@ -40,9 +40,7 @@ export class LoginFormComponent implements OnInit {
 
     this.subscriptions.add(this.auth.login(email, password)
       .subscribe(
-        response => {
-          localStorage.setItem('access_token', response.access_token);
-          
+        success => {
           //send to appropiate profile
           this.auth.me().subscribe(
             res => {

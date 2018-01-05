@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import decode from 'jwt-decode';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/switchMap';
 
 @Injectable()
 export class AuthService {
@@ -10,18 +12,10 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router
-  ){}
+  ) {}
 
   getToken(): string {
     return localStorage.getItem('access_token');
-  }
-
-  isAuthenticated(): boolean {
-    // get the token
-    const token = this.getToken();
-    // return a boolean reflecting 
-    // whether or not the token is expired
-    return true;
   }
 
   me(): Observable<any> {
@@ -29,7 +23,9 @@ export class AuthService {
   }
 
   refresh(): Observable<any> {
-    return this.http.post('https://api.shrpr.co/api/auth/refresh', {});
+    return this.http.post('https://api.shrpr.co/api/auth/refresh', {})
+      .map((token: any) => token.access_token)
+      .do((token) => localStorage.setItem('access_token', token));
   }
 
   login(email: string, password: string): Observable<any> {
@@ -37,6 +33,8 @@ export class AuthService {
       email: email,
       password: password
     })
+      .map((token: any) => token.access_token)
+      .do(token => localStorage.setItem('access_token', token));
   }
 
   logout() {
