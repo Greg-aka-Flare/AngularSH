@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, NgModule, Renderer } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgModule, Renderer, NgZone } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
+import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
 import * as moment from 'moment';
 import { ValidationService } from '../../../core/validation.service';
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-instructor-course',
@@ -23,7 +25,12 @@ export class InstructorCourseComponent implements OnInit {
 
   @ViewChild('panel') panel : ElementRef;
   @ViewChild('myForm') myForm: ElementRef;
+
   @ViewChild("search") public searchElementRef: ElementRef;
+  searchControl: FormControl;
+
+  location: string = '';
+  dataService: CompleterData;
   
 
   slideNo: number = 1;
@@ -35,12 +42,15 @@ export class InstructorCourseComponent implements OnInit {
   courseStartTimeText:string;
   courseSessionNumber:number;
   courseDurationNumber:number;
+  courseFeeText:number;
   dt:Date;
   
 
   constructor(
     public renderer: Renderer,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
   ) {
       
    }
@@ -61,14 +71,96 @@ export class InstructorCourseComponent implements OnInit {
       'courseEndTimeText': [''],
       'courseSessionNumber': ['', Validators.required],
       'courseDurationNumber': ['', Validators.required],
-      'courseLocationText': ['', Validators.required]
+      'searchControl': ['', Validators.required],
+      'courseFeeText': ['']  
+    });
+    this.searchControl = new FormControl();
+    this.setCurrentPosition();
+    this.goNext = this.instructorCourseForm.valid;
+
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          
+          let location = place.formatted_address; 
+         
+          var components = place.address_components;
+
+          var city: string = '',
+          state: string = '',
+          zip: string = '',
+          country: string = '',
+          component,
+          i, l, x, y;
+
+          for(i = 0, l = components.length; i < l; ++i){
+            
+                  //store component
+                  component = components[i];
+            
+                  //check each type
+                  for(x = 0, y = component.types.length; x < y; ++ x){
+            
+                    //depending on type, assign to var
+                    switch(component.types[x]){
+            
+                      case 'neighborhood':
+                      city = component.long_name;
+                      break;
+            
+                      case 'administrative_area_level_1':
+                      state = component.short_name;
+                      break;
+            
+                      case 'postal_code':
+                      zip = component.short_name;
+                      break;
+            
+                      case 'country':
+                      country = component.short_name;
+                      break;
+                    }
+                  }
+                }
+          console.log(
+            'City : ' + city + '\n' +
+            'State : ' + state + '\n' +
+            'Zip : ' + zip + '\n' +
+            'Country : ' + country
+          );
+          //set latitude, longitude and zoom
+          //this.latitude = place.geometry.location.lat();
+          //this.longitude = place.geometry.location.lng();
+          //this.zoom = 12;
+        });
+      });
     });
 
-    this.goNext = this.instructorCourseForm.valid;
     this.semesterDetailForm = new FormGroup({  
       
     });
 
+  }
+
+  private setCurrentPosition() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        //this.latitude = position.coords.latitude;
+        //this.longitude = position.coords.longitude;
+        //this.zoom = 12;
+        //this.location = position;
+        //console.log(position);
+      });
+    }
   }
 
   nextSlide(){
@@ -78,6 +170,7 @@ export class InstructorCourseComponent implements OnInit {
     if(this.slideNo == 2){
       this.sessionDetailsinit();
     }
+
     if( this.slideNo > 0 && this.slideNo < this.lastSlideNo ){
       this.slideNo++;
       this.renderer.setElementStyle(
@@ -86,6 +179,7 @@ export class InstructorCourseComponent implements OnInit {
       'translateX(-' + String((this.slideNo-1) * 100) + '%)');
     }
   }
+
   prevSlide(){
       if( this.slideNo >= 2 ){
         this.slideNo--;
@@ -109,6 +203,7 @@ export class InstructorCourseComponent implements OnInit {
       this.data.courseCategorySelect = this.instructorCourseForm.value.courseCategorySelect;
       this.data.courseSubCategorySelect = this.instructorCourseForm.value.courseSubCategorySelect;
       this.data.courseDescriptionText = this.instructorCourseForm.value.courseDescriptionText;
+      
       console.log(
         'Course Name :' + this.data.courseTitleText,
         'Group :' + this.data.courseGroupSelect,
@@ -131,7 +226,9 @@ export class InstructorCourseComponent implements OnInit {
     let courseEndTimeText = this.semesterInfoForm.value.courseEndTimeText;
     this.courseSessionNumber = this.semesterInfoForm.value.courseSessionNumber;
     let courseDurationNumber = this.semesterInfoForm.value.courseDurationNumber;
-    let courseLocationText = this.semesterInfoForm.value.courseLocationText;
+    let searchControl = this.semesterInfoForm.value.searchControl;
+    this.courseFeeText = this.semesterInfoForm.value.courseFeeText;
+    
     
     courseStartTimeText = moment(courseStartTimeText+':00', 'hh:mm:ss a');
     courseStartTimeText = moment(courseStartTimeText).format('HH:MM');
@@ -162,11 +259,11 @@ export class InstructorCourseComponent implements OnInit {
       );
       
     }
-    console.log(this.sessionArray);
+    console.log(
+      'Course fee: ' +  this.courseFeeText + '\n Address: ' + searchControl + '\n meetings: \n' +
+      this.sessionArray
+    );
   }  
 
     
   }
-
-
-
