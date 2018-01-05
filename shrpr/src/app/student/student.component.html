@@ -16,7 +16,7 @@
       <div><h2>{{students.name}}</h2>
       <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{students?.email}}">{{students?.email}}</a><br>
       <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
-        <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ students?.addresses[0]?.city }}, {{ students?.addresses[0]?.state }}
+        <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ city }}, {{ state }}
         <!--<div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp> |  <a href="/student/{{students?.id}}#reviews">33 reviews</a></div>-->
       </div>
     </section>

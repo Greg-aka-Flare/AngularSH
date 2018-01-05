@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, NgModule, Renderer } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgModule, Renderer, NgZone } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
+import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
 import * as moment from 'moment';
 import { ValidationService } from '../../../core/validation.service';
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-instructor-course',
@@ -15,6 +17,8 @@ export class InstructorCourseComponent implements OnInit {
   
   instructorCourseForm: FormGroup;
   semesterInfoForm: FormGroup;
+  semesterPhotoForm: FormGroup;
+  
   semesterDetailForm: FormGroup;
   sessionArray: any[] = [];
   data: any = {};
@@ -23,11 +27,16 @@ export class InstructorCourseComponent implements OnInit {
 
   @ViewChild('panel') panel : ElementRef;
   @ViewChild('myForm') myForm: ElementRef;
+
   @ViewChild("search") public searchElementRef: ElementRef;
+  searchControl: FormControl;
+
+  location: string = '';
+  dataService: CompleterData;
   
 
   slideNo: number = 1;
-  lastSlideNo:number = 3;
+  lastSlideNo:number = 4;
   prevPos: string = '';
   nextPos:number = 0;
   goNext:boolean = false;
@@ -35,12 +44,20 @@ export class InstructorCourseComponent implements OnInit {
   courseStartTimeText:string;
   courseSessionNumber:number;
   courseDurationNumber:number;
+  courseFeeText:number;
   dt:Date;
+
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
   
 
   constructor(
     public renderer: Renderer,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
   ) {
       
    }
@@ -61,14 +78,84 @@ export class InstructorCourseComponent implements OnInit {
       'courseEndTimeText': [''],
       'courseSessionNumber': ['', Validators.required],
       'courseDurationNumber': ['', Validators.required],
-      'courseLocationText': ['', Validators.required]
+      'courseFeeText': ['', Validators.required],
+      'searchControl': ['']
+       
+    });
+    this.semesterPhotoForm = this.fb.group({  
+      'coursePrimaryPhoto': [''],
+      'courseSecondaryPhoto' : [''] 
     });
 
+    this.searchControl = new FormControl();
+    this.setCurrentPosition();
     this.goNext = this.instructorCourseForm.valid;
+
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          
+          this.location = place.formatted_address; 
+          var components = place.address_components;
+          this.city = '';
+          this.state = '';
+          this.zip = '';
+          this.country = '';
+          var component,
+          i, l, x, y;
+          for(i = 0, l = components.length; i < l; ++i){
+                  //store component
+                  component = components[i];
+                  //check each type
+                  for(x = 0, y = component.types.length; x < y; ++ x){
+                    //depending on type, assign to var
+                    switch(component.types[x]){
+                      case 'neighborhood':
+                      this.city = component.long_name;
+                      break;
+                      case 'administrative_area_level_1':
+                      this.state = component.short_name;
+                      break;
+                      case 'postal_code':
+                      this.zip = component.short_name;
+                      break;
+                      case 'country':
+                      this.country = component.short_name;
+                      break;
+                    }
+                  }
+                }
+        });
+      });
+    });
+
     this.semesterDetailForm = new FormGroup({  
       
     });
 
+  }
+
+  private setCurrentPosition() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        //this.latitude = position.coords.latitude;
+        //this.longitude = position.coords.longitude;
+        //this.zoom = 12;
+        //this.location = position;
+        //console.log(position);
+        
+      });
+    }
   }
 
   nextSlide(){
@@ -78,6 +165,10 @@ export class InstructorCourseComponent implements OnInit {
     if(this.slideNo == 2){
       this.sessionDetailsinit();
     }
+    if(this.slideNo == 4){
+      this.uploadCoursePhoto();
+    }
+
     if( this.slideNo > 0 && this.slideNo < this.lastSlideNo ){
       this.slideNo++;
       this.renderer.setElementStyle(
@@ -86,6 +177,7 @@ export class InstructorCourseComponent implements OnInit {
       'translateX(-' + String((this.slideNo-1) * 100) + '%)');
     }
   }
+
   prevSlide(){
       if( this.slideNo >= 2 ){
         this.slideNo--;
@@ -103,7 +195,6 @@ export class InstructorCourseComponent implements OnInit {
     }
 
     instructorCourseSubmit() {
-
       this.data.courseTitleText = this.instructorCourseForm.value.courseTitleText;
       this.data.courseGroupSelect = this.instructorCourseForm.value.courseGroupSelect;
       this.data.courseCategorySelect = this.instructorCourseForm.value.courseCategorySelect;
@@ -123,25 +214,20 @@ export class InstructorCourseComponent implements OnInit {
     if(this.sessionArray.length !== 0) {
         this.sessionArray = [];
     }
-
     let courseStartDateText = this.semesterInfoForm.value.courseStartDateText;
     let courseIteration = this.semesterInfoForm.value.courseIteration;
     let courseStartTimeText = this.semesterInfoForm.value.courseStartTimeText;
-    
     let courseEndTimeText = this.semesterInfoForm.value.courseEndTimeText;
     this.courseSessionNumber = this.semesterInfoForm.value.courseSessionNumber;
     let courseDurationNumber = this.semesterInfoForm.value.courseDurationNumber;
-    let courseLocationText = this.semesterInfoForm.value.courseLocationText;
+    let searchControl = this.semesterInfoForm.value.searchControl;
+    this.courseFeeText = this.semesterInfoForm.value.courseFeeText;
     
     courseStartTimeText = moment(courseStartTimeText+':00', 'hh:mm:ss a');
     courseStartTimeText = moment(courseStartTimeText).format('HH:MM');
-
     courseEndTimeText = moment(courseStartTimeText, 'LT').add(courseDurationNumber, 'hours');
-    
     courseEndTimeText = moment(courseEndTimeText).format('HH:MM');
-    
     courseStartDateText = moment(courseStartDateText).format('YYYY-MM-DD');
-
     this.sessionArray.push(
       {
         "sessionDate" : courseStartDateText, 
@@ -149,7 +235,6 @@ export class InstructorCourseComponent implements OnInit {
         "endTime" : courseEndTimeText
       }
     );
-    
     for(var i = 0; i < this.courseSessionNumber-1; i++){
       courseStartDateText = moment(courseStartDateText, 'YYYY-MM-DD').add(1, courseIteration).calendar();
       courseStartDateText = moment(courseStartDateText).format('YYYY-MM-DD');
@@ -160,13 +245,26 @@ export class InstructorCourseComponent implements OnInit {
         "endTime" : courseEndTimeText
         }
       );
-      
     }
+    console.log(
+      'Course fee: ' +  this.courseFeeText + '\n' + 
+      'City : ' + this.city + '\n' +
+      'State : ' + this.state + '\n' +
+      'Zip : ' + this.zip + '\n' +
+      'Country : ' + this.country + '\n' +
+      'meetings: \n'
+    );
     console.log(this.sessionArray);
+  }  
+
+  uploadCoursePhoto() {
+    this.data.coursePrimaryPhoto = this.semesterPhotoForm.value.coursePrimaryPhoto;
+    this.data.courseSecondaryPhoto = this.semesterPhotoForm.value.courseSecondaryPhoto;
+    console.log(
+      'Primary Photo :' + this.data.coursePrimaryPhoto,
+      'Secondary Photo :' + this.data.courseSecondaryPhoto
+    )
   }  
 
     
   }
-
-
-

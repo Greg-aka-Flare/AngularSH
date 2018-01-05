@@ -80,6 +80,45 @@ export class CourseComponent implements OnInit, OnDestroy {
   
     this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
+      //console.log(this.id);
+        this.courseService.getCourse(this.id).subscribe(course => {
+        this.course = course;
+        this.ratingData = this.course.ratings;
+        this.categoriesArray = this.course.categories;
+        this.semesterCount = this.course.semesters.length;
+        this.semesterArray.pop();
+        for(var i=0; i< this.semesterCount; i++){
+          this.semesterArray.push(this.course.semesters[i]);
+        }
+        
+        this.semesterDetails = JSON.parse(this.course.semesters[0].details);
+        this.startDate = new Date(this.course.semesters[0].start_date.replace(/-/g, "/"));
+        this.endDate = new Date(this.course.semesters[0].end_date.replace(/-/g, "/"));
+  
+        this.slides.pop();
+        this.primaryImg = this.course.semesters[0].primary_img;
+        this.secondaryImg = JSON.parse(this.course.semesters[0].details).secondary_img;
+        this.slides.push(
+          {image:'../../assets/img/courses/'+ this.primaryImg},
+          {image:'../../assets/img/courses/'+ this.secondaryImg}
+          //{image:'../../assets/img/court.jpg'},
+          //{image:'../../assets/img/court-two.jpg'}
+        );
+  
+        this.meetingArray = this.course.semesters[0].meetings;
+        this.onSelect(this.course.semesters[0].id);
+        //initializing the google co-ordinates
+        this.lat = this.course.semesters[0].addresses[0].latitude;
+        this.lng = this.course.semesters[0].addresses[0].longitude;
+        
+        this.reviewCount = this.ratingData.length;
+        this.loopCounter = this.reviewCount+1;
+        for(var k=0; k < this.reviewCount; k++){
+            this.userRating += this.ratingData[k].rating;
+        }
+        this.reviewRatingGross = this.userRating/this.reviewCount;
+      })
+
     }))
     const $resizeEvent = Observable.fromEvent(window, 'resize')
     .map(() => {
@@ -90,43 +129,7 @@ export class CourseComponent implements OnInit, OnDestroy {
       this.width = data;
     }));
 
-    this.subscriptions.add(this.courseService.getCourse(this.id).subscribe(course => {
-      this.course = course;
-      this.ratingData = this.course.ratings;
-      this.categoriesArray = this.course.categories;
-      this.semesterCount = this.course.semesters.length;
-
-      for(var i=0; i< this.semesterCount; i++){
-        this.semesterArray.push(this.course.semesters[i]);
-      }
-      
-      this.semesterDetails = JSON.parse(this.course.semesters[0].details);
-      this.startDate = new Date(this.course.semesters[0].start_date.replace(/-/g, "/"));
-      this.endDate = new Date(this.course.semesters[0].end_date.replace(/-/g, "/"));
-
-      
-      this.primaryImg = this.course.semesters[0].primary_img;
-      this.secondaryImg = JSON.parse(this.course.semesters[0].details).secondary_img;
-      this.slides.push(
-        {image:'../../assets/img/courses/'+ this.primaryImg},
-        {image:'../../assets/img/courses/'+ this.secondaryImg}
-        //{image:'../../assets/img/court.jpg'},
-        //{image:'../../assets/img/court-two.jpg'}
-      );
-
-      this.meetingArray = this.course.semesters[0].meetings;
-      this.onSelect(this.course.semesters[0].id);
-      //initializing the google co-ordinates
-      this.lat = this.course.semesters[0].addresses[0].latitude;
-      this.lng = this.course.semesters[0].addresses[0].longitude;
-      
-      this.reviewCount = this.ratingData.length;
-      this.loopCounter = this.reviewCount+1;
-      for(var k=0; k < this.reviewCount; k++){
-          this.userRating += this.ratingData[k].rating;
-      }
-      this.reviewRatingGross = this.userRating/this.reviewCount;
-    }));
+    //this.subscriptions.add();
 
   }
 
