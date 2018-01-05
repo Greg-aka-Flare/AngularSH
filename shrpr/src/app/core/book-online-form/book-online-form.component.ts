@@ -34,7 +34,6 @@ export class BookOnlineFormComponent implements OnInit {
 
   ngOnInit() {
 
-    
     this.route.params.subscribe((params: Params) => {
       this.courseId = params['id'];
     });

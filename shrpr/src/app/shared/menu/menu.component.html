@@ -1,17 +1,45 @@
 <ul>
-  <li><a [routerLink]="['/marketing/digital']" (click)="toggleMenu()">Become a Teacher</a></li>
-  <li class="has_child" title="About Us"><a [routerLink]="['/about']" (click)="toggleMenu()">About Us</a>
+  <li>
+    <a [routerLink]="['/marketing/digital']" (click)="toggleMenu()">Become a Teacher</a>
+  </li>
+
+  <li class="has_child" title="About Us">
+    <a [routerLink]="['/about']" (click)="toggleMenu()">About Us</a>
+
     <ul>
-      <li><a [routerLink]="['/team/ourteam']" title="The Team" (click)="toggleMenu()">The Team</a></li>
-      <li><a [routerLink]="['/values']" title="Our Values" (click)="toggleMenu()">Our Values</a></li>
+      <li>
+        <a [routerLink]="['/team/ourteam']" title="The Team" (click)="toggleMenu()">The Team</a>
+      </li>
+
+      <li>
+        <a [routerLink]="['/values']" title="Our Values" (click)="toggleMenu()">Our Values</a>
+      </li>
     </ul>
   </li>
-  <li><a [routerLink]="['/login']" title="Sign Up / Log In" (click)="toggleMenu()">Sign Up / Log In</a></li>
-  <li class="has_child"><a href="javascript:void(0);" title="Content" (click)="toggleMenu()">Content</a>
+
+  <li *ngIf="!loggedIn">
+    <a [routerLink]="['/login']" title="Sign Up / Log In" (click)="toggleMenu()">Sign Up / Log In</a>
+  </li>
+
+  <li class="has_child">
+    <a title="Content" (click)="toggleMenu()">Content</a>
+
     <ul>
-      <li><a [routerLink]="['/videos']" title="Videos" (click)="toggleMenu()">Videos</a></li>
-      <li><a href="http://blog.shrpr.co/" title="Blog" (click)="toggleMenu()">Blog</a></li>
-      <li><a [routerLink]="['/podcast']" title="Podcast" (click)="toggleMenu()">Podcast</a></li>
+      <li>
+        <a [routerLink]="['/videos']" title="Videos" (click)="toggleMenu()">Videos</a>
+      </li>
+
+      <li>
+        <a href="http://blog.shrpr.co/" title="Blog" (click)="toggleMenu()">Blog</a>
+      </li>
+
+      <li>
+        <a [routerLink]="['/podcast']" title="Podcast" (click)="toggleMenu()">Podcast</a>
+      </li>
     </ul>
   </li>  
+
+  <li *ngIf="user">
+    Hi, {{ user?.first || user?.name }} <span>(<a (click)="logout()">Logout</a>)</span>
+  </li>
 </ul>

@@ -19,13 +19,25 @@ export class AuthService {
   }
 
   me(): Observable<any> {
-    return this.http.post('https://api.shrpr.co/api/auth/me', {});
+    return this.http.post('https://api.shrpr.co/api/auth/me', {})
+      .map((data: any) => {
+        if((data.name.split(" ").length - 1) == 1){ //store first/last name
+          data.first = data.name.substr(0, data.name.indexOf(' '));
+          data.last = data.name.substr(data.name.indexOf(' ') + 1);
+        }
+
+        return data;
+      });
   }
 
   refresh(): Observable<any> {
     return this.http.post('https://api.shrpr.co/api/auth/refresh', {})
       .map((token: any) => token.access_token)
       .do((token) => localStorage.setItem('access_token', token));
+  }
+
+  loggedIn(): boolean {
+    return (this.getToken()) ? true : false;
   }
 
   login(email: string, password: string): Observable<any> {

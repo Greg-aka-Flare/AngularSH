@@ -36,7 +36,7 @@ header :host>ul li {
     border-bottom: 1px solid #a0adbd;
 }
 
-header :host>ul li a {
+header :host>ul li > a {
     display: block;
     color: #484848;
     font-size: 16px;
@@ -44,9 +44,15 @@ header :host>ul li a {
     text-decoration: none;
     padding: 0 20px 0 20px;
 }
-
-header :host>ul li a:hover {
-    color: #549265;
+header :host>ul li span{
+    cursor: pointer;
+    font-size: 12px;
+}
+header :host>ul li span a{
+    color: #448a58;
+}
+header :host>ul li span:hover a{
+    text-decoration: underline;
 }
 
 header :host>ul li ul {
