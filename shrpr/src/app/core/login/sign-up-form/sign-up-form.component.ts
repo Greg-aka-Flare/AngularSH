@@ -8,6 +8,7 @@ import { UserInterface } from '../../../core/user.interface';
 import { UserService } from '../../../core/user.service';
 import { LikeService } from '../../../core/like.service';
 import { AuthService } from '../../../auth/auth.service';
+import { ValidationService } from '../../../core/validation.service';
 
 @Component({
   selector: 'sign-up',
@@ -43,9 +44,11 @@ export class SignUpFormComponent implements OnInit {
 
     //create signup form
     this.signupForm = this.fb.group({
-      'name': ['', Validators.required],
-      'email': ['', [Validators.required, Validators.email], this.validateEmailNotTaken.bind(this)],
-      'password': ['', [Validators.required, Validators.minLength(6)]],
+      'name': ['', [Validators.required, ValidationService.alphabetsValidator]],
+      'email': ['', [Validators.required, ValidationService.emailValidator ], this.validateEmailNotTaken.bind(this)],
+      'password': ['', [Validators.required, ValidationService.passwordValidator]],
+      'termsConditionCheck': ['',Validators.required],
+      'CurrentAddressAsPrimaryCheck': ['']
     });
 
     //create profile form
@@ -60,8 +63,10 @@ export class SignUpFormComponent implements OnInit {
     this.data.name = this.signupForm.value.name;
     this.data.email = this.signupForm.value.email;
     this.data.password = this.signupForm.value.password;
-
-    if(this.data.name && this.data.email && this.data.password){
+    this.data.termsConditionCheck = this.signupForm.value.termsConditionCheck;
+    this.data.CurrentAddressAsPrimaryCheck = this.signupForm.value.CurrentAddressAsPrimaryCheck;
+    
+    if(this.data.name && this.data.email && this.data.password && this.data.termsConditionCheck){
       this.signup = true;
     } 
     else {

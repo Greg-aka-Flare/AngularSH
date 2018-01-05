@@ -8,21 +8,20 @@
     border-radius: 5px;
 }
 
-.review-form span {
+.review-form div {
     color: #454545;
-    display: block;
     font-size: 14px;
     line-height: 14px;
     margin: 0 0 15px;
     overflow: hidden;
 }
 
-.review-form span label {
+.review-form div label {
     display: block;
     padding: 0 0 5px;
 }
 
-.review-form span input, .review-form span select, .review-form span textarea {
+.review-form div input, .review-form div select, .review-form div textarea {
     border: 1px solid #cccccc;
     color: #454545;
     font-family: arial;
@@ -33,7 +32,7 @@
     border-radius: 5px;
     outline: none;
 }
-.review-form span textarea {
+.review-form div textarea {
     height: 100px;
 }
 .review-form form > button {
@@ -58,4 +57,10 @@
 .review-form form > button:hover {
 	color: #ec9332;
 	background: #ffffff;
+}
+.review-form form input.ng-valid.ng-touched, .review-form form textarea.ng-valid.ng-touched{
+    border: 1px solid #0c0;
+}
+.review-form form input.ng-invalid.ng-touched, .review-form form textarea.ng-invalid.ng-touched{
+    border: 1px solid #c00;
 }

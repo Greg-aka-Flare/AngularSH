@@ -8,6 +8,7 @@ import { LikeService } from '../../like.service';
 import { Subscription } from 'rxjs/Subscription';
 import { StarRatingModule } from 'angular-star-rating';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-curious-mobile',
@@ -68,7 +69,8 @@ export class CuriousMobileComponent implements OnInit {
   isBtnActive: boolean = true;
   constructor(
     private courseService: CourseService, 
-    private likeService: LikeService
+    private likeService: LikeService,
+    private auth: AuthService
   ) {}
 
   ngOnInit() {
@@ -84,6 +86,15 @@ export class CuriousMobileComponent implements OnInit {
     this.subscriptions.add(this.likeService.getCounter().subscribe((count) => {
       this.counter = count;
     }));
+
+    this.auth.me().subscribe(
+      success => {
+        this.isBtnActive = false;
+      },
+      error => {
+        this.isBtnActive = true;
+      }
+    );
   }
 
   ngOnDestroy(){
@@ -176,4 +187,5 @@ export class CuriousMobileComponent implements OnInit {
 
     return excludes;
   }
+  
 }

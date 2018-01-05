@@ -55,6 +55,7 @@ export class CourseSelectComponent implements OnInit, OnDestroy {
   forWork: Course[];
   forKids: Course[];
   counter: number;
+  courseSelected:number;
   
   //counterSubscription: Subscription;
   private counterSubscription = new Subscription();
@@ -62,7 +63,9 @@ export class CourseSelectComponent implements OnInit, OnDestroy {
   constructor(
     private courseService: CourseService,
     private router: Router
-   ) {}
+   ) {
+     this.courseSelected = 0;
+   }
 
   ngOnInit() {
     
@@ -109,5 +112,10 @@ export class CourseSelectComponent implements OnInit, OnDestroy {
     const myCourse = this.selectCourseForm.value.selectedCourse;
     //console.log(this.selectCourseForm);
     this.router.navigateByUrl('student/62');
+  }
+
+  courseCount(){
+    this.courseSelected++;
+    console.log('selected Course: ' + this.courseSelected);
   }
 }

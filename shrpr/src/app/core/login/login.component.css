@@ -41,7 +41,6 @@
     bottom:0;
 }
 :host /deep/ tabs tab {
-    position: absolute;
     width:100%;
     max-width: 350px;
 }
@@ -51,6 +50,10 @@ tab.active-tab {
     max-width: 350px;
     overflow: hidden;
     z-index: 1;
+}
+.signup-container {
+    position: relative;
+    overflow: hidden;
 }
 .signup-box, .signup_type {
     top:0;
@@ -106,6 +109,23 @@ tab.active-tab {
     border:none;
     margin: 0 0 5px 0;
     border-radius: 5px;
+}
+.login-box form input[type="checkbox"] {
+    font-family: 'circularstd book';
+    display: inline-block;
+    box-sizing:border-box;
+    padding: 0;
+    height: 10px;
+    width: 10px;
+    font-size: 14px;
+    color: #000000;
+    border:none;
+    margin: 0 0 5px 0;
+    border-radius: 5px;
+}
+label.checkbox-label {
+    font-size:13px;
+    color:#666666;
 }
 .login-box form input.ng-valid.ng-touched{
     border: 1px solid #0c0;

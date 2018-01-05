@@ -16,7 +16,7 @@ export class MenuComponent implements OnInit {
     private auth: AuthService,
     private templateHeader: TemplateHeader 
   ) {}
-
+  
   ngOnInit() {
     this.loggedIn = this.auth.loggedIn();
     

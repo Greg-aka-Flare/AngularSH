@@ -69,6 +69,10 @@
     right: 0;
     z-index: 9;
 }
+.price.free {
+    background: #448a58;
+    color: #ffffff;
+}
 .group_name {
     font-size:12px;
     line-height: 14px;

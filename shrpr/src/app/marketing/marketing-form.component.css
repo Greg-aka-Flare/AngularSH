@@ -8,3 +8,15 @@
 .features-nav ul li.active a {
     color: #ec9332;
 }
+.inner-form-wrap form > div {
+    clear: left;
+}
+.inner-form-wrap form > div:nth-of-type(2n) {
+    clear: right;
+}
+#scheduleFreeDemoform input.ng-valid.ng-touched, #scheduleFreeDemoform select.ng-valid.ng-touched{
+    border: 1px solid #0c0;
+}
+#scheduleFreeDemoform input.ng-invalid.ng-touched, #scheduleFreeDemoform select.ng-invalid.ng-touched{
+    border: 1px solid #c00;
+}

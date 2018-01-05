@@ -24,15 +24,23 @@ import { ControlMessagesComponent } from '../shared/control-messages/control-mes
 })
 export class StudentComponent implements OnInit, OnDestroy {
 
+  city: string = '';
+  state: string = '';
+  zip: string = '';
+  country: string = '';
   students:any[];
   courses: any[];
   studentCourse:any;
   courseCard: any[] = [];
   studentAddressForm: any;
+  studentProfileForm: any;
+  studentDescriptionForm:any;
   private id:number;
   data: any = {};
   reviewshowHide:boolean = false;
   isEdit:boolean = false;
+  isUpdate:boolean = false;
+  isEditAbout:boolean = false;
   private mylocation:string;
   //subscription: Subscription;
   private subscriptions = new Subscription();
@@ -66,14 +74,34 @@ export class StudentComponent implements OnInit, OnDestroy {
     }
   ngOnInit() {
 
+    //if localstorage exists, pull values in
+    if(localStorage.getItem('city')) this.city = localStorage.getItem('city');
+    if(localStorage.getItem('state')) this.state = localStorage.getItem('state');
+    if(localStorage.getItem('zip')) this.zip = localStorage.getItem('zip');
+    if(localStorage.getItem('country')) this.country = localStorage.getItem('country');
+
     this.studentAddressForm = this.fb.group({
       'addressStreet': ['', [Validators.required]],
-      'addressCity': ['', Validators.required],
-      'addressState': ['', Validators.required],
-      'addressZip': ['', Validators.required],
-      'addressCountry': ['', Validators.required],
+      'addressCity': [this.city, Validators.required],
+      'addressState': [this.state, Validators.required],
+      'addressZip': [this.zip, Validators.required],
+      'addressCountry': [this.country, Validators.required],
       'addressPhone': ['', [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
       'addressEmail': ['', [Validators.required, ValidationService.emailValidator]]
+    });
+    
+    this.studentProfileForm = this.fb.group({
+      'name': ['', [Validators.required, ValidationService.alphabetsValidator]],
+      'email': ['', [Validators.required, ValidationService.emailValidator]],
+      'profileImage': [''],
+      'yelp':  [''],
+      'twitter': [''],
+      'facebook': [''],
+      'linkedIn': [''],
+      'pinterest': [''],
+    });
+    this.studentDescriptionForm = this.fb.group({
+      'description': ['', [Validators.required, Validators.minLength(40)]],
     });
 
     this.subscriptions.add(this.studentService.getStudent(this.id)
@@ -109,6 +137,41 @@ export class StudentComponent implements OnInit, OnDestroy {
       )
 
     }
+    updateProfile(){
+      this.isUpdate= !this.isUpdate;
+
+      this.data.name = this.studentAddressForm.value.name;
+      this.data.email = this.studentAddressForm.value.email;
+      this.data.profileImage = this.studentAddressForm.value.profileImage;
+      this.data.yelp = this.studentAddressForm.value.yelp;
+      this.data.twitter = this.studentAddressForm.value.twitter;
+      this.data.facebook = this.studentAddressForm.value.facebook;
+      this.data.linkedIn = this.studentAddressForm.value.linkedIn;
+      this.data.pinterest = this.studentAddressForm.value.pinterest;
+
+      console.log(
+        'Name :' + this.data.name,
+        'Email :' + this.data.email,
+        'Profile Image :' + this.data.profileImage,
+        'Yelp :' + this.data.yelp,
+        'Twitter :' + this.data.twitter,
+        'Facebook :' + this.data.facebook,
+        'LinkedIn :' + this.data.linkedIn,
+        'Pinterest :' + this.data.pinterest
+      )
+
+    }
+    updatestudentDescription(){
+      this.isEditAbout= !this.isEditAbout;
+
+      this.data.description = this.studentAddressForm.value.description;
+
+      console.log(
+        'Description :' + this.data.description,
+      )
+
+    }
+
 
     ngOnDestroy(){
       this.subscriptions.unsubscribe();

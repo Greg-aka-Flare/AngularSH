@@ -22,9 +22,12 @@
     <h3>Upcoming Events with {{instructors?.name}} </h3>
     <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
         <div class="img-ctn">
-            <div class="price">
-              ${{ card?.semesters[0]?.amount }}
-            </div>
+          <div class="price" *ngIf="card.semesters[0].amount != '0.00'">
+            ${{ card?.semesters[0]?.amount }}
+          </div>
+          <div class="price free" *ngIf="card.semesters[0].amount == '0.00'">
+              Free
+          </div>
             <figure><a [routerLink]="['/courses', card?.id]">
               <img *ngIf="card?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ card?.semesters[0]?.primary_img }}" alt="" title="">
               <img *ngIf="!card?.semesters[0]?.primary_img" src="../../assets/img/card-picture.jpg" alt="" title=""></a>
@@ -69,9 +72,13 @@
     <h3>Upcoming Events with {{instructors?.name}}</h3>
     <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
       <div class="img-ctn">
-          <div class="price">
+          <div class="price" *ngIf="card.semesters[0].amount != '0.00'">
             ${{ card?.semesters[0]?.amount }}
           </div>
+          <div class="price free" *ngIf="card.semesters[0].amount == '0.00'">
+              Free
+          </div>
+
           <figure><a [routerLink]="['/courses', card?.id]">
             <img *ngIf="card?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ card?.semesters[0]?.primary_img }}" alt="" title="">
             <img *ngIf="!card?.semesters[0]?.primary_img" src="../../assets/img/card-picture.jpg" alt="" title=""></a>

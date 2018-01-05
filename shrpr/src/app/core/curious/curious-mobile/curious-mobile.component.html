@@ -25,10 +25,12 @@
         </div><!-- .category -->
 
         <div class="img-ctn">
-            <div class="price">
+            <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
                 ${{ course?.semesters[0]?.amount }}
-            </div><!-- .price -->
-
+              </div>
+              <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
+                  Free
+              </div>
             <figure>
                 <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
                 <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title="">

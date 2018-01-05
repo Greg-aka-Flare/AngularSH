@@ -1,8 +1,27 @@
 <div class="review-form">
-        <form>
-          <span><label>Headline for Your Review</label><input type="text" id="title"></span>
-          <span><label>Rating</label><select><option>---Select--</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></span>
-          <span><label>Comment</label><textarea type="text" id="comment"></textarea></span>
-          <button type="Submit">Submit</button>
-        </form>
-        </div>
+  <form  id="reviewform" [formGroup]="reviewForm" (ngSubmit)="updateReview()">
+    <div>
+      <label>Headline for Your Review*</label>
+      <input type="text" formControlName="title">
+       <control-messages [control]="reviewForm.controls.title"></control-messages>
+    </div>
+    <div>
+      <label>Rating*</label>
+      <select formControlName="rating">
+        <option>---Select--</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <control-messages [control]="reviewForm.controls.rating"></control-messages>
+    </div>
+    <div>
+      <label>Comment*</label>
+      <textarea type="text" formControlName="comment"></textarea>
+       <control-messages [control]="reviewForm.controls.comment"></control-messages>
+    </div>
+    <button [disabled]="!reviewForm.valid" type="Submit">Submit</button>
+  </form>
+</div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { MarketingRoutingModule } from './marketing-routing.module';
@@ -34,7 +35,9 @@ import { DigitalComponent } from './digital/digital.component';
   imports: [
     CommonModule,
     MarketingRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class MarketingModule { }

@@ -84,7 +84,16 @@ header a#menu.active .fa-times-circle-o {
   width: 12px;
   z-index: 1;
 }
-
+header #logo span.beta-logo {
+  color: red;
+  display: inline-block;
+  font-family: arial;
+  font-size: 10px;
+  line-height: 1em;
+  padding: 0 0 6px;
+  text-transform: uppercase;
+  vertical-align: bottom;
+}
 @media only screen and (min-width: 60em) {
 :host{
   height: 195px;
@@ -157,5 +166,9 @@ header a#menu.active .fa-times-circle-o {
     right: -15px;
     top: -6px;
     width: 22px;
+  }
+  header #logo span.beta-logo {
+    padding: 0 0 8px 0;
+    font-size: 12px;
   }
 }

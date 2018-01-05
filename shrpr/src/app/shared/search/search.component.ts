@@ -6,7 +6,6 @@ import { NgModel } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
 
-
 declare var google: any;
 
 @Component({
@@ -40,40 +39,36 @@ export class SearchComponent implements OnInit {
     //get location
     this.location = localStorage.getItem('location');
 
-    //if not location, geolocate
-    if(!this.location){
+    if(navigator.geolocation) { //check if we can get lat/lng
+      
+      //create location
+      navigator.geolocation.getCurrentPosition(position => {
 
-      if(navigator.geolocation) { //check if we can get lat/lng
-        
-        //create location
-        navigator.geolocation.getCurrentPosition(position => {
+        let lat = position.coords.latitude;
+        let lng = position.coords.longitude;
 
-          let lat = position.coords.latitude;
-          let lng = position.coords.longitude;
+        let geocoder = new google.maps.Geocoder();
+        let latlng = new google.maps.LatLng(lat, lng);
 
-          let geocoder = new google.maps.Geocoder();
-          let latlng = new google.maps.LatLng(lat, lng);
+        //reverse geocode
+        geocoder.geocode({ 'location': latlng }, (results, status) => {
 
-          //reverse geocode
-          geocoder.geocode({ 'location': latlng }, (results, status) => {
+          if (status == google.maps.GeocoderStatus.OK) {
 
-            if (status == google.maps.GeocoderStatus.OK) {
+            if (results[0] != null) {
 
-              if (results[0] != null) {
+              //get location
+              this.location = this.findLocation(results[0].address_components);
 
-                //get location
-                this.location = this.findLocation(results[0].address_components);
+              //set location
+              localStorage.setItem('location', this.location);
 
-                //set location
-                localStorage.setItem('location', this.location);
-
-                //refresh
-                this.ref.detectChanges();
-              }
+              //refresh
+              this.ref.detectChanges();
             }
-          });
+          }
         });
-      }
+      });
     }
 
     //create search FormControl
@@ -101,37 +96,72 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  findLocation(components){      
+  findLocation(components){
     
-    var city = false,
-        state = false,
-        zip = false,
-        component,
-        i, l, x, y;
+        var city: string = '',
+            state: string = '',
+            zip: string = '',
+            country: string = '',
+            component,
+            i, l, x, y;
+    
+          for(i = 0, l = components.length; i < l; ++i){
+    
+            //store component
+            component = components[i];
+    
+            //check each type
+            for(x = 0, y = component.types.length; x < y; ++ x){
+    
+              //depending on type, assign to var
+              switch(component.types[x]){
+    
+                case 'neighborhood':
+                city = component.long_name;
+                break;
+    
+                case 'administrative_area_level_1':
+                state = component.short_name;
+                break;
+    
+                case 'postal_code':
+                zip = component.short_name;
+                break;
+    
+                case 'country':
+                country = component.short_name;
+                break;
+              }
+            }
+          }
 
-    for(i = 0, l = components.length; i < l; ++i){
+          //set country
+          if(country){
 
-      //store component
-      component = components[i];
+            //set local storage
+            localStorage.setItem('country', country);
+          }
+    
+          if(city && state && zip){
 
-      //check each type
-      for(x = 0, y = component.types.length; x < y; ++ x){
+            //set local storage
+            localStorage.setItem('city', city);
+            localStorage.setItem('state', state);
+            localStorage.setItem('zip', zip);
+    
+            return city + ', ' + state + ' ' + zip;
+          }
+          else if (city && state) { 
 
-        //depending on type, assign to var
-        switch(component.types[x]){
+            //set local storage
+            localStorage.setItem('city', city);
+            localStorage.setItem('state', state);
 
-          case 'neighborhood':
-          city = component.long_name;
-          break;
-
-          case 'administrative_area_level_1':
-          state = component.short_name;
-          break;
-
-          case 'postal_code':
-          zip = component.short_name;
-          break;
-        }
+            return city + ', ' + state;
+          } else {
+    
+            return '';
+          }
       }
     }
 
