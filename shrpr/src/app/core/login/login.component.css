@@ -185,6 +185,7 @@ label.checkbox-label {
     text-align: center;
 }
 .horizontal-box {
+    display: none;
     text-align: center;
     position: relative;
 }
@@ -209,6 +210,7 @@ label.checkbox-label {
     z-index: 99;
 }
 .social-login {
+    display: none;
     padding:8px 0 0 0;
     text-align: center;
 }
