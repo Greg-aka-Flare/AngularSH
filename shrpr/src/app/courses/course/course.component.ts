@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
+import { AuthService } from './../../auth/auth.service';
 
 @Component({
   selector: 'app-course',
@@ -53,6 +54,7 @@ export class CourseComponent implements OnInit, OnDestroy {
   categoriesArray:any;
   semesterInfo;
   reviewshowHide:boolean = false;
+  loggedIn: boolean = false;
 
   //The time to show the next photo
   private NextPhotoInterval:number = 5000;
@@ -66,14 +68,16 @@ export class CourseComponent implements OnInit, OnDestroy {
   }
   constructor(
     private courseService: CourseService, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auth: AuthService
   ) {
     this.selectedSemester = this.semesterArray;
     
   }
 
   ngOnInit() {
-
+    this.loggedIn = this.auth.loggedIn();
+  
     this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
     }))

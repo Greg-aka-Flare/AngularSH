@@ -59,8 +59,8 @@
                 </div> 
                 </div>
             <div class="action_btn">
-              <a [routerLink]="['/book-online', course.id]">Book Online</a><a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
-            </div>
+              <a [routerLink]="['/book-online', course.id]">Enroll Now</a><a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
+             <!-- <span>270 people saved this class</span></div>-->
         </div>
         <!-- .course_info -->
         <div class="course_info">
@@ -78,6 +78,7 @@
         </div>
         <!-- .course_enroll_block -->
         <!-- .course_info-->
+        </div>
     </article>
   </section>
   <!-- mobile view ends-->
@@ -106,9 +107,8 @@
               <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
             </p>
             <div class="action_btn">
-              <a [routerLink]="['/book-online', course.id]">Book Online</a><br>
+              <a [routerLink]="['/book-online', course.id]">Enroll Now</a><br>
               <a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
-            </div>
             <p>
               <i class="fa fa-map-marker" aria-hidden="true"></i> 
               <span class="course_address_mobile" *ngIf="selectedSemester">
@@ -160,7 +160,7 @@
         </div>
           <!-- .course_enroll_block -->
     </section>
-  </section>
+    </section>
   <!--desktop view ends-->
   <!-- #profile header -->
   <tabs *ngIf="width < 768">
@@ -206,7 +206,7 @@
   <!--google map ends-->
   <!-- #reviews-->
   <section id="reviews">
-      <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews | <a href="javascript:void(0);" (click)="reviewshowHide = !reviewshowHide">Add Your Review</a></div>
+      <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews<span *ngIf="loggedIn"> | <a href="javascript:void(0);" (click)="reviewshowHide = !reviewshowHide">Add Your Review</a></span></div>
       <app-addreview *ngIf="reviewshowHide"></app-addreview>
       <div *ngIf="reviewCount >= 1">
           <dl class="review_items" *ngFor="let review of ratingData" >
