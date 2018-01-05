@@ -17,6 +17,8 @@ export class InstructorCourseComponent implements OnInit {
   
   instructorCourseForm: FormGroup;
   semesterInfoForm: FormGroup;
+  semesterPhotoForm: FormGroup;
+  
   semesterDetailForm: FormGroup;
   sessionArray: any[] = [];
   data: any = {};
@@ -34,7 +36,7 @@ export class InstructorCourseComponent implements OnInit {
   
 
   slideNo: number = 1;
-  lastSlideNo:number = 3;
+  lastSlideNo:number = 4;
   prevPos: string = '';
   nextPos:number = 0;
   goNext:boolean = false;
@@ -79,6 +81,10 @@ export class InstructorCourseComponent implements OnInit {
       'courseFeeText': ['', Validators.required],
       'searchControl': ['']
        
+    });
+    this.semesterPhotoForm = this.fb.group({  
+      'coursePrimaryPhoto': [''],
+      'courseSecondaryPhoto' : [''] 
     });
 
     this.searchControl = new FormControl();
@@ -159,6 +165,9 @@ export class InstructorCourseComponent implements OnInit {
     if(this.slideNo == 2){
       this.sessionDetailsinit();
     }
+    if(this.slideNo == 4){
+      this.uploadCoursePhoto();
+    }
 
     if( this.slideNo > 0 && this.slideNo < this.lastSlideNo ){
       this.slideNo++;
@@ -186,13 +195,11 @@ export class InstructorCourseComponent implements OnInit {
     }
 
     instructorCourseSubmit() {
-
       this.data.courseTitleText = this.instructorCourseForm.value.courseTitleText;
       this.data.courseGroupSelect = this.instructorCourseForm.value.courseGroupSelect;
       this.data.courseCategorySelect = this.instructorCourseForm.value.courseCategorySelect;
       this.data.courseSubCategorySelect = this.instructorCourseForm.value.courseSubCategorySelect;
       this.data.courseDescriptionText = this.instructorCourseForm.value.courseDescriptionText;
-      
       console.log(
         'Course Name :' + this.data.courseTitleText,
         'Group :' + this.data.courseGroupSelect,
@@ -207,8 +214,6 @@ export class InstructorCourseComponent implements OnInit {
     if(this.sessionArray.length !== 0) {
         this.sessionArray = [];
     }
-    
-    
     let courseStartDateText = this.semesterInfoForm.value.courseStartDateText;
     let courseIteration = this.semesterInfoForm.value.courseIteration;
     let courseStartTimeText = this.semesterInfoForm.value.courseStartTimeText;
@@ -220,13 +225,9 @@ export class InstructorCourseComponent implements OnInit {
     
     courseStartTimeText = moment(courseStartTimeText+':00', 'hh:mm:ss a');
     courseStartTimeText = moment(courseStartTimeText).format('HH:MM');
-
     courseEndTimeText = moment(courseStartTimeText, 'LT').add(courseDurationNumber, 'hours');
-    
     courseEndTimeText = moment(courseEndTimeText).format('HH:MM');
-    
     courseStartDateText = moment(courseStartDateText).format('YYYY-MM-DD');
-
     this.sessionArray.push(
       {
         "sessionDate" : courseStartDateText, 
@@ -234,7 +235,6 @@ export class InstructorCourseComponent implements OnInit {
         "endTime" : courseEndTimeText
       }
     );
-    
     for(var i = 0; i < this.courseSessionNumber-1; i++){
       courseStartDateText = moment(courseStartDateText, 'YYYY-MM-DD').add(1, courseIteration).calendar();
       courseStartDateText = moment(courseStartDateText).format('YYYY-MM-DD');
@@ -246,7 +246,6 @@ export class InstructorCourseComponent implements OnInit {
         }
       );
     }
-
     console.log(
       'Course fee: ' +  this.courseFeeText + '\n' + 
       'City : ' + this.city + '\n' +
@@ -256,6 +255,15 @@ export class InstructorCourseComponent implements OnInit {
       'meetings: \n'
     );
     console.log(this.sessionArray);
+  }  
+
+  uploadCoursePhoto() {
+    this.data.coursePrimaryPhoto = this.semesterPhotoForm.value.coursePrimaryPhoto;
+    this.data.courseSecondaryPhoto = this.semesterPhotoForm.value.courseSecondaryPhoto;
+    console.log(
+      'Primary Photo :' + this.data.coursePrimaryPhoto,
+      'Secondary Photo :' + this.data.courseSecondaryPhoto
+    )
   }  
 
     

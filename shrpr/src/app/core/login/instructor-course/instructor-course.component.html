@@ -129,7 +129,23 @@
               </div>
               <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterDetailForm.valid">Submit</button></div>
               </form> 
-            </div><!-- course Form Page four-->
+            </div><!-- course Form Page Three-->
+            <div class="courseFormPage">
+              <form name="semesterPhotoForm" [formGroup]="semesterPhotoForm">
+                <div class="formRow">
+                  <label for="coursePrimaryPhoto">Primary Photo</label>
+                  <input type="file" id="coursePrimaryPhoto" formControlName="coursePrimaryPhoto">
+                  
+               </div>
+               <div class="formRow">
+                <label for="courseSecondaryPhoto">Secondary Photo</label>
+                <input type="file" id="courseSecondaryPhoto" formControlName="courseSecondaryPhoto">
+                
+             </div>
+
+                <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterPhotoForm.valid">Submit</button></div>
+                </form> 
+              </div><!-- course Form Page four-->
       </div>
   </section>
   </section>
