@@ -8,15 +8,15 @@ declare const gapi: any;
 })
 export class GoogleSigninComponent implements AfterViewInit {
 
-  private clientId:string = '666727355512-62rih9cd4sb7l0pes392pd55ria6039v.apps.googleusercontent.com';
+  private clientId:string = '235472783543-33m0nai0ltsljrpv43dvi2mhks4atapc.apps.googleusercontent.com';
   
-  private scope = [
-    'profile',
-    'email',
-    'https://www.googleapis.com/auth/plus.me',
-    'https://www.googleapis.com/auth/contacts.readonly',
-    'https://www.googleapis.com/auth/admin.directory.user.readonly'
-  ].join(' ');
+  // private scope = [
+  //   'profile',
+  //   'email',
+  //   'https://www.googleapis.com/auth/plus.me',
+  //   'https://www.googleapis.com/auth/contacts.readonly',
+  //   'https://www.googleapis.com/auth/admin.directory.user.readonly'
+  // ].join(' ');
 
   public auth2: any;
   public googleInit() {
@@ -24,8 +24,7 @@ export class GoogleSigninComponent implements AfterViewInit {
     gapi.load('auth2', function () {
       that.auth2 = gapi.auth2.init({
         client_id: that.clientId,
-        cookiepolicy: 'single_host_origin',
-        scope: that.scope
+        cookiepolicy: 'single_host_origin'
       });
       that.attachSignin(that.element.nativeElement.firstChild);
     });
@@ -34,6 +33,8 @@ export class GoogleSigninComponent implements AfterViewInit {
     let that = this;
     this.auth2.attachClickHandler(element, {},
       function (googleUser) {
+
+        console.log(googleUser);
         let profile = googleUser.getBasicProfile();
 
         console.log(profile);

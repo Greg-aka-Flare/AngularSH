@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CourseService {
 
-	url: string = 'https://api.shrpr.co/api/';
+	api: string = environment.api;
 
 	constructor(private http: HttpClient){}
 
@@ -17,7 +18,7 @@ export class CourseService {
 	): Observable<any> {
 
 		//create api endpoint
-		let api = this.url + 'courses';
+		let api = this.api + 'courses';
 
 		if(group) api = this.updateQueryString('group', group, api);
 		if(limit) api = this.updateQueryString('limit', limit, api);
@@ -69,13 +70,13 @@ export class CourseService {
 	getCourse(id: number){
 
 		//create api endpoint
-		let api = this.url + 'course/' + id;
+		let api = this.api + 'course/' + id;
 
 		return this.http.get(api);	
 	}
 
 	deleteCourse(id: number){
-		return this.http.delete('https://api.shrpr.co/api/' + id);
+		return this.http.delete(this.api + id);
 	}
 
 	private updateQueryString(key, value, url) {

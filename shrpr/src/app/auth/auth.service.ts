@@ -5,9 +5,12 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/switchMap';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
+
+  api: string = environment.api;
 
   constructor(
     private http: HttpClient,
@@ -19,7 +22,7 @@ export class AuthService {
   }
 
   me(): Observable<any> {
-    return this.http.post('https://api.shrpr.co/api/auth/me', {})
+    return this.http.post(this.api + 'auth/me', {})
       .map((data: any) => {
         if((data.name.split(" ").length - 1) == 1){ //store first/last name
           data.first = data.name.substr(0, data.name.indexOf(' '));
@@ -31,7 +34,7 @@ export class AuthService {
   }
 
   refresh(): Observable<any> {
-    return this.http.post('https://api.shrpr.co/api/auth/refresh', {})
+    return this.http.post(this.api + 'auth/refresh', {})
       .map((token: any) => token.access_token)
       .do((token) => localStorage.setItem('access_token', token));
   }
@@ -41,7 +44,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post('https://api.shrpr.co/api/auth/login', {
+    return this.http.post(this.api + 'auth/login', {
       email: email,
       password: password
     })

@@ -9,6 +9,7 @@ import { UserService } from '../../../core/user.service';
 import { LikeService } from '../../../core/like.service';
 import { AuthService } from '../../../auth/auth.service';
 import { ValidationService } from '../../../core/validation.service';
+import { environment } from '../../../../environments/environment';
 import {} from '@types/googlemaps';
 
 @Component({
@@ -19,6 +20,7 @@ import {} from '@types/googlemaps';
 export class SignUpFormComponent implements OnInit {
 
 	private emailTimeout;
+  api: string = environment.api;
   name: string = '';
   email: string = '';
   data: any = {};
@@ -250,7 +252,7 @@ export class SignUpFormComponent implements OnInit {
         //for every like, create new request
         for(let like of likes){
 
-          let url = 'https://api.shrpr.co/api/course/' + like + '/like';
+          let url = this.api + 'course/' + like + '/like';
 
           requests.push(this.http.post(url, {}));
         }
@@ -258,7 +260,7 @@ export class SignUpFormComponent implements OnInit {
         //for every dislike, create new request
         for(let dislike of dislikes){
 
-          let url = 'https://api.shrpr.co/api/course/' + dislike + '/dislike';
+          let url = this.api + 'course/' + dislike + '/dislike';
 
           requests.push(this.http.post(url, {}));
         }

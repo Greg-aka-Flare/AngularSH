@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
 import { NgModel } from '@angular/forms';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import { environment } from '../../../environments/environment';
 import {} from '@types/googlemaps';
 
 declare var google: any;
@@ -15,7 +16,8 @@ declare var google: any;
 })
 export class SearchComponent implements OnInit {
 
-@ViewChild("search") searchElementRef: ElementRef;
+  @ViewChild("search") searchElementRef: ElementRef;
+  api: string = environment.api;
   searchControl: FormControl;
   location: string = '';
   dataService: CompleterData;
@@ -31,7 +33,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
 
     this.dataService = this.completerService.remote(
-      'https://api.shrpr.co/api/search?str=', 
+      this.api + 'search?str=', 
       'title', 
       'title'
     ).imageField('img');
