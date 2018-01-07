@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Input, Pipe, PipeTransform } from '@angular/core';
 import { NgModel } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -95,9 +96,7 @@ export class CourseComponent implements OnInit, OnDestroy {
         this.semesterDetails = JSON.parse(this.course.semesters[0].details);
         this.startDate = new Date(this.course.semesters[0].start_date.replace(/-/g, "/"));
         this.endDate = new Date(this.course.semesters[0].end_date.replace(/-/g, "/"));
-        for(var i =0; i < this.slides.length; i++){
-          this.carousel.removeSlide(i);
-        }
+        
         this.slides.pop();
         this.primaryImg = this.course.semesters[0].primary_img;
         this.secondaryImg = JSON.parse(this.course.semesters[0].details).secondary_img;
