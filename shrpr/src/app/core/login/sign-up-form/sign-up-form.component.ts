@@ -19,7 +19,6 @@ import {} from '@types/googlemaps';
 })
 export class SignUpFormComponent implements OnInit {
 
-	private emailTimeout;
   api: string = environment.api;
   name: string = '';
   email: string = '';
@@ -31,6 +30,7 @@ export class SignUpFormComponent implements OnInit {
   signupErrorText: string;
   signupType: string = '';
   currentLocation: boolean = true;
+  emailTimeout;
 
   constructor(
   	private fb: FormBuilder,
@@ -73,7 +73,7 @@ export class SignUpFormComponent implements OnInit {
     this.signup = true;
   }
 
-  onGoogleSignup(data) {
+  onGoogleSignin(data) {
 
     this.data = data;
 
@@ -93,8 +93,6 @@ export class SignUpFormComponent implements OnInit {
 
       switch(this.signupType) {
         case 'google':
-
-          console.log(this.data);
           this.auth.google(this.data).subscribe( success => this.onUserCreated() );
           break;
 

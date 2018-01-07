@@ -1,6 +1,6 @@
 <div class="login-box signin-box">
     <form id="login" [formGroup]="loginForm" (ngSubmit)="onLogin()">
-        <span class="help-block" *ngIf="signinError">Email id or password is wrong.</span><!-- .help-block -->
+        <span class="help-block" *ngIf="loginError">Login credentials invalid.</span><!-- .help-block -->
         <input 
             type="text" 
             id="email-signin" 
@@ -39,7 +39,7 @@
 
     <div class="social-login">
         <facebook-signin></facebook-signin>       
-        <google-signin></google-signin>                    
-        <linkedin-signin></linkedin-signin>  
+        <google-signin (googleSignin)="onGoogleSignin($event)"></google-signin>
+        <linkedin-signin></linkedin-signin> 
     </div>
 </div>

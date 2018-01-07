@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import { UserInterface } from '../../../core/user.interface';
 import { UserService } from '../../../core/user.service';
 import { AuthService } from '../../../auth/auth.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'login',
@@ -14,9 +15,11 @@ import { AuthService } from '../../../auth/auth.service';
 })
 export class LoginFormComponent implements OnInit {
 
+  api: string = environment.api;
   loginForm: FormGroup;
+  loginType: string = '';
   loggedIn: boolean = false;
-  signinError: boolean = false;
+  loginError: boolean = false;
 
   private subscriptions = new Subscription();
 
@@ -29,6 +32,30 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit() {
 
+    //check if logged in
+    this.loggedIn = this.auth.loggedIn();
+      
+    if(this.loggedIn) this.auth.me().subscribe(result => {
+
+      //store data
+      let id = result.id;
+      let role = result.roles[0];
+
+      //navigate to profile based on role
+      if(role == 'student'){
+        this.router.navigateByUrl('student/' + id);
+      }
+      else if(role == 'instructor'){
+        this.router.navigateByUrl('instructor/' + id);
+      }
+      else if(role == 'institution'){
+        this.router.navigateByUrl('institution/' + id);
+      }
+      else{
+        this.router.navigateByUrl('/');
+      }
+    });
+
     this.loginForm = new FormGroup({
       'email': new FormControl(null, [Validators.required]),
       'password': new FormControl(null, [Validators.required])
@@ -40,10 +67,23 @@ export class LoginFormComponent implements OnInit {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
 
-    //check if logged in
-    this.loggedIn = this.auth.loggedIn();
+    this.auth.login(email, password).subscribe( 
+      success => this.onLoggedIn(),
+      error => this.loginError = true  
+    );
+  }
+
+  onGoogleSignin(data) {
+
+    this.auth.google(data).subscribe( 
+      success => this.onLoggedIn(),
+      error => this.loginError = true 
+    );
+  }
+
+  onLoggedIn() {
       
-    if(this.loggedIn) this.auth.me().subscribe(result => {
+    this.auth.me().subscribe(result => {
 
       //store data
       let id = result.id;
