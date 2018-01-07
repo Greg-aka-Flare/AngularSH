@@ -16,10 +16,6 @@ export class UserService {
 		return this.http.get(this.api + 'users');
 	}
 
-	signup(data: any): Observable<any> {
-		return this.http.post(this.api + 'user', data);
-	}
-
 	book(data: any): Observable<any> {
 		return this.http.post(this.api + 'user/book', data);
 	}

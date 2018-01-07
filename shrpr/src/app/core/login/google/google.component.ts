@@ -1,4 +1,5 @@
-import {Component, ElementRef, AfterViewInit} from '@angular/core';
+import { Component, ElementRef, AfterViewInit, Output, EventEmitter } from '@angular/core';
+
 declare const gapi: any;
 
 @Component({
@@ -8,55 +9,42 @@ declare const gapi: any;
 })
 export class GoogleSigninComponent implements AfterViewInit {
 
-  private clientId:string = '235472783543-33m0nai0ltsljrpv43dvi2mhks4atapc.apps.googleusercontent.com';
-  
-  // private scope = [
-  //   'profile',
-  //   'email',
-  //   'https://www.googleapis.com/auth/plus.me',
-  //   'https://www.googleapis.com/auth/contacts.readonly',
-  //   'https://www.googleapis.com/auth/admin.directory.user.readonly'
-  // ].join(' ');
+  @Output() googleSignup: EventEmitter<any> = new EventEmitter();
+  clientId: string = '666727355512-62rih9cd4sb7l0pes392pd55ria6039v.apps.googleusercontent.com';
+  auth2: any;
 
-  public auth2: any;
-  public googleInit() {
-    let that = this;
-    gapi.load('auth2', function () {
-      that.auth2 = gapi.auth2.init({
-        client_id: that.clientId,
-        cookiepolicy: 'single_host_origin'
+  constructor(
+    private element: ElementRef
+  ) {}
+
+  ngAfterViewInit() {
+
+    gapi.load('auth2', () => {
+      this.auth2 = gapi.auth2.init({ 
+        client_id: this.clientId,
+        fetch_basic_profile: false,
+        scope: 'profile'
       });
-      that.attachSignin(that.element.nativeElement.firstChild);
+
+      this.attachSignin(this.element.nativeElement.firstChild);
     });
   }
-  public attachSignin(element) {
-    let that = this;
-    this.auth2.attachClickHandler(element, {},
-      function (googleUser) {
 
-        console.log(googleUser);
-        let profile = googleUser.getBasicProfile();
+  attachSignin(element) {
 
-        console.log(profile);
+    this.auth2.attachClickHandler(element, {}, (googleUser) => {
 
-        console.log('ID: ' + profile.getId());
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-		//YOUR CODE HERE
-	
-      }, function (error) {
-        console.log(JSON.stringify(error, undefined, 2));
-      });
+      let profile = this.auth2.currentUser.get().getBasicProfile()
+
+      //create data array
+      let data = { 'token': googleUser.getAuthResponse().access_token };
+
+      //emit signup data
+      this.googleSignup.emit(data);
+
+    }, 
+    (error) => {
+      console.log(JSON.stringify(error, undefined, 2));
+    });
   }
-
-  constructor(private element: ElementRef) {
-    console.log('ElementRef: ', this.element);
-  }
-  ngAfterViewInit() {
-    this.googleInit();
-  }
-
 }

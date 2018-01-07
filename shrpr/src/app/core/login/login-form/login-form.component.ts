@@ -13,7 +13,9 @@ import { AuthService } from '../../../auth/auth.service';
   styleUrls: ['../login.component.css']
 })
 export class LoginFormComponent implements OnInit {
+
   loginForm: FormGroup;
+  loggedIn: boolean = false;
   signinError: boolean = false;
 
   private subscriptions = new Subscription();
@@ -38,36 +40,28 @@ export class LoginFormComponent implements OnInit {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
 
-    this.subscriptions.add(this.auth.login(email, password)
-      .subscribe(
-        success => {
-          //send to appropiate profile
-          this.auth.me().subscribe(
-            res => {
+    //check if logged in
+    this.loggedIn = this.auth.loggedIn();
+      
+    if(this.loggedIn) this.auth.me().subscribe(result => {
 
-              //store data
-              let id = res.id;
-              let role = res.roles[0];
+      //store data
+      let id = result.id;
+      let role = result.roles[0];
 
-              //navigate to profile based on role
-              if(role == 'student'){
-                this.router.navigateByUrl('student/' + id);
-              }
-              else if(role == 'instructor'){
-                this.router.navigateByUrl('instructor/' + id);
-              }
-              else if(role == 'institution'){
-                this.router.navigateByUrl('institution/' + id);
-              }
-              else{
-                this.router.navigateByUrl('/');
-              }
-            }
-          );
-        },
-        error => {
-          this.signinError = true;
-        }
-      ));
+      //navigate to profile based on role
+      if(role == 'student'){
+        this.router.navigateByUrl('student/' + id);
+      }
+      else if(role == 'instructor'){
+        this.router.navigateByUrl('instructor/' + id);
+      }
+      else if(role == 'institution'){
+        this.router.navigateByUrl('institution/' + id);
+      }
+      else{
+        this.router.navigateByUrl('/');
+      }
+    });
   }
 }

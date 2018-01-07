@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 declare const FB: any;
 
 @Component({
-    selector: 'facebook-login',
+    selector: 'facebook-signin',
     template: '<button class="cta-facebook" (click)="onFacebookLoginClick()"><i class="fa fa-facebook" aria-hidden="true"></i></button>',
     styleUrls: ['./facebook.component.css']
 })

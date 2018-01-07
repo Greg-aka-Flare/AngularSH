@@ -39,6 +39,30 @@ export class AuthService {
       .do((token) => localStorage.setItem('access_token', token));
   }
 
+  signup(data: any): Observable<any> {
+    return this.http.post(this.api + 'auth/signup', data)
+      .map((token: any) => token.access_token)
+      .do((token) => localStorage.setItem('access_token', token));
+  }
+
+  google(data: any): Observable<any> {
+    return this.http.post(this.api + 'auth/google', data)
+      .map((token: any) => token.access_token)
+      .do((token) => localStorage.setItem('access_token', token));
+  }
+
+  facebook(data: any): Observable<any> {
+    return this.http.post(this.api + 'auth/facebook', data)
+      .map((token: any) => token.access_token)
+      .do((token) => localStorage.setItem('access_token', token));
+  }
+
+  linkedin(data: any): Observable<any> {
+    return this.http.post(this.api + 'auth/linkedin', data)
+      .map((token: any) => token.access_token)
+      .do((token) => localStorage.setItem('access_token', token));
+  }
+
   loggedIn(): boolean {
     return (this.getToken()) ? true : false;
   }
