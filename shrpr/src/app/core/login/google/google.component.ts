@@ -9,7 +9,7 @@ declare const gapi: any;
 })
 export class GoogleSigninComponent implements AfterViewInit {
 
-  @Output() googleSignup: EventEmitter<any> = new EventEmitter();
+  @Output() googleSignin: EventEmitter<any> = new EventEmitter();
   clientId: string = '666727355512-62rih9cd4sb7l0pes392pd55ria6039v.apps.googleusercontent.com';
   auth2: any;
 
@@ -40,7 +40,7 @@ export class GoogleSigninComponent implements AfterViewInit {
       let data = { 'token': googleUser.getAuthResponse().access_token };
 
       //emit signup data
-      this.googleSignup.emit(data);
+      this.googleSignin.emit(data);
 
     }, 
     (error) => {
