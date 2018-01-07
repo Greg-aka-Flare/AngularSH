@@ -13,7 +13,7 @@ export class InstitutionService {
 	) {}
 	
 	getInstitution(id: number){
-		return this.http.get(this.api + id)
+		return this.http.get(this.api + 'institution/' + id)
 			.map(
 				(response: Response) => response.json()	
 			);

@@ -13,7 +13,7 @@ export class StudentService {
 	) {}
 	
 	getStudent(id: number){
-		return this.http.get(this.api + id)
+		return this.http.get(this.api + 'student/' + id)
 			.map(
 				(response: Response) => response.json()	
 			);

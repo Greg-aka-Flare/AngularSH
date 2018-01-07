@@ -13,7 +13,7 @@ export class InstructorService {
 	) {}
 
 	getInstructor(id: number){
-		return this.http.get(this.api + id)
+		return this.http.get(this.api + 'instructor/' + id)
 			.map(
 				(response: Response) => response.json()
 			);

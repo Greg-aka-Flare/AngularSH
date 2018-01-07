@@ -39,6 +39,10 @@ export class TokenInterceptor implements HttpInterceptor {
                 return this.logout();
               }
             case 401:
+
+              console.log(req);
+              console.log(token);
+
               if(token) {
                 return this.handle401Error(req, next);
               }
