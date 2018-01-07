@@ -43,16 +43,16 @@ export class LoginFormComponent implements OnInit {
 
       //navigate to profile based on role
       if(role == 'student'){
-        this.router.navigateByUrl('student/' + id);
+        this.router.navigate(['student', id]);
       }
       else if(role == 'instructor'){
-        this.router.navigateByUrl('instructor/' + id);
+        this.router.navigate(['instructor', id]);
       }
       else if(role == 'institution'){
-        this.router.navigateByUrl('institution/' + id);
+        this.router.navigate(['institution', id]);
       }
       else{
-        this.router.navigateByUrl('/');
+        this.router.navigate(['/']);
       }
     });
 
@@ -91,16 +91,16 @@ export class LoginFormComponent implements OnInit {
 
       //navigate to profile based on role
       if(role == 'student'){
-        this.router.navigateByUrl('student/' + id);
+        this.router.navigate(['student', id]);
       }
       else if(role == 'instructor'){
-        this.router.navigateByUrl('instructor/' + id);
+        this.router.navigate(['instructor', id]);
       }
       else if(role == 'institution'){
-        this.router.navigateByUrl('institution/' + id);
+        this.router.navigate(['institution', id]);
       }
       else{
-        this.router.navigateByUrl('/');
+        this.router.navigate(['/']);
       }
     });
   }
