@@ -28,7 +28,6 @@ export class SignUpFormComponent implements OnInit {
   signup: boolean = false;
   signupError: boolean = false;
   signupErrorText: string;
-  signupType: string = '';
   currentLocation: boolean = true;
   emailTimeout;
 
@@ -73,12 +72,11 @@ export class SignUpFormComponent implements OnInit {
     this.signup = true;
   }
 
-  onGoogleSignin(data) {
+  onSocialSignin(data) {
 
     this.data = data;
 
     this.signup = true;
-    this.signupType = 'google';
 
     this.zone.run(() => {});
   }
@@ -91,7 +89,7 @@ export class SignUpFormComponent implements OnInit {
     //if user has role
     if(this.data.role){
 
-      switch(this.signupType) {
+      switch(this.data.type) {
         case 'google':
           this.auth.google(this.data).subscribe( success => this.onUserCreated() );
           break;

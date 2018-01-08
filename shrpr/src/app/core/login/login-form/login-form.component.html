@@ -39,7 +39,7 @@
 
     <div class="social-login">
         <facebook-signin></facebook-signin>       
-        <google-signin (googleSignin)="onGoogleSignin($event)"></google-signin>
-        <linkedin-signin></linkedin-signin> 
+        <google-signin (socialSignin)="onSocialSignin($event)"></google-signin>
+        <linkedin-signin (socialSignin)="onSocialSignin($event)"></linkedin-signin> 
     </div>
 </div>

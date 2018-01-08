@@ -1,41 +1,49 @@
-import {Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from "@angular/router";
 
 declare const FB: any;
 
 @Component({
-    selector: 'facebook-signin',
-    template: '<button class="cta-facebook" (click)="onFacebookLoginClick()"><i class="fa fa-facebook" aria-hidden="true"></i></button>',
-    styleUrls: ['./facebook.component.css']
+  selector: 'facebook-signin',
+  template: '<button class="cta-facebook" (click)="onClick()"><i class="fa fa-facebook" aria-hidden="true"></i></button>',
+  styleUrls: ['./facebook.component.css']
 })
 
-export class FacebookLoginComponent implements OnInit {
-    constructor(private router: Router) {
-        FB.init({
-            appId      : '277825696077581',
-            cookie     : false,  // enable cookies to allow the server to access
-                                // the session
-            xfbml      : true,  // parse social plugins on this page
-            version    : 'v2.11' // use graph api version 2.5
-        });
-    }
+export class FacebookLoginComponent {
 
-    onFacebookLoginClick() {
-        FB.login(function(response) {
-            if (response.authResponse) {
-             FB.api('https://graph.facebook.com/me?fields=id,name,first_name,email,gender,picture{height,width,url,is_silhouette},age_range,friends.limit(10),birthday', function(response) {
-                console.log(response);
-                //this.router.navigate['/'];
-                //this.router.navigateByUrl('student/62');
-             });
-            } else {
-             console.log('User cancelled login or did not fully authorize.');
-            }
+  @Output() socialSignin: EventEmitter<any> = new EventEmitter();
+
+  constructor(private router: Router) {
+    FB.init({
+        appId      : '277825696077581',
+        cookie     : false,
+        xfbml      : true,
+        version    : 'v2.11' 
+    });
+  }
+
+  onClick() {
+    FB.getLoginStatus(response => {
+
+      if(response.status == 'connected'){ //already logged in
+
+        //emit data
+        this.socialSignin.emit({ 
+          'token': response.authResponse.accessToken,
+          'type': 'facebook'
         });
-    }
-    ngOnInit() {
-        FB.getLoginStatus(response => {
-            
+      }
+      else { //prompt to login
+
+        FB.login(response => {
+
+          //emit data
+          this.socialSignin.emit({ 
+            'token': response.authResponse.accessToken,
+            'type': 'facebook'
+          });
         });
-    }
+      }
+    });
+  }
 }

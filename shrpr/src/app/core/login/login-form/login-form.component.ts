@@ -73,12 +73,30 @@ export class LoginFormComponent implements OnInit {
     );
   }
 
-  onGoogleSignin(data) {
+  onSocialSignin(data) {
 
-    this.auth.google(data).subscribe( 
-      success => this.onLoggedIn(),
-      error => this.loginError = true 
-    );
+    switch(data.type) {
+      case 'google':
+        this.auth.google(data).subscribe( 
+          success => this.onLoggedIn(),
+          error => this.loginError = true
+        );
+        break;
+
+      case 'facebook':
+        this.auth.facebook(data).subscribe( 
+          success => this.onLoggedIn(),
+          error => this.loginError = true
+        );
+        break;
+
+      case 'linkedin':
+        this.auth.linkedin(data).subscribe( 
+          success => this.onLoggedIn(),
+          error => this.loginError = true 
+        );
+        break;
+    }
   }
 
   onLoggedIn() {
