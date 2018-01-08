@@ -10,7 +10,7 @@
   
   .dialog {
     z-index: 1000;
-    position: fixed;
+    position: absolute;
     right: 0;
     left: 0;
     top: 14%;
@@ -27,7 +27,7 @@
   
   @media (min-width: 768px) {
     .dialog {
-      top: 25%;
+      top: 2%;
       min-height: 400px;
     }
   }
