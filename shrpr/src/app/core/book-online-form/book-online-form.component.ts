@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component, OnInit, OnDestroy, Input, Pipe, PipeTransform} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -8,6 +8,8 @@ import { UserInterface } from '../../core/user.interface';
 import { UserService } from '../../core/user.service';
 import { AuthService } from '../../auth/auth.service';
 import { Observable } from 'rxjs/Observable';
+import { CourseService } from "../../courses/course.service";
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-book-online-form',
@@ -22,8 +24,11 @@ export class BookOnlineFormComponent implements OnInit {
   menu: boolean = true;
   search: boolean = true;
   onSucces:boolean = true;
+  private subscriptions = new Subscription();
   bookonlineForm: any;
   data: any = {};
+  course: any;
+  coursename:string;
 
   constructor( 
     private auth: AuthService,
@@ -31,17 +36,27 @@ export class BookOnlineFormComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private user: UserService,
+    private courseService: CourseService
   ) {}
 
   ngOnInit() {
     
-    this.route.params.subscribe((params: Params) => {
+    this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.courseId = params['id'];
-    });
+
+      this.courseService.getCourse(this.courseId).subscribe(course => {
+        this.course = course;
+        this.coursename = this.course.title;
+      })
+
+    }));
+
+    
 
     this.bookonlineForm = this.fb.group({
       'name': ['', [Validators.required, ValidationService.alphabetsValidator]],
-      'email': ['', [Validators.required, ValidationService.emailValidator], [this.validateEmailNotTaken.bind(this)]],
+      'coursename':[''],
+      'email': ['', [Validators.required, ValidationService.emailValidator]],
       'phone': ['', [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
       'contactselect': ['phone', Validators.required],
       'drivinguber': ['', Validators.required],
@@ -49,12 +64,13 @@ export class BookOnlineFormComponent implements OnInit {
       'create': ['']
     });
 
+
     this.auth.me().subscribe(
       success => {
         this.loggedIn = true;
 
         let name = success.name ? success.name : '';
-        let email = success.email ? 'user@fakeemail.com' : ''; //to pass async check
+        let email = success.email ? success.email : ''; //to pass async check
         let phone = success.phone ? success.phone : '';
 
         //patch values for form
@@ -83,6 +99,7 @@ export class BookOnlineFormComponent implements OnInit {
       this.data.email = this.bookonlineForm.value.email;
       this.data.phone = this.bookonlineForm.value.phone;
       this.data.create = this.bookonlineForm.value.create;
+      this.data.coursename = this.coursename;
 
       //set local storage info
       localStorage.setItem('name', this.data.name);
@@ -107,26 +124,14 @@ export class BookOnlineFormComponent implements OnInit {
             }, 2000);
           //back to course
         }
-        else{ //not logged in, go to signup/login screen
+        else { //not logged in, go to signup/login screen
           this.router.navigateByUrl('login');
         }
       }
     )
   }
 
-  validateEmailNotTaken(control: FormControl): Promise<any> | Observable<any> {
-
-    clearTimeout(this.emailTimeout);
-
-    const promise = new Promise<any>((resolve, reject) => {
-
-      this.emailTimeout = setTimeout(() => {
-        this.user.checkEmail(control.value).subscribe(
-          success => resolve(null),
-          error => resolve({ 'emailTaken': true }))
-      }, 600);
-    });
-
-    return promise;
+  ngOnDestroy(){
+    this.subscriptions.unsubscribe();
   }
 }

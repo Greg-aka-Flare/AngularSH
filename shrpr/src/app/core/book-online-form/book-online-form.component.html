@@ -1,14 +1,15 @@
 <app-template [menu]="menu" [search]="search">
   <div class="bookonline-form">
-    <div *ngIf="!onSucces" class="susses-message">Your form has been submitted successfully.</div>
+    <div *ngIf="!onSucces" class="succes-message">Your form has been submitted successfully.</div>
     <form id="onlineform" [formGroup]="bookonlineForm" (ngSubmit)="updateBookonline()" *ngIf="onSucces">
-      <div *ngIf="!this.loggedIn">
+      <div>
           <label>Name*</label>
           <input type="text" formControlName="name">
+          <input type="hidden" formControlName="coursename" value="{{coursename}}">
           <control-messages [control]="bookonlineForm.controls.name"></control-messages>
       </div>
 
-      <div *ngIf="!this.loggedIn">
+      <div>
         <label>Email*</label>
         <input formControlName="email" type="text">
         <control-messages [control]="bookonlineForm.controls.email"></control-messages>
@@ -20,7 +21,7 @@
         <control-messages [control]="bookonlineForm.controls.phone"></control-messages>
       </div>
 
-      <div class="checkbox">
+      <!--<div class="checkbox">
         <label>Best way to contact you?</label>
         <span>
           <input type="radio" id="contactPhone" formControlName="contactselect" value="phone">Phone
@@ -29,7 +30,7 @@
         <span>
           <input type="radio" id="contactemail" formControlName="contactselect" value="email">Email
         </span>
-      </div>
+      </div>-->
 
       <div>
         <label>How long have you been driving for Uber?</label>
