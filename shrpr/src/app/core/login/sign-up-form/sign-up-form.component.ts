@@ -89,6 +89,8 @@ export class SignUpFormComponent implements OnInit {
     //if user has role
     if(this.data.role){
 
+      console.log(this.data);
+
       switch(this.data.type) {
         case 'google':
           this.auth.google(this.data).subscribe( success => this.onUserCreated() );
