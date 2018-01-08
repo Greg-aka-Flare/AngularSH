@@ -21,7 +21,6 @@ export class BookOnlineFormComponent implements OnInit {
   loggedIn: boolean = false;
   menu: boolean = true;
   search: boolean = true;
-  onSusses:boolean = true;
   bookonlineForm: any;
   data: any = {};
 
@@ -99,13 +98,12 @@ export class BookOnlineFormComponent implements OnInit {
     //book course
     this.user.book(this.data).subscribe(
       success => { 
-         this.onSusses = false;
+
         //logged in, navigate home
         if(this.loggedIn || !this.data.create) {
-          setTimeout(()  => {
-              this.router.navigateByUrl('/courses/' + this.courseId); 
-            }, 2000);
+
           //back to course
+          this.router.navigateByUrl('/courses/' + this.courseId); 
         }
         else{ //not logged in, go to signup/login screen
           this.router.navigateByUrl('login');

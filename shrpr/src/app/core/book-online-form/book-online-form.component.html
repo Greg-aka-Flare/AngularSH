@@ -1,7 +1,6 @@
 <app-template [menu]="menu" [search]="search">
   <div class="bookonline-form">
-    <div *ngIf="!onSusses" class="susses-message">Your form has been submitted successfully.</div>
-    <form id="onlineform" [formGroup]="bookonlineForm" (ngSubmit)="updateBookonline()" *ngIf="onSusses">
+    <form id="onlineform" [formGroup]="bookonlineForm" (ngSubmit)="updateBookonline()">
       <div *ngIf="!this.loggedIn">
           <label>Name*</label>
           <input type="text" formControlName="name">
