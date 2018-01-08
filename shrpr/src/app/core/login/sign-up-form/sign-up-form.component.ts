@@ -102,8 +102,12 @@ export class SignUpFormComponent implements OnInit {
 
         case 'facebook':
           this.auth.facebook(this.data).subscribe( 
-            success => this.onUserCreated(),
+            success => {
+              console.log(success);
+              this.onUserCreated();
+            },
             error => { 
+              console.log(error);
               this.signupError = false;
               this.signupErrorText = 'Unable to sign-up due account settings';
             } 

@@ -26,9 +26,6 @@ export class FacebookLoginComponent {
     FB.getLoginStatus(response => {
 
       if(response.status == 'connected'){ //already logged in
-
-        console.log(response);
-
         //emit data
         this.socialSignin.emit({ 
           'token': response.authResponse.accessToken,
@@ -38,8 +35,6 @@ export class FacebookLoginComponent {
       else { //prompt to login
 
         FB.login(response => {
-
-          console.log(response);
 
           //emit data
           this.socialSignin.emit({ 
