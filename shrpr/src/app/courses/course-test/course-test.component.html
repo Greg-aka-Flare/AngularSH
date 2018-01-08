@@ -15,14 +15,12 @@
               Free
           </div><!-- .price -->
             <div class="course_slider">
-                <!--<carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
+                <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
                     <slide *ngFor="let slidez of slides; let index=index"
                            [active]="slidez.active">
                            <img [src]="slidez.image" style="margin:auto;" class="slider-img">
                     </slide>
-                </carousel>-->
-                <img src="../../assets/img/courses/{{primaryImg}}" style="margin:auto;" class="slider-img">
-
+                </carousel>
                 </div>
             <div class="overlay">
                 <p><i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a></p>
@@ -89,14 +87,13 @@
     <div class="course_header">
         <div class="bradecrumb"><span><a [routerLink]="['/institution', course.institution.id]"> {{ course.institution.name }}</a> > </span><span>{{ course.group.label }}</span><span *ngFor="let card of categoriesArray; let i = index"> > {{ card.name }}</span></div>
         <div class="course_slider">
-            <!--<carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
+            <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
                 <slide *ngFor="let slidez of slides; let index=index"
                        [active]="slidez.active">
                        <img [src]="slidez.image" style="margin:auto;" class="slider-img">
                 </slide>
-            </carousel>-->
-               <img src="../../assets/img/courses/{{primaryImg}}" style="margin:auto;" class="slider-img">
-            </div>  
+            </carousel>
+       </div>  
         <!-- .course_slider -->  
         <div class="course_info_desktop">
             <h1>{{course.title}}</h1>
