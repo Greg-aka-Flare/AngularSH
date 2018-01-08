@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StudentComponent } from './student.component';
 
 
+
 @NgModule({
   declarations: [
     StudentComponent

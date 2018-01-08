@@ -1,7 +1,7 @@
 <app-template>
   <article *ngIf="students">
   <section id="profile-header" *ngIf="!isUpdate">
-      <a href="javascript:void(0)" (click)="isUpdate=true" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+      <a href="javascript:void(0)" (click)="showDialog = !showDialog" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
       <div class="profile-picture">
         <img *ngIf="!students?.profile_img" src="../../assets/img/students-picture.png" alt="" title="">
         <img *ngIf="students?.profile_img" src="../../assets/img/{{students?.profile_img}}" alt="" title="">
@@ -20,7 +20,8 @@
         <!--<div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp> |  <a href="/student/{{students?.id}}#reviews">33 reviews</a></div>-->
       </div>
     </section>
-    <section *ngIf="isUpdate" class="profile-form">
+    <app-modal [(visible)]="showDialog">
+      <h2>Profile Edit Form</h2>
       <div class="edit-form">
         <form id="studentProfile" [formGroup]="studentProfileForm" (ngSubmit)="updateProfile()">  
         <div class="form-row">
@@ -59,11 +60,13 @@
         </div>
         <div class="form-row">
           <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
-          <button class="btn btn-default" (click)="isUpdate=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+          <button class="btn btn-default" (click)="showDialog = !showDialog"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
         </div>  
         </form>
       </div>
-    </section>
+      <!--<button (click)="showDialog = !showDialog" class="btn">Close</button>-->
+    </app-modal>
+
      <!-- #profile header -->
     <tabs *ngIf="width < 768" >
       <tab tabTitle="Courses">
@@ -85,78 +88,86 @@
       </tab>
       <tab tabTitle="ABOUT">
           <div class="contact_box">
-              <a href="javascript:void(0)" (click)="isEditAbout=true"class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-        <p *ngIf="isEditAbout">{{details?.description}}</p>
-        <div *ngIf="isEditAbout" class="edit-form">
+              <a href="javascript:void(0)" (click)="isEditAbout = !isEditAbout" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        <p>{{details?.description}}</p>
+        <app-modal [(visible)]="isEditAbout">    
+            <h2>Edit Your Description</h2>
+            <div class="edit-form">
             <form id="studentDescription" [formGroup]="studentDescriptionForm" (ngSubmit)="updatestudentDescription()">  
-            <div class="form-row">
-            <label>Description:</label>
-                <textarea cols="30" rows="10"  formControlName="description"></textarea>
-                <control-messages [control]="studentDescriptionForm.controls.description"></control-messages>
+              <div class="form-row">
+              <label>Description:</label>
+                  <textarea cols="30" rows="10"  formControlName="description"></textarea>
+                  <control-messages [control]="studentDescriptionForm.controls.description"></control-messages>
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="!studentDescriptionForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
+              <button class="btn btn-default" (click)="isEditAbout = !isEditAbout"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+              </form>
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="!studentDescriptionForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
-            <button class="btn btn-default" (click)="isEditAbout=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-            </form>
-       </div>
+          </app-modal>
         </div>
       </tab>
       <tab tabTitle="CONTACT">
         <div class="contact_box">
             <address *ngFor="let address of students?.addresses">
-                <div *ngIf="!isEdit"><strong *ngIf="students?.addresses > 1">{{ address?.type }}</strong><br>
+                <div><strong *ngIf="students?.addresses > 1">{{ address?.type }}</strong><br>
                 {{ address?.streetAddress }}<br>
                 {{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>
                 {{ address?.country }}<br>
                 <br>
                 Phone: <a href="tel:{{ students?.phone }}">{{ students?.phone }}</a><br>
                 Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
-                <a href="javascript:void(0)" (click)="isEdit=true" class="exit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </div>
                 </address>
-                <a href="javascript:void(0)" (click)="isEdit=true" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                <div *ngIf="isEdit" class="edit-form">
-                    <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
-                    <div class="form-row">
-                    <label>Street Address:</label>
-                        <input type="text" formControlName="addressStreet" />
-                        <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
-                    </div>
-                    <div class="form-row">
-                      <label>City:</label>
-                        <input type="text" formControlName="addressCity" />
-                        <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
-                      </div>
-                      <div class="form-row">
-                      <label>State:</label>
-                        <input type="text" formControlName="addressState"/>
-                        <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
-                    </div>
-                    <div class="form-row">
-                      <label>Zip:</label>
-                        <input type="text" formControlName="addressZip" pattern="[0-9]+"/>
-                        <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
-                    </div>
-                    <div class="form-row">
-                      <label>Country:</label>
-                        <input type="text" formControlName="addressCountry"/>
-                        <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
-                    </div>
-                    <div class="form-row">
-                      <label>Phone:</label>
-                        <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" /><br>
-                        <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
-                    </div>
-                    <div class="form-row">
-                      <label>Email:</label>
-                        <input type="text" formControlName="addressEmail"/>
-                        <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
-                    </div>
-                    <div class="form-row">
-                      <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
-                      <button class="btn btn-default" (click)="isEdit=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                    </div>  
-                    </form>
-                    </div>
+                <a href="javascript:void(0)" (click)="isEdit = !isEdit" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <app-modal [(visible)]="isEdit">    
+                    <h2>Edit Your Description</h2>
+                    <div class="edit-form">
+                        <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
+                        <div class="form-row">
+                        <label>Street Address:</label>
+                            <input type="text" formControlName="addressStreet" />
+                            <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>City:</label>
+                            <input type="text" formControlName="addressCity" />
+                            <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
+                          </div>
+                          <div class="form-row">
+                          <label>State:</label>
+                            <input type="text" formControlName="addressState"/>
+                            <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>Zip:</label>
+                            <input type="text" formControlName="addressZip" pattern="[0-9]+"/>
+                            <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>Country:</label>
+                            <input type="text" formControlName="addressCountry"/>
+                            <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>Phone:</label>
+                            <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" /><br>
+                            <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>Email:</label>
+                            <input type="text" formControlName="addressEmail"/>
+                            <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
+                          <button class="btn btn-default" (click)="isEdit = !isEdit"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                        </div>  
+                        </form>
+                        </div>
+                  </app-modal>
+                
+                
+                
               </div>
       </tab>
     </tabs><!-- #Tab -->
@@ -183,23 +194,26 @@
                   <a [routerLink]="['/course', coursed?.id]"  class="page-cta">View Course</a>
                 </div>
             </article>
-        <h2>ABOUT <a href="javascript:void(0)" (click)="isEditAbout=true"class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
-        <p *ngIf="isEditAbout">{{details?.description}}</p>
-        <div *ngIf="isEditAbout" class="edit-form">
+        <h2>ABOUT <a href="javascript:void(0)" (click)="isEditAbout = !isEditAbout" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
+        <p>{{details?.description}}</p>
+        <app-modal [(visible)]="isEditAbout">    
+            <h2>Edit Your Description</h2>
+            <div class="edit-form">
             <form id="studentDescription" [formGroup]="studentDescriptionForm" (ngSubmit)="updatestudentDescription()">  
-            <div class="form-row">
-            <label>Description:</label>
-                <textarea cols="30" rows="10"  formControlName="description"></textarea>
-                <control-messages [control]="studentDescriptionForm.controls.description"></control-messages>
+              <div class="form-row">
+                  <textarea cols="30" rows="10"  formControlName="description"></textarea>
+                  <control-messages [control]="studentDescriptionForm.controls.description"></control-messages>
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="!studentDescriptionForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
+              <button class="btn btn-default" (click)="isEditAbout = !isEditAbout"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+              </form>
             </div>
-            <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
-            <button class="btn btn-default" (click)="isEditAbout=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-            </form>
-       </div>
-        <h2>CONTACT <a href="javascript:void(0)" (click)="isEdit=true"class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
+          </app-modal>
+        
+        <h2>CONTACT <a href="javascript:void(0)" (click)="isEdit = !isEdit" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
         <div class="contact_box">
             <address *ngFor="let address of students?.addresses">
-                <div *ngIf="!isEdit"><strong *ngIf="students?.addresses > 1">{{ address?.type }}</strong><br>
+                <div><strong *ngIf="students?.addresses > 1">{{ address?.type }}</strong><br>
                 {{ address?.streetAddress }}<br>
                 {{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>
                 {{ address?.country }}<br>
@@ -208,44 +222,53 @@
                 Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
                 </div>
                 </address>
-                <div *ngIf="isEdit" class="edit-form">
-                    <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
-                    <div class="form-row">
-                    <label>Street Address:</label>
-                        <input type="text" formControlName="addressStreet" />
-                        <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
-                    </div>
-                    <div class="form-row">
-                      <label>City:</label>
-                        <input type="text" formControlName="addressCity" />
-                        <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
-                      </div>
-                      <div class="form-row">
-                      <label>State:</label>
-                        <input type="text" formControlName="addressState"/>
-                        <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
-                    </div>
-                    <div class="form-row">
-                      <label>Zip:</label>
-                        <input type="text" formControlName="addressZip" pattern="[0-9]+"/>
-                        <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
-                    </div>
-                    <div class="form-row">
-                      <label>Country:</label>
-                        <input type="text" formControlName="addressCountry"/>
-                        <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
-                    </div>
-                    <div class="form-row">
-                      <label>Phone:</label>
-                        <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" /><br>
-                        <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
-                    </div>
-                    <div class="form-row">
-                      <label>Email:</label>
-                        <input type="text" formControlName="addressEmail"/>
-                        <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
-                    </div>
-                    <div class="form-row">
-                      <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
-                      <button class="btn btn-default" (click)="isEdit=false"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                    </div></form></div></div></section></article></app-template>
+
+                <app-modal [(visible)]="isEdit">    
+                    <h2>Edit Your Contact Information</h2>
+                    <div class="edit-form">
+                        <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
+                        <div class="form-row">
+                        <label>Street Address:</label>
+                            <input type="text" formControlName="addressStreet" />
+                            <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>City:</label>
+                            <input type="text" formControlName="addressCity" />
+                            <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
+                          </div>
+                          <div class="form-row">
+                          <label>State:</label>
+                            <input type="text" formControlName="addressState"/>
+                            <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>Zip:</label>
+                            <input type="text" formControlName="addressZip" pattern="[0-9]+"/>
+                            <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>Country:</label>
+                            <input type="text" formControlName="addressCountry"/>
+                            <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>Phone:</label>
+                            <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" /><br>
+                            <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>Email:</label>
+                            <input type="text" formControlName="addressEmail"/>
+                            <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
+                          <button class="btn btn-default" (click)="isEdit = !isEdit"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                        </div>  
+                        </form>
+                        </div>
+                  </app-modal>
+
+
+                </div></section></article></app-template>
