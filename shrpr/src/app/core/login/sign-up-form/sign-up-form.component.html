@@ -1,6 +1,7 @@
 <div class="signup-container">
     <div class="login-box signup-box" [class.active]="!signup">
         <form id="signup" [formGroup]="signupForm" (ngSubmit)="onSignup()">
+            <span class="help-block" *ngIf="signupError">{{ signupErrorText }}</span><!-- .help-block -->
             <input 
                 type="text" 
                 id="name" 
@@ -53,6 +54,8 @@
 
     <div class="signup_type" [class.active]="signup">
         <form id="profile" [formGroup]="ProfileForm" (ngSubmit)="onProfile()">
+            <span class="help-block" *ngIf="signupError">{{ signupErrorText }}</span><!-- .help-block -->
+            
             <h3>Select Your Profile: </h3>
 
             <div class="signup-radio">
