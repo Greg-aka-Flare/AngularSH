@@ -10,7 +10,7 @@ import {Carousel, Direction} from  './carousel.component';
 `,
 styleUrls: ['./carousel.component.css']
 })
-export class Slide implements OnDestroy {
+export class Slide implements OnInit, OnDestroy {
   
     @Input() public index:number;
     @Input() public direction:Direction;

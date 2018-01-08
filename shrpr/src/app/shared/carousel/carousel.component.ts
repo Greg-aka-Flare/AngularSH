@@ -22,7 +22,7 @@ export enum Direction {UNKNOWN, NEXT, PREV}
   styleUrls: ['./carousel.component.css']
 })
 
-export class Carousel {
+export class Carousel implements OnDestroy {
   
   public slides: Array<Slide> = [];
   public currentInterval: any;
@@ -51,7 +51,9 @@ export class Carousel {
   public getInstance() {
     return this;
   }
-  
+  public ngOnDestroy() {
+    this.destroyed = true;
+}
   public select(nextSlide: Slide, direction: Direction = Direction.UNKNOWN) {
     let nextIndex = nextSlide.index;
     if (direction === Direction.UNKNOWN) {
@@ -63,7 +65,7 @@ export class Carousel {
       this.goNext(nextSlide, direction);
     }
   }
-
+  
   public goNext(slide: Slide, direction: Direction) {
     if (this.destroyed) {
       return;
@@ -167,7 +169,16 @@ export class Carousel {
     }
   }
 
-  public removeSlide(slide: Slide){
+  public removeSlide(slide:Slide) {
+    this.slides.splice(slide.index, 1);
 
-  }
+    if (this.slides.length === 0) {
+        this.currentSlide = null;
+        return;
+    }
+
+    for (let i = 0; i < this.slides.length; i++) {
+        this.slides[i].index = i;
+    }
+}
 }
