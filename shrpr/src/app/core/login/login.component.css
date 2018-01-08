@@ -82,7 +82,18 @@ tab.active-tab {
     left:0;
     z-index: 1;
 }
-
+.login-box #signup p a {
+    float: none;
+    line-height: 20px;
+    margin: 0;
+    font-size: 14px;
+    line-height:20px;
+}
+.login-box #signup p {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0;
+}
 .login-box form input::-webkit-input-placeholder { /* Chrome */
     color: #6f6f6f;
 }

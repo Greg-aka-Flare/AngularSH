@@ -12,6 +12,8 @@ import { InstitutionComponent } from './institution/institution.component';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './core/login/login.component';
 import { BookOnlineFormComponent } from './core/book-online-form/book-online-form.component';
+import { TermsComponent } from './core/login/terms/terms.component';
+import { PrivacyComponent } from './core/login/privacy/privacy.component';
 
 
 const appRoutes: Routes = [
@@ -23,6 +25,8 @@ const appRoutes: Routes = [
 	{ path: 'student/:id', loadChildren: './student/student.module#StudentModule' },
 	{ path: 'courses', loadChildren: './courses/courses.module#CoursesModule' },
 	{ path: 'login', component: LoginComponent },
+	{ path: 'terms-and-conditions', component: TermsComponent },
+	{ path: 'privacy-policy', component: PrivacyComponent },
 	{ path: 'about', component: AboutComponent },
 	{ path: 'values', component: ValuesComponent },
 	{ path: 'videos', component: VideosComponent },

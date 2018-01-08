@@ -31,13 +31,7 @@
             value="Current Address as Primary"
         />  <label class="checkbox-label" for="currentLocation">Use my current location as primary location.</label><br>
         <control-messages [control]="signupForm.controls.currentLocation"></control-messages>
-        <input 
-        type="checkbox" 
-        id="termsConditionCheck" 
-        formControlName="termsConditionCheck"
-        value="Accept Terms Conditions"
-    />  <label class="checkbox-label" for="termsConditionCheck">Accept Terms and Conditions.</label>
-    <control-messages [control]="signupForm.controls.termsConditionCheck"></control-messages>
+        <p>By creating an account, you also agree to our <a [routerLink]="['/terms-and-conditions']" target="_blank">Terms & Conditions</a> and <a target="_blank" [routerLink]="['/privacy-policy']">Privacy Policy</a>.</p>
         <button>
             Sign Up <i class="fa fa-user-plus" aria-hidden="true"></i>
         </button>
