@@ -34,6 +34,10 @@
            </div>
           <h2>Update Social Link</h2>
           <div class="form-row">
+            <label>URL:</label>
+              <input type="text" formControlName="url"/>
+          </div>
+          <div class="form-row">
           <label>Yelp Link:</label>
             <input type="text" formControlName="yelp"/>
         </div>
@@ -63,7 +67,7 @@
      <!-- #profile header -->
     <tabs *ngIf="width < 768" >
       <tab tabTitle="Courses">
-        <h3>Start your journey</h3>
+        <h3><a [routerLink]="['/courses/list/all']">Click here to start your journey</a></h3>
         <article class="card-box" *ngFor="let coursed of students?.courses">
               <div class="img-ctn">
                   <figure>
@@ -159,7 +163,7 @@
       <!-- desktop view -->
       <section *ngIf="width > 767" id="desktopcourses">
         <h2>Courses</h2>
-        <h3>Start your journey</h3>
+        <h3><a [routerLink]="['/courses/list/all']">Click here to start your journey</a></h3>
           <article class="card-box" *ngFor="let coursed of students?.courses">
                 <div class="img-ctn">
                     <!--<div class="price">${{coursed.id}}</div>-->

@@ -53,7 +53,7 @@ export class SignUpFormComponent implements OnInit {
       'email': ['', [Validators.required, ValidationService.emailValidator ], this.validateEmailNotTaken.bind(this)],
       'password': ['', [Validators.required, ValidationService.passwordValidator]],
       'terms': [true, Validators.requiredTrue],
-      'location': true,
+      'location': true
     });
 
     //create profile form

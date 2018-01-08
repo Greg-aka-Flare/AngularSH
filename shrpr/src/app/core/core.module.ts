@@ -31,6 +31,8 @@ import { CourseService } from '../courses/course.service';
 import { LikeService } from './like.service';
 import { UserService } from './user.service';
 import { ValidationService } from '../core/validation.service';
+import { TermsComponent } from './login/terms/terms.component';
+import { PrivacyComponent } from './login/privacy/privacy.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { ValidationService } from '../core/validation.service';
     GoogleSigninComponent,
     FacebookLoginComponent,
     LinkedinComponent,
-    BookOnlineFormComponent
+    BookOnlineFormComponent,
+    TermsComponent,
+    PrivacyComponent
   ],
   imports: [
     CommonModule,
