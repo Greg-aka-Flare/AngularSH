@@ -501,10 +501,15 @@ agm-map {
 .course_slider figure {
     margin:0;
 }
+.course_slider figure.primary-img {
+    height: 273px;
+    overflow: hidden;
+}
 .course_slider figure img {
     display:block;
     margin:0;
 }
+
 .course_info_desktop {
     width:63%;
     display: inline-block;
