@@ -21,7 +21,7 @@ export class BookOnlineFormComponent implements OnInit {
   loggedIn: boolean = false;
   menu: boolean = true;
   search: boolean = true;
-  onSusses:boolean = true;
+  onSucces:boolean = true;
   bookonlineForm: any;
   data: any = {};
 
@@ -99,7 +99,7 @@ export class BookOnlineFormComponent implements OnInit {
     //book course
     this.user.book(this.data).subscribe(
       success => { 
-         this.onSusses = false;
+         this.onSucces = false;
         //logged in, navigate home
         if(this.loggedIn || !this.data.create) {
           setTimeout(()  => {
