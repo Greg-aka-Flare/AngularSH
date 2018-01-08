@@ -89,23 +89,45 @@ export class SignUpFormComponent implements OnInit {
     //if user has role
     if(this.data.role){
 
-      console.log(this.data);
-
       switch(this.data.type) {
         case 'google':
-          this.auth.google(this.data).subscribe( success => this.onUserCreated() );
+          this.auth.google(this.data).subscribe( 
+            success => this.onUserCreated(),
+            error => { 
+              this.signupError = false;
+              this.signupErrorText = 'Unable to sign-up due account settings';
+            }
+          );
           break;
 
         case 'facebook':
-          this.auth.facebook(this.data).subscribe( success => this.onUserCreated() );
+          this.auth.facebook(this.data).subscribe( 
+            success => this.onUserCreated(),
+            error => { 
+              this.signupError = false;
+              this.signupErrorText = 'Unable to sign-up due account settings';
+            } 
+          );
           break;
 
         case 'linkedin':
-          this.auth.linkedin(this.data).subscribe( success => this.onUserCreated() );
+          this.auth.linkedin(this.data).subscribe( 
+            success => this.onUserCreated(),
+            error => { 
+              this.signupError = false;
+              this.signupErrorText = 'Unable to sign-up due account settings';
+            } 
+          );
           break;
         
         default:
-          this.auth.signup(this.data).subscribe( success => this.onUserCreated() );
+          this.auth.signup(this.data).subscribe( 
+            success => this.onUserCreated(),
+            error => { 
+              this.signupError = false;
+              this.signupErrorText = 'Unable to sign-up';
+            } 
+          );
           break;
       }
     }
