@@ -72,7 +72,7 @@ export class StudentComponent implements OnInit, OnDestroy {
                 (response) => {
                   this.students = response;
                   //this.studentCourse = JSON.parse(response.courses);
-                  console.log(this.students);
+                  //console.log(this.students);
                 },
                 (error: Response) => console.log(error)
               )
