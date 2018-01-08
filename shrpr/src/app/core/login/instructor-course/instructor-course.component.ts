@@ -24,6 +24,7 @@ export class InstructorCourseComponent implements OnInit {
   meetingArray: any[] = [];
   data: any = {};
   semesterInfo: any = {};
+  courseImages:any = {};
   
   //sessionArray: Array<{sessionDate:string, startTime: string, endTime: string}>;
   //private sessionArray = new Array<{sessionDate:string}>();
@@ -287,12 +288,23 @@ export class InstructorCourseComponent implements OnInit {
   }  
 
   uploadCoursePhoto() {
-    this.data.coursePrimaryPhoto = this.semesterPhotoForm.value.coursePrimaryPhoto;
-    this.data.courseSecondaryPhoto = this.semesterPhotoForm.value.courseSecondaryPhoto;
-    console.log(
-      'Primary Photo :' + this.data.coursePrimaryPhoto,
-      'Secondary Photo :' + this.data.courseSecondaryPhoto
-    )
+    
+    let primaryImg: any = {};
+    let detailsText: any = {};
+    let secondaryImg: any[] = [];
+    
+    primaryImg.primary_img = this.semesterPhotoForm.value.coursePrimaryPhoto;
+    let secondImg = this.semesterPhotoForm.value.courseSecondaryPhoto;
+    secondaryImg.push(
+      {
+        "secondary_img" : secondImg
+      }
+    );
+    primaryImg.details = secondaryImg;
+
+    this.courseImages.semesters = primaryImg;
+
+    console.log(this.courseImages);
   }  
 
     
