@@ -63,7 +63,8 @@ import { ModalComponent } from './modal/modal.component';
     FilterComponent,
     InlineEditComponent,
     AddreviewComponent,
-    ControlMessagesComponent
+    ControlMessagesComponent,
+    ModalComponent
   ]
 })
 export class SharedModule {}
