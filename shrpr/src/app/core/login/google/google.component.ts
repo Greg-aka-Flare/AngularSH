@@ -37,7 +37,7 @@ export class GoogleSigninComponent implements AfterViewInit {
 
       //emit data
       this.socialSignin.emit({ 
-        'token': googleUser.getAuthResponse().access_token,
+        'token': googleUser.getAuthResponse().id_token,
         'type': 'google'
       });
 
