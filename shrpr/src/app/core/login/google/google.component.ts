@@ -33,6 +33,8 @@ export class GoogleSigninComponent implements AfterViewInit {
 
     this.auth2.attachClickHandler(element, {}, (googleUser) => {
 
+      console.log(googleUser);
+
       //emit data
       this.socialSignin.emit({ 
         'token': googleUser.getAuthResponse().access_token,
