@@ -41,6 +41,10 @@ export class StudentComponent implements OnInit, OnDestroy {
   studentDescriptionForm:any;
   private id:number;
   data: any = {};
+  contactData: any = {};
+  aboutData: any = {};
+  
+
   reviewshowHide:boolean = false;
   isEdit:boolean = false;
   isUpdate:boolean = false;
@@ -101,7 +105,7 @@ export class StudentComponent implements OnInit, OnDestroy {
     
 
     this.studentAddressForm = this.fb.group({
-      'addressStreet': [this.address, [Validators.required]],
+      'addressStreet': [this.address, Validators.required],
       'addressCity': [this.city, Validators.required],
       'addressState': [this.state, Validators.required],
       'addressZip': [this.zip, Validators.required],
@@ -112,7 +116,6 @@ export class StudentComponent implements OnInit, OnDestroy {
     
     this.studentProfileForm = this.fb.group({
       'name': ['', [Validators.required, ValidationService.alphabetsValidator]],
-      'email': ['', [Validators.required, ValidationService.emailValidator]],
       'profileImage': [''],
       'url':  [''],
       'yelp':  [''],
@@ -128,7 +131,7 @@ export class StudentComponent implements OnInit, OnDestroy {
 
     updateAddress(){
       this.isEdit= !this.isEdit;
-      let addresses: any = []; 
+      
       let formAddress: any = {};
       
       //assign user data
@@ -138,12 +141,12 @@ export class StudentComponent implements OnInit, OnDestroy {
       formAddress.zip = this.studentAddressForm.value.addressZip;
       formAddress.country = this.studentAddressForm.value.addressCountry;
 
-      this.data.addresses = formAddress;
+      this.contactData.addresses = formAddress;
       
-      this.data.phone = this.studentAddressForm.value.addressPhone;
-      this.data.email = this.studentAddressForm.value.addressEmail;
+      this.contactData.phone = this.studentAddressForm.value.addressPhone;
+      this.contactData.email = this.studentAddressForm.value.addressEmail;
 
-      console.log(this.data)
+      console.log(this.contactData)
 
     }
 
@@ -154,7 +157,6 @@ export class StudentComponent implements OnInit, OnDestroy {
 
 
       this.data.name = this.studentProfileForm.value.name;
-      this.data.email = this.studentProfileForm.value.email;
       this.data.profile_img = this.studentProfileForm.value.profileImage;
 
       detailsText.url = this.studentProfileForm.value.yelp;
@@ -169,14 +171,14 @@ export class StudentComponent implements OnInit, OnDestroy {
       console.log(this.data);
 
     }
-    
+
     updatestudentDescription(){
       this.isEditAbout= !this.isEditAbout;
       let descriptionText: any = {};
       descriptionText.description = this.studentDescriptionForm.value.description;
-      this.data.details = descriptionText;
+      this.aboutData.details = descriptionText;
 
-      console.log(this.data);
+      console.log(this.aboutData);
 
     }
 
