@@ -22,8 +22,7 @@ export class GoogleSigninComponent implements AfterViewInit {
     gapi.load('auth2', () => {
       this.auth2 = gapi.auth2.init({ 
         client_id: this.clientId,
-        fetch_basic_profile: false,
-        scope: 'profile'
+        scope: 'profile email'
       });
 
       this.attachSignin(this.element.nativeElement.firstChild);

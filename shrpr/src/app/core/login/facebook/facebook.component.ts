@@ -42,7 +42,7 @@ export class FacebookLoginComponent {
             'token': response.authResponse.accessToken,
             'type': 'facebook'
           });
-        });
+        }, { scope: 'public_profile, email' });
       }
     });
   }

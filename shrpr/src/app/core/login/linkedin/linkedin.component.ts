@@ -16,7 +16,7 @@ export class LinkedinComponent {
         linkedIn.type = "text/javascript";
         linkedIn.src = "https://platform.linkedin.com/in.js";
         linkedIn.innerHTML = "\n" +
-           "api_key: 781zxklbjgz5a3\n" +
+           "api_key: 77jab9j5wl5r3j\n" +
            "authorize: true\n" +
            "onLoad: onLinkedInLoad\n"+
            "scope: r_basicprofile r_emailaddress";
