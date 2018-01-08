@@ -63,7 +63,7 @@
      <!-- #profile header -->
     <tabs *ngIf="width < 768" >
       <tab tabTitle="Courses">
-        <h3>Start your journey</h3>
+        <h3><a [routerLink]="['/courses/list/all']">Click here to start your journey</a></h3>
         <article class="card-box" *ngFor="let coursed of students?.courses">
               <div class="img-ctn">
                   <figure>
@@ -159,7 +159,7 @@
       <!-- desktop view -->
       <section *ngIf="width > 767" id="desktopcourses">
         <h2>Courses</h2>
-        <h3>Start your journey</h3>
+        <h3><a [routerLink]="['/courses/list/all']">Click here to start your journey</a></h3>
           <article class="card-box" *ngFor="let coursed of students?.courses">
                 <div class="img-ctn">
                     <!--<div class="price">${{coursed.id}}</div>-->

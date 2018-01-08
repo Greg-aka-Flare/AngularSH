@@ -50,6 +50,13 @@
 #profile-header /deep/ star-rating-comp .rating {
        padding: 0;
    }
+#desktopcourses h3 a, :host /deep/ tabs .tabs tab > div h3 a {
+    color: #02b2b8;
+    text-decoration: underline;
+}
+#desktopcourses h3 a:hover, :host /deep/ tabs .tabs tab > div h3 a:hover {
+    text-decoration: none;
+}
 .contact_box a {
     color:#000000;
 } 
