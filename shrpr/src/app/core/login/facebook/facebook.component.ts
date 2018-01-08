@@ -16,7 +16,7 @@ export class FacebookLoginComponent {
   constructor(private router: Router) {
     FB.init({
         appId      : '277825696077581',
-        cookie     : false,
+        cookie     : true,
         xfbml      : true,
         version    : 'v2.11' 
     });
