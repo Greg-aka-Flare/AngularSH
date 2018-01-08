@@ -22,6 +22,7 @@ import { ControlMessagesComponent } from '../shared/control-messages/control-mes
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
+
 export class StudentComponent implements OnInit, OnDestroy {
 
   city: string = '';
@@ -30,6 +31,7 @@ export class StudentComponent implements OnInit, OnDestroy {
   country: string = '';
   address: string = '';
   email: string = '';
+  description: string = '';
   students:any[];
   courses: any[];
   studentCourse:any;
@@ -47,6 +49,7 @@ export class StudentComponent implements OnInit, OnDestroy {
   //subscription: Subscription;
   private subscriptions = new Subscription();
   //control: FormControl;
+  
 
   width = document.documentElement.clientWidth;
   constructor(
@@ -60,7 +63,17 @@ export class StudentComponent implements OnInit, OnDestroy {
     
         let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
           this.id = params['id'];
-          }))
+          this.studentService.getStudent(this.id)
+          .subscribe(
+                (response) => {
+                  this.students = response;
+                  //this.studentCourse = JSON.parse(response.courses);
+                  console.log(this.students);
+                },
+                (error: Response) => console.log(error)
+              )
+
+          }));
           
         const $resizeEvent = Observable.fromEvent(window, 'resize')
         .map(() => {
@@ -101,6 +114,7 @@ export class StudentComponent implements OnInit, OnDestroy {
       'name': ['', [Validators.required, ValidationService.alphabetsValidator]],
       'email': ['', [Validators.required, ValidationService.emailValidator]],
       'profileImage': [''],
+      'url':  [''],
       'yelp':  [''],
       'twitter': [''],
       'facebook': [''],
@@ -110,72 +124,59 @@ export class StudentComponent implements OnInit, OnDestroy {
     this.studentDescriptionForm = this.fb.group({
       'description': ['', [Validators.required, Validators.minLength(40)]],
     });
-
-    this.subscriptions.add(this.studentService.getStudent(this.id)
-    .subscribe(
-          (response) => {
-            this.students = response;
-            //this.studentCourse = JSON.parse(response.courses);
-            //console.log(this.students);
-          },
-          (error: Response) => console.log(error)
-        ));
-    }
+}
 
     updateAddress(){
       this.isEdit= !this.isEdit;
+      let addresses: any = []; 
+      let formAddress: any = {};
+      
       //assign user data
-      this.data.addressStreet = this.studentAddressForm.value.addressStreet;
-      this.data.addressCity = this.studentAddressForm.value.addressCity;
-      this.data.addressState = this.studentAddressForm.value.addressState;
-      this.data.addressZip = this.studentAddressForm.value.addressZip;
-      this.data.addressCountry = this.studentAddressForm.value.addressCountry;
-      this.data.addressPhone = this.studentAddressForm.value.addressPhone;
-      this.data.addressEmail = this.studentAddressForm.value.addressEmail;
+      formAddress.streetAddress = this.studentAddressForm.value.addressStreet;
+      formAddress.city = this.studentAddressForm.value.addressCity;
+      formAddress.state = this.studentAddressForm.value.addressState;
+      formAddress.zip = this.studentAddressForm.value.addressZip;
+      formAddress.country = this.studentAddressForm.value.addressCountry;
 
-      console.log(
-        'Street :' + this.data.addressStreet,
-        'City :' + this.data.addressCity,
-        'State :' + this.data.addressState,
-        'Zip :' + this.data.addressZip,
-        'Country :' + this.data.addressCountry,
-        'Phone :' + this.data.addressPhone,
-        'Email :' + this.data.addressEmail
-      )
+      this.data.addresses = formAddress;
+      
+      this.data.phone = this.studentAddressForm.value.addressPhone;
+      this.data.email = this.studentAddressForm.value.addressEmail;
+
+      console.log(this.data)
 
     }
+
+
     updateProfile(){
       this.isUpdate= !this.isUpdate;
+      let detailsText: any = {};
 
-      this.data.name = this.studentAddressForm.value.name;
-      this.data.email = this.studentAddressForm.value.email;
-      this.data.profileImage = this.studentAddressForm.value.profileImage;
-      this.data.yelp = this.studentAddressForm.value.yelp;
-      this.data.twitter = this.studentAddressForm.value.twitter;
-      this.data.facebook = this.studentAddressForm.value.facebook;
-      this.data.linkedIn = this.studentAddressForm.value.linkedIn;
-      this.data.pinterest = this.studentAddressForm.value.pinterest;
 
-      console.log(
-        'Name :' + this.data.name,
-        'Email :' + this.data.email,
-        'Profile Image :' + this.data.profileImage,
-        'Yelp :' + this.data.yelp,
-        'Twitter :' + this.data.twitter,
-        'Facebook :' + this.data.facebook,
-        'LinkedIn :' + this.data.linkedIn,
-        'Pinterest :' + this.data.pinterest
-      )
+      this.data.name = this.studentProfileForm.value.name;
+      this.data.email = this.studentProfileForm.value.email;
+      this.data.profile_img = this.studentProfileForm.value.profileImage;
+
+      detailsText.url = this.studentProfileForm.value.yelp;
+      detailsText.yelp = this.studentProfileForm.value.yelp;
+      detailsText.twitter = this.studentProfileForm.value.twitter;
+      detailsText.facebook = this.studentProfileForm.value.facebook;
+      detailsText.linkedIn = this.studentProfileForm.value.linkedIn;
+      detailsText.pinterest = this.studentProfileForm.value.pinterest;
+
+      this.data.details = detailsText;
+
+      console.log(this.data);
 
     }
+    
     updatestudentDescription(){
       this.isEditAbout= !this.isEditAbout;
+      let descriptionText: any = {};
+      descriptionText.description = this.studentDescriptionForm.value.description;
+      this.data.details = descriptionText;
 
-      this.data.description = this.studentAddressForm.value.description;
-
-      console.log(
-        'Description :' + this.data.description,
-      )
+      console.log(this.data);
 
     }
 
