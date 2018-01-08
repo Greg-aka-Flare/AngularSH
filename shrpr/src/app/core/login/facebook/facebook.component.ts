@@ -15,10 +15,9 @@ export class FacebookLoginComponent {
 
   constructor(private router: Router) {
     FB.init({
-        appId      : '277825696077581',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v2.11' 
+        appId   : '277825696077581',
+        cookie  : true,
+        version : 'v2.11' 
     });
   }
 
@@ -26,6 +25,7 @@ export class FacebookLoginComponent {
     FB.getLoginStatus(response => {
 
       if(response.status == 'connected'){ //already logged in
+
         //emit data
         this.socialSignin.emit({ 
           'token': response.authResponse.accessToken,
