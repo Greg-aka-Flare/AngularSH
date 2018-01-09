@@ -38,7 +38,7 @@
     <div class="horizontal-box"></div>
 
     <div class="social-login">
-        <facebook-signin></facebook-signin>       
+        <facebook-signin (socialSignin)="onSocialSignin($event)"></facebook-signin>       
         <google-signin (socialSignin)="onSocialSignin($event)"></google-signin>
         <linkedin-signin (socialSignin)="onSocialSignin($event)"></linkedin-signin> 
     </div>

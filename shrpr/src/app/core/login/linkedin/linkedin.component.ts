@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 declare var IN : any;
    
@@ -9,7 +9,9 @@ declare var IN : any;
 })
 export class LinkedinComponent {
 
-  constructor(private ngZone: NgZone) {}
+  @Output() socialSignin: EventEmitter<any> = new EventEmitter();
+
+  constructor() {}
 
   ngOnInit() {
     var linkedIn = document.createElement("script");
@@ -18,37 +20,30 @@ export class LinkedinComponent {
         linkedIn.innerHTML = "\n" +
            "api_key: 77jab9j5wl5r3j\n" +
            "authorize: true\n" +
-           "onLoad: onLinkedInLoad\n"+
            "scope: r_basicprofile r_emailaddress";
         document.head.appendChild(linkedIn);
   }
 
-  ngAfterViewInit(){
-    window['onLinkedInLoad'] = () => this.ngZone.run(() => this.onLinkedInLoad());
-    window['displayProfiles'] = (profiles) => this.ngZone.run(() => this.displayProfiles(profiles));
-    window['displayProfilesErrors'] = (error) => this.ngZone.run(() => this.displayProfilesErrors(error));
-  }
-
-  public onLinkedInLoad() {
-    IN.Event.on(IN, 'auth', this.onLinkedInProfile);
-  }
-
-  public onLinkedInProfile() {
+  onLinkedInProfile() {
     IN.API.Profile('me')
-    .fields('id', 'firstName', 'lastName', 'email-address')
-    .result(this.displayProfiles)
-    .error(this.displayProfilesErrors);
+    .fields('id', 'first-name', 'last-name', 'email-address', 'picture-url')
+    .result(result => {
+
+      //emit data
+      this.socialSignin.emit({ 
+        'linkedin_id': result.values[0].id,
+        'name': result.values[0].firstName + ' ' + result.values[0].lastName,
+        'email': result.values[0].emailAddress,
+        'profile_img': (result.values[0].pictureUrl) ? result.values[0].pictureUrl : '',
+        'type': 'linkedin'
+      });
+    })
+    .error(error => {
+      console.log(error);
+    });
   }
 
-  public displayProfiles(profiles) {
-    console.log(profiles);
-  }
-
-  public displayProfilesErrors(error) {
-    console.debug(error);
-  }
-
-  public onClick(){
+  onClick(){
     IN.UI.Authorize().place(); 
     IN.Event.on(IN, 'auth', this.onLinkedInProfile);
   }
