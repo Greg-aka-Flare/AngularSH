@@ -94,8 +94,13 @@ export class CourseComponent implements OnInit, OnDestroy {
         this.semesterDetails = JSON.parse(this.course.semesters[0].details);
         this.startDate = new Date(this.course.semesters[0].start_date.replace(/-/g, "/"));
         this.endDate = new Date(this.course.semesters[0].end_date.replace(/-/g, "/"));
-  
-        this.slides.pop();
+         
+        if(this.slides.length > 0){
+          for(var i=0, j = this.slides.length; i < j; i++){
+            this.slides.pop();
+          }
+        }
+        
         this.primaryImg = this.course.semesters[0].primary_img;
         this.secondaryImg = JSON.parse(this.course.semesters[0].details).secondary_img;
         this.slides.push(
