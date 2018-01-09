@@ -21,7 +21,11 @@ export class InstructorCourseComponent implements OnInit {
   
   semesterDetailForm: FormGroup;
   sessionArray: any[] = [];
+  meetingArray: any[] = [];
   data: any = {};
+  semesterInfo: any = {};
+  courseImages:any = {};
+  
   //sessionArray: Array<{sessionDate:string, startTime: string, endTime: string}>;
   //private sessionArray = new Array<{sessionDate:string}>();
 
@@ -194,26 +198,38 @@ export class InstructorCourseComponent implements OnInit {
       }
     }
 
-    instructorCourseSubmit() {
-      this.data.courseTitleText = this.instructorCourseForm.value.courseTitleText;
-      this.data.courseGroupSelect = this.instructorCourseForm.value.courseGroupSelect;
-      this.data.courseCategorySelect = this.instructorCourseForm.value.courseCategorySelect;
-      this.data.courseSubCategorySelect = this.instructorCourseForm.value.courseSubCategorySelect;
-      this.data.courseDescriptionText = this.instructorCourseForm.value.courseDescriptionText;
-      console.log(
-        'Course Name :' + this.data.courseTitleText,
-        'Group :' + this.data.courseGroupSelect,
-        'Category :' + this.data.courseCategorySelect,
-        'Sub Category :' + this.data.courseSubCategorySelect,
-        'Description :' + this.data.courseDescriptionText
-      )
-    }  
+  instructorCourseSubmit() {
+      let groupText: any = {};
+      let categoryText: any = {};
+      let subCategoryText: any = {};
+
+      this.data.title = this.instructorCourseForm.value.courseTitleText;
+      groupText.id = this.instructorCourseForm.value.courseGroupSelect;
+      this.data.group = groupText;
+
+      categoryText.id =  this.instructorCourseForm.value.courseCategorySelect
+      this.data.categories = categoryText;
+
+      subCategoryText.id = this.instructorCourseForm.value.courseSubCategorySelect;
+      this.data.subCategory = subCategoryText;
+
+
+      this.data.description = this.instructorCourseForm.value.courseDescriptionText;
+      console.log(this.data);
+        
+    } 
+  
   
   sessionDetailsinit(){
     
     if(this.sessionArray.length !== 0) {
         this.sessionArray = [];
     }
+
+    let semesters: any = {};
+    let semesterData: any = {};
+    let meetingData: any = {};
+    
     let courseStartDateText = this.semesterInfoForm.value.courseStartDateText;
     let courseIteration = this.semesterInfoForm.value.courseIteration;
     let courseStartTimeText = this.semesterInfoForm.value.courseStartTimeText;
@@ -221,7 +237,7 @@ export class InstructorCourseComponent implements OnInit {
     this.courseSessionNumber = this.semesterInfoForm.value.courseSessionNumber;
     let courseDurationNumber = this.semesterInfoForm.value.courseDurationNumber;
     let searchControl = this.semesterInfoForm.value.searchControl;
-    this.courseFeeText = this.semesterInfoForm.value.courseFeeText;
+    //this.courseFeeText = this.semesterInfoForm.value.courseFeeText;
     
     courseStartTimeText = moment(courseStartTimeText+':00', 'hh:mm:ss a');
     courseStartTimeText = moment(courseStartTimeText).format('HH:MM');
@@ -246,24 +262,48 @@ export class InstructorCourseComponent implements OnInit {
         }
       );
     }
-    console.log(
-      'Course fee: ' +  this.courseFeeText + '\n' + 
-      'City : ' + this.city + '\n' +
-      'State : ' + this.state + '\n' +
-      'Zip : ' + this.zip + '\n' +
-      'Country : ' + this.country + '\n' +
-      'meetings: \n'
-    );
-    console.log(this.sessionArray);
+
+    semesterData.amount = this.semesterInfoForm.value.courseFeeText;
+    semesterData.duration = this.courseSessionNumber;
+    semesterData.start_date = this.semesterInfoForm.value.courseStartDateText + ' ' + this.semesterInfoForm.value.courseStartTimeText;
+    semesterData.end_date = this.sessionArray[this.sessionArray.length-1].sessionDate + ' ' + this.sessionArray[this.sessionArray.length-1].endTime;
+    for(var p = 0, q = this.sessionArray.length; p < q; p++){
+      
+      let startdt = this.sessionArray[p].sessionDate+' '+this.sessionArray[p].startTime;
+      let enddt = this.sessionArray[p].sessionDate+' '+this.sessionArray[p].endTime;
+      
+      this.meetingArray.push(
+        {
+          "substitute" : null,
+          "start" : startdt,
+          "end" : enddt
+        }
+      );
+    }
+    semesterData.meetings = this.meetingArray;
+    this.semesterInfo.semesters = semesterData;
+    console.log(this.semesterInfo);
+
   }  
 
   uploadCoursePhoto() {
-    this.data.coursePrimaryPhoto = this.semesterPhotoForm.value.coursePrimaryPhoto;
-    this.data.courseSecondaryPhoto = this.semesterPhotoForm.value.courseSecondaryPhoto;
-    console.log(
-      'Primary Photo :' + this.data.coursePrimaryPhoto,
-      'Secondary Photo :' + this.data.courseSecondaryPhoto
-    )
+    
+    let primaryImg: any = {};
+    let detailsText: any = {};
+    let secondaryImg: any[] = [];
+    
+    primaryImg.primary_img = this.semesterPhotoForm.value.coursePrimaryPhoto;
+    let secondImg = this.semesterPhotoForm.value.courseSecondaryPhoto;
+    secondaryImg.push(
+      {
+        "secondary_img" : secondImg
+      }
+    );
+    primaryImg.details = secondaryImg;
+
+    this.courseImages.semesters = primaryImg;
+
+    console.log(this.courseImages);
   }  
 
     

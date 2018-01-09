@@ -17,6 +17,8 @@ import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { ValidationService } from '../core/validation.service';
 import { ControlMessagesComponent } from '../shared/control-messages/control-messages.component';
 
+
+
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
@@ -43,11 +45,12 @@ export class StudentComponent implements OnInit, OnDestroy {
   data: any = {};
   contactData: any = {};
   aboutData: any = {};
+
+  showDialog:boolean = false;
   
 
   reviewshowHide:boolean = false;
   isEdit:boolean = false;
-  isUpdate:boolean = false;
   isEditAbout:boolean = false;
   private mylocation:string;
   //subscription: Subscription;
@@ -152,7 +155,8 @@ export class StudentComponent implements OnInit, OnDestroy {
 
 
     updateProfile(){
-      this.isUpdate= !this.isUpdate;
+      //this.isUpdate= !this.isUpdate;
+      
       let detailsText: any = {};
 
 
@@ -169,7 +173,8 @@ export class StudentComponent implements OnInit, OnDestroy {
       this.data.details = detailsText;
 
       console.log(this.data);
-
+      this.showDialog = !this.showDialog;
+      
     }
 
     updatestudentDescription(){

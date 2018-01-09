@@ -169,8 +169,20 @@ export class Carousel implements OnDestroy {
     }
   }
 
+<<<<<<< HEAD
   public removeSlide(slide:Slide) {
     this.slides.splice(slide.index, 1);
+=======
+  public removeSlide(slide: Slide){
+    this.slides.splice(slide.index, 1);
+           if (this.slides.length === 0) {
+               this.currentSlide = null;
+               return;
+           }
+           for (let i = 0; i < this.slides.length; i++) {
+               this.slides[i].index = i;
+           }
+>>>>>>> dev
 
     if (this.slides.length === 0) {
         this.currentSlide = null;
