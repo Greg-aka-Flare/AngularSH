@@ -274,7 +274,6 @@ export class InstructorCourseComponent implements OnInit {
       
       this.meetingArray.push(
         {
-          "id" : p+1,
           "substitute" : null,
           "start" : startdt,
           "end" : enddt
