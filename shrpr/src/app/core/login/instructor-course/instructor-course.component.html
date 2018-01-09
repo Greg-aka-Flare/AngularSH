@@ -102,6 +102,17 @@
                 >
                 <control-messages [control]="semesterInfoForm.controls.searchControl"></control-messages>
             </div>
+            <div class="formRow">
+                <label for="coursePrimaryPhoto">Primary Photo</label>
+                <input type="file" id="coursePrimaryPhoto" formControlName="coursePrimaryPhoto">
+                <control-messages [control]="semesterInfoForm.controls.coursePrimaryPhoto"></control-messages>
+            </div>
+             <div class="formRow">
+              <label for="courseSecondaryPhoto">Secondary Photo</label>
+              <input type="file" id="courseSecondaryPhoto" formControlName="courseSecondaryPhoto">
+              <control-messages [control]="semesterInfoForm.controls.courseSecondaryPhoto"></control-messages>
+              
+             </div>
             <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Submit</button></div>
             </form>
           </div><!-- course Form Page Two-->
@@ -120,7 +131,7 @@
                   </tr>
                   <tr *ngFor="let session of sessionArray; let i = index" >
                     <td>{{i+1}}</td>
-                    <td><input type="date" name="courseStartDateText{{i+1}}" value="{{session?.sessionDate}}" (input)="onInput(session?.sessionDate.value)"></td>
+                    <td><input type="date" name="courseStartDateText{{i+1}}" value="{{session?.sessionDate}}" (input)="onInput(session?.sessionDate.value)" readonly></td>
                     <td><input type="time" name="courseStartTimeText{{i+1}}" value="{{session?.startTime}}" readonly></td>
                     <td><input type="time" name="courseEndTimeText{{i+1}}" value="{{session?.endTime}}" readonly></td>
                   </tr>
@@ -130,22 +141,7 @@
               <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterDetailForm.valid">Submit</button></div>
               </form> 
             </div><!-- course Form Page Three-->
-            <div class="courseFormPage">
-              <form name="semesterPhotoForm" [formGroup]="semesterPhotoForm">
-                <div class="formRow">
-                  <label for="coursePrimaryPhoto">Primary Photo</label>
-                  <input type="file" id="coursePrimaryPhoto" formControlName="coursePrimaryPhoto">
-                  
-               </div>
-               <div class="formRow">
-                <label for="courseSecondaryPhoto">Secondary Photo</label>
-                <input type="file" id="courseSecondaryPhoto" formControlName="courseSecondaryPhoto">
-                
-             </div>
-
-                <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterPhotoForm.valid">Submit</button></div>
-                </form> 
-              </div><!-- course Form Page four-->
+            
       </div>
   </section>
   </section>
