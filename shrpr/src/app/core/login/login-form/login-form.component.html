@@ -1,6 +1,6 @@
 <div class="login-box signin-box">
     <form id="login" [formGroup]="loginForm" (ngSubmit)="onLogin()">
-        <span class="help-block" *ngIf="loginError">Login credentials invalid.</span><!-- .help-block -->
+        <span class="help-block signup-error" *ngIf="loginError">Login credentials invalid.</span><!-- .help-block -->
         <input 
             type="text" 
             id="email-signin" 

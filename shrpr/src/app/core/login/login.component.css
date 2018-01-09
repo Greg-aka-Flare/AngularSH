@@ -14,7 +14,6 @@
     padding:0;
     text-align: center;
 }
-
 :host /deep/ tabs .tabs ul li {
     display:inline-block;
     vertical-align: top;
@@ -81,6 +80,10 @@ tab.active-tab {
 .signup_type.active {
     left:0;
     z-index: 1;
+}
+.signup-error{
+    color: #f00;
+    font-size: 14px;
 }
 .login-box #signup p a {
     float: none;

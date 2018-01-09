@@ -93,8 +93,9 @@ export class SignUpFormComponent implements OnInit {
           this.auth.google(this.data).subscribe( 
             success => this.onUserCreated(),
             error => { 
-              this.signupError = false;
-              this.signupErrorText = 'Unable to sign-up due account settings';
+              console.log(error);
+              this.signupError = true;
+              this.signupErrorText = 'Unable to sign-in due account settings';
             }
           );
           break;
@@ -103,8 +104,9 @@ export class SignUpFormComponent implements OnInit {
           this.auth.facebook(this.data).subscribe( 
             success => this.onUserCreated(),
             error => { 
-              this.signupError = false;
-              this.signupErrorText = 'Unable to sign-up due account settings';
+              console.log(error);
+              this.signupError = true;
+              this.signupErrorText = 'Unable to sign-in due account settings';
             } 
           );
           break;
@@ -113,8 +115,9 @@ export class SignUpFormComponent implements OnInit {
           this.auth.linkedin(this.data).subscribe( 
             success => this.onUserCreated(),
             error => { 
-              this.signupError = false;
-              this.signupErrorText = 'Unable to sign-up due account settings';
+              console.log(error);
+              this.signupError = true;
+              this.signupErrorText = 'Unable to sign-in due account settings';
             } 
           );
           break;
@@ -123,7 +126,8 @@ export class SignUpFormComponent implements OnInit {
           this.auth.signup(this.data).subscribe( 
             success => this.onUserCreated(),
             error => { 
-              this.signupError = false;
+              console.log(error);
+              this.signupError = true;
               this.signupErrorText = 'Unable to sign-up';
             } 
           );
