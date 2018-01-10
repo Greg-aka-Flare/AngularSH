@@ -23,6 +23,7 @@ export class CourseBookComponent implements OnInit {
   bookForm: any;
   data: any = {};
   loggedIn: boolean = false;
+  createUser: boolean = false;
 
   constructor( 
     private auth: AuthService,
@@ -65,7 +66,7 @@ export class CourseBookComponent implements OnInit {
     );
   }
 
-  updateBookonline(){
+  submit(){
 
     //set course id
     this.data.course_id = this.course.id;
@@ -77,8 +78,6 @@ export class CourseBookComponent implements OnInit {
       this.data.name = this.bookForm.value.name;
       this.data.email = this.bookForm.value.email;
       this.data.phone = this.bookForm.value.phone;
-      this.data.create = this.bookForm.value.create;
-      this.data.coursename = this.course.name;
 
       //set local storage info
       localStorage.setItem('name', this.data.name);
@@ -90,15 +89,21 @@ export class CourseBookComponent implements OnInit {
     this.data.contactselect = this.bookForm.value.contactselect;
     this.data.drivinguber = this.bookForm.value.drivinguber;
     this.data.drivingrating = this.bookForm.value.drivingrating;
-    this.data.create = this.bookForm.value.create;
+
+    //check to see if wants to create user
+    this.createUser = this.bookForm.value.create;
+
 
     //book course
     this.user.book(this.data).subscribe(
       success => { 
-        //logged in, navigate home
-        if(this.loggedIn || !this.data.create) {
+
+        //logged in, or don't want to create user, close, emite data
+        if(this.loggedIn || !this.createUser) {
+
+          this.onBooked.emit(true);
         }
-        else { //not logged in, go to signup/login screen
+        else { //forward to sign-up
           this.router.navigateByUrl('login');
         }
       }

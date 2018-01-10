@@ -73,53 +73,56 @@ export class CourseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loggedIn = this.auth.loggedIn();
   
     this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      //console.log(this.id);
-        this.courseService.getCourse(this.id).subscribe(course => {
-        this.course = course;
-        this.ratingData = this.course.ratings;
-        this.categoriesArray = this.course.categories;
-        this.semesterCount = this.course.semesters.length;
-        this.semesterArray.pop();
-        for(var i=0; i< this.semesterCount; i++){
-          this.semesterArray.push(this.course.semesters[i]);
+      this.courseService.getCourse(this.id).subscribe(course => {
+      this.course = course;
+      this.ratingData = this.course.ratings;
+      this.categoriesArray = this.course.categories;
+      this.semesterCount = this.course.semesters.length;
+      this.semesterArray.pop();
+      for(var i=0; i< this.semesterCount; i++){
+        this.semesterArray.push(this.course.semesters[i]);
+      }
+      
+      this.semesterDetails = JSON.parse(this.course.semesters[0].details);
+      this.startDate = new Date(this.course.semesters[0].start_date.replace(/-/g, "/"));
+      this.endDate = new Date(this.course.semesters[0].end_date.replace(/-/g, "/"));
+       
+      if(this.slides.length > 0){
+        for(var i=0, j = this.slides.length; i < j; i++){
+          this.slides.pop();
         }
-        
-        this.semesterDetails = JSON.parse(this.course.semesters[0].details);
-        this.startDate = new Date(this.course.semesters[0].start_date.replace(/-/g, "/"));
-        this.endDate = new Date(this.course.semesters[0].end_date.replace(/-/g, "/"));
-         
-        if(this.slides.length > 0){
-          for(var i=0, j = this.slides.length; i < j; i++){
-            this.slides.pop();
-          }
-        }
-        
-        this.primaryImg = this.course.semesters[0].primary_img;
-        this.secondaryImg = JSON.parse(this.course.semesters[0].details).secondary_img;
-        this.slides.push(
-          {image:'../../assets/img/courses/'+ this.primaryImg},
-          {image:'../../assets/img/courses/'+ this.secondaryImg}
-          //{image:'../../assets/img/court.jpg'},
-          //{image:'../../assets/img/court-two.jpg'}
-        );
-  
-        this.meetingArray = this.course.semesters[0].meetings;
-        this.onSelect(this.course.semesters[0].id);
-        //initializing the google co-ordinates
-        this.lat = this.course.semesters[0].addresses[0].latitude;
-        this.lng = this.course.semesters[0].addresses[0].longitude;
-        
-        this.reviewCount = this.ratingData.length;
-        this.loopCounter = this.reviewCount+1;
-        for(var k=0; k < this.reviewCount; k++){
-            this.userRating += this.ratingData[k].rating;
-        }
-        this.reviewRatingGross = this.userRating/this.reviewCount;
-      })
+      }
+      
+      this.primaryImg = this.course.semesters[0].primary_img;
+      this.secondaryImg = JSON.parse(this.course.semesters[0].details).secondary_img;
+      this.slides.push(
+        {image:'../../assets/img/courses/'+ this.primaryImg},
+        {image:'../../assets/img/courses/'+ this.secondaryImg}
+        //{image:'../../assets/img/court.jpg'},
+        //{image:'../../assets/img/court-two.jpg'}
+      );
+
+      this.meetingArray = this.course.semesters[0].meetings;
+      this.onSelect(this.course.semesters[0].id);
+      //initializing the google co-ordinates
+      this.lat = this.course.semesters[0].addresses[0].latitude;
+      this.lng = this.course.semesters[0].addresses[0].longitude;
+      
+      this.reviewCount = this.ratingData.length;
+      this.loopCounter = this.reviewCount+1;
+      for(var k=0; k < this.reviewCount; k++){
+          this.userRating += this.ratingData[k].rating;
+      }
+      this.reviewRatingGross = this.userRating/this.reviewCount;
+    
+      //check if logged in
+      this.loggedIn = this.auth.loggedIn();
+
+      this.auth.me().subscribe(me => this.checkBooked(me));
+    })
 
     }))
     const $resizeEvent = Observable.fromEvent(window, 'resize')
@@ -147,11 +150,40 @@ export class CourseComponent implements OnInit, OnDestroy {
   }
 
   book() {
+
+    //open pop-up
     this.booking = true;
   }
 
   booked(value: boolean) {
+
+    //set if booked or not
     this.isBooked = value;
+
+    //close pop-up
     this.booking = false;
+  }
+
+  checkBooked(me: any) {
+
+    if(me.student) { //if student
+
+      //check if has courses
+      if(me.student.courses.length) {
+
+        //for every course, check if id matches current id
+        for(let course of me.student.courses){
+
+          if(course.id == this.id){ //if id matches
+
+            //already booked
+            this.isBooked = true;
+
+            //exit loop
+            break;
+          }
+        }
+      }
+    }
   }
 }
