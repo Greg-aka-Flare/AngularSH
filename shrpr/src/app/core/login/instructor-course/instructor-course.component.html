@@ -104,12 +104,12 @@
             </div>
             <div class="formRow">
                 <label for="coursePrimaryPhoto">Primary Photo</label>
-                <input type="file" id="coursePrimaryPhoto" formControlName="coursePrimaryPhoto">
+                <input type="file" id="coursePrimaryPhoto" formControlName="coursePrimaryPhoto" accept="image/x-png,image/gif,image/jpeg">
                 <control-messages [control]="semesterInfoForm.controls.coursePrimaryPhoto"></control-messages>
             </div>
              <div class="formRow">
               <label for="courseSecondaryPhoto">Secondary Photo</label>
-              <input type="file" id="courseSecondaryPhoto" formControlName="courseSecondaryPhoto">
+              <input type="file" id="courseSecondaryPhoto" formControlName="courseSecondaryPhoto" accept="image/x-png,image/gif,image/jpeg">
               <control-messages [control]="semesterInfoForm.controls.courseSecondaryPhoto"></control-messages>
               
              </div>
