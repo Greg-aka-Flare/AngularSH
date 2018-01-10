@@ -1,5 +1,5 @@
 <course-book 
-  *ngIf="course"
+  *ngIf="course && booking"
   [course]="course"
   (onBooked)="booked($event)"
 >
@@ -66,7 +66,7 @@
                 </div> 
                 </div>
             <div class="action_btn">
-              <a [routerLink]="['/book-online', course.id]">Enroll Now</a><a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
+              <a (click)="book()">Enroll Now</a><a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
             </div>
         </div>
         <!-- .course_info -->
@@ -113,7 +113,7 @@
               <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
             </p>
             <div class="action_btn">
-              <a [routerLink]="['/book-online', course.id]">Enroll Now</a><br>
+              <a (click)="book()">Enroll Now</a><br>
               <a href="javascript:void(0);"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
             </div>
             <p>

@@ -104,4 +104,8 @@ export class CourseBookComponent implements OnInit {
       }
     )
   }
+
+  close() {
+    this.onBooked.emit(false);
+  }
 }

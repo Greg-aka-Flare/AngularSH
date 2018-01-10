@@ -1,17 +1,13 @@
 import { Component, OnInit, OnDestroy, Input, Pipe, PipeTransform } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser'
-import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { TabsComponent } from "../../shared/tabs/tabs.component";
 import { AddreviewComponent } from "../../shared/add-a-review/addreview.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import { Subscription } from 'rxjs/Subscription';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
@@ -37,7 +33,6 @@ export class CourseComponent implements OnInit, OnDestroy {
   loopCounter:number = 0;
   reviewRatingGross:number;
   ratingDataParse:any;
-  //subscription: Subscription;
   private subscriptions = new Subscription();
   width = document.documentElement.clientWidth;
   lat: number = 51.678418;
@@ -55,6 +50,8 @@ export class CourseComponent implements OnInit, OnDestroy {
   semesterInfo;
   reviewshowHide:boolean = false;
   loggedIn: boolean = false;
+  booking: boolean = false;
+  isBooked: boolean = false;
 
   //The time to show the next photo
   private NextPhotoInterval:number = 5000;
@@ -149,7 +146,12 @@ export class CourseComponent implements OnInit, OnDestroy {
     this.slides.pop();
   }
 
-  booked(isBooked: boolean) {
+  book() {
+    this.booking = true;
+  }
 
+  booked(value: boolean) {
+    this.isBooked = value;
+    this.booking = false;
   }
 }
