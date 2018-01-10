@@ -52,6 +52,7 @@ export class CourseComponent implements OnInit, OnDestroy {
   loggedIn: boolean = false;
   booking: boolean = false;
   isBooked: boolean = false;
+  showBookBtn: boolean = false;
 
   //The time to show the next photo
   private NextPhotoInterval:number = 5000;
@@ -121,7 +122,23 @@ export class CourseComponent implements OnInit, OnDestroy {
       //check if logged in
       this.loggedIn = this.auth.loggedIn();
 
-      this.auth.me().subscribe(me => this.checkBooked(me));
+      //if logged in, get user
+      if(this.loggedIn) {
+
+        this.auth.me().subscribe(me => { 
+
+          //check if booked for course
+          this.checkBooked(me); 
+
+          //show button
+          this.showBookBtn = true;
+        });
+      }
+      else{
+
+          //show button
+          this.showBookBtn = true;
+      }
     })
 
     }))

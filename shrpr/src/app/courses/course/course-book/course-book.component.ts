@@ -53,7 +53,7 @@ export class CourseBookComponent implements OnInit {
     if(this.loggedIn) this.auth.me().subscribe(result => {
 
         let name = result.name ? result.name : '';
-        let email = result.email ? 'user@fakeemail.com' : ''; //to pass async check
+        let email = result.email ? result.email : ''; //to pass async check
         let phone = result.phone ? result.phone : '';
 
         //patch values for form
@@ -92,7 +92,6 @@ export class CourseBookComponent implements OnInit {
 
     //check to see if wants to create user
     this.createUser = this.bookForm.value.create;
-
 
     //book course
     this.user.book(this.data).subscribe(

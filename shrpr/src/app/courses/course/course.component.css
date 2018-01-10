@@ -146,19 +146,33 @@ figure.rating {
     background-color: #ffffff;
     text-decoration: none;
 }
+.action_btn a.booked{
+    border: 2px solid #448a58;
+    background-color: #ffffff;
+    color: #448a58;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+}
+.action_btn a.booked:hover{
+    border: 2px solid #448a58;
+    background-color: #ffffff;
+    color: #448a58;
+}
 .action_btn a img {
     max-width: 25px;
     display: inline-block;
     vertical-align: middle;
     margin: 0 5px 0 0;
 }
-.action_btn a:nth-of-type(2) {
+.action_btn a.wishlist {
     padding: 5px 20px 5px 20px;
     border: 2px solid #ed9b40;
     background-color: #ffffff;
     color: #ed9b40;
 }
-.action_btn a:nth-of-type(2):hover {
+.action_btn a.wishlist:hover {
     background: #ed9b40;
     color: #ffffff;
 }
