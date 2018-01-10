@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, Pipe, PipeTransform} from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, Pipe, PipeTransform} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -8,8 +8,7 @@ import { UserInterface } from '../../../core/user.interface';
 import { UserService } from '../../../core/user.service';
 import { AuthService } from '../../../auth/auth.service';
 import { Observable } from 'rxjs/Observable';
-import { CourseService } from "../../../courses/course.service";
-import { Subscription } from 'rxjs/Subscription';
+import { CourseService } from '../../../courses/course.service';
 
 @Component({
   selector: 'course-book',
@@ -19,16 +18,11 @@ import { Subscription } from 'rxjs/Subscription';
 export class CourseBookComponent implements OnInit {
 
   @Input('course') course: any;
+  @Output() onBooked: EventEmitter<boolean> = new EventEmitter;
 
-  private emailTimeout;
-  loggedIn: boolean = false;
-  menu: boolean = true;
-  search: boolean = true;
-  onSucces:boolean = true;
-  private subscriptions = new Subscription();
-  bookonlineForm: any;
+  bookForm: any;
   data: any = {};
-  coursename:string;
+  loggedIn: boolean = false;
 
   constructor( 
     private auth: AuthService,
@@ -41,7 +35,7 @@ export class CourseBookComponent implements OnInit {
 
   ngOnInit() {
 
-    this.bookonlineForm = this.fb.group({
+    this.bookForm = this.fb.group({
       'name': ['', [Validators.required, ValidationService.alphabetsValidator]],
       'coursename':[''],
       'email': ['', [Validators.required, ValidationService.emailValidator]],
@@ -62,7 +56,7 @@ export class CourseBookComponent implements OnInit {
         let phone = result.phone ? result.phone : '';
 
         //patch values for form
-        this.bookonlineForm.patchValue({
+        this.bookForm.patchValue({
           'name': name,
           'email': email,
           'phone': phone
@@ -80,11 +74,11 @@ export class CourseBookComponent implements OnInit {
     if(!this.loggedIn){
 
       //get data to create user
-      this.data.name = this.bookonlineForm.value.name;
-      this.data.email = this.bookonlineForm.value.email;
-      this.data.phone = this.bookonlineForm.value.phone;
-      this.data.create = this.bookonlineForm.value.create;
-      this.data.coursename = this.coursename;
+      this.data.name = this.bookForm.value.name;
+      this.data.email = this.bookForm.value.email;
+      this.data.phone = this.bookForm.value.phone;
+      this.data.create = this.bookForm.value.create;
+      this.data.coursename = this.course.name;
 
       //set local storage info
       localStorage.setItem('name', this.data.name);
@@ -92,16 +86,15 @@ export class CourseBookComponent implements OnInit {
     }
 
     //get misc data
-    this.data.phone = this.bookonlineForm.value.phone;
-    this.data.contactselect = this.bookonlineForm.value.contactselect;
-    this.data.drivinguber = this.bookonlineForm.value.drivinguber;
-    this.data.drivingrating = this.bookonlineForm.value.drivingrating;
-    this.data.create = this.bookonlineForm.value.create;
+    this.data.phone = this.bookForm.value.phone;
+    this.data.contactselect = this.bookForm.value.contactselect;
+    this.data.drivinguber = this.bookForm.value.drivinguber;
+    this.data.drivingrating = this.bookForm.value.drivingrating;
+    this.data.create = this.bookForm.value.create;
 
     //book course
     this.user.book(this.data).subscribe(
       success => { 
-         this.onSucces = false;
         //logged in, navigate home
         if(this.loggedIn || !this.data.create) {
         }

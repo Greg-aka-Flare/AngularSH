@@ -1,23 +1,23 @@
 <div class="bookonline-form">
   <div *ngIf="!onSucces" class="succes-message">Your form has been submitted successfully.</div>
-  <form id="onlineform" [formGroup]="bookonlineForm" (ngSubmit)="updateBookonline()" *ngIf="onSucces">
+  <form id="onlineform" [formGroup]="bookForm" (ngSubmit)="updateBookonline()" *ngIf="onSucces">
     <div>
         <label>Name*</label>
         <input type="text" formControlName="name">
         <input type="hidden" formControlName="coursename" value="{{coursename}}">
-        <control-messages [control]="bookonlineForm.controls.name"></control-messages>
+        <control-messages [control]="bookForm.controls.name"></control-messages>
     </div>
 
     <div>
       <label>Email*</label>
       <input formControlName="email" type="text">
-      <control-messages [control]="bookonlineForm.controls.email"></control-messages>
+      <control-messages [control]="bookForm.controls.email"></control-messages>
     </div>
 
     <div>
       <label>Phone*</label>
       <input formControlName="phone" type="text" maxlength="10" pattern="[0-9]+">
-      <control-messages [control]="bookonlineForm.controls.phone"></control-messages>
+      <control-messages [control]="bookForm.controls.phone"></control-messages>
     </div>
 
     <!--<div class="checkbox">
@@ -64,6 +64,6 @@
       <label>Would you like to create a user?</label> 
       <input type="checkbox" formControlName="create" name="create" id="create" />
     </div>
-    <button type="submit" [disabled]="!bookonlineForm.valid">Submit</button>
+    <button type="submit" [disabled]="!bookForm.valid">Submit</button>
   </form>
 </div>

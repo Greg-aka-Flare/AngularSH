@@ -136,6 +136,10 @@ export class CourseComponent implements OnInit, OnDestroy {
 
     //this.subscriptions.add();
   }
+  
+  ngOnDestroy(){
+    this.subscriptions.unsubscribe();
+  }
 
   onSelect(val){
     this.selectedSemester = this.semesterArray.filter(x => x.id == val);
@@ -143,9 +147,9 @@ export class CourseComponent implements OnInit, OnDestroy {
  
   private removeLastSlide() {
     this.slides.pop();
-  } 
-  
-  ngOnDestroy(){
-    this.subscriptions.unsubscribe();
+  }
+
+  booked(isBooked: boolean) {
+
   }
 }

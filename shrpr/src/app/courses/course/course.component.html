@@ -1,6 +1,7 @@
 <course-book 
   *ngIf="course"
   [course]="course"
+  (onBooked)="booked($event)"
 >
 </course-book>
 
