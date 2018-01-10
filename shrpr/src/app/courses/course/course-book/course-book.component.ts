@@ -2,21 +2,21 @@ import {  Component, OnInit, OnDestroy, Input, Pipe, PipeTransform} from '@angul
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ValidationService } from '../../core/validation.service';
-import { ControlMessagesComponent } from '../../shared/control-messages/control-messages.component';
-import { UserInterface } from '../../core/user.interface';
-import { UserService } from '../../core/user.service';
-import { AuthService } from '../../auth/auth.service';
+import { ValidationService } from '../../../core/validation.service';
+import { ControlMessagesComponent } from '../../../shared/control-messages/control-messages.component';
+import { UserInterface } from '../../../core/user.interface';
+import { UserService } from '../../../core/user.service';
+import { AuthService } from '../../../auth/auth.service';
 import { Observable } from 'rxjs/Observable';
-import { CourseService } from "../../courses/course.service";
+import { CourseService } from "../../../courses/course.service";
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-book-online-form',
-  templateUrl: './book-online-form.component.html',
-  styleUrls: ['./book-online-form.component.css']
+  selector: 'app-course-book',
+  templateUrl: './course-book.component.html',
+  styleUrls: ['./course-book.component.css']
 })
-export class BookOnlineFormComponent implements OnInit {
+export class CourseBookComponent implements OnInit {
 
   private emailTimeout;
   courseId;
