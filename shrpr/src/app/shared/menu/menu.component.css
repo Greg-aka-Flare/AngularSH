@@ -76,7 +76,9 @@ header :host>ul li.has_child>a {
 header :host>ul li ul li a {
     padding: 0 20px 0 40px;
 }
-
+header :host>ul > li:last-child {
+    padding: 10px 20px;
+}
 @media only screen and (min-width: 60em) {
     header :host {
         background: none;
@@ -95,7 +97,7 @@ header :host>ul li ul li a {
         text-align: right;
     }
     header :host>ul li,
-    header :host>ul li.has_child {
+    header :host>ul li.has_child, header :host>ul > li:last-child {
         border: none;
         display: inline-block;
         padding: 39px 1.5% 37px;
