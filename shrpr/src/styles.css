@@ -792,6 +792,36 @@ carousel {
 .location a:hover {
     color:#e7aa62;
 }
+/*** Popup ***/
+.lightbox {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(255, 255, 255, 0.7);
+	z-index: 99999;
+}
+.pop-up{
+	position: relative;
+}
+.pop-up a.close{
+	background-color: #fafafa;
+	border: 1px solid #ccc;
+	border-radius: 20px;
+	cursor: pointer;
+	display: block;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	line-height: 22px;
+	height: 25px;
+	text-align: center;
+	width: 25px;
+}
+.pop-up a.close:hover{
+	background-color: #fff;
+}
 /* =============================================================================
    Medium SCREEN STYLES [Tab VIEW] START
   ============================================================================= */
