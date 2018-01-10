@@ -1,4 +1,4 @@
-import {  Component, OnInit, OnDestroy, Input, Pipe, PipeTransform} from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Pipe, PipeTransform} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -12,14 +12,15 @@ import { CourseService } from "../../../courses/course.service";
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-course-book',
+  selector: 'course-book',
   templateUrl: './course-book.component.html',
   styleUrls: ['./course-book.component.css']
 })
 export class CourseBookComponent implements OnInit {
 
+  @Input('course') course: any;
+
   private emailTimeout;
-  courseId;
   loggedIn: boolean = false;
   menu: boolean = true;
   search: boolean = true;
@@ -27,7 +28,6 @@ export class CourseBookComponent implements OnInit {
   private subscriptions = new Subscription();
   bookonlineForm: any;
   data: any = {};
-  course: any;
   coursename:string;
 
   constructor( 
@@ -40,16 +40,6 @@ export class CourseBookComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
-    this.subscriptions.add(this.route.params.subscribe((params: Params) => {
-      this.courseId = params['id'];
-
-      this.courseService.getCourse(this.courseId).subscribe(course => {
-        this.course = course;
-        this.coursename = this.course.title;
-      })
-
-    }));
 
     this.bookonlineForm = this.fb.group({
       'name': ['', [Validators.required, ValidationService.alphabetsValidator]],
@@ -84,7 +74,7 @@ export class CourseBookComponent implements OnInit {
   updateBookonline(){
 
     //set course id
-    this.data.course_id = this.courseId;
+    this.data.course_id = this.course.id;
 
     //not logged in
     if(!this.loggedIn){
@@ -114,19 +104,11 @@ export class CourseBookComponent implements OnInit {
          this.onSucces = false;
         //logged in, navigate home
         if(this.loggedIn || !this.data.create) {
-          setTimeout(()  => {
-              this.router.navigateByUrl('/courses/' + this.courseId); 
-            }, 2000);
-          //back to course
         }
         else { //not logged in, go to signup/login screen
           this.router.navigateByUrl('login');
         }
       }
     )
-  }
-
-  ngOnDestroy(){
-    this.subscriptions.unsubscribe();
   }
 }
