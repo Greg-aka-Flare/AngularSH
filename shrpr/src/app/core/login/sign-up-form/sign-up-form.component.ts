@@ -95,7 +95,7 @@ export class SignUpFormComponent implements OnInit {
             error => { 
               console.log(error);
               this.signupError = true;
-              this.signupErrorText = 'Unable to sign-in due account settings';
+              this.signupErrorText = 'Unable to sign-in due to account settings';
             }
           );
           break;
@@ -106,7 +106,7 @@ export class SignUpFormComponent implements OnInit {
             error => { 
               console.log(error);
               this.signupError = true;
-              this.signupErrorText = 'Unable to sign-in due account settings';
+              this.signupErrorText = 'Unable to sign-in due to account settings';
             } 
           );
           break;
@@ -117,7 +117,7 @@ export class SignUpFormComponent implements OnInit {
             error => { 
               console.log(error);
               this.signupError = true;
-              this.signupErrorText = 'Unable to sign-in due account settings';
+              this.signupErrorText = 'Unable to sign-in due to account settings';
             } 
           );
           break;
