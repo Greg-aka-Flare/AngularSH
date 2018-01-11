@@ -1,7 +1,10 @@
 <section class="page-conent-area">
   <h1>Your Course Information</h1>
   <section id="course-add-container">
-      <div class="formHeader"><a href="javascript:void(0);" (click)="prevSlide()" class="courseFormBtn" *ngIf="slideNo > 1">< Back</a><span>{{slideNo}} / {{lastSlideNo}}</span></div>
+      <div class="formHeader">
+        <a href="javascript:void(0);" (click)="prevSlide()" class="courseFormBtn" *ngIf="slideNo > 1">< Back</a>
+        <a [routerLink]="['/instructor', 2]">Skip for Now</a>
+        <span>{{slideNo}} / {{lastSlideNo}}</span></div>
       <div #panel class="course-form-box">
         <div class="courseFormPage">
         <form name="instructorCourseForm" [formGroup]="instructorCourseForm">

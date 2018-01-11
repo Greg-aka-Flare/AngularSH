@@ -83,6 +83,26 @@
 button.view-more-btn:disabled {
     display: none;
 }
+
+.add-course-btn {
+    float: right;
+    background-color: #196e32;
+    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    color: #ffffff;
+    font-family: 'circularstd book';
+    font-size: 16px;
+    text-decoration: none;
+    line-height: 18px;
+    max-width: 138px;
+    padding: 6px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+.add-course-btn:hover {
+    opacity:0.8;
+}
+
 @media only screen and (min-width: 767px) {
 :host /deep/ tabs .tabs tab > div {
     padding: 10PX;
