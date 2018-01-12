@@ -49,7 +49,12 @@ export class InstructorComponent implements OnInit, OnDestroy {
   goTo(location: string): void {
     window.location.hash = location;
   }
-  constructor(private instructorService: InstructorService, private route: ActivatedRoute, private courseService: CourseService,  private auth: AuthService) { 
+  constructor(
+    private instructorService: InstructorService, 
+    private route: ActivatedRoute, 
+    private courseService: CourseService,  
+    private auth: AuthService
+  ) { 
 
     let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.myid = params['id'];

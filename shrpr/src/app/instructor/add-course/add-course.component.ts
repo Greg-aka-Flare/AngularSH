@@ -7,6 +7,10 @@ import { Router } from "@angular/router";
 import { ValidationService } from '../../core/validation.service';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
+import { Instructor } from '../instructor.interface';
+import { InstructorService } from '../instructor.service';
+
+
 
 @Component({
   selector: 'app-add-course',
