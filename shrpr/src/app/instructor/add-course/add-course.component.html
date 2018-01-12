@@ -7,7 +7,7 @@
           <form name="instructorCourseForm" [formGroup]="instructorCourseForm">
             <div class="formRow">
               <label for="courseTitle">Title*</label>
-              <input type="text" formControlName="courseTitleText" id="courseTitle" placeholder="Course Title">
+              <input type="text" formControlName="courseTitleText" id="courseTitle" placeholder="Course Title" value="instructor.name">
               <control-messages [control]="instructorCourseForm.controls.courseTitleText"></control-messages>
             </div>
             <div class="formRow">

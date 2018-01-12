@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, NgModule, Renderer, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgModule, Renderer, NgZone, Input } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
 import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
@@ -21,7 +21,8 @@ export class AddCourseComponent implements OnInit {
   
   instructorCourseForm: FormGroup;
   semesterInfoForm: FormGroup;
-  
+
+  @Input('instructor') instructor: any;
   
   semesterDetailForm: FormGroup;
   sessionArray: any[] = [];
