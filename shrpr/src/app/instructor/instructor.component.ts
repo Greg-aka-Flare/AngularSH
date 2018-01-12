@@ -44,6 +44,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
   counter:number = 0;
   loggedIn: boolean = false;
   details:any;
+  showDialog:boolean;
   
   width = document.documentElement.clientWidth;
   goTo(location: string): void {
@@ -69,6 +70,8 @@ export class InstructorComponent implements OnInit, OnDestroy {
       this.width = data;
 
     }));
+
+    this.showDialog = false;
     
   }
   
@@ -103,10 +106,11 @@ export class InstructorComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.instructorService.getInstructor(this.myid)
      .subscribe(
-       (response) => {
-        this.instructors = response;
+       (instructors) => {
+
+        this.instructors = instructors;
         this.ratingData = this.instructors.ratings;
-        this.details = JSON.parse(response.details);
+        this.details = JSON.parse(instructors.details);
         this.reviewCount = this.ratingData.length;
         this.loopCounter = this.reviewCount+1;
         for(var k=0; k < this.reviewCount; k++){

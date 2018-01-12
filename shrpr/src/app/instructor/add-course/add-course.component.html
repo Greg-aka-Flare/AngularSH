@@ -1,4 +1,4 @@
-    <section id="course-add-container">
+    <section id="course-add-container" *ngIf="instructors" >
         <div class="formHeader">
           <a href="javascript:void(0);" (click)="prevSlide()" class="courseFormBtn" *ngIf="slideNo > 1">< Back</a>
           <span>{{slideNo}} / {{lastSlideNo}}</span></div>
@@ -7,7 +7,10 @@
           <form name="instructorCourseForm" [formGroup]="instructorCourseForm">
             <div class="formRow">
               <label for="courseTitle">Title*</label>
-              <input type="text" formControlName="courseTitleText" id="courseTitle" placeholder="Course Title" value="instructor.name">
+              <input type="text" formControlName="courseTitleText" id="courseTitle" placeholder="Course Title" value="instructor[0].dob">
+              <!--<input type="hidden" formControlName="instructorId" value="{{instructors.id}}">
+              <input type="hidden" formControlName="instructorName" value="{{instructors.name}}">
+              <input type="hidden" formControlName="instructorEmail" value="{{instructors.email}}">-->
               <control-messages [control]="instructorCourseForm.controls.courseTitleText"></control-messages>
             </div>
             <div class="formRow">

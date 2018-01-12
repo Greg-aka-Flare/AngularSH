@@ -72,7 +72,7 @@
 
     <app-modal [(visible)]="showDialog">
         <h2>Add New Course</h2>
-        <app-add-course></app-add-course>
+        <app-add-course [instructors]="instructors"></app-add-course>
         
         <!--<button (click)="showDialog = !showDialog" class="btn">Close</button>-->
       </app-modal>

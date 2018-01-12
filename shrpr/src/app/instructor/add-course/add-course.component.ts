@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, NgModule, Renderer, NgZone, Input } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, ElementRef, NgModule, Renderer, NgZone, Input, EventEmitter } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
 import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
@@ -22,7 +22,7 @@ export class AddCourseComponent implements OnInit {
   instructorCourseForm: FormGroup;
   semesterInfoForm: FormGroup;
 
-  @Input('instructor') instructor: any;
+  @Input('instructors') instructors: any;
   
   semesterDetailForm: FormGroup;
   sessionArray: any[] = [];
@@ -41,11 +41,10 @@ export class AddCourseComponent implements OnInit {
 
   @ViewChild("search") public searchElementRef: ElementRef;
   searchControl: FormControl;
-
   location: string = '';
   dataService: CompleterData;
-  
 
+  
   slideNo: number = 1;
   lastSlideNo:number = 3;
   prevPos: string = '';
@@ -94,6 +93,7 @@ export class AddCourseComponent implements OnInit {
        
     });
     
+    //console.log(this.instructors.id)
    
     this.searchControl = new FormControl();
     this.setCurrentPosition();
@@ -208,8 +208,20 @@ export class AddCourseComponent implements OnInit {
   instructorCourseSubmit() {
       let groupText: Array<{id: number, label: string}> = [];
       let categoryText: Array<{id: number, name: string, parent: number}> = [];
+      let instructorText: Array<{id: number, name: string, email: string}> = [];
+
+      this.instructors.id
       
       this.data.title = this.instructorCourseForm.value.courseTitleText;
+
+      instructorText.push({
+        "id" : this.instructors.id,
+        "name" : this.instructors.name,
+        "email" : this.instructors.email
+      });
+
+      this.data.instructor = instructorText;
+      
       let grouptid = this.instructorCourseForm.value.courseGroupSelect;
       
       let parentId =  this.instructorCourseForm.value.courseCategorySelect;
@@ -327,6 +339,5 @@ export class AddCourseComponent implements OnInit {
   }  
   submitAllFormData(){
     console.log(this.data);
-    this.router.navigateByUrl('instructor/2');
   }
 }
