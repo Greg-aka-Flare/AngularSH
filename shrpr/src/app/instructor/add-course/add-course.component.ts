@@ -1,24 +1,28 @@
-import { Component, OnInit, ViewChild, ElementRef, NgModule, Renderer, NgZone } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, ElementRef, NgModule, Renderer, NgZone, Input, EventEmitter } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
 import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
 import * as moment from 'moment';
 import { Router } from "@angular/router";
-import { ValidationService } from '../../../core/validation.service';
+import { ValidationService } from '../../core/validation.service';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
-@Component({
-  selector: 'app-instructor-course',
-  templateUrl: './instructor-course.component.html',
-  styleUrls: ['./instructor-course.component.css']
-})
-export class InstructorCourseComponent implements OnInit {
+import { Instructor } from '../instructor.interface';
+import { InstructorService } from '../instructor.service';
 
-  
+
+
+@Component({
+  selector: 'app-add-course',
+  templateUrl: './add-course.component.html',
+  styleUrls: ['./add-course.component.css']
+})
+export class AddCourseComponent implements OnInit {
   
   instructorCourseForm: FormGroup;
   semesterInfoForm: FormGroup;
-  
+
+  @Input('instructors') instructors: any;
   
   semesterDetailForm: FormGroup;
   sessionArray: any[] = [];
@@ -37,11 +41,10 @@ export class InstructorCourseComponent implements OnInit {
 
   @ViewChild("search") public searchElementRef: ElementRef;
   searchControl: FormControl;
-
   location: string = '';
   dataService: CompleterData;
-  
 
+  
   slideNo: number = 1;
   lastSlideNo:number = 3;
   prevPos: string = '';
@@ -58,7 +61,6 @@ export class InstructorCourseComponent implements OnInit {
   state: string;
   zip: string;
   country: string;
-  
 
   constructor(
     public renderer: Renderer,
@@ -66,9 +68,7 @@ export class InstructorCourseComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private router: Router
-  ) {
-      
-   }
+  ) { }
 
   ngOnInit() {
 
@@ -93,6 +93,7 @@ export class InstructorCourseComponent implements OnInit {
        
     });
     
+    //console.log(this.instructors.id)
    
     this.searchControl = new FormControl();
     this.setCurrentPosition();
@@ -207,8 +208,20 @@ export class InstructorCourseComponent implements OnInit {
   instructorCourseSubmit() {
       let groupText: Array<{id: number, label: string}> = [];
       let categoryText: Array<{id: number, name: string, parent: number}> = [];
+      let instructorText: Array<{id: number, name: string, email: string}> = [];
+
+      this.instructors.id
       
       this.data.title = this.instructorCourseForm.value.courseTitleText;
+
+      instructorText.push({
+        "id" : this.instructors.id,
+        "name" : this.instructors.name,
+        "email" : this.instructors.email
+      });
+
+      this.data.instructor = instructorText;
+      
       let grouptid = this.instructorCourseForm.value.courseGroupSelect;
       
       let parentId =  this.instructorCourseForm.value.courseCategorySelect;
@@ -326,6 +339,5 @@ export class InstructorCourseComponent implements OnInit {
   }  
   submitAllFormData(){
     console.log(this.data);
-    this.router.navigateByUrl('instructor/2');
   }
 }

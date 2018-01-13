@@ -271,7 +271,7 @@
         <control-messages [control]="scheduleFreeDemoform.controls.countryCode"></control-messages>
       </div>
       <div>
-        <input placeholder="Phone*" formControlName="phone" type="text">
+        <input placeholder="Phone*" formControlName="phone" type="text" maxlength="10" pattern="[0-9]+">
         <control-messages [control]="scheduleFreeDemoform.controls.phone"></control-messages>
       </div>
       <div class="fullwidth"><span>Select Organization Size*</span>

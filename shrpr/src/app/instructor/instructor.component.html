@@ -68,7 +68,15 @@
   </tabs><!-- #Tab -->
   <!-- desktop view -->
   <section *ngIf="width > 767" id="desktopcourses">
-    <h2>Courses</h2>
+    <h2>Courses <a href="javascript:void(0)" (click)="showDialog = !showDialog" class="add-course-btn">Add Course</a></h2>
+
+    <app-modal [(visible)]="showDialog">
+        <h2>Add New Course</h2>
+        <app-add-course [instructors]="instructors"></app-add-course>
+        
+        <!--<button (click)="showDialog = !showDialog" class="btn">Close</button>-->
+      </app-modal>
+
     <h3>Upcoming Events with {{instructors?.name}}</h3>
     <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
       <div class="img-ctn">

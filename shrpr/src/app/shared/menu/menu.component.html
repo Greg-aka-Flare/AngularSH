@@ -39,6 +39,8 @@
   </li>  
 
   <li *ngIf="loggedIn">
-    Hi, {{ name }} <span>(<a (click)="logout()">Logout</a>)</span>
+      
+      <a [routerLink]="[myrole, myid]">Hi, {{ name }}</a> <span>(<a (click)="logout()">Logout</a>)</span>
   </li>
+  
 </ul>

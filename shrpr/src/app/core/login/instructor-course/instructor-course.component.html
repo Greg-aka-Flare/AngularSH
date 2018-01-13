@@ -1,7 +1,10 @@
 <section class="page-conent-area">
   <h1>Your Course Information</h1>
   <section id="course-add-container">
-      <div class="formHeader"><a href="javascript:void(0);" (click)="prevSlide()" class="courseFormBtn" *ngIf="slideNo > 1">< Back</a><span>{{slideNo}} / {{lastSlideNo}}</span></div>
+      <div class="formHeader">
+        <a href="javascript:void(0);" (click)="prevSlide()" class="courseFormBtn" *ngIf="slideNo > 1">< Back</a>
+        <a [routerLink]="['/instructor', 2]">Skip for Now</a>
+        <span>{{slideNo}} / {{lastSlideNo}}</span></div>
       <div #panel class="course-form-box">
         <div class="courseFormPage">
         <form name="instructorCourseForm" [formGroup]="instructorCourseForm">
@@ -102,6 +105,17 @@
                 >
                 <control-messages [control]="semesterInfoForm.controls.searchControl"></control-messages>
             </div>
+            <div class="formRow">
+                <label for="coursePrimaryPhoto">Primary Photo</label>
+                <input type="file" id="coursePrimaryPhoto" formControlName="coursePrimaryPhoto" accept="image/x-png,image/gif,image/jpeg">
+                <control-messages [control]="semesterInfoForm.controls.coursePrimaryPhoto"></control-messages>
+            </div>
+             <div class="formRow">
+              <label for="courseSecondaryPhoto">Secondary Photo</label>
+              <input type="file" id="courseSecondaryPhoto" formControlName="courseSecondaryPhoto" accept="image/x-png,image/gif,image/jpeg">
+              <control-messages [control]="semesterInfoForm.controls.courseSecondaryPhoto"></control-messages>
+              
+             </div>
             <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Submit</button></div>
             </form>
           </div><!-- course Form Page Two-->
@@ -120,7 +134,7 @@
                   </tr>
                   <tr *ngFor="let session of sessionArray; let i = index" >
                     <td>{{i+1}}</td>
-                    <td><input type="date" name="courseStartDateText{{i+1}}" value="{{session?.sessionDate}}" (input)="onInput(session?.sessionDate.value)"></td>
+                    <td><input type="date" name="courseStartDateText{{i+1}}" value="{{session?.sessionDate}}" (input)="onInput(session?.sessionDate.value)" readonly></td>
                     <td><input type="time" name="courseStartTimeText{{i+1}}" value="{{session?.startTime}}" readonly></td>
                     <td><input type="time" name="courseEndTimeText{{i+1}}" value="{{session?.endTime}}" readonly></td>
                   </tr>
@@ -130,22 +144,7 @@
               <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterDetailForm.valid">Submit</button></div>
               </form> 
             </div><!-- course Form Page Three-->
-            <div class="courseFormPage">
-              <form name="semesterPhotoForm" [formGroup]="semesterPhotoForm">
-                <div class="formRow">
-                  <label for="coursePrimaryPhoto">Primary Photo</label>
-                  <input type="file" id="coursePrimaryPhoto" formControlName="coursePrimaryPhoto">
-                  
-               </div>
-               <div class="formRow">
-                <label for="courseSecondaryPhoto">Secondary Photo</label>
-                <input type="file" id="courseSecondaryPhoto" formControlName="courseSecondaryPhoto">
-                
-             </div>
-
-                <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterPhotoForm.valid">Submit</button></div>
-                </form> 
-              </div><!-- course Form Page four-->
+            
       </div>
   </section>
   </section>
