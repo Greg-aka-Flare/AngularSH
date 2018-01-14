@@ -1,10 +1,9 @@
 <app-template>
   <article *ngIf="students">
-  <section id="profile-header" *ngIf="!isUpdate">
-      <a href="javascript:void(0)" (click)="showDialog = !showDialog" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+  <section id="profile-header">
       <div class="profile-picture">
-        <img *ngIf="!students?.profile_img" src="../../assets/img/students-picture.png" alt="" title="">
-        <img *ngIf="students?.profile_img" src="../../assets/img/{{students?.profile_img}}" alt="" title="">
+        <img *ngIf="!students?.profile_img" src="../../assets/img/students-picture.png">
+        <img *ngIf="students?.profile_img" src="../../assets/img/{{ students?.profile_img }}">
         <div class="social-icon">
           <a *ngIf="details?.yelp.length > 0" href="{{details?.yelp}}" target="_blank" title="Yelp"><i class="fa fa-yelp" aria-hidden="true"></i></a>
           <a *ngIf="details?.twitter.length > 0" href="{{details?.twitter}}" target="_blank" title="Twitter"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
@@ -20,62 +19,15 @@
         <!--<div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp> |  <a href="/student/{{students?.id}}#reviews">33 reviews</a></div>-->
       </div>
     </section>
-    <app-modal [(visible)]="showDialog">
-      <h2>Profile Edit Form</h2>
-      <div class="edit-form">
-        <form id="studentProfile" [formGroup]="studentProfileForm" (ngSubmit)="updateProfile()">  
-        <div class="form-row">
-        <label>Name:</label>
-            <input type="text" formControlName="name" [(ngModel)]="students.name" />
-            <control-messages [control]="studentProfileForm.controls.name"></control-messages>
-        </div>
-          <div class="form-row">
-              <label>Update Profile Picture:</label>
-                <input type="file" formControlName="profileImage" accept="image/x-png,image/gif,image/jpeg" />
-           </div>
-          <h2>Update Social Link</h2>
-          <div class="form-row">
-            <label>URL:</label>
-              <input type="text" formControlName="url"/>
-          </div>
-          <div class="form-row">
-          <label>Yelp Link:</label>
-            <input type="text" formControlName="yelp"/>
-        </div>
-        <div class="form-row">
-          <label>Twitter Link:</label>
-            <input type="text" formControlName="twitter"/>
-        </div>
-        <div class="form-row">
-          <label>Facebook Link:</label>
-            <input type="text" formControlName="facebook"/>
-        </div>
-        <div class="form-row">
-          <label>LinkedIn Link:</label>
-            <input type="text" formControlName="linkedIn"/><br>
-        </div>
-        <div class="form-row">
-          <label>Pinterest Link:</label>
-            <input type="text" formControlName="pinterest"/>
-        </div>
-        <div class="form-row">
-          <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
-          <button class="btn btn-default" (click)="showDialog = !showDialog"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-        </div>  
-        </form>
-      </div>
-      <!--<button (click)="showDialog = !showDialog" class="btn">Close</button>-->
-    </app-modal>
 
      <!-- #profile header -->
     <tabs *ngIf="width < 768" >
       <tab tabTitle="Courses">
-        <h3><a [routerLink]="['/courses/list/all']">Click here to start your journey</a></h3>
         <article class="card-box" *ngFor="let coursed of students?.courses">
               <div class="img-ctn">
                   <figure>
-                      <a [routerLink]="['/course', coursed?.id]"><img *ngIf="coursed?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ coursed?.semesters[0]?.primary_img }}" alt="" title="">
-                      <img *ngIf="!coursed?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
+                      <a [routerLink]="['/course', coursed?.id]"><img *ngIf="coursed?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ coursed?.semesters[0]?.primary_img }}">
+                      <img *ngIf="!coursed?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg"></a>
                   </figure>
                   <h3>{{coursed?.title}}</h3>
               </div>
@@ -88,22 +40,7 @@
       </tab>
       <tab tabTitle="ABOUT">
           <div class="contact_box">
-              <a href="javascript:void(0)" (click)="isEditAbout = !isEditAbout" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
         <p>{{details?.description}}</p>
-        <app-modal [(visible)]="isEditAbout">    
-            <h2>Edit Your Description</h2>
-            <div class="edit-form">
-            <form id="studentDescription" [formGroup]="studentDescriptionForm" (ngSubmit)="updatestudentDescription()">  
-              <div class="form-row">
-              <label>Description:</label>
-                  <textarea cols="30" rows="10"  formControlName="description"></textarea>
-                  <control-messages [control]="studentDescriptionForm.controls.description"></control-messages>
-              </div>
-              <button type="submit" class="btn btn-primary" [disabled]="!studentDescriptionForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
-              <button class="btn btn-default" (click)="isEditAbout = !isEditAbout"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-              </form>
-            </div>
-          </app-modal>
         </div>
       </tab>
       <tab tabTitle="CONTACT">
@@ -118,69 +55,18 @@
                 Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
                 </div>
                 </address>
-                <a href="javascript:void(0)" (click)="isEdit = !isEdit" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                <app-modal [(visible)]="isEdit">    
-                    <h2>Edit Your Description</h2>
-                    <div class="edit-form">
-                        <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
-                        <div class="form-row">
-                        <label>Street Address:</label>
-                            <input type="text" formControlName="addressStreet" />
-                            <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>City:</label>
-                            <input type="text" formControlName="addressCity" />
-                            <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
-                          </div>
-                          <div class="form-row">
-                          <label>State:</label>
-                            <input type="text" formControlName="addressState"/>
-                            <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>Zip:</label>
-                            <input type="text" formControlName="addressZip" pattern="[0-9]+"/>
-                            <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>Country:</label>
-                            <input type="text" formControlName="addressCountry"/>
-                            <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>Phone:</label>
-                            <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" /><br>
-                            <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>Email:</label>
-                            <input type="text" formControlName="addressEmail"/>
-                            <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
-                          <button class="btn btn-default" (click)="isEdit = !isEdit"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                        </div>  
-                        </form>
-                        </div>
-                  </app-modal>
-                
-                
-                
               </div>
       </tab>
     </tabs><!-- #Tab -->
       <!-- desktop view -->
       <section *ngIf="width > 767" id="desktopcourses">
         <h2>Courses</h2>
-        <h3><a [routerLink]="['/courses/list/all']">Click here to start your journey</a></h3>
           <article class="card-box" *ngFor="let coursed of students?.courses">
                 <div class="img-ctn">
                     <!--<div class="price">${{coursed.id}}</div>-->
                     <figure>
-                        <a [routerLink]="['/course', coursed?.id]"><img *ngIf="coursed?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ coursed?.semesters[0]?.primary_img }}" alt="" title="">
-                        <img *ngIf="!coursed?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
+                        <a [routerLink]="['/course', coursed?.id]"><img *ngIf="coursed?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ coursed?.semesters[0]?.primary_img }}">
+                        <img *ngIf="!coursed?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg"></a>
                     </figure>
                     <h3>{{coursed?.title}}</h3>
                 </div>
@@ -194,23 +80,10 @@
                   <a [routerLink]="['/course', coursed?.id]"  class="page-cta">View Course</a>
                 </div>
             </article>
-        <h2>ABOUT <a href="javascript:void(0)" (click)="isEditAbout = !isEditAbout" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
+        <h2>ABOUT</h2>
         <p>{{details?.description}}</p>
-        <app-modal [(visible)]="isEditAbout">    
-            <h2>Edit Your Description</h2>
-            <div class="edit-form">
-            <form id="studentDescription" [formGroup]="studentDescriptionForm" (ngSubmit)="updatestudentDescription()">  
-              <div class="form-row">
-                  <textarea cols="30" rows="10"  formControlName="description"></textarea>
-                  <control-messages [control]="studentDescriptionForm.controls.description"></control-messages>
-              </div>
-              <button type="submit" class="btn btn-primary" [disabled]="!studentDescriptionForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
-              <button class="btn btn-default" (click)="isEditAbout = !isEditAbout"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-              </form>
-            </div>
-          </app-modal>
         
-        <h2>CONTACT <a href="javascript:void(0)" (click)="isEdit = !isEdit" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
+        <h2>CONTACT</h2>
         <div class="contact_box">
             <address *ngFor="let address of students?.addresses">
                 <div><strong *ngIf="students?.addresses > 1">{{ address?.type }}</strong><br>
@@ -221,54 +94,4 @@
                 Phone: <a href="tel:{{ students?.phone }}">{{ students?.phone }}</a><br>
                 Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
                 </div>
-                </address>
-
-                <app-modal [(visible)]="isEdit">    
-                    <h2>Edit Your Contact Information</h2>
-                    <div class="edit-form">
-                        <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
-                        <div class="form-row">
-                        <label>Street Address:</label>
-                            <input type="text" formControlName="addressStreet" />
-                            <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>City:</label>
-                            <input type="text" formControlName="addressCity" />
-                            <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
-                          </div>
-                          <div class="form-row">
-                          <label>State:</label>
-                            <input type="text" formControlName="addressState"/>
-                            <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>Zip:</label>
-                            <input type="text" formControlName="addressZip" pattern="[0-9]+"/>
-                            <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>Country:</label>
-                            <input type="text" formControlName="addressCountry"/>
-                            <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>Phone:</label>
-                            <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" /><br>
-                            <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>Email:</label>
-                            <input type="text" formControlName="addressEmail"/>
-                            <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
-                          <button class="btn btn-default" (click)="isEdit = !isEdit"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                        </div>  
-                        </form>
-                        </div>
-                  </app-modal>
-
-
-                </div></section></article></app-template>
+                </address></div></section></article></app-template>

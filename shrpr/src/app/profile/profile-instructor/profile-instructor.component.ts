@@ -18,12 +18,12 @@ import { AuthService } from './../../auth/auth.service';
 
 
 @Component({
-  selector: 'app-instructor',
-  templateUrl: './instructor.component.html',
-  styleUrls: ['./instructor.component.css']
+  selector: 'profile-instructor',
+  templateUrl: './profile-instructor.component.html',
+  styleUrls: ['./profile-instructor.component.css']
 })
 
-export class InstructorComponent implements OnInit, OnDestroy {
+export class ProfileInstructorComponent implements OnInit, OnDestroy {
   instructors:any;
   courses: any;
   courseCard:any[] = [];

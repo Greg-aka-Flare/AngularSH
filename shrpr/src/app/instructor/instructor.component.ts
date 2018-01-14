@@ -13,7 +13,6 @@ import { Course } from "../courses/course.interface";
 import { CourseService } from "../courses/course.service";
 import { Instructor } from "./instructor.interface";
 import { InstructorService } from "./instructor.service";
-import { AuthService } from './../auth/auth.service';
 
 
 @Component({
@@ -41,7 +40,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
   reviewshowHide:boolean = false;
   instructorCourse:any[]=new Array();
   counter:number = 0;
-  loggedIn: boolean = false;
   details:any;
   showDialog:boolean;
   
@@ -52,8 +50,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
   constructor(
     private instructorService: InstructorService, 
     private route: ActivatedRoute, 
-    private courseService: CourseService,  
-    private auth: AuthService
+    private courseService: CourseService
   ) { 
 
     let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
@@ -75,7 +72,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
-    this.loggedIn = this.auth.loggedIn();
     this.subscriptions.add(this.courseService.getCourses()
     .subscribe(
       (courses) => {

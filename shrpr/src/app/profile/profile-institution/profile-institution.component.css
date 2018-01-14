@@ -14,7 +14,7 @@
     line-height: 1em;
     color: #414141;
     padding: 50px 5px 14px;
-    background-image: url('../../assets/img/search-input.png');
+    background-image: url('../../../assets/img/search-input.png');
     background-repeat: no-repeat;
     background-position: center 15px;
     background-size: 25px auto;
@@ -24,12 +24,12 @@
     background-color: #cccccc;
 }
 :host /deep/ tabs .tabs ul li:nth-of-type(2) {
-    background-image: url('../../assets/img/about-tab-bg.png');
+    background-image: url('../../../assets/img/about-tab-bg.png');
     background-position: center 13px;
     background-size: auto;
 }
 :host /deep/ tabs .tabs ul li:nth-of-type(3) {
-    background-image: url('../../assets/img/contact-tab-bg.png');
+    background-image: url('../../../assets/img/contact-tab-bg.png');
     background-position: center 19px;
     background-size: auto;
 }
