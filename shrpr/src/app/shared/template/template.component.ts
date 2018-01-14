@@ -57,7 +57,6 @@ export class TemplateHeader implements OnInit, OnDestroy {
       this.subscriptions.add($resizeEvent.subscribe(data => {
       this.width = data;
     }));
-
     
     window.onscroll = () => {
       zone.run(() => {
@@ -76,14 +75,11 @@ export class TemplateHeader implements OnInit, OnDestroy {
       });
     }
   }
-  
 
   ngOnInit() {
-
     this.subscription = this.curious.likeCounter().subscribe((count) => {
       this.counter = count;
     });
-
   }
 
   ngOnDestroy(){
@@ -93,7 +89,6 @@ export class TemplateHeader implements OnInit, OnDestroy {
   toggleMenu() {
     this.isBtnActive = !this.isBtnActive;
   }
-
 }
 
 @Component({

@@ -79,6 +79,7 @@ export class AuthService {
   logout() {
     //remove access token from local storage
     localStorage.removeItem('access_token');
+    localStorage.removeItem('name');
 
     //redirect to login page
     this.router.navigateByUrl('login');

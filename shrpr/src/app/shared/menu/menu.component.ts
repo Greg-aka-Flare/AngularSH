@@ -11,15 +11,11 @@ export class MenuComponent implements OnInit {
 
   loggedIn: boolean = false;
   name: string = localStorage.getItem('name');
-  myrole: string;
-  myid:number;
 
   constructor(
     private auth: AuthService,
     private templateHeader: TemplateHeader 
-  ) {
-    
-  }
+  ) {}
   
   ngOnInit() {
 
@@ -32,10 +28,7 @@ export class MenuComponent implements OnInit {
 
         //set name
         this.name = (result.first) ? result.first : result.name;
-        //check user type
-        this.myrole = '/'+result.roles[0];
-        //check user id
-        this.myid = result.id;
+        
         //set in local storage
         localStorage.setItem('name', this.name);
       });
