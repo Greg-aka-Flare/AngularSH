@@ -29,7 +29,7 @@ import { AuthService } from '../auth/auth.service';
 import { InstructorService } from '../instructor/instructor.service';
 import { InstitutionService } from "../institution/institution.service";
 import { CourseService } from '../courses/course.service';
-import { LikeService } from './like.service';
+import { CuriousService } from './curious.service';
 import { UserService } from './user.service';
 import { ValidationService } from '../core/validation.service';
 import { TermsComponent } from './login/terms/terms.component';
@@ -70,7 +70,7 @@ import { PrivacyComponent } from './login/privacy/privacy.component';
     InstructorService,
     InstitutionService,
     CourseService,
-    LikeService,
+    CuriousService,
     UserService,
     ValidationService
   ]

@@ -4,7 +4,7 @@ import { Response } from "@angular/http";
 
 import { Course } from '../../../courses/course.interface';
 import { CourseService } from '../../../courses/course.service';
-import { LikeService } from '../../like.service';
+import { CuriousService } from '../../curious.service';
 import { Subscription } from 'rxjs/Subscription';
 import { StarRatingModule } from 'angular-star-rating';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -70,7 +70,7 @@ export class CuriousMobileComponent implements OnInit {
   loggedIn: boolean = false;
   constructor(
     private courseService: CourseService, 
-    private likeService: LikeService,
+    private curious: CuriousService,
     private auth: AuthService
   ) {}
 
@@ -84,7 +84,7 @@ export class CuriousMobileComponent implements OnInit {
       this.courses = courses;
     }));
 
-    this.subscriptions.add(this.likeService.getCounter().subscribe((count) => {
+    this.subscriptions.add(this.curious.likeCounter().subscribe((count) => {
       this.counter = count;
     }));
     
@@ -117,7 +117,7 @@ export class CuriousMobileComponent implements OnInit {
       course.state = 'like';
 
       //increment like counter
-      this.likeService.likeCounter(course.id);
+      this.curious.like(course.id);
 
       //add new course
       this.addNewCourse(course, i);
@@ -132,7 +132,7 @@ export class CuriousMobileComponent implements OnInit {
       course.state = 'dislike';
 
       //increment like counter
-      this.likeService.dislikeCounter(course.id);
+      this.curious.dislike(course.id);
 
       //add new course
       this.addNewCourse(course, i);

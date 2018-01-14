@@ -2,12 +2,12 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { forkJoin } from "rxjs/observable/forkJoin";
+import 'rxjs/add/operator/finally';
 import { Router } from "@angular/router";
 import { UserInterface } from '../../../core/user.interface';
 import { UserService } from '../../../core/user.service';
-import { LikeService } from '../../../core/like.service';
 import { AuthService } from '../../../auth/auth.service';
+import { CuriousService } from '../../../core/curious.service';
 import { ValidationService } from '../../../core/validation.service';
 import { environment } from '../../../../environments/environment';
 import {} from '@types/googlemaps';
@@ -36,7 +36,7 @@ export class SignUpFormComponent implements OnInit {
     private user: UserService,
     private http: HttpClient,
     private auth: AuthService,
-    private likeService: LikeService,
+    private curious: CuriousService,
     private router: Router,
     private zone: NgZone
   ) {}
@@ -136,33 +136,9 @@ export class SignUpFormComponent implements OnInit {
     }
   }
 
-  onUserCreated(){
+  onUserCreated() {
 
-    //get all liked/disliked
-    let likes = this.likeService.likes;
-    let dislikes = this.likeService.dislikes;
-
-    //create requests array
-    let requests = [];
-
-    //for every like, create new request
-    for(let like of likes){
-
-      let url = this.api + 'course/' + like + '/like';
-
-      requests.push(this.http.post(url, {}));
-    }
-
-    //for every dislike, create new request
-    for(let dislike of dislikes){
-
-      let url = this.api + 'course/' + dislike + '/dislike';
-
-      requests.push(this.http.post(url, {}));
-    }
-
-    //send all requests
-    forkJoin(requests).subscribe(results => { console.log('Courses Liked/Disliked.') });
+    this.curious.clear
 
     //send to appropiate profile
     this.auth.me().subscribe(

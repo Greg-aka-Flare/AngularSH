@@ -4,7 +4,7 @@ import { Response } from "@angular/http";
 
 import { Course } from '../../../courses/course.interface';
 import { CourseService } from '../../../courses/course.service';
-import { LikeService } from '../../like.service';
+import { CuriousService } from '../../curious.service';
 import { Subscription } from 'rxjs/Subscription';
 import { StarRatingModule } from 'angular-star-rating';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -62,7 +62,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
 
   constructor(
     private courseService: CourseService,
-    private likeService: LikeService
+    private curious: CuriousService
    ) {}
 
   ngOnInit() {
@@ -83,9 +83,15 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
       this.forKids = courses;
     }));
 
-    this.counterSubscription.add(this.counterSubscription = this.likeService.getCounter().subscribe((count) => {
+    this.counterSubscription.add(this.counterSubscription = this.curious.likeCounter().subscribe((count) => {
       this.counter = count;
     }));
+
+    this.curious.clear().subscribe(
+      success => console.log(success),
+      error => console.log(error),
+      () => console.log('Complete.')
+    );
   }
 
   ngOnDestroy() {
@@ -116,7 +122,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
       course.state = 'like';
 
       //increment like counter
-      this.likeService.likeCounter(course.id);
+      this.curious.like(course.id);
 
       //add new course
       this.addNewCourse(course, i);
@@ -131,7 +137,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
       course.state = 'dislike';
 
       //increment like counter
-      this.likeService.dislikeCounter(course.id);
+      this.curious.dislike(course.id);
 
       //add new course
       this.addNewCourse(course, i);

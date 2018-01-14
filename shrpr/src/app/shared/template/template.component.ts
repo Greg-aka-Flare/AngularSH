@@ -4,7 +4,7 @@ import { MenuComponent } from '../menu/menu.component';
 import { NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { LikeService } from "../../core/like.service";
+import { CuriousService } from "../../core/curious.service";
 import { SearchComponent } from '../search/search.component';
 import { DemoComponent } from '../schedule-demo/demo.component';
 
@@ -30,7 +30,6 @@ export class TemplateComponent {
   styleUrls: ['./template.header.css'],
   providers:[]
 })
-
 export class TemplateHeader implements OnInit, OnDestroy {
 
   @Input('menu') menu: boolean = true;
@@ -46,7 +45,10 @@ export class TemplateHeader implements OnInit, OnDestroy {
   
   private subscriptions = new Subscription();
 
-  constructor(zone: NgZone, private likeService: LikeService) {
+  constructor(
+    private zone: NgZone, 
+    private curious: CuriousService
+  ) {
     
     const $resizeEvent = Observable.fromEvent(window, 'resize')
     .map(() => {
@@ -78,7 +80,7 @@ export class TemplateHeader implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.subscription = this.likeService.getCounter().subscribe((count) => {
+    this.subscription = this.curious.likeCounter().subscribe((count) => {
       this.counter = count;
     });
 
