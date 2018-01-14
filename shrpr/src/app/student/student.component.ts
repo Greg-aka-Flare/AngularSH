@@ -13,7 +13,6 @@ import { StudentService } from '../student/student.service';
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
-
 export class StudentComponent implements OnInit, OnDestroy {
 
   students:any[];
@@ -24,11 +23,9 @@ export class StudentComponent implements OnInit, OnDestroy {
   data: any = {};
   contactData: any = {};
   aboutData: any = {};
-
   private subscriptions = new Subscription();
-  
-
   width = document.documentElement.clientWidth;
+
   constructor(
     private studentService: StudentService, 
     private route: ActivatedRoute, 
@@ -40,15 +37,12 @@ export class StudentComponent implements OnInit, OnDestroy {
       this.studentService.getStudent(this.id)
       .subscribe(
             (response) => {
-
-              console.log(response);
               this.students = response;
               //this.studentCourse = JSON.parse(response.courses);
               //console.log(this.students);
             },
             (error: Response) => console.log(error)
           )
-
       }));
       
     const $resizeEvent = Observable.fromEvent(window, 'resize')
