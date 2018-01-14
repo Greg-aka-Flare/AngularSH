@@ -1,0 +1,111 @@
+:host /deep/ tabs .tabs ul {
+    background: #e5e5e6;
+    padding: 0 10px 0 10px;
+}
+:host /deep/ tabs .tabs ul li {
+    display: inline-block;
+    vertical-align: top;
+    width: 33.33%;
+    max-width: 83px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 1em;
+    color: #414141;
+    padding: 50px 5px 14px;
+    background-image: url('../../assets/img/search-input.png');
+    background-repeat: no-repeat;
+    background-position: center 15px;
+    background-size: 25px auto;
+    cursor: pointer;
+}
+:host /deep/ tabs .tabs ul li.active {
+    background-color: #cccccc;
+}
+:host /deep/ tabs .tabs ul li:nth-of-type(2) {
+    background-image: url('../../assets/img/about-tab-bg.png');
+    background-position: center 13px;
+    background-size: auto;
+}
+:host /deep/ tabs .tabs ul li:nth-of-type(3) {
+    background-image: url('../../assets/img/contact-tab-bg.png');
+    background-position: center 19px;
+    background-size: auto;
+}
+:host /deep/ tabs .tabs tab > div {
+    padding: 10px 0 10px;
+   background: #cccccc;
+}
+:host /deep/ tabs .tabs tab div > h3 {
+    font-size: 18px;
+    color: #818181;
+    line-height: 22px;
+    padding: 10px;
+}
+:host #reviews /deep/ star-rating-comp {
+    display: inline-block;
+    vertical-align: middle;
+   }
+#profile-header /deep/ star-rating-comp .rating {
+       padding: 0;
+   }
+   .location a {
+       text-decoration: none;
+   }  
+   :host /deep/ tabs .tabs tab div .card-box h3 {
+       color: #ffffff;
+   }  
+.ctr {
+    text-align:center;
+}  
+.view-more-btn {
+    background-color: #e7aa62;
+    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    display: block;
+    font-family: 'circularstd book';
+    font-size: 18px;
+    line-height: 18px;
+    text-decoration: none;
+    margin: 10px auto;
+    max-width: 150px;
+    padding: 9px 10px 7px 10px;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+} 
+.view-more-btn:hover {
+    opacity: 0.8;
+}
+button.view-more-btn:disabled {
+    display: none;
+}
+
+.add-course-btn {
+    float: right;
+    background-color: #196e32;
+    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
+    color: #ffffff;
+    font-family: 'circularstd book';
+    font-size: 16px;
+    text-decoration: none;
+    line-height: 18px;
+    max-width: 138px;
+    padding: 6px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+.add-course-btn:hover {
+    opacity:0.8;
+}
+
+@media only screen and (min-width: 767px) {
+:host /deep/ tabs .tabs tab > div {
+    padding: 10PX;
+    overflow:hidden;
+ }
+}

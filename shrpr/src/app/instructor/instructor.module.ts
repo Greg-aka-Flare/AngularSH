@@ -7,13 +7,11 @@ import { InstructorRoutingModule } from './instructor-routing.module';
 import { StarRatingModule } from 'angular-star-rating';
 
 import { InstructorComponent } from './instructor.component';
-import { AddCourseComponent } from './add-course/add-course.component';
 
 
 @NgModule({
   declarations: [
-    InstructorComponent,
-    AddCourseComponent
+    InstructorComponent
   ],
   imports: [
     CommonModule,

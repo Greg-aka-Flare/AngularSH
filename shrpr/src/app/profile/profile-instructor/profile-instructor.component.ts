@@ -4,16 +4,17 @@ import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
-import { TabsComponent } from "../shared/tabs/tabs.component";
+import { TabsComponent } from "../../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { AddCourseComponent } from './add-course/add-course.component';
 
-import { Course } from "../courses/course.interface";
-import { CourseService } from "../courses/course.service";
-import { Instructor } from "./instructor.interface";
-import { InstructorService } from "./instructor.service";
-import { AuthService } from './../auth/auth.service';
+import { Course } from "../../courses/course.interface";
+import { CourseService } from "../../courses/course.service";
+import { Instructor } from "../../instructor/instructor.interface";
+import { InstructorService } from "../../instructor/instructor.service";
+import { AuthService } from './../../auth/auth.service';
 
 
 @Component({

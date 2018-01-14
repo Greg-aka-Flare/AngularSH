@@ -4,11 +4,11 @@ import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgFor
 import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
 import * as moment from 'moment';
 import { Router } from "@angular/router";
-import { ValidationService } from '../../core/validation.service';
+import { ValidationService } from '../../../core/validation.service';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
-import { Instructor } from '../instructor.interface';
-import { InstructorService } from '../instructor.service';
+import { Instructor } from '../../../instructor/instructor.interface';
+import { InstructorService } from '../../../instructor/instructor.service';
 
 
 
