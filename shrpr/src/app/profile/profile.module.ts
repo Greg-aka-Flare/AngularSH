@@ -5,15 +5,18 @@ import { ViewChild, ElementRef, Renderer } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
-import { CourseSelectComponent } from '../core/login/course-select/course-select.component';
-import { InstructorCourseComponent } from '../core/login/instructor-course/instructor-course.component';
+import { ProfileInstitutionComponent } from './profile-institution/profile-institution.component';
+import { ProfileInstructorComponent } from './profile-instructor/profile-instructor.component';
+import { AddCourseComponent } from './profile-instructor/add-course/add-course.component';
+import { ProfileStudentComponent } from './profile-student/profile-student.component';
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    CourseSelectComponent,
-    InstructorCourseComponent
+    ProfileInstitutionComponent,
+    ProfileInstructorComponent,
+    ProfileStudentComponent
   ],
   imports: [
     CommonModule,

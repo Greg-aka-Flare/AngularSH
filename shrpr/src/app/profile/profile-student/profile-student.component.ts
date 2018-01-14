@@ -20,12 +20,12 @@ import { ControlMessagesComponent } from '../../shared/control-messages/control-
 
 
 @Component({
-  selector: 'app-student',
-  templateUrl: './student.component.html',
-  styleUrls: ['./student.component.css']
+  selector: 'profile-student',
+  templateUrl: './profile-student.component.html',
+  styleUrls: ['./profile-student.component.css']
 })
 
-export class StudentComponent implements OnInit, OnDestroy {
+export class ProfileStudentComponent implements OnInit, OnDestroy {
 
   city: string = '';
   state: string = '';

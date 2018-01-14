@@ -11,11 +11,11 @@ import { Institution } from "../../institution/institution.interface";
 import { InstitutionService } from "../../institution/institution.service";
 
 @Component({
-  selector: 'app-institution',
-  templateUrl: './institution.component.html',
-  styleUrls: ['./institution.component.css']
+  selector: 'profile-institution',
+  templateUrl: './profile-institution.component.html',
+  styleUrls: ['./profile-institution.component.css']
 })
-export class InstitutionComponent implements OnInit, OnDestroy {
+export class ProfileInstitutionComponent implements OnInit, OnDestroy {
 
   institutions:any;
   private id:number;
