@@ -4,15 +4,11 @@
     border-bottom: 2px solid #cccccc;
 }
 .card-box {
-    width: 40%;
-    margin: 0 15px 0 0;
+    width: 100%;
+    margin: 0;
     padding: 0;
 }
-.semester_info_box {
-    display:inline-block;
-    vertical-align: top;
-    width:50%;
-}
+
 .action_btn {
     text-align: center;
 }
@@ -45,4 +41,18 @@
 }
 .semester_info_box strong{
     color:#448a58;
+}
+
+@media only screen and (min-width: 769px) {
+    .card-box {
+        width: 40%;
+        margin: 0 15px 0 0;
+        padding: 0;
+    } 
+    .semester_info_box {
+        display:inline-block;
+        vertical-align: top;
+        width:50%;
+    }
+    
 }

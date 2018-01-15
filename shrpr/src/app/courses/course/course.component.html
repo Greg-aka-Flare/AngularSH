@@ -45,12 +45,12 @@
         </div><!-- .img-ctn -->
         <div class="course_info">
             <div *ngIf="semesterCount > 1">
+                <p>Total Semesters: {{semesterCount}} <button (click)="showDialog = !showDialog" class="allsem-btn">All Semesters</button></p>
+                Select Your Semester, starts at:
                 <div *ngIf="selectedSemester" class="select-date">
                   <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
                     <option *ngFor="let sem of course?.semesters; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LLLL'}} at {{sem?.addresses[0]?.city}}, {{sem?.addresses[0]?.state}} </option>
                   </select>
-                <p>Total Semesters: {{semesterCount}}</p>
-                Select Your Semester, starts at:
                 <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
                   <div class="select-wrap">
                     <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
@@ -59,6 +59,10 @@
                   <p>Sessions: {{selected?.duration}}</p> 
                 </div>
               </div>
+              <app-modal [(visible)]="showDialog">
+                  <app-course-semesters [course]="course"></app-course-semesters>
+                  <button (click)="showDialog = !showDialog" class="btn">Close</button>
+                </app-modal>
               </div>
               <div *ngIf="semesterCount < 2">
                   Starts at: 
