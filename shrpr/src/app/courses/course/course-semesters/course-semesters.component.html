@@ -1,0 +1,45 @@
+<div *ngIf="course">
+    <h2>{{course.title}} Semesters</h2>
+    <section class="semester_row" *ngFor="let mycourse of course.semesters; let i = index;">
+    <article class="card-box">
+        <div class="img-ctn">
+            <div class="price" *ngIf="mycourse?.amount != '0.00'">
+              ${{ mycourse?.amount }}
+            </div>
+            <div class="price free" *ngIf="mycourse.amount == '0.00'">
+                Free
+            </div>
+            <figure><a [routerLink]="['/courses', course.id]">
+                <img *ngIf="mycourse?.primary_img" src="../../assets/img/courses/{{ mycourse?.primary_img }}" alt="" title="">
+                <img *ngIf="!mycourse?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
+            </figure>
+            <h3>{{course?.title}}</h3>
+        </div>
+        <div class="card-info">
+          <p class="location">
+                <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                <a href="javascript:void(0);">{{ mycourse?.addresses[0]?.city }}, {{ mycourse?.addresses[0]?.state }}</a>
+          </p><!-- .location -->
+          <div class="action_btn">
+              <a href="javascript:void(0);" class="wishlist"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
+            </div>
+          
+        </div>
+    </article>
+    <div class="semester_info_box">
+        <div><strong>Start Date:</strong> {{mycourse?.start_date | datex:'LLLL'}}</div>
+        <div *ngFor="let add of mycourse.addresses">
+        <strong>Address:</strong><br>
+          <span *ngIf="add?.name">{{add?.name}}, </span>
+          <span *ngIf="add?.streetAddress">{{add?.streetAddress}}, </span>
+          <span *ngIf="add?.city">{{add?.city}},</span> <span *ngIf="add?.state">{{add?.state}} {{add?.zip}} </span>
+          <span *ngIf="add?.country">{{add?.country}}</span>
+      </div>
+      <div><strong>Total Sessions:</strong> {{mycourse?.duration}}</div>
+      <ol class="meetings_list" aria-roledescription="list">
+          <li *ngFor="let meeting of mycourse.meetings"><time title="{{meeting?.start | datex:'LLLL'}}">{{meeting?.start | datex:'LLLL'}}</time></li>
+      </ol>
+    </div>
+  </section> 
+
+</div> 

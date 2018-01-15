@@ -1,0 +1,48 @@
+.semester_row {
+    padding:0 0 15px 0;
+    margin:0 0 15px 0;
+    border-bottom: 2px solid #cccccc;
+}
+.card-box {
+    width: 40%;
+    margin: 0 15px 0 0;
+    padding: 0;
+}
+.semester_info_box {
+    display:inline-block;
+    vertical-align: top;
+    width:50%;
+}
+.action_btn {
+    text-align: center;
+}
+.action_btn a {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 15px;
+    line-height: 16px;
+    text-decoration: none;
+    padding: 6px 10px 4px 10px;
+    border: 2px solid #ed9b40;
+    background-color: #ffffff;
+    color: #ed9b40;
+    max-width: 275px;
+    text-transform: uppercase;
+}
+.action_btn a img  {
+    max-width: 19px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px 0 0;
+}
+.action_btn a:hover {
+    background-color: #ed9b40;
+    color: #ffffff;
+    text-decoration: none;
+}
+.semester_info_box > div {
+    margin:0 0 10px 0;
+}
+.semester_info_box strong{
+    color:#448a58;
+}
