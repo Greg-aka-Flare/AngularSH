@@ -93,16 +93,16 @@
               <div class="formRow">
                   <label for="courseLocation">Location</label>
                   <input 
-                    #search
-                    type="text" 
-                    autocorrect="off" 
-                    autocapitalize="off" 
-                    spellcheck="off"
-                    placeholder="Enter Location" 
-                    [value]="location"
-                    [formControl]="searchControl"
-                    id="courseLocation" 
-                  >
+                      #search
+                      type="text" 
+                      autocorrect="off" 
+                      autocapitalize="off" 
+                      spellcheck="off"
+                      placeholder="Enter Location" 
+                      [value]="location"
+                      [formControl]="searchControl"
+                    >
+
                   <control-messages [control]="semesterInfoForm.controls.searchControl"></control-messages>
               </div>
               <div class="formRow">
