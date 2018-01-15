@@ -44,27 +44,31 @@
             </div><!-- .overlay -->
         </div><!-- .img-ctn -->
         <div class="course_info">
-          <div *ngIf="semesterCount > 1">
-              <div *ngIf="selectedSemester" class="select-date">
-                      <select name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
-                              <option *ngFor="let sem of course?.semesters; let k = index" [selected]="k == 0" value="{{sem.id}}">{{sem?.start_date | datex:'LL'}}</option>
-                            </select>
-              <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
-                 <div class="select-wrap"><p>Starts at: {{selected?.start_date | datex:'LLLL'}}</p>
-                 <p>End Date: {{selected?.end_date | datex:'LLLL'}}</p></div>
-                 <p>Sessions: {{selected?.duration}}</p>
-              </div>
-            </div> 
-            </div>
-            <div *ngIf="semesterCount < 2">
-                  <div *ngIf="selectedSemester">
-                  <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
-                     <p>Starts at: <time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time></p>
-                     <p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>
-                     <p>Sessions: {{selected?.duration}}</p>
+            <div *ngIf="semesterCount > 1">
+                <div *ngIf="selectedSemester" class="select-date">
+                  <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
+                    <option *ngFor="let sem of course?.semesters; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LLLL'}} at {{sem?.addresses[0]?.city}}, {{sem?.addresses[0]?.state}} </option>
+                  </select>
+                <p>Total Semesters: {{semesterCount}}</p>
+                Select Your Semester, starts at:
+                <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
+                  <div class="select-wrap">
+                    <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
+                    <!--<p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>-->
                   </div>
-                </div> 
+                  <p>Sessions: {{selected?.duration}}</p> 
                 </div>
+              </div>
+              </div>
+              <div *ngIf="semesterCount < 2">
+                  Starts at: 
+                <div *ngIf="selectedSemester">
+                <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
+                   <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
+                   <p>Sessions: {{selected?.duration}}</p>
+                </div>
+              </div> 
+              </div>
             <div class="action_btn">
               <a 
                 *ngIf="!isBooked && showBookBtn"
@@ -83,22 +87,7 @@
               <a class="wishlist"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
             </div>
         </div>
-        <!-- .course_info -->
-        <div class="course_info">
-          <h2>Semester Information</h2>
-          <p>{{semesterDetails.info}}</p>
-        </div>
-        <div class="course_enroll_block">
-            <div *ngIf="selectedSemester">
-              <div *ngFor="let semester of selectedSemester">
-                  <ul class="meetings_list" aria-roledescription="list">
-                      <li *ngFor="let selectmet of semester.meetings"><time title="{{selectmet?.start | datex:'LLLL'}}">{{selectmet?.start | datex:'LLLL'}}</time></li>
-                  </ul>
-              </div> 
-            </div>
-        </div>
-        <!-- .course_enroll_block -->
-        <!-- .course_info-->
+        
     </article>
   </section>
   <!-- mobile view ends-->
@@ -154,19 +143,25 @@
             </p>
             <br>
             <div *ngIf="semesterCount > 1">
+              <p>Total Semesters: {{semesterCount}}  <button (click)="showDialog = !showDialog" class="allsem-btn">All Semesters</button></p>
+              Select Your Semester, starts at:<br>
               <div *ngIf="selectedSemester" class="select-date">
                 <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
                   <option *ngFor="let sem of course?.semesters; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LLLL'}} at {{sem?.addresses[0]?.city}}, {{sem?.addresses[0]?.state}} </option>
                 </select>
-                Starts at:
+              
               <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
                 <div class="select-wrap">
                   <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
                   <!--<p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>-->
                 </div>
-                <p>Sessions: {{selected?.duration}} (<a href="javascript:void(0);">view full Schedule</a>)</p> 
+                <p>Sessions: {{selected?.duration}} (<a (click)="goTo('sessions')" href="javascript:void(0);">view full Schedule</a>)</p> 
               </div>
             </div>
+            <app-modal [(visible)]="showDialog">
+                <app-course-semesters [course]="course"></app-course-semesters>
+                <button (click)="showDialog = !showDialog" class="btn">Close</button>
+              </app-modal>
             </div>
 
             <div *ngIf="semesterCount < 2">
@@ -183,25 +178,21 @@
         <!-- .course_info_desktop-->
       </div>
     <!-- .course_desktop_card -->
-    <section class="course_semester_desktop">
-        <h2>Semester Information</h2>
-        <div class="course_enroll_block">
-            <div *ngIf="selectedSemester">
-              <div *ngFor="let semester of selectedSemester">
-                  <ul class="meetings_list" aria-roledescription="list">
-                      <li *ngFor="let selectmet of semester.meetings"><time title="{{selectmet?.start | datex:'LLLL'}}">{{selectmet?.start | datex:'LLLL'}}</time></li>
-                  </ul>
-              </div> 
-            </div> 
-        </div>
-          <!-- .course_enroll_block -->
-    </section>
   </section>
   <!--desktop view ends-->
   <!-- #profile header -->
   <tabs *ngIf="width < 768">
   <tab tabTitle="ABOUT">
       <div class="description" [innerHTML]="course.description"></div>
+  </tab>
+  <tab tabTitle="Sessions">
+      <div *ngIf="selectedSemester">
+          <div class="session_list_mobile" *ngFor="let semester of selectedSemester">
+              <ol class="meetings_list" aria-roledescription="list">
+                  <li *ngFor="let selectmet of semester.meetings"><time title="{{selectmet?.start | datex:'LLLL'}}">{{selectmet?.start | datex:'LLLL'}}</time></li>
+              </ol>
+          </div> 
+        </div>
   </tab>
   <tab tabTitle="CONTACT">
       <div *ngIf="selectedSemester" class="contact_box">
@@ -215,7 +206,7 @@
   <section *ngIf="width > 767" id="desktopcourses">
     <h2>ABOUT</h2>
     <div class="description" [innerHTML]="course.description"></div><!-- .description -->
-    <h2>Session's Meetings</h2>
+    <h2 id="sessions">Sessions Detail</h2>
     <div *ngIf="selectedSemester">
       <div *ngFor="let semester of selectedSemester">
           <ol class="meetings_list" aria-roledescription="list">

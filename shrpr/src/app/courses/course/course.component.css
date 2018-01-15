@@ -499,6 +499,32 @@ agm-map {
 .bradecrumb a:hover {
     text-decoration: none;
 }
+
+.session_list_mobile ol {
+    margin: 0 0 0 0px;
+    padding: 0 0 0 35px;
+    font-size:14px;
+    line-height:17px;
+}
+.allsem-btn {
+    border: none;
+    background-color: #ed9b40;
+    color: #ffffff;
+    padding: 6px 10px 4px;
+    font-size: 16px;
+    line-height: 14px;
+    display: inline-block;
+    font-family: circularstd book;
+    border-radius: 4px;
+    margin: 0 0 0 20px;
+    box-shadow: 0 1px 3px 2px #dddddd;
+    cursor: pointer;
+}
+.allsem-btn:hover {
+    opacity: 0.8;
+}
+
+
 @media only screen and (min-width: 769px) {
 
 .course_header {

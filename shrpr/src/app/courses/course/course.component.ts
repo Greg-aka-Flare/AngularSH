@@ -166,6 +166,7 @@ export class CourseComponent implements OnInit, OnDestroy {
     this.slides.pop();
   }
 
+  
   book() {
 
     //open pop-up
