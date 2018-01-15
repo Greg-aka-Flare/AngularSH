@@ -155,23 +155,26 @@
             <br>
             <div *ngIf="semesterCount > 1">
               <div *ngIf="selectedSemester" class="select-date">
-                      <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
-                              <option *ngFor="let sem of course?.semesters; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LL'}}</option>
-                            </select>
+                <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
+                  <option *ngFor="let sem of course?.semesters; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LLLL'}} at {{sem?.addresses[0]?.city}}, {{sem?.addresses[0]?.state}} </option>
+                </select>
+                Starts at:
               <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
-                      <div class="select-wrap"><p>Starts at: <time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time></p>
-                 <p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p></div>
-                 <p>Sessions: {{selected?.duration}} (<a href="javascript:void(0);">view full Schedule</a>)</p> 
+                <div class="select-wrap">
+                  <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
+                  <!--<p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>-->
+                </div>
+                <p>Sessions: {{selected?.duration}} (<a href="javascript:void(0);">view full Schedule</a>)</p> 
               </div>
             </div>
-           
             </div>
 
             <div *ngIf="semesterCount < 2">
+                Starts at: 
               <div *ngIf="selectedSemester">
               <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
-                 <p>Starts at: <time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time></p>
-                 <p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>
+                 <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
+                 <!--<p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>-->
                  <p>Sessions: {{selected?.duration}}</p>
               </div>
             </div> 
@@ -212,6 +215,15 @@
   <section *ngIf="width > 767" id="desktopcourses">
     <h2>ABOUT</h2>
     <div class="description" [innerHTML]="course.description"></div><!-- .description -->
+    <h2>Session's Meetings</h2>
+    <div *ngIf="selectedSemester">
+      <div *ngFor="let semester of selectedSemester">
+          <ol class="meetings_list" aria-roledescription="list">
+              <li *ngFor="let selectmet of semester.meetings"><time title="{{selectmet?.start | datex:'LLLL'}}">{{selectmet?.start | datex:'LLLL'}}</time></li>
+          </ol>
+      </div> 
+    </div> 
+    
     <h2>CONTACT</h2>
     <div *ngIf="selectedSemester">
       <div *ngFor="let semester of selectedSemester">
