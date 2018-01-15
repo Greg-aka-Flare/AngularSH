@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
-import { UserInterface } from '../../../core/user.interface';
+import { User } from '../../../core/user.interface';
 import { UserService } from '../../../core/user.service';
 import { AuthService } from '../../../auth/auth.service';
 import { environment } from '../../../../environments/environment';
@@ -34,27 +34,9 @@ export class LoginFormComponent implements OnInit {
 
     //check if logged in
     this.loggedIn = this.auth.loggedIn();
-      
-    if(this.loggedIn) this.auth.me().subscribe(result => {
-
-      //store data
-      let id = result.id;
-      let role = result.roles[0];
-
-      //navigate to profile based on role
-      if(role == 'student'){
-        this.router.navigate(['student', id]);
-      }
-      else if(role == 'instructor'){
-        this.router.navigate(['instructor', id]);
-      }
-      else if(role == 'institution'){
-        this.router.navigate(['institution', id]);
-      }
-      else{
-        this.router.navigate(['/']);
-      }
-    });
+    
+    //go to profile if logged in already
+    if(this.loggedIn) this.router.navigate(['profile']);
 
     this.loginForm = new FormGroup({
       'email': new FormControl(null, [Validators.required]),
@@ -100,26 +82,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   onLoggedIn() {
-      
-    this.auth.me().subscribe(result => {
-
-      //store data
-      let id = result.id;
-      let role = result.roles[0];
-
-      //navigate to profile based on role
-      if(role == 'student'){
-        this.router.navigate(['student', id]);
-      }
-      else if(role == 'instructor'){
-        this.router.navigate(['instructor', id]);
-      }
-      else if(role == 'institution'){
-        this.router.navigate(['institution', id]);
-      }
-      else{
-        this.router.navigate(['/']);
-      }
-    });
+    this.router.navigate(['profile']);
   }
 }

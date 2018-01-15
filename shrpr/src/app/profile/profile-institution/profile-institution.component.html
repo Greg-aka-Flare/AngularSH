@@ -1,67 +1,59 @@
-<app-template>
-  <section id="profile-header">
-    <div class="profile-picture">
-      <img 
-        *ngIf="institutions?.profile_img" 
-        src="../../assets/img/institutions/{{ institutions?.profile_img }}"
-      >
-      <img 
-        *ngIf="!institutions?.profile_img" 
-        src="../../assets/img/instructors-picture.png"
-      >
-    </div>
-    <div><h2>{{institutions?.name}}</h2>
-      <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{institutions?.email}}">{{institutions?.email}}</a><br>
-      <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span><br>
-      <i aria-hidden="true" class="fa fa-phone-square"></i> <a href="tel:{{institutions?.phone}}">{{institutions?.phone}}</a>  
-      </div>
-    </section><!-- #profile header -->
-    <div id="courses-cards">
-    <h2>Description</h2>
-    <p>{{details?.description}}</p>
-
-    <section id="courses">
-      <app-filter 
-        *ngIf="courses"
-        [courses]="courses"
-        (onFilter)="filter($event)"
-      >
-        <h2>Courses</h2>
-
-        <article class="card-box" *ngFor="let card of courseData; let i = index">
-            <div class="img-ctn">
-              <div class="price" *ngIf="card.semesters[0].amount != '0.00'">
-                ${{ card?.semesters[0]?.amount }}
-              </div>
-              <div class="price free" *ngIf="card.semesters[0].amount == '0.00'">
-                  Free
-              </div>
-                <figure>
-                    <a [routerLink]="['/courses', card.id]"><img *ngIf="card?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ card?.semesters[0]?.primary_img }}" alt="" title="">
-                    <img *ngIf="!card?.semesters[0]?.primary_img" src="../../assets/img/card-picture.jpg" alt="" title=""></a>
-                </figure>
-                <h3>{{card.title}}</h3>
-            </div>
-
-            <div class="card-info">
-              <div class="group_info">
-                <span class="group_rating">
-                  <star-rating-comp 
-                    [starType]="'svg'" 
-                    [readOnly]="true"
-                    rating="{{ card?.rating || 0 }}"
-                  >
-                  </star-rating-comp>
-                </span>
-              </div>
-              <p class="instructor"><i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor',  card.instructor.id]">{{  card.instructor.name }}</a></p>
-              <p class="date">
-                 <!-- <span class="date_stamp">{{ card.description }}</span>-->
-              </p>
-              <a [routerLink]="['/courses', card.id]" class="page-cta" aria-roledescription="button">View Course</a>
-            </div>
-        </article>
-      </app-filter>
-    </section><!-- #courses -->
+<section id="profile-header">
+  <div class="profile-picture">
+    <img 
+      *ngIf="institutions?.profile_img" 
+      src="../../assets/img/institutions/{{ institutions?.profile_img }}"
+    >
+    <img 
+      *ngIf="!institutions?.profile_img" 
+      src="../../assets/img/instructors-picture.png"
+    >
   </div>
-</app-template>
+  <div><h2>{{institutions?.name}}</h2>
+    <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{institutions?.email}}">{{institutions?.email}}</a><br>
+    <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span><br>
+    <i aria-hidden="true" class="fa fa-phone-square"></i> <a href="tel:{{institutions?.phone}}">{{institutions?.phone}}</a>  
+    </div>
+  </section><!-- #profile header -->
+  <div id="courses-cards">
+  <h2>Description</h2>
+  <p>{{details?.description}}</p>
+
+  <section id="courses">
+    <h2>Courses</h2>
+
+    <article class="card-box" *ngFor="let card of courseData; let i = index">
+        <div class="img-ctn">
+          <div class="price" *ngIf="card.semesters[0].amount != '0.00'">
+            ${{ card?.semesters[0]?.amount }}
+          </div>
+          <div class="price free" *ngIf="card.semesters[0].amount == '0.00'">
+              Free
+          </div>
+            <figure>
+                <a [routerLink]="['/courses', card.id]"><img *ngIf="card?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ card?.semesters[0]?.primary_img }}" alt="" title="">
+                <img *ngIf="!card?.semesters[0]?.primary_img" src="../../assets/img/card-picture.jpg" alt="" title=""></a>
+            </figure>
+            <h3>{{card.title}}</h3>
+        </div>
+
+        <div class="card-info">
+          <div class="group_info">
+            <span class="group_rating">
+              <star-rating-comp 
+                [starType]="'svg'" 
+                [readOnly]="true"
+                rating="{{ card?.rating || 0 }}"
+              >
+              </star-rating-comp>
+            </span>
+          </div>
+          <p class="instructor"><i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor',  card.instructor.id]">{{  card.instructor.name }}</a></p>
+          <p class="date">
+             <!-- <span class="date_stamp">{{ card.description }}</span>-->
+          </p>
+          <a [routerLink]="['/courses', card.id]" class="page-cta" aria-roledescription="button">View Course</a>
+        </div>
+    </article>
+  </section><!-- #courses -->
+</div>

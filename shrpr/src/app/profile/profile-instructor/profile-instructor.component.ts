@@ -1,8 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser'
-import { Response } from "@angular/http";
-import { ActivatedRoute, Params } from '@angular/router';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
 import { TabsComponent } from "../../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
@@ -15,7 +12,7 @@ import { CourseService } from "../../courses/course.service";
 import { Instructor } from "../../instructor/instructor.interface";
 import { InstructorService } from "../../instructor/instructor.service";
 import { AuthService } from './../../auth/auth.service';
-
+import { User } from '../../core/user.interface';
 
 @Component({
   selector: 'profile-instructor',
@@ -24,6 +21,9 @@ import { AuthService } from './../../auth/auth.service';
 })
 
 export class ProfileInstructorComponent implements OnInit, OnDestroy {
+
+  @Input('user') user: User;
+
   instructors:any;
   courses: any;
   courseCard:any[] = [];
@@ -52,14 +52,9 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   }
   constructor(
     private instructorService: InstructorService, 
-    private route: ActivatedRoute, 
     private courseService: CourseService,  
     private auth: AuthService
   ) { 
-
-    let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
-      this.myid = params['id'];
-    }))
     
     const $resizeEvent = Observable.fromEvent(window, 'resize')
     .map(() => {
@@ -72,7 +67,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
     }));
 
     this.showDialog = false;
-    
   }
   
   ngOnInit() {
@@ -83,7 +77,7 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
        this.courses = courses;
        if(this.courses){
         for(let i = 0; i < this.courses.length; i++) {
-          if( this.courses[i].instructor.id == this.myid){
+          if( this.courses[i].instructor.id == this.user.id){
               this.courseCard.push(this.courses[i]);
           } 
         }
@@ -99,12 +93,9 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
       }
       },
       (error: Response) => console.log(error)
-      
     ));
 
-    
-
-    this.subscriptions.add(this.instructorService.getInstructor(this.myid)
+    this.subscriptions.add(this.instructorService.getInstructor(this.user.id)
      .subscribe(
        (instructors) => {
 
@@ -120,7 +111,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         },
        (error: Response) => console.log(error)
      ));
-     
   }
   
   getData(){
@@ -134,7 +124,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
     }
     this.counter+=3;
   }
-  
 
   ngOnDestroy(){
     this.subscriptions.unsubscribe();

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ValidationService } from '../../../core/validation.service';
 import { ControlMessagesComponent } from '../../../shared/control-messages/control-messages.component';
-import { UserInterface } from '../../../core/user.interface';
+import { User } from '../../../core/user.interface';
 import { UserService } from '../../../core/user.service';
 import { AuthService } from '../../../auth/auth.service';
 import { Observable } from 'rxjs/Observable';

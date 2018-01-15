@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser'
-import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { TabsComponent } from "../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';

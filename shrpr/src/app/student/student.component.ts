@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser'
 import { ActivatedRoute, Params } from '@angular/router';
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';

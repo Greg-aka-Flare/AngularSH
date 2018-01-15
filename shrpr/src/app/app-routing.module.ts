@@ -18,8 +18,9 @@ import { PrivacyComponent } from './core/login/privacy/privacy.component';
 const appRoutes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'marketing', loadChildren: './marketing/marketing.module#MarketingModule' },
-	{ path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
 	{ path: 'team', loadChildren: './team/team.module#TeamModule' },
+	{ path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
+	{ path: 'institution/:id', loadChildren: './institution/institution.module#InstitutionModule' },
 	{ path: 'instructor/:id', loadChildren: './instructor/instructor.module#InstructorModule' },
 	{ path: 'student/:id', loadChildren: './student/student.module#StudentModule' },
 	{ path: 'courses', loadChildren: './courses/courses.module#CoursesModule' },
@@ -30,8 +31,7 @@ const appRoutes: Routes = [
 	{ path: 'values', component: ValuesComponent },
 	{ path: 'videos', component: VideosComponent },
 	{ path: 'podcast', component: PodcastComponent },
-	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent },
-	{ path: 'institution/:id', loadChildren: './institution/institution.module#InstitutionModule' }
+	{ path: 'interviewwithroblabonne', component: InterviewwithroblabonneComponent }
 ]
 
 @NgModule({

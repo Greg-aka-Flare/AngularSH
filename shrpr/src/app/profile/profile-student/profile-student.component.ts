@@ -1,8 +1,6 @@
-import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, NgModule } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
-import { Response } from "@angular/http";
-import { ActivatedRoute, Params } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -12,12 +10,9 @@ import { AddreviewComponent } from "../../shared/add-a-review/addreview.componen
 import { Student } from "../../student/student.interface";
 import { StudentService } from '../../student/student.service';
 import { InlineEditComponent } from '../../shared/inline-edit/inline-edit.component';
-import {} from '@types/googlemaps';
-import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { ValidationService } from '../../core/validation.service';
 import { ControlMessagesComponent } from '../../shared/control-messages/control-messages.component';
-
-
+import { User } from '../../core/user.interface';
 
 @Component({
   selector: 'profile-student',
@@ -26,6 +21,8 @@ import { ControlMessagesComponent } from '../../shared/control-messages/control-
 })
 
 export class ProfileStudentComponent implements OnInit, OnDestroy {
+
+  @Input('user') user: User;
 
   city: string = '';
   state: string = '';
@@ -53,47 +50,29 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
   isEdit:boolean = false;
   isEditAbout:boolean = false;
   private mylocation:string;
-  //subscription: Subscription;
   private subscriptions = new Subscription();
-  //control: FormControl;
-  
 
   width = document.documentElement.clientWidth;
   constructor(
     private studentService: StudentService, 
-    private route: ActivatedRoute, 
     private courseService: CourseService,  
-    private mapsAPILoader: MapsAPILoader,
     private fb: FormBuilder
   ) {
-
-    
-        let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
-          this.id = params['id'];
-          this.studentService.getStudent(this.id)
-          .subscribe(
-                (response) => {
-                  this.students = response;
-                  //this.studentCourse = JSON.parse(response.courses);
-                  //console.log(this.students);
-                },
-                (error: Response) => console.log(error)
-              )
-
-          }));
           
-        const $resizeEvent = Observable.fromEvent(window, 'resize')
-        .map(() => {
-          return document.documentElement.clientWidth;
-          })
-          this.subscriptions.add($resizeEvent.subscribe(data => {
-          this.width = data;
-        }));
-      }
-      onChange(event) {
-        var files = event.srcElement.files;
-        console.log(files);
+    const $resizeEvent = Observable.fromEvent(window, 'resize')
+    .map(() => {
+      return document.documentElement.clientWidth;
+      })
+      this.subscriptions.add($resizeEvent.subscribe(data => {
+      this.width = data;
+    }));
     }
+
+    onChange(event) {
+      var files = event.srcElement.files;
+      console.log(files);
+  }
+
   ngOnInit() {
 
     //if localstorage exists, pull values in
@@ -105,7 +84,6 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
       if(localStorage.getItem('country')) this.country = localStorage.getItem('country');
       if(localStorage.getItem('address')) this.address = localStorage.getItem('address');
     }
-    
 
     this.studentAddressForm = this.fb.group({
       'addressStreet': [this.address, Validators.required],
@@ -130,67 +108,63 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
     this.studentDescriptionForm = this.fb.group({
       'description': ['', [Validators.required, Validators.minLength(40)]],
     });
-}
+  }
 
-    updateAddress(){
-      this.isEdit= !this.isEdit;
-      
-      let formAddress: any = {};
-      
-      //assign user data
-      formAddress.streetAddress = this.studentAddressForm.value.addressStreet;
-      formAddress.city = this.studentAddressForm.value.addressCity;
-      formAddress.state = this.studentAddressForm.value.addressState;
-      formAddress.zip = this.studentAddressForm.value.addressZip;
-      formAddress.country = this.studentAddressForm.value.addressCountry;
-
-      this.contactData.addresses = formAddress;
-      
-      this.contactData.phone = this.studentAddressForm.value.addressPhone;
-      this.contactData.email = this.studentAddressForm.value.addressEmail;
-
-      console.log(this.contactData)
-
-    }
-
-
-    updateProfile(){
-      //this.isUpdate= !this.isUpdate;
-      
-      let detailsText: any = {};
-
-
-      this.data.name = this.studentProfileForm.value.name;
-      this.data.profile_img = this.studentProfileForm.value.profileImage;
-
-      detailsText.url = this.studentProfileForm.value.yelp;
-      detailsText.yelp = this.studentProfileForm.value.yelp;
-      detailsText.twitter = this.studentProfileForm.value.twitter;
-      detailsText.facebook = this.studentProfileForm.value.facebook;
-      detailsText.linkedIn = this.studentProfileForm.value.linkedIn;
-      detailsText.pinterest = this.studentProfileForm.value.pinterest;
-
-      this.data.details = detailsText;
-
-      console.log(this.data);
-      this.showDialog = !this.showDialog;
-      
-    }
-
-    updatestudentDescription(){
-      this.isEditAbout= !this.isEditAbout;
-      let descriptionText: any = {};
-      descriptionText.description = this.studentDescriptionForm.value.description;
-      this.aboutData.details = descriptionText;
-
-      console.log(this.aboutData);
-
-    }
-
-
-    ngOnDestroy(){
-      this.subscriptions.unsubscribe();
-    }
+  updateAddress(){
+    this.isEdit= !this.isEdit;
     
+    let formAddress: any = {};
+    
+    //assign user data
+    formAddress.streetAddress = this.studentAddressForm.value.addressStreet;
+    formAddress.city = this.studentAddressForm.value.addressCity;
+    formAddress.state = this.studentAddressForm.value.addressState;
+    formAddress.zip = this.studentAddressForm.value.addressZip;
+    formAddress.country = this.studentAddressForm.value.addressCountry;
 
+    this.contactData.addresses = formAddress;
+    
+    this.contactData.phone = this.studentAddressForm.value.addressPhone;
+    this.contactData.email = this.studentAddressForm.value.addressEmail;
+
+    console.log(this.contactData)
+
+  }
+
+  updateProfile(){
+    //this.isUpdate= !this.isUpdate;
+    
+    let detailsText: any = {};
+
+
+    this.data.name = this.studentProfileForm.value.name;
+    this.data.profile_img = this.studentProfileForm.value.profileImage;
+
+    detailsText.url = this.studentProfileForm.value.yelp;
+    detailsText.yelp = this.studentProfileForm.value.yelp;
+    detailsText.twitter = this.studentProfileForm.value.twitter;
+    detailsText.facebook = this.studentProfileForm.value.facebook;
+    detailsText.linkedIn = this.studentProfileForm.value.linkedIn;
+    detailsText.pinterest = this.studentProfileForm.value.pinterest;
+
+    this.data.details = detailsText;
+
+    console.log(this.data);
+    this.showDialog = !this.showDialog;
+    
+  }
+
+  updatestudentDescription(){
+    this.isEditAbout= !this.isEditAbout;
+    let descriptionText: any = {};
+    descriptionText.description = this.studentDescriptionForm.value.description;
+    this.aboutData.details = descriptionText;
+
+    console.log(this.aboutData);
+
+  }
+
+  ngOnDestroy(){
+    this.subscriptions.unsubscribe();
+  }
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewChild, ElementRef, Renderer } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
+import { StarRatingModule } from 'angular-star-rating';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { ProfileInstitutionComponent } from './profile-institution/profile-institution.component';
@@ -23,7 +24,8 @@ import { ProfileStudentComponent } from './profile-student/profile-student.compo
     ProfileRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StarRatingModule
   ]
 })
 export class ProfileModule { }

@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { InstitutionRoutingModule } from './institution-routing.module';
 import { StarRatingModule } from 'angular-star-rating';
-
 import { InstitutionComponent } from './institution.component';
 
 @NgModule({

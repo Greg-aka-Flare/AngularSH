@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/finally';
 import { Router } from "@angular/router";
-import { UserInterface } from '../../../core/user.interface';
+import { User } from '../../../core/user.interface';
 import { UserService } from '../../../core/user.service';
 import { AuthService } from '../../../auth/auth.service';
 import { CuriousService } from '../../../core/curious.service';
@@ -138,31 +138,21 @@ export class SignUpFormComponent implements OnInit {
 
   onUserCreated() {
 
-    this.curious.clear
+    //save all likes/dislikes in localStorage, go to profile upon success/failure
+    this.curious.clear().subscribe(
+      success => {
 
-    //send to appropiate profile
-    this.auth.me().subscribe(
-      res => {
+        console.log(success);
 
-        //store data
-        let id = res.id;
-        let role = res.roles[0];
+        this.router.navigate(['profile']);
+      },
+      error => {
 
-        //navigate to profile based on role
-        if(role == 'student'){
-          this.router.navigateByUrl('student/' + id);
-        }
-        else if(role == 'instructor'){
-          this.router.navigateByUrl('instructor/' + id);
-        }
-        else if(role == 'institution'){
-          this.router.navigateByUrl('institution/' + id);
-        }
-        else{
-          this.router.navigateByUrl('/');
-        }
+        console.log(error);
+
+        this.router.navigate(['profile']);
       }
-    );
+    )
   }
 
   validateEmailNotTaken(control: FormControl): Promise<any> | Observable<any> {

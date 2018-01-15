@@ -9,20 +9,19 @@ import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 import { Instructor } from '../../../instructor/instructor.interface';
 import { InstructorService } from '../../../instructor/instructor.service';
-
-
+import { User } from '../../../core/user.interface';
 
 @Component({
-  selector: 'app-add-course',
+  selector: 'add-course',
   templateUrl: './add-course.component.html',
   styleUrls: ['./add-course.component.css']
 })
 export class AddCourseComponent implements OnInit {
+
+  @Input('user') user: User;
   
   instructorCourseForm: FormGroup;
   semesterInfoForm: FormGroup;
-
-  @Input('instructors') instructors: any;
   
   semesterDetailForm: FormGroup;
   sessionArray: any[] = [];
@@ -210,14 +209,14 @@ export class AddCourseComponent implements OnInit {
       let categoryText: Array<{id: number, name: string, parent: number}> = [];
       let instructorText: Array<{id: number, name: string, email: string}> = [];
 
-      this.instructors.id
+      this.user.id
       
       this.data.title = this.instructorCourseForm.value.courseTitleText;
 
       instructorText.push({
-        "id" : this.instructors.id,
-        "name" : this.instructors.name,
-        "email" : this.instructors.email
+        "id" : this.user.id,
+        "name" : this.user.name,
+        "email" : this.user.email
       });
 
       this.data.instructor = instructorText;
