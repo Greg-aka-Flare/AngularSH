@@ -128,8 +128,8 @@ figure.rating {
 }
 .action_btn a {
     display: inline-block;
-    background-color: #d53b3c;
-    border:2px solid #d53b3c;
+    background-color: #448a58;
+    border:2px solid #448a58;
     color:#ffffff;
     text-decoration: none;
     padding:11px 10px 13px;
@@ -142,7 +142,7 @@ figure.rating {
     width: 100%;
 }
 .action_btn a:hover {
-    color: #d53b3c;
+    color: #448a58;
     background-color: #ffffff;
     text-decoration: none;
 }
@@ -570,7 +570,7 @@ figure.rating {
     text-decoration: none;
 }
 .action_btn a:hover {
-    color:#d53b3c;
+    color:#448a58;
 }
 .course_semester_desktop {
     padding:41px 10px 10px 20px;

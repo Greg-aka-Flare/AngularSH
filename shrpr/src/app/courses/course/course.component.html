@@ -161,7 +161,7 @@
               <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
                       <div class="select-wrap"><p>Starts at: <time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time></p>
                  <p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p></div>
-                 <p>Sessions: {{selected?.duration}}</p> 
+                 <p>Sessions: {{selected?.duration}} (<a href="javascript:void(0);">view full Schedule</a>)</p> 
               </div>
             </div>
            

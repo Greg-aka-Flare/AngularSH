@@ -1,5 +1,6 @@
 <app-template>
-  <section id="profile-header">
+  <section id="profile-header" *ngIf="!isUpdate">
+      <a href="javascript:void(0)" (click)="showDialogform = !showDialogform" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
   <div class="profile-picture">
     <img *ngIf="instructors?.profile_img" src="../../assets/img/instructors/{{instructors?.profile_img}}" alt="" title="">
     <img *ngIf="!instructors?.profile_img" src="../../assets/img/instructors-picture.png" alt="" title="">
@@ -16,7 +17,56 @@
     <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
     <!--<i aria-hidden="true" class="fa fa-map-marker"></i>  {{ instructors?.addresses[0]?.city }}, {{ instructors?.addresses[0]?.state }}-->
   <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [readOnly]="true"></star-rating-comp> |  <a (click)="goTo('reviews')" href="javascript:void(0);">{{reviewCount}} reviews</a></div></div>
-  </section><!-- #profile header -->
+  </section>
+  <app-modal [(visible)]="showDialogform">
+      <h2>Profile Edit Form</h2>
+      <div class="edit-form" *ngIf="instructors" >
+        <form id="instrocterProfile" [formGroup]="instrocterProfileForm" (ngSubmit)="updateProfile()">  
+        <div class="form-row">
+        <label>Name:</label>
+            <input type="text" formControlName="name" [(ngModel)]="instructors.name" />
+            <control-messages [control]="instrocterProfileForm.controls.name"></control-messages>
+        </div>
+          <div class="form-row">
+              <label>Update Profile Picture:</label>
+                <input type="file" formControlName="profileImage" accept="image/x-png,image/gif,image/jpeg" />
+           </div>
+          <h2>Update Social Link</h2>
+          <div class="form-row">
+            <label>URL:</label>
+              <input type="text" formControlName="url" [(ngModel)]="details.url"/>
+          </div>
+          <div class="form-row">
+          <label>Yelp Link:</label>
+            <input type="text" formControlName="yelp" [(ngModel)]="details.yelp"/>
+        </div>
+        <div class="form-row">
+          <label>Twitter Link:</label>
+            <input type="text" formControlName="twitter" [(ngModel)]="details.twitter"/>
+        </div>
+        <div class="form-row">
+          <label>Facebook Link:</label>
+            <input type="text" formControlName="facebook" [(ngModel)]="details.facebook"/>
+        </div>
+        <div class="form-row">
+          <label>LinkedIn Link:</label>
+            <input type="text" formControlName="linkedIn" [(ngModel)]="details.linkedin" /><br>
+        </div>
+        <div class="form-row">
+          <label>Pinterest Link:</label>
+            <input type="text" formControlName="pinterest" [(ngModel)]="details.pinterest"/>
+        </div>
+      
+        <div class="form-row">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
+          <button class="btn btn-default" (click)="showDialogform = !showDialogform"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+        </div>  
+        </form>
+      </div>
+      <!--<button (click)="showDialog = !showDialog" class="btn">Close</button>-->
+    </app-modal>  
+  <!-- #profile header -->
+
   <tabs *ngIf="width < 768" >
     <tab tabTitle="Courses">
     <h3>Upcoming Events with {{instructors?.name}} </h3>
@@ -55,14 +105,53 @@
     <p *ngIf="courseCard.length > 3" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= courseCard.length">view more</button></p> 
   </tab>
   <tab tabTitle="ABOUT">
-    <article class="tab_content_para"><p>{{details?.description}}</p></article>
+      <div class="contact_box">
+          <a href="javascript:void(0)" (click)="isEditAbout = !isEditAbout" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+    <p>{{details?.description}}</p>
+    <app-modal [(visible)]="isEditAbout">    
+        <h2>Edit Your Description</h2>
+        <div class="edit-form" *ngIf="instructors">
+        <form id="instrocterDescription" [formGroup]="instrocterDescriptionForm" (ngSubmit)="updateinstrocterDescription()">  
+          <div class="form-row">
+          <label>Description:</label>
+              <textarea cols="30" rows="10"  formControlName="description" [(ngModel)]="details.description"></textarea>
+              <control-messages [control]="instrocterDescriptionForm.controls.description"></control-messages>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="!instrocterDescriptionForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
+          <button class="btn btn-default" (click)="isEditAbout = !isEditAbout"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+          </form>
+        </div>
+      </app-modal>
+    </div>
   </tab>
   <tab tabTitle="CONTACT">
           <div class="contact_box">
+              <a href="javascript:void(0)" (click)="isEdit = !isEdit" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
               <div class="contact_instructor">
             <span *ngIf="instructors?.phone.length > 0"><i class="fa fa-phone-square" aria-hidden="true"></i> <a href="tel:{{instructors?.phone}}">{{instructors?.phone}}</a></span><br>
             <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
-            </div>      
+            </div> 
+            <app-modal [(visible)]="isEdit">    
+                <h2>Edit Your Description</h2>
+                <div class="edit-form" *ngIf="instructors">
+                    <form id="instrocterAddress" [formGroup]="instrocterAddressForm" (ngSubmit)="updateAddress()">  
+                    <div class="form-row">
+                      <label>Phone:</label>
+                        <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="instructors.phone" /><br>
+                        <control-messages [control]="instrocterAddressForm.controls.addressPhone" ></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <label>Email:</label>
+                        <input type="text" formControlName="addressEmail" [(ngModel)]="instructors.email"/>
+                        <control-messages [control]="instrocterAddressForm.controls.addressEmail" ></control-messages>
+                    </div>
+                    <div class="form-row">
+                      <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
+                      <button class="btn btn-default" (click)="isEdit = !isEdit"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                    </div>  
+                    </form>
+                    </div>
+              </app-modal>     
           </div>
   </tab>
   </tabs><!-- #Tab -->
@@ -105,14 +194,47 @@
       </div>
   </article>
   <p *ngIf="courseCard.length > 3" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= courseCard.length">view more</button></p>
-    
-    <h2>ABOUT</h2>
+    <h2>ABOUT <a href="javascript:void(0)" (click)="isEditAbout = !isEditAbout" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
     <p>{{details?.description}}</p>
-    <h2>CONTACT</h2>
+    <app-modal [(visible)]="isEditAbout">    
+        <h2>Edit Your Description</h2>
+        <div class="edit-form" *ngIf="instructors">
+        <form id="instrocterDescription" [formGroup]="instrocterDescriptionForm" (ngSubmit)="updateinstrocterDescription()">  
+          <div class="form-row">
+              <textarea cols="30" rows="10"  formControlName="description" [(ngModel)]="details.description"></textarea>
+              <control-messages [control]="instrocterDescriptionForm.controls.description"></control-messages>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="!instrocterDescriptionForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
+          <button class="btn btn-default" (click)="isEditAbout = !isEditAbout"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+          </form>
+        </div>
+      </app-modal>
+    <h2>CONTACT <a href="javascript:void(0)" (click)="isEdit = !isEdit" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
     <div class="contact_instructor">
     <span *ngIf="instructors?.phone.length > 0"><i class="fa fa-phone-square" aria-hidden="true"></i> {{instructors?.phone}}</span><br>
     <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span>
   </div>
+  <app-modal [(visible)]="isEdit">    
+      <h2>Edit Your Description</h2>
+      <div class="edit-form" *ngIf="instructors">
+          <form id="instrocterAddress" [formGroup]="instrocterAddressForm" (ngSubmit)="updateAddress()">  
+          <div class="form-row">
+            <label>Phone:</label>
+              <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="instructors.phone"/><br>
+              <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
+          </div>
+          <div class="form-row">
+            <label>Email:</label>
+              <input type="text" formControlName="addressEmail" [(ngModel)]="instructors.email"/>
+              <control-messages [control]="instrocterAddressForm.controls.addressEmail"></control-messages>
+          </div>
+          <div class="form-row">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
+            <button class="btn btn-default" (click)="isEdit = !isEdit"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+          </div>  
+          </form>
+          </div>
+    </app-modal>   
   </section>
   <!-- desktop view End -->
    <!-- #reviews-->
