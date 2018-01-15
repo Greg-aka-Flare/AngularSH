@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  api: 'http://shrpr.test/api/'
+  api: 'https://test.shrpr.co/api/'
 };

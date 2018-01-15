@@ -51,6 +51,9 @@ export class CuriousService {
       this.likes = Array.from(new Set(this.likes));
     }
 
+    //set localStorage
+    localStorage.setItem('likes', JSON.stringify(this.likes));
+
     //increment counter
     this.counter++;
 
@@ -75,6 +78,9 @@ export class CuriousService {
       this.dislikes.push(id);
       this.dislikes = Array.from(new Set(this.dislikes));
     }
+
+    //set localStorage
+    localStorage.setItem('dislikes', JSON.stringify(this.likes));
 
     //clear localStorage
     return this.clear();

@@ -1,7 +1,7 @@
 <section id="profile-header">
   <div class="profile-picture">
-    <img *ngIf="instructors?.profile_img" src="../../assets/img/instructors/{{instructors?.profile_img}}" alt="" title="">
-    <img *ngIf="!instructors?.profile_img" src="../../assets/img/instructors-picture.png" alt="" title="">
+    <img *ngIf="user?.profile_img" src="../../assets/img/instructors/{{user?.profile_img}}" alt="" title="">
+    <img *ngIf="!user?.profile_img" src="../../assets/img/instructors-picture.png" alt="" title="">
     <div class="social-icon">
       <a *ngIf="details?.yelp.length > 0" href="{{details?.yelp}}" target="_blank" title="Yelp"><i class="fa fa-yelp" aria-hidden="true"></i></a>
       <a *ngIf="details?.twitter.length > 0" href="{{details?.twitter}}" target="_blank" title="Twitter"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
@@ -10,15 +10,15 @@
       <a *ngIf="details?.pinterest.length > 0" href="{{details?.pinterest}}" target="_blank" title="Pinterest"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a>
     </div>
   </div>
-  <div><h2>{{instructors?.name}}</h2>
-    <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{instructors?.email}}">{{instructors?.email}}</a><br>
+  <div><h2>{{user?.name}}</h2>
+    <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{user?.email}}">{{user?.email}}</a><br>
     <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
-    <!--<i aria-hidden="true" class="fa fa-map-marker"></i>  {{ instructors?.addresses[0]?.city }}, {{ instructors?.addresses[0]?.state }}-->
+    <!--<i aria-hidden="true" class="fa fa-map-marker"></i>  {{ user?.addresses[0]?.city }}, {{ user?.addresses[0]?.state }}-->
   <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [readOnly]="true"></star-rating-comp> |  <a (click)="goTo('reviews')" href="javascript:void(0);">{{reviewCount}} reviews</a></div></div>
   </section><!-- #profile header -->
   <tabs *ngIf="width < 768" >
     <tab tabTitle="Courses">
-    <h3>Upcoming Events with {{instructors?.name}} </h3>
+    <h3>Upcoming Events with {{user?.name}} </h3>
     <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
         <div class="img-ctn">
           <div class="price" *ngIf="card.semesters[0].amount != '0.00'">
@@ -59,7 +59,7 @@
   <tab tabTitle="CONTACT">
           <div class="contact_box">
               <div class="contact_instructor">
-            <span *ngIf="instructors?.phone.length > 0"><i class="fa fa-phone-square" aria-hidden="true"></i> <a href="tel:{{instructors?.phone}}">{{instructors?.phone}}</a></span><br>
+            <span *ngIf="user?.phone.length > 0"><i class="fa fa-phone-square" aria-hidden="true"></i> <a href="tel:{{user?.phone}}">{{user?.phone}}</a></span><br>
             <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
             </div>      
           </div>
@@ -76,7 +76,7 @@
         <!--<button (click)="showDialog = !showDialog" class="btn">Close</button>-->
       </app-modal>
 
-    <h3>Upcoming Events with {{instructors?.name}}</h3>
+    <h3>Upcoming Events with {{user?.name}}</h3>
     <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
       <div class="img-ctn">
           <div class="price" *ngIf="card.semesters[0].amount != '0.00'">
@@ -118,7 +118,7 @@
     <p>{{details?.description}}</p>
     <h2>CONTACT</h2>
     <div class="contact_instructor">
-    <span *ngIf="instructors?.phone.length > 0"><i class="fa fa-phone-square" aria-hidden="true"></i> {{instructors?.phone}}</span><br>
+    <span *ngIf="user?.phone.length > 0"><i class="fa fa-phone-square" aria-hidden="true"></i> {{user?.phone}}</span><br>
     <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span>
   </div>
   </section>
