@@ -103,16 +103,22 @@ export class CuriousService {
         requests.push(this.http.post(url, {}));
       }
 
-      //unset localstorage
-      localStorage.removeItem('likes');
-      localStorage.removeItem('dislikes');
-
       //send all requests
-      return forkJoin(requests);
+      return forkJoin(requests)
+        .do(result => {
+
+          //unset localstorage
+          localStorage.removeItem('likes');
+          localStorage.removeItem('dislikes');
+
+          //empty arrays
+          this.likes = [];
+          this.dislikes = [];
+        });
     }
     else{ //can't clear unless logged in
 
-      return Observable.throw(false);
+      return Observable.of('Likes Stored!');
     }
   }
 

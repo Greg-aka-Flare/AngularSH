@@ -86,12 +86,6 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
     this.counterSubscription.add(this.counterSubscription = this.curious.likeCounter().subscribe((count) => {
       this.counter = count;
     }));
-
-    this.curious.clear().subscribe(
-      success => console.log(success),
-      error => console.log(error),
-      () => console.log('Complete.')
-    );
   }
 
   ngOnDestroy() {
@@ -122,10 +116,20 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
       course.state = 'like';
 
       //increment like counter
-      this.curious.like(course.id);
+      this.curious.like(course.id).subscribe(
+        success => {
+          
+          //add new course
+          this.addNewCourse(course, i);
+        },
+        error => {
+          //log error
+          console.log(error);
 
-      //add new course
-      this.addNewCourse(course, i);
+          //add new course
+          this.addNewCourse(course, i);
+        }
+      );
     }
   }
 
@@ -137,10 +141,20 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
       course.state = 'dislike';
 
       //increment like counter
-      this.curious.dislike(course.id);
+      this.curious.dislike(course.id).subscribe(
+        success => {
+          
+          //add new course
+          this.addNewCourse(course, i);
+        },
+        error => {
+          //log error
+          console.log(error);
 
-      //add new course
-      this.addNewCourse(course, i);
+          //add new course
+          this.addNewCourse(course, i);
+        }
+      );
     }
   }
 

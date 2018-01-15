@@ -117,10 +117,20 @@ export class CuriousMobileComponent implements OnInit {
       course.state = 'like';
 
       //increment like counter
-      this.curious.like(course.id);
+      this.curious.like(course.id).subscribe(
+        success => {
 
-      //add new course
-      this.addNewCourse(course, i);
+          //add new course
+          this.addNewCourse(course, i);
+        },
+        error => {
+          //log error
+          console.log(error);
+
+          //add new course
+          this.addNewCourse(course, i);
+        }
+      );
     }
   }
 
@@ -132,10 +142,20 @@ export class CuriousMobileComponent implements OnInit {
       course.state = 'dislike';
 
       //increment like counter
-      this.curious.dislike(course.id);
+      this.curious.dislike(course.id).subscribe(
+        success => {
+          
+          //add new course
+          this.addNewCourse(course, i);
+        },
+        error => {
+          //log error
+          console.log(error);
 
-      //add new course
-      this.addNewCourse(course, i);
+          //add new course
+          this.addNewCourse(course, i);
+        }
+      );
     }
   }
 
