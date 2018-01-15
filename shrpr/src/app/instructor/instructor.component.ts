@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, NgModule  } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser'
+import { BrowserModule } from '@angular/platform-browser';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { TabsComponent } from "../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
@@ -9,6 +10,7 @@ import { Course } from "../courses/course.interface";
 import { CourseService } from "../courses/course.service";
 import { Instructor } from "./instructor.interface";
 import { InstructorService } from "./instructor.service";
+import { ValidationService } from '../core/validation.service';
 
 @Component({
   selector: 'app-instructor',
@@ -56,7 +58,8 @@ export class InstructorComponent implements OnInit, OnDestroy {
   constructor(
     private instructorService: InstructorService, 
     private route: ActivatedRoute,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private fb: FormBuilder
   ) { 
 
     let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
