@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import { User } from '../../../core/user.interface';
 import { UserService } from '../../../core/user.service';
 import { AuthService } from '../../../auth/auth.service';
+import { CuriousService } from '../../../core/curious.service';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -27,6 +28,7 @@ export class LoginFormComponent implements OnInit {
     public userService: UserService,
     private http: HttpClient,
     private auth: AuthService,
+    private curious: CuriousService,
     private router: Router
   ) {}
 
@@ -82,6 +84,21 @@ export class LoginFormComponent implements OnInit {
   }
 
   onLoggedIn() {
-    this.router.navigate(['profile']);
+
+    //save all likes/dislikes in localStorage, go to profile upon success/failure
+    this.curious.clear().subscribe(
+      success => {
+
+        console.log(success);
+
+        this.router.navigate(['profile']);
+      },
+      error => {
+
+        console.log(error);
+
+        this.router.navigate(['profile']);
+      }
+    )
   }
 }
