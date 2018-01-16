@@ -1,5 +1,6 @@
 <div *ngIf="course">
-    <h2>{{course.title}} Semesters</h2>
+    <section class="page-conent-area">
+    <h1>{{course.title}} Semesters</h1>
     <section class="semester_row" *ngFor="let mycourse of course.semesters; let i = index;">
     <article class="card-box">
         <div class="img-ctn">
@@ -27,13 +28,15 @@
         </div>
     </article>
     <div class="semester_info_box">
-        <div><strong>Start Date:</strong> {{mycourse?.start_date | datex:'LLLL'}}</div>
+        <div><strong>Start Date:</strong><br>{{mycourse?.start_date | datex:'LLLL'}}</div>
         <div *ngFor="let add of mycourse.addresses">
         <strong>Address:</strong><br>
           <span *ngIf="add?.name">{{add?.name}}, </span>
-          <span *ngIf="add?.streetAddress">{{add?.streetAddress}}, </span>
+          <span *ngIf="add?.streetAddress">{{add?.streetAddress}}, </span><br>
+          <span class="grey-text">
           <span *ngIf="add?.city">{{add?.city}},</span> <span *ngIf="add?.state">{{add?.state}} {{add?.zip}} </span>
           <span *ngIf="add?.country">{{add?.country}}</span>
+        </span>
       </div>
       <div><strong>Total Sessions:</strong> {{mycourse?.duration}}</div>
       <ol class="meetings_list" aria-roledescription="list">
@@ -41,5 +44,5 @@
       </ol>
     </div>
   </section> 
-
+</section>
 </div> 

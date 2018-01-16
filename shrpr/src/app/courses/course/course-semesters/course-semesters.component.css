@@ -42,6 +42,9 @@
 .semester_info_box strong{
     color:#448a58;
 }
+.grey-text {
+    color:#666666;
+}
 
 @media only screen and (min-width: 769px) {
     .card-box {
