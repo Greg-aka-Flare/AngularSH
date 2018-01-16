@@ -9,10 +9,12 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/take';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
+  api: string = environment.api;
   isRefreshingToken: boolean = false;
   tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
@@ -29,6 +31,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     return next.handle(this.addToken(req, token))
       .catch(error => {
+
         if(error instanceof HttpErrorResponse) {
           switch ((<HttpErrorResponse>error).status) {
             case 400:
@@ -40,6 +43,16 @@ export class TokenInterceptor implements HttpInterceptor {
               }
             case 401:
               if(token) {
+    
+                if(error.error.error === 'Token Invalid') {
+                  //token blacklisted
+                  return this.logout();
+                }
+                else if(error.url === (this.api + 'auth/refresh')){
+                  //can't refresh token
+                  return this.logout();
+                }
+
                 return this.handle401Error(req, next);
               }
               else {
@@ -84,6 +97,7 @@ export class TokenInterceptor implements HttpInterceptor {
           return this.logout();
         })
         .catch(error => {
+
           // If there is an exception calling 'refreshToken', bad news so logout.
           return this.logout();
         })
