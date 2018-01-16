@@ -29,6 +29,7 @@ export class FilterComponent implements OnInit, AfterViewInit {
 	filtered: any[] = [];
 	courseCount: string = 'No Courses';
 	instructors: any[] = [];
+  topics: any[] = [];
   state: string = 'hide';
   @ViewChildren('fieldset') fieldsets: QueryList<any>;
 
@@ -55,7 +56,20 @@ export class FilterComponent implements OnInit, AfterViewInit {
   	//for each course, sort data
   	for(let course of this.courses){
 
-  		//add to instructor array if doesn't exist already
+      for(let category of course.categories){
+
+        //add to topics array if doesn't exist already
+        if(!this.containsObject(category, this.topics)){
+
+          this.topics.push(category);
+
+          this.filterForm.addControl('topic_' + category.id, new FormControl(true));
+
+          ++i;
+        }
+      }
+
+  		//add to instructors array if doesn't exist already
   		if(!this.containsObject(course.instructor, this.instructors)){
 
 	  		this.instructors.push(course.instructor);
@@ -114,55 +128,73 @@ export class FilterComponent implements OnInit, AfterViewInit {
 
       //on all click
       this.renderer.listen(all, 'click', () => {
+        
+        let obj = {};
 
         for(let input of inputs) input.checked = true;
 
-        switch(group) {
-          case 'categories':
-            this.filterForm.patchValue({
-              'fun': true,
-              'work': true,
-              'kids': true
-            })
-          break;
-          case 'instructors':
-            let obj = {};
+          switch(group) {
+            case 'categories':
+              this.filterForm.patchValue({
+                'fun': true,
+                'work': true,
+                'kids': true
+              })
+            break;
+            case 'topics':
+              for(let topic of this.topics){
+                let key = 'topic_' + topic.id;
 
-            for(let instructor of this.instructors){
-              let key = 'instructor_' + instructor.id;
+                obj[key] = true;
+              }
 
-              obj[key] = true;
-            }
+              this.filterForm.patchValue(obj);
+            break;
+            case 'instructors':
+              for(let instructor of this.instructors){
+                let key = 'instructor_' + instructor.id;
 
-            this.filterForm.patchValue(obj);
-          break;
+                obj[key] = true;
+              }
+
+              this.filterForm.patchValue(obj);
+            break;
         }
       });
 
       //on none click
       this.renderer.listen(none, 'click', () => {
+        
+        let obj = {};
 
         for(let input of inputs) input.checked = false;
 
-        switch(group) {
-          case 'categories':
-            this.filterForm.patchValue({
-              'fun': false,
-              'work': false,
-              'kids': false
-            })
-          break;
-          case 'instructors':
-            let obj = {};
+          switch(group) {
+            case 'categories':
+              this.filterForm.patchValue({
+                'fun': false,
+                'work': false,
+                'kids': false
+              })
+            break;
+            case 'topics':
+              for(let topic of this.topics){
+                let key = 'topic_' + topic.id;
 
-            for(let instructor of this.instructors){
-              let key = 'instructor_' + instructor.id;
+                obj[key] = false;
+              }
 
-              obj[key] = false;
-            }
+              this.filterForm.patchValue(obj);
+            break;
+            case 'instructors':
+              for(let instructor of this.instructors){
+                let key = 'instructor_' + instructor.id;
 
-            this.filterForm.patchValue(obj);
-          break;
+                obj[key] = false;
+              }
+
+              this.filterForm.patchValue(obj);
+            break;
         }
       });
     });
@@ -187,7 +219,7 @@ export class FilterComponent implements OnInit, AfterViewInit {
   	this.filtered = [];
 
   	//for each course, add to filtered array
-		for(let course of this.courses){
+		checkCourse: for(let course of this.courses){
 
 			//check group
 			switch (course.group.id) {
@@ -206,6 +238,12 @@ export class FilterComponent implements OnInit, AfterViewInit {
 
       //if instructor is not selected, continue to next
       if(!form['instructor_' + course.instructor.id]) continue;
+
+      //check if categories are selected
+      for(let category of course.categories){
+
+        if(!form['topic_' + category.id]) continue checkCourse;
+      }
 
   		//add to filtered array
   		this.filtered.push(course);

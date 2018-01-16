@@ -66,6 +66,31 @@
 				</section><!-- .options -->
 			</fieldset>
 
+			<fieldset group="topics" #fieldset>
+				<button class="toggle">
+					<i class="fa fa-angle-right"></i> Topics
+				</button><!-- .toggle -->
+
+				<section class="options">
+					<div class="btn-ctn">
+						<button class="all">Select All</button><!-- .all -->
+
+						<button class="none">Select None</button><!-- .none -->
+					</div><!-- .btn-ctn -->
+
+					<div class="option" *ngFor="let topic of topics; let i = index">
+						<input 
+							type="checkbox" 
+							name="topic_{{ topic.id }}" 
+							id="topic_{{ topic.id }}" 
+							formControlName="topic_{{ topic.id }}"
+						/>
+						
+						<label for="topic_{{ topic.id }}">{{ topic.name }}</label> 
+					</div><!-- .option -->
+				</section><!-- .options -->
+			</fieldset>
+
 			<fieldset group="instructors" #fieldset>
 				<button class="toggle">
 					<i class="fa fa-angle-right"></i> Instructors
