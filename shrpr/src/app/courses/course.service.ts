@@ -79,6 +79,14 @@ export class CourseService {
 		return this.http.delete(this.api + id);
 	}
 
+	suggest(data){
+
+		//create api endpoint
+		let api = this.api + 'course/suggest';
+
+		return this.http.post(api, data);	
+	}
+
 	private updateQueryString(key, value, url) {
 
 		if (!url) url = window.location.href;

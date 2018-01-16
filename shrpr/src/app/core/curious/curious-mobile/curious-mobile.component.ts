@@ -77,7 +77,7 @@ export class CuriousMobileComponent implements OnInit {
   ngOnInit() {
 
     this.suggestForm = new FormGroup({
-      'suggest': new FormControl(null, Validators.required)
+      'suggest': new FormControl(null, [Validators.required, Validators.min(100)])
     });
 
     this.subscriptions.add(this.courseService.getCourses(0, 10, true).subscribe(courses => {
@@ -105,8 +105,17 @@ export class CuriousMobileComponent implements OnInit {
 
   onSuggest() {
 
-    //course suggested
-    this.suggestComplete = true;
+    let data = {
+      'suggestion': this.suggestForm.value.suggest
+    }
+
+    this.courseService.suggest(data).subscribe(
+      success => {
+        
+        //course suggested
+        this.suggestComplete = true;
+      }
+    );
   }
 
   onLike(course, i) {

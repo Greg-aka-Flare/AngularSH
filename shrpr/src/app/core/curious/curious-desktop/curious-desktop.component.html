@@ -84,7 +84,7 @@
         class="suggest-course"
         *ngIf="forWork?.length === 0"
     >
-        <form [formGroup]="suggestForm" (ngSubmit)="onSuggest(1)">
+        <form [formGroup]="suggestFormWork" (ngSubmit)="onSuggest(1)">
             <h1>Suggest Course:</h1>
 
             <p>We're sorry we don't have anymore courses to recommend. Please tell us about some courses you would like to see:</p>
@@ -95,7 +95,14 @@
                 formControlName="suggest" 
             ></textarea>
 
-            <button>Submit</button>
+            <span 
+                class="help-block"
+                *ngIf="!suggestFormWork.get('suggest').valid && suggestFormWork.get('suggest').touched"
+            >
+                Please tell us more! (100 characters min)
+            </span><!-- .help-block -->
+
+            <button [disabled]="!suggestFormWork.valid">Submit</button>
         </form>
     </section><!-- .suggest-course -->
 </section><!-- #for_work_box -->
@@ -184,7 +191,7 @@
         class="suggest-course"
         *ngIf="forFun?.length === 0"
     >
-        <form [formGroup]="suggestForm" (ngSubmit)="onSuggest(0)">
+        <form [formGroup]="suggestFormFun" (ngSubmit)="onSuggest(0)">
             <h1>Suggest Course:</h1>
 
             <p>We're sorry we don't have anymore courses to recommend. Please tell us about some courses you would like to see:</p>
@@ -195,7 +202,14 @@
                 formControlName="suggest" 
             ></textarea>
 
-            <button>Submit</button>
+            <span 
+                class="help-block"
+                *ngIf="!suggestFormFun.get('suggest').valid && suggestFormFun.get('suggest').touched"
+            >
+                Please tell us more! (100 characters min)
+            </span><!-- .help-block -->
+
+            <button [disabled]="!suggestFormFun.valid">Submit</button>
         </form>
     </section><!-- .suggest-course -->
 </section><!-- #for_fun_box -->
@@ -286,7 +300,7 @@
         class="suggest-course"
         *ngIf="forKids?.length === 0"
     >
-        <form [formGroup]="suggestForm" (ngSubmit)="onSuggest(2)">
+        <form [formGroup]="suggestFormKids" (ngSubmit)="onSuggest(2)">
             <h1>Suggest Course:</h1>
 
             <p>We're sorry we don't have anymore courses to recommend. Please tell us about some courses you would like to see:</p>
@@ -297,7 +311,14 @@
                 formControlName="suggest" 
             ></textarea>
 
-            <button>Submit</button>
+            <span 
+                class="help-block"
+                *ngIf="!suggestFormKids.get('suggest').valid && suggestFormKids.get('suggest').touched"
+            >
+                Please tell us more! (100 characters min)
+            </span><!-- .help-block -->
+
+            <button [disabled]="!suggestFormKids.valid">Submit</button>
         </form>
     </section><!-- .suggest-course -->
 </section><!-- #for_kids_box -->

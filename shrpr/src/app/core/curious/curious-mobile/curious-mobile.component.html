@@ -76,7 +76,14 @@
             formControlName="suggest" 
         ></textarea>
 
-        <button>Submit</button>
+        <span 
+            class="help-block"
+            *ngIf="!suggestForm.get('suggest').valid && suggestForm.get('suggest').touched"
+        >
+            Please tell us more! (100 characters min)
+        </span><!-- .help-block -->
+
+        <button [disabled]="!suggestForm.valid">Submit</button>
     </form>
 
     <section class="suggest-complete" *ngIf="suggestComplete">

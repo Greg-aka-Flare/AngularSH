@@ -47,7 +47,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class CuriousDesktopComponent implements OnInit, OnDestroy {
 
-  suggestForm: FormGroup;
+  suggestFormWork: FormGroup;
+  suggestFormFun: FormGroup;
+  suggestFormKids: FormGroup;
   showFun: boolean = true;
   showWork: boolean = true;
   showKids: boolean = true;
@@ -67,8 +69,16 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.suggestForm = new FormGroup({
-      'suggest': new FormControl(null, Validators.required)
+    this.suggestFormWork = new FormGroup({
+      'suggest': new FormControl(null, [Validators.required, Validators.min(100)])
+    });
+
+    this.suggestFormFun = new FormGroup({
+      'suggest': new FormControl(null, [Validators.required, Validators.min(100)])
+    });
+
+    this.suggestFormKids = new FormGroup({
+      'suggest': new FormControl(null, [Validators.required, Validators.min(100)])
     });
 
     this.counterSubscription.add(this.courseService.getCourses(1, 3, true).subscribe(courses => {
@@ -93,19 +103,49 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
   }
 
   onSuggest(group: number) {
+
+    let data: any = {};
+
     switch (group) {
       case 0:
-        this.showFun = false;
+        data.suggestion = this.suggestFormFun.value.suggest;
+        this.courseService.suggest(data).subscribe(
+          success => this.showFun = false
+        );
         break;
 
       case 1:
-        this.showWork = false;
+        data.suggestion = this.suggestFormWork.value.suggest;
+        this.courseService.suggest(data).subscribe(
+          success => this.showWork = false
+        );
         break;
 
       case 2:
-        this.showKids = false;
+        data.suggestion = this.suggestFormKids.value.suggest;
+        this.courseService.suggest(data).subscribe(
+          success => this.showKids = false
+        );
         break;
     }
+
+    this.courseService.suggest(data).subscribe(
+      success => {
+        switch (group) {
+          case 0:
+            this.showFun = false;
+            break;
+
+          case 1:
+            this.showWork = false;
+            break;
+
+          case 2:
+            this.showKids = false;
+            break;
+        }
+      }
+    );
   }
 
   onLike(course, i) {
