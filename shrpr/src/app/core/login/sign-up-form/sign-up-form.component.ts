@@ -85,8 +85,6 @@ export class SignUpFormComponent implements OnInit {
     //assign user role
     this.data.role = this.ProfileForm.value.role;
 
-    console.log(this.data);
-
     //if user has role
     if(this.data.role){
 
@@ -95,7 +93,6 @@ export class SignUpFormComponent implements OnInit {
           this.auth.google(this.data).subscribe( 
             success => this.onUserCreated(),
             error => { 
-              console.log(error);
               this.signupError = true;
               this.signupErrorText = error.message;
             }
@@ -116,7 +113,6 @@ export class SignUpFormComponent implements OnInit {
           this.auth.linkedin(this.data).subscribe( 
             success => this.onUserCreated(),
             error => { 
-              console.log(error);
               this.signupError = true;
               this.signupErrorText = error.message;
             } 
@@ -127,7 +123,6 @@ export class SignUpFormComponent implements OnInit {
           this.auth.signup(this.data).subscribe( 
             success => this.onUserCreated(),
             error => { 
-              console.log(error);
               this.signupError = true;
               this.signupErrorText = 'Unable to sign-up';
             } 
