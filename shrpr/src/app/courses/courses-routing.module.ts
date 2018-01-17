@@ -5,7 +5,6 @@ import { CoursesComponent } from './courses.component';
 import { CourseComponent } from './course/course.component';
 import { CourseSemestersComponent } from './course/course-semesters/course-semesters.component';
 import { CourseListComponent } from './course-list/course-list.component';
-import { CourseSemestersComponent } from './course/course-semesters/course-semesters.component';
 
 
 const coursesRoutes: Routes = [
