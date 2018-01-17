@@ -36,7 +36,7 @@ export class TokenInterceptor implements HttpInterceptor {
           switch ((<HttpErrorResponse>error).status) {
             case 400:
               if(token) {
-                return this.handle401Error(req, next);
+                return this.handle400Error(error);
               }
               else {
                 return this.logout();
@@ -58,9 +58,12 @@ export class TokenInterceptor implements HttpInterceptor {
               else {
                 return this.logout();
               }
+            default:
+              return Observable.throw(error.error);
           }
         }
         else {
+
           return Observable.throw(error);
         }
       });

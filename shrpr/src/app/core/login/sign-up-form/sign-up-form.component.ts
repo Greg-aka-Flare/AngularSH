@@ -85,6 +85,8 @@ export class SignUpFormComponent implements OnInit {
     //assign user role
     this.data.role = this.ProfileForm.value.role;
 
+    console.log(this.data);
+
     //if user has role
     if(this.data.role){
 
@@ -95,7 +97,7 @@ export class SignUpFormComponent implements OnInit {
             error => { 
               console.log(error);
               this.signupError = true;
-              this.signupErrorText = 'Unable to sign-in due to account settings';
+              this.signupErrorText = error.message;
             }
           );
           break;
@@ -104,9 +106,8 @@ export class SignUpFormComponent implements OnInit {
           this.auth.facebook(this.data).subscribe( 
             success => this.onUserCreated(),
             error => { 
-              console.log(error);
               this.signupError = true;
-              this.signupErrorText = 'Unable to sign-in due to account settings';
+              this.signupErrorText = error.message;
             } 
           );
           break;
@@ -117,7 +118,7 @@ export class SignUpFormComponent implements OnInit {
             error => { 
               console.log(error);
               this.signupError = true;
-              this.signupErrorText = 'Unable to sign-in due to account settings';
+              this.signupErrorText = error.message;
             } 
           );
           break;
