@@ -45,7 +45,7 @@
         </div><!-- .img-ctn -->
         <div class="course_info">
             <div *ngIf="semesterCount > 1">
-                <p>Total Semesters: {{semesterCount}} <button (click)="showDialog = !showDialog" class="allsem-btn">All Semesters</button></p>
+                <p>Total Semesters: {{semesterCount}}  <a class="allsem-btn" routerLink="/courses/{{course?.id}}/semesters">All Semesters</a></p>
                 Select Your Semester, starts at:
                 <div *ngIf="selectedSemester" class="select-date">
                   <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
@@ -56,13 +56,9 @@
                     <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
                     <!--<p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>-->
                   </div>
-                  <p>Sessions: {{selected?.duration}}</p> 
+                  <p>Session(s): {{selected?.duration}}</p> 
                 </div>
               </div>
-              <app-modal [(visible)]="showDialog">
-                  <app-course-semesters [course]="course"></app-course-semesters>
-                  <button (click)="showDialog = !showDialog" class="btn">Close</button>
-                </app-modal>
               </div>
               <div *ngIf="semesterCount < 2">
                   Starts at: 
@@ -147,7 +143,7 @@
             </p>
             <br>
             <div *ngIf="semesterCount > 1">
-              <p>Total Semesters: {{semesterCount}}  <button (click)="showDialog = !showDialog" class="allsem-btn">All Semesters</button></p>
+              <p>Total Semesters: {{semesterCount}} <a class="allsem-btn" routerLink="/courses/{{course?.id}}/semesters">All Semesters</a></p>
               Select Your Semester, starts at:<br>
               <div *ngIf="selectedSemester" class="select-date">
                 <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
@@ -159,13 +155,9 @@
                   <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
                   <!--<p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>-->
                 </div>
-                <p>Sessions: {{selected?.duration}} (<a (click)="goTo('sessions')" href="javascript:void(0);">view full Schedule</a>)</p> 
+                <p>Sessions: {{selected?.duration}} <span *ngIf="selected?.duration > 1" >(<a (click)="goTo('sessions')" href="javascript:void(0);">view full Schedule</a>)</span></p> 
               </div>
             </div>
-            <app-modal [(visible)]="showDialog">
-                <app-course-semesters [course]="course"></app-course-semesters>
-                <button (click)="showDialog = !showDialog" class="btn">Close</button>
-              </app-modal>
             </div>
 
             <div *ngIf="semesterCount < 2">
@@ -174,7 +166,7 @@
               <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
                  <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
                  <!--<p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>-->
-                 <p>Sessions: {{selected?.duration}}</p>
+                 <p>Session: {{selected?.duration}}</p>
               </div>
             </div> 
             </div>

@@ -506,13 +506,14 @@ agm-map {
     font-size:14px;
     line-height:17px;
 }
-.allsem-btn {
+.course_info_desktop a.allsem-btn {
     border: none;
     background-color: #ed9b40;
     color: #ffffff;
     padding: 6px 10px 4px;
     font-size: 16px;
     line-height: 14px;
+    text-decoration: none;
     display: inline-block;
     font-family: circularstd book;
     border-radius: 4px;
@@ -520,7 +521,8 @@ agm-map {
     box-shadow: 0 1px 3px 2px #dddddd;
     cursor: pointer;
 }
-.allsem-btn:hover {
+.course_info_desktop a.allsem-btn:hover {
+    color: #ffffff;
     opacity: 0.8;
 }
 
@@ -675,6 +677,8 @@ figure.rating {
 .bradecrumb {
     padding: 7px 0 15px;
 }
+
+
 }
 /* =============================================================================
    LARGE SCREEN STYLES [DESKTOP VIEW] START
