@@ -1,4 +1,23 @@
 <app-template>
-		<router-outlet></router-outlet>
+		<article id="profile">
+		</article><!-- #profile -->
+	
+		<profile-institution 
+			*ngIf="show == 'institution'"
+			[user]="user"
+		>
+		</profile-institution>
+	
+		<profile-instructor 
+			*ngIf="show == 'instructor'"
+			[user]="user"
+		>
+		</profile-instructor>
+	
+		<profile-student 
+			*ngIf="show == 'student'"
+			[user]="user"
+		>
+		</profile-student>
 	</app-template>
 	
