@@ -24,7 +24,7 @@ import { LinkedinComponent } from './login/linkedin/linkedin.component';
 
 import { StudentService } from '../student/student.service';
 import { AuthService } from '../auth/auth.service';
-import { InstructorService } from '../instructor/instructor.service';
+import { InstructorService } from '../instructors/instructor.service';
 import { InstitutionService } from "../institution/institution.service";
 import { CourseService } from '../courses/course.service';
 import { CuriousService } from './curious.service';
