@@ -1,7 +1,7 @@
 <div *ngIf="course">
     <section class="page-conent-area">
     <h1>{{course.title}} Semesters</h1>
-    <section class="semester_row" *ngFor="let mycourse of course.semesters; let i = index;">
+    <section class="semester_row" *ngFor="let mycourse of semesters; let i = index;">
     <article class="card-box">
         <div class="img-ctn">
             <div class="price" *ngIf="mycourse?.amount != '0.00'">
@@ -44,5 +44,6 @@
       </ol>
     </div>
   </section> 
+  <p *ngIf="semesterLength > 3" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= semesterLength">view more</button></p> 
 </section>
 </div> 
