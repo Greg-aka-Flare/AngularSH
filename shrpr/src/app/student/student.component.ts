@@ -55,6 +55,8 @@ export class StudentComponent implements OnInit, OnDestroy {
   //subscription: Subscription;
   private subscriptions = new Subscription();
   //control: FormControl;
+
+  studentDetails:any;
   
 
   width = document.documentElement.clientWidth;
@@ -74,7 +76,8 @@ export class StudentComponent implements OnInit, OnDestroy {
                 (response) => {
                   this.students = response;
                   //this.studentCourse = JSON.parse(response.courses);
-                  //console.log(this.students);
+                  this.studentDetails = JSON.parse(response.details);
+                  //console.log(this.studentDetails);
                 },
                 (error: Response) => console.log(error)
               )

@@ -5,25 +5,28 @@
         <div class="profile-picture">
           <img *ngIf="!students?.profile_img" src="../../assets/img/students-picture.png" alt="" title="">
           <img *ngIf="students?.profile_img" src="../../assets/img/{{students?.profile_img}}" alt="" title="">
-          <div class="social-icon">
-            <a *ngIf="details?.yelp.length > 0" href="{{details?.yelp}}" target="_blank" title="Yelp"><i class="fa fa-yelp" aria-hidden="true"></i></a>
-            <a *ngIf="details?.twitter.length > 0" href="{{details?.twitter}}" target="_blank" title="Twitter"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-            <a *ngIf="details?.facebook.length > 0" href="{{details?.facebook}}" target="_blank" title="Facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-            <a *ngIf="details?.linkedin.length > 0" href="{{details?.linkedin}}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-            <a *ngIf="details?.pinterest.length > 0" href="{{details?.pinterest}}" target="_blank" title="Pinterest"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a>
+          <div class="social-icon" *ngIf="studentDetails">
+            <a *ngIf="studentDetails?.twitter.length > 0" href="{{studentDetails?.twitter}}" target="_blank" title="Twitter"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+            <a *ngIf="studentDetails?.facebook.length > 0" href="{{studentDetails?.facebook}}" target="_blank" title="Facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+            <a *ngIf="studentDetails?.linkedin.length > 0" href="{{studentDetails?.linkedin}}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
           </div>
         </div>
         <div><h2>{{students.name}}</h2>
         <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{students?.email}}">{{students?.email}}</a><br>
-        <span *ngIf="details?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
-          <i aria-hidden="true" class="fa fa-map-marker"></i>  {{ city }}, {{ state }}
-          <!--<div class="rating"><star-rating-comp [starType]="'svg'" [rating]="3" [readOnly]="true"></star-rating-comp> |  <a href="/student/{{students?.id}}#reviews">33 reviews</a></div>-->
+        <span *ngIf="studentDetails?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{studentDetails?.url}}" target="_blank">{{studentDetails?.url}}</a></span><br> 
+          <i aria-hidden="true" class="fa fa-map-marker"></i>
+            <span *ngFor="let address of students?.addresses; let i = index;">
+              <span *ngIf="i == 0">
+              {{ address?.city }}, {{ address?.state }}
+            </span> 
+            </span>  
+          
         </div>
       </section>
       <app-modal [(visible)]="showDialog">
         <h2>Profile Edit Form</h2>
         <div class="edit-form">
-          <form id="studentProfile" [formGroup]="studentProfileForm" (ngSubmit)="updateProfile()">  
+          <!--<form id="studentProfile" [formGroup]="studentProfileForm" (ngSubmit)="updateProfile()">  
           <div class="form-row">
           <label>Name:</label>
               <input type="text" formControlName="name" [(ngModel)]="students.name" />
@@ -38,10 +41,6 @@
               <label>URL:</label>
                 <input type="text" formControlName="url" [(ngModel)]="details.url"/>
             </div>
-            <div class="form-row">
-            <label>Yelp Link:</label>
-              <input type="text" formControlName="yelp" [(ngModel)]="details.yelp"/>
-          </div>
           <div class="form-row">
             <label>Twitter Link:</label>
               <input type="text" formControlName="twitter" [(ngModel)]="details.twitter"/>
@@ -55,14 +54,10 @@
               <input type="text" formControlName="linkedIn" [(ngModel)]="details.linkedin"/><br>
           </div>
           <div class="form-row">
-            <label>Pinterest Link:</label>
-              <input type="text" formControlName="pinterest" [(ngModel)]="details.pinterest"/>
-          </div>
-          <div class="form-row">
             <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
             <button class="btn btn-default" (click)="showDialog = !showDialog"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
           </div>  
-          </form>
+          </form>-->
         </div>
         <!--<button (click)="showDialog = !showDialog" class="btn">Close</button>-->
       </app-modal>
@@ -70,7 +65,7 @@
        <!-- #profile header -->
       <tabs *ngIf="width < 768" >
         <tab tabTitle="Courses">
-          <h3><a [routerLink]="['/courses/list/all']">Click here to start your journey</a></h3>
+          <h3 *ngIf="!students?.courses.length"><a [routerLink]="['/courses/list/all']">Click here to start your journey </a></h3>
           <article class="card-box" *ngFor="let coursed of students?.courses">
                 <div class="img-ctn">
                     <figure>
@@ -84,7 +79,7 @@
                   <p class="with-box"><span>With</span> {{coursed?.instructor}}</p>
                   <a [routerLink]="['/course', coursed?.id]"  class="page-cta" aria-roledescription="button">View Course</a>
                 </div>
-            </article>
+          </article>
         </tab>
         <tab tabTitle="ABOUT">
             <div class="contact_box">
