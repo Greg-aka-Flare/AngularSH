@@ -26,7 +26,7 @@
       <app-modal [(visible)]="showDialog">
         <h2>Profile Edit Form</h2>
         <div class="edit-form">
-          <!--<form id="studentProfile" [formGroup]="studentProfileForm" (ngSubmit)="updateProfile()">  
+         <form id="studentProfile" [formGroup]="studentProfileForm" (ngSubmit)="updateProfile()">  
           <div class="form-row">
           <label>Name:</label>
               <input type="text" formControlName="name" [(ngModel)]="students.name" />
@@ -39,25 +39,25 @@
             <h2>Update Social Link</h2>
             <div class="form-row">
               <label>URL:</label>
-                <input type="text" formControlName="url" [(ngModel)]="details.url"/>
+                <input type="text" formControlName="url" [(ngModel)]="studentDetails.url"/>
             </div>
           <div class="form-row">
             <label>Twitter Link:</label>
-              <input type="text" formControlName="twitter" [(ngModel)]="details.twitter"/>
+              <input type="text" formControlName="twitter" [(ngModel)]="studentDetails.twitter"/>
           </div>
           <div class="form-row">
             <label>Facebook Link:</label>
-              <input type="text" formControlName="facebook" [(ngModel)]="details.facebook"/>
+              <input type="text" formControlName="facebook" [(ngModel)]="studentDetails.facebook"/>
           </div>
           <div class="form-row">
             <label>LinkedIn Link:</label>
-              <input type="text" formControlName="linkedIn" [(ngModel)]="details.linkedin"/><br>
+              <input type="text" formControlName="linkedIn" [(ngModel)]="studentDetails.linkedin"/><br>
           </div>
           <div class="form-row">
             <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
             <button class="btn btn-default" (click)="showDialog = !showDialog"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
           </div>  
-          </form>-->
+          </form>
         </div>
         <!--<button (click)="showDialog = !showDialog" class="btn">Close</button>-->
       </app-modal>
@@ -84,14 +84,14 @@
         <tab tabTitle="ABOUT">
             <div class="contact_box">
                 <a href="javascript:void(0)" (click)="isEditAbout = !isEditAbout" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-          <p>{{details?.description}}</p>
+          <p>{{studentDetails?.description}}</p>
           <app-modal [(visible)]="isEditAbout">    
               <h2>Edit Your Description</h2>
               <div class="edit-form">
               <form id="studentDescription" [formGroup]="studentDescriptionForm" (ngSubmit)="updatestudentDescription()">  
                 <div class="form-row">
                 <label>Description:</label>
-                    <textarea cols="30" rows="10"  formControlName="description" [(ngModel)]="details.description"></textarea>
+                    <textarea cols="30" rows="10"  formControlName="description" [(ngModel)]="studentDetails.description"></textarea>
                     <control-messages [control]="studentDescriptionForm.controls.description"></control-messages>
                 </div>
                 <button type="submit" class="btn btn-primary" [disabled]="!studentDescriptionForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
@@ -103,8 +103,9 @@
         </tab>
         <tab tabTitle="CONTACT">
           <div class="contact_box">
+              <a href="javascript:void(0)" (click)="isEdit = !isEdit" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
               <address *ngFor="let address of students?.addresses">
-                  <div><strong *ngIf="students?.addresses > 1">{{ address?.type }}</strong><br>
+                  <div><strong *ngIf="addressLength > 1">{{ address?.type }}</strong><br>
                   {{ address?.streetAddress }}<br>
                   {{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>
                   {{ address?.country }}<br>
@@ -113,10 +114,11 @@
                   Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
                   </div>
                   </address>
-                  <a href="javascript:void(0)" (click)="isEdit = !isEdit" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                   <app-modal [(visible)]="isEdit">    
-                      <h2>Edit Your Description</h2>
-                      <div class="edit-form">
+                      <h2>Edit Your Contact Information</h2>
+                      <section id="contact-form-container" [class.two-col]="addressLength > 1">
+                      <div class="edit-form" *ngFor="let address of students?.addresses">
+                          <strong *ngIf="addressLength > 1">{{ address?.type }}</strong>
                           <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
                           <div class="form-row">
                           <label>Street Address:</label>
@@ -159,6 +161,7 @@
                           </div>  
                           </form>
                           </div>
+                          </section>
                     </app-modal>
                   
                   
@@ -190,13 +193,13 @@
                   </div>
               </article>
           <h2>ABOUT <a href="javascript:void(0)" (click)="isEditAbout = !isEditAbout" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
-          <p>{{details?.description}}</p>
+          <p>{{studentDetails?.description}}</p>
           <app-modal [(visible)]="isEditAbout">    
               <h2>Edit Your Description</h2>
               <div class="edit-form">
               <form id="studentDescription" [formGroup]="studentDescriptionForm" (ngSubmit)="updatestudentDescription()">  
                 <div class="form-row">
-                    <textarea cols="30" rows="10"  formControlName="description" [(ngModel)]="details.description"></textarea>
+                    <textarea cols="30" rows="10"  formControlName="description" [(ngModel)]="studentDetails.description"></textarea>
                     <control-messages [control]="studentDescriptionForm.controls.description"></control-messages>
                 </div>
                 <button type="submit" class="btn btn-primary" [disabled]="!studentDescriptionForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
@@ -208,7 +211,7 @@
           <h2>CONTACT <a href="javascript:void(0)" (click)="isEdit = !isEdit" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
           <div class="contact_box">
               <address *ngFor="let address of students?.addresses">
-                  <div><strong *ngIf="students?.addresses > 1">{{ address?.type }}</strong><br>
+                  <div><strong *ngIf="addressLength > 1">{{ address?.type }}</strong><br>
                   {{ address?.streetAddress }}<br>
                   {{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>
                   {{ address?.country }}<br>
@@ -217,10 +220,11 @@
                   Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
                   </div>
                   </address>
-  
                   <app-modal [(visible)]="isEdit">    
                       <h2>Edit Your Contact Information</h2>
-                      <div class="edit-form">
+                      <section id="contact-form-container" [class.two-col]="addressLength > 1">
+                      <div class="edit-form" *ngFor="let address of students?.addresses">
+                          <strong *ngIf="addressLength > 1">{{ address?.type }}</strong><br>
                           <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">  
                           <div class="form-row">
                           <label>Street Address:</label>
@@ -263,6 +267,7 @@
                           </div>  
                           </form>
                           </div>
+                        </section>
                     </app-modal>
   
   

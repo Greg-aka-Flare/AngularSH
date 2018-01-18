@@ -44,6 +44,8 @@ export class StudentComponent implements OnInit, OnDestroy {
   data: any = {};
   contactData: any = {};
   aboutData: any = {};
+  addressData:any = {};
+  addressLength:number;
 
   showDialog:boolean = false;
   
@@ -77,7 +79,9 @@ export class StudentComponent implements OnInit, OnDestroy {
                   this.students = response;
                   //this.studentCourse = JSON.parse(response.courses);
                   this.studentDetails = JSON.parse(response.details);
-                  //console.log(this.studentDetails);
+                  this.addressLength = response.addresses.length;
+    
+                  //console.log(this.addressLength);
                 },
                 (error: Response) => console.log(error)
               )

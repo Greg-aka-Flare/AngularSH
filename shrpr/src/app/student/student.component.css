@@ -66,6 +66,9 @@
 .contact_box address, .profile-picture {
     position: relative;
 }
+.contact_box strong {
+    text-transform: capitalize;
+}
 .profile-form {
     background-color: #f4f4f4;
     border-bottom: 1px solid #cccccc;
@@ -161,6 +164,12 @@
 .edit-form {
     max-width:500px;
 }
+#contact-form-container.two-col .edit-form strong {
+    display: block;
+    padding: 0 0 5px 0;
+    text-transform: capitalize;
+    color: #02b2b8;
+}
 @media only screen and (min-width: 769px) {
     .edit-form label {
         display: inline-block;
@@ -186,5 +195,13 @@
  }
  .contact_box address {
      width: 49%;
+ }
+ #contact-form-container.two-col .edit-form {
+     display: inline-block;
+     vertical-align: top;
+     width: 48%;
+ }
+ #contact-form-container.two-col .edit-form:nth-of-type(1) {
+     margin: 0 3% 0 0;
  }
 }
