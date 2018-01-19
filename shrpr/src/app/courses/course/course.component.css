@@ -220,7 +220,12 @@ ul.meetings_list {
 ul.meetings_list li {
     padding:0 0 8px 0;
     background:none;
-    color:#ed9b40;
+    
+}
+ul.meetings_list li span {
+    display: block;
+    color:#666666;
+    padding: 4px 0 0 4px;
 }
 :host /deep/ .carousel-indicators {
     display:none;
@@ -506,22 +511,24 @@ agm-map {
     font-size:14px;
     line-height:17px;
 }
-.course_info_desktop a.allsem-btn {
+a.allsem-btn {
     border: none;
     background-color: #ed9b40;
     color: #ffffff;
-    padding: 6px 10px 4px;
+    padding: 9px 10px 7px 10px;
     font-size: 16px;
     line-height: 14px;
     text-decoration: none;
-    display: inline-block;
+    display: block;
     font-family: circularstd book;
     border-radius: 4px;
-    margin: 0 0 0 20px;
+    margin: 10px auto 0 auto;
     box-shadow: 0 1px 3px 2px #dddddd;
+    max-width: 200px;
     cursor: pointer;
+    text-align: center;
 }
-.course_info_desktop a.allsem-btn:hover {
+a.allsem-btn:hover {
     color: #ffffff;
     opacity: 0.8;
 }

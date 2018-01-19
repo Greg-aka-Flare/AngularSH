@@ -45,7 +45,9 @@ export class CourseComponent implements OnInit, OnDestroy {
   public endDate: Date;
   semesterCount:number;
   semesterArray: any[] = [];
+  semesters:any[]=new Array();
   selectedSemester:any;
+  selectedSemesterMettings:number;
   categoriesArray:any;
   semesterInfo;
   reviewshowHide:boolean = false;
@@ -53,6 +55,7 @@ export class CourseComponent implements OnInit, OnDestroy {
   booking: boolean = false;
   isBooked: boolean = false;
   showBookBtn: boolean = false;
+  counter:number = 0;
 
   //The time to show the next photo
   private NextPhotoInterval:number = 5000;
@@ -71,6 +74,7 @@ export class CourseComponent implements OnInit, OnDestroy {
   ) {
     this.selectedSemester = this.semesterArray;
     
+    
   }
 
   ngOnInit() {
@@ -85,6 +89,15 @@ export class CourseComponent implements OnInit, OnDestroy {
       this.semesterArray.pop();
       for(var i=0; i< this.semesterCount; i++){
         this.semesterArray.push(this.course.semesters[i]);
+      }
+      if(this.course){
+        for(var j = this.counter, l = this.semesterCount; j < l; j=j)
+        {
+          this.semesters.push(this.semesterArray[j]);
+          j++;
+          if(j%3 == 0) break;
+        }
+        this.counter += 3;
       }
       
       this.semesterDetails = JSON.parse(this.course.semesters[0].details);
@@ -107,7 +120,9 @@ export class CourseComponent implements OnInit, OnDestroy {
       );
 
       this.meetingArray = this.course.semesters[0].meetings;
+      this.selectedSemesterMettings =  this.meetingArray.length;
       this.onSelect(this.course.semesters[0].id);
+      
       //initializing the google co-ordinates
       this.lat = this.course.semesters[0].addresses[0].latitude;
       this.lng = this.course.semesters[0].addresses[0].longitude;
@@ -160,6 +175,8 @@ export class CourseComponent implements OnInit, OnDestroy {
 
   onSelect(val){
     this.selectedSemester = this.semesterArray.filter(x => x.id == val);
+    this.selectedSemesterMettings = this.selectedSemester[0].meetings.length;
+
   }
  
   private removeLastSlide() {

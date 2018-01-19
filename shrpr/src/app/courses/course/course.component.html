@@ -143,7 +143,7 @@
             </p>
             <br>
             <div *ngIf="semesterCount > 1">
-              <p>Total Semesters: {{semesterCount}} <a class="allsem-btn" routerLink="/courses/{{course?.id}}/semesters">All Semesters</a></p>
+              <p>Total Semesters: {{semesterCount}}</p>
               Select Your Semester, starts at:<br>
               <div *ngIf="selectedSemester" class="select-date">
                 <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
@@ -176,12 +176,25 @@
     <!-- .course_desktop_card -->
   </section>
   <!--desktop view ends-->
+  <section class="course_semester_desktop">
+    <h2>Semester Information</h2>
+    <div class="course_enroll_block">
+      <ul class="meetings_list" aria-roledescription="list">
+          <li *ngFor="let sem of semesters; let k = index">
+            <time title="{{sem?.start_date | datex:'LLLL'}}">{{sem?.start_date | datex:'LLLL'}}</time><br>
+            <span><i class="fa fa-map-marker" aria-hidden="true"></i> {{sem?.addresses[0]?.city}}, {{sem?.addresses[0]?.state}} </span>
+          </li>
+      </ul>
+      <a *ngIf="semesterCount > 3"  class="allsem-btn" routerLink="/courses/{{course?.id}}/semesters">View All Semesters</a>
+    </div>
+      <!-- .course_enroll_block -->
+</section>
   <!-- #profile header -->
   <tabs *ngIf="width < 768">
   <tab tabTitle="ABOUT">
       <div class="description" [innerHTML]="course.description"></div>
   </tab>
-  <tab tabTitle="Sessions">
+  <tab tabTitle="Sessions" *ngIf="selectedSemesterMettings > 1">
       <div *ngIf="selectedSemester">
           <div class="session_list_mobile" *ngFor="let semester of selectedSemester">
               <ol class="meetings_list" aria-roledescription="list">
@@ -202,8 +215,8 @@
   <section *ngIf="width > 767" id="desktopcourses">
     <h2>ABOUT</h2>
     <div class="description" [innerHTML]="course.description"></div><!-- .description -->
-    <h2 id="sessions">Sessions Detail</h2>
-    <div *ngIf="selectedSemester">
+    <h2 id="sessions" *ngIf="selectedSemesterMettings > 1">Sessions</h2>
+    <div *ngIf="selectedSemester && selectedSemesterMettings > 1">
       <div *ngFor="let semester of selectedSemester">
           <ol class="meetings_list" aria-roledescription="list">
               <li *ngFor="let selectmet of semester.meetings"><time title="{{selectmet?.start | datex:'LLLL'}}">{{selectmet?.start | datex:'LLLL'}}</time></li>
