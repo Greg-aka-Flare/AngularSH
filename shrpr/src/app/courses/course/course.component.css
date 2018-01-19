@@ -113,6 +113,13 @@ figure.rating {
     clear: both;
     width:100%;
 }
+.course_semester_desktop {
+    padding:15px 10px 10px 10px;
+}
+.course_semester_desktop h2 {
+    color:#ed9b40;
+    font-size: 20px;
+}
 .course_info p {
     padding:3px 0;
 }
@@ -178,7 +185,7 @@ figure.rating {
 }
 .course_enroll_block {
     padding:5px;
-    border:1px solid #cccccc;
+    border:1px solid #ed9b40;
     margin:0 10px 20px 10px;
 }
 .enroll_row select {
@@ -610,14 +617,11 @@ figure.rating {
 .course_semester_desktop {
     padding:41px 10px 10px 20px;
     background: #ffffff;
-    float: right;
     max-width: 300px;
     width: 30%;
+    float: right;
 }
-.course_semester_desktop h2 {
-    color:#ed9b40;
-    font-size: 20px;
-}
+
 .course_enroll_block {
     float: right;
     width:100%;
@@ -700,6 +704,7 @@ figure.rating {
    }
    .course_semester_desktop {
     padding:41px 0 10px 20px;
+    float: right;
    }
    .select-date {
     width: auto;
