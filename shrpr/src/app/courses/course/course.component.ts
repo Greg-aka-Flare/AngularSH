@@ -56,6 +56,8 @@ export class CourseComponent implements OnInit, OnDestroy {
   isBooked: boolean = false;
   showBookBtn: boolean = false;
   counter:number = 0;
+  semesterParam:number;
+  currentIndex:number = 0;
 
   //The time to show the next photo
   private NextPhotoInterval:number = 5000;
@@ -78,9 +80,13 @@ export class CourseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-  
+    
     this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
+      if(params['semester_id']){
+        this.semesterParam = params['semester_id'];
+      }
+      
       this.courseService.getCourse(this.id).subscribe(course => {
       this.course = course;
       this.ratingData = this.course.ratings;
@@ -90,6 +96,19 @@ export class CourseComponent implements OnInit, OnDestroy {
       for(var i=0; i< this.semesterCount; i++){
         this.semesterArray.push(this.course.semesters[i]);
       }
+      if(this.semesterParam){
+          for(var p = 0, q = this.semesterCount; p < q; p++)
+          {
+            if(this.semesterArray[p].id == this.semesterParam){
+              this.currentIndex = p;
+            }
+          }
+      }
+      else{
+        this.currentIndex = 0;
+      }
+      console.log('current index is : ' + this.currentIndex);
+
       if(this.course){
         for(var j = this.counter, l = this.semesterCount; j < l; j=j)
         {
@@ -99,10 +118,14 @@ export class CourseComponent implements OnInit, OnDestroy {
         }
         this.counter += 3;
       }
+
       
-      this.semesterDetails = JSON.parse(this.course.semesters[0].details);
-      this.startDate = new Date(this.course.semesters[0].start_date.replace(/-/g, "/"));
-      this.endDate = new Date(this.course.semesters[0].end_date.replace(/-/g, "/"));
+      
+
+      
+      this.semesterDetails = JSON.parse(this.course.semesters[this.currentIndex].details);
+      this.startDate = new Date(this.course.semesters[this.currentIndex].start_date.replace(/-/g, "/"));
+      this.endDate = new Date(this.course.semesters[this.currentIndex].end_date.replace(/-/g, "/"));
        
       if(this.slides.length > 0){
         for(var i=0, j = this.slides.length; i < j; i++){
@@ -110,8 +133,8 @@ export class CourseComponent implements OnInit, OnDestroy {
         }
       }
       
-      this.primaryImg = this.course.semesters[0].primary_img;
-      this.secondaryImg = JSON.parse(this.course.semesters[0].details).secondary_img;
+      this.primaryImg = this.course.semesters[this.currentIndex].primary_img;
+      this.secondaryImg = JSON.parse(this.course.semesters[this.currentIndex].details).secondary_img;
       this.slides.push(
         {image:'../../assets/img/courses/'+ this.primaryImg},
         {image:'../../assets/img/courses/'+ this.secondaryImg}
@@ -119,13 +142,13 @@ export class CourseComponent implements OnInit, OnDestroy {
         //{image:'../../assets/img/court-two.jpg'}
       );
 
-      this.meetingArray = this.course.semesters[0].meetings;
+      this.meetingArray = this.course.semesters[this.currentIndex].meetings;
       this.selectedSemesterMettings =  this.meetingArray.length;
-      this.onSelect(this.course.semesters[0].id);
+      this.onSelect(this.course.semesters[this.currentIndex].id);
       
       //initializing the google co-ordinates
-      this.lat = this.course.semesters[0].addresses[0].latitude;
-      this.lng = this.course.semesters[0].addresses[0].longitude;
+      this.lat = this.course.semesters[this.currentIndex].addresses[0].latitude;
+      this.lng = this.course.semesters[this.currentIndex].addresses[0].longitude;
       
       this.reviewCount = this.ratingData.length;
       this.loopCounter = this.reviewCount+1;

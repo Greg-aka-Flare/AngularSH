@@ -9,6 +9,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 
 const coursesRoutes: Routes = [
 	{ path: '', component: CoursesComponent, children: [
+		{ path: ':id/semesters/:semester_id', component: CourseComponent },
 		{ path: ':id/semesters', component: CourseSemestersComponent },
 		{ path: 'list/:group', component: CourseListComponent },
 		{ path: ':id', component: CourseComponent }
