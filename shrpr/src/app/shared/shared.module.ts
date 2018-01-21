@@ -7,12 +7,7 @@ import { Ng2CompleterModule } from 'ng2-completer';
 
 import { Carousel } from './carousel/carousel.component';
 import { Slide } from './carousel/slide.component';
-import { TemplateComponent } from './template/template.component';
-import { TemplateHeader } from './template/template.component';
-import { TemplateFooter } from './template/template.component';
-import { MenuComponent } from './menu/menu.component';
 import { SearchComponent } from './search/search.component';
-import { DemoComponent } from './schedule-demo/demo.component';
 import { AddreviewComponent } from './add-a-review/addreview.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tabs/tab.component';
@@ -27,12 +22,6 @@ import { ModalComponent } from './modal/modal.component';
   declarations: [
     Carousel,
     Slide,
-    MenuComponent,
-    DemoComponent,
-    TemplateComponent,
-    TemplateHeader,
-    TemplateFooter,
-    MenuComponent,
     SearchComponent,
     AddreviewComponent,
     TabsComponent,
@@ -54,7 +43,6 @@ import { ModalComponent } from './modal/modal.component';
   exports: [
     Carousel,
     Slide,
-    TemplateComponent,
     SearchComponent,
     TabsComponent,
     TabComponent,

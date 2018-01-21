@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MenuComponent } from '../menu/menu.component';
 import { NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { CuriousService } from "../../core/curious.service";
-import { SearchComponent } from '../search/search.component';
-import { DemoComponent } from '../schedule-demo/demo.component';
+
+import { MenuComponent } from './menu/menu.component';
+import { SearchComponent } from '../../shared/search/search.component';
+import { DemoComponent } from './schedule-demo/demo.component';
+import { TemplateService } from './template.service';
+import { CuriousService } from '../../core/curious.service';
 
 import 'rxjs/add/observable/fromEvent';
 
@@ -16,10 +17,6 @@ import 'rxjs/add/observable/fromEvent';
   styleUrls: ['./template.component.css']
 })
 export class TemplateComponent {
-
-  @Input('menu') menu: boolean = true;
-  @Input('search') search: boolean = true;
-  @Input('demo') demo: boolean = false;
   
   constructor() {}
 }
@@ -32,21 +29,20 @@ export class TemplateComponent {
 })
 export class TemplateHeader implements OnInit, OnDestroy {
 
-  @Input('menu') menu: boolean = true;
-  @Input('search') search: boolean = true;
-  @Input('demo') demo: boolean = false;
-
+  search: boolean = true;
+  demo: boolean = true;
   isheaderShrunk: boolean = false;
   isBtnActive: boolean = false;
   counter: number = 0;
   subscription: Subscription;
   width = document.documentElement.clientWidth;
-  pageType:string;
+  pageType: string;
   
   private subscriptions = new Subscription();
 
   constructor(
     private zone: NgZone, 
+    private template: TemplateService,
     private curious: CuriousService
   ) {
     
@@ -77,6 +73,10 @@ export class TemplateHeader implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    this.template.search.subscribe(value => this.search = value);
+    this.template.demo.subscribe(value => this.demo = value);
+
     this.subscription = this.curious.likeCounter().subscribe((count) => {
       this.counter = count;
     });
@@ -97,9 +97,6 @@ export class TemplateHeader implements OnInit, OnDestroy {
   styleUrls: ['./template.footer.css']
 })
 export class TemplateFooter {
-  
-  @Input('menu') menu: boolean = true;
- 
 
   constructor() {}
 }

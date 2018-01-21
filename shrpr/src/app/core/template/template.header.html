@@ -5,10 +5,8 @@
 		</a><!-- #logo.shrpr -->
 
 		<a 
-		 	*ngIf="menu"
 			id="menu" 
 			[class.active]="isBtnActive" 
-			href="javascript:void(0);" 
 			(click)="toggleMenu()"
 		>
 			<i class="fa fa-bars" aria-hidden="true"></i>
@@ -26,7 +24,6 @@
 		</a><!-- .counter-logo -->
 
 		<app-menu 
-		 	*ngIf="menu"
 			[class.active]="isBtnActive"
 		>
 		</app-menu><!-- #menu -->

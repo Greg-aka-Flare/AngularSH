@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TemplateHeader } from '../template/template.component';
-import { AuthService } from '../../auth/auth.service';
+import { TemplateHeader } from '../../template/template.component';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-menu',

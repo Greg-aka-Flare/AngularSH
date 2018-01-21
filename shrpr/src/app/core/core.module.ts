@@ -4,6 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SharedModule } from '../shared/shared.module';
+import { TemplateComponent } from './template/template.component';
+import { TemplateHeader } from './template/template.component';
+import { TemplateFooter } from './template/template.component';
+import { MenuComponent } from './template/menu/menu.component';
+import { DemoComponent } from './template/schedule-demo/demo.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { StarRatingModule } from 'angular-star-rating';
 import { CuriousComponent } from './curious/curious.component';
@@ -22,8 +27,9 @@ import { GoogleSigninComponent } from './login/google/google.component';
 import { FacebookLoginComponent } from './login/facebook/facebook.component';
 import { LinkedinComponent } from './login/linkedin/linkedin.component';
 
-import { StudentService } from '../student/student.service';
+import { TemplateService } from './template/template.service';
 import { AuthService } from '../auth/auth.service';
+import { StudentService } from '../student/student.service';
 import { InstructorService } from '../instructor/instructor.service';
 import { InstitutionService } from "../institution/institution.service";
 import { CourseService } from '../courses/course.service';
@@ -35,6 +41,11 @@ import { PrivacyComponent } from './login/privacy/privacy.component';
 
 @NgModule({
   declarations: [
+    TemplateComponent,
+    TemplateHeader,
+    TemplateFooter,
+    MenuComponent,
+    DemoComponent,
     HomeComponent,
     CuriousComponent,
     CuriousDesktopComponent,
@@ -62,7 +73,11 @@ import { PrivacyComponent } from './login/privacy/privacy.component';
     StarRatingModule.forRoot(),
     SharedModule
   ],
+  exports: [
+    TemplateComponent
+  ],
   providers: [
+    TemplateService,
     AuthService,
     StudentService,
     InstructorService,
