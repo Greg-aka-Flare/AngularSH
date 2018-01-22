@@ -45,7 +45,7 @@
         </div><!-- .img-ctn -->
         <div class="course_info">
             <div *ngIf="semesterCount > 1">
-                <p>Total Semesters: {{semesterCount}}  <a class="allsem-btn" routerLink="/courses/{{course?.id}}/semesters">All Semesters</a></p>
+                <p>Total Semesters: {{semesterCount}}</p>
                 Select Your Semester, starts at:
                 <div *ngIf="selectedSemester" class="select-date">
                   <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
@@ -194,7 +194,7 @@
   <tab tabTitle="ABOUT">
       <div class="description" [innerHTML]="course.description"></div>
   </tab>
-  <tab tabTitle="Sessions" *ngIf="selectedSemesterMettings > 1">
+  <tab tabTitle="Classes" *ngIf="selectedSemesterMettings > 1">
       <div *ngIf="selectedSemester">
           <div class="session_list_mobile" *ngFor="let semester of selectedSemester">
               <ol class="meetings_list" aria-roledescription="list">
@@ -215,7 +215,7 @@
   <section *ngIf="width > 767" id="desktopcourses">
     <h2>ABOUT</h2>
     <div class="description" [innerHTML]="course.description"></div><!-- .description -->
-    <h2 id="sessions" *ngIf="selectedSemesterMettings > 1">Sessions</h2>
+    <h2 id="sessions" *ngIf="selectedSemesterMettings > 1">Classes Schedule</h2>
     <div *ngIf="selectedSemester && selectedSemesterMettings > 1">
       <div *ngFor="let semester of selectedSemester">
           <ol class="meetings_list" aria-roledescription="list">

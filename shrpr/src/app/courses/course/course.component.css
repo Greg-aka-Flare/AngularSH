@@ -264,7 +264,7 @@ ul.meetings_list li span {
 
 }
 :host /deep/ tabs .tabs ul li:nth-of-type(2) {
-    background-image: url('../../../assets/img/about-tab-bg.png');
+    background-image: url('../../../assets/img/class-tab-bg.png');
     background-position: center 13px;
     background-size: auto;
 
