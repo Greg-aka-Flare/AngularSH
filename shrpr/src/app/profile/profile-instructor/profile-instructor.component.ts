@@ -13,6 +13,8 @@ import { Instructor } from "../../instructors/instructor.interface";
 import { InstructorService } from "../../instructors/instructor.service";
 import { AuthService } from './../../auth/auth.service';
 import { User } from '../../core/user.interface';
+import { ValidationService } from '../../core/validation.service';
+import { ControlMessagesComponent } from '../../shared/control-messages/control-messages.component';
 
 @Component({
   selector: 'profile-instructor',
@@ -45,6 +47,18 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   loggedIn: boolean = false;
   details:any;
   showDialog:boolean;
+
+  showDialogform:boolean = false;
+  instrocterAddressForm: any;
+  instrocterProfileForm: any;
+  instrocterDescriptionForm:any;
+  isEdit:boolean = false;
+  isEditAbout:boolean = false;
+  data: any = {};
+  contactData: any = {};
+  aboutData: any = {};
+  email: string = '';
+  description: string = '';
   
   width = document.documentElement.clientWidth;
   goTo(location: string): void {
@@ -53,7 +67,8 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   constructor(
     private instructorService: InstructorService, 
     private courseService: CourseService,  
-    private auth: AuthService
+    private auth: AuthService,
+    private fb: FormBuilder
   ) { 
     
     const $resizeEvent = Observable.fromEvent(window, 'resize')
@@ -68,8 +83,13 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
 
     this.showDialog = false;
   }
+  onChange(event) {
+    var files = event.srcElement.files;
+    console.log(files);
+}
   
   ngOnInit() {
+
     this.loggedIn = this.auth.loggedIn();
     this.subscriptions.add(this.courseService.getCourses()
     .subscribe(
@@ -111,6 +131,30 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         },
        (error: Response) => console.log(error)
      ));
+
+      //if localstorage exists, pull values in
+    if(localStorage.getItem('email')) this.email = localStorage.getItem('email');
+    
+
+    this.instrocterAddressForm = this.fb.group({
+      'addressPhone': ['', [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
+      'addressEmail': [this.email, [Validators.required, ValidationService.emailValidator]]
+    });
+    
+    this.instrocterProfileForm = this.fb.group({
+      'name': ['', [Validators.required, ValidationService.alphabetsValidator]],
+      'profileImage': [''],
+      'url':  [''],
+      'yelp':  [''],
+      'twitter': [''],
+      'facebook': [''],
+      'linkedIn': [''],
+      'pinterest': [''],
+    });
+    this.instrocterDescriptionForm = this.fb.group({
+      'description': ['', [Validators.required, Validators.minLength(40)]],
+    });
+     
   }
   
   getData(){
@@ -123,6 +167,52 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
     if(k%3 == 0) break;
     }
     this.counter+=3;
+  }
+  updateAddress(){
+    this.isEdit= !this.isEdit;
+    
+    let formAddress: any = {};
+    
+    //assign user data
+    this.contactData.addresses = formAddress;
+    this.contactData.phone = this.instrocterAddressForm.value.addressPhone;
+    this.contactData.email = this.instrocterAddressForm.value.addressEmail;
+
+    console.log(this.contactData)
+
+  }
+
+  updateProfile(){
+    //this.isUpdate= !this.isUpdate;
+    
+    let detailsText: any = {};
+
+
+    this.data.name = this.instrocterProfileForm.value.name;
+    this.data.profile_img = this.instrocterProfileForm.value.profileImage;
+
+    detailsText.url = this.instrocterProfileForm.value.yelp;
+    detailsText.yelp = this.instrocterProfileForm.value.yelp;
+    detailsText.twitter = this.instrocterProfileForm.value.twitter;
+    detailsText.facebook = this.instrocterProfileForm.value.facebook;
+    detailsText.linkedIn = this.instrocterProfileForm.value.linkedIn;
+    detailsText.pinterest = this.instrocterProfileForm.value.pinterest;
+
+    this.data.details = detailsText;
+
+    console.log(this.data);
+    this.showDialogform = !this.showDialogform;
+    
+  }
+
+  updateinstrocterDescription(){
+    this.isEditAbout= !this.isEditAbout;
+    let descriptionText: any = {};
+    descriptionText.description = this.instrocterDescriptionForm.value.description;
+    this.aboutData.details = descriptionText;
+
+    console.log(this.aboutData);
+
   }
 
   ngOnDestroy(){

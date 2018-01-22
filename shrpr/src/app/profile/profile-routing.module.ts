@@ -9,7 +9,7 @@ import { NewCourseComponent } from './new-course/new-course.component';
 
 const profileRoutes: Routes = [
 	{ path: '', component: ProfileComponent, children: [
-		{path: ':id/new-course', component: NewCourseComponent }
+		{path: ':user_type/:user_id/new-course', component: NewCourseComponent }
 	] }
 ];
 
