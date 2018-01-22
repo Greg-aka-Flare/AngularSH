@@ -10,6 +10,7 @@
     >
       <div 
         id="bg"
+        *ngIf="img"
         [ngStyle]="{ 'background-image': 'url(/assets/img/courses/' + img + ')'}"
       ></div><!-- #bg -->
       
@@ -22,7 +23,7 @@
 
         <p>To: {{ course.semesters[0].end_date | date:'EEEE M/dd/yy - h:mm aaa' }}</p>
 
-        <button id="cart">
+        <button id="cart" (click)="addCart()">
           <i class="fa fa-cart-plus" aria-hidden="true"></i> 
 
           Add to Cart

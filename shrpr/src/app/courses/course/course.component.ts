@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import { Subscription } from 'rxjs/Subscription';
 
+import { CartService } from "../../payment/cart.service";
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
 import { AuthService } from './../../auth/auth.service';
@@ -22,7 +23,7 @@ import { AuthService } from './../../auth/auth.service';
 export class CourseComponent implements OnInit, OnDestroy {
 
   private id: number;
-  course: any;
+  course: Course;
   semesterDetails:string;
   primaryImg:string;
   secondaryImg:string;
@@ -50,9 +51,8 @@ export class CourseComponent implements OnInit, OnDestroy {
   semesterInfo;
   reviewshowHide:boolean = false;
   loggedIn: boolean = false;
-  booking: boolean = false;
-  isBooked: boolean = false;
-  showBookBtn: boolean = false;
+  enrollPopup: boolean = false;
+  cartAdded: boolean = false;
 
   //The time to show the next photo
   private NextPhotoInterval:number = 5000;
@@ -65,9 +65,10 @@ export class CourseComponent implements OnInit, OnDestroy {
     window.location.hash = location;
   }
   constructor(
+    private auth: AuthService,
+    private cart: CartService,
     private courseService: CourseService, 
-    private route: ActivatedRoute,
-    private auth: AuthService
+    private route: ActivatedRoute
   ) {
     this.selectedSemester = this.semesterArray;
     
@@ -77,7 +78,7 @@ export class CourseComponent implements OnInit, OnDestroy {
   
     this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      this.courseService.getCourse(this.id).subscribe(course => {
+      this.courseService.getCourse(this.id).subscribe((course: Course) => {
       this.course = course;
       this.ratingData = this.course.ratings;
       this.categoriesArray = this.course.categories;
@@ -118,27 +119,9 @@ export class CourseComponent implements OnInit, OnDestroy {
           this.userRating += this.ratingData[k].rating;
       }
       this.reviewRatingGross = this.userRating/this.reviewCount;
-    
-      //check if logged in
-      this.loggedIn = this.auth.loggedIn();
 
-      //if logged in, get user
-      if(this.loggedIn) {
-
-        this.auth.me().subscribe(me => { 
-
-          //check if booked for course
-          this.checkBooked(me); 
-
-          //show button
-          this.showBookBtn = true;
-        });
-      }
-      else{
-
-          //show button
-          this.showBookBtn = true;
-      }
+      //check if already in cart
+      this.cartAdded = this.cart.added(this.course);
     })
 
     }))
@@ -165,43 +148,19 @@ export class CourseComponent implements OnInit, OnDestroy {
   private removeLastSlide() {
     this.slides.pop();
   }
-
   
-  book() {
+  enroll() {
 
     //open pop-up
-    this.booking = true;
+    this.enrollPopup = true;
   }
 
-  booked(value: boolean) {
+  addCart(value: boolean) {
 
-    //set if booked or not
-    this.isBooked = value;
+    //set if added to cart or not
+    this.cartAdded = value;
 
-    //close pop-up
-    this.booking = false;
-  }
-
-  checkBooked(me: any) {
-
-    if(me.student) { //if student
-
-      //check if has courses
-      if(me.student.courses.length) {
-
-        //for every course, check if id matches current id
-        for(let course of me.student.courses){
-
-          if(course.id == this.id){ //if id matches
-
-            //already booked
-            this.isBooked = true;
-
-            //exit loop
-            break;
-          }
-        }
-      }
-    }
+    //close enroll pop-up
+    this.enrollPopup = false;
   }
 }

@@ -1,7 +1,7 @@
 <enroll 
-  *ngIf="course && booking"
+  *ngIf="course && enrollPopup"
   [course]="course"
-  (onBooked)="booked($event)"
+  (onAddCart)="addCart($event)"
 >
 </enroll>
 
@@ -71,17 +71,16 @@
               </div>
             <div class="action_btn">
               <a 
-                *ngIf="!isBooked && showBookBtn"
-                (click)="book()"
+                *ngIf="!cartAdded"
+                (click)="enroll()"
               >
                 Enroll Now
               </a>
 
               <a 
-                *ngIf="isBooked && showBookBtn"
-                class="booked"
+                *ngIf="cartAdded"
               >
-                Enrolled
+                Checkout
               </a>
 
               <a class="wishlist"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
@@ -115,20 +114,19 @@
             <p>
               <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
             </p>
-            <div class="action_btn">
-              <a 
-                *ngIf="!isBooked && showBookBtn"
-                (click)="book()"
+            <div class="action_btn">              <a 
+                *ngIf="!cartAdded"
+                (click)="enroll()"
               >
                 Enroll Now
               </a>
 
               <a 
-                *ngIf="isBooked && showBookBtn"
-                class="booked"
+                *ngIf="cartAdded"
               >
-                Enrolled
-              </a><br>
+                Checkout
+              </a>
+              <br>
               <a class="wishlist"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
             </div>
             <p>

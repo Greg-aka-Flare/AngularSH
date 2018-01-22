@@ -32,6 +32,7 @@ import { AuthService } from '../auth/auth.service';
 import { StudentService } from '../student/student.service';
 import { InstructorService } from '../instructor/instructor.service';
 import { InstitutionService } from "../institution/institution.service";
+import { CartService } from '../payment/cart.service';
 import { CourseService } from '../courses/course.service';
 import { CuriousService } from './curious.service';
 import { UserService } from './user.service';
@@ -82,6 +83,7 @@ import { PrivacyComponent } from './login/privacy/privacy.component';
     StudentService,
     InstructorService,
     InstitutionService,
+    CartService,
     CourseService,
     CuriousService,
     UserService,

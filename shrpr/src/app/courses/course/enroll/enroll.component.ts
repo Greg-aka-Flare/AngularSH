@@ -1,14 +1,11 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, Pipe, PipeTransform} from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ActivatedRoute, Params } from '@angular/router';
-import { ValidationService } from '../../../core/validation.service';
-import { ControlMessagesComponent } from '../../../shared/control-messages/control-messages.component';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { AuthService } from '../../../auth/auth.service';
+import { CartService } from '../../../payment/cart.service';
+import { Course } from '../../../courses/course.interface';
 import { User } from '../../../core/user.interface';
 import { UserService } from '../../../core/user.service';
-import { AuthService } from '../../../auth/auth.service';
-import { Observable } from 'rxjs/Observable';
-import { CourseService } from '../../../courses/course.service';
 
 @Component({
   selector: 'enroll',
@@ -17,20 +14,16 @@ import { CourseService } from '../../../courses/course.service';
 })
 export class EnrollComponent implements OnInit {
 
-  @Input('course') course: any;
-  @Output() onBooked: EventEmitter<boolean> = new EventEmitter;
+  @Input('course') course: Course;
+  @Output() onAddCart: EventEmitter<boolean> = new EventEmitter;
 
-  bookForm: any;
-  data: any = {};
   loggedIn: boolean = false;
-  createUser: boolean = false;
   img: string = '';
 
   constructor( 
     private auth: AuthService,
-    private router: Router,
+    private cart: CartService,
     private user: UserService,
-    private courseService: CourseService
   ) {}
 
   ngOnInit() {
@@ -42,7 +35,16 @@ export class EnrollComponent implements OnInit {
     this.img = this.course.semesters[0].primary_img;
   }
 
+  addCart() {
+    //add to cart
+    this.cart.add(this.course);
+
+    //added to cart
+    this.onAddCart.emit(true);
+  }
+
   close() {
-    this.onBooked.emit(false);
+    //not added to cart
+    this.onAddCart.emit(false);
   }
 }

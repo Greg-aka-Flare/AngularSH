@@ -1,13 +1,13 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 
 import { MenuComponent } from './menu/menu.component';
 import { SearchComponent } from '../../shared/search/search.component';
 import { DemoComponent } from './schedule-demo/demo.component';
 import { TemplateService } from './template.service';
 import { CuriousService } from '../../core/curious.service';
+import { CartService } from '../../payment/cart.service';
 
 import 'rxjs/add/observable/fromEvent';
 
@@ -27,32 +27,31 @@ export class TemplateComponent {
   styleUrls: ['./template.header.css'],
   providers:[]
 })
-export class TemplateHeader implements OnInit, OnDestroy {
+export class TemplateHeader implements OnInit {
 
   search: boolean = true;
   demo: boolean = true;
   isheaderShrunk: boolean = false;
   isBtnActive: boolean = false;
+  cartTotal: number = 0;
   counter: number = 0;
-  subscription: Subscription;
   width = document.documentElement.clientWidth;
   pageType: string;
-  
-  private subscriptions = new Subscription();
 
   constructor(
     private zone: NgZone, 
     private template: TemplateService,
-    private curious: CuriousService
+    private curious: CuriousService,
+    private cart: CartService
   ) {
     
     const $resizeEvent = Observable.fromEvent(window, 'resize')
     .map(() => {
       return document.documentElement.clientWidth;
       })
-      this.subscriptions.add($resizeEvent.subscribe(data => {
+      $resizeEvent.subscribe(data => {
       this.width = data;
-    }));
+    });
     
     window.onscroll = () => {
       zone.run(() => {
@@ -76,14 +75,8 @@ export class TemplateHeader implements OnInit, OnDestroy {
 
     this.template.search.subscribe(value => this.search = value);
     this.template.demo.subscribe(value => this.demo = value);
-
-    this.subscription = this.curious.likeCounter().subscribe((count) => {
-      this.counter = count;
-    });
-  }
-
-  ngOnDestroy(){
-    this.subscription.unsubscribe();
+    this.curious.likeCounter().subscribe(count => this.counter = count);
+    this.cart.total.subscribe(total => this.cartTotal = total);
   }
 
   toggleMenu() {

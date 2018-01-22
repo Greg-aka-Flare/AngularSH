@@ -1,12 +1,14 @@
 export interface Course {
 	id: number;	
+	institution_id: number;
+	instructor: any;
 	title: string;
-	instructor:string;
-	address: string;
-	city: string;
-	state: string;
-	zip: string;
-	semesters: any[];
+	description: string;
+	rating?: any;
+	group: any;
+	institution: any;
 	categories: any[];
-	availability: string;
+	tags: any[];
+	semesters: any[];
+	ratings: any[];
 }
