@@ -107,7 +107,7 @@ export class CourseComponent implements OnInit, OnDestroy {
       else{
         this.currentIndex = 0;
       }
-      console.log('current index is : ' + this.currentIndex);
+     // console.log('current index is : ' + this.currentIndex);
 
       if(this.course){
         for(var j = this.counter, l = this.semesterCount; j < l; j=j)
