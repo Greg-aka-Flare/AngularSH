@@ -6,7 +6,6 @@
 
     <div class="profile-picture">
       <img *ngIf="!user?.profile_img" src="../../assets/img/user-picture.png">
-
       <img *ngIf="user?.profile_img" src="../../assets/img/{{ user?.profile_img }}">
 
       <div class="social-icon">
@@ -56,38 +55,38 @@
           <div class="form-row">
             <label>URL:</label>
 
-            <input type="text" formControlName="url"/>
+            <input type="text" formControlName="url" [(ngModel)]="studentDetails.url" />
           </div>
 
           <div class="form-row">
             <label>Yelp Link:</label>
 
-            <input type="text" formControlName="yelp"/>
+            <input type="text" formControlName="yelp" [(ngModel)]="studentDetails.yelp"/>
           </div>
 
           <div class="form-row">
             <label>Twitter Link:</label>
 
-            <input type="text" formControlName="twitter"/>
+            <input type="text" formControlName="twitter" [(ngModel)]="studentDetails.twitter"/>
 
           </div>
         
           <div class="form-row">
             <label>Facebook Link:</label>
 
-            <input type="text" formControlName="facebook"/>
+            <input type="text" formControlName="facebook" [(ngModel)]="studentDetails.facebook"/>
           </div>
 
           <div class="form-row">
             <label>LinkedIn Link:</label>
 
-            <input type="text" formControlName="linkedIn"/>
+            <input type="text" formControlName="linkedIn" [(ngModel)]="studentDetails.linkedin"/>
           </div>
 
           <div class="form-row">
             <label>Pinterest Link:</label>
 
-            <input type="text" formControlName="pinterest"/>
+            <input type="text" formControlName="pinterest" [(ngModel)]="studentDetails.pinterest"/>
           </div>
 
           <div class="form-row">

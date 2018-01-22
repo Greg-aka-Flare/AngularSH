@@ -4,9 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewChild, ElementRef, Renderer } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileRoutingModule } from './profile-routing.module';
+import { ProfileInstitutionComponent} from './profile-institution/profile-institution.component';
+import { ProfileInstructorComponent} from './profile-instructor/profile-instructor.component';
+import { ProfileStudentComponent} from './profile-student/profile-student.component';
 import { ProfileComponent } from './profile.component';
 import { CourseSelectComponent } from '../core/login/course-select/course-select.component';
 import { InstructorCourseComponent } from '../core/login/instructor-course/instructor-course.component';
+import { StarRatingModule } from 'angular-star-rating';
 import { NewCourseComponent } from './new-course/new-course.component';
 
 
@@ -15,6 +19,9 @@ import { NewCourseComponent } from './new-course/new-course.component';
     ProfileComponent,
     CourseSelectComponent,
     InstructorCourseComponent,
+    ProfileInstitutionComponent,
+    ProfileInstructorComponent,
+    ProfileStudentComponent,
     NewCourseComponent
   ],
   imports: [
@@ -22,7 +29,8 @@ import { NewCourseComponent } from './new-course/new-course.component';
     ProfileRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StarRatingModule
   ]
 })
 export class ProfileModule { }

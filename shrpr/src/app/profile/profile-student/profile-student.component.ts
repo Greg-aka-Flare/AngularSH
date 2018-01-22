@@ -42,7 +42,7 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
   data: any = {};
   contactData: any = {};
   aboutData: any = {};
-
+  studentDetails:any;
   showDialog:boolean = false;
   
 
@@ -58,7 +58,6 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
     private courseService: CourseService,  
     private fb: FormBuilder
   ) {
-          
     const $resizeEvent = Observable.fromEvent(window, 'resize')
     .map(() => {
       return document.documentElement.clientWidth;
@@ -108,6 +107,14 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
     this.studentDescriptionForm = this.fb.group({
       'description': ['', [Validators.required, Validators.minLength(40)]],
     });
+
+    this.subscriptions.add(this.studentService.getStudent(this.user.id)
+    .subscribe(
+      (instructors) => {
+        this.studentDetails = JSON.parse(instructors.details);
+       },
+      (error: Response) => console.log(error)
+    )); 
   }
 
   updateAddress(){
