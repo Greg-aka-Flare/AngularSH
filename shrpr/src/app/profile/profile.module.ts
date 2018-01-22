@@ -7,13 +7,15 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { CourseSelectComponent } from '../core/login/course-select/course-select.component';
 import { InstructorCourseComponent } from '../core/login/instructor-course/instructor-course.component';
+import { NewCourseComponent } from './new-course/new-course.component';
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
     CourseSelectComponent,
-    InstructorCourseComponent
+    InstructorCourseComponent,
+    NewCourseComponent
   ],
   imports: [
     CommonModule,

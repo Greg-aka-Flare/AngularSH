@@ -1,0 +1,151 @@
+<section class="page-conent-area" *ngIf="instructors">
+  <h1>Add New Course</h1>
+    <section id="course-add-container">
+        <div #panel class="course-form-box">
+          <div class="courseFormPage">
+          <form name="instructorCourseForm" [formGroup]="instructorCourseForm">
+            <div class="formRow">
+              <label for="courseTitle">Title*</label>
+              <input type="text" formControlName="courseTitleText" id="courseTitle" placeholder="Course Title" value="instructor[0].dob">
+              <!--<input type="hidden" formControlName="instructorId" value="{{instructors.id}}">
+              <input type="hidden" formControlName="instructorName" value="{{instructors.name}}">
+              <input type="hidden" formControlName="instructorEmail" value="{{instructors.email}}">-->
+              <control-messages [control]="instructorCourseForm.controls.courseTitleText"></control-messages>
+            </div>
+            <div class="formRow">
+              <label for="courseGroup">Group*</label>
+              <select id="courseGroup" formControlName="courseGroupSelect">
+                  <option value="">----Select-----</option>
+                <option value="1">For Fun</option>
+                <option value="2">For Work</option>
+                <option value="3">For Kids</option>
+              </select>
+              <control-messages [control]="instructorCourseForm.controls.courseGroupSelect"></control-messages>
+            </div>
+            <div class="formRow">
+              <label for="courseCategory">Category*</label>
+              <select formControlName="courseCategorySelect" id="courseCategory">
+                <option value="">----Select-----</option>
+                <option value="1">Category One</option>
+                <option value="2">Category Two</option>
+                <option value="3">Category Three</option>
+              </select>
+              <control-messages [control]="instructorCourseForm.controls.courseCategorySelect"></control-messages>
+            </div>
+            <div class="formRow">
+              <label for="courseSubCategory">Sub Category*</label>
+              <select formControlName="courseSubCategorySelect" id="courseSubCategory">
+                <option value="">----Select-----</option>
+                <option value="1">Sub Category One</option>
+                <option value="2">Sub Category Two</option>
+                <option value="3">Sub Category Three</option>
+              </select>
+              <control-messages [control]="instructorCourseForm.controls.courseSubCategorySelect"></control-messages>
+            </div>
+            <div class="formRow">
+              <label for="courseDescription">Description*</label>
+              <textarea formControlName="courseDescriptionText" id="courseDescription"></textarea>
+              <control-messages [control]="instructorCourseForm.controls.courseDescriptionText"></control-messages>
+            </div>
+            <hr>
+             <div class="formRow">
+                  <label for="courseStartDates">Start Dates</label>
+                  <input type="date" id="courseStartDates" formControlName="courseStartDateText">
+                  <control-messages [control]="instructorCourseForm.controls.courseStartDateText"></control-messages>
+                </div>
+      
+                <div class="formRow">
+                  <label for="courseStartDates">Classes will be</label>
+                  <div class="thefield">
+                    <input type="radio" name="courseIteration" formControlName="courseIteration" value="week"> Weekly &nbsp; <input type="radio" name="courseIteration" formControlName="courseIteration" value="months"> Monthly
+                  </div>
+                  
+                  <control-messages [control]="instructorCourseForm.controls.courseStartDateText"></control-messages>
+                </div>
+      
+                <div class="formRow">
+                    <label for="courseStartTime">Start Time</label>
+                    <input type="time" id="courseTime" formControlName="courseStartTimeText">
+                    <control-messages [control]="instructorCourseForm.controls.courseStartTimeText"></control-messages>
+                    <input type="hidden" id="courseEndTime" formControlName="courseEndTimeText">
+                 </div>
+                <div class="formRow">
+                  <label for="courseSession">No. of Sessions</label>
+                  <input type="number" id="courseSession" min="1" formControlName="courseSessionNumber">
+                  <control-messages [control]="instructorCourseForm.controls.courseSessionNumber"></control-messages>
+                </div>
+                <div class="formRow">
+                    <label for="courseDuration">Duration (hrs)</label>
+                    <input type="number" id="courseDuration" min="1" formControlName="courseDurationNumber">
+                    <control-messages [control]="instructorCourseForm.controls.courseDurationNumber"></control-messages>
+                </div>
+                <div class="formRow">
+                  <label for="courseDuration">Course Fee($)</label>
+                  <input type="number" id="courseFee" formControlName="courseFeeText">
+                  <control-messages [control]="instructorCourseForm.controls.courseFeeText"></control-messages>
+              </div>
+                <div class="formRow">
+                    <label for="courseLocation">Location</label>
+                    <input 
+                        #search
+                        type="text" 
+                        autocorrect="off" 
+                        autocapitalize="off" 
+                        spellcheck="off"
+                        placeholder="Enter Location" 
+                        [value]="location"
+                        [formControl]="searchControl"
+                      >
+  
+                    <control-messages [control]="instructorCourseForm.controls.searchControl"></control-messages>
+                </div>
+                <div class="formRow">
+                    <label for="coursePrimaryPhoto">Primary Photo</label>
+                    <input type="file" id="coursePrimaryPhoto" formControlName="coursePrimaryPhoto" accept="image/x-png,image/gif,image/jpeg">
+                    <control-messages [control]="instructorCourseForm.controls.coursePrimaryPhoto"></control-messages>
+                </div>
+                 <div class="formRow">
+                  <label for="courseSecondaryPhoto">Secondary Photo</label>
+                  <input type="file" id="courseSecondaryPhoto" formControlName="courseSecondaryPhoto" accept="image/x-png,image/gif,image/jpeg">
+                  <control-messages [control]="instructorCourseForm.controls.courseSecondaryPhoto"></control-messages>
+                  
+                 </div>
+                <div class="formRow ctr"><button (click)="sessionDetailsinit()" class="courseFormBtn" [disabled]="!instructorCourseForm.valid">View Session Detail</button></div>
+                <hr>
+                    <h5>Your Session Details</h5>  
+                    <div class="formRow">
+                      <table class="sessionDetailTable">
+                        <tbody>
+                          <tr>
+                            <th width="10%">No.</th>
+                            <th width="30%">Date</th>
+                            <th width="30%">Start Time</th>
+                            <th width="30%">End Time</th>
+                          </tr>
+                          <tr *ngFor="let session of sessionArray; let i = index" >
+                            <td>{{i+1}}</td>
+                            <td><input type="date" name="courseStartDateText{{i+1}}" value="{{session?.sessionDate}}" (input)="onInput(session?.sessionDate.value)" readonly></td>
+                            <td><input type="time" name="courseStartTimeText{{i+1}}" value="{{session?.startTime}}" readonly></td>
+                            <td><input type="time" name="courseEndTimeText{{i+1}}" value="{{session?.endTime}}" readonly></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      </div>
+                      <div class="formRow ctr">
+                        <button (click)="submitAllFormData()" class="courseFormBtn" [disabled]="!instructorCourseForm.valid">Submit</button>
+                        <input type="reset" value="Reset">
+                      </div>
+                      </form> 
+          </div><!-- course Form Page one-->
+    
+          <!--<div class="courseFormPage">
+              
+            </div> course Form Page Two-->
+    
+            <!--<div class="courseFormPage">
+              
+              </div> course Form Page Three-->
+              
+        </div>
+      </section>
+      </section>

@@ -1,0 +1,123 @@
+#course-add-container {
+    margin:0 auto;
+    overflow: hidden;
+    max-width:600px;
+}
+.course-form-box {
+    min-height: 400px;
+    display: flex;
+}
+.formHeader {
+    padding:3px 10px;
+    background-color:#cccccc;
+    position: relative;
+}
+.formHeader::before, .formHeader::after {
+    content: '';
+    display: block;
+    width:100%;
+    clear: both;
+}
+.formHeader span {
+    float: right;
+}
+.courseFormBtn {
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #d53b3c;
+    border: none;
+    padding: 4px 12px 7px 12px;
+    font-size: 13px;
+    line-height: 15px;
+    cursor: pointer;
+} 
+.courseFormBtn:disabled {
+    opacity:0.8;
+}
+.courseFormBtn:hover {
+    text-decoration: none;
+    background-color: #c95f5f;
+} 
+.formFooter {
+    padding:10px;
+    text-align: center;
+    background-color:#cccccc;
+}
+.formFooter a {
+    display:inline-block;
+    background-color: #d53b3c;
+    color: #ffffff;
+    font-family: 'circularstd book';
+    text-decoration:none;
+    max-width: 138px;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+.formFooter a:hover {
+    opacity: 0.8;
+}
+.courseFormPage {
+    flex: 0;
+    min-width:100%;
+}
+.formRow {
+    position: relative;
+    margin:0 0 10px 0;
+}
+.formRow::before, .formRow::after {
+    content:'';
+    display: block;
+    width:100%;
+    clear: both;
+}
+.formRow label {
+    display:inline-block;
+    width:38%;
+    vertical-align: middle;
+    font-size:14px;
+    line-height: 17px;
+    color:#666666;
+}
+.formRow .thefield {
+    display: inline-block;
+    width:60%;
+    font-family: 'circularstd book';
+    font-size: 14px;
+    line-height: 17px;
+}
+.formRow select, .formRow input[type="text"], .formRow textarea, .formRow input[type="date"], .formRow input[type="time"], .formRow input[type="number"]  {
+    border:1px solid #cccccc;
+    width:60%;
+    font-family: 'circularstd book';
+    font-size: 14px;
+    box-sizing: border-box;
+    height: 35px;
+    padding: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 5px;
+}
+.ctr {
+    text-align: center;
+}
+.formRow textarea {
+    min-height: 150px;
+}
+.sessionDetailTable {
+    width:100%;
+    border-spacing: 0;
+}
+.formRow .sessionDetailTable input[type="date"], .formRow .sessionDetailTable input[type="time"] {
+    width:99%;
+}
+.formRow select.ng-invalid.ng-touched, .formRow input[type="text"].ng-invalid.ng-touched, .formRow textarea.ng-invalid.ng-touched, .formRow input[type="date"].ng-invalid.ng-touched, .formRow input[type="time"].ng-invalid.ng-touched, .formRow input[type="number"].ng-invalid.ng-touched
+{
+    border: 1px solid #0c0;
+}
+.formRow select.ng-invalid.ng-touched, .formRow input[type="text"].ng-invalid.ng-touched, .formRow textarea.ng-invalid.ng-touched, .formRow input[type="date"].ng-invalid.ng-touched, .formRow input[type="time"].ng-invalid.ng-touched, .formRow input[type="number"].ng-invalid.ng-touched
+{
+    border: 1px solid #c00;
+}
