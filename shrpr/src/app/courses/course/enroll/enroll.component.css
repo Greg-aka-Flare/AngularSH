@@ -1,0 +1,108 @@
+article#enroll{
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 30px auto 30px;
+    max-width: 400px;
+    padding: 30px 15px 15px 15px;
+}
+article#enroll h1{
+	font-size: 24px;
+	text-align: center;
+}
+article#enroll section#course{
+	background-color: #fafafa;
+    border-radius: 10px;
+	position: relative;
+	margin: 0 0 10px 0;
+}
+article#enroll section#course #bg{
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+	background-size: 150%;
+    border-radius: 10px;
+	display: block;
+	height: 100%;
+	opacity: 0.15;
+	position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    z-index: 9998;
+}
+article#enroll section#course #details{
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+	padding: 15px;
+}
+article#enroll section#course h2{
+	background-color: #ec9332;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+	color: #fff;
+	display: block;
+	font-size: 20px;
+	padding: 10px 0;
+	position: relative;
+	text-align: center;
+	width: 100%;
+    z-index: 9999;
+}
+article#enroll section#course p{
+	color: #852176;
+	font-size: 15px;
+	margin: 0;
+	padding: 5px 50px 5px 0;
+	position: relative;
+	text-align: right;
+    z-index: 9999;
+}
+article#enroll section#course p#total{
+	color: #448a58;
+	font-size: 18px;
+	padding: 5px 0 20px 0;
+	text-align: center;
+}
+article#enroll section#course button{
+	display: block;
+    color: #fff;
+    cursor: pointer;
+    padding: 11px 10px 13px;
+    font-family: 'circularstd book';
+    font-size: 15px;
+    line-height: 16px;
+    margin: 10px auto 0 auto;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    max-width: 275px;
+    width: 100%;
+    z-index: 9999;
+}
+article#enroll section#course button i{
+	position: relative;
+	top: 0px;
+	left: -5px;
+}
+article#enroll section#course button#pay{
+    background-color: #448a58;
+    border: 2px solid #448a58;
+}
+article#enroll section#course button#pay:hover{
+	background-color: #fff;
+	color: #448a58;	
+}
+article#enroll section#course button#cart{
+    background-color: #3fa8d1;
+    border: 2px solid #3fa8d1;
+}
+article#enroll section#course button#cart:hover{
+	background-color: #fff;
+	color: #3fa8d1;
+}
