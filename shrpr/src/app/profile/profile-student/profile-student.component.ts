@@ -86,15 +86,15 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
 
 
     //if localstorage exists, pull values in
-    if(localStorage.getItem('email')) this.email = localStorage.getItem('email');
-    if(localStorage.getItem('useCurrentLocation') && localStorage.getItem('useCurrentLocation') === 'true'){
-      if(localStorage.getItem('city')) this.city = localStorage.getItem('city');
-      if(localStorage.getItem('state')) this.state = localStorage.getItem('state');
-      if(localStorage.getItem('zip')) this.zip = localStorage.getItem('zip');
-      if(localStorage.getItem('country')) this.country = localStorage.getItem('country');
-      if(localStorage.getItem('address')) this.address = localStorage.getItem('address');
-    }
-
+      if(localStorage.getItem('email')) this.email = localStorage.getItem('email');
+      if(localStorage.getItem('useCurrentLocation') && localStorage.getItem('useCurrentLocation') === 'true'){
+        if(localStorage.getItem('city')) this.city = localStorage.getItem('city');
+        if(localStorage.getItem('state')) this.state = localStorage.getItem('state');
+        if(localStorage.getItem('zip')) this.zip = localStorage.getItem('zip');
+        if(localStorage.getItem('country')) this.country = localStorage.getItem('country');
+        if(localStorage.getItem('address')) this.address = localStorage.getItem('address');
+      }
+      
     this.studentAddressForm = this.fb.group({
       'addressStreet': [this.address, Validators.required],
       'addressCity': [this.city, Validators.required],
@@ -104,7 +104,7 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
       'addressPhone': ['', [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
       'addressEmail': [this.email, [Validators.required, ValidationService.emailValidator]]
     });
-    
+  
     this.studentProfileForm = this.fb.group({
       'name': ['', [Validators.required, ValidationService.alphabetsValidator]],
       'profileImage': [''],
