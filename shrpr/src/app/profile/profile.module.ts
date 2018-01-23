@@ -11,8 +11,7 @@ import { ProfileComponent } from './profile.component';
 import { CourseSelectComponent } from '../core/login/course-select/course-select.component';
 import { InstructorCourseComponent } from '../core/login/instructor-course/instructor-course.component';
 import { StarRatingModule } from 'angular-star-rating';
-import { NewCourseComponent } from './new-course/new-course.component';
-
+import { AddCourseInstructorComponent } from './profile-instructor/add-course-instructor/add-course-instructor.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,7 @@ import { NewCourseComponent } from './new-course/new-course.component';
     ProfileInstitutionComponent,
     ProfileInstructorComponent,
     ProfileStudentComponent,
-    NewCourseComponent
+    AddCourseInstructorComponent
   ],
   imports: [
     CommonModule,

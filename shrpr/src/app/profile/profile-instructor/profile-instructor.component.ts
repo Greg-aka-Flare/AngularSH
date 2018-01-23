@@ -5,7 +5,7 @@ import { TabsComponent } from "../../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { AddCourseComponent } from './add-course/add-course.component';
+import { AddCourseInstructorComponent } from './add-course-instructor/add-course-instructor.component';
 
 import { Course } from "../../courses/course.interface";
 import { CourseService } from "../../courses/course.service";

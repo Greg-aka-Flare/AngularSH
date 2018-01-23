@@ -95,7 +95,7 @@
   </div>
 </app-modal>  
 <!-- #profile header -->
-<a routerLink="/instructor/2/new-course" class="add-course-btn">Add Course</a>
+<a [routerLink]="['/profile', 'add-course']" class="add-course-btn">Add Course</a>
 <tabs *ngIf="width < 768">
 <tab tabTitle="Courses">
 <h3>Upcoming Events with {{instructors?.name}} </h3>

@@ -13,10 +13,10 @@ import { User } from '../../../core/user.interface';
 
 @Component({
   selector: 'add-course',
-  templateUrl: './add-course.component.html',
-  styleUrls: ['./add-course.component.css']
+  templateUrl: './add-course-instructor.component.html',
+  styleUrls: ['./add-course-instructor.component.css']
 })
-export class AddCourseComponent implements OnInit {
+export class AddCourseInstructorComponent implements OnInit {
 
   @Input('user') user: User;
   
