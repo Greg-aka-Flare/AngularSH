@@ -85,7 +85,7 @@ button.view-more-btn:disabled {
 }
 
 .add-course-btn {
-    float: right;
+    display:block;
     background-color: #196e32;
     box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
     color: #ffffff;
@@ -98,6 +98,7 @@ button.view-more-btn:disabled {
     text-align: center;
     text-transform: uppercase;
     width: 100%;
+    margin:15px auto;
 }
 .add-course-btn:hover {
     opacity:0.8;
@@ -179,5 +180,9 @@ button.view-more-btn:disabled {
     vertical-align: middle;
     margin: 0 0 10px 0;
   } 
+  .add-course-btn {
+    float: right;
+    margin:0 0 15px 0;
+}
  
 }
