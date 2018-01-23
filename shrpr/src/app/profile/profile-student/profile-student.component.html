@@ -9,10 +9,11 @@
           <a *ngIf="details?.linkedin" href="{{details?.linkedin}}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
           <a *ngIf="details?.pinterest" href="{{details?.pinterest}}" target="_blank" title="Pinterest"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a>
         </div>
+        </div>
     <div>
       <h2>{{user.name}}</h2>
       <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{user?.email}}">{{user?.email}}</a> <br />
-      <span *ngIf="details?.url"> <i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> <i aria-hidden="true" class="fa fa-map-marker"></i> {{ city }}, {{ state }}     </div>
+      <span *ngIf="details?.url"> <i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> <i aria-hidden="true" class="fa fa-map-marker"></i> {{ city }}, {{ state }}</div>
   </section>
   <app-modal [(visible)]="showDialog">
     <h2>Profile Edit Form</h2>
