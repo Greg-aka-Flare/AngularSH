@@ -17,7 +17,7 @@
   </section>
   <app-modal [(visible)]="showDialog">
     <h2>Profile Edit Form</h2>
-    <div class="edit-form">
+    <div class="edit-form" *ngIf="students">
       <form id="studentProfile" [formGroup]="studentProfileForm" (ngSubmit)="updateProfile()">
         <div class="form-row">
           <label>Name:</label>
@@ -94,7 +94,8 @@
   <!-- tab Start for mobile-->
   <tabs *ngIf="width < 768" ><tab tabTitle="Courses">
     <h3><a [routerLink]="['/courses/list/all']">Click here to start your journey</a></h3>
-    <article class="card-box" *ngFor="let course of user?.student.courses">
+    <!-- Below section commented for show the course -->
+    <!--<article class="card-box" *ngFor="let course of user?.student.courses">
       <div class="img-ctn">
         <figure> <a [routerLink]="['/course', course?.id]"> <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}"> <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg"> </a> </figure>
         <h3>{{course?.title}}</h3>
@@ -105,7 +106,7 @@
           </span> </div>
         <p class="with-box"><span>With</span> {{course?.instructor}}</p>
         <a [routerLink]="['/course', course?.id]"  class="page-cta" aria-roledescription="button">View Course</a> </div>
-    </article>
+    </article>-->
     </tab> <tab tabTitle="ABOUT">
     <div class="contact_box"> <a href="javascript:void(0)" (click)="isEditAbout = !isEditAbout" class="edit-btn"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
       <p>{{user.student.details?.description}}</p>
@@ -116,7 +117,7 @@
             <div class="form-row">
               <label>Description:</label>
               <textarea *ngIf="details?.length"  cols="30" rows="10"  formControlName="description" [(ngModel)]="details.description"></textarea>
-              <textarea ngIf="!details?.length" cols="30" rows="10"  formControlName="description"></textarea>
+              <textarea *ngIf="!details?.length" cols="30" rows="10"  formControlName="description"></textarea>
               <control-messages [control]="studentDescriptionForm.controls.description"></control-messages>
             </div>
             <button type="submit" class="btn btn-primary" [disabled]="!studentDescriptionForm.valid"> <i class="fa fa-check" aria-hidden="true"></i> </button>
@@ -141,45 +142,85 @@
         <h2>Edit Your Address</h2>
         <div class="edit-form">
           <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">
+            <div *ngIf="!studentAddress.length">
             <div class="form-row">
               <label>Street Address:</label>
-              <input type="text" formControlName="addressStreet" />
-              <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
+              <input type="text" formControlName="addressStreet" placeholder="Street Address" />
+              <control-messages [control]="studentAddressForm.controls.addressStreet" ></control-messages>
             </div>
             <div class="form-row">
               <label>City:</label>
-              <input type="text" formControlName="addressCity" />
+              <input type="text" formControlName="addressCity" placeholder="City" />
               <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
             </div>
             <div class="form-row">
               <label>State:</label>
-              <input type="text" formControlName="addressState"/>
+              <input type="text" formControlName="addressState" placeholder="State"/>
               <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
             </div>
             <div class="form-row">
               <label>Zip:</label>
-              <input type="text" formControlName="addressZip" pattern="[0-9]+"/>
+              <input type="text" formControlName="addressZip" pattern="[0-9]+" placeholder="Zip"/>
               <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
             </div>
             <div class="form-row">
               <label>Country:</label>
-              <input type="text" formControlName="addressCountry"/>
+              <input type="text" formControlName="addressCountry" placeholder="Country"/>
               <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
             </div>
             <div class="form-row">
               <label>Phone:</label>
-              <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" />
+              <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" placeholder="Phone"/>
               <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
             </div>
             <div class="form-row">
               <label>Email:</label>
-              <input type="text" formControlName="addressEmail"/>
+              <input type="text" formControlName="addressEmail" placeholder="Email"/>
               <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
             </div>
+            </div>
+            <div *ngIf="studentAddress.length">
+                <div class="form-row">
+                  <label>Street Address:</label>
+                  <input type="text" formControlName="addressStreet" [(ngModel)]="studentAddress.streetAddress"/>
+                  <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
+                </div>
+                <div class="form-row">
+                  <label>City:</label>
+                  <input type="text" formControlName="addressCity" [(ngModel)]="studentAddress.city"/>
+                  <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
+                </div>
+                <div class="form-row">
+                  <label>State:</label>
+                  <input type="text" formControlName="addressState" [(ngModel)]="studentAddress.state"/>
+                  <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
+                </div>
+                <div class="form-row">
+                  <label>Zip:</label>
+                  <input type="text" formControlName="addressZip" pattern="[0-9]+" [(ngModel)]="studentAddress.zip"/>
+                  <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
+                </div>
+                <div class="form-row">
+                  <label>Country:</label>
+                  <input type="text" formControlName="addressCountry" [(ngModel)]="studentAddress.country"/>
+                  <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
+                </div>
+                <div class="form-row">
+                  <label>Phone:</label>
+                  <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="user.phone" />
+                  <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
+                </div>
+                <div class="form-row">
+                  <label>Email:</label>
+                  <input type="text" formControlName="addressEmail" [(ngModel)]="user.email"/>
+                  <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
+                </div>
+                </div>
             <div class="form-row">
-              <button type="submit" class="btn btn-primary"> <i class="fa fa-check" aria-hidden="true"></i> </button>
+              <button type="submit" class="btn btn-primary" [disabled]="!studentAddressForm.valid"> <i class="fa fa-check" aria-hidden="true"></i> </button>
               <button class="btn btn-default" (click)="isEdit = !isEdit"> <i class="fa fa-times-circle" aria-hidden="true"></i> </button>
             </div>
+          
           </form>
         </div>
       </app-modal>
@@ -238,43 +279,82 @@
         <h2>Edit Your Contact Information</h2>
         <div class="edit-form">
           <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">
+              <div *ngIf="!studentAddress.length">
+                  <div class="form-row">
+                    <label>Street Address:</label>
+                    <input type="text" formControlName="addressStreet" placeholder="Street Address" />
+                    <control-messages [control]="studentAddressForm.controls.addressStreet" ></control-messages>
+                  </div>
+                  <div class="form-row">
+                    <label>City:</label>
+                    <input type="text" formControlName="addressCity" placeholder="City" />
+                    <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
+                  </div>
+                  <div class="form-row">
+                    <label>State:</label>
+                    <input type="text" formControlName="addressState" placeholder="State"/>
+                    <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
+                  </div>
+                  <div class="form-row">
+                    <label>Zip:</label>
+                    <input type="text" formControlName="addressZip" pattern="[0-9]+" placeholder="Zip"/>
+                    <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
+                  </div>
+                  <div class="form-row">
+                    <label>Country:</label>
+                    <input type="text" formControlName="addressCountry" placeholder="Country"/>
+                    <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
+                  </div>
+                  <div class="form-row">
+                    <label>Phone:</label>
+                    <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" placeholder="Phone"/>
+                    <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
+                  </div>
+                  <div class="form-row">
+                    <label>Email:</label>
+                    <input type="text" formControlName="addressEmail" placeholder="Email"/>
+                    <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
+                  </div>
+                  </div>
+                  <div *ngIf="studentAddress.length">
+                      <div class="form-row">
+                        <label>Street Address:</label>
+                        <input type="text" formControlName="addressStreet" [(ngModel)]="studentAddress.streetAddress"/>
+                        <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
+                      </div>
+                      <div class="form-row">
+                        <label>City:</label>
+                        <input type="text" formControlName="addressCity" [(ngModel)]="studentAddress.city"/>
+                        <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
+                      </div>
+                      <div class="form-row">
+                        <label>State:</label>
+                        <input type="text" formControlName="addressState" [(ngModel)]="studentAddress.state"/>
+                        <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
+                      </div>
+                      <div class="form-row">
+                        <label>Zip:</label>
+                        <input type="text" formControlName="addressZip" pattern="[0-9]+" [(ngModel)]="studentAddress.zip"/>
+                        <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
+                      </div>
+                      <div class="form-row">
+                        <label>Country:</label>
+                        <input type="text" formControlName="addressCountry" [(ngModel)]="studentAddress.country"/>
+                        <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
+                      </div>
+                      <div class="form-row">
+                        <label>Phone:</label>
+                        <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="user.phone" />
+                        <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
+                      </div>
+                      <div class="form-row">
+                        <label>Email:</label>
+                        <input type="text" formControlName="addressEmail" [(ngModel)]="user.email"/>
+                        <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
+                      </div>
+                      </div>
             <div class="form-row">
-              <label>Street Address:</label>
-              <input type="text" formControlName="addressStreet" />
-              <control-messages [control]="studentAddressForm.controls.addressStreet"></control-messages>
-            </div>
-            <div class="form-row">
-              <label>City:</label>
-              <input type="text" formControlName="addressCity" />
-              <control-messages [control]="studentAddressForm.controls.addressCity"></control-messages>
-            </div>
-            <div class="form-row">
-              <label>State:</label>
-              <input type="text" formControlName="addressState"/>
-              <control-messages [control]="studentAddressForm.controls.addressState"></control-messages>
-            </div>
-            <div class="form-row">
-              <label>Zip:</label>
-              <input type="text" formControlName="addressZip" pattern="[0-9]+"/>
-              <control-messages [control]="studentAddressForm.controls.addressZip"></control-messages>
-            </div>
-            <div class="form-row">
-              <label>Country:</label>
-              <input type="text" formControlName="addressCountry"/>
-              <control-messages [control]="studentAddressForm.controls.addressCountry"></control-messages>
-            </div>
-            <div class="form-row">
-              <label>Phone:</label>
-              <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" />
-              <control-messages [control]="studentAddressForm.controls.addressPhone"></control-messages>
-            </div>
-            <div class="form-row">
-              <label>Email:</label>
-              <input type="text" formControlName="addressEmail"/>
-              <control-messages [control]="studentAddressForm.controls.addressEmail"></control-messages>
-            </div>
-            <div class="form-row">
-              <button type="submit" class="btn btn-primary"> <i class="fa fa-check" aria-hidden="true"></i> </button>
+              <button type="submit" class="btn btn-primary" [disabled]="!studentAddressForm.valid"> <i class="fa fa-check" aria-hidden="true"></i> </button>
               <button class="btn btn-default" (click)="isEdit = !isEdit"> <i class="fa fa-times-circle" aria-hidden="true"></i> </button>
             </div>
           </form>

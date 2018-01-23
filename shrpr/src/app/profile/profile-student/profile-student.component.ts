@@ -45,7 +45,7 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
   studentDetails:any;
   showDialog:boolean = false;
   details:any;
-
+  studentAddress:any = {};
   reviewshowHide:boolean = false;
   isEdit:boolean = false;
   isEditAbout:boolean = false;
@@ -79,6 +79,7 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
       (students) => {
        this.students = students;
        this.details = JSON.parse(students.details);
+       this.studentAddress = students.addresses;
        },
       (error: Response) => console.log(error)
     ));
