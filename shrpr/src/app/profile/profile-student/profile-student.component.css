@@ -130,6 +130,7 @@
     color: #000000;
     font-size: 20px;
     line-height: 20px;
+    cursor: pointer;
 } 
   .profile-upload {
       position: absolute;
