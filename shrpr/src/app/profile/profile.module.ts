@@ -9,7 +9,6 @@ import { ProfileInstructorComponent} from './profile-instructor/profile-instruct
 import { ProfileStudentComponent} from './profile-student/profile-student.component';
 import { ProfileComponent } from './profile.component';
 import { CourseSelectComponent } from '../core/login/course-select/course-select.component';
-import { InstructorCourseComponent } from '../core/login/instructor-course/instructor-course.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { AddCourseInstructorComponent } from './profile-instructor/add-course-instructor/add-course-instructor.component';
 
@@ -17,7 +16,6 @@ import { AddCourseInstructorComponent } from './profile-instructor/add-course-in
   declarations: [
     ProfileComponent,
     CourseSelectComponent,
-    InstructorCourseComponent,
     ProfileInstitutionComponent,
     ProfileInstructorComponent,
     ProfileStudentComponent,

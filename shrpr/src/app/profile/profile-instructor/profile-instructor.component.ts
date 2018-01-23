@@ -6,7 +6,7 @@ import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { AddCourseInstructorComponent } from './add-course-instructor/add-course-instructor.component';
-
+import { ActivatedRoute, Params } from '@angular/router';
 import { Course } from "../../courses/course.interface";
 import { CourseService } from "../../courses/course.service";
 import { Instructor } from "../../instructors/instructor.interface";
@@ -47,6 +47,7 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   loggedIn: boolean = false;
   details:any;
   showDialog:boolean;
+  paramChild:string;
 
   showDialogform:boolean = false;
   instrocterAddressForm: any;
@@ -68,7 +69,8 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
     private instructorService: InstructorService, 
     private courseService: CourseService,  
     private auth: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private route: ActivatedRoute
   ) { 
     
     const $resizeEvent = Observable.fromEvent(window, 'resize')
@@ -89,6 +91,17 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
 }
   
   ngOnInit() {
+
+    this.subscriptions.add(this.route.params.subscribe((params: Params) => {
+      if(params['open']){
+        this.paramChild = params['open'];
+        if(this.paramChild == 'add-course'){
+          console.log('param child is: ' + this.paramChild);
+        }
+      }
+      
+
+    }));
 
     this.loggedIn = this.auth.loggedIn();
     this.subscriptions.add(this.courseService.getCourses()

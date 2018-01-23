@@ -10,7 +10,7 @@ import { AddCourseInstructorComponent } from './profile-instructor/add-course-in
 
 const profileRoutes: Routes = [
 	{ path: '', component: ProfileComponent, children: [
-		{ path: '/add-course', component: AddCourseInstructorComponent }
+		{ path: ':open', component: ProfileComponent }
 		
 	] }
 ];
