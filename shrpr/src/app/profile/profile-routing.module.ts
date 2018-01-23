@@ -9,10 +9,8 @@ import { AddCourseInstructorComponent } from './profile-instructor/add-course-in
 
 
 const profileRoutes: Routes = [
-	{ path: '', component: ProfileComponent, children: [
-		{ path: ':open', component: ProfileComponent }
-		
-	] }
+	{ path: ':open', component: ProfileComponent },
+	{ path: '', component: ProfileComponent }
 ];
 
 @NgModule({
