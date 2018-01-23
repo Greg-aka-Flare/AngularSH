@@ -44,7 +44,7 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
   aboutData: any = {};
   studentDetails:any;
   showDialog:boolean = false;
-  
+  details:any;
 
   reviewshowHide:boolean = false;
   isEdit:boolean = false;
@@ -73,6 +73,16 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    this.subscriptions.add(this.studentService.getStudent(this.user.id)
+    .subscribe(
+      (students) => {
+       this.students = students;
+       this.details = JSON.parse(students.details);
+       },
+      (error: Response) => console.log(error)
+    ));
+
 
     //if localstorage exists, pull values in
     if(localStorage.getItem('email')) this.email = localStorage.getItem('email');
@@ -107,14 +117,6 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
     this.studentDescriptionForm = this.fb.group({
       'description': ['', [Validators.required, Validators.minLength(40)]],
     });
-
-    this.subscriptions.add(this.studentService.getStudent(this.user.id)
-    .subscribe(
-      (instructors) => {
-        this.studentDetails = JSON.parse(instructors.details);
-       },
-      (error: Response) => console.log(error)
-    )); 
   }
 
   updateAddress(){
@@ -138,15 +140,12 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
 
   }
 
-  updateProfile(){
-    //this.isUpdate= !this.isUpdate;
-    
+  updateProfile(){    
     let detailsText: any = {};
 
-
+//assign user data
     this.data.name = this.studentProfileForm.value.name;
     this.data.profile_img = this.studentProfileForm.value.profileImage;
-
     detailsText.url = this.studentProfileForm.value.yelp;
     detailsText.yelp = this.studentProfileForm.value.yelp;
     detailsText.twitter = this.studentProfileForm.value.twitter;
@@ -162,6 +161,7 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
   }
 
   updatestudentDescription(){
+//assign user data
     this.isEditAbout= !this.isEditAbout;
     let descriptionText: any = {};
     descriptionText.description = this.studentDescriptionForm.value.description;
