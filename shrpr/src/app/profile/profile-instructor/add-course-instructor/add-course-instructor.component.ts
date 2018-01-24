@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, ViewChild, ElementRef, NgModule, Renderer, NgZone, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgModule, Renderer, NgZone, Input, EventEmitter, AfterViewInit } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
 import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
@@ -8,11 +8,6 @@ import { ValidationService } from '../../../core/validation.service';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 import { Instructor } from '../../../instructors/instructor.interface';
-import { InstructorService } from '../../../instructors/instructor.service';
-
-import {} from '@types/googlemaps';
-
-declare var google: any;
 
 @Component({
   selector: 'add-course-instructor',
@@ -21,8 +16,6 @@ declare var google: any;
 })
 
 export class AddCourseInstructorComponent implements OnInit {
-
-  @ViewChild('search') public search: ElementRef;
 
   @Input('instructor') instructor: Instructor;
   
@@ -38,14 +31,13 @@ export class AddCourseInstructorComponent implements OnInit {
   
   courseImages:any = {};
   
-  //sessionArray: Array<{sessionDate:string, startTime: string, endTime: string}>;
-  //private sessionArray = new Array<{sessionDate:string}>();
- 
   @ViewChild('panel') panel : ElementRef;
   @ViewChild('myForm') myForm: ElementRef;
+  //@ViewChild("search") public searchElementRef: ElementRef;
+  searchControl: FormControl;
+  location: string = '';
+  dataService: CompleterData;
 
-  public searchControl: FormControl;
-  
   slideNo: number = 1;
   lastSlideNo:number = 3;
   prevPos: string = '';
@@ -100,33 +92,83 @@ export class AddCourseInstructorComponent implements OnInit {
       
     });
 
-    //create search FormControl
-    //this.searchControl = new FormControl();
-    //load Places Autocomplete
+    
+    
+    this.semesterDetailForm = new FormGroup({  
+      
+    });
+
+    /*Location box autocomplete function*/
+    
+
+  }
+  @ViewChild("search") public searchElementRef: ElementRef;
+  ngAfterViewInit(){
+    this.searchControl = new FormControl();
+
+    this.setCurrentPosition();
     this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.search.nativeElement, {
-        types: ['geocode']
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['address']
       });
 
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-  
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
           
-          //set latitude, longitude and zoom
-          //this.latitude = place.geometry.location.lat();
-          //this.longitude = place.geometry.location.lng();
-          //this.zoom = 12;
+          this.location = place.formatted_address; 
+          var components = place.address_components;
+          this.city = '';
+          this.state = '';
+          this.zip = '';
+          this.country = '';
+          var component,
+          i, l, x, y;
+          for(i = 0, l = components.length; i < l; ++i){
+                  //store component
+                  component = components[i];
+                  //check each type
+                  for(x = 0, y = component.types.length; x < y; ++ x){
+                    //depending on type, assign to var
+                    switch(component.types[x]){
+                      case 'neighborhood':
+                      this.city = component.long_name;
+                      break;
+                      case 'administrative_area_level_1':
+                      this.state = component.short_name;
+                      break;
+                      case 'postal_code':
+                      this.zip = component.short_name;
+                      break;
+                      case 'country':
+                      this.country = component.short_name;
+                      break;
+                    }
+                  }
+                }
         });
       });
-    });
+    }); 
     
 
+  }
+
+  private setCurrentPosition() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        //this.latitude = position.coords.latitude;
+        //this.longitude = position.coords.longitude;
+        //this.zoom = 12;
+        //this.location = position;
+        //console.log(position);
+        
+      });
+    }
   }
 
 
@@ -171,6 +213,7 @@ export class AddCourseInstructorComponent implements OnInit {
     }
 
   instructorCourseSubmit() {
+
       let groupText: Array<{id: number, label: string}> = [];
       let categoryText: Array<{id: number, name: string, parent: number}> = [];
       let instructorText: Array<{id: number, name: string, email: string}> = [];
@@ -188,8 +231,8 @@ export class AddCourseInstructorComponent implements OnInit {
       this.data.instructor = instructorText;
       
       let grouptid = this.instructorCourseForm.value.courseGroupSelect;
-      
       let parentId =  this.instructorCourseForm.value.courseCategorySelect;
+
       categoryText.push(
         {
           "id" : this.instructorCourseForm.value.courseSubCategorySelect,
@@ -205,10 +248,11 @@ export class AddCourseInstructorComponent implements OnInit {
           "label" : ''
         }
       );
+
       this.data.group = groupText;
 
       this.data.description = this.instructorCourseForm.value.courseDescriptionText;
-      //console.log(this.data);
+      console.log(this.data);
         
     } 
   
@@ -300,7 +344,7 @@ export class AddCourseInstructorComponent implements OnInit {
         "details" : this.detailsData
       }
     );
-    this.data.semesters = semesterData
+    this.data.semesters = semesterData;
   }  
   submitAllFormData(){
     console.log(this.data);

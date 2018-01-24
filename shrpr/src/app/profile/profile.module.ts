@@ -14,6 +14,7 @@ import { AddCourseInstructorComponent } from './profile-instructor/add-course-in
 import { AgmCoreModule } from '@agm/core';
 import { Ng2CompleterModule } from 'ng2-completer';
 
+
 @NgModule({
   declarations: [
     ProfileComponent,

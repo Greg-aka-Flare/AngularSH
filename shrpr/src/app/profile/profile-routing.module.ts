@@ -7,10 +7,10 @@ import { ProfileInstructorComponent} from './profile-instructor/profile-instruct
 import { ProfileStudentComponent} from './profile-student/profile-student.component';
 import { AddCourseInstructorComponent } from './profile-instructor/add-course-instructor/add-course-instructor.component';
 
-
 const profileRoutes: Routes = [
 	{ path: ':open', component: ProfileComponent },
 	{ path: '', component: ProfileComponent }
+
 ];
 
 @NgModule({

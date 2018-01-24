@@ -1,5 +1,6 @@
 #course-add-container {
-    margin:0 auto;
+    max-width:500px;
+    margin:20px auto;
     overflow: hidden;
 }
 .course-form-box {
