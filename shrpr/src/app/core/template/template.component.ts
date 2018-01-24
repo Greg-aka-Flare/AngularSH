@@ -33,7 +33,7 @@ export class TemplateHeader implements OnInit {
   demo: boolean = true;
   isheaderShrunk: boolean = false;
   isBtnActive: boolean = false;
-  cartTotal: number = 0;
+  cartTotal: number;
   counter: number = 0;
   width = document.documentElement.clientWidth;
   pageType: string;

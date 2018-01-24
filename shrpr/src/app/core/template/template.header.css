@@ -56,6 +56,7 @@ header a#menu.active .fa-times-circle-o {
 }
 .cart-icon {
   color: #7a7b7f;
+  cursor: pointer;
   float: right;
   font-size: 24px;
   line-height: 24px;

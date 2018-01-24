@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
 
 import { CourseService } from '../courses/course.service';
 import { Course } from '../courses/course.interface';
@@ -8,7 +8,7 @@ import { Course } from '../courses/course.interface';
 export class CartService {
 
   ids: number[] = [];
-	total: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+	total: Subject<number> = new Subject<number>();
 	cart: Course[] = [];
 
   constructor(
@@ -25,7 +25,14 @@ export class CartService {
       this.courses.getCourses({
         'semesters[]': this.ids
       })
-      .subscribe(courses => this.cart = courses);
+      .subscribe(courses => {
+
+        //store items in cart
+        this.cart = courses;
+
+        //update total in cart
+        this.total.next(this.cart.length);
+      });
     }
     else{
 
