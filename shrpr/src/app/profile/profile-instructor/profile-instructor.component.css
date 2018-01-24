@@ -106,6 +106,12 @@ button.view-more-btn:disabled {
 .edit-form {
     padding: 0 0 20px 0;
 }
+.edit-btn {
+    color: #000000;
+    font-size: 20px;
+    line-height: 20px;
+    cursor: pointer;
+} 
 .edit-form label {
     display: inline-block;
     vertical-align: middle;

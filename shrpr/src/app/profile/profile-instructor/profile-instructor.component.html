@@ -92,7 +92,7 @@
 </div>
   
     <div class="form-row">
-      <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
+      <button type="submit" class="btn btn-primary" ><i class="fa fa-check" aria-hidden="true"></i></button>
       <button class="btn btn-default" (click)="showDialogform = !showDialogform"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
     </div>  
     </form>
@@ -170,21 +170,83 @@
             <h2>Edit Your Description</h2>
             <div class="edit-form" *ngIf="instructor">
                 <form id="instrocterAddress" [formGroup]="instrocterAddressForm" (ngSubmit)="updateAddress()">  
-                <div class="form-row" *ngIf="instructor.phone">
-                  <label>Phone:</label>
-                    <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="instructor.phone" /><br>
-                    <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
-                </div>
-                <div class="form-row" *ngIf="!instructor.phone">
-                  <label>Phone:</label>
-                    <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+"/><br>
-                    <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
-                </div>
-                <div class="form-row">
-                  <label>Email:</label>
-                    <input type="text" formControlName="addressEmail" [(ngModel)]="instructor.email"/>
-                    <control-messages [control]="instrocterAddressForm.controls.addressEmail" ></control-messages>
-                </div>
+                    <div *ngIf="!instructorAddress.length">
+                        <div class="form-row">
+                          <label>Street Address:</label>
+                          <input type="text" formControlName="addressStreet" placeholder="Street Address" />
+                          <control-messages [control]="instrocterAddressForm.controls.addressStreet" ></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>City:</label>
+                          <input type="text" formControlName="addressCity" placeholder="City" />
+                          <control-messages [control]="instrocterAddressForm.controls.addressCity"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>State:</label>
+                          <input type="text" formControlName="addressState" placeholder="State"/>
+                          <control-messages [control]="instrocterAddressForm.controls.addressState"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>Zip:</label>
+                          <input type="text" formControlName="addressZip" pattern="[0-9]+" placeholder="Zip"/>
+                          <control-messages [control]="instrocterAddressForm.controls.addressZip"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>Country:</label>
+                          <input type="text" formControlName="addressCountry" placeholder="Country"/>
+                          <control-messages [control]="instrocterAddressForm.controls.addressCountry"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>Phone:</label>
+                          <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" placeholder="Phone"/>
+                          <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
+                        </div>
+                        <div class="form-row">
+                          <label>Email:</label>
+                          <input type="text" formControlName="addressEmail" [(ngModel)]="user.email"/>
+                          <control-messages [control]="instrocterAddressForm.controls.addressEmail"></control-messages>
+                        </div>
+                      </div>
+                      <div *ngIf="instructorAddress.length">
+                        <div *ngFor="let address of user?.instructor.addresses">
+                          <div class="form-row">
+                            <label>Street Address:</label>
+                            <input type="text" formControlName="addressStreet" [(ngModel)]="address.streetAddress"/>
+                            <control-messages [control]="instrocterAddressForm.controls.addressStreet"></control-messages>
+                          </div>
+                          <div class="form-row">
+                            <label>City:</label>
+                            <input type="text" formControlName="addressCity" [(ngModel)]="address.city"/>
+                            <control-messages [control]="instrocterAddressForm.controls.addressCity"></control-messages>
+                          </div>
+                          <div class="form-row">
+                            <label>State:</label>
+                            <input type="text" formControlName="addressState" [(ngModel)]="address.state"/>
+                            <control-messages [control]="instrocterAddressForm.controls.addressState"></control-messages>
+                          </div>
+                          <div class="form-row">
+                            <label>Zip:</label>
+                            <input type="text" formControlName="addressZip" pattern="[0-9]+" [(ngModel)]="address.zip"/>
+                            <control-messages [control]="instrocterAddressForm.controls.addressZip"></control-messages>
+                          </div>
+                          <div class="form-row">
+                            <label>Country:</label>
+                            <input type="text" formControlName="addressCountry" [(ngModel)]="address.country"/>
+                            <control-messages [control]="instrocterAddressForm.controls.addressCountry"></control-messages>
+                          </div>
+                          <div class="form-row">
+                            <label>Phone:</label>
+                            <input *ngIf="instructor.phone"  type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="students.phone" />
+                            <input *ngIf="!instructor.phone"  type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+"/>
+                            <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
+                          </div>
+                          <div class="form-row">
+                            <label>Email:</label>
+                            <input type="text" formControlName="addressEmail" [(ngModel)]="user.email"/>
+                            <control-messages [control]="instrocterAddressForm.controls.addressEmail"></control-messages>
+                          </div>
+                        </div>
+                      </div>
                 <div class="form-row">
                   <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
                   <button class="btn btn-default" (click)="isEdit = !isEdit"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
@@ -261,18 +323,83 @@
   <h2>Edit Your Contacts</h2>
   <div class="edit-form" *ngIf="instructor">
       <form id="instrocterAddress" [formGroup]="instrocterAddressForm" (ngSubmit)="updateAddress()">  
-      <div class="form-row">
-        <label>Phone:</label>
-          <input *ngIf="instructor?.phone"  type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="instructor.phone"/>
-          <input *ngIf="!instructor?.phone" type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" placeholder="Phone"/>
-          <br>
-          <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
-      </div>
-      <div class="form-row">
-        <label>Email:</label>
-          <input type="text" formControlName="addressEmail" [(ngModel)]="instructor.email"/>
-          <control-messages [control]="instrocterAddressForm.controls.addressEmail"></control-messages>
-      </div>
+          <div *ngIf="!instructorAddress.length">
+              <div class="form-row">
+                <label>Street Address:</label>
+                <input type="text" formControlName="addressStreet" placeholder="Street Address" />
+                <control-messages [control]="instrocterAddressForm.controls.addressStreet" ></control-messages>
+              </div>
+              <div class="form-row">
+                <label>City:</label>
+                <input type="text" formControlName="addressCity" placeholder="City" />
+                <control-messages [control]="instrocterAddressForm.controls.addressCity"></control-messages>
+              </div>
+              <div class="form-row">
+                <label>State:</label>
+                <input type="text" formControlName="addressState" placeholder="State"/>
+                <control-messages [control]="instrocterAddressForm.controls.addressState"></control-messages>
+              </div>
+              <div class="form-row">
+                <label>Zip:</label>
+                <input type="text" formControlName="addressZip" pattern="[0-9]+" placeholder="Zip"/>
+                <control-messages [control]="instrocterAddressForm.controls.addressZip"></control-messages>
+              </div>
+              <div class="form-row">
+                <label>Country:</label>
+                <input type="text" formControlName="addressCountry" placeholder="Country"/>
+                <control-messages [control]="instrocterAddressForm.controls.addressCountry"></control-messages>
+              </div>
+              <div class="form-row">
+                <label>Phone:</label>
+                <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" placeholder="Phone"/>
+                <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
+              </div>
+              <div class="form-row">
+                <label>Email:</label>
+                <input type="text" formControlName="addressEmail" [(ngModel)]="user.email"/>
+                <control-messages [control]="instrocterAddressForm.controls.addressEmail"></control-messages>
+              </div>
+            </div>
+            <div *ngIf="instructorAddress.length">
+              <div *ngFor="let address of user?.instructor.addresses">
+                <div class="form-row">
+                  <label>Street Address:</label>
+                  <input type="text" formControlName="addressStreet" [(ngModel)]="address.streetAddress"/>
+                  <control-messages [control]="instrocterAddressForm.controls.addressStreet"></control-messages>
+                </div>
+                <div class="form-row">
+                  <label>City:</label>
+                  <input type="text" formControlName="addressCity" [(ngModel)]="address.city"/>
+                  <control-messages [control]="instrocterAddressForm.controls.addressCity"></control-messages>
+                </div>
+                <div class="form-row">
+                  <label>State:</label>
+                  <input type="text" formControlName="addressState" [(ngModel)]="address.state"/>
+                  <control-messages [control]="instrocterAddressForm.controls.addressState"></control-messages>
+                </div>
+                <div class="form-row">
+                  <label>Zip:</label>
+                  <input type="text" formControlName="addressZip" pattern="[0-9]+" [(ngModel)]="address.zip"/>
+                  <control-messages [control]="instrocterAddressForm.controls.addressZip"></control-messages>
+                </div>
+                <div class="form-row">
+                  <label>Country:</label>
+                  <input type="text" formControlName="addressCountry" [(ngModel)]="address.country"/>
+                  <control-messages [control]="instrocterAddressForm.controls.addressCountry"></control-messages>
+                </div>
+                <div class="form-row">
+                  <label>Phone:</label>
+                  <input *ngIf="instructor.phone"  type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="students.phone" />
+                  <input *ngIf="!instructor.phone"  type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+"/>
+                  <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
+                </div>
+                <div class="form-row">
+                  <label>Email:</label>
+                  <input type="text" formControlName="addressEmail" [(ngModel)]="user.email"/>
+                  <control-messages [control]="instrocterAddressForm.controls.addressEmail"></control-messages>
+                </div>
+              </div>
+            </div>
       <div class="form-row">
         <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
         <button class="btn btn-default" (click)="isEdit = !isEdit"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
@@ -282,19 +409,4 @@
 </app-modal>   
 </section>
 <!-- desktop view End -->
-<!-- #reviews-->
-<section id="reviews">
-  <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews<span *ngIf="loggedIn"> | <a href="javascript:void(0);" (click)="reviewshowHide = !reviewshowHide">Add Your Review</a></span></div>
-  <app-addreview *ngIf="reviewshowHide"></app-addreview>
-  <div *ngIf="reviewCount >= 1">
-      <dl class="review_items" *ngFor="let review of ratingData" >
-  <dt><img src="../../assets/img/reviews-profile.jpg" alt="" title="">User id: {{review.user_id}}</dt>
-  <dd><h2>{{review.title}} <span class="review_items_rating">Rating: {{review.rating}} | <star-rating-comp class="review_star" [starType]="'svg'" [rating]="review.rating" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></span></h2>
-  <p>{{review.comment}}</p></dd>
-</dl>
-</div>
-<div *ngIf="reviewCount < 1">No reviews yet. Be the first to write a review.</div>
-<p class="seeall-link"><!--<button class="show-more" (click)="getData()" [disabled]="counter>=ratingData.length">see all related reviews</button><a href="javascript:void(0);">see all related reviews</a>--></p>
-
-</section><!-- #reviews -->
 </div>

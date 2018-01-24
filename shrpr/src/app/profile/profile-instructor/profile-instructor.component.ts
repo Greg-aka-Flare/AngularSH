@@ -25,7 +25,13 @@ import { ControlMessagesComponent } from '../../shared/control-messages/control-
 export class ProfileInstructorComponent implements OnInit, OnDestroy {
 
   @Input('user') user: User;
-
+  city: string = '';
+  state: string = '';
+  zip: string = '';
+  country: string = '';
+  address: string = '';
+  email: string = '';
+  description: string = '';
   instructor:any;
   courses: any;
   courseCard:any[] = [];
@@ -49,7 +55,7 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   showDialog:boolean;
   paramChild:string;
   addCourse:boolean = false;
-
+  instructorAddress:any = {};
   showDialogform:boolean = false;
   instrocterAddressForm: any;
   instrocterProfileForm: any;
@@ -59,8 +65,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   data: any = {};
   contactData: any = {};
   aboutData: any = {};
-  email: string = '';
-  description: string = '';
   
   width = document.documentElement.clientWidth;
   goTo(location: string): void {
@@ -137,6 +141,7 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         this.ratingData = this.instructor.ratings;
         this.details = JSON.parse(instructor.details);
         this.reviewCount = this.ratingData.length;
+        this.instructorAddress = instructor.addresses;
         this.loopCounter = this.reviewCount+1;
         for(var k=0; k < this.reviewCount; k++){
             this.userRating += this.ratingData[k].rating;
@@ -146,11 +151,23 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
        (error: Response) => console.log(error)
      ));
 
-      //if localstorage exists, pull values in
-    if(localStorage.getItem('email')) this.email = localStorage.getItem('email');
+     //if localstorage exists, pull values in
+     if(localStorage.getItem('email')) this.email = localStorage.getItem('email');
+     if(localStorage.getItem('useCurrentLocation') && localStorage.getItem('useCurrentLocation') === 'true'){
+       if(localStorage.getItem('city')) this.city = localStorage.getItem('city');
+       if(localStorage.getItem('state')) this.state = localStorage.getItem('state');
+       if(localStorage.getItem('zip')) this.zip = localStorage.getItem('zip');
+       if(localStorage.getItem('country')) this.country = localStorage.getItem('country');
+       if(localStorage.getItem('address')) this.address = localStorage.getItem('address');
+     }
     
 
     this.instrocterAddressForm = this.fb.group({
+      'addressStreet': [this.address, Validators.required],
+      'addressCity': [this.city, Validators.required],
+      'addressState': [this.state, Validators.required],
+      'addressZip': [this.zip, Validators.required],
+      'addressCountry': [this.country, Validators.required],
       'addressPhone': ['', [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
       'addressEmail': [this.email, [Validators.required, ValidationService.emailValidator]]
     });
