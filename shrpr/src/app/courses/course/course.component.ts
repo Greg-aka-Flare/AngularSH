@@ -24,6 +24,7 @@ export class CourseComponent implements OnInit, OnDestroy {
 
   private id: number;
   course: Course;
+  selectedCourse: Course;
   semesterDetails:string;
   primaryImg:string;
   secondaryImg:string;
@@ -121,7 +122,7 @@ export class CourseComponent implements OnInit, OnDestroy {
       this.reviewRatingGross = this.userRating/this.reviewCount;
 
       //check if already in cart
-      this.cartAdded = this.cart.added(this.course);
+      this.cartAdded = this.cart.added(this.selectedCourse);
     })
 
     }))
@@ -143,6 +144,9 @@ export class CourseComponent implements OnInit, OnDestroy {
 
   onSelect(val){
     this.selectedSemester = this.semesterArray.filter(x => x.id == val);
+
+    this.selectedCourse = this.course;
+    this.selectedCourse.semesters = this.selectedSemester;
   }
  
   private removeLastSlide() {

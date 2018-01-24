@@ -1,6 +1,6 @@
 <enroll 
-  *ngIf="course && enrollPopup"
-  [course]="course"
+  *ngIf="selectedCourse && enrollPopup"
+  [course]="selectedCourse"
   (onAddCart)="addCart($event)"
 >
 </enroll>
