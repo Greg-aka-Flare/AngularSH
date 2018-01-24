@@ -1,15 +1,11 @@
 import { Component, OnInit, OnDestroy, Input, NgModule } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Course } from "../../courses/course.interface";
-import { CourseService } from "../../courses/course.service";
 import { AddreviewComponent } from "../../shared/add-a-review/addreview.component";
 import { Student } from "../../student/student.interface";
 import { StudentService } from '../../student/student.service';
-import { InlineEditComponent } from '../../shared/inline-edit/inline-edit.component';
 import { ValidationService } from '../../core/validation.service';
 import { ControlMessagesComponent } from '../../shared/control-messages/control-messages.component';
 import { User } from '../../core/user.interface';
@@ -32,9 +28,6 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
   email: string = '';
   description: string = '';
   students:any[];
-  courses: any[];
-  studentCourse:any;
-  courseCard: any[] = [];
   studentAddressForm: any;
   studentProfileForm: any;
   studentDescriptionForm:any;
@@ -46,7 +39,6 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
   showDialog:boolean = false;
   details:any;
   studentAddress:any = {};
-  reviewshowHide:boolean = false;
   isEdit:boolean = false;
   isEditAbout:boolean = false;
   private mylocation:string;
@@ -55,7 +47,6 @@ export class ProfileStudentComponent implements OnInit, OnDestroy {
   width = document.documentElement.clientWidth;
   constructor(
     private studentService: StudentService, 
-    private courseService: CourseService,  
     private fb: FormBuilder
   ) {
     const $resizeEvent = Observable.fromEvent(window, 'resize')
