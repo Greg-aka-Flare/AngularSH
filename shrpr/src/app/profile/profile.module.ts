@@ -11,6 +11,8 @@ import { ProfileComponent } from './profile.component';
 import { CourseSelectComponent } from '../core/login/course-select/course-select.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { AddCourseInstructorComponent } from './profile-instructor/add-course-instructor/add-course-instructor.component';
+import { AgmCoreModule } from '@agm/core';
+import { Ng2CompleterModule } from 'ng2-completer';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { AddCourseInstructorComponent } from './profile-instructor/add-course-in
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    StarRatingModule
+    StarRatingModule,
+    AgmCoreModule,
+    Ng2CompleterModule
   ]
 })
 export class ProfileModule { }

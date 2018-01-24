@@ -3,6 +3,7 @@ export interface Instructor {
 	user_id: number;
 	phone: string;
 	details: string;
+	name: string;
 	email: string;
 	dob:string;
 	status: string;

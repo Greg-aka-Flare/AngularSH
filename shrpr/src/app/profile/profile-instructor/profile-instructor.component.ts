@@ -26,7 +26,7 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
 
   @Input('user') user: User;
 
-  instructors:any;
+  instructor:any;
   courses: any;
   courseCard:any[] = [];
   private myid:number;
@@ -48,6 +48,7 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   details:any;
   showDialog:boolean;
   paramChild:string;
+  addCourse:boolean = false;
 
   showDialogform:boolean = false;
   instrocterAddressForm: any;
@@ -96,7 +97,7 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
       if(params['open']){
         this.paramChild = params['open'];
         if(this.paramChild == 'add-course'){
-          console.log('param child is: ' + this.paramChild);
+          this.addCourse = true;
         }
       }
       
@@ -130,11 +131,11 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.instructorService.getInstructor(this.user.id)
      .subscribe(
-       (instructors) => {
+       (instructor) => {
 
-        this.instructors = instructors;
-        this.ratingData = this.instructors.ratings;
-        this.details = JSON.parse(instructors.details);
+        this.instructor = instructor;
+        this.ratingData = this.instructor.ratings;
+        this.details = JSON.parse(instructor.details);
         this.reviewCount = this.ratingData.length;
         this.loopCounter = this.reviewCount+1;
         for(var k=0; k < this.reviewCount; k++){

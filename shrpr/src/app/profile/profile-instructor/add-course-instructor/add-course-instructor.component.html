@@ -1,16 +1,13 @@
-    <section id="course-add-container" *ngIf="user" >
+    <section id="course-add-container" *ngIf="instructor">
         <div class="formHeader">
           <a href="javascript:void(0);" (click)="prevSlide()" class="courseFormBtn" *ngIf="slideNo > 1">< Back</a>
           <span>{{slideNo}} / {{lastSlideNo}}</span></div>
         <div #panel class="course-form-box">
-          <div class="courseFormPage">
           <form name="instructorCourseForm" [formGroup]="instructorCourseForm">
+          <div class="courseFormPage">
             <div class="formRow">
               <label for="courseTitle">Title*</label>
               <input type="text" formControlName="courseTitleText" id="courseTitle" placeholder="Course Title" value="instructor[0].dob">
-              <!--<input type="hidden" formControlName="instructorId" value="{{user.id}}">
-              <input type="hidden" formControlName="instructorName" value="{{user.name}}">
-              <input type="hidden" formControlName="instructorEmail" value="{{user.email}}">-->
               <control-messages [control]="instructorCourseForm.controls.courseTitleText"></control-messages>
             </div>
             <div class="formRow">
@@ -49,15 +46,13 @@
               <control-messages [control]="instructorCourseForm.controls.courseDescriptionText"></control-messages>
             </div>
             <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!instructorCourseForm.valid">Submit</button></div>
-            </form>  
+              
           </div><!-- course Form Page one-->
-    
           <div class="courseFormPage">
-              <form name="semesterInfoForm" [formGroup]="semesterInfoForm">
               <div class="formRow">
                 <label for="courseStartDates">Start Dates</label>
                 <input type="date" id="courseStartDates" formControlName="courseStartDateText">
-                <control-messages [control]="semesterInfoForm.controls.courseStartDateText"></control-messages>
+                <control-messages [control]="instructorCourseForm.controls.courseStartDateText"></control-messages>
               </div>
     
               <div class="formRow">
@@ -66,62 +61,59 @@
                   <input type="radio" name="courseIteration" formControlName="courseIteration" value="week"> Weekly &nbsp; <input type="radio" name="courseIteration" formControlName="courseIteration" value="months"> Monthly
                 </div>
                 
-                <control-messages [control]="semesterInfoForm.controls.courseStartDateText"></control-messages>
+                <control-messages [control]="instructorCourseForm.controls.courseStartDateText"></control-messages>
               </div>
     
               <div class="formRow">
                   <label for="courseStartTime">Start Time</label>
                   <input type="time" id="courseTime" formControlName="courseStartTimeText">
-                  <control-messages [control]="semesterInfoForm.controls.courseStartTimeText"></control-messages>
+                  <control-messages [control]="instructorCourseForm.controls.courseStartTimeText"></control-messages>
                   <input type="hidden" id="courseEndTime" formControlName="courseEndTimeText">
                </div>
               <div class="formRow">
                 <label for="courseSession">No. of Sessions</label>
                 <input type="number" id="courseSession" min="1" formControlName="courseSessionNumber">
-                <control-messages [control]="semesterInfoForm.controls.courseSessionNumber"></control-messages>
+                <control-messages [control]="instructorCourseForm.controls.courseSessionNumber"></control-messages>
               </div>
               <div class="formRow">
                   <label for="courseDuration">Duration (hrs)</label>
                   <input type="number" id="courseDuration" min="1" formControlName="courseDurationNumber">
-                  <control-messages [control]="semesterInfoForm.controls.courseDurationNumber"></control-messages>
+                  <control-messages [control]="instructorCourseForm.controls.courseDurationNumber"></control-messages>
               </div>
               <div class="formRow">
                 <label for="courseDuration">Course Fee($)</label>
                 <input type="number" id="courseFee" formControlName="courseFeeText">
-                <control-messages [control]="semesterInfoForm.controls.courseFeeText"></control-messages>
+                <control-messages [control]="instructorCourseForm.controls.courseFeeText"></control-messages>
             </div>
               <div class="formRow">
                   <label for="courseLocation">Location</label>
-                  <input 
-                      #search
-                      type="text" 
+                    <input 
+                      placeholder="search for location" 
                       autocorrect="off" 
                       autocapitalize="off" 
-                      spellcheck="off"
-                      placeholder="Enter Location" 
-                      [value]="location"
+                      spellcheck="off" 
+                      type="text" 
+                      class="form-control" 
+                      #search 
                       [formControl]="searchControl"
                     >
-
-                  <control-messages [control]="semesterInfoForm.controls.searchControl"></control-messages>
+                  <!--<control-messages [control]="instructorCourseForm.controls.searchControl"></control-messages>-->
               </div>
               <div class="formRow">
                   <label for="coursePrimaryPhoto">Primary Photo</label>
                   <input type="file" id="coursePrimaryPhoto" formControlName="coursePrimaryPhoto" accept="image/x-png,image/gif,image/jpeg">
-                  <control-messages [control]="semesterInfoForm.controls.coursePrimaryPhoto"></control-messages>
+                  <control-messages [control]="instructorCourseForm.controls.coursePrimaryPhoto"></control-messages>
               </div>
                <div class="formRow">
                 <label for="courseSecondaryPhoto">Secondary Photo</label>
                 <input type="file" id="courseSecondaryPhoto" formControlName="courseSecondaryPhoto" accept="image/x-png,image/gif,image/jpeg">
-                <control-messages [control]="semesterInfoForm.controls.courseSecondaryPhoto"></control-messages>
+                <control-messages [control]="instructorCourseForm.controls.courseSecondaryPhoto"></control-messages>
                 
                </div>
-              <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Submit</button></div>
-              </form>
+              <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!instructorCourseForm.valid">Submit</button></div>
             </div><!-- course Form Page Two-->
     
             <div class="courseFormPage">
-              <form name="semesterDetailForm" [formGroup]="semesterDetailForm">
               <h5>Your Session Details</h5>  
               <div class="formRow">
                 <table class="sessionDetailTable">
@@ -141,9 +133,10 @@
                   </tbody>
                 </table>
                 </div>
-                <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterDetailForm.valid">Submit</button></div>
-                </form> 
+                <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!instructorCourseForm.valid">Submit</button></div>
+                 
               </div><!-- course Form Page Three-->
+            </form>
               
         </div>
       </section>

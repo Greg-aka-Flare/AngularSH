@@ -9,16 +9,22 @@ import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 import { Instructor } from '../../../instructors/instructor.interface';
 import { InstructorService } from '../../../instructors/instructor.service';
-import { User } from '../../../core/user.interface';
+
+import {} from '@types/googlemaps';
+
+declare var google: any;
 
 @Component({
-  selector: 'add-course',
+  selector: 'add-course-instructor',
   templateUrl: './add-course-instructor.component.html',
   styleUrls: ['./add-course-instructor.component.css']
 })
+
 export class AddCourseInstructorComponent implements OnInit {
 
-  @Input('user') user: User;
+  @ViewChild('search') public search: ElementRef;
+
+  @Input('instructor') instructor: Instructor;
   
   instructorCourseForm: FormGroup;
   semesterInfoForm: FormGroup;
@@ -34,15 +40,11 @@ export class AddCourseInstructorComponent implements OnInit {
   
   //sessionArray: Array<{sessionDate:string, startTime: string, endTime: string}>;
   //private sessionArray = new Array<{sessionDate:string}>();
-
+ 
   @ViewChild('panel') panel : ElementRef;
   @ViewChild('myForm') myForm: ElementRef;
 
-  @ViewChild("search") public searchElementRef: ElementRef;
-  searchControl: FormControl;
-  location: string = '';
-  dataService: CompleterData;
-
+  public searchControl: FormControl;
   
   slideNo: number = 1;
   lastSlideNo:number = 3;
@@ -93,77 +95,41 @@ export class AddCourseInstructorComponent implements OnInit {
     });
     
     //console.log(this.instructors.id)
-   
-    this.searchControl = new FormControl();
-    this.setCurrentPosition();
     this.goNext = this.instructorCourseForm.valid;
+    this.semesterDetailForm = new FormGroup({  
+      
+    });
 
+    //create search FormControl
+    //this.searchControl = new FormControl();
+    //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
+      let autocomplete = new google.maps.places.Autocomplete(this.search.nativeElement, {
+        types: ['geocode']
       });
 
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+  
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
           
-          this.location = place.formatted_address; 
-          var components = place.address_components;
-          this.city = '';
-          this.state = '';
-          this.zip = '';
-          this.country = '';
-          var component,
-          i, l, x, y;
-          for(i = 0, l = components.length; i < l; ++i){
-                  //store component
-                  component = components[i];
-                  //check each type
-                  for(x = 0, y = component.types.length; x < y; ++ x){
-                    //depending on type, assign to var
-                    switch(component.types[x]){
-                      case 'neighborhood':
-                      this.city = component.long_name;
-                      break;
-                      case 'administrative_area_level_1':
-                      this.state = component.short_name;
-                      break;
-                      case 'postal_code':
-                      this.zip = component.short_name;
-                      break;
-                      case 'country':
-                      this.country = component.short_name;
-                      break;
-                    }
-                  }
-                }
+          //set latitude, longitude and zoom
+          //this.latitude = place.geometry.location.lat();
+          //this.longitude = place.geometry.location.lng();
+          //this.zoom = 12;
         });
       });
     });
-
-    this.semesterDetailForm = new FormGroup({  
-      
-    });
+    
 
   }
 
-  private setCurrentPosition() {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        //this.latitude = position.coords.latitude;
-        //this.longitude = position.coords.longitude;
-        //this.zoom = 12;
-        //this.location = position;
-        //console.log(position);
-        
-      });
-    }
-  }
+
 
   nextSlide(){
     if(this.slideNo == 1){
@@ -209,14 +175,14 @@ export class AddCourseInstructorComponent implements OnInit {
       let categoryText: Array<{id: number, name: string, parent: number}> = [];
       let instructorText: Array<{id: number, name: string, email: string}> = [];
 
-      this.user.id
+      this.instructor.id
       
       this.data.title = this.instructorCourseForm.value.courseTitleText;
 
       instructorText.push({
-        "id" : this.user.id,
-        "name" : this.user.name,
-        "email" : this.user.email
+        "id" : this.instructor.id,
+        "name" : this.instructor.name,
+        "email" : this.instructor.email
       });
 
       this.data.instructor = instructorText;

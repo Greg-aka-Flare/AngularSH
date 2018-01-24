@@ -1,8 +1,12 @@
-<section id="profile-header" *ngIf="!isUpdate">
+<div *ngIf="addCourse">
+  <add-course-instructor [instructor]="instructor"></add-course-instructor>
+ </div> 
+<div *ngIf="!addCourse">
+<section id="profile-header">
   <a href="javascript:void(0)" (click)="showDialogform = !showDialogform" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 <div class="profile-picture">
-<img *ngIf="instructors?.profile_img" src="../../assets/img/instructors/{{instructors?.profile_img}}" alt="" title="">
-<img *ngIf="!instructors?.profile_img" src="../../assets/img/instructors-picture.png" alt="" title="">
+<img *ngIf="instructor?.profile_img" src="../../assets/img/instructors/{{instructor?.profile_img}}" alt="" title="">
+<img *ngIf="!instructor?.profile_img" src="../../assets/img/instructors-picture.png" alt="" title="">
 <div class="social-icon" *ngIf="details">
   <a *ngIf="details?.yelp" href="{{details?.yelp}}" target="_blank" title="Yelp"><i class="fa fa-yelp" aria-hidden="true"></i></a>
   <a *ngIf="details?.twitter" href="{{details?.twitter}}" target="_blank" title="Twitter"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
@@ -11,20 +15,20 @@
   <a *ngIf="details?.pinterest" href="{{details?.pinterest}}" target="_blank" title="Pinterest"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a>
 </div>
 </div>
-<div><h2>{{instructors?.name}}</h2>
-<i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{instructors?.email}}">{{instructors?.email}}</a><br>
+<div><h2>{{instructor?.name}}</h2>
+<i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{instructor?.email}}">{{instructor?.email}}</a><br>
 <span *ngIf="details?.url"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
-<!--<i aria-hidden="true" class="fa fa-map-marker"></i>  {{ instructors?.addresses[0]?.city }}, {{ instructors?.addresses[0]?.state }}-->
+<!--<i aria-hidden="true" class="fa fa-map-marker"></i>  {{ instructor?.addresses[0]?.city }}, {{ instructor?.addresses[0]?.state }}-->
 <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [readOnly]="true"></star-rating-comp> |  <a (click)="goTo('reviews')" href="javascript:void(0);">{{reviewCount}} reviews</a></div>
 </div>
 </section>
 <app-modal [(visible)]="showDialogform">
   <h2>Profile Edit Form</h2>
-  <div class="edit-form" *ngIf="instructors" >
+  <div class="edit-form" *ngIf="instructor" >
     <form id="instrocterProfile" [formGroup]="instrocterProfileForm" (ngSubmit)="updateProfile()">  
     <div class="form-row">
     <label>Name:</label>
-        <input type="text" formControlName="name" [(ngModel)]="instructors.name" />
+        <input type="text" formControlName="name" [(ngModel)]="instructor.name" />
         <control-messages [control]="instrocterProfileForm.controls.name"></control-messages>
     </div>
       <div class="form-row">
@@ -98,7 +102,7 @@
 <a [routerLink]="['/profile', 'add-course']" class="add-course-btn">Add Course</a>
 <tabs *ngIf="width < 768">
 <tab tabTitle="Courses">
-<h3>Upcoming Events with {{instructors?.name}} </h3>
+<h3>Upcoming Events with {{instructor?.name}} </h3>
 <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
     <div class="img-ctn">
       <div class="price" *ngIf="card.semesters[0].amount != '0.00'">
@@ -139,7 +143,7 @@
 <p>{{details?.description}}</p>
 <app-modal [(visible)]="isEditAbout">    
     <h2>Edit Your Description</h2>
-    <div class="edit-form" *ngIf="instructors">
+    <div class="edit-form" *ngIf="instructor">
     <form id="instrocterDescription" [formGroup]="instrocterDescriptionForm" (ngSubmit)="updateinstrocterDescription()">  
       <div class="form-row">
       <label>Description:</label>
@@ -158,27 +162,27 @@
       <div class="contact_box">
           <a href="javascript:void(0)" (click)="isEdit = !isEdit" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
           <div class="contact_instructor">
-        <!--<span *ngIf="instructors.phone"><i class="fa fa-phone-square" aria-hidden="true"></i> <a href="tel:{{instructors.phone}}">{{instructors.phone}}</a></span>-->
+        <!--<span *ngIf="instructor.phone"><i class="fa fa-phone-square" aria-hidden="true"></i> <a href="tel:{{instructor.phone}}">{{instructor.phone}}</a></span>-->
         <br>
         <span *ngIf="details?.url"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
         </div> 
         <app-modal [(visible)]="isEdit">    
             <h2>Edit Your Description</h2>
-            <div class="edit-form" *ngIf="instructors">
+            <div class="edit-form" *ngIf="instructor">
                 <form id="instrocterAddress" [formGroup]="instrocterAddressForm" (ngSubmit)="updateAddress()">  
-                <div class="form-row" *ngIf="instructors.phone">
+                <div class="form-row" *ngIf="instructor.phone">
                   <label>Phone:</label>
-                    <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="instructors.phone" /><br>
+                    <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="instructor.phone" /><br>
                     <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
                 </div>
-                <div class="form-row" *ngIf="!instructors.phone">
+                <div class="form-row" *ngIf="!instructor.phone">
                   <label>Phone:</label>
                     <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+"/><br>
                     <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
                 </div>
                 <div class="form-row">
                   <label>Email:</label>
-                    <input type="text" formControlName="addressEmail" [(ngModel)]="instructors.email"/>
+                    <input type="text" formControlName="addressEmail" [(ngModel)]="instructor.email"/>
                     <control-messages [control]="instrocterAddressForm.controls.addressEmail" ></control-messages>
                 </div>
                 <div class="form-row">
@@ -195,7 +199,7 @@
 
 <section *ngIf="width > 767" id="desktopcourses">
 <h2>Courses </h2>
-<h3>Upcoming Events with {{instructors?.name}}</h3>
+<h3>Upcoming Events with {{instructor?.name}}</h3>
 <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
   <div class="img-ctn">
       <div class="price" *ngIf="card.semesters[0].amount != '0.00'">
@@ -236,7 +240,7 @@
 <p>{{details?.description}}</p>
 <app-modal [(visible)]="isEditAbout">    
     <h2>Edit Your Description</h2>
-    <div class="edit-form" *ngIf="instructors">
+    <div class="edit-form" *ngIf="instructor">
     <form id="instrocterDescription" [formGroup]="instrocterDescriptionForm" (ngSubmit)="updateinstrocterDescription()">  
       <div class="form-row">
           <textarea *ngIf="details?.length"  cols="30" rows="10"  formControlName="description" [(ngModel)]="details.description"></textarea>
@@ -250,23 +254,23 @@
   </app-modal>
 <h2>CONTACT <a href="javascript:void(0)" (click)="isEdit = !isEdit" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
 <div class="contact_instructor">
-<span *ngIf="instructors?.phone"><i class="fa fa-phone-square" aria-hidden="true"></i> {{instructors?.phone}}</span><br>
+<span *ngIf="instructor?.phone"><i class="fa fa-phone-square" aria-hidden="true"></i> {{instructor?.phone}}</span><br>
 <span *ngIf="details?.url"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span>
 </div>
 <app-modal [(visible)]="isEdit">    
   <h2>Edit Your Contacts</h2>
-  <div class="edit-form" *ngIf="instructors">
+  <div class="edit-form" *ngIf="instructor">
       <form id="instrocterAddress" [formGroup]="instrocterAddressForm" (ngSubmit)="updateAddress()">  
       <div class="form-row">
         <label>Phone:</label>
-          <input *ngIf="instructors?.phone"  type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="instructors.phone"/>
-          <input *ngIf="!instructors?.phone" type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" placeholder="Phone"/>
+          <input *ngIf="instructor?.phone"  type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="instructor.phone"/>
+          <input *ngIf="!instructor?.phone" type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" placeholder="Phone"/>
           <br>
           <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
       </div>
       <div class="form-row">
         <label>Email:</label>
-          <input type="text" formControlName="addressEmail" [(ngModel)]="instructors.email"/>
+          <input type="text" formControlName="addressEmail" [(ngModel)]="instructor.email"/>
           <control-messages [control]="instrocterAddressForm.controls.addressEmail"></control-messages>
       </div>
       <div class="form-row">
@@ -293,3 +297,4 @@
 <p class="seeall-link"><!--<button class="show-more" (click)="getData()" [disabled]="counter>=ratingData.length">see all related reviews</button><a href="javascript:void(0);">see all related reviews</a>--></p>
 
 </section><!-- #reviews -->
+</div>
