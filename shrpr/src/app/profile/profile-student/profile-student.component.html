@@ -13,7 +13,7 @@
     <div>
       <h2>{{user.name}}</h2>
       <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{user?.email}}">{{user?.email}}</a> <br />
-      <span *ngIf="details?.url"> <i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> <i aria-hidden="true" class="fa fa-map-marker"></i> {{ city }}, {{ state }}</div>
+      <span *ngIf="details?.url"> <i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> <span *ngIf="details?.city"><i aria-hidden="true" class="fa fa-map-marker"></i> {{details?.city}}</span><span *ngIf="details?.state">, {{details?.state}}</span></div>
   </section>
   <app-modal [(visible)]="showDialog">
     <h2>Profile Edit Form</h2>
