@@ -1,4 +1,4 @@
-    <div *ngIf="instructor">
+    <div *ngIf="instructor"></div>
     <section id="course-add-container">
         <div class="formHeader">
           <a href="javascript:void(0);" (click)="prevSlide()" class="courseFormBtn" *ngIf="slideNo > 1">< Back</a>
@@ -52,6 +52,10 @@
           <div class="courseFormPage">
               <form name="semesterInfoForm" [formGroup]="semesterInfoForm">
               <div class="formRow">
+                <label for="courseDescription">Semester : {{courseSemesterNumber}}</label>
+              </div> 
+                
+              <div class="formRow">
                 <label for="courseStartDates">Start Dates</label>
                 <input type="date" id="courseStartDates" formControlName="courseStartDateText">
                 <control-messages [control]="semesterInfoForm.controls.courseStartDateText"></control-messages>
@@ -97,10 +101,10 @@
                       spellcheck="off"
                       placeholder="Enter Location" 
                       [value]="location"
-                      [formControl]="searchControl"
+                      formControlName="searchControl"
                       id="courseLocation" 
                   >
-                  <!--<control-messages [control]="semesterInfoForm.controls.searchControl"></control-messages>-->
+                  <control-messages [control]="semesterInfoForm.controls.searchControl"></control-messages>
               </div>
               <div class="formRow">
                   <label for="coursePrimaryPhoto">Primary Photo</label>
@@ -113,7 +117,11 @@
                 <control-messages [control]="semesterInfoForm.controls.courseSecondaryPhoto"></control-messages>
                 
                </div>
-              <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Submit</button></div>
+              <div class="formRow ctr">
+                <button (click)="sessionDetailsinit()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Save</button>
+                <button (click)="newSemester()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Add New Semester</button>
+                <button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Save</button>
+              </div>
               </form>
             </div><!-- course Form Page Two-->
     
@@ -145,4 +153,5 @@
               </div><!-- course Form Page Three-->
        </div>
       </section>
-    </div>
+    
+    
