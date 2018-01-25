@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, NgModule, Renderer, NgZone, Input, EventEmitter, AfterViewInit } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
-import { CompleterService, CompleterData, CompleterItem, CompleterCmp } from 'ng2-completer';
 import * as moment from 'moment';
 import { Router } from "@angular/router";
 import { ValidationService } from '../../../core/validation.service';
-import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { Instructor } from '../../../instructors/instructor.interface';
 
 @Component({
@@ -27,6 +25,7 @@ export class AddCourseInstructorComponent implements OnInit {
   detailsData: any[] = [];
   semesterData: Array<{amount: number, duration: number, start_date: string, end_date: string, addresses: any, meetings: any, primary_img: string, details : any }> = [];
   meetingData: Array<{substitute: string, start: string, end: string }> = [];
+  addressArray: Array<{address: string, city: string, state: string, zip: string }> = [];
   data: any = {};
   semesterInfo: any = {};
   
@@ -35,11 +34,10 @@ export class AddCourseInstructorComponent implements OnInit {
   @ViewChild("search") public searchElementRef: ElementRef;
   @ViewChild('panel') panel : ElementRef;
   @ViewChild('myForm') myForm: ElementRef;
-  searchControl = new FormControl();
+  
   
   location: string = '';
-  dataService: CompleterData;
-
+  
   slideNo: number = 1;
   lastSlideNo:number = 3;
   prevPos: string = '';
@@ -56,25 +54,31 @@ export class AddCourseInstructorComponent implements OnInit {
   courseFeeText:number;
   dt:Date;
 
-  city: string;
-  state: string;
-  zip: string;
-  country: string;
-
+  streetAddressInput: string;
+  cityInput: string;
+  stateInput: string;
+  zipInput: string;
+  
+  signupType: string;
+  firstLogin:boolean;
+  confirmSemData:boolean;
+  showSubmit:boolean = false;
+  showSessionList:boolean = false;
   constructor(
     public renderer: Renderer,
     private fb: FormBuilder,
-    private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone,
     private router: Router
-  ) { 
-
-    
-
-  }
+  ) { }
 
   ngOnInit() {
 
+    if( localStorage.getItem('signupUser') == 'new'){
+      this.firstLogin = true;
+    }
+    else{
+      this.firstLogin = false;
+    } 
+    console.log('first login is: ' + this.firstLogin);
     this.instructorCourseForm = this.fb.group({
       'courseTitleText': ['', Validators.required],
       'courseGroupSelect': ['', Validators.required],
@@ -94,71 +98,9 @@ export class AddCourseInstructorComponent implements OnInit {
       
     });
 
-    /*Location box autocomplete function*/
-    this.setCurrentPosition();
-    this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ['address']
-      });
-
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          //verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-          
-          this.location = place.formatted_address; 
-          var components = place.address_components;
-          this.city = '';
-          this.state = '';
-          this.zip = '';
-          this.country = '';
-          var component,
-          i, l, x, y;
-          for(i = 0, l = components.length; i < l; ++i){
-                  //store component
-                  component = components[i];
-                  //check each type
-                  for(x = 0, y = component.types.length; x < y; ++ x){
-                    //depending on type, assign to var
-                    switch(component.types[x]){
-                      case 'neighborhood':
-                      this.city = component.long_name;
-                      break;
-                      case 'administrative_area_level_1':
-                      this.state = component.short_name;
-                      break;
-                      case 'postal_code':
-                      this.zip = component.short_name;
-                      break;
-                      case 'country':
-                      this.country = component.short_name;
-                      break;
-                    }
-                  }
-                }
-        });
-      });
-    }); 
-
   }
   
   
-  private setCurrentPosition() {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        //this.latitude = position.coords.latitude;
-        //this.longitude = position.coords.longitude;
-        //this.zoom = 12;
-        //this.location = position;
-        //console.log(position);
-        
-      });
-    }
-  }
 initSemesterForm(){
   this.semesterInfoForm = this.fb.group({  
     'courseStartDateText': ['', Validators.required],
@@ -168,9 +110,12 @@ initSemesterForm(){
     'courseSessionNumber': ['', Validators.required],
     'courseDurationNumber': ['', Validators.required],
     'courseFeeText': ['', Validators.required],
-    'searchControl': ['', Validators.required],
     'coursePrimaryPhoto': [''],
-    'courseSecondaryPhoto' : [''] 
+    'courseSecondaryPhoto' : [''], 
+    'streetAddressText': ['', Validators.required],
+    'cityText': ['', Validators.required],
+    'stateText': ['', Validators.required],
+    'zipText': ['', Validators.required]
   });
 }
 
@@ -258,11 +203,22 @@ initSemesterForm(){
   
   
   sessionDetailsinit(){
-    this.semesterData = [];
+    //if first login is true empty the semester array to hold single
+    //semester data other wise donot empty it, let it hold other semester as well
+    if(this.firstLogin){
+      this.semesterData = [];
+    }
+    
     this.meetingArray = [];
+    this.addressArray = [];
     
     let courseStartTimeText:any = '';
     let courseEndTimeText:any = '';
+
+    this.streetAddressInput = '';
+    this.cityInput = '';
+    this.stateInput = '';
+    this.zipInput = '';
     
     let courseStartDateText = this.semesterInfoForm.value.courseStartDateText;
     let courseIteration = this.semesterInfoForm.value.courseIteration;
@@ -276,7 +232,7 @@ initSemesterForm(){
     let primaryPhoto = this.semesterInfoForm.value.coursePrimaryPhoto;
     let secondaryPhoto = this.semesterInfoForm.value.courseSecondaryPhoto;
     this.courseFeeText = this.semesterInfoForm.value.courseFeeText;
-    
+
     courseStartTimeText = moment(courseStartTimeText+':00', 'hh:mm:ss a');
     courseStartTimeText = moment(courseStartTimeText).format('HH:MM');
     courseEndTimeText = moment(courseStartTimeText, 'LT').add(courseDurationNumber, 'hours');
@@ -332,6 +288,26 @@ initSemesterForm(){
          "secondary_img" : secondaryPhoto
       }
     );
+
+    this.streetAddressInput = this.semesterInfoForm.value.streetAddressText;
+    this.cityInput = this.semesterInfoForm.value.cityText;
+    this.stateInput = this.semesterInfoForm.value.stateText;
+    this.zipInput = this.semesterInfoForm.value.zipText;
+   
+    if(this.addressArray.length > 0) {
+      for(var k =0, l = this.addressArray.length; k < l; k++){
+        this.addressArray.pop(); 
+      } 
+    }
+
+    this.addressArray.push(
+      {
+        "address" : this.streetAddressInput,
+        "city" : this.cityInput,
+        "state": this.stateInput, 
+        "zip" : this.zipInput, 
+      }
+    );
    
     this.semesterData.push(
       {
@@ -339,68 +315,81 @@ initSemesterForm(){
         "duration" : this.courseSessionNumber, 
         "start_date": startdate, 
         "end_date": enddate, 
-        "addresses": '', 
+        "addresses": this.addressArray, 
         "meetings": this.meetingArray,
         "primary_img" : primaryPhoto,
         "details" : this.detailsData
       }
     );
     this.gotothree = true;
+    //if this is first login is true add single semester data to form object
+    if(this.firstLogin){
     this.data.semesters = this.semesterData;
+    }
     //console.log(this.data);
     //this.addSemConfirm = true;
     //this.initSemesterForm();    
     //this.courseSemesterNumber++;
-  }  
-
+  } 
+  //slide view during signup process add semester confirmation popup open
   closeAddSemConfirm(){
     this.addSemConfirm = false;  
   }
+  
+  //slide view last slide submit button click to open course added confirm box 
+  submitAllFormData(){
+     console.log(this.data);
+     this.addCourseConfirm = true;
+     
+   }
+   //slide view during signup process course added confiramtion popup close and navigate to profile page
   closeCourseConfirm() {
     this.addCourseConfirm = false;
     this.router.navigate(['profile']);
   }
 
-  addSemester(){
-   console.log(this.data);
-  }
 
-  newSemester(){
+  //page view semester details show from profile page
+  showSessionDetail(){
+    this.instructorCourseSubmit();
+    this.sessionDetailsinit();
+    this.showSessionList = true;
+  }
+  //page view semester add confirmation show from profile page
+  confirmSemesterData(){
+    //click of confirm add semester data to form object
+    this.confirmSemData = true;
     
+  }
+  //page view semester add confirmation close from profile page
+  closeConfirmSemData(){
+    this.confirmSemData = false;
+    this.showSubmit = true;
+    //this.router.navigate(['profile']);
+    //localStorage.removeItem('signupUser');
+  }
+  //page view to add new semester and confirmation close from profile page
+  addNewSemesterInit(){
+    this.confirmSemData = false;
+    //show the semester no. to be add in page view
     this.courseSemesterNumber++;
-    
-    
-    /*this.semesterInfoForm.controls['courseStartDateText'].setValidators(null);
-    this.semesterInfoForm.controls['courseIteration'].setValidators(null);
-    this.semesterInfoForm.controls['courseStartTimeText'].setValidators(null);
-    this.semesterInfoForm.controls['courseSessionNumber'].setValidators(null);
-    this.semesterInfoForm.controls['courseDurationNumber'].setValidators(null);
-    this.semesterInfoForm.controls['courseFeeText'].setValidators(null);
-    
-    this.semesterInfoForm.controls['courseStartDateText'].setValue(null);
-    this.semesterInfoForm.controls['courseIteration'].setValue(null);
-    this.semesterInfoForm.controls['courseStartTimeText'].setValue(null);
-    this.semesterInfoForm.controls['courseEndTimeText'].setValue(null);
-    this.semesterInfoForm.controls['courseSessionNumber'].setValue(null);
-    this.semesterInfoForm.controls['courseDurationNumber'].setValue(null);
-    this.semesterInfoForm.controls['courseFeeText'].setValue(null);
-    //this.instructorCourseForm.controls['searchControl'].setValue(null);
-    this.searchControl = new FormControl();
-    this.semesterInfoForm.controls['coursePrimaryPhoto'].setValue(null);
-    this.semesterInfoForm.controls['courseSecondaryPhoto'].setValue(null);
-    
-    this.semesterInfoForm.controls['courseStartDateText'].setValidators([Validators.required]);
-    this.semesterInfoForm.controls['courseIteration'].setValidators([Validators.required]);
-    this.semesterInfoForm.controls['courseStartTimeText'].setValidators([Validators.required]);
-    this.semesterInfoForm.controls['courseSessionNumber'].setValidators([Validators.required]);
-    this.semesterInfoForm.controls['courseDurationNumber'].setValidators([Validators.required]);
-    this.semesterInfoForm.controls['courseFeeText'].setValidators([Validators.required]);*/
-    
+    //blank the semesterInfoForm to add new semester information to this form
+    this.initSemesterForm();
+    this.sessionArray = [];
+    this.showSessionList = false;
+    /*if(this.sessionArray.length > 0) {
+      for(var k =0, l = this.sessionArray.length; k < l; k++){
+        this.sessionArray.pop(); 
+      } 
+    } */
   }
-  
-  
-  submitAllFormData(){
-    console.log(this.data);
+  //page view submit all semester data to form object
+  submitSemesterData(){
+    this.data.semesters = this.semesterData;
     this.addCourseConfirm = true;
-  }
+    console.log(this.data);
+ }
+
+
+  
 }

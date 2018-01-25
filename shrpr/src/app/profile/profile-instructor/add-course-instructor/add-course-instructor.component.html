@@ -1,6 +1,7 @@
-    <div *ngIf="instructor"></div>
-    <section id="course-add-container">
-        <div class="formHeader">
+    <section class="page-conent-area" *ngIf="instructor">
+      <h2>Enter Your Course Information</h2>
+    <section id="course-add-container" [class.slide]="firstLogin">
+        <div class="formHeader" *ngIf="firstLogin">
           <a href="javascript:void(0);" (click)="prevSlide()" class="courseFormBtn" *ngIf="slideNo > 1">< Back</a>
           <span>{{slideNo}} / {{lastSlideNo}}</span></div>
         <div #panel class="course-form-box">
@@ -46,9 +47,10 @@
               <textarea formControlName="courseDescriptionText" id="courseDescription"></textarea>
               <control-messages [control]="instructorCourseForm.controls.courseDescriptionText"></control-messages>
             </div>
-            <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!instructorCourseForm.valid">Submit</button></div>
+            <div *ngIf="firstLogin" class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!instructorCourseForm.valid">Submit</button></div>
             </form>  
           </div><!-- course Form Page one-->
+          <hr *ngIf="!firstLogin">
           <div class="courseFormPage">
               <form name="semesterInfoForm" [formGroup]="semesterInfoForm">
                 <h3>Enter Your Course Semester Information</h3>
@@ -88,22 +90,96 @@
                 <input type="number" id="courseFee" formControlName="courseFeeText">
                 <control-messages [control]="semesterInfoForm.controls.courseFeeText"></control-messages>
             </div>
-              <div class="formRow">
-                  <label for="courseLocation">Location</label>
-                    <input 
-                      #search
-                      type="text" 
-                      autocorrect="off" 
-                      autocapitalize="off" 
-                      spellcheck="off"
-                      placeholder="Enter Location" 
-                      [value]="location"
-                      formControlName="searchControl"
-                      id="courseLocation" 
-                  >
-                  <control-messages [control]="semesterInfoForm.controls.searchControl"></control-messages>
-              </div>
-              <div class="formRow">
+            <div class="formRow">
+                <label for="streetAddress">Address</label>
+                <input type="text" id="streetAddress" formControlName="streetAddressText">
+                <control-messages [control]="semesterInfoForm.controls.streetAddressText"></control-messages>
+            </div>
+            <div class="formRow">
+                <label for="city">City</label>
+                <input type="text" id="city" formControlName="cityText">
+                <control-messages [control]="semesterInfoForm.controls.cityText"></control-messages>
+            </div>
+            <div class="formRow">
+                <label for="state">State</label>
+                <select name="State" id="state" formControlName="stateText">
+                    <option selected="" value="">Select state</option>
+                    <option value="">--------------------------------------</option>
+                    <option value="Alabama">Alabama</option>
+                    <option value="Alaska">Alaska</option>
+                    <option value="Alberta">Alberta</option>
+                    <option value="Arizona">Arizona</option>
+                    <option value="Arkansas">Arkansas</option>
+                    <option value="British Columbia">British Columbia</option>
+                    <option value="California">California</option>
+                    <option value="Colorado">Colorado</option>
+                    <option value="Connecticut">Connecticut</option>
+                    <option value="Delaware">Delaware</option>
+                    <option value="District of Columbia">District of Columbia</option>
+                    <option value="Florida">Florida</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Hawaii">Hawaii</option>
+                    <option value="Idaho">Idaho</option>
+                    <option value="Illinois">Illinois</option>
+                    <option value="Indiana">Indiana</option>
+                    <option value="Iowa">Iowa</option>
+                    <option value="Kansas">Kansas</option>
+                    <option value="Kentucky">Kentucky</option>
+                    <option value="Louisiana">Louisiana</option>
+                    <option value="Maine">Maine</option>
+                    <option value="Manitoba">Manitoba</option>
+                    <option value="Maryland">Maryland</option>
+                    <option value="Massachusetts">Massachusetts</option>
+                    <option value="Michigan">Michigan</option>
+                    <option value="Minnesota">Minnesota</option>
+                    <option value="Mississippi">Mississippi</option>
+                    <option value="Missouri">Missouri</option>
+                    <option value="Montana">Montana</option>
+                    <option value="Nebraska">Nebraska</option>
+                    <option value="Nevada">Nevada</option>
+                    <option value="New Brunswick">New Brunswick</option>
+                    <option value="New Hampshire">New Hampshire</option>
+                    <option value="New Jersey">New Jersey</option>
+                    <option value="New Mexico">New Mexico</option>
+                    <option value="New York">New York</option>
+                    <option value="Newfoundland">Newfoundland</option>
+                    <option value="North Carolina">North Carolina</option>
+                    <option value="North Dakota">North Dakota</option>
+                    <option value="Northwest Territories">Northwest Territories</option>
+                    <option value="Nova Scotia">Nova Scotia</option>
+                    <option value="Nunavut">Nunavut</option>
+                    <option value="Ohio">Ohio</option>
+                    <option value="Oklahoma">Oklahoma</option>
+                    <option value="Ontario">Ontario</option>
+                    <option value="Oregon">Oregon</option>
+                    <option value="Pennsylvania">Pennsylvania</option>
+                    <option value="Prince Edward Island">Prince Edward Island</option>
+                    <option value="Puerto Rico">Puerto Rico</option>
+                    <option value="Quebec">Quebec</option>
+                    <option value="Rhode Island">Rhode Island</option>
+                    <option value="Saskatchewan">Saskatchewan</option>
+                    <option value="South Carolina">South Carolina</option>
+                    <option value="South Dakota">South Dakota</option>
+                    <option value="Tennessee">Tennessee</option>
+                    <option value="Texas">Texas</option>
+                    <option value="Utah">Utah</option>
+                    <option value="Vermont">Vermont</option>
+                    <option value="Virgin Islands">Virgin Islands</option>
+                    <option value="Virginia">Virginia</option>
+                    <option value="Washington">Washington</option>
+                    <option value="West Virginia">West Virginia</option>
+                    <option value="Wisconsin">Wisconsin</option>
+                    <option value="Wyoming">Wyoming</option>
+                    <option value="Yukon">Yukon</option>
+                 </select>
+                <control-messages [control]="semesterInfoForm.controls.stateText"></control-messages>
+            </div>
+            <div class="formRow">
+                <label for="zip">Zip</label>
+                <input type="text" id="zip" formControlName="zipText">
+                <control-messages [control]="semesterInfoForm.controls.zipText"></control-messages>
+            </div>
+            <div class="formRow">
                   <label for="coursePrimaryPhoto">Primary Photo</label>
                   <input type="file" id="coursePrimaryPhoto" formControlName="coursePrimaryPhoto" accept="image/x-png,image/gif,image/jpeg">
                   <control-messages [control]="semesterInfoForm.controls.coursePrimaryPhoto"></control-messages>
@@ -112,18 +188,16 @@
                 <label for="courseSecondaryPhoto">Secondary Photo</label>
                 <input type="file" id="courseSecondaryPhoto" formControlName="courseSecondaryPhoto" accept="image/x-png,image/gif,image/jpeg">
                 <control-messages [control]="semesterInfoForm.controls.courseSecondaryPhoto"></control-messages>
-                
                </div>
               <div class="formRow ctr">
-                <button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Save</button>
-                <!--<button (click)="newSemester()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Add New Semester</button>-->
-                <!--<button (click)="nextSlide()" class="courseFormBtn" [disabled]="!gotothree">Next</button>-->
+                <button *ngIf="firstLogin" (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Save</button>
+                <button *ngIf="!firstLogin" (click)="showSessionDetail()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">View/Update Details</button>
               </div>
               </form>
             </div><!-- course Form Page Two-->
-            <div class="courseFormPage">
+            <div class="courseFormPage" *ngIf="firstLogin">
               <form name="semesterDetailForm" [formGroup]="semesterDetailForm">
-              <h5>Your Session Details</h5>  
+              <h5>Please Confirm Your Session Details for Semester : {{courseSemesterNumber}}</h5>  
               <div class="formRow">
                 <table class="sessionDetailTable">
                   <tbody>
@@ -142,9 +216,42 @@
                   </tbody>
                 </table>
                 </div>
-                <div class="formRow ctr"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterDetailForm.valid">Submit</button></div>
+                <div class="formRow ctr" *ngIf="firstLogin"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterDetailForm.valid">Submit</button></div>
+                <div class="formRow ctr" *ngIf="!firstLogin">
+                  <button (click)="confirmSemesterData()" class="courseFormBtn" [disabled]="!semesterDetailForm.valid">Confirm</button>
+                  <button (click)="submitSemesterData()" class="courseFormBtn" [disabled]="!showSubmit">Submit</button>
+                </div>
                 </form> 
               </div><!-- course Form Page Three-->
+              <div class="courseFormPage" *ngIf="!firstLogin && showSessionList">
+                  <form name="semesterDetailForm" [formGroup]="semesterDetailForm">
+                  <h5>Please Confirm Your Session Details for Semester : {{courseSemesterNumber}}</h5>  
+                  <div class="formRow">
+                    <table class="sessionDetailTable">
+                      <tbody>
+                        <tr>
+                          <th width="10%">No.</th>
+                          <th width="30%">Date</th>
+                          <th width="30%">Start Time</th>
+                          <th width="30%">End Time</th>
+                        </tr>
+                        <tr *ngFor="let session of sessionArray; let i = index" >
+                          <td>{{i+1}}</td>
+                          <td><input type="date" name="courseStartDateText{{i+1}}" value="{{session?.sessionDate}}" (input)="onInput(session?.sessionDate.value)" readonly></td>
+                          <td><input type="time" name="courseStartTimeText{{i+1}}" value="{{session?.startTime}}" readonly></td>
+                          <td><input type="time" name="courseEndTimeText{{i+1}}" value="{{session?.endTime}}" readonly></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </div>
+                    <div class="formRow ctr" *ngIf="firstLogin"><button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterDetailForm.valid">Submit</button></div>
+                    <div class="formRow ctr" *ngIf="!firstLogin">
+                      <button (click)="confirmSemesterData()" class="courseFormBtn" [disabled]="!semesterDetailForm.valid">Confirm</button>
+                      <button (click)="submitSemesterData()" class="courseFormBtn" [disabled]="!showSubmit">Submit</button>
+                    </div>
+                    </form> 
+                  </div><!-- course Form Page Three-->
+
        </div>
        <app-modal [(visible)]="addSemConfirm">
           <h2>Confirmation</h2>
@@ -156,5 +263,13 @@
             <h2>Confirmation</h2>
             <h3>Your Course is successfully Added.</h3>
             <button (click)="closeCourseConfirm()" class="btn">Close</button>
-          </app-modal>
+        </app-modal>
+        <app-modal [(visible)]="confirmSemData">
+            <h2>Confirmation</h2>
+            <h3>Your Semester information is successfully added to this course.</h3>
+            <p>If you want add another semester to this course please click on "Add Semester", otherwise click "Submit" after closeing this window.</p>
+            <button (click)="closeConfirmSemData()" class="btn">Close</button>
+            <button (click)="addNewSemesterInit()" class="btn">Add Semester</button>
+        </app-modal>
       </section>
+    </section>

@@ -1,9 +1,15 @@
 #course-add-container {
-    max-width:500px;
     margin:20px auto;
+    max-width: 800px;
+}
+#course-add-container.slide {
+    max-width:500px;
     overflow: hidden;
 }
 .course-form-box {
+    display:block;
+}
+.slide .course-form-box {
     min-height: 400px;
     display: flex;
 }
@@ -125,4 +131,11 @@
 .formRow select.ng-invalid.ng-touched, .formRow input[type="text"].ng-invalid.ng-touched, .formRow textarea.ng-invalid.ng-touched, .formRow input[type="date"].ng-invalid.ng-touched, .formRow input[type="time"].ng-invalid.ng-touched, .formRow input[type="number"].ng-invalid.ng-touched
 {
     border: 1px solid #c00;
+}
+@media only screen and (min-width: 769px) { 
+    :host /deep/ app-modal .dialog {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+    } 
 }
