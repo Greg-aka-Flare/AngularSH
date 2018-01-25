@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
   		//assign user
   		this.user = user;
 
-  		console.log(this.user);
+  		//console.log(this.user);
 
   		//check roles, decide which to show by default
   		if(this.user.roles.length == 1){

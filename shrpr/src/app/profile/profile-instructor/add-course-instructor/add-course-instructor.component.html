@@ -51,25 +51,22 @@
           </div><!-- course Form Page one-->
           <div class="courseFormPage">
               <form name="semesterInfoForm" [formGroup]="semesterInfoForm">
+                <h3>Enter Your Course Semester Information</h3>
               <div class="formRow">
                 <label for="courseDescription">Semester : {{courseSemesterNumber}}</label>
               </div> 
-                
               <div class="formRow">
                 <label for="courseStartDates">Start Dates</label>
                 <input type="date" id="courseStartDates" formControlName="courseStartDateText">
                 <control-messages [control]="semesterInfoForm.controls.courseStartDateText"></control-messages>
               </div>
-    
               <div class="formRow">
                 <label for="courseStartDates">Classes will be</label>
                 <div class="thefield">
                   <input type="radio" name="courseIteration" formControlName="courseIteration" value="week"> Weekly &nbsp; <input type="radio" name="courseIteration" formControlName="courseIteration" value="months"> Monthly
                 </div>
-                
                 <control-messages [control]="semesterInfoForm.controls.courseStartDateText"></control-messages>
               </div>
-    
               <div class="formRow">
                   <label for="courseStartTime">Start Time</label>
                   <input type="time" id="courseTime" formControlName="courseStartTimeText">
@@ -118,15 +115,12 @@
                 
                </div>
               <div class="formRow ctr">
-                <button (click)="sessionDetailsinit()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Save</button>
-                <button (click)="newSemester()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Add New Semester</button>
                 <button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Save</button>
+                <!--<button (click)="newSemester()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Add New Semester</button>-->
+                <!--<button (click)="nextSlide()" class="courseFormBtn" [disabled]="!gotothree">Next</button>-->
               </div>
               </form>
             </div><!-- course Form Page Two-->
-    
-
-
             <div class="courseFormPage">
               <form name="semesterDetailForm" [formGroup]="semesterDetailForm">
               <h5>Your Session Details</h5>  
@@ -152,6 +146,15 @@
                 </form> 
               </div><!-- course Form Page Three-->
        </div>
+       <app-modal [(visible)]="addSemConfirm">
+          <h2>Confirmation</h2>
+          <h3>Information of Semester {{courseSemesterNumber - 1}} saved successfully!</h3>
+          <p>If you want to another semester fill the form again, otherwise click on close button to close this window.</p>
+          <button (click)="closeAddSemConfirm()" class="btn">Close</button>
+        </app-modal>
+        <app-modal [(visible)]="addCourseConfirm">
+            <h2>Confirmation</h2>
+            <h3>Your Course is successfully Added.</h3>
+            <button (click)="closeCourseConfirm()" class="btn">Close</button>
+          </app-modal>
       </section>
-    
-    

@@ -6,7 +6,6 @@ import * as moment from 'moment';
 import { Router } from "@angular/router";
 import { ValidationService } from '../../../core/validation.service';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
-
 import { Instructor } from '../../../instructors/instructor.interface';
 
 @Component({
@@ -36,6 +35,7 @@ export class AddCourseInstructorComponent implements OnInit {
   @ViewChild("search") public searchElementRef: ElementRef;
   @ViewChild('panel') panel : ElementRef;
   @ViewChild('myForm') myForm: ElementRef;
+  searchControl = new FormControl();
   
   location: string = '';
   dataService: CompleterData;
@@ -45,6 +45,9 @@ export class AddCourseInstructorComponent implements OnInit {
   prevPos: string = '';
   nextPos:number = 0;
   goNext:boolean = false;
+  gotothree:boolean = false;
+  addSemConfirm:boolean = false;
+  addCourseConfirm:boolean = false;
   
   courseStartTimeText:string;
   courseEndTimeText:string;
@@ -78,19 +81,8 @@ export class AddCourseInstructorComponent implements OnInit {
       'courseCategorySelect': ['', Validators.required],
       'courseSubCategorySelect': ['', Validators.required],
       'courseDescriptionText': ['', [Validators.required, Validators.minLength(40)]]
-    });  
-    this.semesterInfoForm = this.fb.group({  
-      'courseStartDateText': ['', Validators.required],
-      'courseIteration' : ['', Validators.required],
-      'courseStartTimeText': ['', Validators.required],
-      'courseEndTimeText': [''],
-      'courseSessionNumber': ['', Validators.required],
-      'courseDurationNumber': ['', Validators.required],
-      'courseFeeText': ['', Validators.required],
-      'searchControl': ['', Validators.required],
-      'coursePrimaryPhoto': [''],
-      'courseSecondaryPhoto' : [''] 
-    });
+    }); 
+    this.initSemesterForm(); 
     
     //console.log(this.instructors.id)
     this.goNext = this.instructorCourseForm.valid;
@@ -167,7 +159,20 @@ export class AddCourseInstructorComponent implements OnInit {
       });
     }
   }
-
+initSemesterForm(){
+  this.semesterInfoForm = this.fb.group({  
+    'courseStartDateText': ['', Validators.required],
+    'courseIteration' : ['', Validators.required],
+    'courseStartTimeText': ['', Validators.required],
+    'courseEndTimeText': [''],
+    'courseSessionNumber': ['', Validators.required],
+    'courseDurationNumber': ['', Validators.required],
+    'courseFeeText': ['', Validators.required],
+    'searchControl': ['', Validators.required],
+    'coursePrimaryPhoto': [''],
+    'courseSecondaryPhoto' : [''] 
+  });
+}
 
 
   nextSlide(){
@@ -175,11 +180,8 @@ export class AddCourseInstructorComponent implements OnInit {
       this.instructorCourseSubmit();
     }
     if(this.slideNo == 2){
-      //this.sessionDetailsinit();
-      this.addSemester();
-    }
-    if(this.slideNo == 2){
       this.sessionDetailsinit();
+      //this.addSemester();
     }
     if(this.slideNo == 3){
       this.submitAllFormData();
@@ -256,17 +258,9 @@ export class AddCourseInstructorComponent implements OnInit {
   
   
   sessionDetailsinit(){
-    
-    //let semesterData: Array<{amount: number, duration: number, start_date: string, end_date: string, addresses: any, meetings: any, primary_img: string, details : any }> = [];
-    //let meetingData: Array<{substitute: string, start: string, end: string }>;
-    /*if(this.meetingArray.length > 0){
-      for(var k =0, l = this.meetingArray.length; k < l; k++){
-        this.meetingArray.pop(); 
-      }  
-    }*/
+    this.semesterData = [];
     this.meetingArray = [];
     
-    //semesterData = [];
     let courseStartTimeText:any = '';
     let courseEndTimeText:any = '';
     
@@ -351,20 +345,32 @@ export class AddCourseInstructorComponent implements OnInit {
         "details" : this.detailsData
       }
     );
-    
+    this.gotothree = true;
+    this.data.semesters = this.semesterData;
+    //console.log(this.data);
+    //this.addSemConfirm = true;
+    //this.initSemesterForm();    
+    //this.courseSemesterNumber++;
   }  
 
-  addSemester(){
-    this.data.semesters = this.semesterData;
-    console.log(this.data);
+  closeAddSemConfirm(){
+    this.addSemConfirm = false;  
+  }
+  closeCourseConfirm() {
+    this.addCourseConfirm = false;
+    this.router.navigate(['profile']);
+  }
 
+  addSemester(){
+   console.log(this.data);
   }
 
   newSemester(){
     
     this.courseSemesterNumber++;
     
-    this.semesterInfoForm.controls['courseStartDateText'].setValidators(null);
+    
+    /*this.semesterInfoForm.controls['courseStartDateText'].setValidators(null);
     this.semesterInfoForm.controls['courseIteration'].setValidators(null);
     this.semesterInfoForm.controls['courseStartTimeText'].setValidators(null);
     this.semesterInfoForm.controls['courseSessionNumber'].setValidators(null);
@@ -379,7 +385,7 @@ export class AddCourseInstructorComponent implements OnInit {
     this.semesterInfoForm.controls['courseDurationNumber'].setValue(null);
     this.semesterInfoForm.controls['courseFeeText'].setValue(null);
     //this.instructorCourseForm.controls['searchControl'].setValue(null);
-    //this.searchControl = new FormControl();
+    this.searchControl = new FormControl();
     this.semesterInfoForm.controls['coursePrimaryPhoto'].setValue(null);
     this.semesterInfoForm.controls['courseSecondaryPhoto'].setValue(null);
     
@@ -388,12 +394,13 @@ export class AddCourseInstructorComponent implements OnInit {
     this.semesterInfoForm.controls['courseStartTimeText'].setValidators([Validators.required]);
     this.semesterInfoForm.controls['courseSessionNumber'].setValidators([Validators.required]);
     this.semesterInfoForm.controls['courseDurationNumber'].setValidators([Validators.required]);
-    this.semesterInfoForm.controls['courseFeeText'].setValidators([Validators.required]);
+    this.semesterInfoForm.controls['courseFeeText'].setValidators([Validators.required]);*/
     
   }
   
   
   submitAllFormData(){
     console.log(this.data);
+    this.addCourseConfirm = true;
   }
 }
