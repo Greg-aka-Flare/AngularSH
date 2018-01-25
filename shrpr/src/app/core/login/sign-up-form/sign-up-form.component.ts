@@ -30,6 +30,7 @@ export class SignUpFormComponent implements OnInit {
   signupErrorText: string;
   currentLocation: boolean = true;
   emailTimeout;
+  signupType:string;
 
   constructor(
   	private fb: FormBuilder,
@@ -59,6 +60,8 @@ export class SignUpFormComponent implements OnInit {
     this.ProfileForm = this.fb.group({
       'role': ['', [Validators.required]]
     });
+
+    this.signupType = 'new';
   }
 
   onSignup() {
@@ -139,7 +142,7 @@ export class SignUpFormComponent implements OnInit {
       success => {
 
         console.log(success);
-
+        localStorage.setItem('signupUser', this.signupType);
         this.router.navigate(['profile']);
       },
       error => {
