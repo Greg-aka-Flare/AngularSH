@@ -23,7 +23,7 @@
 </div>
 </section>
 <app-modal [(visible)]="showDialogform">
-  <h2>Profile Edit Form</h2>
+  <h2>Edit Your Profile</h2>
   <div class="edit-form" *ngIf="instructor" >
     <form id="instrocterProfile" [formGroup]="instrocterProfileForm" (ngSubmit)="updateProfile()">  
     <div class="form-row">
@@ -167,7 +167,7 @@
         <span *ngIf="details?.url"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
         </div> 
         <app-modal [(visible)]="isEdit">    
-            <h2>Edit Your Description</h2>
+            <h2>Edit Your Contact</h2>
             <div class="edit-form" *ngIf="instructor">
                 <form id="instrocterAddress" [formGroup]="instrocterAddressForm" (ngSubmit)="updateAddress()">  
                     <div *ngIf="!instructorAddress.length">
@@ -320,7 +320,7 @@
 <span *ngIf="details?.url"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span>
 </div>
 <app-modal [(visible)]="isEdit">    
-  <h2>Edit Your Contacts</h2>
+  <h2>Edit Your Contact</h2>
   <div class="edit-form" *ngIf="instructor">
       <form id="instrocterAddress" [formGroup]="instrocterAddressForm" (ngSubmit)="updateAddress()">  
           <div *ngIf="!instructorAddress.length">

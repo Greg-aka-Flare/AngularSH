@@ -46,7 +46,7 @@
         <div class="course_info">
             <div *ngIf="semesterCount > 1">
                 <p>Total Semesters: {{semesterCount}}</p>
-                Select Your Semester, starts on:
+                Select Your Semester, Starts on:
                 <div *ngIf="selectedSemester" class="select-date">
                   <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
                     <option *ngFor="let sem of course?.semesters; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LLLL'}} at {{sem?.addresses[0]?.city}}, {{sem?.addresses[0]?.state}} </option>
@@ -144,7 +144,7 @@
             <br>
             <div *ngIf="semesterCount > 1">
               <p>Total Semesters: {{semesterCount}}</p>
-              Select Your Semester, starts on:<br>
+              Select Your Semester, Starts on:<br>
               <div *ngIf="selectedSemester" class="select-date">
                 <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
                   <option *ngFor="let sem of course?.semesters; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LLLL'}} at {{sem?.addresses[0]?.city}}, {{sem?.addresses[0]?.state}} </option>

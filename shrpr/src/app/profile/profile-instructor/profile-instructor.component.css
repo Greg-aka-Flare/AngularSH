@@ -161,7 +161,6 @@ button.view-more-btn:disabled {
 .edit-form {
     max-width:500px;
 }
-
 @media only screen and (min-width: 769px) {
 :host /deep/ tabs .tabs tab > div {
     padding: 10PX;

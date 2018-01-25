@@ -14,7 +14,7 @@
 
   <!-- Profile Header Edit Form Start -->
   <app-modal [(visible)]="showDialog">
-    <h2>Profile Edit Form</h2>
+    <h2>Edit Your Profile</h2>
     <div class="edit-form" *ngIf="students">
       <form id="studentProfile" [formGroup]="studentProfileForm" (ngSubmit)="updateProfile()">
         <div class="form-row">
@@ -148,7 +148,7 @@
 
       <!-- Profile Address Edit Form Start -->
       <app-modal [(visible)]="isEdit">
-        <h2>Edit Your Address</h2>
+        <h2>Edit Your Contact</h2>
         <div class="edit-form">
           <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">
             <div *ngIf="!studentAddress.length">
@@ -299,7 +299,7 @@
 
       <!-- Address Edit Form Start -->
       <app-modal [(visible)]="isEdit">
-        <h2>Edit Your Address</h2>
+        <h2>Edit Your Contact</h2>
         <div class="edit-form">
           <form id="studentAddress" [formGroup]="studentAddressForm" (ngSubmit)="updateAddress()">
             <div *ngIf="!studentAddress.length">
