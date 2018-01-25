@@ -79,6 +79,7 @@
 
               <a 
                 *ngIf="cartAdded"
+                [routerLink]="['/payment', 'cart']"
               >
                 Checkout
               </a>
@@ -123,6 +124,7 @@
 
               <a 
                 *ngIf="cartAdded"
+                [routerLink]="['/payment', 'cart']"
               >
                 Checkout
               </a>

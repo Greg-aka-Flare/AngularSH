@@ -7,9 +7,6 @@ import { ValuesComponent } from './core/values/values.component';
 import { VideosComponent } from './core/videos/videos.component';
 import { PodcastComponent } from './core/podcast/podcast.component';
 import { InterviewwithroblabonneComponent } from './core/podcast/interviewwithroblabonne.component';
-import { InstructorComponent } from './instructor/instructor.component';
-import { InstitutionComponent } from './institution/institution.component';
-import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './core/login/login.component';
 import { TermsComponent } from './core/login/terms/terms.component';
 import { PrivacyComponent } from './core/login/privacy/privacy.component';
@@ -24,6 +21,7 @@ const appRoutes: Routes = [
 	{ path: 'instructor/:id', loadChildren: './instructor/instructor.module#InstructorModule' },
 	{ path: 'student/:id', loadChildren: './student/student.module#StudentModule' },
 	{ path: 'courses', loadChildren: './courses/courses.module#CoursesModule' },
+	{ path: 'payment', loadChildren: './payment/payment.module#PaymentModule' },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'terms-and-conditions', component: TermsComponent },
 	{ path: 'privacy-policy', component: PrivacyComponent },
