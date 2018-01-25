@@ -345,6 +345,7 @@ initSemesterForm(){
    //slide view during signup process course added confiramtion popup close and navigate to profile page
   closeCourseConfirm() {
     this.addCourseConfirm = false;
+    localStorage.removeItem('signupUser');
     this.router.navigate(['profile']);
   }
 
@@ -365,8 +366,6 @@ initSemesterForm(){
   closeConfirmSemData(){
     this.confirmSemData = false;
     this.showSubmit = true;
-    //this.router.navigate(['profile']);
-    //localStorage.removeItem('signupUser');
   }
   //page view to add new semester and confirmation close from profile page
   addNewSemesterInit(){
@@ -377,11 +376,7 @@ initSemesterForm(){
     this.initSemesterForm();
     this.sessionArray = [];
     this.showSessionList = false;
-    /*if(this.sessionArray.length > 0) {
-      for(var k =0, l = this.sessionArray.length; k < l; k++){
-        this.sessionArray.pop(); 
-      } 
-    } */
+    
   }
   //page view submit all semester data to form object
   submitSemesterData(){
