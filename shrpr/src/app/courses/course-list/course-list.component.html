@@ -30,7 +30,10 @@
             <i class="fa fa-calendar" aria-hidden="true"></i> 
             <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
           </p>
+          <div class="page-cta-wrap">
           <a [routerLink]="['/courses', course?.id]"  class="page-cta" aria-roledescription="button">View Course</a>
+          <a class="wishlist"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
+          </div>
         </div>
     </article>
 </section><!-- #course-list -->

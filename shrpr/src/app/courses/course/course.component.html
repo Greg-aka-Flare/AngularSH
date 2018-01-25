@@ -46,7 +46,7 @@
         <div class="course_info">
             <div *ngIf="semesterCount > 1">
                 <p>Total Semesters: {{semesterCount}}</p>
-                Select Your Semester, starts at:
+                Select Your Semester, starts on:
                 <div *ngIf="selectedSemester" class="select-date">
                   <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
                     <option *ngFor="let sem of course?.semesters; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LLLL'}} at {{sem?.addresses[0]?.city}}, {{sem?.addresses[0]?.state}} </option>
@@ -61,7 +61,7 @@
               </div>
               </div>
               <div *ngIf="semesterCount < 2">
-                  Starts at: 
+                  Starts on 
                 <div *ngIf="selectedSemester">
                 <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
                    <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
@@ -144,7 +144,7 @@
             <br>
             <div *ngIf="semesterCount > 1">
               <p>Total Semesters: {{semesterCount}}</p>
-              Select Your Semester, starts at:<br>
+              Select Your Semester, starts on:<br>
               <div *ngIf="selectedSemester" class="select-date">
                 <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
                   <option *ngFor="let sem of course?.semesters; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LLLL'}} at {{sem?.addresses[0]?.city}}, {{sem?.addresses[0]?.state}} </option>
@@ -161,7 +161,7 @@
             </div>
 
             <div *ngIf="semesterCount < 2">
-                Starts at: 
+                Starts on 
               <div *ngIf="selectedSemester">
               <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
                  <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
