@@ -6,6 +6,7 @@ export interface User {
 	facebook_id?: string;
 	linkedin_id?: string;
 	dob: string;
+	profile_img: string;
 	status: string;
 	verified: number;
 	roles: string[];

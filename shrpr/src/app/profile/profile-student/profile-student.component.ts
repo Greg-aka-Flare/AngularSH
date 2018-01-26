@@ -1,10 +1,6 @@
-import { Component, OnInit, OnDestroy, Input, NgModule } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { AddreviewComponent } from "../../shared/add-a-review/addreview.component";
-import { Student } from "../../student/student.interface";
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { StudentService } from '../../student/student.service';
 import { ValidationService } from '../../core/validation.service';
 import { ControlMessagesComponent } from '../../shared/control-messages/control-messages.component';
@@ -15,155 +11,168 @@ import { User } from '../../core/user.interface';
   templateUrl: './profile-student.component.html',
   styleUrls: ['./profile-student.component.css']
 })
-
-export class ProfileStudentComponent implements OnInit, OnDestroy {
+export class ProfileStudentComponent implements OnInit {
 
   @Input('user') user: User;
 
-  city: string = '';
-  state: string = '';
-  zip: string = '';
-  country: string = '';
-  address: string = '';
-  email: string = '';
-  description: string = '';
-  students:any[];
-  studentAddressForm: any;
-  studentProfileForm: any;
-  studentDescriptionForm:any;
-  private id:number;
-  data: any = {};
-  contactData: any = {};
-  aboutData: any = {};
-  studentDetails:any;
-  showDialog:boolean = false;
-  details:any;
-  studentAddress:any = {};
-  isEdit:boolean = false;
-  isEditAbout:boolean = false;
-  private mylocation:string;
-  private subscriptions = new Subscription();
+  addressForm: FormGroup;
+  profileForm: FormGroup;
+  descriptionForm: FormGroup;
+  showProfile: boolean = false;
+  showAddress: boolean = false;
+  showAbout: boolean = false;
 
-  width = document.documentElement.clientWidth;
   constructor(
-    private studentService: StudentService, 
-    private fb: FormBuilder
-  ) {
-    const $resizeEvent = Observable.fromEvent(window, 'resize')
-    .map(() => {
-      return document.documentElement.clientWidth;
-      })
-      this.subscriptions.add($resizeEvent.subscribe(data => {
-      this.width = data;
-    }));
-    }
-
-    onChange(event) {
-      var files = event.srcElement.files;
-      console.log(files);
-  }
+    private fb: FormBuilder,
+    private student: StudentService
+  ) {}
 
   ngOnInit() {
 
-    this.subscriptions.add(this.studentService.getStudent(this.user.id)
-    .subscribe(
-      (students) => {
-       this.students = students;
-       this.details = JSON.parse(students.details);
-       this.studentAddress = students.addresses;
-       },
-      (error: Response) => console.log(error)
-    ));
+    //if no addresses
+    if(this.user.student.addresses.length === 0){
 
+      //create empty
+      this.user.student.address.push({
+        streetAddress: '',
+        city: '',
+        state: '',
+        zip: '',
+        country: ''
+      });
 
-    //if localstorage exists, pull values in
-      if(localStorage.getItem('email')) this.email = localStorage.getItem('email');
-      if(localStorage.getItem('useCurrentLocation') && localStorage.getItem('useCurrentLocation') === 'true'){
-        if(localStorage.getItem('city')) this.city = localStorage.getItem('city');
-        if(localStorage.getItem('state')) this.state = localStorage.getItem('state');
-        if(localStorage.getItem('zip')) this.zip = localStorage.getItem('zip');
-        if(localStorage.getItem('country')) this.country = localStorage.getItem('country');
-        if(localStorage.getItem('address')) this.address = localStorage.getItem('address');
+      //if localstorage exists, pull values in
+      if(localStorage.getItem('useCurrentLocation')) {
+        if(localStorage.getItem('address')) this.user.student.address[0].streetAddress = localStorage.getItem('address');
+        if(localStorage.getItem('city')) this.user.student.address[0].city = localStorage.getItem('city');
+        if(localStorage.getItem('state')) this.user.student.address[0].state = localStorage.getItem('state');
+        if(localStorage.getItem('zip')) this.user.student.address[0].zip = localStorage.getItem('zip');
+        if(localStorage.getItem('country')) this.user.student.address[0].country = localStorage.getItem('country');
       }
-      
-    this.studentAddressForm = this.fb.group({
-      'addressStreet': [this.address, Validators.required],
-      'addressCity': [this.city, Validators.required],
-      'addressState': [this.state, Validators.required],
-      'addressZip': [this.zip, Validators.required],
-      'addressCountry': [this.country, Validators.required],
-      'addressPhone': ['', [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
-      'addressEmail': [this.email, [Validators.required, ValidationService.emailValidator]]
+    }
+
+    //if no details, fill in empty data
+    if(!this.user.student.details) {
+
+      this.user.student.details = {
+        description: '',
+        url: '',
+        twitter: '',
+        facebook: '',
+        linkedin: '',
+        yelp: '',
+        pinterest: '',
+        secondary_email: ''
+      }
+    }
+    
+    //create form groups
+    this.addressForm = this.fb.group({
+      'addressStreet': [this.user.student.addresses[0].streetAddress, Validators.required],
+      'addressCity': [this.user.student.addresses[0].city, Validators.required],
+      'addressState': [this.user.student.addresses[0].state, Validators.required],
+      'addressZip': [this.user.student.addresses[0].zip, Validators.required],
+      'addressCountry': [this.user.student.addresses[0].country, Validators.required],
+      'addressPhone': [this.user.student.phone, [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
+      'addressEmail': [this.user.student.details.secondary_email, [Validators.required, ValidationService.emailValidator]]
     });
   
-    this.studentProfileForm = this.fb.group({
-      'name': ['', [Validators.required, ValidationService.alphabetsValidator]],
-      'profileImage': [''],
-      'url':  [''],
-      'yelp':  [''],
-      'twitter': [''],
-      'facebook': [''],
-      'linkedIn': [''],
-      'pinterest': [''],
+    this.profileForm = this.fb.group({
+      'name': [this.user.name, [Validators.required, ValidationService.alphabetsValidator]],
+      'profileImage': [this.user.profile_img],
+      'url':  [this.user.student.details.url],
+      'twitter': [this.user.student.details.twitter],
+      'facebook': [this.user.student.details.facebook],
+      'linkedin': [this.user.student.details.linkedin],
+      'yelp':  [this.user.student.details.yelp],
+      'pinterest': [this.user.student.details.pinterest],
     });
-    this.studentDescriptionForm = this.fb.group({
-      'description': ['', [Validators.required, Validators.minLength(40)]],
+
+    this.descriptionForm = this.fb.group({
+      'description': [this.user.student.details.description, [Validators.required, Validators.minLength(40)]],
     });
   }
 
   updateAddress(){
-    this.isEdit= !this.isEdit;
-    
-    let formAddress: any = {};
-    
-    //assign user data
-    formAddress.streetAddress = this.studentAddressForm.value.addressStreet;
-    formAddress.city = this.studentAddressForm.value.addressCity;
-    formAddress.state = this.studentAddressForm.value.addressState;
-    formAddress.zip = this.studentAddressForm.value.addressZip;
-    formAddress.country = this.studentAddressForm.value.addressCountry;
 
-    this.contactData.addresses = formAddress;
-    
-    this.contactData.phone = this.studentAddressForm.value.addressPhone;
-    this.contactData.email = this.studentAddressForm.value.addressEmail;
+    //create data
+    const data = {
+      phone: this.addressForm.value.addressPhone,
+      addresses: [ {
+        type: 'primary',
+        streetAddress: this.addressForm.value.addressStreet,
+        city: this.addressForm.value.addressCity,
+        state: this.addressForm.value.addressState,
+        zip: this.addressForm.value.addressZip,
+        country: this.addressForm.value.addressCountry
+      } ],
+      details: {
+        secondary_email: this.addressForm.value.addressEmail
+      }
+    };
 
-    console.log(this.contactData)
+    //save data
+    this.student.save(data).subscribe(
+      success => {
+        //update data
+        this.user.student.phone = data.phone;
+        this.user.student.addresses = data.addresses;
+        this.user.student.details = {...this.user.student.details, ...data.details};
 
+        //hide popup
+        this.showAddress = !this.showAddress;
+      }
+    );
   }
 
-  updateProfile(){    
-    let detailsText: any = {};
+  updateProfile(){
 
-//assign user data
-    this.data.name = this.studentProfileForm.value.name;
-    this.data.profile_img = this.studentProfileForm.value.profileImage;
-    detailsText.url = this.studentProfileForm.value.yelp;
-    detailsText.yelp = this.studentProfileForm.value.yelp;
-    detailsText.twitter = this.studentProfileForm.value.twitter;
-    detailsText.facebook = this.studentProfileForm.value.facebook;
-    detailsText.linkedIn = this.studentProfileForm.value.linkedIn;
-    detailsText.pinterest = this.studentProfileForm.value.pinterest;
+    //create data
+    const data = {
+      name: this.profileForm.value.name,
+      profile_img: this.profileForm.value.profileImage,
+      details: {
+        url: this.profileForm.value.url,
+        yelp: this.profileForm.value.yelp,
+        twitter: this.profileForm.value.twitter,
+        facebook: this.profileForm.value.facebook,
+        linkedin: this.profileForm.value.linkedin,
+        pinterest: this.profileForm.value.pinterest
+      }
+    };
 
-    this.data.details = detailsText;
+    //save data
+    this.student.save(data).subscribe(
+      success => {
+        //update data
+        this.user.name = data.name;
+        this.user.profile_img = data.profile_img;
+        this.user.student.details = {...this.user.student.details, ...data.details};
 
-    console.log(this.data);
-    this.showDialog = !this.showDialog;
-    
+        //hide popup
+        this.showProfile = !this.showProfile;
+      }
+    );
   }
 
-  updatestudentDescription(){
-//assign user data
-    this.isEditAbout= !this.isEditAbout;
-    let descriptionText: any = {};
-    descriptionText.description = this.studentDescriptionForm.value.description;
-    this.aboutData.details = descriptionText;
+  updateDescription(){
 
-    console.log(this.aboutData);
+    //create data
+    const data = {
+      details: {
+        description: this.descriptionForm.value.description
+      }
+    };
 
-  }
+    //save data
+    this.student.save(data).subscribe(
+      success => {
+        //update data
+        this.user.student.details = {...this.user.student.details, ...data.details};
 
-  ngOnDestroy(){
-    this.subscriptions.unsubscribe();
+        //hide popup
+        this.showAbout = !this.showAbout;
+      }
+    );
   }
 }

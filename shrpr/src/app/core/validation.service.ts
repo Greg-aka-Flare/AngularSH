@@ -28,6 +28,9 @@ export class ValidationService {
   }
 
   static emailValidator(control) {
+
+    if(!control.value) return { 'invalidEmailAddress': true };
+
     // RFC 2822 compliant regex
     if (control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
       return null;
@@ -46,6 +49,9 @@ export class ValidationService {
     }
   }
   static phonenoValidator(control) {
+
+    if(!control.value) return { 'invalidPhone': true };
+    
     // {6,16}           - Assert password is between 6 and 16 characters
     // (?=.*[0-9])       - Assert a string has at least one number
   if (control.value.match(/^[0-9]{0,10}$/)) {

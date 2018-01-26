@@ -14,8 +14,6 @@ import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { ValidationService } from '../core/validation.service';
 import { ControlMessagesComponent } from '../shared/control-messages/control-messages.component';
 
-
-
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
@@ -47,6 +45,7 @@ export class StudentComponent implements OnInit, OnDestroy {
           this.studentService.getStudent(this.id)
           .subscribe(
                 (response) => {
+
                   this.students = response;
                   //this.studentCourse = JSON.parse(response.courses);
                   this.studentDetails = JSON.parse(response.details);

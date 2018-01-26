@@ -29,6 +29,11 @@ export class AuthService {
           data.last = data.name.substr(data.name.indexOf(' ') + 1);
         }
 
+        //decode json, if it exists
+        if(data.institution && data.institution.details) data.institution.details = JSON.parse(data.institution.details);
+        if(data.instructor && data.instructor.details) data.instructor.details = JSON.parse(data.instructor.details);
+        if(data.student && data.student.details) data.student.details = JSON.parse(data.student.details);
+
         return data;
       });
   }
