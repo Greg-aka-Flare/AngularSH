@@ -133,7 +133,7 @@ export class AddCourseInstructorComponent implements OnInit {
   getSubCategory(val){
     this.filterSubCategory = this.subCategory.filter(x => x.parent == val);
     this.subCatCount = this.filterSubCategory.length;
-    console.log(this.filterSubCategory);
+    //console.log(this.filterSubCategory);
   }
   
 initSemesterForm(){
