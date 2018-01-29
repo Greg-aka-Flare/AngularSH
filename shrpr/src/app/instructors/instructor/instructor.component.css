@@ -198,7 +198,16 @@ button.view-more-btn:disabled {
 .edit-form {
     max-width:500px;
 }
+.desktop {
+    display:none;
+}
 @media only screen and (min-width: 769px) {
+.mobile {
+    display: none;
+}    
+.desktop {
+    display:block;
+}    
 :host /deep/ tabs .tabs tab > div {
     padding: 10PX;
     overflow:hidden;

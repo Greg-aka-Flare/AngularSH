@@ -6,8 +6,11 @@ export interface Instructor {
 	name: string;
 	email: string;
 	dob:string;
+	profile_img: string;
 	status: string;
 	verified: number;
 	referred_by: string;
+	rating:number;
+	ratings:any[];
 	addresses: any[];
 }

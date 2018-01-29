@@ -1,9 +1,7 @@
 import { Component, OnInit, OnDestroy, NgModule  } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
 import { TabsComponent } from "../../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
-import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Course } from "../../courses/course.interface";
 import { CourseService } from "../../courses/course.service";
@@ -18,18 +16,17 @@ import { InstructorService } from "../instructor.service";
 })
 
 export class InstructorComponent implements OnInit, OnDestroy {
-  instructors:any;
+  instructors:Instructor;
   courses: any;
   courseCard:any[] = [];
   private myid:number;
   reviewCount:number;
-  ratingData:any;
+  ratingData:Instructor["ratings"];
   reviewRating:number;
   userRating:number = 0;
   loopCounter:number = 0;
   reviewRatingGross:number;
-  ratingDataParse:any;
-  //subscription: Subscription;
+  ratingDataParse:string;
   private subscriptions = new Subscription();
   instrocterdata:string;
   courseCardLength:number;
@@ -37,13 +34,8 @@ export class InstructorComponent implements OnInit, OnDestroy {
   instructorCourse:any[]=new Array();
   counter:number = 0;
   loggedIn: boolean = false;
-  details:any;
+  details:string;
   
-  
-  width = document.documentElement.clientWidth;
-  goTo(location: string): void {
-    window.location.hash = location;
-  }
   constructor(
     private instructorService: InstructorService,
     private route: ActivatedRoute, 
@@ -54,24 +46,10 @@ export class InstructorComponent implements OnInit, OnDestroy {
       this.myid = params['id'];
     }))
     
-    const $resizeEvent = Observable.fromEvent(window, 'resize')
-    .map(() => {
-      return document.documentElement.clientWidth;
-      })
-    
-      this.subscriptions.add($resizeEvent.subscribe(data => {
-      this.width = data;
-
-    }));
-
-    
-    
   }
-  onChange(event) {
-    var files = event.srcElement.files;
-    console.log(files);
-}
+  
   ngOnInit() {
+    //get instructor's courses in which he is involved
     this.subscriptions.add(this.courseService.getCourses()
     .subscribe(
       (courses) => {
@@ -96,13 +74,10 @@ export class InstructorComponent implements OnInit, OnDestroy {
       (error: Response) => console.log(error)
       
     ));
-
-    
-
+    //subscribe the instructor from its id on page load
     this.subscriptions.add(this.instructorService.getInstructor(this.myid)
      .subscribe(
        (instructors) => {
-
         this.instructors = instructors;
         this.ratingData = this.instructors.ratings;
         this.details = JSON.parse(instructors.details);
@@ -117,7 +92,11 @@ export class InstructorComponent implements OnInit, OnDestroy {
      ));
 
   }
-  
+  //function to jump on an id in the page
+  goTo(location: string): void {
+    window.location.hash = location;
+  }
+  //click on view more function to load next three courses of the instructor
   getData(){
     for(var k = this.counter, p = this.courses.length; k < p; k=k)
     {

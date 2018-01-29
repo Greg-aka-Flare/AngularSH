@@ -18,7 +18,7 @@
 </div>
   </section>
   <!-- #profile header -->
-  <tabs *ngIf="width < 768">
+  <tabs class="mobile">
     <tab tabTitle="Courses">
     <h3>Upcoming Events with {{instructors?.name}} </h3>
     <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
@@ -71,7 +71,7 @@
   </tabs><!-- #Tab -->
   <!-- desktop view -->
   
-  <section *ngIf="width > 767" id="desktopcourses">
+  <section class="desktop">
     <h2>Courses </h2>
     <h3>Upcoming Events with {{instructors?.name}}</h3>
     <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
