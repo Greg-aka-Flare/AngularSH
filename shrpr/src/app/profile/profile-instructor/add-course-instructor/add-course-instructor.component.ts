@@ -252,7 +252,7 @@ initSemesterForm(){
       }
     );
     for(var i = 0; i < this.courseSessionNumber-1; i++){
-      courseStartDateText = moment(courseStartDateText, 'YYYY-MM-DD').add(1, courseIteration).calendar();
+      courseStartDateText = moment(courseStartDateText, 'YYYY-MM-DD').add(1, courseIteration);
       courseStartDateText = moment(courseStartDateText).format('YYYY-MM-DD');
       this.sessionArray.push(
         {

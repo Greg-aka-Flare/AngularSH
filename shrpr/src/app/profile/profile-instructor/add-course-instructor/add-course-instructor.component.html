@@ -65,7 +65,9 @@
               <div class="formRow">
                 <label for="courseStartDates">Classes will be</label>
                 <div class="thefield">
-                  <input type="radio" name="courseIteration" formControlName="courseIteration" value="week"> Weekly &nbsp; <input type="radio" name="courseIteration" formControlName="courseIteration" value="months"> Monthly
+                  <input type="radio" name="courseIteration" formControlName="courseIteration" value="days"> Daily &nbsp; 
+                  <input type="radio" name="courseIteration" formControlName="courseIteration" value="week"> Weekly &nbsp; 
+                  <input type="radio" name="courseIteration" formControlName="courseIteration" value="months"> Monthly
                 </div>
                 <control-messages [control]="semesterInfoForm.controls.courseStartDateText"></control-messages>
               </div>
