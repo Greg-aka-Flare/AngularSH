@@ -3,8 +3,10 @@ import {BrowserModule} from '@angular/platform-browser';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
 import * as moment from 'moment';
 import { Router } from "@angular/router";
+import { HttpClient } from '@angular/common/http';
 import { ValidationService } from '../../../core/validation.service';
 import { Instructor } from '../../../instructors/instructor.interface';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'add-course-instructor',
@@ -13,6 +15,8 @@ import { Instructor } from '../../../instructors/instructor.interface';
 })
 
 export class AddCourseInstructorComponent implements OnInit {
+
+  api: string = environment.api;
 
   @Input('instructor') instructor: Instructor;
   
@@ -64,10 +68,18 @@ export class AddCourseInstructorComponent implements OnInit {
   confirmSemData:boolean;
   showSubmit:boolean = false;
   showSessionList:boolean = false;
+  categoryObj: any = {};
+  categoryArray: any = {};
+  primaryCategory: Array<{id: number, name: string }> = [];
+  subCategory: Array<{id: number, name: string, parent: string }> = [];
+  filterSubCategory: any = {};
+  subCatCount: number = 0;
+
   constructor(
     public renderer: Renderer,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private httpClient: HttpClient
   ) { }
 
   ngOnInit() {
@@ -78,7 +90,7 @@ export class AddCourseInstructorComponent implements OnInit {
     else{
       this.firstLogin = false;
     } 
-    console.log('first login is: ' + this.firstLogin);
+    
     this.instructorCourseForm = this.fb.group({
       'courseTitleText': ['', Validators.required],
       'courseGroupSelect': ['', Validators.required],
@@ -93,13 +105,36 @@ export class AddCourseInstructorComponent implements OnInit {
     this.semesterDetailForm = new FormGroup({  
       
     });
-    
-    this.semesterDetailForm = new FormGroup({  
-      
-    });
+    //get all categories from categories api
+    this.httpClient.get(this.api + 'categories').subscribe((res : any[])=>{
+        this.categoryObj = res;
+        this.categoryArray = this.categoryObj.categories;
 
+        for(var i =0, l = this.categoryArray.length; i < l; i++){
+          if(this.categoryArray[i].parent === null){
+            //find the primary category from categories api if the parent is null
+            this.primaryCategory.push({
+              "id": this.categoryArray[i].id,
+              "name": this.categoryArray[i].name
+            });
+          }
+          else{
+            //find the sub category from api where parent is not null
+            this.subCategory.push({
+              "id": this.categoryArray[i].id,
+              "name": this.categoryArray[i].name,
+              "parent": this.categoryArray[i].parent
+            });
+          }
+        }
+        
+    });
   }
-  
+  getSubCategory(val){
+    this.filterSubCategory = this.subCategory.filter(x => x.parent == val);
+    this.subCatCount = this.filterSubCategory.length;
+    console.log(this.filterSubCategory);
+  }
   
 initSemesterForm(){
   this.semesterInfoForm = this.fb.group({  

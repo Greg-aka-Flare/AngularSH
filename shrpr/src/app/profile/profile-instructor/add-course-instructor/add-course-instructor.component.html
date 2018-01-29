@@ -24,21 +24,17 @@
             </div>
             <div class="formRow">
               <label for="courseCategory">Category*</label>
-              <select formControlName="courseCategorySelect" id="courseCategory">
-                <option value="">----Select-----</option>
-                <option value="1">Category One</option>
-                <option value="2">Category Two</option>
-                <option value="3">Category Three</option>
+              <select formControlName="courseCategorySelect" id="courseCategory" [(ngModel)]="selected" (ngModelChange)="getSubCategory(selected)">
+                <option value="">----------Select------------</option>
+                <option *ngFor="let category of primaryCategory" [value]="category.id">{{category.name}}</option>
               </select>
               <control-messages [control]="instructorCourseForm.controls.courseCategorySelect"></control-messages>
             </div>
-            <div class="formRow">
+            <div class="formRow" *ngIf="subCatCount > 0">
               <label for="courseSubCategory">Sub Category*</label>
               <select formControlName="courseSubCategorySelect" id="courseSubCategory">
                 <option value="">----Select-----</option>
-                <option value="1">Sub Category One</option>
-                <option value="2">Sub Category Two</option>
-                <option value="3">Sub Category Three</option>
+                <option *ngFor="let subcategory of filterSubCategory" [value]="subcategory.id">{{subcategory.name}}</option>
               </select>
               <control-messages [control]="instructorCourseForm.controls.courseSubCategorySelect"></control-messages>
             </div>
