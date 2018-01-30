@@ -1,4 +1,4 @@
-    <section class="page-conent-area" *ngIf="instructor">
+    <section class="page-conent-area" *ngIf="instructors">
       <h2>Enter Your Course Information</h2>
     <section id="course-add-container" [class.slide]="firstLogin">
         <div class="formHeader" *ngIf="firstLogin">
@@ -9,7 +9,7 @@
             <form name="instructorCourseForm" [formGroup]="instructorCourseForm">
             <div class="formRow">
               <label for="courseTitle">Title*</label>
-              <input type="text" formControlName="courseTitleText" id="courseTitle" placeholder="Course Title" value="instructor[0].dob">
+              <input type="text" formControlName="courseTitleText" id="courseTitle" placeholder="Course Title" value="instructors[0].dob">
               <control-messages [control]="instructorCourseForm.controls.courseTitleText"></control-messages>
             </div>
             <div class="formRow">

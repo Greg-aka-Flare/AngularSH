@@ -1,6 +1,5 @@
-
 <div *ngIf="addCourse">
-  <add-course-instructor [instructor]="instructor"></add-course-instructor>
+  <add-course-instructor [instructors]="instructors"></add-course-instructor>
  </div> 
  <article *ngIf="user"> 
   <!-- Profile Header Start -->
@@ -78,7 +77,7 @@
         </a>
       </span> 
 
-      <span *ngIf="user.instructor.addressses">
+      <span *ngIf="user.instructor?.addressses">
         <i aria-hidden="true" class="fa fa-map-marker"></i> 
 
         {{ user.instructor.addressses[0].city }}, {{ user.instructor.addressses[0].state }}
@@ -245,7 +244,8 @@
             {{ address?.country }}<br />
             <br />
             Phone: <a href="tel:{{ user.instructor.phone }}">{{ user.instructor.phone }}</a><br />
-            Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a>
+            Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a><br>
+            <span *ngIf="user?.instructor.details.secondary_email"> Secondary Email: <a href="mailto:{{ user?.instructor.details.secondary_email }}">{{ user?.instructor.details.secondary_email }}</a></span>
           </div>
         </address>
 
@@ -310,10 +310,10 @@
 
                 <div class="form-row">
                   <label>Secondary Email:</label>
-
-                  <input type="text" formControlName="addressEmail" placeholder="Enter Email" />
                   
-                  <control-messages [control]="addressForm.controls.addressEmail"></control-messages>
+                  <input type="text" formControlName="addressEmailSecondary" placeholder="Enter Email" />
+                  
+                  <control-messages [control]="addressForm.controls.addressEmailSecondary"></control-messages>
                 </div>
               </div>
 
@@ -424,7 +424,8 @@
           {{ address?.country }}<br />
           <br />
           Phone: <a href="tel:{{ user?.phone }}">{{ user?.phone }}</a><br />
-          Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a>
+          Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a><br>
+          <span *ngIf="user?.instructor.details.secondary_email"> Secondary Email: <a href="mailto:{{ user?.instructor.details.secondary_email }}">{{ user?.instructor.details.secondary_email }}</a></span>
         </div>
       </address>
 
@@ -486,9 +487,9 @@
               <div class="form-row">
                 <label>Secondary Email:</label>
                 
-                <input type="text" formControlName="addressEmail" placeholder="Enter Email" />
+                <input type="text" formControlName="addressEmailSecondary" placeholder="Enter Email" />
                 
-                <control-messages [control]="addressForm.controls.addressEmail"></control-messages>
+                <control-messages [control]="addressForm.controls.addressEmailSecondary"></control-messages>
               </div>
             </div>
 

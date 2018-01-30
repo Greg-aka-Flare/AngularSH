@@ -12,5 +12,13 @@ export interface Instructor {
 	referred_by: string;
 	rating:number;
 	ratings:any[];
-	addresses: any[];
+	addresses: Address[];
+}
+export interface Address {
+    type: string;
+	streetAddress: string;
+	city: string;
+	state: string;
+	zip: string;
+	country: string;
 }

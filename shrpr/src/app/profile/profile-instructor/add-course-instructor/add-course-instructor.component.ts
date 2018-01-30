@@ -18,7 +18,7 @@ export class AddCourseInstructorComponent implements OnInit {
 
   api: string = environment.api;
 
-  @Input('instructor') instructor: Instructor;
+  @Input('instructors') instructors: Instructor;
   
   instructorCourseForm: FormGroup;
   semesterInfoForm: FormGroup;
@@ -37,7 +37,6 @@ export class AddCourseInstructorComponent implements OnInit {
   courseSemesterNumber:number = 1;
   @ViewChild("search") public searchElementRef: ElementRef;
   @ViewChild('panel') panel : ElementRef;
-  @ViewChild('myForm') myForm: ElementRef;
   
   
   location: string = '';
@@ -198,14 +197,14 @@ initSemesterForm(){
       let categoryText: Array<{id: number, name: string, parent: number}> = [];
       let instructorText: Array<{id: number, name: string, email: string}> = [];
 
-      this.instructor.id
+      this.instructors.id
       
       this.data.title = this.instructorCourseForm.value.courseTitleText;
 
       instructorText.push({
-        "id" : this.instructor.id,
-        "name" : this.instructor.name,
-        "email" : this.instructor.email
+        "id" : this.instructors.user_id,
+        "name" : this.instructors.name,
+        "email" : this.instructors.email
       });
 
       this.data.instructor = instructorText;

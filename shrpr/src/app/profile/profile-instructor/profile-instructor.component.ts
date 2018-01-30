@@ -1,19 +1,16 @@
-
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser'
-
 import { TabsComponent } from "../../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
-import { Observable } from 'rxjs/Observable';
+
 import { Subscription } from 'rxjs/Subscription';
 import { AddCourseInstructorComponent } from './add-course-instructor/add-course-instructor.component';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Course } from "../../courses/course.interface";
-import { CourseService } from "../../courses/course.service";
 import { Instructor } from "../../instructors/instructor.interface";
 import { InstructorService } from "../../instructors/instructor.service";
+import { Course } from "../../courses/course.interface";
+import { CourseService } from "../../courses/course.service";
 
-
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidationService } from '../../core/validation.service';
 import { ControlMessagesComponent } from '../../shared/control-messages/control-messages.component';
@@ -28,9 +25,10 @@ import { User } from '../../core/user.interface';
 export class ProfileInstructorComponent implements OnInit, OnDestroy {
 
   @Input('user') user: User;
-  
+
   courses: any;
   courseCard:any[] = [];
+  instructors: Instructor;
   //private myid:number;
   reviewCount:number;
   ratingData:any;
@@ -39,7 +37,7 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   loopCounter:number = 0;
   reviewRatingGross:number;
   ratingDataParse:any;
-  //subscription: Subscription;
+  
   private subscriptions = new Subscription();
   instrocterdata:string;
   courseCardLength:number;
@@ -58,36 +56,16 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   showAddress: boolean = false;
   showAbout: boolean = false;
   
-
-
-  width = document.documentElement.clientWidth;
-  goTo(location: string): void {
-    window.location.hash = location;
-  }
   constructor(
     private instructor: InstructorService, 
     private courseService: CourseService,  
     private fb: FormBuilder,
     private route: ActivatedRoute
-  ) { 
-    
-    const $resizeEvent = Observable.fromEvent(window, 'resize')
-    .map(() => {
-      return document.documentElement.clientWidth;
-      })
-    
-      this.subscriptions.add($resizeEvent.subscribe(data => {
-      this.width = data;
-
-    }));
-
-  }
-  onChange(event) {
-    var files = event.srcElement.files;
-    console.log(files);
-}
+  ) { }
   
   ngOnInit() {
+
+
 
     this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       if(params['open']){
@@ -96,9 +74,74 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
           this.addCourse = true;
         }
       }
+      console.log(this.user);
       
 
     }));
+
+    //if no addresses
+    if(this.user.instructor.addresses.length === 0){
+
+      //create empty
+      this.user.instructor.addresses.push({
+        streetAddress: '',
+        city: '',
+        state: '',
+        zip: '',
+        country: ''
+      });
+
+      //if localstorage exists, pull values in
+      if(localStorage.getItem('useCurrentLocation')) {
+        if(localStorage.getItem('address')) this.user.instructor.addresses[0].streetAddress = localStorage.getItem('address');
+        if(localStorage.getItem('city')) this.user.instructor.addresses[0].city = localStorage.getItem('city');
+        if(localStorage.getItem('state')) this.user.instructor.addresses[0].state = localStorage.getItem('state');
+        if(localStorage.getItem('zip')) this.user.instructor.addresses[0].zip = localStorage.getItem('zip');
+        if(localStorage.getItem('country')) this.user.instructor.addresses[0].country = localStorage.getItem('country');
+      }
+    }
+    this.instructors = this.user.instructor;
+    //if no details, fill in empty data
+    if(!this.user.instructor.details) {
+
+      this.user.instructor.details = {
+        description: '',
+        url: '',
+        twitter: '',
+        facebook: '',
+        linkedin: '',
+        yelp: '',
+        pinterest: '',
+        secondary_email: ''
+      }
+    }
+
+    //create form groups
+    this.addressForm = this.fb.group({
+      'addressStreet': [this.user.instructor.addresses[0].streetAddress, Validators.required],
+      'addressCity': [this.user.instructor.addresses[0].city, Validators.required],
+      'addressState': [this.user.instructor.addresses[0].state, Validators.required],
+      'addressZip': [this.user.instructor.addresses[0].zip, Validators.required],
+      'addressCountry': [this.user.instructor.addresses[0].country, Validators.required],
+      'addressPhone': [this.user.instructor.phone, [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
+      'addressEmailSecondary': [this.user.instructor.details.secondary_email, [Validators.required, ValidationService.emailValidator]]
+    });
+  
+    this.profileForm = this.fb.group({
+      'name': [this.user.name, [Validators.required, ValidationService.alphabetsValidator]],
+      'profileImage': [this.user.profile_img],
+      'url':  [this.user.instructor.details.url],
+      'twitter': [this.user.instructor.details.twitter],
+      'facebook': [this.user.instructor.details.facebook],
+      'linkedin': [this.user.instructor.details.linkedin],
+      'yelp':  [this.user.instructor.details.yelp],
+      'pinterest': [this.user.instructor.details.pinterest],
+    });
+
+    this.descriptionForm = this.fb.group({
+      'description': [this.user.instructor.details.description, [Validators.required, Validators.minLength(40)]],
+    });
+
     this.subscriptions.add(this.courseService.getCourses()
     .subscribe(
       (courses) => {
@@ -123,69 +166,11 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
       (error: Response) => console.log(error)
     ));
 
-    //if no addresses
-    if(this.user.instructor.addresses.length === 0){
-
-      //create empty
-      this.user.instructor.address.push({
-        streetAddress: '',
-        city: '',
-        state: '',
-        zip: '',
-        country: ''
-      });
-
-      //if localstorage exists, pull values in
-      if(localStorage.getItem('useCurrentLocation')) {
-        if(localStorage.getItem('address')) this.user.instructor.address[0].streetAddress = localStorage.getItem('address');
-        if(localStorage.getItem('city')) this.user.instructor.address[0].city = localStorage.getItem('city');
-        if(localStorage.getItem('state')) this.user.instructor.address[0].state = localStorage.getItem('state');
-        if(localStorage.getItem('zip')) this.user.instructor.address[0].zip = localStorage.getItem('zip');
-        if(localStorage.getItem('country')) this.user.instructor.address[0].country = localStorage.getItem('country');
-      }
-    }
-
-    //if no details, fill in empty data
-    if(!this.user.instructor.details) {
-
-      this.user.instructor.details = {
-        description: '',
-        url: '',
-        twitter: '',
-        facebook: '',
-        linkedin: '',
-        yelp: '',
-        pinterest: '',
-        secondary_email: ''
-      }
-    }
     
-    //create form groups
-    this.addressForm = this.fb.group({
-      'addressStreet': [this.user.instructor.addresses[0].streetAddress, Validators.required],
-      'addressCity': [this.user.instructor.addresses[0].city, Validators.required],
-      'addressState': [this.user.instructor.addresses[0].state, Validators.required],
-      'addressZip': [this.user.instructor.addresses[0].zip, Validators.required],
-      'addressCountry': [this.user.instructor.addresses[0].country, Validators.required],
-      'addressPhone': [this.user.instructor.phone, [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
-      'addressEmail': [this.user.instructor.details.secondary_email, [Validators.required, ValidationService.emailValidator]]
-    });
-  
-    this.profileForm = this.fb.group({
-      'name': [this.user.name, [Validators.required, ValidationService.alphabetsValidator]],
-      'profileImage': [this.user.profile_img],
-      'url':  [this.user.instructor.details.url],
-      'twitter': [this.user.instructor.details.twitter],
-      'facebook': [this.user.instructor.details.facebook],
-      'linkedin': [this.user.instructor.details.linkedin],
-      'yelp':  [this.user.instructor.details.yelp],
-      'pinterest': [this.user.instructor.details.pinterest],
-    });
-
-    this.descriptionForm = this.fb.group({
-      'description': [this.user.instructor.details.description, [Validators.required, Validators.minLength(40)]],
-    });
      
+  }
+  goTo(location: string): void {
+    window.location.hash = location;
   }
   
   getData(){
@@ -214,7 +199,7 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         country: this.addressForm.value.addressCountry
       } ],
       details: {
-        secondary_email: this.addressForm.value.addressEmail
+        secondary_email: this.addressForm.value.addressEmailSecondary
       }
     };
 
