@@ -33,7 +33,7 @@ export class ProfileStudentComponent implements OnInit {
     if(this.user.student.addresses.length === 0){
 
       //create empty
-      this.user.student.address.push({
+      this.user.student.addresses.push({
         streetAddress: '',
         city: '',
         state: '',
@@ -43,11 +43,11 @@ export class ProfileStudentComponent implements OnInit {
 
       //if localstorage exists, pull values in
       if(localStorage.getItem('useCurrentLocation')) {
-        if(localStorage.getItem('address')) this.user.student.address[0].streetAddress = localStorage.getItem('address');
-        if(localStorage.getItem('city')) this.user.student.address[0].city = localStorage.getItem('city');
-        if(localStorage.getItem('state')) this.user.student.address[0].state = localStorage.getItem('state');
-        if(localStorage.getItem('zip')) this.user.student.address[0].zip = localStorage.getItem('zip');
-        if(localStorage.getItem('country')) this.user.student.address[0].country = localStorage.getItem('country');
+        if(localStorage.getItem('address')) this.user.student.addresses[0].streetAddress = localStorage.getItem('address');
+        if(localStorage.getItem('city')) this.user.student.addresses[0].city = localStorage.getItem('city');
+        if(localStorage.getItem('state')) this.user.student.addresses[0].state = localStorage.getItem('state');
+        if(localStorage.getItem('zip')) this.user.student.addresses[0].zip = localStorage.getItem('zip');
+        if(localStorage.getItem('country')) this.user.student.addresses[0].country = localStorage.getItem('country');
       }
     }
 
