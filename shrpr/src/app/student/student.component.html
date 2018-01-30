@@ -1,20 +1,20 @@
 <app-template>
-    <article *ngIf="students">
+    <article *ngIf="student">
     <section id="profile-header">
         <div class="profile-picture">
-          <img *ngIf="!students?.profile_img" src="../../assets/img/students-picture.png" alt="" title="">
-          <img *ngIf="students?.profile_img" src="../../assets/img/{{students?.profile_img}}" alt="" title="">
+          <img *ngIf="!student?.profile_img" src="../../assets/img/students-picture.png" alt="" title="">
+          <img *ngIf="student?.profile_img" src="../../assets/img/{{students?.profile_img}}" alt="" title="">
           <div class="social-icon" *ngIf="studentDetails">
             <a *ngIf="studentDetails?.twitter.length > 0" href="{{studentDetails?.twitter}}" target="_blank" title="Twitter"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
             <a *ngIf="studentDetails?.facebook.length > 0" href="{{studentDetails?.facebook}}" target="_blank" title="Facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
             <a *ngIf="studentDetails?.linkedin.length > 0" href="{{studentDetails?.linkedin}}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
           </div>
         </div>
-        <div><h2>{{students.name}}</h2>
-        <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{students?.email}}">{{students?.email}}</a><br>
+        <div><h2>{{student.name}}</h2>
+        <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{student?.email}}">{{student?.email}}</a><br>
         <span *ngIf="studentDetails?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{studentDetails?.url}}" target="_blank">{{studentDetails?.url}}</a></span><br> 
           <i aria-hidden="true" class="fa fa-map-marker"></i>
-            <span *ngFor="let address of students?.addresses; let i = index;">
+            <span *ngFor="let address of student?.addresses; let i = index;">
               <span *ngIf="i == 0">
               {{ address?.city }}, {{ address?.state }}
             </span> 
@@ -23,10 +23,10 @@
       </section>
       
        <!-- #profile header -->
-      <tabs *ngIf="width < 768" >
+      <tabs class="mobile">
         <tab tabTitle="Courses">
-          <h3 *ngIf="!students?.courses.length"><a [routerLink]="['/courses/list/all']">Click here to start your journey </a></h3>
-          <article class="card-box" *ngFor="let coursed of students?.courses">
+          <h3 *ngIf="!student?.courses.length"><a [routerLink]="['/courses/list/all']">Click here to start your journey </a></h3>
+          <article class="card-box" *ngFor="let coursed of student?.courses">
                 <div class="img-ctn">
                     <figure>
                         <a [routerLink]="['/course', coursed?.id]"><img *ngIf="coursed?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ coursed?.semesters[0]?.primary_img }}" alt="" title="">
@@ -48,24 +48,24 @@
         </tab>
         <tab tabTitle="CONTACT">
           <div class="contact_box">
-              <address *ngFor="let address of students?.addresses">
+              <address *ngFor="let address of student?.addresses">
                   <div><strong *ngIf="addressLength > 1">{{ address?.type }}</strong><br>
                   {{ address?.streetAddress }}<br>
                   {{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>
                   {{ address?.country }}<br>
                   <br>
-                  Phone: <a href="tel:{{ students?.phone }}">{{ students?.phone }}</a><br>
-                  Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
+                  Phone: <a href="tel:{{ student?.phone }}">{{ student?.phone }}</a><br>
+                  Email: <a href="mailto:{{ student?.email }}">{{ student?.email }}</a>
                   </div>
                 </address>                  
                 </div>
         </tab>
       </tabs><!-- #Tab -->
         <!-- desktop view -->
-        <section *ngIf="width > 767" id="desktopcourses">
+        <section class="desktop" id="desktopcourses">
           <h2>Courses</h2>
           <h3><a [routerLink]="['/courses/list/all']">Click here to start your journey</a></h3>
-            <article class="card-box" *ngFor="let coursed of students?.courses">
+            <article class="card-box" *ngFor="let coursed of student?.courses">
                   <div class="img-ctn">
                           <figure>
                           <a [routerLink]="['/course', coursed?.id]"><img *ngIf="coursed?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ coursed?.semesters[0]?.primary_img }}" alt="" title="">
@@ -82,14 +82,14 @@
           <p>{{studentDetails?.description}}</p>
           <h2>CONTACT</h2>
           <div class="contact_box">
-              <address *ngFor="let address of students?.addresses">
+              <address *ngFor="let address of student?.addresses">
                   <div><strong *ngIf="addressLength > 1">{{ address?.type }}</strong><br>
                   {{ address?.streetAddress }}<br>
                   {{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br>
                   {{ address?.country }}<br>
                   <br>
-                  Phone: <a href="tel:{{ students?.phone }}">{{ students?.phone }}</a><br>
-                  Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
+                  Phone: <a href="tel:{{ student?.phone }}">{{ student?.phone }}</a><br>
+                  Email: <a href="mailto:{{ student?.email }}">{{ student?.email }}</a>
                   </div>
                   </address>
                                     </div></section></article></app-template>
