@@ -1,20 +1,24 @@
 import { Injectable } from "@angular/core";
-import { Http, Response, Headers } from "@angular/http";
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 
 @Injectable()
 export class InstructorService {
 	api: string = environment.api;
-	constructor(private http: Http){
+	constructor(private http: HttpClient){
 
 	}
+	save(data: any){
+		let api = this.api + 'instructor';
 
-	getInstructor(id: number){
-		return this.http.get(this.api + 'instructor/' + id)
-			.map(
-				(response: Response) => response.json()
-			);
+		return this.http.put(api, data);	
+	}
+
+	getInstructor(id): Observable<any>{
+		let api = this.api + 'instructor/' + id;
+
+		return this.http.get(api);
 	}
 
 }

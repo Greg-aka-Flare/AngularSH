@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser'
-import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
+
 import { TabsComponent } from "../../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
@@ -11,10 +11,13 @@ import { Course } from "../../courses/course.interface";
 import { CourseService } from "../../courses/course.service";
 import { Instructor } from "../../instructors/instructor.interface";
 import { InstructorService } from "../../instructors/instructor.service";
-import { AuthService } from './../../auth/auth.service';
-import { User } from '../../core/user.interface';
+
+
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidationService } from '../../core/validation.service';
 import { ControlMessagesComponent } from '../../shared/control-messages/control-messages.component';
+import { User } from '../../core/user.interface';
 
 @Component({
   selector: 'profile-instructor',
@@ -25,17 +28,10 @@ import { ControlMessagesComponent } from '../../shared/control-messages/control-
 export class ProfileInstructorComponent implements OnInit, OnDestroy {
 
   @Input('user') user: User;
-  city: string = '';
-  state: string = '';
-  zip: string = '';
-  country: string = '';
-  address: string = '';
-  email: string = '';
-  description: string = '';
-  instructor:any;
+  
   courses: any;
   courseCard:any[] = [];
-  private myid:number;
+  //private myid:number;
   reviewCount:number;
   ratingData:any;
   reviewRating:number;
@@ -50,30 +46,27 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   reviewshowHide:boolean = false;
   instructorCourse:any[]=new Array();
   counter:number = 0;
-  loggedIn: boolean = false;
-  details:any;
-  showDialog:boolean;
   paramChild:string;
   addCourse:boolean = false;
-  instructorAddress:any = {};
-  showDialogform:boolean = false;
-  instrocterAddressForm: any;
-  instrocterProfileForm: any;
-  instrocterDescriptionForm:any;
-  isEdit:boolean = false;
-  isEditAbout:boolean = false;
-  data: any = {};
-  contactData: any = {};
-  aboutData: any = {};
   
+  
+  
+  addressForm: FormGroup;
+  profileForm: FormGroup;
+  descriptionForm: FormGroup;
+  showProfile: boolean = false;
+  showAddress: boolean = false;
+  showAbout: boolean = false;
+  
+
+
   width = document.documentElement.clientWidth;
   goTo(location: string): void {
     window.location.hash = location;
   }
   constructor(
-    private instructorService: InstructorService, 
+    private instructor: InstructorService, 
     private courseService: CourseService,  
-    private auth: AuthService,
     private fb: FormBuilder,
     private route: ActivatedRoute
   ) { 
@@ -88,7 +81,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
 
     }));
 
-    this.showDialog = false;
   }
   onChange(event) {
     var files = event.srcElement.files;
@@ -107,8 +99,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
       
 
     }));
-
-    this.loggedIn = this.auth.loggedIn();
     this.subscriptions.add(this.courseService.getCourses()
     .subscribe(
       (courses) => {
@@ -133,57 +123,67 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
       (error: Response) => console.log(error)
     ));
 
-    this.subscriptions.add(this.instructorService.getInstructor(this.user.id)
-     .subscribe(
-       (instructor) => {
+    //if no addresses
+    if(this.user.instructor.addresses.length === 0){
 
-        this.instructor = instructor;
-        this.ratingData = this.instructor.ratings;
-        this.details = JSON.parse(instructor.details);
-        this.reviewCount = this.ratingData.length;
-        this.instructorAddress = instructor.addresses;
-        this.loopCounter = this.reviewCount+1;
-        for(var k=0; k < this.reviewCount; k++){
-            this.userRating += this.ratingData[k].rating;
-        }
-        this.reviewRatingGross = this.userRating/this.reviewCount;
-        },
-       (error: Response) => console.log(error)
-     ));
+      //create empty
+      this.user.instructor.address.push({
+        streetAddress: '',
+        city: '',
+        state: '',
+        zip: '',
+        country: ''
+      });
 
-     //if localstorage exists, pull values in
-     if(localStorage.getItem('email')) this.email = localStorage.getItem('email');
-     if(localStorage.getItem('useCurrentLocation') && localStorage.getItem('useCurrentLocation') === 'true'){
-       if(localStorage.getItem('city')) this.city = localStorage.getItem('city');
-       if(localStorage.getItem('state')) this.state = localStorage.getItem('state');
-       if(localStorage.getItem('zip')) this.zip = localStorage.getItem('zip');
-       if(localStorage.getItem('country')) this.country = localStorage.getItem('country');
-       if(localStorage.getItem('address')) this.address = localStorage.getItem('address');
-     }
+      //if localstorage exists, pull values in
+      if(localStorage.getItem('useCurrentLocation')) {
+        if(localStorage.getItem('address')) this.user.instructor.address[0].streetAddress = localStorage.getItem('address');
+        if(localStorage.getItem('city')) this.user.instructor.address[0].city = localStorage.getItem('city');
+        if(localStorage.getItem('state')) this.user.instructor.address[0].state = localStorage.getItem('state');
+        if(localStorage.getItem('zip')) this.user.instructor.address[0].zip = localStorage.getItem('zip');
+        if(localStorage.getItem('country')) this.user.instructor.address[0].country = localStorage.getItem('country');
+      }
+    }
+
+    //if no details, fill in empty data
+    if(!this.user.instructor.details) {
+
+      this.user.instructor.details = {
+        description: '',
+        url: '',
+        twitter: '',
+        facebook: '',
+        linkedin: '',
+        yelp: '',
+        pinterest: '',
+        secondary_email: ''
+      }
+    }
     
+    //create form groups
+    this.addressForm = this.fb.group({
+      'addressStreet': [this.user.instructor.addresses[0].streetAddress, Validators.required],
+      'addressCity': [this.user.instructor.addresses[0].city, Validators.required],
+      'addressState': [this.user.instructor.addresses[0].state, Validators.required],
+      'addressZip': [this.user.instructor.addresses[0].zip, Validators.required],
+      'addressCountry': [this.user.instructor.addresses[0].country, Validators.required],
+      'addressPhone': [this.user.instructor.phone, [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
+      'addressEmail': [this.user.instructor.details.secondary_email, [Validators.required, ValidationService.emailValidator]]
+    });
+  
+    this.profileForm = this.fb.group({
+      'name': [this.user.name, [Validators.required, ValidationService.alphabetsValidator]],
+      'profileImage': [this.user.profile_img],
+      'url':  [this.user.instructor.details.url],
+      'twitter': [this.user.instructor.details.twitter],
+      'facebook': [this.user.instructor.details.facebook],
+      'linkedin': [this.user.instructor.details.linkedin],
+      'yelp':  [this.user.instructor.details.yelp],
+      'pinterest': [this.user.instructor.details.pinterest],
+    });
 
-    this.instrocterAddressForm = this.fb.group({
-      'addressStreet': [this.address, Validators.required],
-      'addressCity': [this.city, Validators.required],
-      'addressState': [this.state, Validators.required],
-      'addressZip': [this.zip, Validators.required],
-      'addressCountry': [this.country, Validators.required],
-      'addressPhone': ['', [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
-      'addressEmail': [this.email, [Validators.required, ValidationService.emailValidator]]
-    });
-    
-    this.instrocterProfileForm = this.fb.group({
-      'name': ['', [Validators.required, ValidationService.alphabetsValidator]],
-      'profileImage': [''],
-      'url':  [''],
-      'yelp':  [''],
-      'twitter': [''],
-      'facebook': [''],
-      'linkedIn': [''],
-      'pinterest': [''],
-    });
-    this.instrocterDescriptionForm = this.fb.group({
-      'description': ['', [Validators.required, Validators.minLength(40)]],
+    this.descriptionForm = this.fb.group({
+      'description': [this.user.instructor.details.description, [Validators.required, Validators.minLength(40)]],
     });
      
   }
@@ -199,51 +199,88 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
     }
     this.counter+=3;
   }
+  
   updateAddress(){
-    this.isEdit= !this.isEdit;
-    
-    let formAddress: any = {};
-    
-    //assign user data
-    this.contactData.addresses = formAddress;
-    this.contactData.phone = this.instrocterAddressForm.value.addressPhone;
-    this.contactData.email = this.instrocterAddressForm.value.addressEmail;
 
-    console.log(this.contactData)
+    //create data
+    const data = {
+      phone: this.addressForm.value.addressPhone,
+      addresses: [ {
+        type: 'primary',
+        streetAddress: this.addressForm.value.addressStreet,
+        city: this.addressForm.value.addressCity,
+        state: this.addressForm.value.addressState,
+        zip: this.addressForm.value.addressZip,
+        country: this.addressForm.value.addressCountry
+      } ],
+      details: {
+        secondary_email: this.addressForm.value.addressEmail
+      }
+    };
 
+    //save data
+    this.instructor.save(data).subscribe(
+      success => {
+        //update data
+        this.user.instructor.phone = data.phone;
+        this.user.instructor.addresses = data.addresses;
+        this.user.instructor.details = {...this.user.instructor.details, ...data.details};
+
+        //hide popup
+        this.showAddress = !this.showAddress;
+      }
+    );
   }
 
   updateProfile(){
-    //this.isUpdate= !this.isUpdate;
-    
-    let detailsText: any = {};
 
+    //create data
+    const data = {
+      name: this.profileForm.value.name,
+      profile_img: this.profileForm.value.profileImage,
+      details: {
+        url: this.profileForm.value.url,
+        yelp: this.profileForm.value.yelp,
+        twitter: this.profileForm.value.twitter,
+        facebook: this.profileForm.value.facebook,
+        linkedin: this.profileForm.value.linkedin,
+        pinterest: this.profileForm.value.pinterest
+      }
+    };
 
-    this.data.name = this.instrocterProfileForm.value.name;
-    this.data.profile_img = this.instrocterProfileForm.value.profileImage;
+    //save data
+    this.instructor.save(data).subscribe(
+      success => {
+        //update data
+        this.user.name = data.name;
+        this.user.profile_img = data.profile_img;
+        this.user.instructor.details = {...this.user.instructor.details, ...data.details};
 
-    detailsText.url = this.instrocterProfileForm.value.yelp;
-    detailsText.yelp = this.instrocterProfileForm.value.yelp;
-    detailsText.twitter = this.instrocterProfileForm.value.twitter;
-    detailsText.facebook = this.instrocterProfileForm.value.facebook;
-    detailsText.linkedIn = this.instrocterProfileForm.value.linkedIn;
-    detailsText.pinterest = this.instrocterProfileForm.value.pinterest;
-
-    this.data.details = detailsText;
-
-    console.log(this.data);
-    this.showDialogform = !this.showDialogform;
-    
+        //hide popup
+        this.showProfile = !this.showProfile;
+      }
+    );
   }
 
-  updateinstrocterDescription(){
-    this.isEditAbout= !this.isEditAbout;
-    let descriptionText: any = {};
-    descriptionText.description = this.instrocterDescriptionForm.value.description;
-    this.aboutData.details = descriptionText;
+  updateDescription(){
 
-    console.log(this.aboutData);
+    //create data
+    const data = {
+      details: {
+        description: this.descriptionForm.value.description
+      }
+    };
 
+    //save data
+    this.instructor.save(data).subscribe(
+      success => {
+        //update data
+        this.user.instructor.details = {...this.user.instructor.details, ...data.details};
+
+        //hide popup
+        this.showAbout = !this.showAbout;
+      }
+    );
   }
 
   ngOnDestroy(){
