@@ -5,14 +5,14 @@
           <img *ngIf="!student?.profile_img" src="../../assets/img/students-picture.png" alt="" title="">
           <img *ngIf="student?.profile_img" src="../../assets/img/{{students?.profile_img}}" alt="" title="">
           <div class="social-icon" *ngIf="studentDetails">
-            <a *ngIf="studentDetails?.twitter.length > 0" href="{{studentDetails?.twitter}}" target="_blank" title="Twitter"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-            <a *ngIf="studentDetails?.facebook.length > 0" href="{{studentDetails?.facebook}}" target="_blank" title="Facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-            <a *ngIf="studentDetails?.linkedin.length > 0" href="{{studentDetails?.linkedin}}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+            <a *ngIf="studentDetails?.twitter" href="{{studentDetails?.twitter}}" target="_blank" title="Twitter"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+            <a *ngIf="studentDetails?.facebook" href="{{studentDetails?.facebook}}" target="_blank" title="Facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+            <a *ngIf="studentDetails?.linkedin" href="{{studentDetails?.linkedin}}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
           </div>
         </div>
         <div><h2>{{student.name}}</h2>
         <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{student?.email}}">{{student?.email}}</a><br>
-        <span *ngIf="studentDetails?.url.length > 0"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{studentDetails?.url}}" target="_blank">{{studentDetails?.url}}</a></span><br> 
+        <span *ngIf="studentDetails?.url"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{studentDetails?.url}}" target="_blank">{{studentDetails?.url}}</a></span><br> 
           <i aria-hidden="true" class="fa fa-map-marker"></i>
             <span *ngFor="let address of student?.addresses; let i = index;">
               <span *ngIf="i == 0">
