@@ -55,12 +55,12 @@
     </article> 
     <p *ngIf="courseCard.length > 3" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= courseCard.length">view more</button></p> 
   </tab>
-  <tab tabTitle="ABOUT">
+  <tab tabTitle="About">
       <div class="contact_box">
    <p>{{details?.description}}</p>
     </div>
   </tab>
-  <tab tabTitle="CONTACT">
+  <tab tabTitle="Contact">
           <div class="contact_box">
               <div class="contact_instructor">
             <span *ngIf="instructors?.phone"><i class="fa fa-phone-square" aria-hidden="true"></i> <a href="tel:{{instructors?.phone}}">{{instructors?.phone}}</a></span><br>
@@ -110,9 +110,9 @@
       </div>
   </article>
   <p *ngIf="courseCard.length > 3" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= courseCard.length">view more</button></p>
-    <h2>ABOUT</h2>
+    <h2>About</h2>
     <p>{{details?.description}}</p>
-    <h2>CONTACT</h2>
+    <h2>Contact</h2>
     <div class="contact_instructor">
     <span *ngIf="instructors?.phone"><i class="fa fa-phone-square" aria-hidden="true"></i> {{instructors?.phone}}</span><br>
     <span *ngIf="details?.url"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span>
