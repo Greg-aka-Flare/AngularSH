@@ -8,6 +8,7 @@ import { ValidationService } from '../../../core/validation.service';
 import { Instructor } from '../../../instructors/instructor.interface';
 import { environment } from '../../../../environments/environment';
 
+
 @Component({
   selector: 'add-course-instructor',
   templateUrl: './add-course-instructor.component.html',
@@ -17,7 +18,7 @@ import { environment } from '../../../../environments/environment';
 export class AddCourseInstructorComponent implements OnInit {
 
   api: string = environment.api;
-
+  
   @Input('instructors') instructors: Instructor;
   
   instructorCourseForm: FormGroup;
@@ -35,7 +36,6 @@ export class AddCourseInstructorComponent implements OnInit {
   
   courseImages:any = {};
   courseSemesterNumber:number = 1;
-  @ViewChild("search") public searchElementRef: ElementRef;
   @ViewChild('panel') panel : ElementRef;
   
   
@@ -360,10 +360,6 @@ initSemesterForm(){
     if(this.firstLogin){
     this.data.semesters = this.semesterData;
     }
-    //console.log(this.data);
-    //this.addSemConfirm = true;
-    //this.initSemesterForm();    
-    //this.courseSemesterNumber++;
   } 
   //slide view during signup process add semester confirmation popup open
   closeAddSemConfirm(){

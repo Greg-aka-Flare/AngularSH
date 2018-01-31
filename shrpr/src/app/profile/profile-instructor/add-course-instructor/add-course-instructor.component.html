@@ -2,7 +2,8 @@
       <h2>Enter Your Course Information</h2>
     <section id="course-add-container" [class.slide]="firstLogin">
         <div class="formHeader" *ngIf="firstLogin">
-          <a href="javascript:void(0);" (click)="prevSlide()" class="courseFormBtn" *ngIf="slideNo > 1">< Back</a>
+          <a href="javascript:void(0);" (click)="prevSlide()" class="courseFormBtn" *ngIf="slideNo > 1">< Back</a> &nbsp;
+          <a [routerLink]="['/profile']">Skip for Now</a>
           <span>{{slideNo}} / {{lastSlideNo}}</span></div>
         <div #panel class="course-form-box">
           <div class="courseFormPage">

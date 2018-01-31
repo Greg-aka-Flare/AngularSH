@@ -1,7 +1,7 @@
 <div *ngIf="addCourse">
   <add-course-instructor [instructors]="instructors"></add-course-instructor>
  </div> 
- <article *ngIf="user"> 
+ <article *ngIf="user && !addCourse"> 
   <!-- Profile Header Start -->
   <section id="profile-header"> 
     <a (click)="showProfile = !showProfile" class="edit-btn">
