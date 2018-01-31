@@ -187,11 +187,10 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         this.user.instructor.phone = data.phone;
         this.user.instructor.addresses = data.addresses;
         this.user.instructor.details = {...this.user.instructor.details, ...data.details};
-
-        //hide popup
-        this.showAddress = !this.showAddress;
       }
     );
+    //hide popup
+    this.showAddress = !this.showAddress;
   }
 
   updateProfile(){
@@ -215,10 +214,10 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         this.user.name = data.name;
         this.user.profile_img = data.profile_img;
         this.user.instructor.details = {...this.user.instructor.details, ...data.details};
-        //hide popup
-        this.showProfile = !this.showProfile;
       }
     );
+    //hide popup
+    this.showProfile = !this.showProfile;
   }
 
   updateDescription(){
@@ -234,11 +233,10 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
       success => {
         //update data
         this.user.instructor.details = {...this.user.instructor.details, ...data.details};
-
-        //hide popup
-        this.showAbout = !this.showAbout;
       }
     );
+    //hide popup
+    this.showAbout = !this.showAbout;
   }
 
   ngOnDestroy(){
