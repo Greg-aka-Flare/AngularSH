@@ -13,7 +13,6 @@ import { CourseService } from "../../courses/course.service";
 
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidationService } from '../../core/validation.service';
-import { ControlMessagesComponent } from '../../shared/control-messages/control-messages.component';
 import { User } from '../../core/user.interface';
 
 @Component({
@@ -26,32 +25,22 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
 
   @Input('user') user: User;
 
-  courses: any;
-  courseCard:any[] = [];
+  courses: Course[];
+  courseCard:Course[] = [];
   instructors: Instructor;
-  //private myid:number;
-  reviewCount:number;
-  ratingData:any;
-  reviewRating:number;
-  userRating:number = 0;
-  loopCounter:number = 0;
-  reviewRatingGross:number;
-  ratingDataParse:any;
   
   private subscriptions = new Subscription();
-  instrocterdata:string;
-  courseCardLength:number;
-  reviewshowHide:boolean = false;
-  instructorCourse:any[]=new Array();
+  
+  instructorCourse:Course[]=new Array();
   counter:number = 0;
   paramChild:string;
+
   addCourse:boolean = false;
-  
-  
   
   addressForm: FormGroup;
   profileForm: FormGroup;
   descriptionForm: FormGroup;
+
   showProfile: boolean = false;
   showAddress: boolean = false;
   showAbout: boolean = false;
@@ -65,8 +54,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
 
-
-
     this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       if(params['open']){
         this.paramChild = params['open'];
@@ -74,14 +61,11 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
           this.addCourse = true;
         }
       }
-      console.log(this.user);
-      
-
+      //console.log(this.user);
     }));
 
     //if no addresses
     if(this.user.instructor.addresses.length === 0){
-
       //create empty
       this.user.instructor.addresses.push({
         streetAddress: '',
@@ -141,15 +125,16 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
     this.descriptionForm = this.fb.group({
       'description': [this.user.instructor.details.description, [Validators.required, Validators.minLength(40)]],
     });
-
+    //get all courses from course api
     this.subscriptions.add(this.courseService.getCourses()
     .subscribe(
       (courses) => {
        this.courses = courses;
        if(this.courses){
         for(let i = 0; i < this.courses.length; i++) {
-          if( this.courses[i].instructor.id == this.user.id){
-              this.courseCard.push(this.courses[i]);
+          //fetch course in which instructor id is matched to a new array
+          if(this.courses[i].instructor["id"] == this.user.id){
+            this.courseCard.push(this.courses[i]);
           } 
         }
         for(var j = this.counter, l = this.courses.length; j < l; j=j)
@@ -165,14 +150,8 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
       },
       (error: Response) => console.log(error)
     ));
-
-    
-     
-  }
-  goTo(location: string): void {
-    window.location.hash = location;
-  }
-  
+}
+  //view more button click function to show course in set of three
   getData(){
     for(var k = this.counter, p = this.courses.length; k < p; k=k)
     {
@@ -186,7 +165,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   }
   
   updateAddress(){
-
     //create data
     const data = {
       phone: this.addressForm.value.addressPhone,
@@ -202,7 +180,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         secondary_email: this.addressForm.value.addressEmailSecondary
       }
     };
-
     //save data
     this.instructor.save(data).subscribe(
       success => {
@@ -218,7 +195,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   }
 
   updateProfile(){
-
     //create data
     const data = {
       name: this.profileForm.value.name,
@@ -232,7 +208,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         pinterest: this.profileForm.value.pinterest
       }
     };
-
     //save data
     this.instructor.save(data).subscribe(
       success => {
@@ -240,7 +215,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         this.user.name = data.name;
         this.user.profile_img = data.profile_img;
         this.user.instructor.details = {...this.user.instructor.details, ...data.details};
-
         //hide popup
         this.showProfile = !this.showProfile;
       }
@@ -248,7 +222,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   }
 
   updateDescription(){
-
     //create data
     const data = {
       details: {

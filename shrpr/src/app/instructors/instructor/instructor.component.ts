@@ -17,7 +17,7 @@ import { InstructorService } from "../instructor.service";
 
 export class InstructorComponent implements OnInit, OnDestroy {
   instructors:Instructor;
-  courses: any;
+  courses: Course[];
   courseCard:any[] = [];
   private myid:number;
   reviewCount:number;
@@ -56,7 +56,7 @@ export class InstructorComponent implements OnInit, OnDestroy {
        this.courses = courses;
        if(this.courses){
         for(let i = 0; i < this.courses.length; i++) {
-          if( this.courses[i].instructor.id == this.myid){
+          if( this.courses[i].instructor["id"] == this.myid){
               this.courseCard.push(this.courses[i]);
           } 
         }
