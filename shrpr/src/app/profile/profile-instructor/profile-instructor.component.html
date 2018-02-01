@@ -1,7 +1,7 @@
 <div *ngIf="addCourse">
   <add-course-instructor [user]="user"></add-course-instructor>
  </div> 
- <article *ngIf="user"> 
+ <article *ngIf="user && !addCourse"> 
   <!-- Profile Header Start -->
   <section id="profile-header"> 
     <a (click)="showProfile = !showProfile" class="edit-btn">
@@ -77,12 +77,12 @@
         </a>
       </span> 
 
-      <span *ngIf="user.instructor.addressses">
+      <span *ngIf="user.instructor?.addressses">
         <i aria-hidden="true" class="fa fa-map-marker"></i> 
 
         {{ user.instructor.addressses[0].city }}, {{ user.instructor.addressses[0].state }}
       </span>
-      <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [readOnly]="true"></star-rating-comp> |  <a (click)="goTo('reviews')" href="javascript:void(0);">{{reviewCount}} reviews</a></div>
+      <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="user.instructor?.rating" [readOnly]="true"></star-rating-comp> {{user.instructor?.rating}}</div>
     </div>
   </section>
   <!-- Profile Header End --> 
@@ -162,9 +162,9 @@
 <a [routerLink]="['/profile', 'add-course']" class="add-course-btn">Add Course</a>
   <!-- tab Start for mobile-->
   <tabs class="mobile">
-    <tab tabTitle="Courses">
+    <tab tabTitle="Courses" *ngIf="instructorCourse.length > 0">
       <h3>Upcoming Events with {{user?.name}} </h3>
-      <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
+    <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
     <div class="img-ctn">
       <div class="price" *ngIf="card.semesters[0].amount != '0.00'">
         ${{ card?.semesters[0]?.amount }}
@@ -237,16 +237,16 @@
 
     <tab tabTitle="CONTACT">
       <div class="contact_box">
-        <address *ngFor="let address of user?.instructor.addresses">
-          <div> 
-            {{ address?.streetAddress }}<br />
-            {{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br />
-            {{ address?.country }}<br />
-            <br />
-            Phone: <a href="tel:{{ user.instructor.phone }}">{{ user.instructor.phone }}</a><br />
-            Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a>
-          </div>
-        </address>
+          <address *ngFor="let address of user?.instructor.addresses">
+              <span *ngIf="address?.streetAddress"> {{ address?.streetAddress }}<br /></span>
+              <span *ngIf="address?.city">{{ address?.city }},</span> <span *ngIf="address?.state">{{ address?.state }},</span> <span *ngIf="address?.zip">{{ address?.zip }}<br /></span>
+              <span *ngIf="address?.country">{{ address?.country }}<br></span>
+          </address>
+        <div>
+          <span *ngIf="user?.phone">Phone: <a href="tel:{{ user?.phone }}">{{ user?.phone }}</a><br /></span>
+          Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a><br>
+          <span *ngIf="user?.instructor.details.secondary_email"> Secondary Email: <a href="mailto:{{ user?.instructor.details.secondary_email }}">{{ user?.instructor.details.secondary_email }}</a></span>
+        </div>  
 
         <a (click)="showAddress = !showAddress" class="edit-btn"> 
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
@@ -309,10 +309,10 @@
 
                 <div class="form-row">
                   <label>Secondary Email:</label>
-
-                  <input type="text" formControlName="addressEmail" placeholder="Enter Email" />
                   
-                  <control-messages [control]="addressForm.controls.addressEmail"></control-messages>
+                  <input type="text" formControlName="addressEmailSecondary" placeholder="Enter Email" />
+                  
+                  <control-messages [control]="addressForm.controls.addressEmailSecondary"></control-messages>
                 </div>
               </div>
 
@@ -336,7 +336,8 @@
 
   <!-- desktop view -->
   <section class="desktop">
-    <h3>Upcoming Events with {{user?.name}}</h3>
+  <div *ngIf="instructorCourse.length > 0">
+    <h3>Your Courses</h3>
 <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
   <div class="img-ctn">
       <div class="price" *ngIf="card.semesters[0].amount != '0.00'">
@@ -368,12 +369,11 @@
       <i class="fa fa-calendar" aria-hidden="true"></i> 
         <time class="date_stamp" title="{{ card?.semesters[0]?.start_date | datex: 'LL' }}">{{ card?.semesters[0]?.start_date | datex: 'LL' }}</time>
     </p>
-    <!--<p class="with-box"><span>With</span> {{card.instructor?.name}}</p>-->
     <a [routerLink]="['/courses', card?.id]" class="page-cta" aria-roledescription="button">View Course</a>
   </div>
 </article>
 <p *ngIf="courseCard.length > 3" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= courseCard.length">view more</button></p>
-
+</div>
     <h2>
       ABOUT 
       <a (click)="showAbout = !showAbout" class="edit-btn"> 
@@ -415,17 +415,16 @@
     </h2>
 
     <div class="contact_box">
-      <address *ngFor="let address of user?.instructor.addresses">
-
-        <div> 
-          {{ address?.streetAddress }}<br />
-          {{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br />
-          {{ address?.country }}<br />
-          <br />
-          Phone: <a href="tel:{{ user?.phone }}">{{ user?.phone }}</a><br />
-          Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a>
-        </div>
+     <address *ngFor="let address of user?.instructor.addresses">
+          <span *ngIf="address?.streetAddress"> {{ address?.streetAddress }}<br /></span>
+          <span *ngIf="address?.city">{{ address?.city }},</span> <span *ngIf="address?.state">{{ address?.state }},</span> <span *ngIf="address?.zip">{{ address?.zip }}<br /></span>
+          <span *ngIf="address?.country">{{ address?.country }}<br></span>
       </address>
+    <div>
+      <span *ngIf="user?.phone">Phone: <a href="tel:{{ user?.phone }}">{{ user?.phone }}</a><br /></span>
+      Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a><br>
+      <span *ngIf="user?.instructor.details.secondary_email"> Secondary Email: <a href="mailto:{{ user?.instructor.details.secondary_email }}">{{ user?.instructor.details.secondary_email }}</a></span>
+    </div>  
 
       <!-- Address Edit Form Start -->
       <app-modal [(visible)]="showAddress">
@@ -485,9 +484,9 @@
               <div class="form-row">
                 <label>Secondary Email:</label>
                 
-                <input type="text" formControlName="addressEmail" placeholder="Enter Email" />
+                <input type="text" formControlName="addressEmailSecondary" placeholder="Enter Email" />
                 
-                <control-messages [control]="addressForm.controls.addressEmail"></control-messages>
+                <control-messages [control]="addressForm.controls.addressEmailSecondary"></control-messages>
               </div>
             </div>
 

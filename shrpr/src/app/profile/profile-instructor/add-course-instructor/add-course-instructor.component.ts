@@ -7,6 +7,7 @@ import { ValidationService } from '../../../core/validation.service';
 import { Course } from '../../../courses/course.interface';
 import { User } from '../../../core/user.interface';
 
+
 @Component({
   selector: 'add-course-instructor',
   templateUrl: './add-course-instructor.component.html',

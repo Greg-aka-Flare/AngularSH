@@ -164,7 +164,7 @@
       </h3>
     </tab> 
     
-    <tab tabTitle="ABOUT">
+    <tab tabTitle="About">
       <div class="contact_box">
         <a (click)="showAbout = !showAbout" class="edit-btn"> 
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
@@ -200,19 +200,18 @@
       </div>
     </tab> 
 
-    <tab tabTitle="CONTACT">
-      <div class="contact_box">
-        <address *ngFor="let address of user?.student.addresses">
-          <div> 
-            {{ address?.streetAddress }}<br />
-            {{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br />
-            {{ address?.country }}<br />
-            <br />
-            Phone: <a href="tel:{{ user.student.phone }}">{{ user.student.phone }}</a><br />
-            Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a>
-          </div>
-        </address>
-
+    <tab tabTitle="Contact">
+        <div class="contact_box">
+            <address *ngFor="let address of user?.student.addresses">
+                <span *ngIf="address?.streetAddress"> {{ address?.streetAddress }}<br /></span>
+                <span *ngIf="address?.city">{{ address?.city }},</span> <span *ngIf="address?.state">{{ address?.state }},</span> <span *ngIf="address?.zip">{{ address?.zip }}<br /></span>
+                <span *ngIf="address?.country">{{ address?.country }}<br></span>
+            </address>
+          <div>
+            <span *ngIf="user?.student.phone">Phone: <a href="tel:{{ user?.student.phone }}">{{ user?.student.phone }}</a><br /></span>
+            Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a><br>
+            <span *ngIf="user?.student.details.secondary_email"> Secondary Email: <a href="mailto:{{ user?.student.details.secondary_email }}">{{ user?.student.details.secondary_email }}</a></span>
+          </div>  
         <a (click)="showAddress = !showAddress" class="edit-btn"> 
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
         </a> 
@@ -306,7 +305,7 @@
     <h3><a [routerLink]="['/courses/list/all']">Click here to start your journey</a></h3>
 
     <h2>
-      ABOUT 
+      About 
       <a (click)="showAbout = !showAbout" class="edit-btn"> 
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
       </a>
@@ -339,7 +338,7 @@
     <!-- Description Edit Form End -->
 
     <h2>
-      CONTACT 
+      Contact 
       <a (click)="showAddress = !showAddress" class="edit-btn"> 
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
       </a>
@@ -347,16 +346,15 @@
 
     <div class="contact_box">
       <address *ngFor="let address of user?.student.addresses">
-
-        <div> 
-          {{ address?.streetAddress }}<br />
-          {{ address?.city }}, {{ address?.state }}, {{ address?.zip }}<br />
-          {{ address?.country }}<br />
-          <br />
-          Phone: <a href="tel:{{ user?.phone }}">{{ user?.phone }}</a><br />
-          Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a>
-        </div>
-      </address>
+                <span *ngIf="address?.streetAddress"> {{ address?.streetAddress }}<br /></span>
+                <span *ngIf="address?.city">{{ address?.city }},</span> <span *ngIf="address?.state">{{ address?.state }},</span> <span *ngIf="address?.zip">{{ address?.zip }}<br /></span>
+                <span *ngIf="address?.country">{{ address?.country }}<br></span>
+            </address>
+          <div>
+            <span *ngIf="user?.student.phone">Phone: <a href="tel:{{ user?.student.phone }}">{{ user?.student.phone }}</a><br /></span>
+            Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a><br>
+            <span *ngIf="user?.student.details.secondary_email"> Secondary Email: <a href="mailto:{{ user?.student.details.secondary_email }}">{{ user?.student.details.secondary_email }}</a></span>
+          </div>  
 
       <!-- Address Edit Form Start -->
       <app-modal [(visible)]="showAddress">

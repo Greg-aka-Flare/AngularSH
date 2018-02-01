@@ -1,21 +1,18 @@
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser'
-
 import { TabsComponent } from "../../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
-import { Observable } from 'rxjs/Observable';
+
 import { Subscription } from 'rxjs/Subscription';
 import { AddCourseInstructorComponent } from './add-course-instructor/add-course-instructor.component';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Course } from "../../courses/course.interface";
-import { CourseService } from "../../courses/course.service";
 import { Instructor } from "../../instructors/instructor.interface";
 import { InstructorService } from "../../instructors/instructor.service";
+import { Course } from "../../courses/course.interface";
+import { CourseService } from "../../courses/course.service";
 
-
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidationService } from '../../core/validation.service';
-import { ControlMessagesComponent } from '../../shared/control-messages/control-messages.component';
 import { User } from '../../core/user.interface';
 
 @Component({
@@ -27,64 +24,33 @@ import { User } from '../../core/user.interface';
 export class ProfileInstructorComponent implements OnInit, OnDestroy {
 
   @Input('user') user: User;
+
+  courses: Course[];
+  courseCard:Course[] = [];
+  instructors: Instructor;
   
-  courses: any;
-  courseCard:any[] = [];
-  //private myid:number;
-  reviewCount:number;
-  ratingData:any;
-  reviewRating:number;
-  userRating:number = 0;
-  loopCounter:number = 0;
-  reviewRatingGross:number;
-  ratingDataParse:any;
-  //subscription: Subscription;
   private subscriptions = new Subscription();
-  instrocterdata:string;
-  courseCardLength:number;
-  reviewshowHide:boolean = false;
-  instructorCourse:any[]=new Array();
+  
+  instructorCourse:Course[]=new Array();
   counter:number = 0;
   paramChild:string;
+
   addCourse:boolean = false;
-  
-  
   
   addressForm: FormGroup;
   profileForm: FormGroup;
   descriptionForm: FormGroup;
+
   showProfile: boolean = false;
   showAddress: boolean = false;
   showAbout: boolean = false;
   
-
-
-  width = document.documentElement.clientWidth;
-  goTo(location: string): void {
-    window.location.hash = location;
-  }
   constructor(
     private instructor: InstructorService, 
     private courseService: CourseService,  
     private fb: FormBuilder,
     private route: ActivatedRoute
-  ) { 
-    
-    const $resizeEvent = Observable.fromEvent(window, 'resize')
-    .map(() => {
-      return document.documentElement.clientWidth;
-      })
-    
-      this.subscriptions.add($resizeEvent.subscribe(data => {
-      this.width = data;
-
-    }));
-
-  }
-  onChange(event) {
-    var files = event.srcElement.files;
-    console.log(files);
-}
+  ) { }
   
   ngOnInit() {
 
@@ -95,38 +61,13 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
           this.addCourse = true;
         }
       }
-      
-
+      //console.log(this.user);
     }));
-    this.subscriptions.add(this.courseService.getCourses()
-    .subscribe(
-      (courses) => {
-       this.courses = courses;
-       if(this.courses){
-        for(let i = 0; i < this.courses.length; i++) {
-          if( this.courses[i].instructor.id == this.user.id){
-              this.courseCard.push(this.courses[i]);
-          } 
-        }
-        for(var j = this.counter, l = this.courses.length; j < l; j=j)
-        {
-          if(this.courseCard[j]){
-            this.instructorCourse.push(this.courseCard[j]);
-          }
-          j++;
-          if(j%3 == 0) break;
-        }
-        this.counter += 3;
-      }
-      },
-      (error: Response) => console.log(error)
-    ));
 
     //if no addresses
     if(this.user.instructor.addresses.length === 0){
-
       //create empty
-      this.user.instructor.address.push({
+      this.user.instructor.addresses.push({
         streetAddress: '',
         city: '',
         state: '',
@@ -136,14 +77,14 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
 
       //if localstorage exists, pull values in
       if(localStorage.getItem('useCurrentLocation')) {
-        if(localStorage.getItem('address')) this.user.instructor.address[0].streetAddress = localStorage.getItem('address');
-        if(localStorage.getItem('city')) this.user.instructor.address[0].city = localStorage.getItem('city');
-        if(localStorage.getItem('state')) this.user.instructor.address[0].state = localStorage.getItem('state');
-        if(localStorage.getItem('zip')) this.user.instructor.address[0].zip = localStorage.getItem('zip');
-        if(localStorage.getItem('country')) this.user.instructor.address[0].country = localStorage.getItem('country');
+        if(localStorage.getItem('address')) this.user.instructor.addresses[0].streetAddress = localStorage.getItem('address');
+        if(localStorage.getItem('city')) this.user.instructor.addresses[0].city = localStorage.getItem('city');
+        if(localStorage.getItem('state')) this.user.instructor.addresses[0].state = localStorage.getItem('state');
+        if(localStorage.getItem('zip')) this.user.instructor.addresses[0].zip = localStorage.getItem('zip');
+        if(localStorage.getItem('country')) this.user.instructor.addresses[0].country = localStorage.getItem('country');
       }
     }
-
+    this.instructors = this.user.instructor;
     //if no details, fill in empty data
     if(!this.user.instructor.details) {
 
@@ -158,7 +99,7 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         secondary_email: ''
       }
     }
-    
+
     //create form groups
     this.addressForm = this.fb.group({
       'addressStreet': [this.user.instructor.addresses[0].streetAddress, Validators.required],
@@ -167,7 +108,7 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
       'addressZip': [this.user.instructor.addresses[0].zip, Validators.required],
       'addressCountry': [this.user.instructor.addresses[0].country, Validators.required],
       'addressPhone': [this.user.instructor.phone, [Validators.required, ValidationService.phonenoValidator, Validators.minLength(10)]],
-      'addressEmail': [this.user.instructor.details.secondary_email, [Validators.required, ValidationService.emailValidator]]
+      'addressEmailSecondary': [this.user.instructor.details.secondary_email, [Validators.required, ValidationService.emailValidator]]
     });
   
     this.profileForm = this.fb.group({
@@ -184,9 +125,33 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
     this.descriptionForm = this.fb.group({
       'description': [this.user.instructor.details.description, [Validators.required, Validators.minLength(40)]],
     });
-     
-  }
-  
+    //get all courses from course api
+    this.subscriptions.add(this.courseService.getCourses()
+    .subscribe(
+      (courses) => {
+       this.courses = courses;
+       if(this.courses){
+        for(let i = 0; i < this.courses.length; i++) {
+          //fetch course in which instructor id is matched to a new array
+          if(this.courses[i].instructor["id"] == this.user.id){
+            this.courseCard.push(this.courses[i]);
+          } 
+        }
+        for(var j = this.counter, l = this.courses.length; j < l; j=j)
+        {
+          if(this.courseCard[j]){
+            this.instructorCourse.push(this.courseCard[j]);
+          }
+          j++;
+          if(j%3 == 0) break;
+        }
+        this.counter += 3;
+      }
+      },
+      (error: Response) => console.log(error)
+    ));
+}
+  //view more button click function to show course in set of three
   getData(){
     for(var k = this.counter, p = this.courses.length; k < p; k=k)
     {
@@ -200,7 +165,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   }
   
   updateAddress(){
-
     //create data
     const data = {
       phone: this.addressForm.value.addressPhone,
@@ -213,10 +177,9 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         country: this.addressForm.value.addressCountry
       } ],
       details: {
-        secondary_email: this.addressForm.value.addressEmail
+        secondary_email: this.addressForm.value.addressEmailSecondary
       }
     };
-
     //save data
     this.instructor.save(data).subscribe(
       success => {
@@ -224,15 +187,13 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         this.user.instructor.phone = data.phone;
         this.user.instructor.addresses = data.addresses;
         this.user.instructor.details = {...this.user.instructor.details, ...data.details};
-
-        //hide popup
-        this.showAddress = !this.showAddress;
       }
     );
+    //hide popup
+    this.showAddress = !this.showAddress;
   }
 
   updateProfile(){
-
     //create data
     const data = {
       name: this.profileForm.value.name,
@@ -246,7 +207,6 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         pinterest: this.profileForm.value.pinterest
       }
     };
-
     //save data
     this.instructor.save(data).subscribe(
       success => {
@@ -254,15 +214,13 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
         this.user.name = data.name;
         this.user.profile_img = data.profile_img;
         this.user.instructor.details = {...this.user.instructor.details, ...data.details};
-
-        //hide popup
-        this.showProfile = !this.showProfile;
       }
     );
+    //hide popup
+    this.showProfile = !this.showProfile;
   }
 
   updateDescription(){
-
     //create data
     const data = {
       details: {
@@ -275,11 +233,10 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
       success => {
         //update data
         this.user.instructor.details = {...this.user.instructor.details, ...data.details};
-
-        //hide popup
-        this.showAbout = !this.showAbout;
       }
     );
+    //hide popup
+    this.showAbout = !this.showAbout;
   }
 
   ngOnDestroy(){

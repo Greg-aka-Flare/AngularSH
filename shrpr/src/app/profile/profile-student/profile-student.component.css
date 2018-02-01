@@ -40,15 +40,15 @@
 :host /deep/ tabs .tabs tab div > h3 {
     font-size: 18px;
     color: #818181;
-    line-height: 22px;
+   line-height: 22px;
     padding: 10px;
 }
 :host #reviews /deep/ star-rating-comp {
     display: inline-block;
     vertical-align: middle;
 }
-.desktop{
-    display: none;
+.desktop {
+   display: none;
 }
 .desktop h3 a, :host /deep/ tabs .tabs tab > div h3 a {
     color: #02b2b8;
@@ -57,151 +57,154 @@
 .desktop h3 a:hover, :host /deep/ tabs .tabs tab > div h3 a:hover {
     text-decoration: none;
 }
-.desktop{
-    display: none;
-}
-.mobile{
-    display: block;
+.mobile {
+   display: block;
 }
 #profile-header /deep/ star-rating-comp .rating {
     padding: 0;
 }
 .contact_box a {
-    color:#000000;
-} 
+   color:#000000;
+}
 .contact_box a:hover {
-    color:#ed9639;
+   color:#ed9639;
 }
 .contact_box address, .profile-picture {
-    position: relative;
+   position: relative;
 }
 .profile-form {
-    background-color: #f4f4f4;
-    border-bottom: 1px solid #cccccc;
-    padding: 10px;
+   background-color: #f4f4f4;
+   border-bottom: 1px solid #cccccc;
+   padding: 10px;
 }
 .exit-btn {
-    position: absolute;
-    right:5%;
-    top: 0;
-    visibility: hidden;
-    font-size: 16px;
-    color: #000000;
+   position: absolute;
+   right:5%;
+   top: 0;
+   visibility: hidden;
+   font-size: 16px;
+   color: #000000;
 }
 .contact_box address:hover .exit-btn {
-    visibility: visible;
+   visibility: visible;
 }
 .edit-form {
-    padding: 0 0 20px 0;
+   padding: 0 0 20px 0;
 }
 .edit-form label {
-    display: inline-block;
-    vertical-align: middle;
-    max-width: 150px;
-    margin: 0 2% 10px 0;
-    width: 100%;
-} 
+   display: inline-block;
+   vertical-align: middle;
+   max-width: 150px;
+   margin: 0 2% 10px 0;
+   width: 100%;
+}
 .edit-form input {
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    padding: 4px 10px;
-    height: 32px;
-    width: 100%;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 0 10px 0;
-    color: #000000;
-    font-family: arial;
+   border: 1px solid #ccc;
+   border-radius: 2px;
+   padding: 4px 10px;
+   height: 32px;
+   width: 100%;
+   display: inline-block;
+   vertical-align: middle;
+   margin: 0 0 10px 0;
+   color: #000000;
+   font-family: arial;
 }
 .edit-form textarea {
-    color: #000000;
-    font-family: arial;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    padding: 4px 10px;
-    width: 100%;
-    display: block;
-    margin: 0 0 10px 0;
-    width: 100%;
+   color: #000000;
+   font-family: arial;
+   border: 1px solid #ccc;
+   border-radius: 2px;
+   padding: 4px 10px;
+   width: 100%;
+   display: block;
+   margin: 0 0 10px 0;
+   width: 100%;
 }
 .edit-form input[type="file"] {
-    border: 0;
-    padding:0;
-    height: auto;
-    width: auto;
-    margin: 0 0 10px 0;
+   border: 0;
+   padding:0;
+   height: auto;
+   width: auto;
+   margin: 0 0 10px 0;
 }
 .edit-form h2 {
-    font-size: 24px;
+   font-size: 24px;
 }
 .edit-btn {
-    color: #000000;
-    font-size: 20px;
-    line-height: 20px;
-    cursor: pointer;
-} 
+   color: #000000;
+   font-size: 20px;
+   line-height: 20px;
+   cursor: pointer;
+}
 .profile-upload {
-    position: absolute;
-    right: 0;
-    top: 0;
-    font-size: 25px;
-    width: 20px;
-    height: 20px;
-    line-height: 1em;
-    visibility: hidden;
-} 
+   position: absolute;
+   right: 0;
+   top: 0;
+   font-size: 25px;
+   width: 20px;
+   height: 20px;
+   line-height: 1em;
+   visibility: hidden;
+}
 .profile-picture:hover .profile-upload {
-    visibility: visible;
+   visibility: visible;
 }
 .profile-upload input {
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 2;
-    cursor: pointer;
-}  
- .edit-form input.ng-valid.ng-touched, .edit-form textarea.ng-valid.ng-touched{
-    border: 1px solid #0c0;
+   opacity: 0;
+   position: absolute;
+   right: 0;
+   top: 0;
+   z-index: 2;
+   cursor: pointer;
 }
-.edit-form input.ng-invalid.ng-touched, .edit-form textarea.ng-invalid.ng-touched{
-    border: 1px solid #c00;
+.edit-form input.ng-valid.ng-touched, .edit-form textarea.ng-valid.ng-touched {
+   border: 1px solid #0c0;
+}
+.edit-form input.ng-invalid.ng-touched, .edit-form textarea.ng-invalid.ng-touched {
+   border: 1px solid #c00;
 }
 .edit-form {
-    max-width:500px;
+   max-width:500px;
 }
-
 @media only screen and (min-width: 769px) {
-
-    .desktop{
-        display: block;
-    }
-    .mobile{
-        display: none;
-    }
-    .edit-form label {
-        display: inline-block;
-        vertical-align: middle;
-        max-width: 150px;
-        margin: 0 2% 10px 0;
-        width: 49%;
-    } 
-    .edit-form input {
-        border: 1px solid #ccc;
-        border-radius: 2px;
-        padding: 4px 10px;
-        height: 32px;
-        max-width: 262px;
-        width: 48%;
-        display: inline-block;
-        vertical-align: middle;
-        margin: 0 0 10px 0;
-      }    
-    :host /deep/ tabs .tabs tab > div {
-        padding: 10PX;
-        overflow:hidden;
-    }
-    .contact_box address {
-        width: 49%;
-    }
+.desktop {
+   display: block;
+   padding: 20px 0 20px 0;
+}
+.desktop h2 {
+   border-bottom: 1px solid #cccccc;
+   font-size: 24px;
+   line-height: 26px;
+   padding: 0 0 5px;
+   margin: 0 0 20px 0;
+}
+.mobile {
+   display: none;
+}
+.edit-form label {
+   display: inline-block;
+   vertical-align: middle;
+   max-width: 150px;
+   margin: 0 2% 10px 0;
+   width: 49%;
+}
+.edit-form input {
+   border: 1px solid #ccc;
+   border-radius: 2px;
+   padding: 4px 10px 4px 10px;
+   height: 32px;
+   max-width: 262px;
+   width: 48%;
+   display: inline-block;
+   vertical-align: middle;
+   margin: 0 0 10px 0;
+}
+:host /deep/ tabs .tabs tab > div {
+    padding: 10px;
+    overflow:hidden;
+}
+.contact_box address {
+   width: 49%;
+}
 }
