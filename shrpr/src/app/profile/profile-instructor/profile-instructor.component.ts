@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser'
 
 import { TabsComponent } from "../../shared/tabs/tabs.component";
