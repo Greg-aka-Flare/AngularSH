@@ -3,9 +3,9 @@
 
   <section id="course-add-container" class="slide">
     <div class="formHeader">
-      <a (click)="prevSlide()" class="courseFormBtn" *ngIf="slideNo > 1">< Back</a>
+      <a (click)="prevSlide()" class="courseFormBtn" *ngIf="slide > 1">Back</a>
 
-      <span>{{ slideNo }} / {{ lastSlideNo }}</span>
+      <span>{{ slide }} / {{ lastSlide }}</span>
     </div>
 
     <div #panel class="course-form-box">
@@ -77,19 +77,15 @@
       </div><!-- course Form Page one-->
 
       <div class="courseFormPage">
-        <form name="semesterInfoForm" [formGroup]="semesterInfoForm">
-          <h3>Enter Your Course Semester Information</h3>
-          
-          <div class="formRow">
-            <label for="courseDescription">Semester : {{courseSemesterNumber}}</label>
-          </div> 
+        <form name="semesterForm" [formGroup]="semesterForm">
+          <h3>Enter Your Semester Information</h3>
 
           <div class="formRow">
             <label for="startDate">Start Date</label>
 
             <input type="date" id="startDate" formControlName="startDate">
             
-            <control-messages [control]="semesterInfoForm.controls.startDate">
+            <control-messages [control]="semesterForm.controls.startDate">
             </control-messages>
           </div>
 
@@ -97,11 +93,12 @@
             <label for="type">Classes will be</label>
 
             <div class="thefield">
+              <input type="radio" name="type" formControlName="type" value="days"> Daily &nbsp; 
               <input type="radio" name="type" formControlName="type" value="week"> Weekly &nbsp;
               <input type="radio" name="type" formControlName="type" value="months"> Monthly
             </div>
 
-            <control-messages [control]="semesterInfoForm.controls.type">
+            <control-messages [control]="semesterForm.controls.type">
             </control-messages>
           </div>
 
@@ -110,7 +107,7 @@
 
             <input type="time" id="startTime" formControlName="startTime">
             
-            <control-messages [control]="semesterInfoForm.controls.startTime">
+            <control-messages [control]="semesterForm.controls.startTime">
             </control-messages>
           </div>
           
@@ -119,7 +116,7 @@
 
             <input type="number" id="total" min="1" formControlName="total">
 
-            <control-messages [control]="semesterInfoForm.controls.total">
+            <control-messages [control]="semesterForm.controls.total">
             </control-messages>
           </div>
 
@@ -128,7 +125,7 @@
             
             <input type="number" id="duration" min="1" formControlName="duration">
             
-            <control-messages [control]="semesterInfoForm.controls.duration">
+            <control-messages [control]="semesterForm.controls.duration">
             </control-messages>
           </div>
 
@@ -137,7 +134,7 @@
             
             <input type="number" id="amount" formControlName="amount">
             
-            <control-messages [control]="semesterInfoForm.controls.amount">
+            <control-messages [control]="semesterForm.controls.amount">
             </control-messages>
           </div>
 
@@ -146,7 +143,7 @@
             
             <input type="text" id="streetAddress" formControlName="streetAddress">
             
-            <control-messages [control]="semesterInfoForm.controls.streetAddress">
+            <control-messages [control]="semesterForm.controls.streetAddress">
             </control-messages>
           </div>
 
@@ -155,7 +152,7 @@
             
             <input type="text" id="city" formControlName="city">
             
-            <control-messages [control]="semesterInfoForm.controls.city">
+            <control-messages [control]="semesterForm.controls.city">
             </control-messages>
           </div>
 
@@ -164,7 +161,7 @@
             
             <input type="text" id="state" formControlName="state">
             
-            <control-messages [control]="semesterInfoForm.controls.state">
+            <control-messages [control]="semesterForm.controls.state">
             </control-messages>
           </div>
 
@@ -173,7 +170,7 @@
             
             <input type="text" id="zip" formControlName="zip">
             
-            <control-messages [control]="semesterInfoForm.controls.zip">
+            <control-messages [control]="semesterForm.controls.zip">
             </control-messages>
           </div>
 
@@ -182,7 +179,7 @@
             
             <input type="file" id="primaryImg" formControlName="primaryImg" accept="image/x-png,image/gif,image/jpeg">
             
-            <control-messages [control]="semesterInfoForm.controls.primaryImg">
+            <control-messages [control]="semesterForm.controls.primaryImg">
             </control-messages>
           </div>
 
@@ -191,86 +188,72 @@
             
             <input type="file" id="secondaryImg" formControlName="secondaryImg" accept="image/x-png,image/gif,image/jpeg">
             
-            <control-messages [control]="semesterInfoForm.controls.secondaryImg"></control-messages>
+            <control-messages [control]="semesterForm.controls.secondaryImg"></control-messages>
           </div>
 
           <div class="formRow ctr">
             
-            <button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">Save</button>
+            <button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterForm.valid">Save</button>
             
-            <button (click)="showSessionDetail()" class="courseFormBtn" [disabled]="!semesterInfoForm.valid">View/Update Details</button>
+            <button (click)="showSessionDetail()" class="courseFormBtn" [disabled]="!semesterForm.valid">View/Update Details</button>
           </div>
         </form>
       </div><!-- course Form Page Two-->
       
       <div class="courseFormPage">
-        <form name="semesterDetailForm" [formGroup]="semesterDetailForm">
-          <h5>Please Confirm Your Session Details for Semester : {{courseSemesterNumber}}</h5>  
+        <form name="meetingForm" [formGroup]="meetingForm">
+          <h5>Please Confirm Your Session Details for Semester</h5>  
           
           <div class="formRow">
-            <table class="sessionDetailTable">
+            <table class="sessionDetailTable" formArrayName="meetings">
               <tbody>
                 <tr>
-                  <th width="10%">No.</th>
+                  <th width="10%"></th>
                   <th width="30%">Date</th>
                   <th width="30%">Start Time</th>
                   <th width="30%">End Time</th>
                 </tr>
 
-                <tr *ngFor="let session of sessionArray; let i = index" >
-                  <td>{{i+1}}</td>
-                  <td><input type="date" name="courseStartDateText{{i+1}}" value="{{session?.sessionDate}}" (input)="onInput(session?.sessionDate.value)" readonly></td>
-                  <td><input type="time" name="courseStartTimeText{{i+1}}" value="{{session?.startTime}}" readonly></td>
-                  <td><input type="time" name="courseEndTimeText{{i+1}}" value="{{session?.endTime}}" readonly></td>
+                <tr 
+                  *ngFor="let meeting of meetingForm.controls.meetings.controls; let i = index"
+                  [formGroupName]="i"
+                >
+                  <td>
+                    <a (click)="deleteMeeting(i)">x</a>
+                  </td>
+
+                  <td>
+                    <input type="date" name="startDate" formControlName="startDate">
+                  </td>
+
+                  <td>
+                    <input type="time" name="startTime" formControlName="startTime">
+                  </td>
+
+                  <td>
+                    <input type="time" name="endTime" formControlName="endTime">
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           <div class="formRow ctr">
-            <button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterDetailForm.valid">Submit</button>
-          </div>
+            <button 
+              type="button" 
+              (click)="addMeeting()" 
+              class="courseFormBtn"
+            >
+              Add Meeting
+            </button>
 
-          <div class="formRow ctr">
-            <button (click)="confirmSemesterData()" class="courseFormBtn" [disabled]="!semesterDetailForm.valid">Confirm</button>
-
-            <button (click)="submitSemesterData()" class="courseFormBtn" [disabled]="!showSubmit">Submit</button>
-          </div>
-        </form> 
-      </div><!-- course Form Page Three-->
-      
-      <div class="courseFormPage" *ngIf="showSessionList">
-        <form name="semesterDetailForm" [formGroup]="semesterDetailForm">
-          <h5>Please Confirm Your Session Details for Semester : {{courseSemesterNumber}}</h5>  
-          
-          <div class="formRow">
-            <table class="sessionDetailTable">
-              <tbody>
-                <tr>
-                  <th width="10%">No.</th>
-                  <th width="30%">Date</th>
-                  <th width="30%">Start Time</th>
-                  <th width="30%">End Time</th>
-                </tr>
-                      
-                <tr *ngFor="let session of sessionArray; let i = index" >
-                  <td>{{i+1}}</td>
-                  <td><input type="date" name="courseStartDateText{{i+1}}" value="{{session?.sessionDate}}" (input)="onInput(session?.sessionDate.value)" readonly></td>
-                  <td><input type="time" name="courseStartTimeText{{i+1}}" value="{{session?.startTime}}" readonly></td>
-                  <td><input type="time" name="courseEndTimeText{{i+1}}" value="{{session?.endTime}}" readonly></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="formRow ctr">
-            <button (click)="nextSlide()" class="courseFormBtn" [disabled]="!semesterDetailForm.valid">Submit</button>
-          </div>
-
-          <div class="formRow ctr">
-            <button (click)="confirmSemesterData()" class="courseFormBtn" [disabled]="!semesterDetailForm.valid">Confirm</button>
-            
-            <button (click)="submitSemesterData()" class="courseFormBtn" [disabled]="!showSubmit">Submit</button>
+            <button 
+              (click)="submitMeetings()" 
+              class="courseFormBtn" 
+              [disabled]="!meetingForm.valid"
+            >
+              Create Course
+            </button>
           </div>
         </form> 
       </div><!-- course Form Page Three-->

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer, Input } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import * as moment from 'moment';
 
@@ -16,26 +16,14 @@ import { User } from '../../../core/user.interface';
 export class AddCourseInstructorComponent implements OnInit {
 
   @Input('user') user: User;
+  @ViewChild('panel') panel: ElementRef;
   
   courseForm: FormGroup;
-  semesterInfoForm: FormGroup;
-  semesterDetailForm: FormGroup;
+  semesterForm: FormGroup;
+  meetingForm: FormGroup;
   course: Course;
-
-  courseSemesterNumber:number = 1;
-  @ViewChild('panel') panel : ElementRef;
-  
-  slideNo: number = 1;
-  lastSlideNo:number = 3;
-  prevPos: string = '';
-  nextPos:number = 0;
-  gotothree:boolean = false;
-  addSemConfirm:boolean = false;
-  addCourseConfirm:boolean = false;
-  
-  confirmSemData:boolean;
-  showSubmit:boolean = false;
-  showSessionList:boolean = false;
+  slide: number = 1;
+  lastSlide: number = 3;
 
   constructor(
     private renderer: Renderer,
@@ -53,7 +41,7 @@ export class AddCourseInstructorComponent implements OnInit {
       'courseDescriptionText': ['', [Validators.required, Validators.minLength(40)]]
     }); 
 
-    this.semesterInfoForm = this.fb.group({  
+    this.semesterForm = this.fb.group({  
       'type' : ['', Validators.required],
       'startDate': ['', Validators.required],
       'startTime': ['', Validators.required],
@@ -68,36 +56,61 @@ export class AddCourseInstructorComponent implements OnInit {
       'zip': ['', Validators.required]
     });
 
-    this.semesterDetailForm = this.fb.group({});
+    this.meetingForm = this.fb.group({
+      meetings: this.fb.array([])
+    });
   }
 
-  nextSlide(){
-    if(this.slideNo == 1){
+  initMeeting() {
+    return this.fb.group({
+      'startDate': ['', Validators.required],
+      'startTime': ['', Validators.required],
+      'endTime': ['', Validators.required]
+    });
+  }
+
+  addMeeting() {
+
+    const control = <FormArray>this.meetingForm.controls['meetings'];
+
+    control.push(this.initMeeting());
+  }
+
+  deleteMeeting(index: number) {
+
+    const control = <FormArray>this.meetingForm.controls['meetings'];
+
+    control.removeAt(index);
+  }
+
+  nextSlide() {
+
+    if(this.slide == 1){
       this.submitCourse();
     }
-    if(this.slideNo == 2){
-      this.sessionDetailsinit();
+    if(this.slide == 2){
+      this.submitSemester();
     }
-    if(this.slideNo == 3){
-      this.submitAllFormData();
+    if(this.slide == 3){
+      this.submitMeetings();
     }
    
-    if( this.slideNo > 0 && this.slideNo < this.lastSlideNo ){
-      this.slideNo++;
+    if( this.slide > 0 && this.slide < this.lastSlide ){
+      this.slide++;
       this.renderer.setElementStyle(
       this.panel.nativeElement, 
       'transform', 
-      'translateX(-' + String((this.slideNo - 1) * 100) + '%)');
+      'translateX(-' + String((this.slide - 1) * 100) + '%)');
     }
   }
 
-  prevSlide(){
-    if( this.slideNo >= 2 ){
-      this.slideNo--;
+  prevSlide() {
+    if( this.slide >= 2 ){
+      this.slide--;
       this.renderer.setElementStyle(
       this.panel.nativeElement, 
       'transform', 
-      'translateX(-' + String((this.slideNo-1) * 100) + '%)');
+      'translateX(-' + String((this.slide-1) * 100) + '%)');
     }
     else{
       this.renderer.setElementStyle(
@@ -111,24 +124,24 @@ export class AddCourseInstructorComponent implements OnInit {
 
     //create course
     this.course = {
-      group_id: this.courseForm.value.courseGroupSelect,
+      group_id: this.courseForm.value.group,
       instructor_id: this.user.id,
-      title: this.courseForm.value.courseTitleText,
-      description: this.courseForm.value.courseDescriptionText,
+      title: this.courseForm.value.title,
+      description: this.courseForm.value.description,
       addresses: [],
       semesters: [],
       categories: [
-        this.courseForm.value.courseCategorySelect,
-        this.courseForm.value.courseSubCategorySelect
+        this.courseForm.value.category,
+        this.courseForm.value.subCategory
       ]
     }
   } 
   
-  sessionDetailsinit(){
+  submitSemester() {
     
-    let type = this.semesterInfoForm.value.type;
-    let total = this.semesterInfoForm.value.total;
-    let duration = this.semesterInfoForm.value.duration;
+    let type = this.semesterForm.value.type;
+    let total = this.semesterForm.value.total;
+    let duration = this.semesterForm.value.duration;
     let meetings = [];
     let startDate;
     let endDate;
@@ -137,7 +150,7 @@ export class AddCourseInstructorComponent implements OnInit {
     for(let i = 0; i < total; i++) {
 
       //create start/end dates
-      let start = moment(this.semesterInfoForm.value.startDate + ' ' + this.semesterInfoForm.value.startTime);
+      let start = moment(this.semesterForm.value.startDate + ' ' + this.semesterForm.value.startTime);
       let end = start.clone().add(duration, 'hours');
 
       //if not first iteration, modify dates
@@ -147,92 +160,62 @@ export class AddCourseInstructorComponent implements OnInit {
       }
 
       //create start/end date for semester
-      if(i === 0) startDate = start.format('YYYY-MM-DD hh:mm:ss');
-      if(i === total) endDate = end.format('YYYY-MM-DD hh:mm:ss');
+      if(i === 0) startDate = start.format('YYYY-MM-DD HH:mm:ss');
+      if(i === total) endDate = end.format('YYYY-MM-DD HH:mm:ss');
 
       //add to meetings
       meetings.push({
-        'start' : start.format('YYYY-MM-DD hh:mm:ss'),
-        'end' : end.format('YYYY-MM-DD hh:mm:ss')
+        'start' : start.format('YYYY-MM-DD HH:mm:ss'),
+        'end' : end.format('YYYY-MM-DD HH:mm:ss')
       });
+
+      //add control
+      <FormArray>this.meetingForm.controls['meetings'].push(this.fb.group({
+        'startDate': [start.format('YYYY-MM-DD'), Validators.required],
+        'startTime': [start.format('HH:mm'), Validators.required],
+        'endTime': [end.format('HH:mm'), Validators.required]
+      }));
     }
 
     //add address
     this.course.addresses.push({
-      'streetAddress' : this.semesterInfoForm.value.streetAddress,
-      'city' : this.semesterInfoForm.value.city,
-      'state': this.semesterInfoForm.value.state, 
-      'zip' : this.semesterInfoForm.value.zip
+      'streetAddress' : this.semesterForm.value.streetAddress,
+      'city' : this.semesterForm.value.city,
+      'state': this.semesterForm.value.state, 
+      'zip' : this.semesterForm.value.zip
     });
 
     this.course.semesters.push({
-      'amount': this.semesterInfoForm.value.amount, 
+      'amount': this.semesterForm.value.amount, 
       'start_date': startDate, 
-      'end_date': '', 
+      'end_date': endDate, 
       'meetings': meetings,
-      'primary_img': this.semesterInfoForm.value.primaryImg,
+      'primary_img': this.semesterForm.value.primaryImg,
       'details' : {
-         'secondary_img' : this.semesterInfoForm.value.secondaryImg
+        'secondary_img' : this.semesterForm.value.secondaryImg
       }
     });
-
-    this.gotothree = true;
-  } 
-
-  //slide view during signup process add semester confirmation popup open
-  closeAddSemConfirm(){
-    this.addSemConfirm = false;  
-  }
-  
-  //slide view last slide submit button click to open course added confirm box 
-  submitAllFormData(){
-    console.log(this.course);
-    this.addCourseConfirm = true;
   }
 
-  //slide view during signup process course added confiramtion popup close and navigate to profile page
-  closeCourseConfirm() {
-    this.addCourseConfirm = false;
-    localStorage.removeItem('signupUser');
-    this.router.navigate(['profile']);
-  }
-
-  //page view semester details show from profile page
-  showSessionDetail(){
-    this.submitCourse();
-    this.sessionDetailsinit();
-    this.showSessionList = true;
-  }
-
-  //page view semester add confirmation show from profile page
-  confirmSemesterData(){
-    //click of confirm add semester data to form object
-    this.confirmSemData = true;
+  submitMeetings() {
     
-  }
+    let meetings = [];
 
-  //page view semester add confirmation close from profile page
-  closeConfirmSemData(){
-    this.confirmSemData = false;
-    this.showSubmit = true;
-  }
+    //update meetings array
+    for(let meeting of this.meetingForm.controls.meetings.controls) {
 
-  //page view to add new semester and confirmation close from profile page
-  addNewSemesterInit(){
-    this.confirmSemData = false;
+      //create start/end dates
+      let start = moment(meeting.controls.startDate.value + ' ' + meeting.controls.startTime.value);
+      let end = moment(meeting.controls.startDate.value + ' ' + meeting.controls.endTime.value);
 
-    //show the semester no. to be add in page view
-    this.courseSemesterNumber++;
+      //add to meetings
+      meetings.push({
+        'start' : start.format('YYYY-MM-DD HH:mm:ss'),
+        'end' : end.format('YYYY-MM-DD HH:mm:ss')
+      });
+    }
 
-    //blank the semesterInfoForm to add new semester information to this form
-    //this.initSemesterForm();
-    //this.sessionArray = [];
-    this.showSessionList = false;
-  }
-
-  //page view submit all semester data to form object
-  submitSemesterData(){
-    this.addCourseConfirm = true;
-    console.log(this.course);
+    //set meetings
+    this.course.semesters[0].meetings = meetings;
   }
 }
