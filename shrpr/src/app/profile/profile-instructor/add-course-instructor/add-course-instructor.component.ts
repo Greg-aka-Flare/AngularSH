@@ -3,9 +3,11 @@ import { FormBuilder, FormGroup, FormControl, FormArray, AbstractControl, Valida
 import { Router } from "@angular/router";
 import * as moment from 'moment';
 
-import { ValidationService } from '../../../core/validation.service';
+import { Category } from '../../../core/category.interface';
+import { CategoryService } from '../../../core/category.service';
 import { Course } from '../../../courses/course.interface';
 import { User } from '../../../core/user.interface';
+import { ValidationService } from '../../../core/validation.service';
 
 
 @Component({
@@ -17,17 +19,21 @@ export class AddCourseInstructorComponent implements OnInit {
 
   @Input('user') user: User;
   @ViewChild('panel') panel: ElementRef;
-  
+
   courseForm: FormGroup;
   semesterForm: FormGroup;
   meetingForm: FormGroup;
+  categories: Category[];
+  primaryCategories: Category[];
+  subCategories: Category[];
   course: Course;
   slide: number = 1;
   lastSlide: number = 3;
 
   constructor(
-    private renderer: Renderer,
+    private category: CategoryService,
     private fb: FormBuilder,
+    private renderer: Renderer,
     private router: Router
   ) { }
 
@@ -37,7 +43,7 @@ export class AddCourseInstructorComponent implements OnInit {
       'title': ['', Validators.required],
       'group': ['', Validators.required],
       'category': ['', Validators.required],
-      'subCategory': ['', Validators.required],
+      'subCategory': [{ value: '', disabled: true }, Validators.required],
       'description': ['', [Validators.required, Validators.minLength(40)]]
     }); 
 
@@ -59,6 +65,13 @@ export class AddCourseInstructorComponent implements OnInit {
     this.meetingForm = this.fb.group({
       meetings: this.fb.array([])
     });
+
+    //get categories, filter primary
+    this.category.all().subscribe(categories => {
+
+      this.categories = categories;
+      this.primaryCategories = this.category.primary(categories);
+    });
   }
 
   initMeeting() {
@@ -67,6 +80,37 @@ export class AddCourseInstructorComponent implements OnInit {
       'startTime': ['', Validators.required],
       'endTime': ['', Validators.required]
     });
+  }
+
+  selectCategory(e) {
+
+    const id = e.target.value;
+
+    //if id provided
+    if(id) {
+
+      //get children of selected category
+      this.subCategories = this.category.children(this.categories, id);
+
+      if(this.subCategories.length > 0) {
+
+        //set to default
+        this.courseForm.controls.subCategory.setValue('');
+        this.courseForm.controls.subCategory.enable();
+      }
+      else{
+
+        //set to default, disable form
+        this.courseForm.controls.subCategory.setValue('');
+        this.courseForm.controls.subCategory.disable();
+      }
+    }
+    else{
+
+        //set to default, disable form
+        this.courseForm.controls.subCategory.setValue('');
+        this.courseForm.controls.subCategory.disable();
+    }
   }
 
   addMeeting() {

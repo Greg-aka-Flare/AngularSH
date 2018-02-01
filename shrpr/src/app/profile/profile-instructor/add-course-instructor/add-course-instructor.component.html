@@ -34,14 +34,17 @@
             </control-messages>
           </div>
 
-          <div class="formRow">
+          <div *ngIf="primaryCategories" class="formRow">
             <label for="category">Category*</label>
 
-            <select formControlName="category" id="category">
+            <select formControlName="category" id="category" (change)="selectCategory($event)">
               <option value="">----Select-----</option>
-              <option value="1">Category One</option>
-              <option value="2">Category Two</option>
-              <option value="3">Category Three</option>
+              <option 
+                *ngFor="let category of primaryCategories" 
+                value="{{ category.id }}"
+              >
+                {{ category.name }}
+              </option>
             </select>
 
             <control-messages [control]="courseForm.controls.category">
@@ -53,9 +56,12 @@
 
             <select formControlName="subCategory" id="subCategory">
               <option value="">----Select-----</option>
-              <option value="1">Sub Category One</option>
-              <option value="2">Sub Category Two</option>
-              <option value="3">Sub Category Three</option>
+              <option 
+                *ngFor="let category of subCategories" 
+                value="{{ category.id }}"
+              >
+                {{ category.name }}
+              </option>
             </select>
 
             <control-messages [control]="courseForm.controls.subCategory">
