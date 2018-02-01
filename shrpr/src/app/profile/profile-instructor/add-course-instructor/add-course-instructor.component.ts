@@ -38,7 +38,7 @@ export class AddCourseInstructorComponent implements OnInit {
       'group': ['', Validators.required],
       'category': ['', Validators.required],
       'subCategory': ['', Validators.required],
-      'courseDescriptionText': ['', [Validators.required, Validators.minLength(40)]]
+      'description': ['', [Validators.required, Validators.minLength(40)]]
     }); 
 
     this.semesterForm = this.fb.group({  
@@ -163,7 +163,7 @@ export class AddCourseInstructorComponent implements OnInit {
 
       //create start/end date for semester
       if(i === 0) startDate = start.format('YYYY-MM-DD HH:mm:ss');
-      if(i === total) endDate = end.format('YYYY-MM-DD HH:mm:ss');
+      if(i === (total - 1)) endDate = end.format('YYYY-MM-DD HH:mm:ss');
 
       //add to meetings
       meetings.push({
@@ -219,5 +219,7 @@ export class AddCourseInstructorComponent implements OnInit {
 
     //set meetings
     this.course.semesters[0].meetings = meetings;
+
+    console.log(this.course);
   }
 }
