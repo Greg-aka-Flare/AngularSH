@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer, Input } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, FormArray, AbstractControl, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import * as moment from 'moment';
 
@@ -138,6 +138,8 @@ export class AddCourseInstructorComponent implements OnInit {
   } 
   
   submitSemester() {
+
+    const control = <FormArray>this.meetingForm.controls['meetings'];
     
     let type = this.semesterForm.value.type;
     let total = this.semesterForm.value.total;
@@ -170,7 +172,7 @@ export class AddCourseInstructorComponent implements OnInit {
       });
 
       //add control
-      <FormArray>this.meetingForm.controls['meetings'].push(this.fb.group({
+      control.push(this.fb.group({
         'startDate': [start.format('YYYY-MM-DD'), Validators.required],
         'startTime': [start.format('HH:mm'), Validators.required],
         'endTime': [end.format('HH:mm'), Validators.required]
@@ -202,11 +204,11 @@ export class AddCourseInstructorComponent implements OnInit {
     let meetings = [];
 
     //update meetings array
-    for(let meeting of this.meetingForm.controls.meetings.controls) {
+    for(let meeting of this.meetingForm['controls']['meetings']['controls']) {
 
       //create start/end dates
-      let start = moment(meeting.controls.startDate.value + ' ' + meeting.controls.startTime.value);
-      let end = moment(meeting.controls.startDate.value + ' ' + meeting.controls.endTime.value);
+      let start = moment(meeting['controls'].startDate.value + ' ' + meeting['controls'].startTime.value);
+      let end = moment(meeting['controls'].startDate.value + ' ' + meeting['controls'].endTime.value);
 
       //add to meetings
       meetings.push({
