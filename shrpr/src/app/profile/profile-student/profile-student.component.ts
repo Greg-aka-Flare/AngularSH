@@ -94,7 +94,6 @@ export class ProfileStudentComponent implements OnInit {
   }
 
   updateAddress(){
-
     //create data
     const data = {
       phone: this.addressForm.value.addressPhone,

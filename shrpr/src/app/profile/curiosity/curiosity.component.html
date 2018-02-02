@@ -1,0 +1,31 @@
+<article class="card-box" *ngFor="let course of courses; let i = index">
+  <div class="img-ctn">
+      <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
+        ${{ course?.semesters[0]?.amount }}
+      </div>
+      <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
+          Free
+      </div>
+      <figure><a [routerLink]="['/courses', course.id]">
+          <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
+          <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
+      </figure>
+      <h3>{{course?.title}}</h3>
+  </div>
+  <div class="card-info">
+    <div class="group_info"><span class="group_rating" *ngIf="course?.rating" ><star-rating-comp [starType]="'svg'" [rating]="course?.rating" [readOnly]="true"></star-rating-comp></span></div>
+    <p class="location">
+          <i class="fa fa-map-marker" aria-hidden="true"></i> 
+          <a href="javascript:void(0);">{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a>
+      </p><!-- .location -->
+    <p class="date">
+      <i class="fa fa-calendar" aria-hidden="true"></i> 
+      <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
+    </p>
+    <div class="page-cta-wrap">
+    <a [routerLink]="['/courses', course?.id]"  class="page-cta" aria-roledescription="button">View Course</a>
+    <a class="wishlist"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
+    </div>
+  </div>
+</article>
+

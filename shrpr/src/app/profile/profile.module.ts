@@ -13,6 +13,7 @@ import { StarRatingModule } from 'angular-star-rating';
 import { AddCourseInstructorComponent } from './profile-instructor/add-course-instructor/add-course-instructor.component';
 import { AgmCoreModule } from '@agm/core';
 import { Ng2CompleterModule } from 'ng2-completer';
+import { CuriosityComponent } from './curiosity/curiosity.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { Ng2CompleterModule } from 'ng2-completer';
     ProfileInstitutionComponent,
     ProfileInstructorComponent,
     ProfileStudentComponent,
-    AddCourseInstructorComponent
+    AddCourseInstructorComponent,
+    CuriosityComponent
   ],
   imports: [
     CommonModule,

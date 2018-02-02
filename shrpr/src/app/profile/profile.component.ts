@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../core/user.interface';
+import { CuriosityComponent } from './curiosity/curiosity.component';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-profile',
@@ -12,13 +15,24 @@ export class ProfileComponent implements OnInit {
 	user: User;
 	multi: boolean = false;
 	show: string = '';
-
-  constructor(
-  	private auth: AuthService
+	curiosity: boolean = false;
+	paramChild:string;
+	private subscriptions = new Subscription();
+  
+	constructor(
+	  private auth: AuthService,
+	  private route: ActivatedRoute
   ) { }
 
   ngOnInit() { 
-  	
+	this.subscriptions.add(this.route.params.subscribe((params: Params) => {
+		if(params['open']){
+			this.paramChild = params['open'];
+			if(this.paramChild == 'curiosity'){
+			this.curiosity = true;
+			}
+		}
+		}));
   	//get user
   	this.auth.me().subscribe(user => {
 
@@ -53,7 +67,8 @@ export class ProfileComponent implements OnInit {
   			else {
 
   				this.show = 'student';
-  			}
+			  }
+			
   		}
   	});
   }

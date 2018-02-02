@@ -6,6 +6,7 @@ import { ProfileInstitutionComponent} from './profile-institution/profile-instit
 import { ProfileInstructorComponent} from './profile-instructor/profile-instructor.component';
 import { ProfileStudentComponent} from './profile-student/profile-student.component';
 import { AddCourseInstructorComponent } from './profile-instructor/add-course-instructor/add-course-instructor.component';
+import { CuriosityComponent } from './curiosity/curiosity.component';
 
 const profileRoutes: Routes = [
 	{ path: ':open', component: ProfileComponent },

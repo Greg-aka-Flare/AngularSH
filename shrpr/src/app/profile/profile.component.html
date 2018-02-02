@@ -9,15 +9,19 @@
 		</profile-institution>-->
 	
 		<profile-instructor 
-			*ngIf="show == 'instructor'"
+			*ngIf="show == 'instructor' && !curiosity"
 			[user]="user"
 		>
 		</profile-instructor>
 	
 		<profile-student 
-			*ngIf="show == 'student'"
+			*ngIf="show == 'student' && !curiosity"
 			[user]="user"
 		>
 		</profile-student>
+
+		<app-curiosity *ngIf="curiosity"
+			[user]="user">
+		</app-curiosity>
 	</app-template>
 	
