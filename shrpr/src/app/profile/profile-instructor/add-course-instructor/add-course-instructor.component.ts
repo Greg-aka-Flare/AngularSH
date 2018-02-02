@@ -48,7 +48,7 @@ export class AddCourseInstructorComponent implements OnInit {
     }); 
 
     this.semesterForm = this.fb.group({  
-      'type' : ['', Validators.required],
+      'type' : ['days', Validators.required],
       'startDate': ['', Validators.required],
       'startTime': ['', Validators.required],
       'total': ['', Validators.required],
@@ -172,7 +172,6 @@ export class AddCourseInstructorComponent implements OnInit {
       instructor_id: this.user.id,
       title: this.courseForm.value.title,
       description: this.courseForm.value.description,
-      addresses: [],
       semesters: [],
       categories: [
         this.courseForm.value.category,
@@ -223,15 +222,13 @@ export class AddCourseInstructorComponent implements OnInit {
       }));
     }
 
-    //add address
-    this.course.addresses.push({
-      'streetAddress' : this.semesterForm.value.streetAddress,
-      'city' : this.semesterForm.value.city,
-      'state': this.semesterForm.value.state, 
-      'zip' : this.semesterForm.value.zip
-    });
-
     this.course.semesters.push({
+      'addresses': [ {
+        'streetAddress' : this.semesterForm.value.streetAddress,
+        'city' : this.semesterForm.value.city,
+        'state': this.semesterForm.value.state, 
+        'zip' : this.semesterForm.value.zip
+      } ],
       'amount': this.semesterForm.value.amount, 
       'start_date': startDate, 
       'end_date': endDate, 

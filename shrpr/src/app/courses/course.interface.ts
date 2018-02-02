@@ -5,7 +5,6 @@ export interface Course {
 	instructor?: any;
 	title: string;
 	description: string;
-	addresses: any[];
 	semesters: any[];
 	categories: any[];
 }
