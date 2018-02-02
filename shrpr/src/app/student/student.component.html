@@ -1,5 +1,4 @@
-<app-template>
-    <article *ngIf="students">
+<article *ngIf="students">
     <section id="profile-header">
         <div class="profile-picture">
           <img *ngIf="!students?.profile_img" src="../../assets/img/students-picture.png" alt="" title="">
@@ -92,4 +91,4 @@
                   Email: <a href="mailto:{{ students?.email }}">{{ students?.email }}</a>
                   </div>
                   </address>
-                                    </div></section></article></app-template>
+                                    </div></section></article>

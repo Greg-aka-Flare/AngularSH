@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgFor
 import * as moment from 'moment';
 import { Router } from "@angular/router";
 import { ValidationService } from '../../../core/validation.service';
-import { Instructor } from '../../../instructors/instructor.interface';
+import { Instructor } from '../../../instructor/instructor.interface';
 
 @Component({
   selector: 'add-course-instructor',

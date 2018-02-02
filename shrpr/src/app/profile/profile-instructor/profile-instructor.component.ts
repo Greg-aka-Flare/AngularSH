@@ -9,8 +9,8 @@ import { AddCourseInstructorComponent } from './add-course-instructor/add-course
 import { ActivatedRoute, Params } from '@angular/router';
 import { Course } from "../../courses/course.interface";
 import { CourseService } from "../../courses/course.service";
-import { Instructor } from "../../instructors/instructor.interface";
-import { InstructorService } from "../../instructors/instructor.service";
+import { Instructor } from "../../instructor/instructor.interface";
+import { InstructorService } from "../../instructor/instructor.service";
 import { AuthService } from './../../auth/auth.service';
 import { User } from '../../core/user.interface';
 import { ValidationService } from '../../core/validation.service';

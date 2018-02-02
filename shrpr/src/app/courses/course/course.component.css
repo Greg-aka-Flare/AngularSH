@@ -138,6 +138,7 @@ figure.rating {
     background-color: #448a58;
     border:2px solid #448a58;
     color:#ffffff;
+    cursor: pointer;
     text-decoration: none;
     padding:11px 10px 13px;
     font-size:15px;
@@ -152,20 +153,6 @@ figure.rating {
     color: #448a58;
     background-color: #ffffff;
     text-decoration: none;
-}
-.action_btn a.booked{
-    border: 2px solid #448a58;
-    background-color: #ffffff;
-    color: #448a58;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -ms-user-select: none;
-}
-.action_btn a.booked:hover{
-    border: 2px solid #448a58;
-    background-color: #ffffff;
-    color: #448a58;
 }
 .action_btn a img {
     max-width: 25px;

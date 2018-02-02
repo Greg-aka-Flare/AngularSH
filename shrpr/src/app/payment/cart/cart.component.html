@@ -1,0 +1,47 @@
+<section id="cart">
+	<header>
+		<h1>
+			shrpr Cart 
+			<i class="fa fa-2x fa-opencart" aria-hidden="true"></i>
+		</h1>
+
+		<p>Before Checking out please review the items below.</p>
+	</header>
+
+	<section id="courses" *ngIf="courses && courses.length > 0">
+		<article *ngFor="let course of courses">
+			<a class="remove" alt="Remove" title="Remove">
+				<i class="fa fa-2x fa-remove" aria-hidden="true"></i>
+			</a><!-- .remove -->
+
+			<figure
+				[ngStyle]="{ 'background-image': 'url(/assets/img/courses/' + course.semesters[0].primary_img + ')'}"
+			>
+			</figure>
+
+			<div class="info">
+				<div class="title">
+					{{ course.title }}
+				</div><!-- .title -->
+
+				<div class="instructor">
+					Instructor: {{ course.instructor.name }}
+				</div><!-- .instructor -->
+
+				<div class="date">
+			        <span class="start">
+			        	From: {{ course.semesters[0].start_date | date:'EEEE M/dd/yy - h:mm aaa' }}
+			        </span><!-- .start -->
+
+			        <span class="end">
+			        	To: {{ course.semesters[0].end_date | date:'EEEE M/dd/yy - h:mm aaa' }}
+			        </span><!-- .end -->
+				</div><!-- .date -->
+			</div><!-- .info -->
+
+			<div class="cost">
+				${{ course.semesters[0].amount }}
+			</div><!-- .cost -->
+		</article>
+	</section><!-- #courses -->
+</section><!-- #cart -->

@@ -80,7 +80,14 @@ export class CuriousMobileComponent implements OnInit {
       'suggest': new FormControl(null, [Validators.required, Validators.min(100)])
     });
 
-    this.subscriptions.add(this.courseService.getCourses(0, 10, true).subscribe(courses => {
+    //create parameters
+    let parameters = {
+      group: 0,
+      limit: 10,
+      filter: true
+    }
+
+    this.subscriptions.add(this.courseService.getCourses(parameters).subscribe(courses => {
       this.courses = courses;
     }));
 
@@ -178,8 +185,16 @@ export class CuriousMobileComponent implements OnInit {
       //get excludes
       let excludes = this.createExcludes();
 
+      //create parameters
+      let parameters = {
+        group: 0,
+        limit: 1,
+        filter: true,
+        excludes: excludes
+      }
+
       //get new course
-      this.courseService.getCourses(0, 1, true, excludes).subscribe(course => {
+      this.courseService.getCourses(parameters).subscribe(course => {
 
         if(course.length > 0){
 

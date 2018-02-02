@@ -81,15 +81,28 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
       'suggest': new FormControl(null, [Validators.required, Validators.min(100)])
     });
 
-    this.counterSubscription.add(this.courseService.getCourses(1, 3, true).subscribe(courses => {
+    //create parameters
+    let parameters = {
+      group: 1,
+      limit: 3,
+      filter: true
+    }
+
+    this.counterSubscription.add(this.courseService.getCourses(parameters).subscribe(courses => {
       this.forFun = courses;
     }));
 
-    this.counterSubscription.add(this.courseService.getCourses(2, 3, true).subscribe(courses => {
+    //update parameters
+    parameters.group = 2;
+
+    this.counterSubscription.add(this.courseService.getCourses(parameters).subscribe(courses => {
       this.forWork = courses;
     }));
 
-    this.counterSubscription.add(this.courseService.getCourses(3, 3, true).subscribe(courses => {
+    //update parameters
+    parameters.group = 3;
+
+    this.counterSubscription.add(this.courseService.getCourses(parameters).subscribe(courses => {
       this.forKids = courses;
     }));
 
@@ -208,8 +221,16 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
       //get excludes
       let excludes = this.createExcludes();
 
+      //create parameters
+      let parameters = {
+        group: course.group.id,
+        limit: 1,
+        filter: true,
+        excludes: excludes
+      }
+
       //get new course
-      this.courseService.getCourses(course.group.id, 1, true, excludes).subscribe(courses => {
+      this.courseService.getCourses(parameters).subscribe(courses => {
 
         if(courses.length > 0){
 

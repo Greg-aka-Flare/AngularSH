@@ -74,15 +74,28 @@ export class CourseSelectComponent implements OnInit, OnDestroy {
       'selectedCourse': new FormControl(null, Validators.required)
     });
 
-    this.counterSubscription.add(this.courseService.getCourses(1, 6, true).subscribe(courses => {
+    //create parameters
+    let parameters = {
+      group: 1,
+      limit: 6,
+      filter: true
+    }
+
+    this.counterSubscription.add(this.courseService.getCourses(parameters).subscribe(courses => {
       this.forFun = courses;
     }));
 
-    this.counterSubscription.add(this.courseService.getCourses(2, 6, true).subscribe(courses => {
+    //update parameters
+    parameters.group = 2;
+
+    this.counterSubscription.add(this.courseService.getCourses(parameters).subscribe(courses => {
       this.forWork = courses;
     }));
 
-    this.counterSubscription.add(this.courseService.getCourses(3, 6, true).subscribe(courses => {
+    //update parameters
+    parameters.group = 3;
+
+    this.counterSubscription.add(this.courseService.getCourses(parameters).subscribe(courses => {
       this.forKids = courses;
     }));
   }

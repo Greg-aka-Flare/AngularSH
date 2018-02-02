@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import { Subscription } from 'rxjs/Subscription';
 
+import { CartService } from "../../payment/cart.service";
 import { Course } from "../course.interface";
 import { CourseService } from "../course.service";
 import { AuthService } from './../../auth/auth.service';
@@ -22,7 +23,8 @@ import { AuthService } from './../../auth/auth.service';
 export class CourseComponent implements OnInit, OnDestroy {
 
   private id: number;
-  course: any;
+  course: Course;
+  selectedCourse: Course;
   semesterDetails:string;
   primaryImg:string;
   secondaryImg:string;
@@ -45,19 +47,13 @@ export class CourseComponent implements OnInit, OnDestroy {
   public endDate: Date;
   semesterCount:number;
   semesterArray: any[] = [];
-  semesters:any[]=new Array();
   selectedSemester:any;
-  selectedSemesterMettings:number;
   categoriesArray:any;
   semesterInfo;
   reviewshowHide:boolean = false;
   loggedIn: boolean = false;
-  booking: boolean = false;
-  isBooked: boolean = false;
-  showBookBtn: boolean = false;
-  counter:number = 0;
-  semesterParam:number;
-  currentIndex:number = 0;
+  enrollPopup: boolean = false;
+  cartAdded: boolean = false;
 
   //The time to show the next photo
   private NextPhotoInterval:number = 5000;
@@ -70,24 +66,20 @@ export class CourseComponent implements OnInit, OnDestroy {
     window.location.hash = location;
   }
   constructor(
+    private auth: AuthService,
+    private cart: CartService,
     private courseService: CourseService, 
-    private route: ActivatedRoute,
-    private auth: AuthService
+    private route: ActivatedRoute
   ) {
     this.selectedSemester = this.semesterArray;
-    
     
   }
 
   ngOnInit() {
-    
+  
     this.subscriptions.add(this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      if(params['semester_id']){
-        this.semesterParam = params['semester_id'];
-      }
-      
-      this.courseService.getCourse(this.id).subscribe(course => {
+      this.courseService.getCourse(this.id).subscribe((course: Course) => {
       this.course = course;
       this.ratingData = this.course.ratings;
       this.categoriesArray = this.course.categories;
@@ -96,36 +88,10 @@ export class CourseComponent implements OnInit, OnDestroy {
       for(var i=0; i< this.semesterCount; i++){
         this.semesterArray.push(this.course.semesters[i]);
       }
-      if(this.semesterParam){
-          for(var p = 0, q = this.semesterCount; p < q; p++)
-          {
-            if(this.semesterArray[p].id == this.semesterParam){
-              this.currentIndex = p;
-            }
-          }
-      }
-      else{
-        this.currentIndex = 0;
-      }
-     // console.log('current index is : ' + this.currentIndex);
-
-      if(this.course){
-        for(var j = this.counter, l = this.semesterCount; j < l; j=j)
-        {
-          this.semesters.push(this.semesterArray[j]);
-          j++;
-          if(j%3 == 0) break;
-        }
-        this.counter += 3;
-      }
-
       
-      
-
-      
-      this.semesterDetails = JSON.parse(this.course.semesters[this.currentIndex].details);
-      this.startDate = new Date(this.course.semesters[this.currentIndex].start_date.replace(/-/g, "/"));
-      this.endDate = new Date(this.course.semesters[this.currentIndex].end_date.replace(/-/g, "/"));
+      this.semesterDetails = JSON.parse(this.course.semesters[0].details);
+      this.startDate = new Date(this.course.semesters[0].start_date.replace(/-/g, "/"));
+      this.endDate = new Date(this.course.semesters[0].end_date.replace(/-/g, "/"));
        
       if(this.slides.length > 0){
         for(var i=0, j = this.slides.length; i < j; i++){
@@ -133,8 +99,8 @@ export class CourseComponent implements OnInit, OnDestroy {
         }
       }
       
-      this.primaryImg = this.course.semesters[this.currentIndex].primary_img;
-      this.secondaryImg = JSON.parse(this.course.semesters[this.currentIndex].details).secondary_img;
+      this.primaryImg = this.course.semesters[0].primary_img;
+      this.secondaryImg = JSON.parse(this.course.semesters[0].details).secondary_img;
       this.slides.push(
         {image:'../../assets/img/courses/'+ this.primaryImg},
         {image:'../../assets/img/courses/'+ this.secondaryImg}
@@ -142,13 +108,11 @@ export class CourseComponent implements OnInit, OnDestroy {
         //{image:'../../assets/img/court-two.jpg'}
       );
 
-      this.meetingArray = this.course.semesters[this.currentIndex].meetings;
-      this.selectedSemesterMettings =  this.meetingArray.length;
-      this.onSelect(this.course.semesters[this.currentIndex].id);
-      
+      this.meetingArray = this.course.semesters[0].meetings;
+      this.onSelect(this.course.semesters[0].id);
       //initializing the google co-ordinates
-      this.lat = this.course.semesters[this.currentIndex].addresses[0].latitude;
-      this.lng = this.course.semesters[this.currentIndex].addresses[0].longitude;
+      this.lat = this.course.semesters[0].addresses[0].latitude;
+      this.lng = this.course.semesters[0].addresses[0].longitude;
       
       this.reviewCount = this.ratingData.length;
       this.loopCounter = this.reviewCount+1;
@@ -156,27 +120,9 @@ export class CourseComponent implements OnInit, OnDestroy {
           this.userRating += this.ratingData[k].rating;
       }
       this.reviewRatingGross = this.userRating/this.reviewCount;
-    
-      //check if logged in
-      this.loggedIn = this.auth.loggedIn();
 
-      //if logged in, get user
-      if(this.loggedIn) {
-
-        this.auth.me().subscribe(me => { 
-
-          //check if booked for course
-          this.checkBooked(me); 
-
-          //show button
-          this.showBookBtn = true;
-        });
-      }
-      else{
-
-          //show button
-          this.showBookBtn = true;
-      }
+      //check if already in cart
+      this.cartAdded = this.cart.added(this.selectedCourse);
     })
 
     }))
@@ -198,50 +144,27 @@ export class CourseComponent implements OnInit, OnDestroy {
 
   onSelect(val){
     this.selectedSemester = this.semesterArray.filter(x => x.id == val);
-    this.selectedSemesterMettings = this.selectedSemester[0].meetings.length;
 
+    this.selectedCourse = this.course;
+    this.selectedCourse.semesters = this.selectedSemester;
   }
  
   private removeLastSlide() {
     this.slides.pop();
   }
-
   
-  book() {
+  enroll() {
 
     //open pop-up
-    this.booking = true;
+    this.enrollPopup = true;
   }
 
-  booked(value: boolean) {
+  addCart(value: boolean) {
 
-    //set if booked or not
-    this.isBooked = value;
+    //set if added to cart or not
+    this.cartAdded = value;
 
-    //close pop-up
-    this.booking = false;
-  }
-
-  checkBooked(me: any) {
-
-    if(me.student) { //if student
-
-      //check if has courses
-      if(me.student.courses.length) {
-
-        //for every course, check if id matches current id
-        for(let course of me.student.courses){
-
-          if(course.id == this.id){ //if id matches
-
-            //already booked
-            this.isBooked = true;
-
-            //exit loop
-            break;
-          }
-        }
-      }
-    }
+    //close enroll pop-up
+    this.enrollPopup = false;
   }
 }

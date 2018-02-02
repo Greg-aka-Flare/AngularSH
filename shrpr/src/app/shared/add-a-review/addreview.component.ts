@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TemplateHeader } from '../template/template.component';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn } from '@angular/forms';
 import { ValidationService } from '../../core/validation.service';
 import { ControlMessagesComponent } from '../../shared/control-messages/control-messages.component';
@@ -15,7 +14,7 @@ export class AddreviewComponent implements OnInit {
   }
   data: any = {};
   reviewForm: any;
-  constructor(private fb: FormBuilder, ) {
+  constructor(private fb: FormBuilder) {
     
   }
 

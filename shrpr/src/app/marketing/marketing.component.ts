@@ -1,17 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MarketingFormComponent } from './marketing-form.component';
-import { MarketingNavComponent } from './marketing-nav.component';
-import { NgModel } from '@angular/forms';
+
+import { TemplateService } from '../core/template/template.service';
 
 @Component({
   selector: 'app-marketing',
   templateUrl: './marketing.component.html',
   styleUrls: ['./marketing.component.css']
 })
-export class MarketingComponent implements OnInit {
+export class MarketingComponent implements OnInit, OnDestroy {
 
-  constructor() {}
+  constructor(
+  	private template: TemplateService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.template.demo.next(true);
+    this.template.search.next(false);
+  }
+
+  ngOnDestroy() {
+    this.template.demo.next(false);
+    this.template.search.next(true);
+  }
 }

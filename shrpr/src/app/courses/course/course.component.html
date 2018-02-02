@@ -1,9 +1,9 @@
-<course-book 
-  *ngIf="course && booking"
-  [course]="course"
-  (onBooked)="booked($event)"
+<enroll 
+  *ngIf="selectedCourse && enrollPopup"
+  [course]="selectedCourse"
+  (onAddCart)="addCart($event)"
 >
-</course-book>
+</enroll>
 
 <article *ngIf="course">
   <!-- mobile view start-->
@@ -71,17 +71,17 @@
               </div>
             <div class="action_btn">
               <a 
-                *ngIf="!isBooked && showBookBtn"
-                (click)="book()"
+                *ngIf="!cartAdded"
+                (click)="enroll()"
               >
                 Enroll Now
               </a>
 
               <a 
-                *ngIf="isBooked && showBookBtn"
-                class="booked"
+                *ngIf="cartAdded"
+                [routerLink]="['/payment', 'cart']"
               >
-                Enrolled
+                Checkout
               </a>
 
               <a class="wishlist"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
@@ -115,20 +115,20 @@
             <p>
               <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructors', course.instructor.id]">{{ course.instructor.name }}</a>
             </p>
-            <div class="action_btn">
-              <a 
-                *ngIf="!isBooked && showBookBtn"
-                (click)="book()"
+            <div class="action_btn">              <a 
+                *ngIf="!cartAdded"
+                (click)="enroll()"
               >
                 Enroll Now
               </a>
 
               <a 
-                *ngIf="isBooked && showBookBtn"
-                class="booked"
+                *ngIf="cartAdded"
+                [routerLink]="['/payment', 'cart']"
               >
-                Enrolled
-              </a><br>
+                Checkout
+              </a>
+              <br>
               <a class="wishlist"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
             </div>
             <p>
