@@ -113,7 +113,7 @@ export class ProfileInstructorComponent implements OnInit, OnDestroy {
   
     this.profileForm = this.fb.group({
       'name': [this.user.name, [Validators.required, ValidationService.alphabetsValidator]],
-      'profileImage': [this.user.profile_img],
+      'profileImage': [''],
       'url':  [this.user.instructor.details.url],
       'twitter': [this.user.instructor.details.twitter],
       'facebook': [this.user.instructor.details.facebook],

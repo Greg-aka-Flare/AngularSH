@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { Category } from '../../../core/category.interface';
 import { CategoryService } from '../../../core/category.service';
 import { Course } from '../../../courses/course.interface';
+import { CourseService } from '../../../courses/course.service';
 import { User } from '../../../core/user.interface';
 import { ValidationService } from '../../../core/validation.service';
 
@@ -32,6 +33,7 @@ export class AddCourseInstructorComponent implements OnInit {
 
   constructor(
     private category: CategoryService,
+    private courseService: CourseService,
     private fb: FormBuilder,
     private renderer: Renderer,
     private router: Router
@@ -169,7 +171,7 @@ export class AddCourseInstructorComponent implements OnInit {
     //create course
     this.course = {
       group_id: this.courseForm.value.group,
-      instructor_id: this.user.id,
+      instructor: this.user.id,
       title: this.courseForm.value.title,
       description: this.courseForm.value.description,
       semesters: [],
@@ -261,6 +263,7 @@ export class AddCourseInstructorComponent implements OnInit {
     //set meetings
     this.course.semesters[0].meetings = meetings;
 
-    console.log(this.course);
+    //route back to profile
+    this.courseService.create(this.course).subscribe(success => this.router.navigate(['profile']));
   }
 }

@@ -1,8 +1,7 @@
 export interface Course {
 	id?: number;	
 	group_id: number;
-	instructor_id?: number;
-	instructor?: any;
+	instructor: any;
 	title: string;
 	description: string;
 	semesters: any[];

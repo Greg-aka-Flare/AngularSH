@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 
+import { Course } from './course.interface';
+
 @Injectable()
 export class CourseService {
 
@@ -67,7 +69,7 @@ export class CourseService {
     });
 	}
 
-	getCourse(id: number){
+	getCourse(id: number) {
 
 		//create api endpoint
 		let api = this.api + 'course/' + id;
@@ -75,11 +77,19 @@ export class CourseService {
 		return this.http.get(api);	
 	}
 
-	deleteCourse(id: number){
+	create(data): Observable<any> {
+
+		//create api endpoint
+		let api = this.api + 'course';
+
+		return this.http.post(api, data);	
+	}
+
+	deleteCourse(id: number) {
 		return this.http.delete(this.api + id);
 	}
 
-	suggest(data){
+	suggest(data) {
 
 		//create api endpoint
 		let api = this.api + 'course/suggest';
