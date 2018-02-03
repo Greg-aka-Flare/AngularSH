@@ -30,7 +30,7 @@
                 </carousel>
                 </div>
             <div class="overlay">
-                <p><i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructors', course.instructor.id]">{{ course.instructor.name }}</a></p>
+                <p><i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a></p>
                 <p><i class="fa fa-map-marker" aria-hidden="true"></i> 
                   <span class="course_address_mobile" *ngIf="selectedSemester">
                       <span *ngFor="let gadd of selectedSemester">
@@ -113,7 +113,7 @@
               <span class="course_price_desktop free" *ngIf="course.semesters[0].amount == '0.00'">Free</span>
             </div><!-- .course_rating_info -->
             <p>
-              <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructors', course.instructor.id]">{{ course.instructor.name }}</a>
+              <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
             </p>
             <div class="action_btn">              <a 
                 *ngIf="!cartAdded"

@@ -30,6 +30,7 @@ import { TermsComponent } from './login/terms/terms.component';
 import { PrivacyComponent } from './login/privacy/privacy.component';
 
 import { AuthService } from '../auth/auth.service';
+import { CartService } from '../payment/cart.service';
 import { CategoryService } from './category.service';
 import { CourseService } from '../courses/course.service';
 import { CuriousService } from './curious.service';
@@ -80,6 +81,7 @@ import { ValidationService } from '../core/validation.service';
   providers: [
     TemplateService,
     AuthService,
+    CartService,
     CategoryService,
     CourseService,
     CuriousService,
