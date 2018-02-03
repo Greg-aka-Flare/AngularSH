@@ -1,22 +1,23 @@
-<app-template>
-	<article id="profile">
-	</article><!-- #profile -->
+<article id="profile"></article><!-- #profile -->
+	
+<!--<profile-institution 
+	*ngIf="show == 'institution'"
+	[user]="user"
+>
+</profile-institution>-->
 
-	<!--<profile-institution 
-		*ngIf="show == 'institution'"
-		[user]="user"
-	>
-	</profile-institution>-->
+<profile-instructor 
+	*ngIf="show == 'instructor' && !curiosity"
+	[user]="user"
+>
+</profile-instructor>
 
-	<profile-instructor 
-		*ngIf="show == 'instructor'"
-		[user]="user"
-	>
-	</profile-instructor>
+<profile-student 
+	*ngIf="show == 'student' && !curiosity"
+	[user]="user"
+>
+</profile-student>
 
-	<profile-student 
-		*ngIf="show == 'student'"
-		[user]="user"
-	>
-	</profile-student>
-</app-template>
+<app-curiosity *ngIf="curiosity"
+	[user]="user">
+</app-curiosity>

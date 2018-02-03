@@ -5,6 +5,9 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 import { Subject } from 'rxjs/Subject';
 import { AuthService } from '../auth/auth.service';
 import { environment } from '../../environments/environment';
+import { CourseService } from "../courses/course.service";
+import { Course } from '../courses/course.interface';
+import { NullAstVisitor } from '@angular/compiler';
 
 @Injectable()
 export class CuriousService {
@@ -15,10 +18,14 @@ export class CuriousService {
   private subject = new Subject<any>();
   public likes: number[] = [];
   public dislikes: number[] = [];
+  course: Course;
+  lcourses: Course[];
+  likeCourses: Course[];
 
   constructor(
     private auth: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    private courseService: CourseService
   ){ 
 
     if(JSON.parse(localStorage.getItem('likes'))){
@@ -53,12 +60,13 @@ export class CuriousService {
 
     //set localStorage
     localStorage.setItem('likes', JSON.stringify(this.likes));
-
+    
     //increment counter
     this.counter++;
 
     //emit counter
     this.subject.next(this.counter);
+    //return this.subject;
 
     //clear localStorage
     return this.clear();
@@ -136,7 +144,8 @@ export class CuriousService {
     }
   }
 
-  likeCounter(): Observable<number> {
+  likeCounter(): Observable<any> {
   	return this.subject.asObservable();
   }
+
 }

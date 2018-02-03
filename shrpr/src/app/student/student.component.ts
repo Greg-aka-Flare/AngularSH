@@ -22,16 +22,16 @@ import { ControlMessagesComponent } from '../shared/control-messages/control-mes
 
 export class StudentComponent implements OnInit, OnDestroy {
 
-  students:any[];
-  courses: any[];
-  studentCourse:any;
-  courseCard: any[] = [];
+  student:Student;
+  courses: Course[];
+  studentCourse:Course[];
+  courseCard: Course[] = [];
   private id:number;
   addressLength:number;
   private mylocation:string;
   private subscriptions = new Subscription();
-  studentDetails:any;
-  width = document.documentElement.clientWidth;
+  studentDetails:Student["details"];
+  
   constructor(
     private studentService: StudentService, 
     private route: ActivatedRoute, 
@@ -46,25 +46,14 @@ export class StudentComponent implements OnInit, OnDestroy {
           .subscribe(
                 (response) => {
 
-                  this.students = response;
-                  //this.studentCourse = JSON.parse(response.courses);
+                  this.student = response;
                   this.studentDetails = JSON.parse(response.details);
                   this.addressLength = response.addresses.length;
-    
-                  //console.log(this.addressLength);
                 },
                 (error: Response) => console.log(error)
               )
 
           }));
-          
-        const $resizeEvent = Observable.fromEvent(window, 'resize')
-        .map(() => {
-          return document.documentElement.clientWidth;
-          })
-          this.subscriptions.add($resizeEvent.subscribe(data => {
-          this.width = data;
-        }));
       }
   ngOnInit() {
 }

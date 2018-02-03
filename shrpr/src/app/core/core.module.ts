@@ -26,19 +26,19 @@ import { SignUpFormComponent } from './login/sign-up-form/sign-up-form.component
 import { GoogleSigninComponent } from './login/google/google.component';
 import { FacebookLoginComponent } from './login/facebook/facebook.component';
 import { LinkedinComponent } from './login/linkedin/linkedin.component';
-
-import { TemplateService } from './template/template.service';
-import { AuthService } from '../auth/auth.service';
-import { InstructorService } from '../instructor/instructor.service';
-import { StudentService } from '../student/student.service';
-import { InstitutionService } from "../institution/institution.service";
-import { CartService } from '../payment/cart.service';
-import { CourseService } from '../courses/course.service';
-import { CuriousService } from './curious.service';
-import { UserService } from './user.service';
-import { ValidationService } from '../core/validation.service';
 import { TermsComponent } from './login/terms/terms.component';
 import { PrivacyComponent } from './login/privacy/privacy.component';
+
+import { AuthService } from '../auth/auth.service';
+import { CategoryService } from './category.service';
+import { CourseService } from '../courses/course.service';
+import { CuriousService } from './curious.service';
+import { InstitutionService } from '../institution/institution.service';
+import { InstructorService } from '../instructor/instructor.service';
+import { StudentService } from '../student/student.service';
+import { TemplateService } from '../core/template/template.service';
+import { UserService } from './user.service';
+import { ValidationService } from '../core/validation.service';
 
 @NgModule({
   declarations: [
@@ -80,12 +80,12 @@ import { PrivacyComponent } from './login/privacy/privacy.component';
   providers: [
     TemplateService,
     AuthService,
-    StudentService,
-    InstructorService,
-    InstitutionService,
-    CartService,
+    CategoryService,
     CourseService,
     CuriousService,
+    InstructorService,
+    InstitutionService,
+    StudentService,
     UserService,
     ValidationService
   ]

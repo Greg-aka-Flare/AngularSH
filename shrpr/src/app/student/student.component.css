@@ -170,7 +170,17 @@
     text-transform: capitalize;
     color: #02b2b8;
 }
+.desktop {
+    display:none;
+}
 @media only screen and (min-width: 769px) {
+    .desktop {
+        display:block;
+    }
+    .mobile {
+        display:none;
+    }
+
     .edit-form label {
         display: inline-block;
         vertical-align: middle;

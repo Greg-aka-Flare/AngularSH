@@ -1,109 +1,170 @@
 <div *ngIf="addCourse">
-  <add-course-instructor [instructor]="instructor"></add-course-instructor>
+  <add-course-instructor [user]="user"></add-course-instructor>
  </div> 
-<div *ngIf="!addCourse">
-<section id="profile-header">
-  <a href="javascript:void(0)" (click)="showDialogform = !showDialogform" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-<div class="profile-picture">
-<img *ngIf="instructor?.profile_img" src="../../assets/img/instructors/{{instructor?.profile_img}}" alt="" title="">
-<img *ngIf="!instructor?.profile_img" src="../../assets/img/instructors-picture.png" alt="" title="">
-<div class="social-icon" *ngIf="details">
-  <a *ngIf="details?.yelp" href="{{details?.yelp}}" target="_blank" title="Yelp"><i class="fa fa-yelp" aria-hidden="true"></i></a>
-  <a *ngIf="details?.twitter" href="{{details?.twitter}}" target="_blank" title="Twitter"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-  <a *ngIf="details?.facebook" href="{{details?.facebook}}" target="_blank" title="Facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-  <a *ngIf="details?.linkedin" href="{{details?.linkedin}}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-  <a *ngIf="details?.pinterest" href="{{details?.pinterest}}" target="_blank" title="Pinterest"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a>
-</div>
-</div>
-<div><h2>{{instructor?.name}}</h2>
-<i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{instructor?.email}}">{{instructor?.email}}</a><br>
-<span *ngIf="details?.url"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
-<!--<i aria-hidden="true" class="fa fa-map-marker"></i>  {{ instructor?.addresses[0]?.city }}, {{ instructor?.addresses[0]?.state }}-->
-<div class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [readOnly]="true"></star-rating-comp> |  <a (click)="goTo('reviews')" href="javascript:void(0);">{{reviewCount}} reviews</a></div>
-</div>
-</section>
-<app-modal [(visible)]="showDialogform">
-  <h2>Edit Your Profile</h2>
-  <div class="edit-form" *ngIf="instructor" >
-    <form id="instrocterProfile" [formGroup]="instrocterProfileForm" (ngSubmit)="updateProfile()">  
-    <div class="form-row">
-    <label>Name:</label>
-        <input type="text" formControlName="name" [(ngModel)]="instructor.name" />
-        <control-messages [control]="instrocterProfileForm.controls.name"></control-messages>
-    </div>
-      <div class="form-row">
-          <label>Update Profile Picture:</label>
-            <input type="file" formControlName="profileImage" accept="image/x-png,image/gif,image/jpeg" />
-       </div>
-      <h2>Update Social Link</h2>
-      
-      <div *ngIf="details">
-      <div class="form-row">
-        <label>URL:</label>
-          <input type="text" formControlName="url" [(ngModel)]="details.url"/>
-      </div>
-      <div class="form-row">
-      <label>Yelp Link:</label>
-        <input type="text" formControlName="yelp" [(ngModel)]="details.yelp"/>
-    </div>
-    <div class="form-row">
-      <label>Twitter Link:</label>
-        <input type="text" formControlName="twitter" [(ngModel)]="details.twitter"/>
-    </div>
-    <div class="form-row">
-      <label>Facebook Link:</label>
-        <input type="text" formControlName="facebook" [(ngModel)]="details.facebook"/>
-    </div>
-    <div class="form-row">
-      <label>LinkedIn Link:</label>
-        <input type="text" formControlName="linkedIn" [(ngModel)]="details.linkedin" /><br>
-    </div>
-    <div class="form-row">
-      <label>Pinterest Link:</label>
-        <input type="text" formControlName="pinterest" [(ngModel)]="details.pinterest"/>
-    </div>
-  </div> 
+ <article *ngIf="user && !addCourse"> 
+  <!-- Profile Header Start -->
+  <section id="profile-header"> 
+    <a (click)="showProfile = !showProfile" class="edit-btn">
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    </a>
 
-  <div *ngIf="!details">
-    <div class="form-row">
-      <label>URL:</label>
-        <input type="text" formControlName="url" placeholder="Enter Your URL" />
+    <div class="profile-picture">
+      <img *ngIf="!user?.profile_img" src="../../assets/img/user-picture.png"> 
+
+      <img *ngIf="user?.profile_img" src="../../assets/img/{{ user?.profile_img }}">
+      
+      <div class="social-icon" *ngIf="user.instructor.details">
+        <a 
+          *ngIf="user.instructor.details?.yelp" 
+          href="{{ user.instructor.details?.yelp }}" 
+          target="_blank" 
+          title="Yelp"
+        >
+          <i class="fa fa-yelp" aria-hidden="true"></i>
+        </a> 
+
+        <a 
+          *ngIf="user.instructor.details?.twitter" 
+          href="{{ user.instructor.details?.twitter }}" 
+          target="_blank" 
+          title="Twitter"
+        >
+          <i class="fa fa-twitter-square" aria-hidden="true"></i>
+        </a> 
+
+        <a 
+          *ngIf="user.instructor.details?.facebook" 
+          href="{{ user.instructor.details?.facebook }}" 
+          target="_blank" 
+          title="Facebook"
+        >
+          <i class="fa fa-facebook-square" aria-hidden="true"></i>
+        </a> 
+
+        <a 
+          *ngIf="user.instructor.details?.linkedin" 
+          href="{{ user.instructor.details?.linkedin }}" 
+          target="_blank" title="LinkedIn"
+        >
+          <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+        </a> 
+
+        <a 
+          *ngIf="user.instructor.details?.pinterest" 
+          href="{{ user.instructor.details?.pinterest }}" 
+          target="_blank" 
+          title="Pinterest"
+        >
+          <i class="fa fa-pinterest-square" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
-    <div class="form-row">
-    <label>Yelp Link:</label>
-      <input type="text" formControlName="yelp" placeholder="Yelp Link"/>
-  </div>
-  <div class="form-row">
-    <label>Twitter Link:</label>
-      <input type="text" formControlName="twitter" placeholder="Twitter Link"/>
-  </div>
-  <div class="form-row">
-    <label>Facebook Link:</label>
-      <input type="text" formControlName="facebook" placeholder="Facebook Link"/>
-  </div>
-  <div class="form-row">
-    <label>LinkedIn Link:</label>
-      <input type="text" formControlName="linkedIn" placeholder="Linkedin Link" /><br>
-  </div>
-  <div class="form-row">
-    <label>Pinterest Link:</label>
-      <input type="text" formControlName="pinterest" placeholder="Pinterest Link" />
-  </div>
-</div>
-  
-    <div class="form-row">
-      <button type="submit" class="btn btn-primary" ><i class="fa fa-check" aria-hidden="true"></i></button>
-      <button class="btn btn-default" (click)="showDialogform = !showDialogform"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-    </div>  
-    </form>
-  </div>
-</app-modal>  
-<!-- #profile header -->
+
+    <div>
+      <h2>{{ user.name }}</h2>
+
+      <i class="fa fa-envelope-o" aria-hidden="true"></i>
+
+      <a href="mailto:{{ user.email }}">{{ user.email }}</a> 
+
+      <br />
+
+      <span *ngIf="user.instructor.details?.url">
+        <i class="fa fa-globe" aria-hidden="true"></i> 
+
+        <a href="{{ user.instructor.details?.url }}" target="_blank">
+          {{ user.instructor.details?.url }}
+        </a>
+      </span> 
+
+      <span *ngIf="user.instructor?.addressses">
+        <i aria-hidden="true" class="fa fa-map-marker"></i> 
+
+        {{ user.instructor.addressses[0].city }}, {{ user.instructor.addressses[0].state }}
+      </span>
+      <div class="rating"><star-rating-comp [starType]="'svg'" [rating]="user.instructor?.rating" [readOnly]="true"></star-rating-comp> {{user.instructor?.rating}}</div>
+    </div>
+  </section>
+  <!-- Profile Header End --> 
+
+  <!-- Profile Header Edit Form Start -->
+  <app-modal [(visible)]="showProfile">
+    <h2>Edit Your Profile</h2>
+
+    <div class="edit-form" *ngIf="user">
+      <form id="instructorProfile" [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+        <div class="form-row">
+          <label>Name:</label>
+
+          <input type="text" formControlName="name" />
+
+          <control-messages [control]="profileForm.controls.name"></control-messages>
+        </div>
+        <div class="form-row">
+          <label>Update Profile Picture:</label>
+
+          <input type="file" formControlName="profileImage" accept="image/x-png,image/gif,image/jpeg" />
+        </div>
+
+        <h2>Update Social Link</h2>
+
+        <div>
+          <div class="form-row">
+            <label>URL:</label>
+
+            <input type="text" formControlName="url" />
+          </div>
+
+          <div class="form-row">
+            <label>Yelp Link:</label>
+
+            <input type="text" formControlName="yelp" />
+          </div>
+
+          <div class="form-row">
+            <label>Twitter Link:</label>
+
+            <input type="text" formControlName="twitter" />
+          </div>
+
+          <div class="form-row">
+            <label>Facebook Link:</label>
+
+            <input type="text" formControlName="facebook" />
+          </div>
+
+          <div class="form-row">
+            <label>LinkedIn Link:</label>
+
+            <input type="text" formControlName="linkedin" />
+          </div>
+
+          <div class="form-row">
+            <label>Pinterest Link:</label>
+
+            <input type="text" formControlName="pinterest" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <button type="submit" class="btn btn-primary" [disabled]="!profileForm.valid"> 
+            <i class="fa fa-check" aria-hidden="true"></i> 
+          </button>
+
+          <button class="btn btn-default" (click)="showProfile = !showProfile"> 
+            <i class="fa fa-times-circle" aria-hidden="true"></i> 
+          </button>
+        </div>
+      </form>
+    </div>
+  </app-modal>
+  <!-- Profile Header Edit Form End --> 
 <a [routerLink]="['/profile', 'add-course']" class="add-course-btn">Add Course</a>
-<tabs *ngIf="width < 768">
-<tab tabTitle="Courses">
-<h3>Upcoming Events with {{instructor?.name}} </h3>
-<article class="card-box" *ngFor="let card of instructorCourse; let i = index">
+  <!-- tab Start for mobile-->
+  <tabs class="mobile">
+    <tab tabTitle="Courses" *ngIf="instructorCourse.length > 0">
+      <h3>Upcoming Events with {{user?.name}} </h3>
+    <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
     <div class="img-ctn">
       <div class="price" *ngIf="card.semesters[0].amount != '0.00'">
         ${{ card?.semesters[0]?.amount }}
@@ -136,132 +197,147 @@
     </div>
 </article> 
 <p *ngIf="courseCard.length > 3" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= courseCard.length">view more</button></p> 
-</tab>
-<tab tabTitle="ABOUT">
-  <div class="contact_box">
-      <a href="javascript:void(0)" (click)="isEditAbout = !isEditAbout" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-<p>{{details?.description}}</p>
-<app-modal [(visible)]="isEditAbout">    
-    <h2>Edit Your Description</h2>
-    <div class="edit-form" *ngIf="instructor">
-    <form id="instrocterDescription" [formGroup]="instrocterDescriptionForm" (ngSubmit)="updateinstrocterDescription()">  
-      <div class="form-row">
-      <label>Description:</label>
-      <textarea *ngIf="details?.length"  cols="30" rows="10"  formControlName="description" [(ngModel)]="details.description"></textarea>
-      <textarea *ngIf="!details?.length" cols="30" rows="10"  formControlName="description"></textarea>
-          <control-messages [control]="instrocterDescriptionForm.controls.description"></control-messages>
-      </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!instrocterDescriptionForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
-      <button class="btn btn-default" (click)="isEditAbout = !isEditAbout"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-      </form>
-    </div>
-  </app-modal>
-</div>
-</tab>
-<tab tabTitle="CONTACT">
+    </tab> 
+    
+    <tab tabTitle="ABOUT">
       <div class="contact_box">
-          <a href="javascript:void(0)" (click)="isEdit = !isEdit" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-          <div class="contact_instructor">
-        <!--<span *ngIf="instructor.phone"><i class="fa fa-phone-square" aria-hidden="true"></i> <a href="tel:{{instructor.phone}}">{{instructor.phone}}</a></span>-->
-        <br>
-        <span *ngIf="details?.url"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span> 
-        </div> 
-        <app-modal [(visible)]="isEdit">    
-            <h2>Edit Your Contact</h2>
-            <div class="edit-form" *ngIf="instructor">
-                <form id="instrocterAddress" [formGroup]="instrocterAddressForm" (ngSubmit)="updateAddress()">  
-                    <div *ngIf="!instructorAddress.length">
-                        <div class="form-row">
-                          <label>Street Address:</label>
-                          <input type="text" formControlName="addressStreet" placeholder="Street Address" />
-                          <control-messages [control]="instrocterAddressForm.controls.addressStreet" ></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>City:</label>
-                          <input type="text" formControlName="addressCity" placeholder="City" />
-                          <control-messages [control]="instrocterAddressForm.controls.addressCity"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>State:</label>
-                          <input type="text" formControlName="addressState" placeholder="State"/>
-                          <control-messages [control]="instrocterAddressForm.controls.addressState"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>Zip:</label>
-                          <input type="text" formControlName="addressZip" pattern="[0-9]+" placeholder="Zip"/>
-                          <control-messages [control]="instrocterAddressForm.controls.addressZip"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>Country:</label>
-                          <input type="text" formControlName="addressCountry" placeholder="Country"/>
-                          <control-messages [control]="instrocterAddressForm.controls.addressCountry"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>Phone:</label>
-                          <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" placeholder="Phone"/>
-                          <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
-                        </div>
-                        <div class="form-row">
-                          <label>Email:</label>
-                          <input type="text" formControlName="addressEmail" [(ngModel)]="user.email"/>
-                          <control-messages [control]="instrocterAddressForm.controls.addressEmail"></control-messages>
-                        </div>
-                      </div>
-                      <div *ngIf="instructorAddress.length">
-                        <div *ngFor="let address of user?.instructor.addresses">
-                          <div class="form-row">
-                            <label>Street Address:</label>
-                            <input type="text" formControlName="addressStreet" [(ngModel)]="address.streetAddress"/>
-                            <control-messages [control]="instrocterAddressForm.controls.addressStreet"></control-messages>
-                          </div>
-                          <div class="form-row">
-                            <label>City:</label>
-                            <input type="text" formControlName="addressCity" [(ngModel)]="address.city"/>
-                            <control-messages [control]="instrocterAddressForm.controls.addressCity"></control-messages>
-                          </div>
-                          <div class="form-row">
-                            <label>State:</label>
-                            <input type="text" formControlName="addressState" [(ngModel)]="address.state"/>
-                            <control-messages [control]="instrocterAddressForm.controls.addressState"></control-messages>
-                          </div>
-                          <div class="form-row">
-                            <label>Zip:</label>
-                            <input type="text" formControlName="addressZip" pattern="[0-9]+" [(ngModel)]="address.zip"/>
-                            <control-messages [control]="instrocterAddressForm.controls.addressZip"></control-messages>
-                          </div>
-                          <div class="form-row">
-                            <label>Country:</label>
-                            <input type="text" formControlName="addressCountry" [(ngModel)]="address.country"/>
-                            <control-messages [control]="instrocterAddressForm.controls.addressCountry"></control-messages>
-                          </div>
-                          <div class="form-row">
-                            <label>Phone:</label>
-                            <input *ngIf="instructor.phone"  type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="students.phone" />
-                            <input *ngIf="!instructor.phone"  type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+"/>
-                            <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
-                          </div>
-                          <div class="form-row">
-                            <label>Email:</label>
-                            <input type="text" formControlName="addressEmail" [(ngModel)]="user.email"/>
-                            <control-messages [control]="instrocterAddressForm.controls.addressEmail"></control-messages>
-                          </div>
-                        </div>
-                      </div>
-                <div class="form-row">
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
-                  <button class="btn btn-default" (click)="isEdit = !isEdit"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                </div>  
-                </form>
-                </div>
-          </app-modal>     
-      </div>
-</tab>
-</tabs><!-- #Tab -->
-<!-- desktop view -->
+        <a (click)="showAbout = !showAbout" class="edit-btn"> 
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+        </a>
 
-<section *ngIf="width > 767" id="desktopcourses">
-<h2>Courses </h2>
-<h3>Upcoming Events with {{instructor?.name}}</h3>
+        <p>{{ user.instructor.details?.description }}</p>
+
+        <!-- Description Edit Form Start -->
+        <app-modal [(visible)]="showAbout">
+          <h2>Edit Your Description</h2>
+
+          <div class="edit-form">
+            <form id="instructorDescription" [formGroup]="descriptionForm" (ngSubmit)="updateDescription()">
+              <div class="form-row">
+                <label>Description:</label>
+
+                <textarea cols="30" rows="10"  formControlName="description"></textarea>
+
+                <control-messages [control]="descriptionForm.controls.description"></control-messages>
+              </div>
+
+              <button type="submit" class="btn btn-primary" [disabled]="!descriptionForm.valid"> 
+                <i class="fa fa-check" aria-hidden="true"></i> 
+              </button>
+
+              <button class="btn btn-default" (click)="showAbout = !showAbout"> 
+                <i class="fa fa-times-circle" aria-hidden="true"></i> 
+              </button>
+            </form>
+          </div>
+        </app-modal>
+        <!-- Description Edit Form End --> 
+      </div>
+    </tab> 
+
+    <tab tabTitle="CONTACT">
+      <div class="contact_box">
+          <address *ngFor="let address of user?.instructor.addresses">
+              <span *ngIf="address?.streetAddress"> {{ address?.streetAddress }}<br /></span>
+              <span *ngIf="address?.city">{{ address?.city }},</span> <span *ngIf="address?.state">{{ address?.state }},</span> <span *ngIf="address?.zip">{{ address?.zip }}<br /></span>
+              <span *ngIf="address?.country">{{ address?.country }}<br></span>
+          </address>
+        <div>
+          <span *ngIf="user?.phone">Phone: <a href="tel:{{ user?.phone }}">{{ user?.phone }}</a><br /></span>
+          Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a><br>
+          <span *ngIf="user?.instructor.details.secondary_email"> Secondary Email: <a href="mailto:{{ user?.instructor.details.secondary_email }}">{{ user?.instructor.details.secondary_email }}</a></span>
+        </div>  
+
+        <a (click)="showAddress = !showAddress" class="edit-btn"> 
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+        </a> 
+
+        <!-- Profile Address Edit Form Start -->
+        <app-modal [(visible)]="showAddress">
+          <h2>Edit Your Contact</h2>
+
+          <div class="edit-form">
+            <form id="instructorAddress" [formGroup]="addressForm" (ngSubmit)="updateAddress()">
+              <div>
+                <div class="form-row">
+                  <label>Address:</label>
+
+                  <input type="text" formControlName="addressStreet" placeholder="Street Address" />
+
+                  <control-messages [control]="addressForm.controls.addressStreet" ></control-messages>
+                </div>
+
+                <div class="form-row">
+                  <label>City:</label>
+
+                  <input type="text" formControlName="addressCity" placeholder="City" />
+
+                  <control-messages [control]="addressForm.controls.addressCity"></control-messages>
+                </div>
+
+                <div class="form-row">
+                  <label>State:</label>
+
+                  <input type="text" formControlName="addressState" placeholder="State" />
+
+                  <control-messages [control]="addressForm.controls.addressState"></control-messages>
+                </div>
+
+                <div class="form-row">
+                  <label>Zip:</label>
+
+                  <input type="text" formControlName="addressZip" pattern="[0-9]+" placeholder="Zip" />
+
+                  <control-messages [control]="addressForm.controls.addressZip"></control-messages>
+                </div>
+
+                <div class="form-row">
+                  <label>Country:</label>
+
+                  <input type="text" formControlName="addressCountry" placeholder="Country" />
+
+                  <control-messages [control]="addressForm.controls.addressCountry"></control-messages>
+                </div>
+
+                <div class="form-row">
+                  <label>Phone:</label>
+
+                  <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" placeholder="Enter Phone" />
+
+                  <control-messages [control]="addressForm.controls.addressPhone"></control-messages>
+                </div>
+
+                <div class="form-row">
+                  <label>Secondary Email:</label>
+                  
+                  <input type="text" formControlName="addressEmailSecondary" placeholder="Enter Email" />
+                  
+                  <control-messages [control]="addressForm.controls.addressEmailSecondary"></control-messages>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <button type="submit" class="btn btn-primary" [disabled]="!addressForm.valid"> 
+                  <i class="fa fa-check" aria-hidden="true"></i> 
+                </button>
+
+                <button class="btn btn-default" (click)="showAddress = !showAddress"> 
+                  <i class="fa fa-times-circle" aria-hidden="true"></i> 
+                </button>
+              </div>
+            </form>
+          </div>
+        </app-modal>
+        <!-- Profile Address Edit Form End --> 
+      </div>
+    </tab>
+  </tabs>
+  <!-- tab End for mobile--> 
+
+  <!-- desktop view -->
+  <section class="desktop">
+  <div *ngIf="instructorCourse.length > 0">
+    <h3>Your Courses</h3>
 <article class="card-box" *ngFor="let card of instructorCourse; let i = index">
   <div class="img-ctn">
       <div class="price" *ngIf="card.semesters[0].amount != '0.00'">
@@ -293,120 +369,140 @@
       <i class="fa fa-calendar" aria-hidden="true"></i> 
         <time class="date_stamp" title="{{ card?.semesters[0]?.start_date | datex: 'LL' }}">{{ card?.semesters[0]?.start_date | datex: 'LL' }}</time>
     </p>
-    <!--<p class="with-box"><span>With</span> {{card.instructor?.name}}</p>-->
     <a [routerLink]="['/courses', card?.id]" class="page-cta" aria-roledescription="button">View Course</a>
   </div>
 </article>
 <p *ngIf="courseCard.length > 3" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= courseCard.length">view more</button></p>
-<h2>ABOUT <a href="javascript:void(0)" (click)="isEditAbout = !isEditAbout" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
-<p>{{details?.description}}</p>
-<app-modal [(visible)]="isEditAbout">    
-    <h2>Edit Your Description</h2>
-    <div class="edit-form" *ngIf="instructor">
-    <form id="instrocterDescription" [formGroup]="instrocterDescriptionForm" (ngSubmit)="updateinstrocterDescription()">  
-      <div class="form-row">
-          <textarea *ngIf="details?.length"  cols="30" rows="10"  formControlName="description" [(ngModel)]="details.description"></textarea>
-          <textarea *ngIf="!details?.length" cols="30" rows="10"  formControlName="description"></textarea>
-          <control-messages [control]="instrocterDescriptionForm.controls.description"></control-messages>
-      </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!instrocterDescriptionForm.valid"><i class="fa fa-check" aria-hidden="true"></i></button>
-      <button class="btn btn-default" (click)="isEditAbout = !isEditAbout"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-      </form>
-    </div>
-  </app-modal>
-<h2>CONTACT <a href="javascript:void(0)" (click)="isEdit = !isEdit" class="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h2>
-<div class="contact_instructor">
-<span *ngIf="instructor?.phone"><i class="fa fa-phone-square" aria-hidden="true"></i> {{instructor?.phone}}</span><br>
-<span *ngIf="details?.url"><i class="fa fa-globe" aria-hidden="true"></i> <a href="{{details?.url}}" target="_blank">{{details?.url}}</a></span>
 </div>
-<app-modal [(visible)]="isEdit">    
-  <h2>Edit Your Contact</h2>
-  <div class="edit-form" *ngIf="instructor">
-      <form id="instrocterAddress" [formGroup]="instrocterAddressForm" (ngSubmit)="updateAddress()">  
-          <div *ngIf="!instructorAddress.length">
+    <h2>
+      ABOUT 
+      <a (click)="showAbout = !showAbout" class="edit-btn"> 
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      </a>
+    </h2>
+
+    <p>{{ user.instructor.details?.description }}</p>
+
+    <!-- Description Edit Form Start -->
+    <app-modal [(visible)]="showAbout">
+      <h2>Edit Your Description</h2>
+
+      <div class="edit-form">
+        <form id="instructorDescription" [formGroup]="descriptionForm" (ngSubmit)="updateDescription()">
+          <div class="form-row">
+            <textarea cols="30" rows="10"  formControlName="description"></textarea>
+
+            <control-messages [control]="descriptionForm.controls.description"></control-messages>
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="!descriptionForm.valid">
+            <i class="fa fa-check" aria-hidden="true"></i>
+          </button>
+
+          <button class="btn btn-default" (click)="showAbout = !showAbout">
+            <i class="fa fa-times-circle" aria-hidden="true"></i>
+          </button>
+        </form>
+      </div>
+    </app-modal>
+    <!-- Description Edit Form End -->
+
+    <h2>
+      CONTACT 
+      <a (click)="showAddress = !showAddress" class="edit-btn"> 
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      </a>
+    </h2>
+
+    <div class="contact_box">
+     <address *ngFor="let address of user?.instructor.addresses">
+          <span *ngIf="address?.streetAddress"> {{ address?.streetAddress }}<br /></span>
+          <span *ngIf="address?.city">{{ address?.city }},</span> <span *ngIf="address?.state">{{ address?.state }},</span> <span *ngIf="address?.zip">{{ address?.zip }}<br /></span>
+          <span *ngIf="address?.country">{{ address?.country }}<br></span>
+      </address>
+    <div>
+      <span *ngIf="user?.phone">Phone: <a href="tel:{{ user?.phone }}">{{ user?.phone }}</a><br /></span>
+      Email: <a href="mailto:{{ user?.email }}">{{ user?.email }}</a><br>
+      <span *ngIf="user?.instructor.details.secondary_email"> Secondary Email: <a href="mailto:{{ user?.instructor.details.secondary_email }}">{{ user?.instructor.details.secondary_email }}</a></span>
+    </div>  
+
+      <!-- Address Edit Form Start -->
+      <app-modal [(visible)]="showAddress">
+        <h2>Edit Your Contact</h2>
+
+        <div class="edit-form">
+          <form id="instructorAddress" [formGroup]="addressForm" (ngSubmit)="updateAddress()">
+            <div>
               <div class="form-row">
-                <label>Street Address:</label>
+                <label>Address:</label>
+
                 <input type="text" formControlName="addressStreet" placeholder="Street Address" />
-                <control-messages [control]="instrocterAddressForm.controls.addressStreet" ></control-messages>
+
+                <control-messages [control]="addressForm.controls.addressStreet" ></control-messages>
               </div>
+
               <div class="form-row">
                 <label>City:</label>
+
                 <input type="text" formControlName="addressCity" placeholder="City" />
-                <control-messages [control]="instrocterAddressForm.controls.addressCity"></control-messages>
+                
+                <control-messages [control]="addressForm.controls.addressCity"></control-messages>
               </div>
+
               <div class="form-row">
                 <label>State:</label>
+
                 <input type="text" formControlName="addressState" placeholder="State"/>
-                <control-messages [control]="instrocterAddressForm.controls.addressState"></control-messages>
+                
+                <control-messages [control]="addressForm.controls.addressState"></control-messages>
               </div>
+
               <div class="form-row">
                 <label>Zip:</label>
+                
                 <input type="text" formControlName="addressZip" pattern="[0-9]+" placeholder="Zip"/>
-                <control-messages [control]="instrocterAddressForm.controls.addressZip"></control-messages>
+
+                <control-messages [control]="addressForm.controls.addressZip"></control-messages>
               </div>
+
               <div class="form-row">
                 <label>Country:</label>
+                
                 <input type="text" formControlName="addressCountry" placeholder="Country"/>
-                <control-messages [control]="instrocterAddressForm.controls.addressCountry"></control-messages>
+
+                <control-messages [control]="addressForm.controls.addressCountry"></control-messages>
               </div>
+              
               <div class="form-row">
                 <label>Phone:</label>
-                <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" placeholder="Phone"/>
-                <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
+                
+                <input type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" placeholder="Enter Phone" />
+                
+                <control-messages [control]="addressForm.controls.addressPhone"></control-messages>
               </div>
+
               <div class="form-row">
-                <label>Email:</label>
-                <input type="text" formControlName="addressEmail" [(ngModel)]="user.email"/>
-                <control-messages [control]="instrocterAddressForm.controls.addressEmail"></control-messages>
+                <label>Secondary Email:</label>
+                
+                <input type="text" formControlName="addressEmailSecondary" placeholder="Enter Email" />
+                
+                <control-messages [control]="addressForm.controls.addressEmailSecondary"></control-messages>
               </div>
             </div>
-            <div *ngIf="instructorAddress.length">
-              <div *ngFor="let address of user?.instructor.addresses">
-                <div class="form-row">
-                  <label>Street Address:</label>
-                  <input type="text" formControlName="addressStreet" [(ngModel)]="address.streetAddress"/>
-                  <control-messages [control]="instrocterAddressForm.controls.addressStreet"></control-messages>
-                </div>
-                <div class="form-row">
-                  <label>City:</label>
-                  <input type="text" formControlName="addressCity" [(ngModel)]="address.city"/>
-                  <control-messages [control]="instrocterAddressForm.controls.addressCity"></control-messages>
-                </div>
-                <div class="form-row">
-                  <label>State:</label>
-                  <input type="text" formControlName="addressState" [(ngModel)]="address.state"/>
-                  <control-messages [control]="instrocterAddressForm.controls.addressState"></control-messages>
-                </div>
-                <div class="form-row">
-                  <label>Zip:</label>
-                  <input type="text" formControlName="addressZip" pattern="[0-9]+" [(ngModel)]="address.zip"/>
-                  <control-messages [control]="instrocterAddressForm.controls.addressZip"></control-messages>
-                </div>
-                <div class="form-row">
-                  <label>Country:</label>
-                  <input type="text" formControlName="addressCountry" [(ngModel)]="address.country"/>
-                  <control-messages [control]="instrocterAddressForm.controls.addressCountry"></control-messages>
-                </div>
-                <div class="form-row">
-                  <label>Phone:</label>
-                  <input *ngIf="instructor.phone"  type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+" [(ngModel)]="students.phone" />
-                  <input *ngIf="!instructor.phone"  type="text" formControlName="addressPhone" maxlength="10" pattern="[0-9]+"/>
-                  <control-messages [control]="instrocterAddressForm.controls.addressPhone"></control-messages>
-                </div>
-                <div class="form-row">
-                  <label>Email:</label>
-                  <input type="text" formControlName="addressEmail" [(ngModel)]="user.email"/>
-                  <control-messages [control]="instrocterAddressForm.controls.addressEmail"></control-messages>
-                </div>
-              </div>
+
+            <div class="form-row">
+              <button type="submit" class="btn btn-primary" [disabled]="!addressForm.valid"> 
+                <i class="fa fa-check" aria-hidden="true"></i>
+              </button>
+
+              <button class="btn btn-default" (click)="showAddress = !showAddress">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+              </button>
             </div>
-      <div class="form-row">
-        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i></button>
-        <button class="btn btn-default" (click)="isEdit = !isEdit"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-      </div>  
-      </form>
-      </div>
-</app-modal>   
-</section>
-<!-- desktop view End -->
-</div>
+          </form>
+        </div>
+      </app-modal>
+      <!-- Address Edit Form End -->
+    </div>
+  </section>
+</article>
