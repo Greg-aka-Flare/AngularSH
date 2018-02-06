@@ -26,24 +26,6 @@
                         <a [routerLink]="['/courses', course.id]"><img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
                         <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
                 </figure>
-
-                <div class="like_action">
-                    <a 
-                        class="hollow-icon thumbUp" 
-                        (click)="onLike(course, i)"
-                        [class.like]="course?.state == 'like'"
-                    >
-                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                    </a>
-
-                    <a 
-                        class="hollow-icon thumbDown" 
-                        (click)="onDislike(course, i)"
-                        [class.dislike]="course?.state == 'dislike'"
-                    >
-                        <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-                    </a>
-                </div>
             </div><!-- .img-ctn -->
 
             <div class="card-info">
@@ -63,7 +45,7 @@
                 </div><!-- .group_info-->
 
                 <h3>
-                    <a [routerLink]="['/courses', course?.id]">{{ course?.title }}</a>
+                    <a [routerLink]="['/courses', course?.id]">{{ course?.title | truncate : 70 : '...' }}</a>
                 </h3>
                 <div class="location-wrap">
                 <p class="location">
@@ -173,7 +155,7 @@
                 </div><!-- .group_info-->
 
                 <h3>
-                    <a [routerLink]="['/courses', course?.id]">{{ course?.title }}</a>
+                    <a [routerLink]="['/courses', course?.id]">{{ course?.title | truncate : 70 : '...'}}</a>
                 </h3><div class="location-wrap">
                 <p class="location">
                     <i class="fa fa-map-marker" aria-hidden="true"></i> 
@@ -284,7 +266,7 @@
                 </div><!-- .group_info-->
 
                 <h3>
-                    <a [routerLink]="['/courses', course.id]">{{ course?.title }}</a>
+                    <a [routerLink]="['/courses', course.id]">{{ course?.title | truncate : 70 : '...' }}</a>
                 </h3>
                 <div class="location-wrap">
                 <p class="location">
