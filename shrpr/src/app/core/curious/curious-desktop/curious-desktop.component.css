@@ -21,27 +21,28 @@
     color:#ea8922;
     border-bottom:3px solid #ea8922;
 }
-
-.three_col_content::before,
-.three_col_content::after {
-    content: '';
-    display: block;
-    width: 100%;
-    clear: both;
+.thee_col_content {
+    display: flex;
+}
+.card-box {
+    background-color: #fff;
+    box-shadow: 0 0 3px 4px #cccccc;
+    margin: 0 1.5% 20px 1.5%;
+    width: 30%;
+    max-width: none;
+    box-sizing: border-box;
+    color: #818181;
+    padding: 0 0 60px 0;;
+    position: relative;
 }
 
-.three_col_content::after {
-    content: '';
-    display: block;
-    width: 100%;
-    clear: both;
-}
 .img-ctn {
     position: relative;
+    margin: 8px 8px 0 8px;
 }
 .img-ctn figure {
     margin:0;
-    height: 280px;
+    height: 210px;
     overflow: hidden;
     position: relative;
     border: 1px solid #f7f7f7;
@@ -68,6 +69,7 @@
     top: 20px;
     right: 0;
     z-index: 9;
+    display: none;
 }
 .price.free {
     background: #448a58;
@@ -86,26 +88,24 @@
 .location a, .date_stamp {
     font-size:12px;
     line-height: 14px;
-    color:#229bcb;
+    color:#818181;
+}
+.card-info {
+padding: 2px 18px 0 18px;
 }
 .card-info h3 {
-    padding:0 0 10px 0;
-    min-height: 58px;
+    font-size: 16px;
+    line-height: 18px;
+    min-height: 56px;
+    padding: 5px 0 0 0;
 }
 .card-info h3 a {
-    color:#222222;
+    color:#707070;
     text-decoration: none;
 }
 .card-info h3 a:hover {
     color:#ed9639;
-}
-.card-box {
-    margin: 0 1.5% 10px 1.5%;
-    background-color: #fff;
-    float: left;
-    width: 30%;
-}
- 
+} 
 .card-row {
     margin: 0 0 5px 0;
 }
@@ -237,51 +237,46 @@
 }
 
 .like_action {
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 46%;
-    width: 100%;
+   border: 2px solid #707070;
+   display: flex;
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 100%; 
 }
-
-.hollow-icon {
-    cursor: pointer;
-    display: block;
-    width: 40px;
-    height: 40px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    box-sizing: border-box;
+.like_action > div {
+    padding: 10px;
     text-align: center;
-    padding: 6px;
-    margin: 0 10px;
-    color: #000000;
-    font-size: 24px;
-    text-decoration: none;
-    opacity: 0.4;
-    transition: all 0.2s ease-out;
+    width: 50%;
 }
-.hollow-icon.like{
-    background-color: #28e93b;
+.like_action > div:first-child {
+    border-right: 2px solid #707070;
 }
-.hollow-icon.dislike{
-    background-color: #e92828;
+.hollow-icon {
+    color: #707070;
+    cursor: pointer;
 }
+.hollow-icon .fa-heart, .hollow-icon:hover .fa-heart-o {
+    display: none;
+}
+.hollow-icon.like .fa-heart, .hollow-icon:hover .fa-heart {
+    display: block;
+    margin: 2px 0 0 0;
+}
+.hollow-icon.like .fa-heart-o {
+    display: none;
 
-.hollow-icon:hover {
-    opacity: 0.8;
 }
-
 .thumbUp {
-    float: right;
+    color: #707070;
 }
 
 .thumbUp:hover {
-    background-color: #28e93b;
+    color: #448a58;
 }
 
 .thumbDown:hover {
-    background-color: #e92828;
+    color:#d03233; 
 }
 
 a.show-more {

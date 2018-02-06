@@ -74,9 +74,28 @@
                     <i class="fa fa-calendar" aria-hidden="true"></i> 
                     <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
                 </p><!-- .date -->
-                <a class="course-cta" [routerLink]="['/courses', course.id]" aria-roledescription="button">View Course</a>
+                <!--<a class="course-cta" [routerLink]="['/courses', course.id]" aria-roledescription="button">View Course</a>-->
                 </div>
             </div><!-- .card-info -->
+            <div class="like_action">
+                <div>
+                    <a 
+                    class="hollow-icon thumbDown" 
+                    (click)="onDislike(course, i)"
+                    [class.dislike]="course?.state == 'dislike'"
+                >
+                <i class="fa fa-times"></i>
+                </a></div>
+                <div>
+                <a 
+                    class="hollow-icon thumbUp" 
+                    (click)="onLike(course, i)"
+                    [class.like]="course?.state == 'like'"
+                >
+                <i class="fa fa-heart-o"></i>
+                <i class="fa fa-heart"></i>
+                </a></div>
+            </div>
         </article>
     </div>
 
@@ -135,22 +154,6 @@
                  <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
                  <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
                 </figure>
-
-                <div class="like_action">
-                    <a 
-                        class="hollow-icon thumbUp" 
-                        (click)="onLike(course, i)"
-                    >
-                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                    </a>
-
-                    <a 
-                        class="hollow-icon thumbDown" 
-                        (click)="onDislike(course, i)"
-                    >
-                        <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-                    </a>
-                </div>
             </div><!-- .img-ctn -->
 
             <div class="card-info">
@@ -181,9 +184,28 @@
                     <i class="fa fa-calendar" aria-hidden="true"></i> 
                     <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
                 </p><!-- .date -->
-                <a class="course-cta" [routerLink]="['/courses', course.id]" aria-roledescription="button">View Course</a>
+               <!--<a class="course-cta" [routerLink]="['/courses', course.id]" aria-roledescription="button">View Course</a>-->
                 </div>
             </div><!-- .card-info -->
+            <div class="like_action">
+                    <div>
+                        <a 
+                        class="hollow-icon thumbDown" 
+                        (click)="onDislike(course, i)"
+                        [class.dislike]="course?.state == 'dislike'"
+                    >
+                    <i class="fa fa-times"></i>
+                    </a></div>
+                    <div>
+                    <a 
+                        class="hollow-icon thumbUp" 
+                        (click)="onLike(course, i)"
+                        [class.like]="course?.state == 'like'"
+                    >
+                    <i class="fa fa-heart-o"></i>
+                    <i class="fa fa-heart"></i>
+                    </a></div>
+                </div>
         </article>
     </div>
 
@@ -243,23 +265,6 @@
                         <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
                 </figure>
 
-                <div class="like_action">
-                    <a 
-                        class="hollow-icon thumbUp" 
-                        (click)="onLike(course, i)"
-                        [class.like]="course?.state == 'like'"
-                    >
-                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                    </a>
-
-                    <a 
-                        class="hollow-icon thumbDown" 
-                        (click)="onDislike(course, i)"
-                        [class.dislike]="course?.state == 'dislike'"
-                    >
-                        <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-                    </a>
-                </div>
             </div><!-- .img-ctn -->
 
             <div class="card-info">
@@ -290,9 +295,28 @@
                     <i class="fa fa-calendar" aria-hidden="true"></i> 
                     <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
                 </p><!-- .date -->
-                <a class="course-cta" [routerLink]="['/courses', course.id]" aria-roledescription="button">View Course</a>
+                <!--<a class="course-cta" [routerLink]="['/courses', course.id]" aria-roledescription="button">View Course</a>-->
             </div>
             </div><!-- .card-info -->
+            <div class="like_action">
+                    <div>
+                        <a 
+                        class="hollow-icon thumbDown" 
+                        (click)="onDislike(course, i)"
+                        [class.dislike]="course?.state == 'dislike'"
+                    >
+                    <i class="fa fa-times"></i>
+                    </a></div>
+                    <div>
+                    <a 
+                        class="hollow-icon thumbUp" 
+                        (click)="onLike(course, i)"
+                        [class.like]="course?.state == 'like'"
+                    >
+                    <i class="fa fa-heart-o"></i>
+                    <i class="fa fa-heart"></i>
+                    </a></div>
+                </div>
         </article>
     </div>
 
