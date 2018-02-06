@@ -1,31 +1,56 @@
+<section class="page-conent-area" *ngIf="courses">
+<h1>Courses you Like</h1>
 <article class="card-box" *ngFor="let course of courses; let i = index">
-  <div class="img-ctn">
-      <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
-        ${{ course?.semesters[0]?.amount }}
-      </div>
-      <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
-          Free
-      </div>
-      <figure><a [routerLink]="['/courses', course.id]">
-          <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
-          <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
-      </figure>
-      <h3>{{course?.title}}</h3>
-  </div>
-  <div class="card-info">
-    <div class="group_info"><span class="group_rating" *ngIf="course?.rating" ><star-rating-comp [starType]="'svg'" [rating]="course?.rating" [readOnly]="true"></star-rating-comp></span></div>
-    <p class="location">
-          <i class="fa fa-map-marker" aria-hidden="true"></i> 
-          <a href="javascript:void(0);">{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a>
-      </p><!-- .location -->
-    <p class="date">
-      <i class="fa fa-calendar" aria-hidden="true"></i> 
-      <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
-    </p>
-    <div class="page-cta-wrap">
-    <a [routerLink]="['/courses', course?.id]"  class="page-cta" aria-roledescription="button">View Course</a>
-    <a class="wishlist"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
-    </div>
-  </div>
-</article>
+            <div class="img-ctn">
+                <figure><a [routerLink]="['/courses', course.id]">
+                 <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
+                 <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
+                </figure>
+            </div><!-- .img-ctn -->
+            <div class="card-info">
+                <div class="group_info">
+                    <span class="group_rating" *ngIf="course?.rating">
+                        <star-rating-comp 
+                            [starType]="'svg'" 
+                            [showHalfStars]="true"
+                            [readOnly]="true"
+                            rating="{{ course?.rating || 0 }}"
+                        ></star-rating-comp>
+                    </span>
+                    <span class="group_name">
+                      {{ course?.categories[0]?.name }}
+                    </span>
+                </div><!-- .group_info-->
+                <h3>
+                    <a [routerLink]="['/courses', course?.id]">{{ course?.title | truncate : 70 : '...'}}</a>
+                </h3><div class="location-wrap">
+                <p class="location">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                    <a href="javascript:void(0);">{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a>
+                </p><!-- .location -->
+                <p class="date">
+                    <i class="fa fa-calendar" aria-hidden="true"></i> 
+                    <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
+                </p><!-- .date -->
+                </div>
+            </div><!-- .card-info -->
+            <div class="like_action">
+                    <div>
+                        <a 
+                        class="hollow-icon thumbDown" 
+                        (click)="removeLike(course, i)"
+                    >
+                    <i class="fa fa-times"></i>
+                    </a></div>
+                    <div>
+                    <a class="hollow-icon thumbUp">
+                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+        </article>
+        <p *ngIf="courses.length > 6" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= courses.length">view more</button></p> 
+
+
+</section>
 

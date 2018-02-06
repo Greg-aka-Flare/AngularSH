@@ -74,4 +74,13 @@ export class CourseService {
 
 		return this.http.post(api, data);	
 	}
+
+	getLikeCourse(): Observable<any> {
+
+		//create api endpoint
+		let api = this.api + 'likes/courses';
+
+		return this.http.get(api);	
+	}
+	
 }
