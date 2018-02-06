@@ -23,19 +23,25 @@
 }
 .thee_col_content {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 .card-box {
     background-color: #fff;
-    box-shadow: 0 0 3px 4px #cccccc;
-    margin: 0 1.5% 20px 1.5%;
-    width: 30%;
+    box-shadow: 0 0 4px 2px #cccccc;
+    border: 1px solid #cccccc;
+    margin: 0 2% 20px 0;
+    width: 32%;
     max-width: none;
     box-sizing: border-box;
     color: #818181;
     padding: 0 0 60px 0;;
     position: relative;
+    flex: 1 1 1;
 }
-
+.card-box:nth-of-type(3n) {
+    margin: 0 0 20px 0;
+}
 .img-ctn {
     position: relative;
     margin: 8px 8px 0 8px;
