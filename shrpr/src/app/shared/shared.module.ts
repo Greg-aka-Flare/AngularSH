@@ -11,7 +11,7 @@ import { SearchComponent } from './search/search.component';
 import { AddreviewComponent } from './add-a-review/addreview.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tabs/tab.component';
-import { DatexPipe } from './date.pipe';
+import { DatexPipe, TruncatePipe } from './date.pipe';
 import { FilterComponent } from './filter/filter.component';
 import { InlineEditComponent } from './inline-edit/inline-edit.component';
 import { ControlMessagesComponent } from '../shared/control-messages/control-messages.component';
@@ -27,6 +27,7 @@ import { ModalComponent } from './modal/modal.component';
     TabsComponent,
     TabComponent,
     DatexPipe,
+    TruncatePipe,
     FilterComponent,
     InlineEditComponent,
     ControlMessagesComponent,
@@ -47,6 +48,7 @@ import { ModalComponent } from './modal/modal.component';
     TabsComponent,
     TabComponent,
     DatexPipe,
+    TruncatePipe,
     AgmCoreModule,
     FilterComponent,
     InlineEditComponent,
