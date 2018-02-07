@@ -1,6 +1,14 @@
-<section class="page-conent-area" *ngIf="courses">
+<section class="page-conent-area" *ngIf="mycourses">
 <h1>Courses you Like</h1>
-<article class="card-box" *ngFor="let course of courses; let i = index">
+<section class="group-filter-row">
+   <div class="sort-option">Sort by 
+       <a (click)="sortbyGroup(1)">Fun</a>
+       <a (click)="sortbyGroup(2)">Work</a>
+       <a (click)="sortbyGroup(3)">Kids</a>
+    </div>
+    <div class="like-count"><i class="fa fa-heart"></i> <span>{{allCourses?.length}}</span></div>
+</section>
+<article class="card-box" *ngFor="let course of mycourses; let i = index">
             <div class="img-ctn">
                 <figure><a [routerLink]="['/courses', course.id]">
                  <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
@@ -49,7 +57,7 @@
                   </div>
                 </div>
         </article>
-        <p *ngIf="courses.length > 6" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= courses.length">view more</button></p> 
+        <p *ngIf="allCourses?.length > 6" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= allCourses?.length">view more</button></p> 
 
 
 </section>
