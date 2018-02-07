@@ -28,8 +28,8 @@
 		>
 		</app-menu><!-- #menu -->
 	</div><!-- .inner-wrap -->
-	<div class="banner">
-		<app-search *ngIf="search"></app-search>
+	<div class="banner" *ngIf="search">
+		<app-search></app-search>
 		<div class="banner-text">shrpr connects local experts, avid learners, and convenient locations</div>
 	</div>
 	<app-demo *ngIf="demo"></app-demo>

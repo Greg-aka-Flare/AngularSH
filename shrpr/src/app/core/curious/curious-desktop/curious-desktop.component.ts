@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Response } from "@angular/http";
-
+import { SearchComponent } from '../../../shared/search/search.component';
 import { Course } from '../../../courses/course.interface';
 import { CourseService } from '../../../courses/course.service';
 import { CuriousService } from '../../curious.service';
@@ -72,7 +72,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
    ) {}
 
   ngOnInit() {
-
+    
     /*this.suggestFormWork = new FormGroup({
       'suggest': new FormControl(null, [Validators.required, Validators.min(100)])
     });
@@ -131,7 +131,6 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.curious.likeCounter().subscribe((count) => {
       this.counter = count;
     }));
-  
   }
 
   ngOnDestroy() {

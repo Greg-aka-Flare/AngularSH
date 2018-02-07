@@ -837,6 +837,68 @@ carousel {
 	height: auto !important;
 	padding: 0 !important;
 }
+/*header sort by*/
+.group-filter-row {
+	margin:0 0 16px 0;
+	text-align: center;
+	padding: 0 10px 0 10px;
+}
+.sort-option {
+    font-size:11px;
+	color:#cccccc;
+	float: left;
+}
+.sort-option a {
+    display:inline-block;
+    vertical-align: middle;
+    padding:10px;
+    color:#cccccc;
+    border: 2px solid #cccccc;
+    background-color:#f4f4f4;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size:12px;
+    line-height: 14px;
+    text-align: center;
+    width:80px;
+    margin:0 2px;
+}
+.sort-option a:nth-child(1){
+    margin:0 2px 0 15px;
+}
+.sort-option a:hover {
+    border:2px solid #259ccb;
+    background-color:#259ccb;
+    color:#ffffff;
+    text-decoration:none;
+}
+.like-count {
+    float: right;
+    width:36px;
+    height: 36px;
+    position: relative;
+    color:#ffffff;
+    font-size:16px;
+    line-height: 19px;
+    text-align: center;
+    
+}
+.like-count .fa {
+    color:#ce292a;
+    position: absolute;
+    left:0;
+    top:0;
+    right: 0;
+    bottom: 0;
+    font-size:36px;
+}
+.like-count span {
+    display:inline-block;
+    vertical-align: middle;
+    position:relative;
+    padding:8px 0 0 0;
+    width:100%;
+ }
 /* =============Marketing Pages Start ============================ */
 /*features Banner start*/
 .features-banner {

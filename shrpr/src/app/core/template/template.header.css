@@ -111,7 +111,12 @@ header #logo span.beta-logo {
   text-align: center;
   text-shadow: 9px 3px 7px #000000;
 }
-@media only screen and (min-width: 60em) {
+@media only screen and (min-width: 768px) {
+.banner {
+  display: block;
+}
+}
+@media only screen and (min-width: 960px) {
 :host{
   height: 253px;
   display: block;
@@ -185,7 +190,5 @@ header #logo span.beta-logo {
     padding: 0 0 8px 0;
     font-size: 12px;
   }
-  .banner {
-    display: block;
-  }
+  
 }
