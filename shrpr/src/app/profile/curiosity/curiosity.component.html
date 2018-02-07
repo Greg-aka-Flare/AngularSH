@@ -8,6 +8,7 @@
     </div>
     <div class="like-count"><i class="fa fa-heart"></i> <span>{{allCourses?.length}}</span></div>
 </section>
+<div class="course-box">
 <article class="card-box" *ngFor="let course of mycourses; let i = index">
             <div class="img-ctn">
                 <figure><a [routerLink]="['/courses', course.id]">
@@ -59,6 +60,7 @@
                   </div>
                 </div>-->
         </article>
+    </div>
         <p *ngIf="filtercourses?.length > 6" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= filtercourses?.length">view more</button></p> 
 </section>
 
