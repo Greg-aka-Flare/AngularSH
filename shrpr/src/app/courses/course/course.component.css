@@ -2,6 +2,9 @@ h1 {
     padding:15px 10px 10px 10px; 
     color:#fc6a02;
 }
+.desktop{
+    display: none;
+}
 .description{
     padding: 10px;
 }
@@ -347,64 +350,6 @@ ul.meetings_list li span {
 .page-cta:hover {
     background-color: #757575;
 }
-#reviews {
-    padding: 20px 10px 20px 10px;
-}
-.reviews-rating {
-    text-align: center;
-    font-size: 15px;
-    color: #272625;
-    line-height: 14px;
-    padding: 0 0 30px 0;
-}
-.reviews-rating a {
-    color: #272625;
-    text-decoration: underline;
-}
-.reviews-rating a:hover {
-    text-decoration: none;
-}
-
-:host #reviews  /deep/ star-rating-comp {
-    display: inline-block;
-    vertical-align: middle;
-}
-#reviews dl {
-    display: table;
-    margin: 0 0 20px 0;
-    width: 100%;
-}
-#reviews dl dt , #reviews dl dd {
-    display: table-cell;
-    vertical-align: top;
-    margin: 0;
-    font-size: 14px;
-    color: #272625;
-    line-height: 16px;
-    padding: 8px;
-}
-#reviews dl dt {
-    padding: 0 20px 0 0;
-    max-width:93px;
-    min-width: 92px;
-    text-align: center;
-    width:93px;
-}
-#reviews dl dt img {
-    display: block;
-    margin: 0 auto 10px auto;
-}
-#reviews dl dd {
-    border: 2px solid #eeeeee;
-    border-radius: 4px;
-}
-#reviews dl dd h2 {
-    font-size: 14px;
-    color:#229bcb;
-    line-height: 16px;
-    padding: 0 0 10px 0;
-
-}
 .seeall-link {
     text-align: center;
 }
@@ -486,16 +431,16 @@ agm-map {
     top: 40%;
 }
 
-.bradecrumb {
+.bread-crumb {
     color: #000000;
     font-size: 14px;
     line-height: 18px;
     padding: 7px 5px 15px;
 }
-.bradecrumb a {
+.bread-crumb a {
     color: #ed9b40;
 }
-.bradecrumb a:hover {
+.bread-crumb a:hover {
     text-decoration: none;
 }
 
@@ -530,6 +475,12 @@ a.allsem-btn:hover {
 
 @media only screen and (min-width: 769px) {
 
+.desktop{
+    display: block;
+}
+.mobile{
+    display: none;
+}
 .course_header {
     background-color:#f4f4f4;
     border-bottom:1px solid #cccccc;
@@ -672,7 +623,7 @@ figure.rating {
 #profile-header {
     padding: 0;
 }
-.bradecrumb {
+.bread-crumb {
     padding: 7px 0 15px;
 }
 
