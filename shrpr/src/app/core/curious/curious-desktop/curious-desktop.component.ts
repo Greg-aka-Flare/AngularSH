@@ -47,7 +47,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class CuriousDesktopComponent implements OnInit, OnDestroy {
 
-  suggestFormWork: FormGroup;
+  /*suggestFormWork: FormGroup;
   suggestFormFun: FormGroup;
   suggestFormKids: FormGroup;
   showFun: boolean = true;
@@ -57,10 +57,14 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
   forFun: Course[];
   forWork: Course[];
   forKids: Course[];
-  counter: number;
-  
+  counter: number;*/
+  suggestForm: FormGroup;
+  suggestComplete: boolean = false;
+  courses: Course[];
+  counter: number = 0;
+  colorState: string;
   //counterSubscription: Subscription;
-  private counterSubscription = new Subscription();
+  private subscriptions = new Subscription();
 
   constructor(
     private courseService: CourseService,
@@ -69,7 +73,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.suggestFormWork = new FormGroup({
+    /*this.suggestFormWork = new FormGroup({
       'suggest': new FormControl(null, [Validators.required, Validators.min(100)])
     });
 
@@ -108,14 +112,33 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
 
     this.counterSubscription.add(this.counterSubscription = this.curious.likeCounter().subscribe((count) => {
       this.counter = count;
+    }));*/
+    this.suggestForm = new FormGroup({
+      'suggest': new FormControl(null, [Validators.required, Validators.min(100)])
+    });
+
+    //create parameters
+    let parameters = {
+      group: 0,
+      limit: 9,
+      filter: true
+    }
+
+    this.subscriptions.add(this.courseService.getCourses(parameters).subscribe(courses => {
+      this.courses = courses;
     }));
+
+    this.subscriptions.add(this.curious.likeCounter().subscribe((count) => {
+      this.counter = count;
+    }));
+  
   }
 
   ngOnDestroy() {
-    this.counterSubscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 
-  onSuggest(group: number) {
+  /*onSuggest(group: number) {
 
     let data: any = {};
 
@@ -305,6 +328,125 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
     if(this.forKids.length > 0){
 
       for(let course of this.forKids){
+
+        excludes.push(course.id);
+      }
+    }
+
+    return excludes;
+  }*/
+  onSuggest() {
+
+    let data = {
+      'suggestion': this.suggestForm.value.suggest
+    }
+
+    this.courseService.suggest(data).subscribe(
+      success => {
+        
+        //course suggested
+        this.suggestComplete = true;
+      }
+    );
+  }
+
+  onLike(course, i) {
+
+    if(course.state === 'default'){
+
+      //set state to like
+      course.state = 'like';
+
+      //increment like counter
+      this.curious.like(course.id).subscribe(
+        success => {
+
+          //add new course
+          this.addNewCourse(course, i);
+        },
+        error => {
+          //log error
+          console.log(error);
+
+          //add new course
+          this.addNewCourse(course, i);
+        }
+      );
+    }
+  }
+
+  onDislike(course, i) {
+
+    if(course.state === 'default'){
+
+      //set state to like
+      course.state = 'dislike';
+
+      //increment like counter
+      this.curious.dislike(course.id).subscribe(
+        success => {
+          
+          //add new course
+          this.addNewCourse(course, i);
+        },
+        error => {
+          //log error
+          console.log(error);
+
+          //add new course
+          this.addNewCourse(course, i);
+        }
+      );
+    }
+  }
+
+  private addNewCourse(course, i) {
+
+    let newCourse: Course;
+
+    //wait 100ms for animation to finish
+    setTimeout(() => {
+
+      //get excludes
+      let excludes = this.createExcludes();
+
+      //create parameters
+      let parameters = {
+        group: 0,
+        limit: 1,
+        filter: true,
+        excludes: excludes
+      }
+
+      //get new course
+      this.courseService.getCourses(parameters).subscribe(course => {
+
+        if(course.length > 0){
+
+          //new course
+          newCourse = course[0];
+
+          //add new course
+          this.courses.splice(i, 1, newCourse);
+        }
+        else{
+
+          //remove final course
+          this.courses.splice(i, 1);
+        }
+      });
+
+    }, 300);
+  }
+
+  private createExcludes() {
+
+    let excludes: number[] = [];
+
+    //for each group, create array of ids to exclude, return array
+    if(this.courses.length > 0){
+
+      for(let course of this.courses){
 
         excludes.push(course.id);
       }
