@@ -65,10 +65,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
   colorState: string;
   //counterSubscription: Subscription;
   private subscriptions = new Subscription();
-
-  allCourses: any[];
-  mycourses: Course[] = [];
-  filtercourses: Course[] = [];
+  selectedIndex:number;
 
   constructor(
     private courseService: CourseService,
@@ -138,6 +135,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
   }
 
   sortbyGroup(id: number) {
+    this.selectedIndex = id;
     this.courses = [];
     let parameters = {
       group: id,

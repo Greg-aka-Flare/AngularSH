@@ -20,6 +20,7 @@ export class CuriosityComponent implements OnInit, OnDestroy {
   filtercourses: Course[] = [];
   counter:number = 0;
   private subscriptions = new Subscription();
+  selectedIndex:number;
   
   constructor(
     private curious: CuriousService,
@@ -73,6 +74,7 @@ removeLike(course, i) {
   }
 
   sortbyGroup(id: number) {
+    this.selectedIndex = id;
     this.mycourses = [];
     this.filtercourses = [];
     this.filtercourses = this.allCourses;

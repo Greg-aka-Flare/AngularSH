@@ -2,9 +2,9 @@
 <h1>Courses you Like</h1>
 <section class="group-filter-row clearfix">
    <div class="sort-option">Sort by 
-       <a href="javascript:void(0);" (click)="sortbyGroup(1)">Fun</a>
-       <a href="javascript:void(0);" (click)="sortbyGroup(2)">Work</a>
-       <a href="javascript:void(0);" (click)="sortbyGroup(3)">Kids</a>
+       <a href="javascript:void(0);" (click)="sortbyGroup(1)" [class.active]="selectedIndex == 1">Fun</a>
+       <a href="javascript:void(0);" (click)="sortbyGroup(2)" [class.active]="selectedIndex == 2">Work</a>
+       <a href="javascript:void(0);" (click)="sortbyGroup(3)" [class.active]="selectedIndex == 3">Kids</a>
     </div>
     <div class="like-count"><i class="fa fa-heart"></i> <span>{{allCourses?.length}}</span></div>
 </section>

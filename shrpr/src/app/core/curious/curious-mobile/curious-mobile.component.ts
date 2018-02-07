@@ -57,6 +57,7 @@ export class CuriousMobileComponent implements OnInit {
   courses: Course[];
   counter: number = 0;
   colorState: string;
+  selectedIndex:number;
   //subscription: Subscription;
   private subscriptions = new Subscription();
 
@@ -215,6 +216,7 @@ export class CuriousMobileComponent implements OnInit {
   }
 
   sortbyGroup(id: number) {
+    this.selectedIndex = id;
     this.courses = [];
     let parameters = {
       group: id,
