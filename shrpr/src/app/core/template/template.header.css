@@ -153,7 +153,7 @@ header #logo span.beta-logo {
     display: inline-block;
     vertical-align: top;
   }
-  .topnav li a {
+  .topnav li a, .topnav li:first-child a:hover {
     background-color: #ffffff;
     border: 2px solid #cccccc;
     color: #707070;
@@ -165,7 +165,7 @@ header #logo span.beta-logo {
     text-align: center;
     text-decoration: none;
 }
-.topnav li a:hover {
+.topnav li a:hover, .topnav li:first-child a {
    background-color: #488c5d;
    border: 2px solid #488c5d;
    color: #ffffff;

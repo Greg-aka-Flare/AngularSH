@@ -829,7 +829,7 @@ carousel {
 	padding: 0 10px 0 10px;
 }
 .sort-option {
-    font-size:11px;
+    font-size:12px;
 	color:#cccccc;
 	float: left;
 }
@@ -842,11 +842,12 @@ carousel {
     background-color:#f4f4f4;
     text-transform: uppercase;
     text-decoration: none;
-    font-size:12px;
+    font-size:11px;
     line-height: 14px;
     text-align: center;
     width:60px;
-    margin:0 2px;
+	margin:0 2px;
+	font-weight: bold;
 }
 .sort-option a:nth-child(1){
     margin:0 2px 0 7px;
@@ -977,7 +978,7 @@ carousel {
     color:#818181;
 }
 .like_action {
-   border: 2px solid #707070;
+   border: 1px solid #707070;
    display: flex;
    position: absolute;
    left: 0;
@@ -990,7 +991,7 @@ carousel {
     width: 50%;
 }
 .like_action > div:first-child {
-    border-right: 2px solid #707070;
+    border-right: 1px solid #707070;
 }
 .hollow-icon {
     color: #707070;
@@ -1034,7 +1035,7 @@ carousel {
 	padding: 0 10px 0 10px;
 }
 .sort-option {
-    font-size:11px;
+    font-size:12px;
 	color:#cccccc;
 	float: left;
 }
