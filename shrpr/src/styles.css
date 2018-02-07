@@ -868,6 +868,10 @@ carousel {
     text-align: center;
     
 }
+.like-count a {
+	text-decoration: none;
+	color: #ffffff;
+}
 .like-count .fa {
     color:#ce292a;
     position: absolute;
@@ -1152,7 +1156,7 @@ carousel {
 .card-info h3 {
     font-size: 16px;
     line-height: 18px;
-    min-height: 56px;
+    min-height: 45px;
     padding: 5px 0 0 0;
 }
 .card-info h3 a {

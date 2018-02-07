@@ -1,11 +1,11 @@
 <section class="group-filter-row clearfix">
         <div class="sort-option">Sort by 
-            <a (click)="sortbyGroup(1)">Fun</a>
-            <a (click)="sortbyGroup(2)">Work</a>
-            <a (click)="sortbyGroup(3)">Kids</a>
+            <a href="javascript:void(0)" (click)="sortbyGroup(1)">Fun</a>
+            <a href="javascript:void(0)" (click)="sortbyGroup(2)">Work</a>
+            <a href="javascript:void(0)" (click)="sortbyGroup(3)">Kids</a>
          </div>
          <app-search></app-search>
-         <div class="like-count"><i class="fa fa-heart"></i> <span>{{ counter }}</span></div>
+         <div class="like-count"><a href="javascript:void(0)" [routerLink]="['/profile/curiosity']"><i class="fa fa-heart"></i> <span>{{ counter }}</span></a></div>
      </section>
 <section 
 id="for_work_box" 
