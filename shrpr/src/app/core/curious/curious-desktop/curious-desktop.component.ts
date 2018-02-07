@@ -66,6 +66,10 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
   //counterSubscription: Subscription;
   private subscriptions = new Subscription();
 
+  allCourses: any[];
+  mycourses: Course[] = [];
+  filtercourses: Course[] = [];
+
   constructor(
     private courseService: CourseService,
     private curious: CuriousService
@@ -130,6 +134,18 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.curious.likeCounter().subscribe((count) => {
       this.counter = count;
+    }));
+  }
+
+  sortbyGroup(id: number) {
+    this.courses = [];
+    let parameters = {
+      group: id,
+      limit: 9,
+      filter: true
+    }
+    this.subscriptions.add(this.courseService.getCourses(parameters).subscribe(courses => {
+      this.courses = courses;
     }));
   }
 

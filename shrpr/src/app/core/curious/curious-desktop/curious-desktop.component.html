@@ -1,8 +1,8 @@
 <section class="group-filter-row clearfix">
         <div class="sort-option">Sort by 
-            <a href="javascript:void(0)" (click)="sortbyGroup(1)">Fun</a>
-            <a href="javascript:void(0)" (click)="sortbyGroup(2)">Work</a>
-            <a href="javascript:void(0)" (click)="sortbyGroup(3)">Kids</a>
+            <a (click)="sortbyGroup(1)">Fun</a>
+            <a (click)="sortbyGroup(2)">Work</a>
+            <a (click)="sortbyGroup(3)">Kids</a>
          </div>
          <app-search></app-search>
          <div class="like-count"><a href="javascript:void(0)" [routerLink]="['/profile/curiosity']"><i class="fa fa-heart"></i> <span>{{ counter }}</span></a></div>
@@ -27,7 +27,6 @@ class="category_bucket blue"
               <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
                   Free
               </div>
-
             <figure>
                     <a [routerLink]="['/courses', course.id]"><img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
                     <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>

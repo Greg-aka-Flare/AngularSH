@@ -214,6 +214,18 @@ export class CuriousMobileComponent implements OnInit {
     }, 300);
   }
 
+  sortbyGroup(id: number) {
+    this.courses = [];
+    let parameters = {
+      group: id,
+      limit: 1,
+      filter: true
+    }
+    this.subscriptions.add(this.courseService.getCourses(parameters).subscribe(courses => {
+      this.courses = courses;
+    }));
+  }
+
   private createExcludes() {
 
     let excludes: number[] = [];
