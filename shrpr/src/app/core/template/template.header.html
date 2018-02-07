@@ -1,9 +1,23 @@
 <header [ngClass]="{'header':true, 'header_big':!isheaderShrunk, 'header_small':isheaderShrunk}">
-	<div class="inner-wrap">
+	<div class="inner-wrap clearfix">
 		<a id="logo" [routerLink]="['/']" class="shrpr">
 			<span>s</span><span>h</span><span>r</span><span>p</span><span>r</span><span class="beta-logo">beta</span>
 		</a><!-- #logo.shrpr -->
-
+		<app-search></app-search>
+		<ul class="topnav">
+				<li>
+					<a [routerLink]="['/marketing/digital']">Become a Teacher</a>
+				  </li>
+				  <li *ngIf="!loggedIn">
+						<a [routerLink]="['/login']" title="Sign Up / Log In">Sign In</a>
+					  </li>
+				  <li *ngIf="loggedIn" class="logout">
+						<a [routerLink]="['/profile']">Hi, {{ name }}</a>
+					</li>
+					<li *ngIf="loggedIn">
+							<a href="javascript:void(0)" (click)="logout()">Logout</a>
+						</li>
+				</ul>
 		<a 
 			id="menu" 
 			[class.active]="isBtnActive" 
@@ -13,15 +27,15 @@
 			<i class="fa fa-times-circle-o" aria-hidden="true"></i>
 		</a><!-- #menu -->
 		
-		<a class="cart-icon" *ngIf="cartTotal" [routerLink]="['payment', 'cart']">
+		<!--<a class="cart-icon" *ngIf="cartTotal" [routerLink]="['payment', 'cart']">
 			<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 			<span>{{ cartTotal }}</span>
-		</a><!-- .cart-icon -->
+		</a> .cart-icon -->
 
-		<a class="counter-logo" [routerLink]="['/profile/curiosity']">
+		<!--<a class="counter-logo" [routerLink]="['/profile/curiosity']">
 			<img src="../assets/img/shrpr-logo.png" alt="shrpr" title="shrpr">
 			<span>{{ counter }}</span>
-		</a><!-- .counter-logo -->
+		</a>.counter-logo -->
 
 		<app-menu 
 			[class.active]="isBtnActive"

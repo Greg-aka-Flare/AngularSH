@@ -27,7 +27,7 @@
     </slide>
   </carousel>
 </section>-->
-<tabs *ngIf="width < 768">
+<!--<tabs *ngIf="width < 768">
     <tab tabTitle="Browse">
     	<app-curious></app-curious>
     </tab>
@@ -39,9 +39,9 @@
         	<a [routerLink]="['/login']">Login / Sign Up</a>
         </div>
     </tab>
-</tabs>
+</tabs>-->
 
-<app-curious *ngIf="width > 767"></app-curious>
+<app-curious></app-curious>
 
 <!--<section id="home-slider" class="mobile">
   <carousel [interval]="5000" *ngIf="width < 767">

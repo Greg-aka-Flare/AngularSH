@@ -160,10 +160,6 @@ section#sign-up p {
     color: #414140;
     background-color: #e1e1df;
 }
-:host /deep/ tab section#search form > span.location-input {
-    display: block !important;
-    margin: 10px auto !important;
-}
 .login-link{
     font-size: 13px;
     line-height: 1em;

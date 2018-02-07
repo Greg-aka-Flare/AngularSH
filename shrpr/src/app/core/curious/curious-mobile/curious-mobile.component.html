@@ -1,3 +1,11 @@
+<section class="group-filter-row clearfix">
+        <div class="sort-option">Sort by 
+            <a (click)="sortbyGroup(1)">Fun</a>
+            <a (click)="sortbyGroup(2)">Work</a>
+            <a (click)="sortbyGroup(3)">Kids</a>
+         </div>
+         <div class="like-count"><i class="fa fa-heart"></i> <span>{{ counter }}</span></div>
+     </section>
 <section 
     id="curious-swiper" 
     [class.active]="isBtnActive" 
@@ -10,19 +18,11 @@
         (swiperight)="onLike(course, i)"
         [@cardSwipe]="courses[i]?.state"
     >
-        <div class="category">
-            {{ course?.categories[0]?.name }}
+        <!--<div class="category">
+           {{ course?.categories[0]?.name }}
             
-            <figure class="rating">
-                <star-rating-comp 
-                    [starType]="'svg'" 
-                    [showHalfStars]="true" 
-                    [readOnly]="true"
-                    rating="{{ course?.rating || 0 }}"
-                >
-                </star-rating-comp>
-            </figure><!-- .rating -->
-        </div><!-- .category -->
+           
+        </div>.category -->
 
         <div class="img-ctn">
             <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
@@ -37,6 +37,15 @@
             </figure>
         
             <div class="overlay">
+                    <div class="rating">
+                            <star-rating-comp 
+                                [starType]="'svg'" 
+                                [showHalfStars]="true" 
+                                [readOnly]="true"
+                                rating="{{ course?.rating || 0 }}"
+                            >
+                            </star-rating-comp>
+                        </div><!-- .rating -->
                 <h1>
                     <a [routerLink]="['/courses', course?.id]">{{ course?.title | truncate : 50 : '...' }}</a>
                 </h1>   
@@ -50,6 +59,7 @@
                     <i class="fa fa-calendar" aria-hidden="true"></i> 
                     <time title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
                 </p><!-- .date -->
+                <p class="heart-icon"><i class="fa fa-heart-o"></i></p>
             </div><!-- .overlay -->
             <span class="overlay-color" [@overlay]='course?.state'></span>
         </div><!-- .img-ctn -->

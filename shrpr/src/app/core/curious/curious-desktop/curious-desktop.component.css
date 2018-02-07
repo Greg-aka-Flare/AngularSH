@@ -89,11 +89,4 @@ section.suggest-course form button:hover{
 }
 :host /deep/ app-search section#search form > span.location-input {
     display: block !important;
-    max-width: 153px !important;
-}
-:host /deep/ app-search section#search form > span.location-input input {
-    background:none;
-    border: none !important;
-    z-index: 99;
-    position: relative;
 }

@@ -1,34 +1,32 @@
 header :host {
-    background: #e6e7e8;
+    background: #ededed;
     position: fixed;
     right: 0;
     top: 0;
     bottom: 0;
     width: 100%;
-    max-width: 250px;
     box-sizing: border-box;
     padding: 20px 0 20px 0;
-    ;
     z-index: 9;
-    transform: translate3d(100%, 0, 0);
-    -moz-transition: all 0.5s ease-in-out 0s;
-    -ms-transition: all 0.5s ease-in-out 0s;
-    -o-transition: all 0.5s ease-in-out 0s;
-    -webkit-transition: all 0.5s ease-in-out 0s;
-    transition: all 0.5s ease-in-out 0s;
+    transform: translate3d(0, 100%, 0);
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -ms-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
 }
 
 header .active:host {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 8%, 0);
 }
 
-header :host>ul {
+header :host ul.topnav {
     padding: 40px 0 0 0;
     text-align: left;
     list-style: none;
 }
 
-header :host>ul li {
+header :host ul.topnav li {
     background: none;
     line-height: 1em;
     /* BASE FONT = 16px  >>> 16px / 16px = 1em */
@@ -36,7 +34,7 @@ header :host>ul li {
     border-bottom: 1px solid #a0adbd;
 }
 
-header :host>ul li > a {
+header :host ul.topnav li > a {
     display: block;
     color: #484848;
     font-size: 16px;
@@ -44,42 +42,49 @@ header :host>ul li > a {
     text-decoration: none;
     padding: 0 20px 0 20px;
 }
-header :host>ul li span{
+header :host ul.topnav li span{
     cursor: pointer;
     font-size: 12px;
 }
-header :host>ul li span a{
+header :host ul.topnav li span a{
     color: #448a58;
 }
-header :host>ul li span:hover a{
+header :host ul.topnav li span:hover a{
     text-decoration: underline;
 }
 
-header :host>ul li ul {
+header :host ul.topnav li ul {
     padding: 0;
     list-style: none;
 }
 
-header :host>ul li ul li {
+header :host ul.topnav li ul li {
     border-top: 1px solid #a0adbd;
     border-bottom: none;
 }
 
-header :host>ul li.has_child {
+header :host ul.topnav li.has_child {
     padding: 0;
 }
 
-header :host>ul li.has_child>a {
+header :host ul.topnav li.has_child>a {
     margin: 10px 0 10px 0;
 }
 
-header :host>ul li ul li a {
+header :host ul.topnav li ul li a {
     padding: 0 20px 0 40px;
 }
-header :host>ul > li:last-child {
+header :host ul.topnav > li:last-child {
     padding: 10px 20px;
 }
-@media only screen and (min-width: 60em) {
+
+@media only screen and (min-width: 960px) {
+    header .active:host {
+        transform: translate3d(0, 0, 0);
+    }
+    header :host ul.topnav {
+        padding: 60px 0 0;
+    }
     /*header :host {
         background: none;
         float: right;

@@ -822,21 +822,6 @@ carousel {
 .pop-up a.close:hover{
 	background-color: #fff;
 }
-/* =============================================================================
-   Medium SCREEN STYLES [Tab VIEW] START
-  ============================================================================= */
-/* 768px */
-@media only screen and (min-width: 768px) {
-/*** Google Places Dropdown ***/
-.pac-container {
-	position: relative;
-	z-index: 99999;
-}
-.pac-logo:after {
-	background-image: none !important;
-	height: auto !important;
-	padding: 0 !important;
-}
 /*header sort by*/
 .group-filter-row {
 	margin:0 0 16px 0;
@@ -860,11 +845,11 @@ carousel {
     font-size:12px;
     line-height: 14px;
     text-align: center;
-    width:80px;
+    width:60px;
     margin:0 2px;
 }
 .sort-option a:nth-child(1){
-    margin:0 2px 0 15px;
+    margin:0 2px 0 7px;
 }
 .sort-option a:hover {
     border:2px solid #259ccb;
@@ -896,9 +881,41 @@ carousel {
     display:inline-block;
     vertical-align: middle;
     position:relative;
-    padding:8px 0 0 0;
+    padding:6px 0 0 0;
     width:100%;
  }
+/* =============================================================================
+   Medium SCREEN STYLES [Tab VIEW] START
+  ============================================================================= */
+/* 768px */
+@media only screen and (min-width: 768px) {
+/*** Google Places Dropdown ***/
+.pac-container {
+	position: relative;
+	z-index: 99999;
+}
+.pac-logo:after {
+	background-image: none !important;
+	height: auto !important;
+	padding: 0 !important;
+}
+/*header sort by*/
+.group-filter-row {
+	margin:0 0 16px 0;
+	text-align: center;
+	padding: 0 10px 0 10px;
+}
+.sort-option {
+    font-size:11px;
+	color:#cccccc;
+	float: left;
+}
+.sort-option a {
+    width:80px;
+}
+.sort-option a:nth-child(1){
+    margin:0 2px 0 15px;
+}
 /* =============Marketing Pages Start ============================ */
 /*features Banner start*/
 .features-banner {

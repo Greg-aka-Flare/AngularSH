@@ -2,7 +2,6 @@
 section#search {
     padding: 20px 20px 10px 20px;
     text-align: center;
-    display: none;
 }
 section#search form > span {
     display: block;
@@ -26,6 +25,9 @@ section#search form > span .fa{
     position: absolute;
     top: 8px;
     color: #828282; 
+}
+section#search form > span.location-input .fa {
+    top: 10px;
 }
 /*section#search form > span > img {
     left: 8px;
@@ -59,6 +61,7 @@ section#search form input, section#search form .completer-input {
     font-size: 16px;
     border-radius: 2px;
     -webkit-appearance: none;
+    outline: none;
 }
 section#search form input::-webkit-input-placeholder { /* Chrome */
     color: #6f6f6f;
@@ -127,6 +130,17 @@ section#search form button:hover {
     left:0;
     top:90%;
     height: auto;
+}
+section#search form > span.location-input {
+    max-width: 138px;
+}
+section#search form > span.location-input input {
+    background:none;
+    border: none !important;
+    z-index: 9;
+    position: relative;
+    padding: 10px 0 10px 0;
+    box-shadow: none;
 }
 /* =============================================================================
    Medium SCREEN STYLES [Tab VIEW] START
