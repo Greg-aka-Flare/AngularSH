@@ -80,7 +80,7 @@ header :host>ul > li:last-child {
     padding: 10px 20px;
 }
 @media only screen and (min-width: 60em) {
-    header :host {
+    /*header :host {
         background: none;
         float: right;
         max-width: none;
@@ -158,5 +158,5 @@ header :host>ul > li:last-child {
         text-align: left;
         text-transform: none;
         color: #000000;
-    }
+    }*/
 }
