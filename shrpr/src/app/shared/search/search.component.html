@@ -1,21 +1,17 @@
 <section id="search">
   <form action="#">
-     <span>
-          <img src="../../assets/img/search-input.png" alt="Shrpr" title="Shrpr">
-
-          <ng2-completer 
-              placeholder="Search for Category" 
+     <span class="search-input">
+           <ng2-completer 
+              placeholder="Search all Courses" 
               [datasource]="dataService" 
               minSearchLength="0"
               openOnFocus="true"
               (selected)="onSelected($event)"
           >
-          </ng2-completer>
+          </ng2-completer><i class="fa fa-search" aria-hidden="true"></i>
       </span>
 
-      <span>
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
-          
+      <span class="location-input">         
           <input 
             #search
             type="text" 
@@ -25,9 +21,9 @@
             placeholder="Enter Location" 
             [value]="location"
             [formControl]="searchControl"
-          >
+          ><i class="fa fa-angle-down" aria-hidden="true"></i>
       </span>
-
-      <button (click)="submit()">Search</button>
+      
+    <!--<button (click)="submit()">Search</button>-->
   </form>
 </section><!-- #search -->

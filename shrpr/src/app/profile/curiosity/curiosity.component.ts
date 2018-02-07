@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { CuriousService } from "../../core/curious.service";
@@ -13,45 +12,84 @@ import { NullAstVisitor } from '@angular/compiler';
   templateUrl: './curiosity.component.html',
   styleUrls: ['./curiosity.component.css']
 })
-export class CuriosityComponent implements OnInit {
+export class CuriosityComponent implements OnInit, OnDestroy {
   @Input('user') user: User;
 
-  public dCourses: any[] = [];
-  likeArray: number[] = [];
-  //myCourse: Course[];
-  lcourses: Course[];
+  allCourses: any[];
+  mycourses: Course[] = [];
+  filtercourses: Course[] = [];
+  counter:number = 0;
 
   constructor(
-    private zone: NgZone, 
     private curious: CuriousService,
     private courseService: CourseService
-
   ) { }
 
   ngOnInit() {
-
-    let id:number = 0;
-    this.likeArray = this.curious.likes;
-    console.log(this.likeArray);
-    this.courseService.getCourses(id).subscribe(courses => {
-      //set courses
-      //this.lcourses = courses;
+    
+    this.courseService.getLikeCourse().subscribe(courses => {
+      this.allCourses = courses;
+      this.allCourseInit();
       
-      this.likeArray.forEach((item, i) => {
-        this.lcourses = courses;
-        let myCourses: Course[];
-        myCourses = this.lcourses.filter((course: Course) => course.id === item);
-        this.dCourses.push(myCourses);
-      });
-      console.log(this.dCourses);
-      
+      //console.log(this.mycourses);
+     });
+  }
 
-    });
+  allCourseInit(){
+    if(this.allCourses){
+      for(var j = 0, l = this.allCourses.length; j < l; j=j)
+      {
+        this.mycourses.push(this.allCourses[j]);
+        j++;
+        if(j%6 == 0) break;
+      }
+      this.counter += 6;
+
+    }
+  }
+
+  removeLike(course, i) {
+
+    this.curious.dislike(course.id).subscribe(
+        success => {
+          //add new course
+          console.log('removed');
+        },
+        error => {
+          //log error
+          console.log(error);
+        }
+      );
     
-    
-    
-   
-    
+  }
+  getData(){
+    for(var k = this.counter, p = this.allCourses.length; k < p; k=k)
+    {
+      
+      this.mycourses.push(this.allCourses[k]);
+      
+      k++;
+    if(k%6 == 0) break;
+    }
+    this.counter+=6;
+  }
+
+  sortbyGroup(id: number) {
+    /*for(var i=0, l = this.mycourses.length; i < l; i++){
+      this.mycourses.pop();
+    }
+
+      for(var j = 0, l = this.allCourses.length; j < l; j=j)
+      {
+        if(this.allCourses[j].group.id == id){
+          this.mycourses.push(this.allCourses[j]);
+        }
+      }*/
+      console.log(id);
+  }
+  
+  ngOnDestroy(){
+
   }
 
 }

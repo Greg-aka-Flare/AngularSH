@@ -38,7 +38,7 @@
         
             <div class="overlay">
                 <h1>
-                    <a [routerLink]="['/courses', course?.id]">{{ course?.title }}</a>
+                    <a [routerLink]="['/courses', course?.id]">{{ course?.title | truncate : 50 : '...' }}</a>
                 </h1>   
 
                 <p class="location">

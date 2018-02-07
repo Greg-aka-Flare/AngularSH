@@ -7,7 +7,7 @@
 	box-sizing: border-box;
 }
 body, html {
-	font-family:'circularstd book';
+	font-family:'Helvetica Neue';
 	font-size: 100%;                                          				/* default font  size - 100% = 16px*/
 	background:#1b1a19;
 }
@@ -92,7 +92,7 @@ main .inner-wrap {
 }
 /* =============Main Area Start============================ */
 main {
-	background: #ffffff;
+	background: #ededed;
 	color: #000000;
 	font-size: 18px;
 	line-height: 24px;
@@ -281,7 +281,7 @@ a.jointhenetwork-link:hover {
 	position: relative;
 }
 .inner-form-wrap form > div > input, .inner-form-wrap form > div > span {
-	font-family: "circularstd book";
+	font-family: "Helvetica Neue";
 	color: #000000;
 	height: 40px;
 	background-color: #ffffff;
@@ -315,7 +315,7 @@ a.jointhenetwork-link:hover {
 	position: absolute;
 	left: 0;
 	top: 0;
-	font-family: "circularstd book";
+	font-family: "Helvetica Neue";
 	color: #cccccc;
 	font-size: 14px;
 	padding:  0 10px;
@@ -336,7 +336,7 @@ a.jointhenetwork-link:hover {
 	font-size: 14px;
 	line-height: 1em;
 	border-radius: 3px;
-	font-family: "circularstd book";
+	font-family: "Helvetica Neue";
 	cursor: pointer;
 	-moz-transition: all 0.5s ease-in-out 0s;
 	-ms-transition: all 0.5s ease-in-out 0s;
@@ -666,7 +666,7 @@ carousel {
 	color: #ffffff;
 	cursor: pointer;
 	display: block;
-	font-family: 'circularstd book';
+	font-family: 'Helvetica Neue';
 	font-size: 18px;
 	line-height: 18px;
 	text-decoration: none;
@@ -837,6 +837,68 @@ carousel {
 	height: auto !important;
 	padding: 0 !important;
 }
+/*header sort by*/
+.group-filter-row {
+	margin:0 0 16px 0;
+	text-align: center;
+	padding: 0 10px 0 10px;
+}
+.sort-option {
+    font-size:11px;
+	color:#cccccc;
+	float: left;
+}
+.sort-option a {
+    display:inline-block;
+    vertical-align: middle;
+    padding:10px;
+    color:#cccccc;
+    border: 2px solid #cccccc;
+    background-color:#f4f4f4;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size:12px;
+    line-height: 14px;
+    text-align: center;
+    width:80px;
+    margin:0 2px;
+}
+.sort-option a:nth-child(1){
+    margin:0 2px 0 15px;
+}
+.sort-option a:hover {
+    border:2px solid #259ccb;
+    background-color:#259ccb;
+    color:#ffffff;
+    text-decoration:none;
+}
+.like-count {
+    float: right;
+    width:36px;
+    height: 36px;
+    position: relative;
+    color:#ffffff;
+    font-size:16px;
+    line-height: 19px;
+    text-align: center;
+    
+}
+.like-count .fa {
+    color:#ce292a;
+    position: absolute;
+    left:0;
+    top:0;
+    right: 0;
+    bottom: 0;
+    font-size:36px;
+}
+.like-count span {
+    display:inline-block;
+    vertical-align: middle;
+    position:relative;
+    padding:8px 0 0 0;
+    width:100%;
+ }
 /* =============Marketing Pages Start ============================ */
 /*features Banner start*/
 .features-banner {
@@ -998,6 +1060,138 @@ carousel {
 .review_star {
 	width:110px;
 }
+/*Course Card*/
+.course-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card-box {
+    background-color: #fff;
+    box-shadow: 0 0 4px 2px #cccccc;
+    border: 1px solid #cccccc;
+    margin: 0 2% 20px 0;
+    width: 32%;
+    max-width: none;
+    box-sizing: border-box;
+    color: #818181;
+    padding: 0 0 60px 0;;
+    position: relative;
+    flex: 1 1 1;
+}
+.card-box:nth-of-type(3n) {
+    margin: 0 0 20px 0;
+}
+.img-ctn {
+    position: relative;
+    margin: 8px 8px 0 8px;
+}
+.img-ctn figure {
+    margin:0;
+    height: 210px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #f7f7f7;
+    box-sizing: border-box;
+}
+.img-ctn figure img {
+    display:block;
+    margin:0;
+    width:100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%); /* IE 9 */
+    -webkit-transform: translate(-50%, -50%); /* Safari */
+    transform: translate(-50%, -50%);
+    min-width: 400px;
+}
+.price{
+    background-color: #e7aa62;
+    color: #272625;
+    font-size: 16px;
+    padding: 3px 20px 3px 5px;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    z-index: 9;
+    display: none;
+}
+.price.free {
+    background: #448a58;
+    color: #ffffff;
+}
+.card-info {
+	padding: 2px 18px 0 18px;
+}
+.group_name {
+    font-size:12px;
+    line-height: 14px;
+}
+.group_rating {
+    float: right;
+}
+.card-info h3 {
+    font-size: 16px;
+    line-height: 18px;
+    min-height: 56px;
+    padding: 5px 0 0 0;
+}
+.card-info h3 a {
+    color:#707070;
+    text-decoration: none;
+}
+.card-info h3 a:hover {
+    color:#ed9639;
+}
+.location-wrap {
+    position: relative;
+} 
+.location {
+    padding:0;
+}
+.location a, .date_stamp {
+    font-size:12px;
+    line-height: 14px;
+    color:#818181;
+}
+.like_action {
+   border: 2px solid #707070;
+   display: flex;
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 100%; 
+}
+.like_action > div {
+    padding: 10px;
+    text-align: center;
+    width: 50%;
+}
+.like_action > div:first-child {
+    border-right: 2px solid #707070;
+}
+.hollow-icon {
+    color: #707070;
+    cursor: pointer;
+}
+.hollow-icon .fa-heart, .hollow-icon:hover .fa-heart-o {
+    display: none;
+}
+.hollow-icon.like .fa-heart, .hollow-icon:hover .fa-heart {
+    display: block;
+    margin: 2px 0 0 0;
+}
+.hollow-icon.like .fa-heart-o {
+    display: none;
+}
+.thumbUp:hover {
+    color: #448a58;
+}
+.thumbDown:hover {
+    color:#d03233; 
+}
 }
 /* =============================================================================
    LARGE SCREEN STYLES [DESKTOP VIEW] START
@@ -1075,6 +1269,13 @@ a[href*="tel:"] {
 	font-family:'circularstd black';
 	src:url('assets/fonts/circularstd-black.eot');
 	src:url('assets/fonts/circularstd-black.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('assets/fonts/circularstd-black.woff2') format('woff2'), url('assets/fonts/circularstd-black.woff') format('woff'), url('assets/fonts/circularstd-black.ttf') format('truetype'), url('assets/fonts/circularstd-black.svg') format('svg');
+	font-weight:normal;
+	font-style:normal
+}
+@font-face {
+	font-family:'Helvetica Neue';
+	src:url('assets/fonts/helveticaneue.eot');
+	src:url('assets/fonts/helveticaneue.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('assets/fonts/helveticaneue.woff2') format('woff2'), url('assets/fonts/helveticaneue.woff') format('woff'), url('assets/fonts/helveticaneue.ttf') format('truetype'), url('assets/fonts/helveticaneue.svg') format('svg');
 	font-weight:normal;
 	font-style:normal
 }

@@ -31,8 +31,9 @@ background: #c95f5f;
 @media only screen and (min-width: 768px) {
     :host {
         display: block;
-        padding: 27px 0;
+        padding: 56px 0 55px 0;
         border-top: 1px solid #cccccc;
+        border-bottom: 1px solid #cccccc;
         -moz-transition: all 0.5s ease-in-out 0s;
         -ms-transition: all 0.5s ease-in-out 0s;
         -o-transition: all 0.5s ease-in-out 0s;
@@ -46,6 +47,6 @@ background: #c95f5f;
 /* 960px */
 @media only screen and (min-width: 960px) {
     .header_small :host {
-        padding: 5px 0;
+        padding: 17px 0;
     }
 }

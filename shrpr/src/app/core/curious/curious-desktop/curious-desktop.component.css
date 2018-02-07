@@ -1,289 +1,7 @@
-.category_bucket{
-    min-height: 490px;
-}
-.category_bucket h2 {
-    font-size:24px;
-    line-height: 30px;
-    text-transform: uppercase;
-    font-weight: normal;
-    padding:0 0 5px 20px;
-    margin:0 0 20px 0;
-}
-.magento h2 {
-    color:#6c0358;
-    border-bottom:3px solid #6c0358;
-}
-.blue h2 {
-    color:#0055a6;
-    border-bottom:3px solid #0055a6;
-}
-.yellow h2 {
-    color:#ea8922;
-    border-bottom:3px solid #ea8922;
-}
-
-.three_col_content::before,
-.three_col_content::after {
-    content: '';
-    display: block;
-    width: 100%;
-    clear: both;
-}
-
-.three_col_content::after {
-    content: '';
-    display: block;
-    width: 100%;
-    clear: both;
-}
-.img-ctn {
-    position: relative;
-}
-.img-ctn figure {
-    margin:0;
-    height: 280px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid #f7f7f7;
-    box-sizing: border-box;
-}
-.img-ctn figure img {
-    display:block;
-    margin:0;
-    width:100%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -ms-transform: translate(-50%, -50%); /* IE 9 */
-    -webkit-transform: translate(-50%, -50%); /* Safari */
-    transform: translate(-50%, -50%);
-    min-width: 400px;
-}
-.price{
-    background-color: #e7aa62;
-    color: #272625;
-    font-size: 16px;
-    padding: 3px 20px 3px 5px;
-    position: absolute;
-    top: 20px;
-    right: 0;
-    z-index: 9;
-}
-.price.free {
-    background: #448a58;
-    color: #ffffff;
-}
-.group_name {
-    font-size:12px;
-    line-height: 14px;
-}
-.group_rating {
-    float: right;
-}
-.location {
-    padding:0;
-}
-.location a, .date_stamp {
-    font-size:12px;
-    line-height: 14px;
-    color:#229bcb;
-}
-.card-info h3 {
-    padding:0 0 10px 0;
-    min-height: 58px;
-}
-.card-info h3 a {
-    color:#222222;
-    text-decoration: none;
-}
-.card-info h3 a:hover {
-    color:#ed9639;
-}
-.card-box {
-    margin: 0 1.5% 10px 1.5%;
-    background-color: #fff;
-    float: left;
-    width: 30%;
-}
- 
-.card-row {
-    margin: 0 0 5px 0;
-}
-
-.card-detail {
-    padding: 10px;
-    font-size: 12px;
-    line-height: 14px;
-}
-
-.field-label {
-    font-weight: bold;
-    display: inline-block;
-    min-width: 85px;
-    vertical-align: middle;
-    float: left;
-}
-
-.field-value {
-    display: inline-block;
-    vertical-align: middle;
-    float: left;
-    width: 60%;
-}
-
-.card-box-action {
-    background-color: #f4f4f4;
-    padding: 10px;
-}
-
-.card-box-action a {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 6px 10px 5px 10px;
-    background-color: #fc6b02;
-    font-size: 12px;
-    line-height: 14px;
-    color: #ffffff;
-    font-weight: bold;
-    text-decoration: none;
-    text-transform: uppercase;
-    border-radius: 5px;
-    margin: 0 2px;
-}
-
-.image-box {
-    display: block;
-    width: 100%;
-    background: url('../../../../assets/img/court.jpg') no-repeat center top;
-    background-size: cover;
-    max-width: 60em;
-    position: relative;
-    min-height: 200px;
-}
-
-.image-box img {
-    display: block;
-    width: 100%;
-}
-
 .buttons {
     position: relative;
     z-index: 4;
 }
-
-.course-title {
-    background: rgba(0, 0, 0, 0.75) none repeat scroll 0 0;
-    box-sizing: border-box;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 20px;
-    padding: 10px;
-    text-align: center;
-    border-bottom: 4px solid #ec9434;
-}
-
-.card-row {
-    margin: 0 0 10px 0;
-}
-
-.card-detail {
-    padding: 10px;
-    font-size: 12px;
-    line-height: 14px;
-}
-
-.aqua_text {
-    color: #02b2b8;
-}
-
-.card-box-action {
-    background-color: #f4f4f4;
-    padding: 10px;
-}
-
-.card-box-action a {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 6px 10px 5px 10px;
-    background-color: #fc6b02;
-    font-size: 12px;
-    line-height: 14px;
-    color: #ffffff;
-    font-weight: bold;
-    text-decoration: none;
-    text-transform: uppercase;
-    border-radius: 5px;
-    margin: 0 2px;
-}
-
-.card-row .fa {
-    font-size: 15px;
-    color: #696969;
-}
-
-.price-info {
-    background: url('../../../../assets/img/star-bg.jpg') no-repeat left top;
-    float: right;
-    padding: 20px 0 10px 20px;
-    font-size: 20px;
-    line-height: 25px;
-    color: #000000;
-}
-
-.card-overlay,
-.card-content {
-    max-width: 60em;
-}
-
-.like_action {
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 46%;
-    width: 100%;
-}
-
-.hollow-icon {
-    cursor: pointer;
-    display: block;
-    width: 40px;
-    height: 40px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    box-sizing: border-box;
-    text-align: center;
-    padding: 6px;
-    margin: 0 10px;
-    color: #000000;
-    font-size: 24px;
-    text-decoration: none;
-    opacity: 0.4;
-    transition: all 0.2s ease-out;
-}
-.hollow-icon.like{
-    background-color: #28e93b;
-}
-.hollow-icon.dislike{
-    background-color: #e92828;
-}
-
-.hollow-icon:hover {
-    opacity: 0.8;
-}
-
-.thumbUp {
-    float: right;
-}
-
-.thumbUp:hover {
-    background-color: #28e93b;
-}
-
-.thumbDown:hover {
-    background-color: #e92828;
-}
-
 a.show-more {
     color: #454545;
     font-family: 'circularstd book';
@@ -309,7 +27,7 @@ a.show-more:after {
     font-size: 24px;
     line-height: 13px;
 }
-section.suggest-course{
+section.suggest-course {
     padding: 35px 100px;
     width: 100%;
 }
@@ -357,36 +75,25 @@ section.suggest-course form button{
 section.suggest-course form button:hover{
     background-color: #666;
 }
-.course-cta {
-    background-color: #484848;
-    border: none;
-    -webkit-box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
-    box-shadow: 0 0 7px 3px rgba(0,0,0,0.2);
-    color: #ffffff;
-    cursor: pointer;
-    display: block;
-    font-family: 'circularstd book';
-    font-size: 14px;
-    line-height: 14px;
-    text-decoration: none;
-    margin: 10px auto 0 auto;
-    max-width: 130px;
-    padding:10px 10px;
-    text-align: center;
-    width: 100%;
-    text-transform: uppercase;
+:host /deep/ app-search {
+    display: inline;
 }
-.course-cta:hover {
-    background-color: #757575;
-    text-decoration: none;
+:host /deep/ app-search section#search {
+    padding: 0;
+    display: inline-block;
+    vertical-align: top;
 }
-@media only screen and (min-width: 1040px) {
-.location-wrap {
+:host /deep/ app-search section#search form > span.search-input {
+    display: none !important;
+
+}
+:host /deep/ app-search section#search form > span.location-input {
+    display: block !important;
+    max-width: 153px !important;
+}
+:host /deep/ app-search section#search form > span.location-input input {
+    background:none;
+    border: none !important;
+    z-index: 99;
     position: relative;
 }
-.course-cta {
-    position: absolute;
-    right: 0;
-    top: 0;
-}
- }

@@ -1,324 +1,125 @@
+<section class="group-filter-row">
+        <div class="sort-option">Sort by 
+            <a (click)="sortbyGroup(1)">Fun</a>
+            <a (click)="sortbyGroup(2)">Work</a>
+            <a (click)="sortbyGroup(3)">Kids</a>
+         </div>
+         <app-search></app-search>
+         <div class="like-count"><i class="fa fa-heart"></i> <span>{{ counter }}</span></div>
+     </section>
 <section 
-    id="for_work_box" 
-    class="category_bucket blue"
-    *ngIf="showWork"
-><a class="show-more" routerLink="/courses/list/for-work">View All</a>
-    <h2>For Work</h2>
-
-    <div 
-        class="thee_col_content clearfix"
-        *ngIf="forWork?.length > 0"
+id="for_work_box" 
+class="category_bucket blue"
+>
+<div 
+    class="course-box"
+    *ngIf="courses?.length"
+>
+    <article 
+        class="card-box" 
+        *ngFor="let course of courses; let i = index"  
+        [@state]="course?.state"
     >
-        <article 
-            class="card-box" 
-            *ngFor="let course of forWork; let i = index"  
-            [@state]="course?.state"
-        >
-            <div class="img-ctn">
-                <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
-                    ${{ course?.semesters[0]?.amount }}
-                  </div>
-                  <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
-                      Free
-                  </div>
+        <div class="img-ctn">
+            <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
+                ${{ course?.semesters[0]?.amount }}
+              </div>
+              <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
+                  Free
+              </div>
 
-                <figure>
-                        <a [routerLink]="['/courses', course.id]"><img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
-                        <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
-                </figure>
+            <figure>
+                    <a [routerLink]="['/courses', course.id]"><img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
+                    <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
+            </figure>
+        </div><!-- .img-ctn -->
 
-                <div class="like_action">
-                    <a 
-                        class="hollow-icon thumbUp" 
-                        (click)="onLike(course, i)"
-                        [class.like]="course?.state == 'like'"
-                    >
-                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                    </a>
+        <div class="card-info">
+            <div class="group_info">
+                <span class="group_rating" *ngIf="course?.rating">
+                    <star-rating-comp 
+                        [starType]="'svg'" 
+                        [showHalfStars]="true"
+                        [readOnly]="true"
+                        rating="{{ course?.rating || 0 }}"
+                    ></star-rating-comp>
+                </span>
 
-                    <a 
-                        class="hollow-icon thumbDown" 
-                        (click)="onDislike(course, i)"
-                        [class.dislike]="course?.state == 'dislike'"
-                    >
-                        <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div><!-- .img-ctn -->
+                <span class="group_name">
+                  {{ course?.categories[0]?.name }}
+                </span>
+            </div><!-- .group_info-->
 
-            <div class="card-info">
-                <div class="group_info">
-                    <span class="group_rating" *ngIf="course?.rating">
-                        <star-rating-comp 
-                            [starType]="'svg'" 
-                            [showHalfStars]="true"
-                            [readOnly]="true"
-                            rating="{{ course?.rating || 0 }}"
-                        ></star-rating-comp>
-                    </span>
+            <h3>
+                <a [routerLink]="['/courses', course?.id]">{{ course?.title | truncate : 70 : '...' }}</a>
+            </h3>
+            <div class="location-wrap">
+            <p class="location">
+                <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                <a href="javascript:void(0);">{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a></p><!-- .location -->
 
-                    <span class="group_name">
-                      {{ course?.categories[0]?.name }}
-                    </span>
-                </div><!-- .group_info-->
-
-                <h3>
-                    <a [routerLink]="['/courses', course?.id]">{{ course?.title }}</a>
-                </h3>
-                <div class="location-wrap">
-                <p class="location">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> 
-                    <a href="javascript:void(0);">{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a></p><!-- .location -->
-
-                <p class="date">
-                    <i class="fa fa-calendar" aria-hidden="true"></i> 
-                    <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
-                </p><!-- .date -->
-                <a class="course-cta" [routerLink]="['/courses', course.id]" aria-roledescription="button">View Course</a>
-                </div>
-            </div><!-- .card-info -->
-        </article>
-    </div>
-
-    <section 
-        class="suggest-course"
-        *ngIf="forWork?.length === 0"
-    >
-        <form [formGroup]="suggestFormWork" (ngSubmit)="onSuggest(1)">
-            <h1>Suggest Course:</h1>
-
-            <p>We're sorry we don't have anymore courses to recommend. Please tell us about some courses you would like to see:</p>
-
-            <textarea
-                id="suggest"
-                placeholder="What would you like to see?" 
-                formControlName="suggest" 
-            ></textarea>
-
-            <span 
-                class="help-block"
-                *ngIf="!suggestFormWork.get('suggest').valid && suggestFormWork.get('suggest').touched"
-            >
-                Please tell us more! (100 characters min)
-            </span><!-- .help-block -->
-
-            <button [disabled]="!suggestFormWork.valid">Submit</button>
-        </form>
-    </section><!-- .suggest-course -->
-</section><!-- #for_work_box -->
-
-<section 
-    id="for_fun_box" 
-    class="category_bucket magento"
-    *ngIf="showFun"
->    <a class="show-more" routerLink="/courses/list/for-fun">View All</a>
-    <h2>For Fun</h2>
-
-    <div 
-        class="thee_col_content clearfix"
-        *ngIf="forFun?.length > 0"
-    >
-        <article 
-            class="card-box" 
-            *ngFor="let course of forFun; let i = index" 
-            [@state]="course?.state"
-        >
-            <div class="img-ctn">
-                <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
-                    ${{ course?.semesters[0]?.amount }}
-                  </div>
-                  <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
-                      Free
-                  </div>
-
-                <figure><a [routerLink]="['/courses', course.id]">
-                 <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
-                 <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
-                </figure>
-
-                <div class="like_action">
-                    <a 
-                        class="hollow-icon thumbUp" 
-                        (click)="onLike(course, i)"
-                    >
-                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                    </a>
-
-                    <a 
-                        class="hollow-icon thumbDown" 
-                        (click)="onDislike(course, i)"
-                    >
-                        <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div><!-- .img-ctn -->
-
-            <div class="card-info">
-                <div class="group_info">
-                    <span class="group_rating" *ngIf="course?.rating">
-                        <star-rating-comp 
-                            [starType]="'svg'" 
-                            [showHalfStars]="true"
-                            [readOnly]="true"
-                            rating="{{ course?.rating || 0 }}"
-                        ></star-rating-comp>
-                    </span>
-
-                    <span class="group_name">
-                      {{ course?.categories[0]?.name }}
-                    </span>
-                </div><!-- .group_info-->
-
-                <h3>
-                    <a [routerLink]="['/courses', course?.id]">{{ course?.title }}</a>
-                </h3><div class="location-wrap">
-                <p class="location">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> 
-                    <a href="javascript:void(0);">{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a>
-                </p><!-- .location -->
-
-                <p class="date">
-                    <i class="fa fa-calendar" aria-hidden="true"></i> 
-                    <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
-                </p><!-- .date -->
-                <a class="course-cta" [routerLink]="['/courses', course.id]" aria-roledescription="button">View Course</a>
-                </div>
-            </div><!-- .card-info -->
-        </article>
-    </div>
-
-    <section 
-        class="suggest-course"
-        *ngIf="forFun?.length === 0"
-    >
-        <form [formGroup]="suggestFormFun" (ngSubmit)="onSuggest(0)">
-            <h1>Suggest Course:</h1>
-
-            <p>We're sorry we don't have anymore courses to recommend. Please tell us about some courses you would like to see:</p>
-
-            <textarea
-                id="suggest"
-                placeholder="What would you like to see?" 
-                formControlName="suggest" 
-            ></textarea>
-
-            <span 
-                class="help-block"
-                *ngIf="!suggestFormFun.get('suggest').valid && suggestFormFun.get('suggest').touched"
-            >
-                Please tell us more! (100 characters min)
-            </span><!-- .help-block -->
-
-            <button [disabled]="!suggestFormFun.valid">Submit</button>
-        </form>
-    </section><!-- .suggest-course -->
-</section><!-- #for_fun_box -->
-
-<section 
-    id="for_kids_box" 
-    class="category_bucket yellow"
-    *ngIf="showKids"
-><a class="show-more" routerLink="/courses/list/for-kids">View All</a>
-    <h2>For Kids</h2>
-
-    <div 
-        class="thee_col_content clearfix"
-        *ngIf="forKids?.length > 0"
-    >
-        <article 
-            class="card-box" 
-            *ngFor="let course of forKids; let i = index" 
-            [@state]="course?.state"
-        >
-            <div class="img-ctn">
-                <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
-                    ${{ course?.semesters[0]?.amount }}
-                  </div>
-                  <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
-                      Free
-                  </div>
-
-                <figure>
-                        <a [routerLink]="['/courses', course.id]"><img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
-                        <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
-                </figure>
-
-                <div class="like_action">
-                    <a 
-                        class="hollow-icon thumbUp" 
-                        (click)="onLike(course, i)"
-                        [class.like]="course?.state == 'like'"
-                    >
-                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                    </a>
-
-                    <a 
-                        class="hollow-icon thumbDown" 
-                        (click)="onDislike(course, i)"
-                        [class.dislike]="course?.state == 'dislike'"
-                    >
-                        <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div><!-- .img-ctn -->
-
-            <div class="card-info">
-                <div class="group_info">
-                    <span class="group_rating" *ngIf="course?.rating">
-                        <star-rating-comp 
-                            [starType]="'svg'" 
-                            [showHalfStars]="true"
-                            [readOnly]="true"
-                            rating="{{ course?.rating || 0 }}"
-                        ></star-rating-comp>
-                    </span>
-
-                    <span class="group_name">
-                      {{ course?.categories[0]?.name }}
-                    </span>
-                </div><!-- .group_info-->
-
-                <h3>
-                    <a [routerLink]="['/courses', course.id]">{{ course?.title }}</a>
-                </h3>
-                <div class="location-wrap">
-                <p class="location">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> 
-                    <a href="javascript:void(0);">{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a>
-                </p><!-- .location -->
-                <p class="date">
-                    <i class="fa fa-calendar" aria-hidden="true"></i> 
-                    <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
-                </p><!-- .date -->
-                <a class="course-cta" [routerLink]="['/courses', course.id]" aria-roledescription="button">View Course</a>
+            <p class="date">
+                <i class="fa fa-calendar" aria-hidden="true"></i> 
+                <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
+            </p><!-- .date -->
+            <!--<a class="course-cta" [routerLink]="['/courses', course.id]" aria-roledescription="button">View Course</a>-->
             </div>
-            </div><!-- .card-info -->
-        </article>
-    </div>
-
-    <section 
-        class="suggest-course"
-        *ngIf="forKids?.length === 0"
-    >
-        <form [formGroup]="suggestFormKids" (ngSubmit)="onSuggest(2)">
-            <h1>Suggest Course:</h1>
-
-            <p>We're sorry we don't have anymore courses to recommend. Please tell us about some courses you would like to see:</p>
-
-            <textarea
-                id="suggest"
-                placeholder="What would you like to see?" 
-                formControlName="suggest" 
-            ></textarea>
-
-            <span 
-                class="help-block"
-                *ngIf="!suggestFormKids.get('suggest').valid && suggestFormKids.get('suggest').touched"
+        </div><!-- .card-info -->
+        <div class="like_action">
+            <div>
+                <a 
+                class="hollow-icon thumbDown" 
+                (click)="onDislike(course, i)"
+                [class.dislike]="course?.state == 'dislike'"
             >
-                Please tell us more! (100 characters min)
-            </span><!-- .help-block -->
+            <i class="fa fa-times"></i>
+            </a></div>
+            <div>
+            <a 
+                class="hollow-icon thumbUp" 
+                (click)="onLike(course, i)"
+                [class.like]="course?.state == 'like'"
+            >
+            <i class="fa fa-heart-o"></i>
+            <i class="fa fa-heart"></i>
+            </a></div>
+        </div>
+    </article>
+</div>
 
-            <button [disabled]="!suggestFormKids.valid">Submit</button>
-        </form>
-    </section><!-- .suggest-course -->
-</section><!-- #for_kids_box -->
+<section 
+    class="suggest-course"
+    *ngIf="courses?.length === 0"
+    [@form]
+>
+    <form 
+        [formGroup]="suggestForm" 
+        (ngSubmit)="onSuggest()"
+        *ngIf="!suggestComplete"
+    >
+        <h1>Suggest Course:</h1>
+
+        <p>We're sorry we don't have anymore courses to recommend. Please tell us about some courses you would like to see:</p>
+
+        <textarea
+            id="suggest"
+            placeholder="What would you like to see?" 
+            formControlName="suggest" 
+        ></textarea>
+
+        <span 
+            class="help-block"
+            *ngIf="!suggestForm.get('suggest').valid && suggestForm.get('suggest').touched"
+        >
+            Please tell us more! (100 characters min)
+        </span><!-- .help-block -->
+
+        <button [disabled]="!suggestForm.valid">Submit</button>
+    </form>
+
+    <section class="suggest-complete" *ngIf="suggestComplete">
+        <h1>Suggestion sent!</h1>
+
+        <p>Thank you for submitting your suggestion!</p>
+    </section><!-- .suggest-complete -->
+</section><!-- #All Courses -->
