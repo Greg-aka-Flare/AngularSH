@@ -1,6 +1,6 @@
 <section class="page-conent-area" *ngIf="mycourses">
 <h1>Courses you Like</h1>
-<section class="group-filter-row">
+<section class="group-filter-row clearfix">
    <div class="sort-option">Sort by 
        <a (click)="sortbyGroup(1)">Fun</a>
        <a (click)="sortbyGroup(2)">Work</a>
@@ -32,7 +32,8 @@
                 <h3>
                     <a [routerLink]="['/courses', course?.id]">{{ course?.title | truncate : 70 : '...'}}</a>
                 </h3><div class="location-wrap">
-                <p class="location">
+                <a class="course-cta" [routerLink]="['/courses', course.id]">View Course</a>
+                    <p class="location">
                     <i class="fa fa-map-marker" aria-hidden="true"></i> 
                     <a href="javascript:void(0);">{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a>
                 </p><!-- .location -->
@@ -42,7 +43,8 @@
                 </p><!-- .date -->
                 </div>
             </div><!-- .card-info -->
-            <div class="like_action">
+            
+            <!--<div class="like_action">
                     <div>
                         <a 
                         class="hollow-icon thumbDown" 
@@ -55,10 +57,8 @@
                     <i class="fa fa-cart-plus" aria-hidden="true"></i>
                     </a>
                   </div>
-                </div>
+                </div>-->
         </article>
-        <p *ngIf="allCourses?.length > 6" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= allCourses?.length">view more</button></p> 
-
-
+        <p *ngIf="filtercourses?.length > 6" class="ctr"><button class="view-more-btn" (click)="getData()" [disabled]="counter >= filtercourses?.length">view more</button></p> 
 </section>
 

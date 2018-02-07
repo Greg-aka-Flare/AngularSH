@@ -1,7 +1,7 @@
 export interface Course {
 	id?: number;
 	institution_id?: number;	
-	group_id: number;
+	group_id?: any;
 	instructor: any;
 	institution?: any;
 	title: string;
