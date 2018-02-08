@@ -59,7 +59,6 @@
                     <i class="fa fa-calendar" aria-hidden="true"></i> 
                     <time title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
                 </p><!-- .date -->
-                <p class="heart-icon"><i class="fa fa-heart-o"></i></p>
             </div><!-- .overlay -->
             <span class="overlay-color" [@overlay]='course?.state'></span>
         </div><!-- .img-ctn -->
