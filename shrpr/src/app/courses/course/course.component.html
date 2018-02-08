@@ -1,161 +1,269 @@
 <enroll 
-  *ngIf="selectedCourse && enrollPopup"
-  [course]="selectedCourse"
-  (onAddCart)="addCart($event)"
+    *ngIf="selectedCourse && enrollPopup"
+    [course]="selectedCourse"
+    (onAddCart)="addCart($event)"
 >
 </enroll>
 
 <article *ngIf="course">
-  <!-- mobile view start-->
-  <section *ngIf="width < 768" class="course-header">
-      <div class="bradecrumb"><span><a [routerLink]="['/institution', course.institution.id]"> {{ course.institution.name }}</a> > </span><span>{{ course.group.label }}</span><span *ngFor="let card of categoriesArray; let i = index"> > {{ card.name }}</span></div>
-    <h2>{{course.title}}</h2>
-    <article class="course_mobile_card">
-        <div class="category">{{ course.categories[0].name }}
-            <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></figure><!-- .rating -->
-        </div><!-- .category -->
-        <div class="img-ctn">
-            <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
-                ${{ course.semesters[0].amount }}
-            </div><!-- .price -->
-            <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
-              Free
-          </div><!-- .price -->
+    <section class="course-header mobile">
+        <div class="bread-crumb">
+            <span>
+                <a [routerLink]="['/institution', course.institution.id]">
+                {{ course.institution.name }}</a> >
+            </span>
+
+            <span>
+                {{ course.group.label }}
+            </span>
+
+            <span *ngFor="let category of course.categories; let i = index"> >
+                {{ category.name }}
+            </span>
+        </div>
+
+        <h2>{{ course.title }}</h2>
+
+        <article class="course_mobile_card">
+            <div class="category">
+                {{ course.categories[0].name }}
+
+                <figure class="rating">
+                    <star-rating-comp 
+                        [starType]="'svg'" 
+                        [rating]="course.rating" 
+                        [showHalfStars]="true" 
+                        [readOnly]="true"
+                    >
+                    </star-rating-comp>
+                </figure><!-- .rating -->
+            </div><!-- .category -->
+
+            <div class="img-ctn">
+                <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
+                    ${{ course.semesters[0].amount }}
+                </div><!-- .price -->
+
+                <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
+                    Free
+                </div><!-- .price -->
+
+                <div class="course_slider">
+                    <carousel 
+                        [interval]="NextPhotoInterval" 
+                        [noWrap]="noLoopSlides"
+                    >
+                        <slide 
+                            *ngFor="let slidez of slides; let index=index"
+                            [active]="slidez.active"
+                        >
+                            <img [src]="slidez.image" style="margin:auto;" class="slider-img">
+                        </slide>
+                    </carousel>
+                </div>
+
+                <div class="overlay">
+                    <p>
+                        <i class="fa fa-user" aria-hidden="true"></i> 
+                        <a [routerLink]="['/instructor', course.instructor.id]">
+                            {{ course.instructor.name }}
+                        </a>
+                    </p>
+
+                    <p>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                        <span class="course_address_mobile" *ngIf="selectedSemester">
+                            <span *ngFor="let semester of selectedSemester">
+                                <span *ngFor="let address of semester.addresses">
+                                    {{ address.city }}, {{ address.state }}
+                                </span>
+                            </span> 
+                        </span>
+                    </p>
+                </div><!-- .overlay -->
+            </div><!-- .img-ctn -->
+
+            <div class="course_info">
+                <div *ngIf="this.course.semesters.length > 1">
+                    <p>Total Semesters: {{ this.course.semesters.length }}</p>
+
+                    Select Your Semester, Starts on:
+
+                    <div *ngIf="selectedSemester" class="select-date">
+                        <select 
+                            [class.multiple]="isMulti" 
+                            name="semester_start_date" [(ngModel)]="selected" 
+                            (ngModelChange)="onSelect(selected)"
+                        >
+                            <option 
+                                *ngFor="let sem of course?.semesters; let k = index" 
+                                value="{{ sem.id }}" 
+                                [selected]="k == 0"
+                            >
+                                {{sem?.start_date | datex:'LLLL'}} at {{sem?.addresses[0]?.city}}, {{sem?.addresses[0]?.state}}
+                            </option>
+                        </select>
+
+                        <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
+                            <div class="select-wrap">
+                                <p>
+                                    <time title="{{selected?.start_date | datex:'LLLL'}}">
+                                        {{selected?.start_date | datex:'LLLL'}}
+                                    </time>
+                                    , at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}
+                                </p>
+                            </div>
+
+                            <p>Session(s): {{selected?.duration}}</p> 
+                        </div>
+                    </div>
+                </div>
+
+            <div *ngIf="semesterCount < 2">
+                Starts on 
+
+                    <div *ngIf="selectedSemester">
+                        <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
+                            <p>
+                                <time title="{{selected?.start_date | datex:'LLLL'}}">
+                                    {{selected?.start_date | datex:'LLLL'}}
+                                </time>
+
+                                , at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}
+                            </p>
+
+                            <p>Sessions: {{selected?.duration}}</p>
+                        </div>
+                    </div> 
+                </div>
+
+                <div class="action_btn">
+                    <a 
+                        *ngIf="!cartAdded"
+                        (click)="enroll()"
+                    >
+                        Enroll Now
+                    </a>
+
+                    <a 
+                        *ngIf="cartAdded"
+                        [routerLink]="['/payment', 'cart']"
+                    >
+                        Checkout
+                    </a>
+
+                    <a class="wishlist">
+                        <img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist
+                    </a>
+                </div>
+            </div>
+        </article>
+    </section><!-- .mobile -->
+
+    <section class="desktop">
+        <div class="course_header">
+            <div class="bread-crumb">
+                <span>
+                    <a [routerLink]="['/institution', course.institution.id]">
+                        {{ course.institution.name }}
+                    </a> > 
+                </span>
+
+                <span>{{ course.group.label }}</span>
+
+                <span 
+                    *ngFor="let category of course.categories; let i = index"
+                > 
+                    > {{ category.name }}
+                </span>
+            </div>
+
             <div class="course_slider">
-                <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
-                    <slide *ngFor="let slidez of slides; let index=index"
-                           [active]="slidez.active">
-                           <img [src]="slidez.image" style="margin:auto;" class="slider-img">
+                <carousel 
+                    [interval]="NextPhotoInterval" 
+                    [noWrap]="noLoopSlides"
+                >
+                    <slide 
+                        *ngFor="let slidez of slides; let index=index"
+                        [active]="slidez.active"
+                    >
+                        <img [src]="slidez.image" style="margin:auto;" class="slider-img">
                     </slide>
                 </carousel>
-                </div>
-            <div class="overlay">
-                <p><i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a></p>
-                <p><i class="fa fa-map-marker" aria-hidden="true"></i> 
-                  <span class="course_address_mobile" *ngIf="selectedSemester">
-                      <span *ngFor="let gadd of selectedSemester">
-                      <span *ngFor="let add of gadd.addresses">
-                           {{ add.city }}, {{ add.state }}
-                    </span>
-                    </span> 
-                  </span>
-                
+            </div><!-- .course_slider -->
+
+            <div class="course_info_desktop">
+                <h1>{{ course.title }}</h1>
+
+                <div class="course_rating_info">
+                    {{ course.categories[0].name }} | 
+
+                    <figure class="rating">
+                        <star-rating-comp 
+                            [starType]="'svg'" 
+                            [rating]="course.rating" 
+                            [showHalfStars]="true" 
+                            [readOnly]="true"
+                        >
+                        </star-rating-comp>
+                    </figure>
+
+                     | <a (click)="goTo('reviews')">{{ course.ratings.length }} Reviews</a><!-- .rating -->
+                    
+                    <span class="course_price_desktop" *ngIf="course.semesters[0].amount != '0.00'">${{ course.semesters[0].amount }}</span>
+
+                    <span class="course_price_desktop free" *ngIf="course.semesters[0].amount == '0.00'">Free</span>
+                </div><!-- .course_rating_info -->
+
+                <p>
+                    <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
                 </p>
-            </div><!-- .overlay -->
-        </div><!-- .img-ctn -->
-        <div class="course_info">
-            <div *ngIf="semesterCount > 1">
-                <p>Total Semesters: {{semesterCount}}</p>
-                Select Your Semester, Starts on:
-                <div *ngIf="selectedSemester" class="select-date">
-                  <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
-                    <option *ngFor="let sem of course?.semesters; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LLLL'}} at {{sem?.addresses[0]?.city}}, {{sem?.addresses[0]?.state}} </option>
-                  </select>
-                <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
-                  <div class="select-wrap">
-                    <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
-                    <!--<p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>-->
-                  </div>
-                  <p>Session(s): {{selected?.duration}}</p> 
+
+                <div class="action_btn">
+                    <a 
+                        *ngIf="!cartAdded" 
+                        (click)="enroll()"
+                    >
+                        Enroll Now
+                    </a>
+
+                    <a 
+                        *ngIf="cartAdded"
+                        [routerLink]="['/payment', 'cart']"
+                    >
+                        Checkout
+                    </a>
+
+                    <br>
+
+                    <a class="wishlist">
+                        <img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist
+                    </a>
                 </div>
-              </div>
-              </div>
-              <div *ngIf="semesterCount < 2">
-                  Starts on 
-                <div *ngIf="selectedSemester">
-                <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
-                   <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
-                   <p>Sessions: {{selected?.duration}}</p>
-                </div>
-              </div> 
-              </div>
-            <div class="action_btn">
-              <a 
-                *ngIf="!cartAdded"
-                (click)="enroll()"
-              >
-                Enroll Now
-              </a>
-
-              <a 
-                *ngIf="cartAdded"
-                [routerLink]="['/payment', 'cart']"
-              >
-                Checkout
-              </a>
-
-              <a class="wishlist"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
-            </div>
-        </div>
-        
-    </article>
-  </section>
-  <!-- mobile view ends-->
-  <!--desktop view start-->
-  <section *ngIf="width > 767">
-    <div class="course_header">
-        <div class="bradecrumb"><span><a [routerLink]="['/institution', course.institution.id]"> {{ course.institution.name }}</a> > </span><span>{{ course.group.label }}</span><span *ngFor="let card of categoriesArray; let i = index"> > {{ card.name }}</span></div>
-        <div class="course_slider">
-            <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides">
-                <slide *ngFor="let slidez of slides; let index=index"
-                       [active]="slidez.active">
-                       <img [src]="slidez.image" style="margin:auto;" class="slider-img">
-                </slide>
-            </carousel>
-            </div>  
-        <!-- .course_slider -->  
-        <div class="course_info_desktop">
-            <h1>{{course.title}}</h1>
-            <div class="course_rating_info">
-              {{ course.categories[0].name }} | <figure class="rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></figure> | <a (click)="goTo('reviews')" href="javascript:void(0);">{{reviewCount}} Reviews</a><!-- .rating -->
-              
-              <span class="course_price_desktop" *ngIf="course.semesters[0].amount != '0.00'">${{ course.semesters[0].amount }}</span>
-              <span class="course_price_desktop free" *ngIf="course.semesters[0].amount == '0.00'">Free</span>
-            </div><!-- .course_rating_info -->
-            <p>
-              <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
-            </p>
-            <div class="action_btn">              <a 
-                *ngIf="!cartAdded"
-                (click)="enroll()"
-              >
-                Enroll Now
-              </a>
-
-              <a 
-                *ngIf="cartAdded"
-                [routerLink]="['/payment', 'cart']"
-              >
-                Checkout
-              </a>
-              <br>
-              <a class="wishlist"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
-            </div>
             <p>
               <i class="fa fa-map-marker" aria-hidden="true"></i> 
               <span class="course_address_mobile" *ngIf="selectedSemester">
-                  <span *ngFor="let gadd of selectedSemester">
-                  <span *ngFor="let add of gadd.addresses">
-                       {{ add.city }}, {{ add.state }}
+                  <span *ngFor="let semester of selectedSemester">
+                  <span *ngFor="let address of semester.addresses">
+                       {{ address.city }}, {{ address.state }}
                 </span>
                 </span> 
               </span>
             </p>
             <br>
-            <div *ngIf="semesterCount > 1">
-              <p>Total Semesters: {{semesterCount}}</p>
+            <div *ngIf="course.semesters.length > 1">
+              <p>Total Semesters: {{ course.semesters.length }}</p>
               Select Your Semester, Starts on:<br>
               <div *ngIf="selectedSemester" class="select-date">
                 <select [class.multiple]="isMulti" name="semester_start_date" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
-                  <option *ngFor="let sem of course?.semesters; let k = index"  value="{{sem.id}}" [selected]="k == 0">{{sem?.start_date | datex:'LLLL'}} at {{sem?.addresses[0]?.city}}, {{sem?.addresses[0]?.state}} </option>
+                  <option *ngFor="let semester of course?.semesters; let k = index"  value="{{semeseter.id}}" [selected]="k == 0">{{semester?.start_date | datex:'LLLL'}} at {{semester?.addresses[0]?.city}}, {{semester?.addresses[0]?.state}} </option>
                 </select>
               
               <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
                 <div class="select-wrap">
                   <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
-                  <!--<p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>-->
                 </div>
-                <p>Sessions: {{selected?.duration}} <span *ngIf="selected?.duration > 1" >(<a (click)="goTo('sessions')" href="javascript:void(0);">view full Schedule</a>)</span></p> 
+                <p>Sessions: {{selected?.duration}} <span *ngIf="selected?.duration > 1" >(<a (click)="goTo('sessions')">view full Schedule</a>)</span></p> 
               </div>
             </div>
             </div>
@@ -165,7 +273,6 @@
               <div *ngIf="selectedSemester">
               <div class="selected_sem_info" *ngFor="let selected of selectedSemester">
                  <p><time title="{{selected?.start_date | datex:'LLLL'}}">{{selected?.start_date | datex:'LLLL'}}</time>, at {{selected?.addresses[0]?.city}}, {{selected?.addresses[0]?.state}}</p>
-                 <!--<p>End Date: <time title="{{selected?.end_date | datex:'LLLL'}}">{{selected?.end_date | datex:'LLLL'}}</time></p>-->
                  <p>Session: {{selected?.duration}}</p>
               </div>
             </div> 
@@ -180,9 +287,9 @@
     <h2>Semester Information</h2>
     <div class="course_enroll_block">
       <ul class="meetings_list" aria-roledescription="list">
-          <li *ngFor="let sem of semesters; let k = index">
-            <time title="{{sem?.start_date | datex:'LLLL'}}">{{sem?.start_date | datex:'LLLL'}}</time><br>
-            <span><i class="fa fa-map-marker" aria-hidden="true"></i> {{sem?.addresses[0]?.city}}, {{sem?.addresses[0]?.state}} </span>
+          <li *ngFor="let semester of course.semesters; let k = index">
+            <time title="{{semester?.start_date | datex:'LLLL'}}">{{semester?.start_date | datex:'LLLL'}}</time><br>
+            <span><i class="fa fa-map-marker" aria-hidden="true"></i> {{semester?.addresses[0]?.city}}, {{semester?.addresses[0]?.state}} </span>
           </li>
       </ul>
       <a *ngIf="semesterCount > 3"  class="allsem-btn" routerLink="/courses/{{course?.id}}/semesters">View All Semesters</a>
@@ -190,7 +297,7 @@
       <!-- .course_enroll_block -->
 </section>
   <!-- #profile header -->
-  <tabs *ngIf="width < 768">
+  <tabs class="mobile">
   <tab tabTitle="ABOUT">
       <div class="description" [innerHTML]="course.description"></div>
   </tab>
@@ -212,7 +319,7 @@
   </tab>
   </tabs><!-- #Tab -->
   <!-- desktop view -->
-  <section *ngIf="width > 767" id="desktopcourses">
+  <section class="desktop" id="desktopcourses">
     <h2>ABOUT</h2>
     <div class="description" [innerHTML]="course.description"></div><!-- .description -->
     <h2 id="sessions" *ngIf="selectedSemesterMettings > 1">Classes Schedule</h2>
@@ -235,12 +342,12 @@
   <!--google map start-->
   <section id="gmap">
     <div *ngIf="selectedSemester">
-    <div *ngFor="let gadd of selectedSemester">
-    <div *ngFor="let add of gadd.addresses">
+    <div *ngFor="let semester of selectedSemester">
+    <div *ngFor="let address of semester.addresses">
     <agm-map [latitude]="lat" [longitude]="lng" [fullscreenControl]="true" [mapTypeControl]="true">
       <agm-marker [latitude]="lat" [longitude]="lng" [label]="'A'">
         <agm-info-window [disableAutoPan]="true">
-          <address>{{ add.streetAddress }}<br>{{ add.city }}, {{ add.state }}<br>{{ add.zip }}<br>{{ add.country }}</address>
+          <address>{{ address.streetaddressress }}<br>{{ address.city }}, {{ address.state }}<br>{{ address.zip }}<br>{{ address.country }}</address>
         </agm-info-window>
       </agm-marker>
     </agm-map>
@@ -249,19 +356,6 @@
   </div>
   </section>
   <!--google map ends-->
-  <!-- #reviews-->
-  <section id="reviews">
-      <div class="reviews-rating"><star-rating-comp [starType]="'svg'" [rating]="reviewRatingGross" [showHalfStars]="true" [readOnly]="true"></star-rating-comp> {{reviewRatingGross | number : '1.1-1'}} | {{reviewCount}} reviews<span *ngIf="loggedIn"> | <a href="javascript:void(0);" (click)="reviewshowHide = !reviewshowHide">Add Your Review</a></span></div>
-      <app-addreview *ngIf="reviewshowHide"></app-addreview>
-      <div *ngIf="reviewCount >= 1">
-          <dl class="review_items" *ngFor="let review of ratingData" >
-      <dt><img src="../../assets/img/reviews-profile.jpg" alt="" title="">User id: {{review.user_id}}</dt>
-      <dd><h2>{{review.title}} <span class="review_items_rating">Rating: {{review.rating}} | <star-rating-comp class="review_star" [starType]="'svg'" [rating]="review.rating" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></span></h2>
-      <p>{{review.comment}}</p></dd>
-    </dl>
-  </div>
-  <div *ngIf="reviewCount < 1">No reviews yet. Be the first to write a review.</div>
-    <p class="seeall-link"><!--<button class="show-more" (click)="getData()" [disabled]="counter>=ratingData.length">see all related reviews</button><a href="javascript:void(0);">see all related reviews</a>--></p>
-    
-  </section><!-- #reviews -->
+  
+    <app-rating [item]="course" [total]="course.rating" type="courses"></app-rating>
 </article>

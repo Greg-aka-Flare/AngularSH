@@ -1,11 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { AuthService } from '../../../auth/auth.service';
+import { AuthService } from '@app/auth';
 import { CartService } from '../../../payment/cart.service';
-import { Course } from '../../../courses/course.interface';
-import { User } from '../../../core/user.interface';
-import { UserService } from '../../../core/user.service';
+import { Course, User, UserService } from '@app/core';
 
 @Component({
   selector: 'enroll',

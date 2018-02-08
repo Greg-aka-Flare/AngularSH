@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
-import { Course } from "../course.interface";
-import { CourseService } from "../course.service";
+import { Course, CourseService } from '@app/core';
 
 @Component({
   selector: 'app-course-list',

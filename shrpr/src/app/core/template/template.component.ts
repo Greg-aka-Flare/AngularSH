@@ -2,11 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { MenuComponent } from './menu/menu.component';
-import { SearchComponent } from '../../shared/search/search.component';
-import { DemoComponent } from './schedule-demo/demo.component';
-import { TemplateService } from './template.service';
-import { CuriousService } from '../../core/curious.service';
+import { CuriousService, TemplateService } from '@app/core';
 import { CartService } from '../../payment/cart.service';
 import { AuthService } from './../../auth/auth.service';
 

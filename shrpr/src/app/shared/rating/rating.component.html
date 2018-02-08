@@ -1,0 +1,133 @@
+<section id="ratings" *ngIf="ratings">
+    <div id="rating">
+        <star-rating-comp 
+            [starType]="'svg'" 
+            [rating]="total" 
+            [showHalfStars]="true" 
+            [readOnly]="true"
+        >
+        </star-rating-comp> {{ total | number : '1.1-1' }} Score / {{ ratings.length }} Reviews
+    </div><!-- #rating -->
+      
+    <div *ngIf="ratings.length > 0">
+        <dl *ngFor="let rating of ratings">
+            <dt>
+                <i class="fa fa-user fa-4x"></i>
+            </dt>
+
+            <dd>
+                <span class="rating">
+                    <star-rating-comp 
+                        class="review_star" 
+                        [starType]="'svg'" 
+                        [staticColor]="'default'"
+                        [rating]="rating.rating" 
+                        [showHalfStars]="true" 
+                        [readOnly]="true"
+                    >
+                    </star-rating-comp>
+                </span><!-- .rating -->
+
+                <h2>{{ rating.title }}</h2>
+
+                <p>{{ rating.comment }}</p>
+
+                <p class="name">
+                    Review Posted By: 
+                    <a href="mailto:{{ rating.user.email }}" title="{{ rating.user.name }}">
+                        {{ rating.user.name }}
+                    </a>
+                </p>
+            </dd>
+        </dl>
+
+        <dl *ngIf="rating" class="you">
+            <dt>
+                <i class="fa fa-user fa-4x"></i>
+            </dt>
+
+            <dd>
+                <span class="rating">
+                    <star-rating-comp 
+                        class="review_star" 
+                        [starType]="'svg'" 
+                        [staticColor]="'default'"
+                        [rating]="rating.rating" 
+                        [showHalfStars]="true" 
+                        [readOnly]="true"
+                    >
+                    </star-rating-comp>
+                </span><!-- .rating -->
+
+                <h2>{{ rating.title }}</h2>
+
+                <p>{{ rating.comment }}</p>
+
+                <p class="name">
+                    You!
+                </p>
+            </dd>
+        </dl>
+    </div>
+
+    <div *ngIf="!ratings.length">No reviews yet. Be the first to write a review.</div>
+
+    <form 
+        id="rating-form"
+        *ngIf="showForm"
+        [formGroup]="ratingForm" 
+        (ngSubmit)="submit()"
+    >
+        <div class="saved" *ngIf="saved">
+            <i class="fa fa-check"></i>
+
+            Review Saved!
+        </div>
+
+        <h2 *ngIf="rating">Edit Your Review:</h2>
+
+        <h2 *ngIf="!rating">Add a Review:</h2>
+
+        <div>
+            <label>Review Title:</label>
+
+            <input type="text" formControlName="title" placeholder="Title Your Review...">
+
+            <control-messages [control]="ratingForm.controls.title"></control-messages>
+        </div>
+
+        <div>
+            <label class="score">Score:</label>
+
+            <star-rating-comp [starType]="'svg'" formControlName="rating" ></star-rating-comp>
+
+            <control-messages [control]="ratingForm.controls.rating"></control-messages>
+        </div>
+
+        <div>
+            <label>Comment:</label>
+
+            <textarea type="text" formControlName="comment" placeholder="Enter Your Comment..."></textarea>
+
+            <control-messages [control]="ratingForm.controls.comment"></control-messages>
+        </div>
+
+        <input type="hidden" formControlName="id">
+
+        <button 
+            [disabled]="!ratingForm.valid" 
+            type="Submit"
+            *ngIf="!rating"
+        >
+            Save Review
+        </button>
+
+        <button 
+            [disabled]="!ratingForm.valid" 
+            type="Submit"
+            *ngIf="rating"
+        >
+            Edit Review
+        </button>
+    </form>
+</section><!-- #ratings -->

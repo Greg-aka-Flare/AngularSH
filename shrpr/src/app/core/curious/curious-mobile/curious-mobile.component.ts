@@ -2,13 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Response } from "@angular/http";
 
-import { Course } from '../../../courses/course.interface';
-import { CourseService } from '../../../courses/course.service';
-import { CuriousService } from '../../curious.service';
+import { Course, CourseService, CuriousService } from '@app/core';
 import { Subscription } from 'rxjs/Subscription';
 import { StarRatingModule } from 'angular-star-rating';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../../../auth/auth.service';
+import { AuthService } from '@app/auth';
 
 @Component({
   selector: 'app-curious-mobile',

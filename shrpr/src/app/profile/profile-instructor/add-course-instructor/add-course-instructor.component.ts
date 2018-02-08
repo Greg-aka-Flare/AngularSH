@@ -3,12 +3,7 @@ import { FormBuilder, FormGroup, FormControl, FormArray, AbstractControl, Valida
 import { Router } from "@angular/router";
 import * as moment from 'moment';
 
-import { Category } from '../../../core/category.interface';
-import { CategoryService } from '../../../core/category.service';
-import { Course } from '../../../courses/course.interface';
-import { CourseService } from '../../../courses/course.service';
-import { User } from '../../../core/user.interface';
-import { ValidationService } from '../../../core/validation.service';
+import { Category, CategoryService, Course, CourseService, User, ValidationService } from '@app/core';
 
 @Component({
   selector: 'add-course-instructor',

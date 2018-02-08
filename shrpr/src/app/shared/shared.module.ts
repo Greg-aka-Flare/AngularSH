@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { Ng2CompleterModule } from 'ng2-completer';
+import { StarRatingModule } from 'angular-star-rating';
 
 import { Carousel } from './carousel/carousel.component';
 import { Slide } from './carousel/slide.component';
 import { SearchComponent } from './search/search.component';
-import { AddreviewComponent } from './add-a-review/addreview.component';
+import { RatingComponent } from './rating/rating.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TabComponent } from './tabs/tab.component';
 import { DatexPipe, TruncatePipe } from './date.pipe';
@@ -23,7 +24,7 @@ import { ModalComponent } from './modal/modal.component';
     Carousel,
     Slide,
     SearchComponent,
-    AddreviewComponent,
+    RatingComponent,
     TabsComponent,
     TabComponent,
     DatexPipe,
@@ -39,7 +40,8 @@ import { ModalComponent } from './modal/modal.component';
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule,
-    Ng2CompleterModule
+    Ng2CompleterModule,
+    StarRatingModule.forRoot()
   ],
   exports: [
     Carousel,
@@ -52,7 +54,7 @@ import { ModalComponent } from './modal/modal.component';
     AgmCoreModule,
     FilterComponent,
     InlineEditComponent,
-    AddreviewComponent,
+    RatingComponent,
     ControlMessagesComponent,
     ModalComponent
   ]

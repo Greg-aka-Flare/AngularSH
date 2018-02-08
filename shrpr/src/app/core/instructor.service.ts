@@ -18,7 +18,7 @@ export class InstructorService {
 		return this.http.put(api, data);	
 	}
 
-	getInstructor(id): Observable<any>{
+	get(id): Observable<any>{
 		let api = this.api + 'instructor/' + id;
 
 		return this.http.get(api);

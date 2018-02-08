@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 import { Subject } from 'rxjs/Subject';
-import { AuthService } from '../auth/auth.service';
-import { environment } from '../../environments/environment';
-import { CourseService } from "../courses/course.service";
-import { Course } from '../courses/course.interface';
+import { AuthService } from '@app/auth';
+import { environment } from '@env/environment';
+import { Course } from './course.interface';
+import { CourseService } from './course.service';
 import { NullAstVisitor } from '@angular/compiler';
 
 @Injectable()

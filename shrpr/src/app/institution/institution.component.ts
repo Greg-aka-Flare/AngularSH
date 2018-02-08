@@ -1,12 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser'
 import { ActivatedRoute, Params } from '@angular/router';
-import { TabsComponent } from "../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Institution } from "./institution.interface";
-import { InstitutionService } from "./institution.service";
+
+import { Institution, InstitutionService } from '@app/core';
 
 @Component({
   selector: 'app-institution',

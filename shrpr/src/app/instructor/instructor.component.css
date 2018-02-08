@@ -47,6 +47,9 @@
     display: inline-block;
     vertical-align: middle;
    }
+.desktop{
+  display: none;
+}
 #profile-header /deep/ star-rating-comp .rating {
        padding: 0;
    }
@@ -198,18 +201,25 @@ button.view-more-btn:disabled {
     max-width:500px;
 }
 @media only screen and (min-width: 767px) {
-:host /deep/ tabs .tabs tab > div {
+
+  :host /deep/ tabs .tabs tab > div {
     padding: 10PX;
     overflow:hidden;
- }
- .edit-form label {
+  }
+  .mobile{
+    display: none;
+  }
+  .desktop{
+    display: block;
+  }
+  .edit-form label {
     display: inline-block;
     vertical-align: middle;
     max-width: 150px;
     margin: 0 2% 10px 0;
     width: 49%;
-} 
-.edit-form input {
+  } 
+  .edit-form input {
     border: 1px solid #ccc;
     border-radius: 2px;
     padding: 4px 10px;

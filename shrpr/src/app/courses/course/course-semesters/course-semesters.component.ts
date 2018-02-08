@@ -4,9 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import { Subscription } from 'rxjs/Subscription';
 
-
-import { CourseService } from '../../../courses/course.service';
-import { CourseComponent } from '../../course/course.component';
+import { CourseService } from '@app/core';
 
 
 @Component({

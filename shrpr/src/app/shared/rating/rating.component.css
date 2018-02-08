@@ -1,0 +1,187 @@
+/*** Ratings ***/
+#ratings {
+    background-color: #f4f4f4;
+    font-size: 15px;
+    color: #272625;
+    line-height: 14px;
+    padding: 20px 10px;
+    text-align: center;
+}
+#ratings a {
+    color: #272625;
+    text-decoration: underline;
+}
+#ratings a:hover {
+    text-decoration: none;
+}
+#ratings #rating{
+    padding: 0 0 20px 0;
+}
+
+:host #ratings  /deep/ star-rating-comp {
+    display: inline-block;
+    vertical-align: middle;
+}
+#ratings dl {
+    display: table;
+    margin: 0 0 20px 0;
+    width: 100%;
+}
+#ratings dl dt , #ratings dl dd {
+    margin: 0;
+    font-size: 14px;
+    color: #272625;
+    line-height: 16px;
+    padding: 8px;
+}
+#ratings dl dt {
+    padding: 0 20px 0 0;
+    max-width:93px;
+    min-width: 92px;
+    text-align: center;
+    width:150px;
+}
+#ratings dl dt i {
+    display: none;
+}
+#ratings dl dt a{
+    display: block;
+    padding: 30px 0 0 0;
+    text-align: center;
+}
+#ratings dl dt a span{
+    display: block;
+}
+#ratings dl dd {
+    background-color: #fafafa;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 21px;
+    padding: 20px 50px;
+    position: relative;
+    text-align: left;
+}
+#ratings dl dd span.rating{
+    position: absolute;
+    top: 22px;
+    right: 20px;
+}
+#ratings dl dd h2 {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    padding: 0 0 20px 0;
+
+}
+#ratings dl dd p.name{
+    font-size: 14px;
+    font-style: italic;
+    padding: 10px 0;
+}
+#ratings dl.you dd{
+    background-color: #ecfdef;
+}
+
+/*** Rating Form ***/
+form#rating-form {
+    background-color: #fafafa;
+    border: 2px solid #eee;
+    border-radius: 5px;
+    margin: 20px auto 0 auto;
+    max-width: 600px;
+    padding: 20px;
+    position: relative;
+    text-align: left;
+    width: 100%;
+}
+form#rating-form .saved{
+    color: #448a58;
+    position: absolute;
+    top: 26px;
+    right: 25px;
+}
+form#rating-form .saved i{
+    margin: 0 5px 0 0;
+}
+form#rating-form h2{
+    font-size: 18px;
+    padding: 0 0 20px 0;
+}
+form#rating-form div {
+    color: #454545;
+    font-size: 14px;
+    line-height: 14px;
+    margin: 0 0 15px;
+    overflow: hidden;
+}
+form#rating-form div label {
+    display: block;
+    padding: 0 0 5px;
+}
+form#rating-form div label.score{
+    display: inline;
+}
+form#rating-form div input, form#rating-form div select {
+    border: 1px solid #cccccc;
+    color: #454545;
+    font-family: arial;
+    font-size: 14px;
+    height: 35px;
+    padding: 5px;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+}
+form#rating-form textarea {
+    border: 1px solid #cccccc;
+    color: #454545;
+    border-radius: 5px;
+    display: block;
+    font-family: arial;
+    padding: 5px;
+    font-size: 14px;
+    height: 150px;
+    outline: none;
+    width: 100%;
+}
+form#rating-form > button {
+	background-color: #ec9332;
+	border: 1px solid #ec9332;
+	color: #ffffff;
+	text-transform: uppercase;
+	padding: 14px 0;
+	width: 100%;
+	font-size: 14px;
+	line-height: 1em;
+	border-radius: 3px;
+	font-family: "circularstd book";
+	cursor: pointer;
+	margin: 0 0 10px 0;
+}
+form#rating-form > button:active {
+	color: #ec9332;
+	background: #ffffff;
+}
+form#rating-form input.ng-valid.ng-touched, form#rating-form textarea.ng-valid.ng-touched{
+    border: 1px solid #0c0;
+}
+form#rating-form input.ng-invalid.ng-touched, form#rating-form textarea.ng-invalid.ng-touched{
+    border: 1px solid #c00;
+}
+
+/* =============================================================================
+   LARGE SCREEN STYLES [DESKTOP VIEW] START
+  ============================================================================= */
+/* 960px */
+@media only screen and (min-width: 960px) {
+
+    #ratings dl dt , #ratings dl dd {
+        display: table-cell;
+        vertical-align: top;
+    }
+    #ratings dl dt i {
+        display: block;
+        margin: 50px auto 0 auto;
+    }
+}
