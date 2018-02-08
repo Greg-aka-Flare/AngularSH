@@ -82,6 +82,8 @@ section.suggest-course form button:hover{
     padding: 0;
     display: inline-block;
     vertical-align: top;
+    max-width: 230px;
+    width: 100%;
 }
 :host /deep/ app-search section#search form > span.search-input {
     display: none !important;
@@ -89,7 +91,9 @@ section.suggest-course form button:hover{
 }
 :host /deep/ app-search section#search form > span.location-input {
     display: block !important;
+    max-width: none !important;
 }
+
 @-webkit-keyframes beats {
     0% {
         -webkit-transform: scale(1.0);

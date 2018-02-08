@@ -3,7 +3,7 @@
     overflow: hidden;
     position: relative;
     width: 100%;
-    height: 310px;
+    height: 335px;
   }
   #curious-swiper.active::after {
       content: "";
@@ -91,8 +91,8 @@
 }
 #curious-swiper .img-ctn .overlay h1{
     color: #707070;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 16px;
+    line-height: 20px;
     margin: 0;
     padding: 0 0 5px 0;
     font-weight: bold;
