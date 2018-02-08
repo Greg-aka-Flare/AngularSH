@@ -12,14 +12,15 @@ import { Course, Instructor, Rating, RatingService, User, ValidationService } fr
 })
 export class RatingComponent implements OnInit {
 
-  @Input('course') course: Course;
-  @Input('instructor') instructor: Instructor;
-  @Input('rating') rating: number;
-  
+  @Input('item') item: Course | Instructor;
+  @Input('total') total: number;
+  @Input('type') type: string;
+
+  rating: Rating;
   ratings: Rating[];
-  data: any = {};
   ratingForm: FormGroup;
-  loggedIn: boolean = false;
+  saved: boolean = false;
+  showForm: boolean = false;
   user: User;
 
   constructor(
@@ -31,46 +32,110 @@ export class RatingComponent implements OnInit {
   ngOnInit() {
 
     //get ratings
-    if(this.course) {
-      this.ratingService.all(this.course, 'courses').subscribe(ratings => this.ratings = ratings);
-    }
-    else if(this.instructor) {
-      this.ratingService.all(this.instructor, 'instructors').subscribe(ratings => this.ratings = ratings);
-    }
+    this.ratingService.all(this.item, this.type).subscribe(ratings => this.parseRatings(ratings));
+  }
 
+  parseRatings(ratings: Rating[]) {
+
+    //create form
     this.ratingForm = this.fb.group({
+      'id': [''],
       'title': ['', [Validators.required]],
       'rating': ['', Validators.required],
       'comment': ['', [Validators.required, Validators.minLength(40)]],
     });
 
-    this.loggedIn = this.auth.loggedIn();
+    //check if user has reviewed
+    if(this.auth.loggedIn()) {
 
-    if(this.loggedIn) {
-      this.auth.me().subscribe(
-        user => {
+      this.auth.me().subscribe(user => {
+
+          //store user
           this.user = user;
 
-          console.log(this.user);
-        }
-      );
+          //check if user has student role, if not a student return
+          if(this.user.roles.includes('student')) this.showForm = true; else return;
+
+          //check if user has rating
+          for(let i = 0; i < ratings.length; ++i) {
+
+            //set if match found
+            if(ratings[i].user.id == user.id) {
+
+              //store user rating
+              this.rating = ratings[i];
+
+              //remove user rating from array
+              ratings.splice(i, 1);
+
+              //update form
+              this.ratingForm.patchValue({
+                id: this.rating.id,
+                title: this.rating.title,
+                rating: this.rating.rating,
+                comment: this.rating.comment
+              });
+            }
+          }
+      });
     }
+
+    //store ratings
+    this.ratings = ratings;
   }
 
   goTo(location: string): void {
     window.location.hash = location;
   }
    
-  submit(){
-    //get data to create user
-    this.data.title = this.ratingForm.value.title;
-    this.data.rating = this.ratingForm.value.rating;
-    this.data.comment = this.ratingForm.value.comment;
- 
-    console.log(
-      'Headline for Your Review:' + this.data.title,
-      'Rating :' + this.data.rating,
-      'Comment :' + this.data.comment,
-   )
+  submit() {
+
+    //update rating
+    this.rating = {
+      id: this.ratingForm.value.id,
+      title: this.ratingForm.value.title,
+      rating: this.ratingForm.value.rating,
+      comment: this.ratingForm.value.comment
+    }
+
+    //check if new or edit
+    if(this.rating.id) { //edit
+
+      this.ratingService.put(this.rating, this.item, this.type).subscribe(rating => {
+
+        //store rating
+        this.rating = rating;
+
+        //update form
+        this.ratingForm.patchValue({
+          id: this.rating.id,
+          title: this.rating.title,
+          rating: this.rating.rating,
+          comment: this.rating.comment
+        });
+
+        //saved
+        this.saved = true;
+      });
+    }
+    else { //new
+
+      this.ratingService.post(this.rating, this.item, this.type).subscribe(rating => {
+
+        //store rating
+        this.rating = rating;
+
+        //update form
+        this.ratingForm.patchValue({
+          id: this.rating.id,
+          title: this.rating.title,
+          rating: this.rating.rating,
+          comment: this.rating.comment
+        });
+
+        //saved
+        this.saved = true;
+      });
+    }
   }
 }

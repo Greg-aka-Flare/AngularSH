@@ -208,7 +208,7 @@
                         </star-rating-comp>
                     </figure>
 
-                     | <a (click)="goTo('reviews')">{{reviewCount}} Reviews</a><!-- .rating -->
+                     | <a (click)="goTo('reviews')">{{ course.ratings.length }} Reviews</a><!-- .rating -->
                     
                     <span class="course_price_desktop" *ngIf="course.semesters[0].amount != '0.00'">${{ course.semesters[0].amount }}</span>
 
@@ -357,5 +357,5 @@
   </section>
   <!--google map ends-->
   
-    <app-rating [course]="course" [rating]="course.rating"></app-rating>
+    <app-rating [item]="course" [total]="course.rating" type="courses"></app-rating>
 </article>

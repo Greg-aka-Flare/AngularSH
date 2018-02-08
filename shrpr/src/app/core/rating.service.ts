@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '@env/environment';
 
@@ -23,5 +23,18 @@ export class RatingService {
 			case 'instructors':
 				return this.http.get(this.api + 'ratings/instructors/' + item.id);
 		}
+	}
+
+	get(item: Course | Instructor, type): Observable<any> {
+		
+		return this.http.get(this.api + 'rating/' + type + '/' + item.id);
+	}
+
+	post(rating: Rating, item: Course | Instructor, type): Observable<any> {
+		return this.http.post(this.api + 'rating/' + type + '/' + item.id, rating);
+	}
+
+	put(rating: Rating, item: Course | Instructor, type): Observable<any> {
+		return this.http.put(this.api + 'rating/' + type + '/' + item.id, rating);
 	}
 }

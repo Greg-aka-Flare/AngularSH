@@ -79,6 +79,9 @@
     font-style: italic;
     padding: 10px 0;
 }
+#ratings dl.you dd{
+    background-color: #ecfdef;
+}
 
 /*** Rating Form ***/
 form#rating-form {
@@ -88,8 +91,18 @@ form#rating-form {
     margin: 20px auto 0 auto;
     max-width: 600px;
     padding: 20px;
+    position: relative;
     text-align: left;
     width: 100%;
+}
+form#rating-form .saved{
+    color: #448a58;
+    position: absolute;
+    top: 26px;
+    right: 25px;
+}
+form#rating-form .saved i{
+    margin: 0 5px 0 0;
 }
 form#rating-form h2{
     font-size: 18px;
@@ -105,6 +118,9 @@ form#rating-form div {
 form#rating-form div label {
     display: block;
     padding: 0 0 5px;
+}
+form#rating-form div label.score{
+    display: inline;
 }
 form#rating-form div input, form#rating-form div select {
     border: 1px solid #cccccc;
