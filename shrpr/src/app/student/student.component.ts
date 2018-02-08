@@ -1,18 +1,12 @@
 import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import { Response } from "@angular/http";
 import { ActivatedRoute, Params } from '@angular/router';
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Course } from "../courses/course.interface";
-import { CourseService } from "../courses/course.service";
-import { Student } from "../student/student.interface";
-import { StudentService } from '../student/student.service';
 import {} from '@types/googlemaps';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
-import { ValidationService } from '../core/validation.service';
-import { ControlMessagesComponent } from '../shared/control-messages/control-messages.component';
+
+import { Course, CourseService, Student, StudentService, ValidationService } from '@app/core';
 
 @Component({
   selector: 'app-student',

@@ -357,9 +357,5 @@
   </section>
   <!--google map ends-->
   
-    <app-rating 
-        [rating]="course.rating"
-        [ratings]="course.ratings"
-    >
-    </app-rating>
+    <app-rating [course]="course" [rating]="course.rating"></app-rating>
 </article>

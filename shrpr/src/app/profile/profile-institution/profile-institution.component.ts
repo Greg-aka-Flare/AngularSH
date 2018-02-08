@@ -1,10 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { TabsComponent } from "../../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { User } from '../../core/user.interface';
+import { User } from '@app/core';
 
 @Component({
   selector: 'profile-institution',

@@ -6,8 +6,7 @@ import 'rxjs/add/observable/fromEvent';
 import { Subscription } from 'rxjs/Subscription';
 
 import { CartService } from "../../payment/cart.service";
-import { Course } from "../course.interface";
-import { CourseService } from "../course.service";
+import { Course, CourseService } from '@app/core';
 
 @Component({
   selector: 'app-course',

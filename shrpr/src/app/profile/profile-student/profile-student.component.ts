@@ -1,10 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { StudentService } from '../../student/student.service';
-import { ValidationService } from '../../core/validation.service';
-import { ControlMessagesComponent } from '../../shared/control-messages/control-messages.component';
-import { User } from '../../core/user.interface';
+import { StudentService, User, ValidationService } from '@app/core';
 
 @Component({
   selector: 'profile-student',

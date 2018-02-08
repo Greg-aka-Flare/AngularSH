@@ -1,16 +1,10 @@
 import { Component, OnInit, OnDestroy, NgModule  } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-import { TabsComponent } from "../shared/tabs/tabs.component";
 import { StarRatingModule } from 'angular-star-rating';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Course } from "../courses/course.interface";
-import { CourseService } from "../courses/course.service";
-import { Instructor } from "./instructor.interface";
-import { InstructorService } from "./instructor.service";
-import { ValidationService } from '../core/validation.service';
+import { Course, CourseService, Instructor, InstructorService, ValidationService } from '@app/core';
 
 @Component({
   selector: 'app-instructor',

@@ -2,10 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, NgForm, ValidatorFn } from '@angular/forms';
 import { StarRatingModule } from 'angular-star-rating';
 
-import { ValidationService } from '../../core/validation.service';
-import { ControlMessagesComponent } from '../../shared/control-messages/control-messages.component';
-import { AuthService } from './../../auth/auth.service';
-import { User } from '../../core/user.interface';
+import { AuthService } from '@app/auth';
+import { Course, Instructor, Rating, RatingService, User, ValidationService } from '@app/core';
 
 @Component({
   selector: 'app-rating',
@@ -14,8 +12,11 @@ import { User } from '../../core/user.interface';
 })
 export class RatingComponent implements OnInit {
 
-  @Input('rating') rating: any;
-  @Input('ratings') ratings: any;
+  @Input('course') course: Course;
+  @Input('instructor') instructor: Instructor;
+  @Input('rating') rating: number;
+  
+  ratings: Rating[];
   data: any = {};
   ratingForm: FormGroup;
   loggedIn: boolean = false;
@@ -23,10 +24,20 @@ export class RatingComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private ratingService: RatingService
   ) { }
 
   ngOnInit() {
+
+    //get ratings
+    if(this.course) {
+      this.ratingService.all(this.course, 'courses').subscribe(ratings => this.ratings = ratings);
+    }
+    else if(this.instructor) {
+      this.ratingService.all(this.instructor, 'instructors').subscribe(ratings => this.ratings = ratings);
+    }
+
     this.ratingForm = this.fb.group({
       'title': ['', [Validators.required]],
       'rating': ['', Validators.required],

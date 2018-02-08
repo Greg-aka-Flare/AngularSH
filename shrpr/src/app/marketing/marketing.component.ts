@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TemplateService } from '../core/template/template.service';
+import { TemplateService } from '@app/core';
 
 @Component({
   selector: 'app-marketing',

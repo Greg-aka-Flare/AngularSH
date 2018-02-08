@@ -1,19 +1,10 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser'
-import { TabsComponent } from "../../shared/tabs/tabs.component";
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { StarRatingModule } from 'angular-star-rating';
 
 import { Subscription } from 'rxjs/Subscription';
-import { AddCourseInstructorComponent } from './add-course-instructor/add-course-instructor.component';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Instructor } from "../../instructor/instructor.interface";
-import { InstructorService } from "../../instructor/instructor.service";
-import { Course } from "../../courses/course.interface";
-import { CourseService } from "../../courses/course.service";
-
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { ValidationService } from '../../core/validation.service';
-import { User } from '../../core/user.interface';
+import { Course, CourseService, Instructor, InstructorService, User, ValidationService } from '@app/core';
 
 @Component({
   selector: 'profile-instructor',

@@ -1,10 +1,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { CuriousService } from "../../core/curious.service";
-import { User } from '../../core/user.interface';
-import { Course } from "../../courses/course.interface";
-import { CourseService } from "../../courses/course.service";
+import { Course, CourseService, CuriousService, User } from '@app/core';
 import { NullAstVisitor } from '@angular/compiler';
 
 @Component({

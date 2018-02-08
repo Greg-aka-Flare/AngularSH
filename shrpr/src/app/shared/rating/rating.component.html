@@ -1,4 +1,4 @@
-<section id="ratings">
+<section id="ratings" *ngIf="ratings">
     <div id="rating">
         <star-rating-comp 
             [starType]="'svg'" 
@@ -6,7 +6,7 @@
             [showHalfStars]="true" 
             [readOnly]="true"
         >
-        </star-rating-comp> {{ rating | number : '1.1-1' }} | {{ ratings.length }} reviews
+        </star-rating-comp> {{ rating | number : '1.1-1' }} Score / {{ ratings.length }} Reviews
     </div><!-- #rating -->
 
     <span *ngIf="loggedIn">
@@ -14,70 +14,77 @@
     </span>
       
     <div *ngIf="ratings.length > 0">
-      <dl class="review_items" *ngFor="let rating of ratings">
-        <dt>
-          <img src="../../assets/img/reviews-profile.jpg" alt="" title="">User id: {{rating.user_id}}
-        </dt>
-      <dd>
+        <dl *ngFor="let rating of ratings">
+            <dt>
+                <i class="fa fa-user fa-4x"></i>
+            </dt>
 
-      <h2>
-        {{ rating.title }}
-        <span class="review_items_rating">
-          Rating: {{ rating.rating }} | 
-          <star-rating-comp 
-            class="review_star" 
-            [starType]="'svg'" 
-            [rating]="rating.rating" 
-            [showHalfStars]="true" 
-            [readOnly]="true"
-          >
-          </star-rating-comp>
-        </span>
-      </h2>
+            <dd>
+                <span class="rating">
+                    <star-rating-comp 
+                        class="review_star" 
+                        [starType]="'svg'" 
+                        [rating]="rating.rating" 
+                        [showHalfStars]="true" 
+                        [readOnly]="true"
+                    >
+                    </star-rating-comp>
+                </span><!-- .rating -->
 
-      <p>{{ rating.comment }}</p>
-    </dd>
-    </dl>
+                <h2>{{ rating.title }}</h2>
+
+                <p>{{ rating.comment }}</p>
+
+                <p class="name">
+                    Review Posted By: 
+                    <a href="mailto:{{ rating.user.email }}" title="{{ rating.user.name }}">
+                        {{ rating.user.name }}
+                    </a>
+                </p>
+            </dd>
+        </dl>
     </div>
 
-    <div *ngIf="ratings.length < 1">No reviews yet. Be the first to write a review.</div>
+    <div *ngIf="!ratings.length">No reviews yet. Be the first to write a review.</div>
+
+    <form 
+        id="rating-form"
+        [formGroup]="ratingForm" 
+        (ngSubmit)="submit()"
+    >
+        <h2>Add a Review:</h2>
+
+        <div>
+            <label>Review Title:</label>
+
+            <input type="text" formControlName="title" placeholder="Title...">
+
+            <control-messages [control]="ratingForm.controls.title"></control-messages>
+        </div>
+
+        <div>
+            <label>Score:</label>
+
+            <select formControlName="rating">
+                <option value="" selected="selected">--- Select Score --</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+            </select>
+
+            <control-messages [control]="ratingForm.controls.rating"></control-messages>
+        </div>
+
+        <div>
+            <label>Comment:</label>
+
+            <textarea type="text" formControlName="comment" placeholder="Comment..."></textarea>
+
+            <control-messages [control]="ratingForm.controls.comment"></control-messages>
+        </div>
+
+        <button [disabled]="!ratingForm.valid" type="Submit">Save Review</button>
+    </form>
 </section><!-- #ratings -->
-
-<form 
-    id="rating-form"
-    [formGroup]="ratingForm" 
-    (ngSubmit)="submit()"
->
-    <div>
-        <label>Headline for Your Review*</label>
-
-        <input type="text" formControlName="title">
-
-        <control-messages [control]="ratingForm.controls.title"></control-messages>
-    </div>
-
-    <div>
-        <label>Rating*</label>
-
-        <select formControlName="rating">
-            <option>---Select--</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-
-        <control-messages [control]="ratingForm.controls.rating"></control-messages>
-    </div>
-
-    <div>
-        <label>Comment*</label>
-
-        <textarea type="text" formControlName="comment"></textarea>
-
-        <control-messages [control]="ratingForm.controls.comment"></control-messages>
-    </div>
-
-    <button [disabled]="!ratingForm.valid" type="Submit">Submit</button>
-</form>

@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { CourseService } from '../courses/course.service';
-import { Course } from '../courses/course.interface';
+import { Course, CourseService } from '@app/core';
 
 @Injectable()
 export class CartService {
