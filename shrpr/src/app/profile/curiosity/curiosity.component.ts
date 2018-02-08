@@ -78,8 +78,9 @@ removeLike(course, i) {
 
     this.filtercourses = this.filtercourses.filter((course: any) => course.group.id === id);
       this.allCourseInit();
+      console.log(this.filtercourses.length);
     }
-  
+    
     ngOnDestroy(){
       this.subscriptions.unsubscribe();
   }

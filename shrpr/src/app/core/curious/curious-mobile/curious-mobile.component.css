@@ -182,3 +182,28 @@ section.suggest-complete p{
     font-size: 16px;
     text-align: center;
 }
+@-webkit-keyframes beats {
+    0% {
+        -webkit-transform: scale(1.0);
+    }
+    50% {
+        -webkit-transform: scale(1.4);
+    }
+    100% {
+        -webkit-transform: scale(1.0);
+    }
+  }
+  @keyframes beats {
+    0% {
+      -moz-transform: scale(1.0);
+      transform: scale(1.0);
+    }
+    50% {
+        -moz-transform: scale(1.4);
+        transform: scale(1.4);
+    }
+    100% {
+        -moz-transform: scale(1.0);
+        transform: scale(1.0);
+    }
+  }

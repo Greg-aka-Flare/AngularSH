@@ -4,7 +4,7 @@
             <a href="javascript:void(0)" (click)="sortbyGroup(2)" [class.active]="selectedIndex == 2">Work</a>
             <a href="javascript:void(0)" (click)="sortbyGroup(3)" [class.active]="selectedIndex == 3">Kids</a>
          </div>
-         <div class="like-count"><a href="javascript:void(0)" [routerLink]="['/profile/curiosity']"><i class="fa fa-heart"></i> <span>{{ counter }}</span></a></div>
+         <div class="like-count"><a href="javascript:void(0)" [routerLink]="['/profile/curiosity']"><i class="fa fa-heart" [@pulse]="pulseState"></i> <span>{{ counter }}</span></a></div>
      </section>
 <section 
     id="curious-swiper" 

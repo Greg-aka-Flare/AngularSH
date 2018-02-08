@@ -38,6 +38,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
     transition('default => like', animate('100ms ease-out')),
     transition('default => dislike', animate('100ms ease-out')),
     transition('* => remove', animate('100ms ease-in'))
+  ]),
+  trigger('pulse', [
+    state('beat', style({
+      animation: 'beats .2s alternate'
+    })),
+    state('default', style({
+      animation: 'beats .2s alternate',
+    })),
+    transition('default <=> beat', animate('100ms ease-in'))
   ])
 ]
 })
@@ -63,6 +72,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
   //counterSubscription: Subscription;
   private subscriptions = new Subscription();
   selectedIndex:number;
+  pulseState:string;
 
   constructor(
     private courseService: CourseService,
@@ -70,7 +80,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
    ) {}
 
   ngOnInit() {
-    
+    this.pulseState = '';
     /*this.suggestFormWork = new FormGroup({
       'suggest': new FormControl(null, [Validators.required, Validators.min(100)])
     });
@@ -361,6 +371,12 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
   }
 
   onLike(course, i) {
+    if(this.pulseState === 'beat'){
+      this.pulseState = 'default';
+    }
+    else{
+      this.pulseState = 'beat';
+    }
 
     if(course.state === 'default'){
 

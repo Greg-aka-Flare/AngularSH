@@ -44,6 +44,15 @@ import { AuthService } from '@app/auth';
       transition('void => *', [
         style({ transform: 'translateX(200%)' }),
         animate('300ms ease-in')])
+    ]),
+    trigger('pulse', [
+      state('beat', style({
+        animation: 'beats .2s alternate'
+      })),
+      state('default', style({
+        animation: 'beats .2s alternate',
+      })),
+      transition('default <=> beat', animate('100ms ease-in'))
     ])
   ]
 })
@@ -58,6 +67,7 @@ export class CuriousMobileComponent implements OnInit {
   selectedIndex:number;
   //subscription: Subscription;
   private subscriptions = new Subscription();
+  pulseState:string;
 
   editing = false;
   editValueName = '';
@@ -75,6 +85,7 @@ export class CuriousMobileComponent implements OnInit {
 
   ngOnInit() {
 
+    this.pulseState = '';
     this.suggestForm = new FormGroup({
       'suggest': new FormControl(null, [Validators.required, Validators.min(100)])
     });
@@ -125,6 +136,12 @@ export class CuriousMobileComponent implements OnInit {
   }
 
   onLike(course, i) {
+    if(this.pulseState === 'beat'){
+      this.pulseState = 'default';
+    }
+    else{
+      this.pulseState = 'beat';
+    }
 
     if(course.state === 'default'){
 
