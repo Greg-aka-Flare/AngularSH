@@ -36,27 +36,12 @@ header a#menu {
   transition: all 0.5s ease-in-out 0s;
   cursor: pointer;
 }
-header a#menu:hover, header a#menu.active {
-  background:#196e32;
-  color:#ffffff;
-}
 /*header a#menu.active {
   position: fixed;
   right: 10px;
   top: 0;
 }*/
-header a#menu .fa-times-circle-o {
-  position:absolute;
-  left:7px;
-  top:5px;
-  opacity:0;
-}
-header a#menu.active .fa-bars {
-  opacity:0;
-}
-header a#menu.active .fa-times-circle-o {
-  opacity:1;
-}
+
 .cart-icon {
   color: #7a7b7f;
   cursor: pointer;
@@ -171,11 +156,7 @@ header #logo span.beta-logo {
    color: #ffffff;
    text-decoration: none;
 }
-.topnav li.logout a, .topnav li.logout a:hover {
-  background:none;
-  border: none;
-  color: #707070;
-}
+
 }
 @media only screen and (min-width: 960px) {
 :host{
@@ -206,8 +187,6 @@ header #logo span.beta-logo {
     -o-transition: all 0.5s ease-in-out 0s;
     -webkit-transition: all 0.5s ease-in-out 0s;
     transition: all 0.5s ease-in-out 0s;
-    position: relative;
-    z-index: 99;
   }
   header a#menu {
     margin: 12px 0 0;
@@ -220,8 +199,6 @@ header #logo span.beta-logo {
     display: inline-block;
     vertical-align: top;
     padding: 15px 20px 0 0;
-    position: relative;
-    z-index: 99;
   }
   .cart-icon {
     font-size: 46px;

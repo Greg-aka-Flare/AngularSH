@@ -1,5 +1,4 @@
-header :host {
-    background: #ededed;
+header :host{
     position: fixed;
     right: 0;
     top: 0;
@@ -8,24 +7,49 @@ header :host {
     box-sizing: border-box;
     padding: 20px 0 20px 0;
     z-index: 9;
-    transform: translate3d(0, 100%, 0);
+    visibility: hidden;
     -moz-transition: all 0.3s ease-in-out 0s;
     -ms-transition: all 0.3s ease-in-out 0s;
     -o-transition: all 0.3s ease-in-out 0s;
     -webkit-transition: all 0.3s ease-in-out 0s;
     transition: all 0.3s ease-in-out 0s;
+    background: rgba(0, 0 , 0, 0.5);
+    opacity: 0;
 }
-
 header .active:host {
-    transform: translate3d(0, 8%, 0);
+    visibility: visible;
+    opacity: 1;
 }
-
+header :host .overlay  {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
 header :host ul.topnav {
     padding: 40px 0 0 0;
     text-align: left;
     list-style: none;
+    background: #ededed;
+    max-width: 260px;
+    height: 100%;
+    transform: translate3d(100%, 0, 0);
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -ms-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    width: 100%;
 }
-
+header .active:host ul.topnav {
+    transform: translate3d(0, 0, 0);
+}
 header :host ul.topnav li {
     background: none;
     line-height: 1em;
@@ -74,9 +98,7 @@ header :host ul.topnav li.has_child>a {
 header :host ul.topnav li ul li a {
     padding: 0 20px 0 40px;
 }
-header :host ul.topnav > li:last-child {
-    padding: 10px 20px;
-}
+
 
 @media only screen and (min-width: 960px) {
     header .active:host {

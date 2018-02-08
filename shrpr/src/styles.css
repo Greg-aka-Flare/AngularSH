@@ -856,10 +856,18 @@ carousel {
     margin:0 2px 0 7px;
 }
 .sort-option a:hover, .sort-option a.active {
-    border:2px solid #259ccb;
-    background-color:#259ccb;
+    border:2px solid #3fa8d1;
+    background-color:#3fa8d1;
     color:#ffffff;
     text-decoration:none;
+}
+.sort-option a.green:hover, .sort-option a.green.active {
+	border:2px solid #448a58;
+    background-color:#448a58;
+}
+.sort-option a.orange:hover, .sort-option a.orange.active {
+	border:2px solid #ec9332;
+    background-color:#ec9332;	
 }
 .like-count {
     float: right;
@@ -1204,17 +1212,12 @@ carousel {
 }
 /*Course Card*/
 .course-box {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+	text-align: center
 }
 .card-box {
-    margin: 0 2% 20px 0;
-    width: 32%;
-	flex: 1 1 1;
-}
-.card-box:nth-of-type(3n) {
-    margin: 0 0 20px 0;
+    margin: 0 1% 20px 1%;
+	width: 30%;
+	text-align: left;
 }
 }
 /* =============================================================================
@@ -1250,6 +1253,17 @@ a[href*="tel:"] {
 #desktopcourses {
 	padding: 50px 0 30px 0;
 }
+}
+/* =============================================================================
+   LARGE SCREEN STYLES [DESKTOP VIEW] START
+  ============================================================================= */
+/* 960px */
+@media only screen and (min-width: 1280px) {
+	.card-box {
+		margin: 0 2% 20px 2%;
+		width: 25%;
+		text-align: left;
+	}
 }
 /* =============================================================================
          Font Embeed

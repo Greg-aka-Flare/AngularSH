@@ -1,4 +1,4 @@
-<div class="inner-wrap">
+<div class="overlay" (click)="toggleMenu()"></div>
   <ul class="topnav">
   <li>
     <a [routerLink]="['/marketing/digital']" (click)="toggleMenu()">Become a Teacher</a>
@@ -40,8 +40,7 @@
   </li>  
 
   <li *ngIf="loggedIn">
-      <a [routerLink]="['/profile']">Hi, {{ name }}</a> <span>(<a (click)="logout()">Logout</a>)</span>
+      <a (click)="logout()">Logout</a>
   </li>
   
 </ul>
-</div>
