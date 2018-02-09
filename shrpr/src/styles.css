@@ -1245,6 +1245,31 @@ a[href*="tel:"] {
 	cursor:default;
 	text-decoration: none;
 }
+/*Filter Box Sticky*/
+.filter-box {
+    display: block;
+    height: 59px;
+}
+.filter-box .group-filter-row {
+    background: #ededed;
+    padding: 14px 0 10px 0;
+    margin: 0;
+    left: 0;
+    position: fixed;
+    text-align: center;
+    top: 235px;
+    width: 100%;
+    z-index: 9;
+    -moz-transition: all 0.5s ease-in-out 0s;
+    -ms-transition: all 0.5s ease-in-out 0s;
+    -o-transition: all 0.5s ease-in-out 0s;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
+}
+.filter-box .group-filter-row.filter_small {
+    top: 218px;
+    box-shadow: 1px 2px 2px #cccccc;
+}
 
 /* =============Marketing Pages Start ============================ */
 /*features nav start*/

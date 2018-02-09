@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, HostListener } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Course, CourseService, CuriousService, User } from '@app/core';
@@ -23,11 +23,20 @@ export class CuriosityComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
   //variable to hold sort group id while sorting
   selectedIndex:number;
-  
+  //variable For sticky filter box
+  isfilterShrunk: boolean = false;
   constructor(
     private curious: CuriousService,
     private courseService: CourseService
   ) { }
+//Window scroll Function For sticky filter box
+  @HostListener('window:scroll')onscroll = () => {
+    if(window.pageYOffset > 0) {
+         this.isfilterShrunk = true;
+    } else {
+         this.isfilterShrunk = false;
+    }
+  }
 
   ngOnInit() {
     //api call to get all like coures

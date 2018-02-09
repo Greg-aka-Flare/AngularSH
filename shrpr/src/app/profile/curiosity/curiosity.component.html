@@ -1,12 +1,16 @@
 <section class="page-conent-area" *ngIf="mycourses">
-<section class="group-filter-row clearfix">
+<div class="filter-box">
+    <section class="group-filter-row" [ngClass]="{'section':true, 'filter_big':!isfilterShrunk, 'filter_small':isfilterShrunk}">
+        <div class="inner-wrap clearfix">
    <div class="sort-option">Sort by 
         <button class="blue" (click)="sortbyGroup(1)" [class.active]="selectedIndex == 1" [disabled]="selectedIndex == 1">Fun</button>
         <button class="green" (click)="sortbyGroup(2)" [class.active]="selectedIndex == 2" [disabled]="selectedIndex == 2">Work</button>
         <button class="orange" (click)="sortbyGroup(3)" [class.active]="selectedIndex == 3" [disabled]="selectedIndex == 3">Kids</button>
     </div>
     <div class="like-count"><i class="fa fa-heart"></i> <span>{{allCourses?.length}}</span></div>
+</div>
 </section>
+</div>
 <h1>Courses you Like</h1>
 <div class="course-box">
 <article class="card-box" *ngFor="let course of mycourses; let i = index">
