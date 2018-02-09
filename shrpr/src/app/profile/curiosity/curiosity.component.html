@@ -1,13 +1,13 @@
 <section class="page-conent-area" *ngIf="mycourses">
-<h1>Courses you Like</h1>
 <section class="group-filter-row clearfix">
    <div class="sort-option">Sort by 
-       <a href="javascript:void(0);" (click)="sortbyGroup(1)" [class.active]="selectedIndex == 1">Fun</a>
-       <a href="javascript:void(0);" (click)="sortbyGroup(2)" [class.active]="selectedIndex == 2">Work</a>
-       <a href="javascript:void(0);" (click)="sortbyGroup(3)" [class.active]="selectedIndex == 3">Kids</a>
+       <button (click)="sortbyGroup(1)" [class.active]="selectedIndex == 1" [disabled]="selectedIndex == 1">Fun</button>
+       <button (click)="sortbyGroup(2)" [class.active]="selectedIndex == 2" [disabled]="selectedIndex == 2">Work</button>
+       <button (click)="sortbyGroup(3)" [class.active]="selectedIndex == 3" [disabled]="selectedIndex == 3">Kids</button>
     </div>
     <div class="like-count"><i class="fa fa-heart"></i> <span>{{allCourses?.length}}</span></div>
 </section>
+<h1>Courses you Like</h1>
 <div class="course-box">
 <article class="card-box" *ngFor="let course of mycourses; let i = index">
             <div class="img-ctn">
@@ -44,21 +44,6 @@
                 </p><!-- .date -->
                 </div>
             </div><!-- .card-info -->
-            
-            <!--<div class="like_action">
-                    <div>
-                        <a 
-                        class="hollow-icon thumbDown" 
-                        (click)="removeLike(course, i)"
-                    >
-                    <i class="fa fa-times"></i>
-                    </a></div>
-                    <div>
-                    <a class="hollow-icon thumbUp">
-                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>-->
         </article>
     </div>
 
