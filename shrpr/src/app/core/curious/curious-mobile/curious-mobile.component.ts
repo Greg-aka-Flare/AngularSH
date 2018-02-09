@@ -68,6 +68,7 @@ export class CuriousMobileComponent implements OnInit {
   //subscription: Subscription;
   private subscriptions = new Subscription();
   pulseState:string;
+  likeArray: number[] = [];
 
   editing = false;
   editValueName = '';
@@ -99,15 +100,13 @@ export class CuriousMobileComponent implements OnInit {
 
    this.courseService.getCourses(parameters).subscribe(courses => this.courses = courses);
 
-    this.subscriptions.add(this.curious.likeCounter().subscribe((count) => {
-      this.counter = count;
-    }));
-    
    this.loggedIn = this.auth.loggedIn();
       
    if(this.auth.loggedIn()){
        this.isBtnActive = false;
-      }  
+      } 
+   this.updateCounter(); 
+      
   }
 
   ngOnDestroy(){
@@ -255,6 +254,15 @@ export class CuriousMobileComponent implements OnInit {
     }
 
     return excludes;
+  }
+  updateCounter(){
+    if(JSON.parse(localStorage.getItem('likes'))){
+      this.likeArray = JSON.parse(localStorage.getItem('likes'));
+      this.counter = this.likeArray.length;
+    }
+    else{
+      this.counter = 0;
+    }
   }
   
 }
