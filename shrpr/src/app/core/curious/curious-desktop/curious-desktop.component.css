@@ -75,24 +75,6 @@ section.suggest-course form button{
 section.suggest-course form button:hover{
     background-color: #666;
 }
-:host /deep/ app-search {
-    display: inline;
-}
-:host /deep/ app-search section#search {
-    padding: 0;
-    display: inline-block;
-    vertical-align: top;
-    max-width: 230px;
-    width: 100%;
-}
-:host /deep/ app-search section#search form > span.search-input {
-    display: none !important;
-
-}
-:host /deep/ app-search section#search form > span.location-input {
-    display: block !important;
-    max-width: none !important;
-}
 
 @-webkit-keyframes beats {
     0% {

@@ -17,6 +17,7 @@ import { FilterComponent } from './filter/filter.component';
 import { InlineEditComponent } from './inline-edit/inline-edit.component';
 import { ControlMessagesComponent } from '../shared/control-messages/control-messages.component';
 import { ModalComponent } from './modal/modal.component';
+import { SortbyComponent } from './sortby/sortby.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ModalComponent } from './modal/modal.component';
     FilterComponent,
     InlineEditComponent,
     ControlMessagesComponent,
-    ModalComponent
+    ModalComponent,
+    SortbyComponent
   ],
   imports: [
   	CommonModule,
@@ -56,7 +58,8 @@ import { ModalComponent } from './modal/modal.component';
     InlineEditComponent,
     RatingComponent,
     ControlMessagesComponent,
-    ModalComponent
+    ModalComponent,
+    SortbyComponent
   ]
 })
 export class SharedModule {}

@@ -1,0 +1,27 @@
+:host /deep/ app-search {
+    display: none !important;
+}
+/* =============================================================================
+   Medium SCREEN STYLES [Tab VIEW] START
+  ============================================================================= */
+/* 768px */
+@media only screen and (min-width: 768px) {
+:host /deep/ app-search {
+    display: inline !important;
+}
+:host /deep/ app-search section#search {
+    padding: 0;
+    display: inline-block;
+    vertical-align: top;
+    max-width: 230px;
+    width: 100%;
+}
+:host /deep/ app-search section#search form > span.search-input {
+    display: none !important;
+
+}
+:host /deep/ app-search section#search form > span.location-input {
+    display: block !important;
+    max-width: none !important;
+}
+}
