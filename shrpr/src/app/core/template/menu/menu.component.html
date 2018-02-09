@@ -1,4 +1,5 @@
 <div class="overlay" (click)="toggleMenu()"></div>
+<!-- Overlay Box -->
   <ul class="topnav">
   <li>
     <a [routerLink]="['/marketing/digital']" (click)="toggleMenu()">Become a Teacher</a>
@@ -40,7 +41,8 @@
   </li>  
 
   <li *ngIf="loggedIn">
-      <a (click)="logout()">Logout</a>
+      <a href="javascript:void(0)" (click)="logout()">Logout</a>
   </li>
   
 </ul>
+<!-- Topnav -->

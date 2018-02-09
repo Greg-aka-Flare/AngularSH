@@ -1,3 +1,4 @@
+<!-- Filter Start -->
 <section class="group-filter-row clearfix">
         <div class="sort-option">Sort by 
             <a class="blue" href="javascript:void(0);" (click)="sortbyGroup(1)" [class.active]="selectedIndex == 1">Fun</a>
@@ -7,6 +8,7 @@
          <app-search></app-search>
          <div class="like-count"><a href="javascript:void(0)" [routerLink]="['/profile/curiosity']"><i class="fa fa-heart" [@pulse]="pulseState"></i> <span>{{ counter }}</span></a></div>
      </section>
+<!-- #All Courses -->
 <section 
 id="for_work_box" 
 class="category_bucket blue"
@@ -61,7 +63,6 @@ class="category_bucket blue"
                 <i class="fa fa-calendar" aria-hidden="true"></i> 
                 <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
             </p><!-- .date -->
-            <!--<a class="course-cta" [routerLink]="['/courses', course.id]" aria-roledescription="button">View Course</a>-->
             </div>
         </div><!-- .card-info -->
         <div class="like_action">
@@ -85,7 +86,7 @@ class="category_bucket blue"
         </div>
     </article>
 </div>
-
+<!-- suggest form Start -->
 <section 
     class="suggest-course"
     *ngIf="courses?.length === 0"
