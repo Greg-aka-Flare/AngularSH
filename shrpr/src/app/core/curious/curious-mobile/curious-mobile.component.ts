@@ -63,19 +63,12 @@ export class CuriousMobileComponent implements OnInit {
   suggestComplete: boolean = false;
   courses: Course[];
   counter: number = 0;
-  colorState: string;
+  
   selectedIndex:number;
-  //subscription: Subscription;
   private subscriptions = new Subscription();
   pulseState:string;
   likeArray: number[] = [];
 
-  editing = false;
-  editValueName = '';
-  editValueAddress = '';
-  editValueCity = '';
-  editValueState = '';
-  editValueZip = '';
   isBtnActive: boolean = true;
   loggedIn: boolean = false;
   constructor(
@@ -161,6 +154,7 @@ export class CuriousMobileComponent implements OnInit {
         }
       );
     }
+    this.updateCounter();
   }
 
   onDislike(course, i) {
