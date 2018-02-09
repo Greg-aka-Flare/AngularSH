@@ -997,7 +997,6 @@ carousel {
    width: 100%; 
 }
 .like_action > div {
-    padding: 10px;
     text-align: center;
     width: 50%;
 }
@@ -1006,7 +1005,9 @@ carousel {
 }
 .hollow-icon {
     color: #707070;
-    cursor: pointer;
+	cursor: pointer;
+	display: block;
+	padding:10px;
 }
 .hollow-icon .fa-heart, .hollow-icon:hover .fa-heart-o {
     display: none;
