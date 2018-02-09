@@ -14,6 +14,8 @@
 <h1>Courses you Like</h1>
 <div class="course-box">
 <article class="card-box" *ngFor="let course of mycourses; let i = index">
+    <!-- Close button for Card Remove -->
+    <a class="card-close" href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
             <div class="img-ctn">
                 <figure><a [routerLink]="['/courses', course.id]">
                  <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">

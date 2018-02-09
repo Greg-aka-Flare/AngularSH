@@ -27,3 +27,14 @@
 .course-cta:hover, .view-more-btn:hover, .view-more-btn:disabled {
     opacity: 0.8;
 }
+.card-close {
+    color: #ffffff;
+    font-size: 21px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    z-index: 99;
+    background: #000000;
+    padding: 1px 6px 3px;
+    border-radius: 50%;
+}
