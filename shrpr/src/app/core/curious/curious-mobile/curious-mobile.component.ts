@@ -97,9 +97,7 @@ export class CuriousMobileComponent implements OnInit {
       filter: true
     }
 
-    this.subscriptions.add(this.courseService.getCourses(parameters).subscribe(courses => {
-      this.courses = courses;
-    }));
+   this.courseService.getCourses(parameters).subscribe(courses => this.courses = courses);
 
     this.subscriptions.add(this.curious.likeCounter().subscribe((count) => {
       this.counter = count;
