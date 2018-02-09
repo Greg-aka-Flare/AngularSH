@@ -41,5 +41,6 @@ export class MenuComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+    this.templateHeader.isBtnActive = !this.templateHeader.isBtnActive;
   }
 }
