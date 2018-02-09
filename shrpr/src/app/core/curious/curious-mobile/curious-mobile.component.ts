@@ -99,6 +99,7 @@ export class CuriousMobileComponent implements OnInit {
        this.isBtnActive = false;
       } 
    this.updateCounter(); 
+   this.selectedIndex = 0;
       
   }
 
@@ -185,6 +186,9 @@ export class CuriousMobileComponent implements OnInit {
   private addNewCourse(course, i) {
 
     let newCourse: Course;
+    if(this.selectedIndex < 1){
+      this.selectedIndex = 0;
+    }
 
     //wait 100ms for animation to finish
     setTimeout(() => {
@@ -194,7 +198,7 @@ export class CuriousMobileComponent implements OnInit {
 
       //create parameters
       let parameters = {
-        group: 0,
+        group: this.selectedIndex,
         limit: 1,
         filter: true,
         excludes: excludes

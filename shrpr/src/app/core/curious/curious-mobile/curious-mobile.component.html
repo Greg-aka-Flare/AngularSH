@@ -18,12 +18,6 @@
         (swiperight)="onLike(course, i)"
         [@cardSwipe]="courses[i]?.state"
     >
-        <!--<div class="category">
-           {{ course?.categories[0]?.name }}
-            
-           
-        </div>.category -->
-
         <div class="img-ctn">
             <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
                 ${{ course?.semesters[0]?.amount }}
@@ -57,7 +51,7 @@
 
                 <p class="date">
                     <i class="fa fa-calendar" aria-hidden="true"></i> 
-                    <time title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
+                    <time title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time> 
                 </p><!-- .date -->
             </div><!-- .overlay -->
             <span class="overlay-color" [@overlay]='course?.state'></span>

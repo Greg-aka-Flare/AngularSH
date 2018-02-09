@@ -82,6 +82,8 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
       this.courses = courses;
     }));
     this.updateCounter();
+    this.selectedIndex = 0;
+    
   }
 
   sortbyGroup(id: number) {
@@ -176,6 +178,9 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
   private addNewCourse(course, i) {
 
     let newCourse: Course;
+    if(this.selectedIndex < 1){
+      this.selectedIndex = 0;
+    }
 
     //wait 100ms for animation to finish
     setTimeout(() => {
@@ -185,6 +190,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
 
       //create parameters
       let parameters = {
+        group: this.selectedIndex,
         limit: 1,
         filter: true,
         excludes: excludes
