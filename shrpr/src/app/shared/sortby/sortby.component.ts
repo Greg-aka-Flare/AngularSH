@@ -7,10 +7,12 @@ import { HostListener} from "@angular/core";
   styleUrls: ['./sortby.component.css']
 })
 export class SortbyComponent implements OnInit {
+  /*Sticky variable*/
   isfilterShrunk: boolean = false;
 
   constructor() { }
-  
+
+/*Sticky On scroll Function*/
   @HostListener('window:scroll')onscroll = () => {
     if(window.pageYOffset > 0) {
          this.isfilterShrunk = true;
@@ -18,6 +20,7 @@ export class SortbyComponent implements OnInit {
          this.isfilterShrunk = false;
     }
   }
+
   ngOnInit() {
   }
 
