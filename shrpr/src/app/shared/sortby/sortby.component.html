@@ -1,4 +1,5 @@
-<section class="group-filter-row clearfix">
+<section class="group-filter-row clearfix" [ngClass]="{'section':true, 'filter_big':!isfilterShrunk, 'filter_small':isfilterShrunk}">
+  <div class="inner-wrap">
     <div class="sort-option">Sort by 
         <button class="blue" (click)="sortbyGroup(1)" [class.active]="selectedIndex == 1" [disabled]="selectedIndex == 1">Fun</button>
         <button class="green" (click)="sortbyGroup(2)" [class.active]="selectedIndex == 2" [disabled]="selectedIndex == 2">Work</button>
@@ -6,4 +7,5 @@
      </div>
      <app-search></app-search>
      <div class="like-count"><a href="javascript:void(0)" [routerLink]="['/profile/curiosity']"><i class="fa fa-heart" [@pulse]="pulseState"></i> <span>{{ counter }}</span></a></div>
- </section>
+    </div>
+  </section>

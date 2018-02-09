@@ -162,7 +162,7 @@ header #logo span.beta-logo {
 :host{
   height: 236px;
   display: block;
-  background: #ffffff;
+  background: #ededed;
 }
   header {
   	-moz-transition: all 0.5s ease-in-out 0s;
