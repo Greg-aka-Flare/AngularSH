@@ -1,9 +1,9 @@
 <section class="page-conent-area" *ngIf="mycourses">
 <section class="group-filter-row clearfix">
    <div class="sort-option">Sort by 
-       <button (click)="sortbyGroup(1)" [class.active]="selectedIndex == 1" [disabled]="selectedIndex == 1">Fun</button>
-       <button (click)="sortbyGroup(2)" [class.active]="selectedIndex == 2" [disabled]="selectedIndex == 2">Work</button>
-       <button (click)="sortbyGroup(3)" [class.active]="selectedIndex == 3" [disabled]="selectedIndex == 3">Kids</button>
+        <button class="blue" (click)="sortbyGroup(1)" [class.active]="selectedIndex == 1" [disabled]="selectedIndex == 1">Fun</button>
+        <button class="green" (click)="sortbyGroup(2)" [class.active]="selectedIndex == 2" [disabled]="selectedIndex == 2">Work</button>
+        <button class="orange" (click)="sortbyGroup(3)" [class.active]="selectedIndex == 3" [disabled]="selectedIndex == 3">Kids</button>
     </div>
     <div class="like-count"><i class="fa fa-heart"></i> <span>{{allCourses?.length}}</span></div>
 </section>
