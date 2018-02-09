@@ -52,15 +52,21 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 
 export class CuriousDesktopComponent implements OnInit, OnDestroy {
-
+  //suggestion form group variable
   suggestForm: FormGroup;
+  //boolean variable to check suggest complete or not
   suggestComplete: boolean = false;
+  //variable to hold all courses array
   courses: Course[];
+  //define the like counter variable
   counter: number = 0;
-  colorState: string;
+  //variable to hold all the subscription, and to be destroy in ngOnDestroy()
   private subscriptions = new Subscription();
+  //variable to hold the clicked sort id in filtering the course card
   selectedIndex:number;
+  //variable to set the animation of like count heart on increament
   pulseState:string = '';
+  //array to hold liked course id which is available in local storage
   likeArray: number[] = [];
 
   constructor(
@@ -78,40 +84,46 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
       limit: 9,
       filter: true
     }
+
     this.subscriptions.add(this.courseService.getCourses(parameters).subscribe(courses => {
       this.courses = courses;
     }));
+    //get the like count number
     this.updateCounter();
+    //initialize the group id with zero if none of the sort button is clicked
     this.selectedIndex = 0;
     
   }
-
+  //function to sort the course card by group id
   sortbyGroup(id: number) {
+    //get the id of group which is clicked
     this.selectedIndex = id;
+    //empty the courses array to hold new sorted courses
     this.courses = [];
+    //define the parameter
     let parameters = {
       group: id,
       limit: 9,
       filter: true
     }
+    //get the new courses card by group which is clicked on sort
     this.subscriptions.add(this.courseService.getCourses(parameters).subscribe(courses => {
       this.courses = courses;
     }));
   }
 
   ngOnDestroy() {
+    //unsubscribe all the subscription
     this.subscriptions.unsubscribe();
   }
 
   onSuggest() {
-
     let data = {
       'suggestion': this.suggestForm.value.suggest
     }
 
     this.courseService.suggest(data).subscribe(
       success => {
-        
         //course suggested
         this.suggestComplete = true;
       }
@@ -119,55 +131,49 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
   }
 
   onLike(course, i) {
+    //if pulse state is already as beat change to default
     if(this.pulseState === 'beat'){
       this.pulseState = 'default';
     }
+    //other wise define as beat
     else{
       this.pulseState = 'beat';
     }
 
     if(course.state === 'default'){
-
       //set state to like
       course.state = 'like';
-
       //increment like counter
       this.curious.like(course.id).subscribe(
         success => {
-
           //add new course
           this.addNewCourse(course, i);
         },
         error => {
           //log error
           console.log(error);
-
           //add new course
           this.addNewCourse(course, i);
         }
       );
     }
+    //update the link counter
     this.updateCounter();
   }
 
   onDislike(course, i) {
-
     if(course.state === 'default'){
-
       //set state to like
       course.state = 'dislike';
-
       //increment like counter
       this.curious.dislike(course.id).subscribe(
         success => {
-          
           //add new course
           this.addNewCourse(course, i);
         },
         error => {
           //log error
           console.log(error);
-
           //add new course
           this.addNewCourse(course, i);
         }
@@ -176,18 +182,16 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
   }
 
   private addNewCourse(course, i) {
-
     let newCourse: Course;
+    //check group id if none of sorting button is activated
     if(this.selectedIndex < 1){
+      //if none of group id then initialze it zero
       this.selectedIndex = 0;
     }
-
     //wait 100ms for animation to finish
     setTimeout(() => {
-
       //get excludes
       let excludes = this.createExcludes();
-
       //create parameters
       let parameters = {
         group: this.selectedIndex,
@@ -223,21 +227,23 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
 
     //create array of ids to exclude, return array
     if(this.courses.length > 0){
-
       for(let course of this.courses){
-
         excludes.push(course.id);
       }
     }
-
     return excludes;
   }
+  //function to update the like counter
   updateCounter(){
+    //check if local storage already have likes value
     if(JSON.parse(localStorage.getItem('likes'))){
+      //get local storage as an array
       this.likeArray = JSON.parse(localStorage.getItem('likes'));
+      //get the number of the liked courses
       this.counter = this.likeArray.length;
     }
     else{
+      //if local storage is blank set it to zero
       this.counter = 0;
     }
   }
