@@ -72,7 +72,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
   //counterSubscription: Subscription;
   private subscriptions = new Subscription();
   selectedIndex:number;
-  pulseState:string;
+  pulseState:string = '';
 
   constructor(
     private courseService: CourseService,
@@ -80,7 +80,6 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
    ) {}
 
   ngOnInit() {
-    this.pulseState = '';
     /*this.suggestFormWork = new FormGroup({
       'suggest': new FormControl(null, [Validators.required, Validators.min(100)])
     });
@@ -127,7 +126,6 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
 
     //create parameters
     let parameters = {
-      group: 0,
       limit: 9,
       filter: true
     }
@@ -438,7 +436,6 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
 
       //create parameters
       let parameters = {
-        group: 0,
         limit: 1,
         filter: true,
         excludes: excludes
@@ -469,7 +466,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
 
     let excludes: number[] = [];
 
-    //for each group, create array of ids to exclude, return array
+    //create array of ids to exclude, return array
     if(this.courses.length > 0){
 
       for(let course of this.courses){
