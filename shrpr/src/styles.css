@@ -836,8 +836,8 @@ carousel {
 	color:#cccccc;
 	float: left;
 }
-.sort-option a {
-    display:inline-block;
+.sort-option button {
+	display:inline-block;
     vertical-align: middle;
     padding:10px;
     color:#cccccc;
@@ -851,24 +851,29 @@ carousel {
     width:60px;
 	margin:0 2px;
 	font-weight: bold;
+	cursor: pointer;
 }
-.sort-option a:nth-child(1){
+.sort-option button:nth-child(1){
     margin:0 2px 0 7px;
 }
-.sort-option a:hover, .sort-option a.active {
+.sort-option button:hover, .sort-option button.active {
     border:2px solid #3fa8d1;
     background-color:#3fa8d1;
     color:#ffffff;
     text-decoration:none;
 }
-.sort-option a.green:hover, .sort-option a.green.active {
+.sort-option button.green:hover, .sort-option button.green.active {
 	border:2px solid #448a58;
     background-color:#448a58;
 }
-.sort-option a.orange:hover, .sort-option a.orange.active {
+.sort-option button.orange:hover, .sort-option button.orange.active {
 	border:2px solid #ec9332;
     background-color:#ec9332;	
 }
+.sort-option button:disabled {
+	opacity: 0.7;
+}
+
 .like-count {
     float: right;
     width:36px;

@@ -78,7 +78,8 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
     this.suggestForm = new FormGroup({
       'suggest': new FormControl(null, [Validators.required, Validators.min(100)])
     });
-
+    
+    
     //create parameters
     let parameters = {
       limit: 9,
@@ -98,13 +99,15 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
   sortbyGroup(id: number) {
     //get the id of group which is clicked
     this.selectedIndex = id;
+    let excludes = this.createExcludes();
     //empty the courses array to hold new sorted courses
     this.courses = [];
     //define the parameter
     let parameters = {
       group: id,
       limit: 9,
-      filter: true
+      filter: true,
+      'excludes[]': excludes
     }
     //get the new courses card by group which is clicked on sort
     this.subscriptions.add(this.courseService.getCourses(parameters).subscribe(courses => {
@@ -197,7 +200,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
         group: this.selectedIndex,
         limit: 1,
         filter: true,
-        excludes: excludes
+        'excludes[]': excludes
       }
 
       //get new course
@@ -241,6 +244,7 @@ export class CuriousDesktopComponent implements OnInit, OnDestroy {
       this.likeArray = JSON.parse(localStorage.getItem('likes'));
       //get the number of the liked courses
       this.counter = this.likeArray.length;
+      console.log(this.likeArray);
     }
     else{
       //if local storage is blank set it to zero
