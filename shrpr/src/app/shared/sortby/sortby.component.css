@@ -25,3 +25,17 @@
     max-width: none !important;
 }
 }
+@media only screen and (min-width: 960px) {
+      :host {
+        background: #ededed;
+        max-width: 1500px;
+        padding: 30px 10px 7px;
+        position: fixed;
+        text-align: center;
+        top: 258px;
+        transform: translateY(-50%);
+        width: 100%;
+        z-index: 9;
+        display: block;
+          }
+      }
