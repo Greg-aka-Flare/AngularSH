@@ -14,9 +14,17 @@
             <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
                 Free
             </div>
-            <figure><a [routerLink]="['/courses', course.id]">
-                <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
-                <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
+            <figure>
+                <a 
+                  [routerLink]="[
+                    '/courses', 
+                    course.id,
+                    course.title | slug
+                  ]"
+                >
+                  <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}">
+                  <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg">
+                </a>
             </figure>
             <h3>{{ course?.title | truncate : 20 : '...' }}</h3>
         </div>
@@ -31,11 +39,19 @@
             <time class="date_stamp" title="{{ course?.semesters[0]?.start_date | datex: 'LL' }}">{{ course?.semesters[0]?.start_date | datex: 'LL' }}</time>
           </p>
           <div class="page-cta-wrap">
-          <a [routerLink]="['/courses', course?.id]"  class="page-cta" aria-roledescription="button">View Course</a>
+          <a 
+            [routerLink]="[
+              '/courses', 
+              course?.id,
+              course.title | slug
+            ]"  
+            class="page-cta"
+          >
+            View Course
+          </a>
+
           <a class="wishlist"><img alt="shrpr" src="../../assets/img/shrpr-logo.png" title="shrpr"> Save To Wishlist</a>
           </div>
         </div>
     </article>
-
-
 </section><!-- #course-list -->

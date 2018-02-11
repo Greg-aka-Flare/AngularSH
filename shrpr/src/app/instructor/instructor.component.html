@@ -70,7 +70,13 @@
                     </div>
 
                     <figure>
-                        <a [routerLink]="['/courses', course.id]">
+                        <a 
+                            [routerLink]="[
+                                '/courses', 
+                                course.id,
+                                course.title | slug
+                            ]"
+                        >
 
                             <img *ngIf="course.semesters[0].primary_img" src="../../assets/img/courses/{{ course.semesters[0].primary_img }}" />
 
@@ -109,7 +115,15 @@
                         </time>
                     </p>
 
-                    <a [routerLink]="['/courses', course.id]"  class="page-cta">View Course</a>
+                    <a 
+                        [routerLink]="[
+                            '/courses', 
+                            course.id,
+                            course.title | slug 
+                        ]"  
+                        class="page-cta">
+                        View Course
+                    </a>
                 </div>
             </article> 
 
@@ -160,7 +174,13 @@
                 </div>
 
                 <figure>
-                    <a [routerLink]="['/courses', course.id]">
+                    <a 
+                        [routerLink]="[
+                            '/courses', 
+                            course.id,
+                            course.title | slug
+                        ]"
+                    >
                         <img *ngIf="course.semesters[0].primary_img" src="../../assets/img/courses/{{ course.semesters[0].primary_img }}" />
 
                         <img *ngIf="!course.semesters[0].primary_img" src="../../assets/img/card-picture.jpg" />
@@ -199,7 +219,14 @@
                     </time>
                 </p>
 
-                <a [routerLink]="['/courses', course.id]" class="page-cta" aria-roledescription="button">
+                <a 
+                    [routerLink]="[
+                        '/courses', 
+                        course.id,
+                        course.title | slug
+                    ]" 
+                    class="page-cta"
+                >
                     View Course
                 </a>
             </div>

@@ -15,8 +15,7 @@
 <section id="testimonial" class="clearfix">
 <article><div><i class="fa fa-quote-left" aria-hidden="true"></i>
     <p>"I can safely say you are the most attentive to prospective clients..."</p><span>Alegra Torel</span></div></article>
-<article class="video-box"><!--<a href="javascript:void(0);"><i class="fa fa-play-circle" aria-hidden="true"></i><h4>"I didn't quite understand how good websites could be until I met Shape"</h4>
-    <span>Samuel Tighe</span></a>--><iframe src="https://www.youtube.com/embed/LYcFbq_GriQ?rel=0?ecver=1" frameborder="0" allowfullscreen></iframe></article>
+<article class="video-box"><iframe src="https://www.youtube.com/embed/LYcFbq_GriQ?rel=0?ecver=1" frameborder="0" allowfullscreen></iframe></article>
     <article><div><i class="fa fa-quote-left" aria-hidden="true"></i>
         <p>"For those guided by their desire to know a little bit more"</p><span></span></div></article>
 </section>
@@ -25,12 +24,25 @@
 <section id="ourclints">
     <h2>Our Clients</h2>
     <h3>We work with Institutions and global organisations.</h3>
-    <div><a [routerLink]="['/institution/the-next-street']"><img src="../../assets/img/clients01.png" alt=""></a></div>
-    <div><img src="../../assets/img/clients02.png" alt=""></div>
+    <div>
+        <a 
+            [routerLink]="['/institution/124/the-next-street']"
+        >
+            <img src="../../assets/img/clients01.png" alt="">
+        </a>
+    </div>
+
+    <div>
+        <a 
+            [routerLink]="['/institution/123/westport-continuing-education']"
+        >
+            <img src="../../assets/img/clients02.png" alt="">
+        </a>
+    </div>
 </section>
 <!-- Our Clients end-->
 <section id="service">
-    <article><h2>Service Spotlight</h2><a href="http://shrpr-wp.us-east-2.elasticbeanstalk.com/">eCommerce </a></article>
+    <article><h2>Service Spotlight</h2><a href="#">eCommerce </a></article>
     <article><h2>Recent Project</h2><a href="#">Uber </a></article>
 </section>
 <!-- Service end-->

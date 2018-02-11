@@ -22,8 +22,15 @@ class="category_bucket blue"
                   Free
               </div>
             <figure>
-                    <a [routerLink]="['/courses', course.id]"><img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}" alt="" title="">
-                    <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
+                    <a [routerLink]="[
+                        '/courses', 
+                        course.id, 
+                        course.title | slug
+                    ]">
+                        <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}">
+
+                        <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg">
+                    </a>
             </figure>
         </div><!-- .img-ctn -->
 
@@ -44,12 +51,18 @@ class="category_bucket blue"
             </div><!-- .group_info-->
 
             <h3>
-                <a [routerLink]="['/courses', course?.id]">{{ course?.title | truncate : 70 : '...' }}</a>
+                <a [routerLink]="[
+                        '/courses', 
+                        course?.id, 
+                        course.title | slug
+                    ]">
+                        {{ course?.title | truncate : 70 : '...' }}
+                </a>
             </h3>
             <div class="location-wrap">
             <p class="location">
                 <i class="fa fa-map-marker" aria-hidden="true"></i> 
-                <a href="javascript:void(0);">{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a></p><!-- .location -->
+                <a>{{ course?.semesters[0]?.addresses[0]?.city }}, {{ course?.semesters[0]?.addresses[0]?.state }}</a></p><!-- .location -->
 
             <p class="date">
                 <i class="fa fa-calendar" aria-hidden="true"></i> 

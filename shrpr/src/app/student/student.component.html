@@ -25,18 +25,36 @@
       <tabs class="mobile">
         <tab tabTitle="Courses">
           <h3 *ngIf="!student?.courses.length"><a [routerLink]="['/courses/list/all']">Click here to start your journey </a></h3>
-          <article class="card-box" *ngFor="let coursed of student?.courses">
+          <article class="card-box" *ngFor="let course of student?.courses">
                 <div class="img-ctn">
                     <figure>
-                        <a [routerLink]="['/course', coursed?.id]"><img *ngIf="coursed?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ coursed?.semesters[0]?.primary_img }}" alt="" title="">
-                        <img *ngIf="!coursed?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
+                        <a 
+                          [routerLink]="[
+                            '/course', 
+                            course?.id,
+                            course.title | slug
+                          ]"
+                        >
+                          <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}">
+
+                          <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg">
+                        </a>
                     </figure>
-                    <h3>{{coursed?.title}}</h3>
+                    <h3>{{course?.title}}</h3>
                 </div>
                 <div class="card-info">
-                  <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="coursed?.rating" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></span></div>
-                  <p class="with-box"><span>With</span> {{coursed?.instructor}}</p>
-                  <a [routerLink]="['/course', coursed?.id]"  class="page-cta" aria-roledescription="button">View Course</a>
+                  <div class="group_info"><span class="group_rating"><star-rating-comp [starType]="'svg'" [rating]="course?.rating" [showHalfStars]="true" [readOnly]="true"></star-rating-comp></span></div>
+                  <p class="with-box"><span>With</span> {{course?.instructor}}</p>
+                  <a 
+                    [routerLink]="[
+                      '/course', 
+                      course?.id,
+                      course.title | slug
+                    ]"  
+                    class="page-cta"
+                  >
+                    View Course
+                  </a>
                 </div>
           </article>
         </tab>
@@ -64,17 +82,35 @@
         <section class="desktop" id="desktopcourses">
           <h2>Courses</h2>
           <h3><a [routerLink]="['/courses/list/all']">Click here to start your journey</a></h3>
-            <article class="card-box" *ngFor="let coursed of student?.courses">
+            <article class="card-box" *ngFor="let course of student?.courses">
                   <div class="img-ctn">
                           <figure>
-                          <a [routerLink]="['/course', coursed?.id]"><img *ngIf="coursed?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ coursed?.semesters[0]?.primary_img }}" alt="" title="">
-                          <img *ngIf="!coursed?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg" alt="" title=""></a>
+                          <a 
+                            [routerLink]="[
+                              '/course', 
+                              course?.id,
+                              course.title | slug
+                            ]"
+                          >
+                            <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}">
+
+                            <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/course-picture.jpg">
+                          </a>
                       </figure>
-                      <h3>{{coursed?.title}}</h3>
+                      <h3>{{course?.title}}</h3>
                   </div>
                   <div class="card-info">
-                    <p class="with-box"><span>With</span> {{coursed?.instructor}}</p>
-                    <a [routerLink]="['/course', coursed?.id]"  class="page-cta">View Course</a>
+                    <p class="with-box"><span>With</span> {{course?.instructor}}</p>
+                    <a 
+                      [routerLink]="[
+                        '/course', 
+                        course?.id,
+                        course.title | slug
+                      ]"
+                      class="page-cta"
+                    >
+                      View Course
+                    </a>
                   </div>
               </article>
           <h2>ABOUT</h2>

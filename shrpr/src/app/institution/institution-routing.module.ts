@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { InstitutionComponent } from './institution.component';
 
 const institutionRoutes: Routes = [
+	{ path: ':slug', component: InstitutionComponent },
 	{ path: '', component: InstitutionComponent }
 ];
 

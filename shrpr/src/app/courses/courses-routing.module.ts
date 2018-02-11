@@ -12,6 +12,7 @@ const coursesRoutes: Routes = [
 		{ path: ':id/semesters/:semester_id', component: CourseComponent },
 		{ path: ':id/semesters', component: CourseSemestersComponent },
 		{ path: 'list/:group', component: CourseListComponent },
+		{ path: ':id/:slug', component: CourseComponent },
 		{ path: ':id', component: CourseComponent }
 	] }
 ];

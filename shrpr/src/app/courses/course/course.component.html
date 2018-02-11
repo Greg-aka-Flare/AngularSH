@@ -9,8 +9,13 @@
     <section class="course-header mobile">
         <div class="bread-crumb">
             <span>
-                <a [routerLink]="['/institution', course.institution.id]">
-                {{ course.institution.name }}</a> >
+                <a [routerLink]="[
+                  '/institution', 
+                  course.institution.id,
+                  course.institution.name | slug
+                ]">
+                  {{ course.institution.name }}
+                </a> >
             </span>
 
             <span>
@@ -65,8 +70,13 @@
                 <div class="overlay">
                     <p>
                         <i class="fa fa-user" aria-hidden="true"></i> 
-                        <a [routerLink]="['/instructor', course.instructor.id]">
-                            {{ course.instructor.name }}
+                        <a [routerLink]="[
+                              '/instructor', 
+                              course.instructor.id,
+                              course.instructor.name | slug
+                          ]"
+                        >
+                          {{ course.instructor.name }}
                         </a>
                     </p>
 
@@ -164,7 +174,11 @@
         <div class="course_header">
             <div class="bread-crumb">
                 <span>
-                    <a [routerLink]="['/institution', course.institution.id]">
+                    <a [routerLink]="[
+                      '/institution', 
+                      course.institution.id,
+                      course.institution.name | slug
+                    ]">
                         {{ course.institution.name }}
                     </a> > 
                 </span>
@@ -216,7 +230,15 @@
                 </div><!-- .course_rating_info -->
 
                 <p>
-                    <i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor', course.instructor.id]">{{ course.instructor.name }}</a>
+                    <i class="fa fa-user" aria-hidden="true"></i> 
+                    <a [routerLink]="[
+                        '/instructor', 
+                        course.instructor.id,
+                        course.instructor.name | slug
+                      ]"
+                    >
+                      {{ course.instructor.name }}
+                    </a>
                 </p>
 
                 <div class="action_btn">

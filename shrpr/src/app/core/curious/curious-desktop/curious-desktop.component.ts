@@ -50,7 +50,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   ])
 ]
 })
-
 export class CuriousDesktopComponent implements OnInit, OnDestroy {
   //suggestion form group variable
   suggestForm: FormGroup;

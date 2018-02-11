@@ -3,13 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { InstructorComponent } from './instructor.component';
 
-
-
 const instructorRoutes: Routes = [
-	{ path: '', component: InstructorComponent, children: [
-		
-	] },
-	
+	{ path: ':slug', component: InstructorComponent },
+	{ path: '', component: InstructorComponent }
 ];
 
 @NgModule({

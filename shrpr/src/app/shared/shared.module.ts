@@ -18,7 +18,7 @@ import { InlineEditComponent } from './inline-edit/inline-edit.component';
 import { ControlMessagesComponent } from '../shared/control-messages/control-messages.component';
 import { ModalComponent } from './modal/modal.component';
 import { SortbyComponent } from './sortby/sortby.component';
-
+import { SlugPipe } from './slug.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import { SortbyComponent } from './sortby/sortby.component';
     TabComponent,
     DatexPipe,
     TruncatePipe,
+    SlugPipe,
     FilterComponent,
     InlineEditComponent,
     ControlMessagesComponent,
@@ -59,7 +60,8 @@ import { SortbyComponent } from './sortby/sortby.component';
     RatingComponent,
     ControlMessagesComponent,
     ModalComponent,
-    SortbyComponent
+    SortbyComponent,
+    SlugPipe
   ]
 })
 export class SharedModule {}

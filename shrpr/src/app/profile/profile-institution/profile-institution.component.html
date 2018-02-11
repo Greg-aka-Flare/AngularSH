@@ -22,19 +22,27 @@
   <section id="courses">
     <h2>Courses</h2>
 
-    <article class="card-box" *ngFor="let card of courseData; let i = index">
+    <article class="card-box" *ngFor="let course of courseData; let i = index">
         <div class="img-ctn">
-          <div class="price" *ngIf="card.semesters[0].amount != '0.00'">
-            ${{ card?.semesters[0]?.amount }}
+          <div class="price" *ngIf="course.semesters[0].amount != '0.00'">
+            ${{ course?.semesters[0]?.amount }}
           </div>
-          <div class="price free" *ngIf="card.semesters[0].amount == '0.00'">
+          <div class="price free" *ngIf="course.semesters[0].amount == '0.00'">
               Free
           </div>
             <figure>
-                <a [routerLink]="['/courses', card.id]"><img *ngIf="card?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ card?.semesters[0]?.primary_img }}" alt="" title="">
-                <img *ngIf="!card?.semesters[0]?.primary_img" src="../../assets/img/card-picture.jpg" alt="" title=""></a>
+                <a 
+                  [routerLink]="[
+                    '/courses', 
+                    course.id,
+                    course.title | slug
+                  ]">
+                    <img *ngIf="course?.semesters[0]?.primary_img" src="../../assets/img/courses/{{ course?.semesters[0]?.primary_img }}">
+
+                  <img *ngIf="!course?.semesters[0]?.primary_img" src="../../assets/img/card-picture.jpg">
+                </a>
             </figure>
-            <h3>{{card.title}}</h3>
+            <h3>{{course.title}}</h3>
         </div>
 
         <div class="card-info">
@@ -43,16 +51,37 @@
               <star-rating-comp 
                 [starType]="'svg'" 
                 [readOnly]="true"
-                rating="{{ card?.rating || 0 }}"
+                rating="{{ course?.rating || 0 }}"
               >
               </star-rating-comp>
             </span>
           </div>
-          <p class="instructor"><i class="fa fa-user" aria-hidden="true"></i> <a [routerLink]="['/instructor',  card.instructor.id]">{{  card.instructor.name }}</a></p>
-          <p class="date">
-             <!-- <span class="date_stamp">{{ card.description }}</span>-->
+          <p class="instructor">
+            <i class="fa fa-user" aria-hidden="true"></i> 
+            <a 
+              [routerLink]="[
+                '/instructor',  
+                course.instructor.id,
+                course.instructor.name | slug
+              ]"
+            >
+              {{  course.instructor.name }}
+            </a>
           </p>
-          <a [routerLink]="['/courses', card.id]" class="page-cta" aria-roledescription="button">View Course</a>
+
+          <p class="date">
+             <!-- <span class="date_stamp">{{ course.description }}</span>-->
+          </p>
+          <a 
+            [routerLink]="[
+              '/courses', 
+              course.id,
+              course.title | slug
+            ]" 
+            class="page-cta"
+          >
+            View Course
+          </a>
         </div>
     </article>
   </section><!-- #courses -->
