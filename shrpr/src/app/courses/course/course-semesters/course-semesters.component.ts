@@ -23,7 +23,6 @@ export class CourseSemestersComponent implements OnInit, OnDestroy {
   counter:number = 0;
 
   constructor(
-    //private courseComponent: CourseComponent,
     private courseService: CourseService,
     private route: ActivatedRoute
   ) { 
@@ -31,12 +30,19 @@ export class CourseSemestersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    //subscribe the param value
     this.subscriptions.add(this.route.params.subscribe((params: Params) => {
+      //get param
       this.id = params['id'];
+      //subscribe the course using the course id which is get from param
       this.courseService.getCourse(this.id).subscribe(course => {
+        //fill the course array with response
         this.course = course;
+        //get all semesters of the course
         this.courseSemester = this.course.semesters;
+        //get the total semesters number
         this.semesterLength = this.courseSemester.length;
+        //fill semesters array with bunch of three courses
         if(this.course){
           for(var j = this.counter, l = this.semesterLength; j < l; j=j)
           {
@@ -50,10 +56,9 @@ export class CourseSemestersComponent implements OnInit, OnDestroy {
       })
 
     }));
-    //this.course = this.courseComponent.course;
     
   }
-
+//function to work on view more button
   getData(){
     for(var k = this.counter, p = this.semesterLength; k < p; k=k)
     {
