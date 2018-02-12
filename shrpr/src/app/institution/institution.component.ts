@@ -17,40 +17,33 @@ export class InstitutionComponent implements OnInit, OnDestroy {
   private id:number;
   courses: any[];
   courseData: any;
-  courseTotal: string = '';
-  //subscription: Subscription;
   private subscriptions = new Subscription();
-  
   details:any;
   
-  width = document.documentElement.clientWidth;
-
   constructor(private institutionService: InstitutionService, private route: ActivatedRoute) { 
+    //subscribe the param value
     let sub = this.subscriptions.add(this.route.params.subscribe((params: Params) => {
+      //get the param value
         this.id = params['id'];
-    }))
-    
-    const $resizeEvent = Observable.fromEvent(window, 'resize')
-    .map(() => {
-      return document.documentElement.clientWidth;
-      })
-    
-      this.subscriptions.add($resizeEvent.subscribe(data => {
-      this.width = data;
+        //get institution with institution id
+        this.institutionService.getInstitution(this.id)
+        .subscribe(
+          (response) => {
+            //fill the institutes array with response
+            this.institutions = response;
+            //parse the detail data in json form
+            this.details = JSON.parse(response.details);
+            //get all courses of institute in course array
+            this.courses = this.institutions.courses;
+            this.courseData = this.courses;
+            },
+          (error: Response) => console.log(error)
+        );
     }));
+    
   }
   
   ngOnInit() {
-       this.subscriptions.add(this.institutionService.getInstitution(this.id)
-     .subscribe(
-       (response) => {
-        this.institutions = response;
-        this.details = JSON.parse(response.details);
-        this.courses = this.institutions.courses;
-        this.courseData = this.courses;
-        },
-       (error: Response) => console.log(error)
-     ));
      
   }
 
